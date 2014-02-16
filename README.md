@@ -23,49 +23,74 @@ Some algorithms of the BGSLibrary was used successfully in the following papers:
 List of the algorithms available in BGSLibrary
 ----------------------------------------------
 * Basic methods, mean and variance over time:
-* *  Static Frame Difference
+* *  Static Frame Difference 
+
 * *  Frame Difference
+
 * *  Weighted Moving Mean
+
 * *  Weighted Moving Variance
+ 
 * *  Adaptive Background Learning
+
 * *  Adaptive-Selective Background Learning
+ 
 * *  (1) Temporal Mean
+
 * *  (1) Adaptive Median of McFarlane and Schofield (1995)
+
 * *  (1) Temporal Median of Cucchiara et al (2003) and Calderara et al (2006)
 
 * Fuzzy based methods:
 * * (2) Fuzzy Sugeno Integral (with Adaptive-Selective Update) of Hongxun Zhang and De Xu (2006)
+
 * * (2) Fuzzy Choquet Integral (with Adaptive-Selective Update) of Baf et al (2008)
+
 * * (3) Fuzzy Gaussian of Laurence Bender (adapted version of Wren (1997) with Sigari et al (2008) approach)
 
 * Statistical methods using one gaussian:
 * * (1) Gaussian Average of Wren (1997)
+
 * * (3) Simple Gaussian of Benezeth et al (2008)
 
 * Statistical methods using multiple gaussians:
 * * (1) Gaussian Mixture Model of Stauffer and Grimson (1999)
+
 * * (0) Gaussian Mixture Model of KadewTraKuPong and Bowden (2001)
+
 * * (0) Gaussian Mixture Model of Zivkovic (2004)
+
 * * (1) Gaussian Mixture Model of Zivkovic (2004)
+
 * * (3) Gaussian Mixture Model of Laurence Bender (implements the classic GMM with Mahalanobis distance)
 
 * Type-2 Fuzzy based methods:
 * * (2) Type-2 Fuzzy GMM-UM of Baf et al (2008)
+
 * * (2) Type-2 Fuzzy GMM-UV of Baf et al (2008)
+
 * * (2) Type-2 Fuzzy GMM-UM with MRF of Zhao et al (2012)
+
 * * (2) Type-2 Fuzzy GMM-UV with MRF of Zhao et al (2012)
 
 * Statistical methods using color and texture features:
 * * (1) Texture BGS of Heikkila et al. (2006)
+
 * * (8) Texture-Based Foreground Detection with MRF of Csaba Kertész (2011)
+
 * * (4) Multi-Layer BGS of Jian Yao and Jean-Marc Odobez (2007)
+
 * * (10) MultiCue BGS of SeungJong Noh and Moongu Jeon (2012)
 
 * Non-parametric methods:
 * * (5) Pixel-Based Adaptive Segmenter (PBAS) of Hofmann et al (2012)
+
 * * (0) GMG of Godbehere et al (2012)
+
 * * (6) VuMeter of Goyat et al (2006)
+
 * * (7) KDE of Elgammal et al (2000)
+
 * * (9) IMBS of Domenico Bloisi and Luca Iocchi (2012)
 
 * Eigenspace-based methods:
@@ -73,31 +98,35 @@ List of the algorithms available in BGSLibrary
 
 * Neural and neuro-fuzzy methods:
 * * (3) Adaptive SOM of Maddalena and Petrosino (2008)
+
 * * (3) Fuzzy Adaptive SOM of Maddalena and Petrosino (2010)
 
 Legend:
-(0) native from OpenCV
-(1) thanks to Donovan Parks
-(2) thanks to Thierry Bouwmans, Fida EL BAF and Zhenjie Zhao
-(3) thanks to Laurence Bender
-(4) thanks to Jian Yao and Jean-Marc Odobez
-(5) thanks to Martin Hofmann, Philipp Tiefenbacher and Gerhard Rigoll
-(6) thanks to Lionel Robinault and Antoine Vacavant
-(7) thanks to Ahmed Elgammal
-(8) thanks to Csaba Kertész
-(9) thanks to Domenico Daniele Bloisi
-(10) thanks to SeungJong Noh
+* (0) native from OpenCV
+* (1) thanks to Donovan Parks
+* (2) thanks to Thierry Bouwmans, Fida EL BAF and Zhenjie Zhao
+* (3) thanks to Laurence Bender
+* (4) thanks to Jian Yao and Jean-Marc Odobez
+* (5) thanks to Martin Hofmann, Philipp Tiefenbacher and Gerhard Rigoll
+* (6) thanks to Lionel Robinault and Antoine Vacavant
+* (7) thanks to Ahmed Elgammal
+* (8) thanks to Csaba Kertész
+* (9) thanks to Domenico Daniele Bloisi
+* (10) thanks to SeungJong Noh
 
 Download links:
 ---------------
 
 MFC BGS Library x86 1.4.0 (with src) (uses bgslibrary v1.9.0)
+
 https://github.com/andrewssobral/bgslibrary/blob/master/binaries/mfc_bgslibrary_x86_v1.4.0.7z
 
 Windows 32bits
+
 https://github.com/andrewssobral/bgslibrary/blob/master/binaries/bgs_library_x86_v1.5.0_with_gui.7z
 
 Windows 64bits
+
 https://github.com/andrewssobral/bgslibrary/blob/master/binaries/bgs_library_x64_v1.5.0_with_gui.7z
 
 For Linux users:
