@@ -22,13 +22,13 @@ Some algorithms of the BGSLibrary was used successfully in the following papers:
 
 List of the algorithms available in BGSLibrary
 ----------------------------------------------
-Basic methods, mean and variance over time:
-Static Frame Difference
-Frame Difference
-Weighted Moving Mean
-Weighted Moving Variance
-Adaptive Background Learning
-Adaptive-Selective Background Learning
+* Basic methods, mean and variance over time:
+* Static Frame Difference
+* Frame Difference
+* Weighted Moving Mean
+* Weighted Moving Variance
+* Adaptive Background Learning
+* Adaptive-Selective Background Learning
 *1 Temporal Mean
 *1 Adaptive Median of McFarlane and Schofield (1995)
 *1 Temporal Median of Cucchiara et al (2003) and Calderara et al (2006)
@@ -102,9 +102,7 @@ https://github.com/andrewssobral/bgslibrary/blob/master/binaries/bgs_library_x64
 
 For Linux users:
 ----------------
-Check out latest project source code: 
-
-svn checkout http://bgslibrary.googlecode.com/svn/trunk/ 
+Check out latest project source code.
 
 Read instructions in README.txt file.
 
