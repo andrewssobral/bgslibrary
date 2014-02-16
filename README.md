@@ -23,15 +23,15 @@ Some algorithms of the BGSLibrary was used successfully in the following papers:
 List of the algorithms available in BGSLibrary
 ----------------------------------------------
 * Basic methods, mean and variance over time:
-* * Static Frame Difference
-* * Frame Difference
-* * Weighted Moving Mean
-* * Weighted Moving Variance
-* * Adaptive Background Learning
-* * Adaptive-Selective Background Learning
-* * (1) Temporal Mean
-* * (1) Adaptive Median of McFarlane and Schofield (1995)
-* * (1) Temporal Median of Cucchiara et al (2003) and Calderara et al (2006)
+* *  Static Frame Difference
+* *  Frame Difference
+* *  Weighted Moving Mean
+* *  Weighted Moving Variance
+* *  Adaptive Background Learning
+* *  Adaptive-Selective Background Learning
+* *  (1) Temporal Mean
+* *  (1) Adaptive Median of McFarlane and Schofield (1995)
+* *  (1) Temporal Median of Cucchiara et al (2003) and Calderara et al (2006)
 
 * Fuzzy based methods:
 * * (2) Fuzzy Sugeno Integral (with Adaptive-Selective Update) of Hongxun Zhang and De Xu (2006)
@@ -116,7 +116,7 @@ https://github.com/andrewssobral/bgslibrary/blob/master/Demo.cpp
 Release Notes:
 --------------
 * Version 1.9.0:
-Added A New Framework for Background Subtraction Using Multiple Cues (SJN_MultiCueBGS) of SeungJong Noh and Moongu Jeon (2012). 
+Added A New Framework for Background Subtraction Using Multiple Cues (SJN_MultiCueBGS) of SeungJong Noh and Moongu Jeon (2012). Added OpenCV 2.4.8 support (all dependencies are linked statically).
 
 * Version 1.8.0: 
 Added Independent Multimodal Background Subtraction (IMBS) of Domenico Daniele Bloisi (2012).
