@@ -103,7 +103,9 @@ https://github.com/andrewssobral/bgslibrary/blob/master/binaries/bgs_library_x64
 For Linux users:
 ----------------
 Check out latest project source code: 
+
 svn checkout http://bgslibrary.googlecode.com/svn/trunk/ 
+
 Read instructions in README.txt file.
 
 How to use BGS Library in other C++ code: 
