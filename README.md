@@ -89,6 +89,7 @@ Legend:
 *10 thanks to SeungJong Noh
 
 Download links:
+---------------
 
 MFC BGS Library x86 1.4.0 (with src) (uses bgslibrary v1.9.0)
 https://github.com/andrewssobral/bgslibrary/blob/master/binaries/mfc_bgslibrary_x86_v1.4.0.7z
