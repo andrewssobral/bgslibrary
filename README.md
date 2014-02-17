@@ -5,7 +5,7 @@ A Background Subtraction Library
 
 Last Page Update: 17/02/2014
 
-Latest Library Version: 1.9.0
+Latest Library Version: 1.9.0 (see Release Notes for more info)
 
 The BGSLibrary was developed by Andrews Sobral (http://about.me/andrewssobral/) and provides a C++ framework to perform background subtraction (BGS). The code works either on Windows or on Linux. Currently the library offers 35 BGS algorithms. A large amount of algorithms were provided by several authors. The source code is available under GNU GPL v3 license, the library is free and open source. Any user can be download latest project source code using SVN client. In Windows, a demo project for Visual Studio 2010 is provided. An executable version of BGSLibrary is available for Windows 32 bits and 64 bits. For Linux users, a Makefile can be used to compile all files and generate an executable example. Table 1 lists some of algorithms available in BGSLibrary. The algorithms are classified by their similarities.
 
