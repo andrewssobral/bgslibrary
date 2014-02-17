@@ -7,7 +7,7 @@ Last Page Update: 17/02/2014
 
 Latest Library Version: 1.9.0 (see Release Notes for more info)
 
-The BGSLibrary was developed by Andrews Sobral (http://about.me/andrewssobral/) and provides a C++ framework to perform background subtraction (BGS). The code works either on Windows or on Linux. Currently the library offers 35 BGS algorithms. A large amount of algorithms were provided by several authors. The source code is available under GNU GPL v3 license, the library is free and open source. Any user can be download latest project source code using SVN client. In Windows, a demo project for Visual Studio 2010 is provided. An executable version of BGSLibrary is available for Windows 32 bits and 64 bits. For Linux users, a Makefile can be used to compile all files and generate an executable example. Table 1 lists some of algorithms available in BGSLibrary. The algorithms are classified by their similarities.
+The BGSLibrary was developed by Andrews Sobral (http://about.me/andrewssobral/) and provides a C++ framework to perform background subtraction (BGS). The code works either on Windows or on Linux. Currently the library offers 35 BGS algorithms. A large amount of algorithms were provided by several authors. The source code is available under GNU GPL v3 license, the library is free and open source for academic purposes. Any user can be download latest project source code using SVN client. In Windows, a demo project for Visual Studio 2010 is provided. An executable version of BGSLibrary is available for Windows 32 bits and 64 bits. For Linux users, a Makefile can be used to compile all files and generate an executable example.
 
 Citation
 --------
@@ -130,15 +130,15 @@ Legend:
 Download links:
 ---------------
 
-MFC BGS Library x86 1.4.0 (with src) (uses bgslibrary v1.9.0)
+* BGSLibrary v1.9.0 with MFC GUI v1.4.0 (x86/x64) (+src)
 
 https://github.com/andrewssobral/bgslibrary/blob/master/binaries/mfc_bgslibrary_x86_v1.4.0.7z
 
-Windows 32bits
+* BGSLibrary v1.5.0 with Java GUI for Windows 32bits (x86)
 
 https://github.com/andrewssobral/bgslibrary/blob/master/binaries/bgs_library_x86_v1.5.0_with_gui.7z
 
-Windows 64bits
+* BGSLibrary v1.5.0 with Java GUI for Windows 64bits (x64)
 
 https://github.com/andrewssobral/bgslibrary/blob/master/binaries/bgs_library_x64_v1.5.0_with_gui.7z
 
