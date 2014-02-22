@@ -3,32 +3,25 @@ BGSLibrary
 
 A Background Subtraction Library
 
-Last Page Update: 17/02/2014
+Last Page Update: 22/02/2014
 
 Latest Library Version: 1.9.0 (see Release Notes for more info)
 
-The BGSLibrary was developed by Andrews Sobral (http://about.me/andrewssobral/) and provides a C++ framework to perform background subtraction (BGS). The code works either on Windows or on Linux. Currently the library offers 35 BGS algorithms. A large amount of algorithms were provided by several authors. The source code is available under GNU GPL v3 license, the library is free and open source for academic purposes. Any user can be download latest project source code using SVN client. In Windows, a demo project for Visual Studio 2010 is provided. An executable version of BGSLibrary is available for Windows 32 bits and 64 bits. For Linux users, a Makefile can be used to compile all files and generate an executable example.
+The BGSLibrary was developed by [Andrews Sobral](http://about.me/andrewssobral/) and provides a C++ framework to perform background subtraction (BGS). The code works either on Windows or on Linux. Currently the library offers **34** BGS algorithms (*the PBAS algorithm was removed from BGSLibrary because it is based on patented algorithm [ViBE](http://www2.ulg.ac.be/telecom/research/vibe/)*). A large amount of algorithms were provided by several authors. The source code is available under GNU GPL v3 license, the library is free and open source for academic purposes. Any user can be download latest project source code using SVN client. In Windows, a demo project for Visual Studio 2010 is provided. An executable version of BGSLibrary is available for Windows 32 bits and 64 bits. For Linux users, a Makefile can be used to compile all files and generate an executable example.
 
 Citation
 --------
 If you use this library for your publications, please cite it as:
-
+```
 @inproceedings{bgslibrary,
-
-author = {Sobral, Andrews},
-
-title = {{BGSLibrary}: An OpenCV C++ Background Subtraction Library},
-
+author    = {Sobral, Andrews},
+title     = {{BGSLibrary}: An OpenCV C++ Background Subtraction Library},
 booktitle = {IX Workshop de Visão Computacional (WVC'2013)},
-
-address = {Rio de Janeiro, Brazil},
-
-year = {2013},
-
-month = {Jun}
-
+address   = {Rio de Janeiro, Brazil},
+year      = {2013},
+month     = {Jun}
 } 
-
+```
 Some algorithms of the BGSLibrary was used successfully in the following papers: 
 * (2014) Sobral, Andrews; Vacavant, Antoine. A comprehensive review of background subtraction algorithms evaluated with synthetic and real videos. Computer Vision and Image Understanding (CVIU), 2014.
 * (2013) Sobral, Andrews; Oliveira, Luciano; Schnitman, Leizer; Souza, Felippe. (Best Paper Award) Highway Traffic Congestion Classification Using Holistic Properties. In International Conference on Signal Processing, Pattern Recognition and Applications (SPPRA'2013), Innsbruck, Austria, Feb 2013.
@@ -96,7 +89,8 @@ List of the algorithms available in BGSLibrary
 * * (10) MultiCue BGS of SeungJong Noh and Moongu Jeon (2012)
 
 * Non-parametric methods:
-* * (5) Pixel-Based Adaptive Segmenter (PBAS) of Hofmann et al (2012)
+* * ~~(5) Pixel-Based Adaptive Segmenter (PBAS) of Hofmann et al (2012)~~ 
+**The PBAS algorithm was removed from BGSLibrary because it is based on patented algorithm [ViBE](http://www2.ulg.ac.be/telecom/research/vibe/).**
 
 * * (0) GMG of Godbehere et al (2012)
 
