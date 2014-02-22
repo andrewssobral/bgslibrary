@@ -179,7 +179,7 @@ Check out latest project source code.
 
 Read instructions in README.txt file.
 
-![BGSLibrary Linux](https://sites.google.com/site/andrewssobral/bgslibrary_ubuntu.png "BGSLibrary Linux")
+<p align="center"><img src="https://sites.google.com/site/andrewssobral/bgslibrary_ubuntu.png" border="0" /></p>
 
 How to use BGS Library in other C++ code
 ----------------------------------------
