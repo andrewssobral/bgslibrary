@@ -28,7 +28,8 @@ title     = {{BGSLibrary}: An OpenCV C++ Background Subtraction Library},
 booktitle = {IX Workshop de Visão Computacional (WVC'2013)},
 address   = {Rio de Janeiro, Brazil},
 year      = {2013},
-month     = {Jun}
+month     = {Jun},
+url       = {http://iris.sel.eesc.usp.br/wvc/Anais_WVC2013/Poster/2/15.pdf}
 } 
 ```
 Some algorithms of the BGSLibrary was used successfully in the following papers: 
