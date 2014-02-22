@@ -154,7 +154,24 @@ https://github.com/andrewssobral/bgslibrary/blob/master/binaries/bgs_library_x64
 
 ![MFC BGSLibrary](https://sites.google.com/site/andrewssobral/mfc_bgslibrary_120.png "MFC BGSLibrary")
 
-[![ScreenShot](https://sites.google.com/site/andrewssobral/bgslibrary_youtube.png)](https://www.youtube.com/watch?v=Ccqa9KBO9_U)
+Videos
+------
+
+<p align="center">
+<a href="https://www.youtube.com/watch?v=yjorJu7rRiE" target="_blank">
+<img src="https://sites.google.com/site/andrewssobral/bgslibrary_mfc_youtube.png" border="0" />
+</a>
+</p>
+
+<p align="center">
+<a href="https://www.youtube.com/watch?v=Ccqa9KBO9_U" target="_blank">
+<img src="https://sites.google.com/site/andrewssobral/bgslibrary_youtube.png" border="0" />
+</a>
+</p>
+
+<!--
+[![ScreenShot](https://sites.google.com/site/andrewssobral/bgslibrary_mfc_youtube.png)](https://www.youtube.com/watch?v=yjorJu7rRiE)
+-->
 
 For Linux users
 ---------------
