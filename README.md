@@ -8,6 +8,15 @@ Last Page Update: **22/02/2014**
 Latest Library Version: **1.9.0** (see Release Notes for more info)
 
 The BGSLibrary was developed by [Andrews Sobral](http://about.me/andrewssobral/) and provides a C++ framework to perform background subtraction (BGS). The code works either on Windows or on Linux. Currently the library offers **34** BGS algorithms (*the PBAS algorithm was removed from BGSLibrary because it is based on patented algorithm [ViBE](http://www2.ulg.ac.be/telecom/research/vibe/)*). A large amount of algorithms were provided by several authors. The source code is available under GNU GPL v3 license, the library is free and open source for academic purposes. Any user can be download latest project source code using SVN client. In Windows, a demo project for Visual Studio 2010 is provided. An executable version of BGSLibrary is available for Windows 32 bits and 64 bits. For Linux users, a Makefile can be used to compile all files and generate an executable example.
+<p align="center">
+<img src="https://sites.google.com/site/andrewssobral/bgslibrary190_world_countries.png" />
+</p>
+
+<p align="center">
+Have you found this software useful? Consider donating US$10 so it can get even better! <br />
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=andrewssobral%40gmail%2ecom&lc=BR&item_name=bgslibrary&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" hspace="0" vspace="0" border="0" /></a><br />
+This software is completely free and will always stay free. Enjoy!
+</p>
 
 Citation
 --------
@@ -126,6 +135,8 @@ Legend:
 * (9) thanks to [Domenico Daniele Bloisi](http://www.dis.uniroma1.it/~bloisi/software/imbs.html)
 * (10) thanks to [SeungJong Noh](http://www.informatik.uni-trier.de/~ley/pers/hd/n/Noh:SeungJong)
 
+![](https://sites.google.com/site/andrewssobral/bgslibrary_benchmark.png "")
+
 Download links
 --------------
 
@@ -141,11 +152,15 @@ https://github.com/andrewssobral/bgslibrary/blob/master/binaries/bgs_library_x86
 
 https://github.com/andrewssobral/bgslibrary/blob/master/binaries/bgs_library_x64_v1.5.0_with_gui.7z
 
+![MFC BGSLibrary](https://sites.google.com/site/andrewssobral/mfc_bgslibrary_120.png "MFC BGSLibrary")
+
 For Linux users
 ---------------
 Check out latest project source code.
 
 Read instructions in README.txt file.
+
+![BGSLibrary Linux](https://sites.google.com/site/andrewssobral/bgslibrary_ubuntu.png "BGSLibrary Linux")
 
 How to use BGS Library in other C++ code
 ----------------------------------------
@@ -205,6 +220,12 @@ void main(int argc, char **argv)
   cvReleaseCapture(&capture);
 }
 ```
+
+Best public video databases
+---------------------------
+![Alt text](https://sites.google.com/site/andrewssobral/datasets_public.png "Optional title")
+* ChangeDetection: http://changedetection.net/
+* BMC: http://bmc.univ-bpclermont.fr/
 
 Release Notes:
 --------------
