@@ -227,6 +227,14 @@ Best public video databases
 * ChangeDetection: http://changedetection.net/
 * BMC: http://bmc.univ-bpclermont.fr/
 
+Project Diagram
+---------------
+<p align="center">
+<a href="http://sites.google.com/site/andrewssobral/_/rsrc/1332121146046/bgslibrary_arch.png" target="_blank">
+<img src="http://sites.google.com/site/andrewssobral/_/rsrc/1332121146046/bgslibrary_arch.png?width=815" border="0" />
+</a>
+</p>
+
 Release Notes:
 --------------
 * Version 1.9.0:
