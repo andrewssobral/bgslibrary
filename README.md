@@ -154,6 +154,8 @@ https://github.com/andrewssobral/bgslibrary/blob/master/binaries/bgs_library_x64
 
 ![MFC BGSLibrary](https://sites.google.com/site/andrewssobral/mfc_bgslibrary_120.png "MFC BGSLibrary")
 
+[![ScreenShot](https://sites.google.com/site/andrewssobral/bgslibrary_youtube.png)](https://www.youtube.com/watch?v=Ccqa9KBO9_U)
+
 For Linux users
 ---------------
 Check out latest project source code.
@@ -232,6 +234,32 @@ Project Diagram
 <p align="center">
 <a href="http://sites.google.com/site/andrewssobral/_/rsrc/1332121146046/bgslibrary_arch.png" target="_blank">
 <img src="http://sites.google.com/site/andrewssobral/_/rsrc/1332121146046/bgslibrary_arch.png?width=815" border="0" />
+</a>
+</p>
+
+Java GUI
+--------
+<p align="center">
+<a href="https://sites.google.com/site/andrewssobral/bgslibrary_gui_screen01.png" target="_blank">
+<img src="https://sites.google.com/site/andrewssobral/bgslibrary_gui_screen01.png?width=815" border="0" />
+</a>
+</p>
+
+<p align="center">
+<a href="https://sites.google.com/site/andrewssobral/bgslibrary_gui_screen02.png" target="_blank">
+<img src="https://sites.google.com/site/andrewssobral/bgslibrary_gui_screen02.png?width=815" border="0" />
+</a>
+</p>
+
+<p align="center">
+<a href="https://sites.google.com/site/andrewssobral/bgslibrary_gui_screen03.png" target="_blank">
+<img src="https://sites.google.com/site/andrewssobral/bgslibrary_gui_screen03.png?width=815" border="0" />
+</a>
+</p>
+
+<p align="center">
+<a href="https://sites.google.com/site/andrewssobral/bgslibrary_gui_screen04.png" target="_blank">
+<img src="https://sites.google.com/site/andrewssobral/bgslibrary_gui_screen04.png?width=815" border="0" />
 </a>
 </p>
 
