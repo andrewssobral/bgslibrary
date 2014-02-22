@@ -129,8 +129,6 @@
     <ClCompile Include="..\package_bgs\lb\LBSimpleGaussian.cpp" />
     <ClCompile Include="..\package_bgs\MixtureOfGaussianV1BGS.cpp" />
     <ClCompile Include="..\package_bgs\MixtureOfGaussianV2BGS.cpp" />
-    <ClCompile Include="..\package_bgs\pt\PBAS.cpp" />
-    <ClCompile Include="..\package_bgs\pt\PixelBasedAdaptiveSegmenter.cpp" />
     <ClCompile Include="..\package_bgs\sjn\SJN_MultiCueBGS.cpp" />
     <ClCompile Include="..\package_bgs\StaticFrameDifferenceBGS.cpp" />
     <ClCompile Include="..\package_bgs\tb\FuzzyChoquetIntegral.cpp" />
@@ -207,8 +205,6 @@
     <ClInclude Include="..\package_bgs\lb\Types.h" />
     <ClInclude Include="..\package_bgs\MixtureOfGaussianV1BGS.h" />
     <ClInclude Include="..\package_bgs\MixtureOfGaussianV2BGS.h" />
-    <ClInclude Include="..\package_bgs\pt\PBAS.h" />
-    <ClInclude Include="..\package_bgs\pt\PixelBasedAdaptiveSegmenter.h" />
     <ClInclude Include="..\package_bgs\sjn\SJN_MultiCueBGS.h" />
     <ClInclude Include="..\package_bgs\StaticFrameDifferenceBGS.h" />
     <ClInclude Include="..\package_bgs\tb\FuzzyChoquetIntegral.h" />
