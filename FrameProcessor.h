@@ -60,7 +60,10 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #include "package_bgs/jmo/MultiLayerBGS.h"
-#include "package_bgs/pt/PixelBasedAdaptiveSegmenter.h"
+// The PBAS algorithm was removed from BGSLibrary because it is
+// based on patented algorithm ViBE
+// http://www2.ulg.ac.be/telecom/research/vibe/
+//#include "package_bgs/pt/PixelBasedAdaptiveSegmenter.h"
 #include "package_bgs/av/VuMeter.h"
 #include "package_bgs/ae/KDE.h"
 
@@ -199,9 +202,9 @@ private:
   MultiLayerBGS* multiLayerBGS;
   bool enableMultiLayerBGS;
 
-  cv::Mat img_pt_pbas;
-  PixelBasedAdaptiveSegmenter* pixelBasedAdaptiveSegmenter;
-  bool enablePBAS;
+  //cv::Mat img_pt_pbas;
+  //PixelBasedAdaptiveSegmenter* pixelBasedAdaptiveSegmenter;
+  //bool enablePBAS;
 
   cv::Mat img_vumeter;
   VuMeter* vuMeter;

@@ -125,8 +125,8 @@ void FrameProcessor::init()
   if(enableMultiLayerBGS)
     multiLayerBGS = new MultiLayerBGS;
 
-  if(enablePBAS)
-    pixelBasedAdaptiveSegmenter = new PixelBasedAdaptiveSegmenter;
+  //if(enablePBAS)
+  //  pixelBasedAdaptiveSegmenter = new PixelBasedAdaptiveSegmenter;
 
   if(enableVuMeter)
     vuMeter = new VuMeter;
@@ -252,8 +252,8 @@ void FrameProcessor::process(const cv::Mat &img_input)
     process("MultiLayerBGS", multiLayerBGS, img_prep, img_mlbgs);
   }
   
-  if(enablePBAS)
-    process("PBAS", pixelBasedAdaptiveSegmenter, img_prep, img_pt_pbas);
+  //if(enablePBAS)
+  //  process("PBAS", pixelBasedAdaptiveSegmenter, img_prep, img_pt_pbas);
   
   if(enableVuMeter)
     process("VuMeter", vuMeter, img_prep, img_vumeter);
@@ -299,7 +299,7 @@ void FrameProcessor::process(const cv::Mat &img_input)
     foregroundMaskAnalysis->process(frameNumber, "LbpMrf", img_lbp_mrf);
 	#endif
     foregroundMaskAnalysis->process(frameNumber, "MultiLayerBGS", img_mlbgs);
-    foregroundMaskAnalysis->process(frameNumber, "PBAS", img_pt_pbas);
+    //foregroundMaskAnalysis->process(frameNumber, "PBAS", img_pt_pbas);
     foregroundMaskAnalysis->process(frameNumber, "VuMeter", img_vumeter);
     foregroundMaskAnalysis->process(frameNumber, "KDE", img_kde);
   }
@@ -336,8 +336,8 @@ void FrameProcessor::finish(void)
   if(enableVuMeter)
     delete vuMeter;
   
-  if(enablePBAS)
-    delete pixelBasedAdaptiveSegmenter;
+  //if(enablePBAS)
+  //  delete pixelBasedAdaptiveSegmenter;
 
   if(enableMultiLayerBGS)
     delete multiLayerBGS;
@@ -494,7 +494,7 @@ void FrameProcessor::saveConfig()
   #endif
 
   cvWriteInt(fs, "enableMultiLayerBGS", enableMultiLayerBGS);
-  cvWriteInt(fs, "enablePBAS", enablePBAS);
+  //cvWriteInt(fs, "enablePBAS", enablePBAS);
   cvWriteInt(fs, "enableVuMeter", enableVuMeter);
   cvWriteInt(fs, "enableKDE", enableKDE);
 
@@ -549,7 +549,7 @@ void FrameProcessor::loadConfig()
   #endif
 
   enableMultiLayerBGS = cvReadIntByName(fs, 0, "enableMultiLayerBGS", false);
-  enablePBAS = cvReadIntByName(fs, 0, "enablePBAS", false);
+  //enablePBAS = cvReadIntByName(fs, 0, "enablePBAS", false);
   enableVuMeter = cvReadIntByName(fs, 0, "enableVuMeter", false);
   enableKDE = cvReadIntByName(fs, 0, "enableKDE", false);
 
