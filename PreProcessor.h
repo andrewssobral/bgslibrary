@@ -20,30 +20,32 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #include <cv.h>
 #include <highgui.h>
 
-class PreProcessor
+namespace bgslibrary
 {
-private:
-  bool firstTime;
-  bool equalizeHist;
-  bool gaussianBlur;
-  cv::Mat img_gray;
-  bool enableShow;
+  class PreProcessor
+  {
+  private:
+    bool firstTime;
+    bool equalizeHist;
+    bool gaussianBlur;
+    cv::Mat img_gray;
+    bool enableShow;
 
-public:
-  PreProcessor();
-  ~PreProcessor();
+  public:
+    PreProcessor();
+    ~PreProcessor();
 
-  void setEqualizeHist(bool value);
-  void setGaussianBlur(bool value);
-  cv::Mat getGrayScale(); 
+    void setEqualizeHist(bool value);
+    void setGaussianBlur(bool value);
+    cv::Mat getGrayScale();
 
-  void process(const cv::Mat &img_input, cv::Mat &img_output);
+    void process(const cv::Mat &img_input, cv::Mat &img_output);
 
-  void rotate(const cv::Mat &img_input, cv::Mat &img_output, float angle);
-  void applyCanny(const cv::Mat &img_input, cv::Mat &img_output);
+    void rotate(const cv::Mat &img_input, cv::Mat &img_output, float angle);
+    void applyCanny(const cv::Mat &img_input, cv::Mat &img_output);
 
-private:
-  void saveConfig();
-  void loadConfig();
-};
-
+  private:
+    void saveConfig();
+    void loadConfig();
+  };
+}

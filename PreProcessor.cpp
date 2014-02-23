@@ -16,131 +16,134 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "PreProcessor.h"
 
-PreProcessor::PreProcessor() : firstTime(true), equalizeHist(false), gaussianBlur(false)
+namespace bgslibrary
 {
-  std::cout << "PreProcessor()" << std::endl;
-}
+  PreProcessor::PreProcessor() : firstTime(true), equalizeHist(false), gaussianBlur(false)
+  {
+    std::cout << "PreProcessor()" << std::endl;
+  }
 
-PreProcessor::~PreProcessor()
-{
-  std::cout << "~PreProcessor()" << std::endl;
-}
+  PreProcessor::~PreProcessor()
+  {
+    std::cout << "~PreProcessor()" << std::endl;
+  }
 
-void PreProcessor::setEqualizeHist(bool value)
-{
-  equalizeHist = value;
-}
+  void PreProcessor::setEqualizeHist(bool value)
+  {
+    equalizeHist = value;
+  }
 
-void PreProcessor::setGaussianBlur(bool value)
-{
-  gaussianBlur = value;
-}
+  void PreProcessor::setGaussianBlur(bool value)
+  {
+    gaussianBlur = value;
+  }
 
-cv::Mat PreProcessor::getGrayScale()
-{
-  return img_gray.clone();
-}
+  cv::Mat PreProcessor::getGrayScale()
+  {
+    return img_gray.clone();
+  }
 
-void PreProcessor::process(const cv::Mat &img_input, cv::Mat &img_output)
-{
-  if(img_input.empty())
-    return;
+  void PreProcessor::process(const cv::Mat &img_input, cv::Mat &img_output)
+  {
+    if (img_input.empty())
+      return;
 
-  loadConfig();
+    loadConfig();
 
-  if(firstTime)
-    saveConfig();
-  
-  img_input.copyTo(img_output);
-  
-  // Converts image from one color space to another
-  // http://opencv.willowgarage.com/documentation/cpp/miscellaneous_image_transformations.html#cv-cvtcolor
-  cv::cvtColor(img_input, img_gray, CV_BGR2GRAY);
-  //img_gray.copyTo(img_output);
+    if (firstTime)
+      saveConfig();
 
-  // Equalizes the histogram of a grayscale image
-  // http://opencv.willowgarage.com/documentation/cpp/histograms.html#cv-equalizehist
-  if(equalizeHist)
-    cv::equalizeHist(img_output, img_output);
+    img_input.copyTo(img_output);
 
-  // Smoothes image using a Gaussian filter
-  // http://opencv.willowgarage.com/documentation/cpp/imgproc_image_filtering.html#GaussianBlur
-  if(gaussianBlur)
-    cv::GaussianBlur(img_output, img_output, cv::Size(7,7), 1.5);
+    // Converts image from one color space to another
+    // http://opencv.willowgarage.com/documentation/cpp/miscellaneous_image_transformations.html#cv-cvtcolor
+    cv::cvtColor(img_input, img_gray, CV_BGR2GRAY);
+    //img_gray.copyTo(img_output);
 
-  if(enableShow)
-    cv::imshow("Pre Processor", img_output);
+    // Equalizes the histogram of a grayscale image
+    // http://opencv.willowgarage.com/documentation/cpp/histograms.html#cv-equalizehist
+    if (equalizeHist)
+      cv::equalizeHist(img_output, img_output);
 
-  firstTime = false;
-}
+    // Smoothes image using a Gaussian filter
+    // http://opencv.willowgarage.com/documentation/cpp/imgproc_image_filtering.html#GaussianBlur
+    if (gaussianBlur)
+      cv::GaussianBlur(img_output, img_output, cv::Size(7, 7), 1.5);
 
-void PreProcessor::rotate(const cv::Mat &img_input, cv::Mat &img_output, float angle)
-{
-  IplImage* image = new IplImage(img_input); 
+    if (enableShow)
+      cv::imshow("Pre Processor", img_output);
 
-  //IplImage *rotatedImage = cvCreateImage(cvSize(480,320), IPL_DEPTH_8U, image->nChannels);
-  //IplImage *rotatedImage = cvCreateImage(cvSize(image->width,image->height), IPL_DEPTH_8U, image->nChannels);
-  IplImage* rotatedImage = cvCreateImage(cvSize(image->height,image->width), IPL_DEPTH_8U, image->nChannels);
+    firstTime = false;
+  }
 
-  CvPoint2D32f center;
-  //center.x = 160;
-  //center.y = 160;
-  center.x = (image->height / 2);
-  center.y = (image->width / 2);
-  
-  CvMat* mapMatrix = cvCreateMat(2, 3, CV_32FC1);
+  void PreProcessor::rotate(const cv::Mat &img_input, cv::Mat &img_output, float angle)
+  {
+    IplImage* image = new IplImage(img_input);
 
-  cv2DRotationMatrix(center, angle, 1.0, mapMatrix);
-  cvWarpAffine(image, rotatedImage, mapMatrix, CV_INTER_LINEAR + CV_WARP_FILL_OUTLIERS, cvScalarAll(0));
+    //IplImage *rotatedImage = cvCreateImage(cvSize(480,320), IPL_DEPTH_8U, image->nChannels);
+    //IplImage *rotatedImage = cvCreateImage(cvSize(image->width,image->height), IPL_DEPTH_8U, image->nChannels);
+    IplImage* rotatedImage = cvCreateImage(cvSize(image->height, image->width), IPL_DEPTH_8U, image->nChannels);
 
-  cv::Mat img_rot(rotatedImage);
-  img_rot.copyTo(img_output);
+    CvPoint2D32f center;
+    //center.x = 160;
+    //center.y = 160;
+    center.x = (image->height / 2);
+    center.y = (image->width / 2);
 
-  cvReleaseImage(&image);
-  cvReleaseImage(&rotatedImage);
-  cvReleaseMat(&mapMatrix);
-}
+    CvMat* mapMatrix = cvCreateMat(2, 3, CV_32FC1);
 
-void PreProcessor::applyCanny(const cv::Mat &img_input, cv::Mat &img_output)
-{
-  if(img_input.empty())
-    return;
+    cv2DRotationMatrix(center, angle, 1.0, mapMatrix);
+    cvWarpAffine(image, rotatedImage, mapMatrix, CV_INTER_LINEAR + CV_WARP_FILL_OUTLIERS, cvScalarAll(0));
 
-  //------------------------------------------------------------------
-  // Canny
-  // Finds edges in an image using Canny algorithm.
-  // http://opencv.willowgarage.com/documentation/cpp/imgproc_feature_detection.html#cv-canny
-  //------------------------------------------------------------------
+    cv::Mat img_rot(rotatedImage);
+    img_rot.copyTo(img_output);
 
-  cv::Mat img_canny;
-  cv::Canny(
-    img_input, // image – Single-channel 8-bit input image
-    img_canny,  // edges – The output edge map. It will have the same size and the same type as image
-    100,       // threshold1 – The first threshold for the hysteresis procedure
-    200);      // threshold2 – The second threshold for the hysteresis procedure
-  cv::threshold(img_canny, img_canny, 128, 255, cv::THRESH_BINARY_INV);
+    cvReleaseImage(&image);
+    cvReleaseImage(&rotatedImage);
+    cvReleaseMat(&mapMatrix);
+  }
 
-  img_canny.copyTo(img_output);
-}
+  void PreProcessor::applyCanny(const cv::Mat &img_input, cv::Mat &img_output)
+  {
+    if (img_input.empty())
+      return;
 
-void PreProcessor::saveConfig()
-{
-  CvFileStorage* fs = cvOpenFileStorage("./config/PreProcessor.xml", 0, CV_STORAGE_WRITE);
+    //------------------------------------------------------------------
+    // Canny
+    // Finds edges in an image using Canny algorithm.
+    // http://opencv.willowgarage.com/documentation/cpp/imgproc_feature_detection.html#cv-canny
+    //------------------------------------------------------------------
 
-  cvWriteInt(fs, "equalizeHist", equalizeHist);
-  cvWriteInt(fs, "gaussianBlur", gaussianBlur);
-  cvWriteInt(fs, "enableShow", enableShow);
+    cv::Mat img_canny;
+    cv::Canny(
+      img_input, // image – Single-channel 8-bit input image
+      img_canny,  // edges – The output edge map. It will have the same size and the same type as image
+      100,       // threshold1 – The first threshold for the hysteresis procedure
+      200);      // threshold2 – The second threshold for the hysteresis procedure
+    cv::threshold(img_canny, img_canny, 128, 255, cv::THRESH_BINARY_INV);
 
-  cvReleaseFileStorage(&fs);
-}
+    img_canny.copyTo(img_output);
+  }
 
-void PreProcessor::loadConfig()
-{
-  CvFileStorage* fs = cvOpenFileStorage("./config/PreProcessor.xml", 0, CV_STORAGE_READ);
+  void PreProcessor::saveConfig()
+  {
+    CvFileStorage* fs = cvOpenFileStorage("./config/PreProcessor.xml", 0, CV_STORAGE_WRITE);
 
-  equalizeHist = cvReadIntByName(fs, 0, "equalizeHist", false);
-  gaussianBlur = cvReadIntByName(fs, 0, "gaussianBlur", false);
-  enableShow = cvReadIntByName(fs, 0, "enableShow", true);
+    cvWriteInt(fs, "equalizeHist", equalizeHist);
+    cvWriteInt(fs, "gaussianBlur", gaussianBlur);
+    cvWriteInt(fs, "enableShow", enableShow);
 
-  cvReleaseFileStorage(&fs);
+    cvReleaseFileStorage(&fs);
+  }
+
+  void PreProcessor::loadConfig()
+  {
+    CvFileStorage* fs = cvOpenFileStorage("./config/PreProcessor.xml", 0, CV_STORAGE_READ);
+
+    equalizeHist = cvReadIntByName(fs, 0, "equalizeHist", false);
+    gaussianBlur = cvReadIntByName(fs, 0, "gaussianBlur", false);
+    enableShow = cvReadIntByName(fs, 0, "enableShow", true);
+
+    cvReleaseFileStorage(&fs);
+  }
 }

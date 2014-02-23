@@ -78,7 +78,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Demo.cpp" />
+    <ClCompile Include="..\Demo.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\FrameProcessor.cpp" />
+    <ClCompile Include="..\Main.cpp" />
+    <ClCompile Include="..\package_analysis\ForegroundMaskAnalysis.cpp" />
     <ClCompile Include="..\package_bgs\AdaptiveBackgroundLearning.cpp" />
     <ClCompile Include="..\package_bgs\AdaptiveSelectiveBackgroundLearning.cpp" />
     <ClCompile Include="..\package_bgs\ae\KDE.cpp" />
@@ -145,8 +150,15 @@
     <ClCompile Include="..\package_bgs\tb\T2FMRF_UV.cpp" />
     <ClCompile Include="..\package_bgs\WeightedMovingMeanBGS.cpp" />
     <ClCompile Include="..\package_bgs\WeightedMovingVarianceBGS.cpp" />
+    <ClCompile Include="..\PreProcessor.cpp" />
+    <ClCompile Include="..\VideoAnalysis.cpp" />
+    <ClCompile Include="..\VideoCapture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Config.h" />
+    <ClInclude Include="..\FrameProcessor.h" />
+    <ClInclude Include="..\IFrameProcessor.h" />
+    <ClInclude Include="..\package_analysis\ForegroundMaskAnalysis.h" />
     <ClInclude Include="..\package_bgs\AdaptiveBackgroundLearning.h" />
     <ClInclude Include="..\package_bgs\AdaptiveSelectiveBackgroundLearning.h" />
     <ClInclude Include="..\package_bgs\ae\KDE.h" />
@@ -221,6 +233,9 @@
     <ClInclude Include="..\package_bgs\tb\T2FMRF_UV.h" />
     <ClInclude Include="..\package_bgs\WeightedMovingMeanBGS.h" />
     <ClInclude Include="..\package_bgs\WeightedMovingVarianceBGS.h" />
+    <ClInclude Include="..\PreProcessor.h" />
+    <ClInclude Include="..\VideoAnalysis.h" />
+    <ClInclude Include="..\VideoCapture.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

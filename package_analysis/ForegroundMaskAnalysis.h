@@ -21,22 +21,25 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #include <cv.h>
 #include <highgui.h>
 
-class ForegroundMaskAnalysis
+namespace bgslibrary
 {
-private:
-  bool firstTime;
-  bool showOutput;
+  class ForegroundMaskAnalysis
+  {
+  private:
+    bool firstTime;
+    bool showOutput;
 
-public:
-  ForegroundMaskAnalysis();
-  ~ForegroundMaskAnalysis();
-  
-  long stopAt;
-  std::string img_ref_path;
+  public:
+    ForegroundMaskAnalysis();
+    ~ForegroundMaskAnalysis();
 
-  void process(const long &frameNumber, const std::string &name, const cv::Mat &img_input);
+    long stopAt;
+    std::string img_ref_path;
 
-private:
-  void saveConfig();
-  void loadConfig();
-};
+    void process(const long &frameNumber, const std::string &name, const cv::Mat &img_input);
+
+  private:
+    void saveConfig();
+    void loadConfig();
+  };
+}

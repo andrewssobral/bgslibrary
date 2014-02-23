@@ -43,11 +43,14 @@
     <Filter Include="Header Files\package_bgs\tb">
       <UniqueIdentifier>{53f2c4fb-9468-44ce-b76e-e25ea018c084}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\demo">
+      <UniqueIdentifier>{23f1cd4a-e9b2-4338-a5e7-128f451d3c89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\package_analysis">
+      <UniqueIdentifier>{52a9f254-d817-4577-96c2-0b3b0a9527b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Demo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\package_bgs\AdaptiveBackgroundLearning.cpp">
       <Filter>Header Files\package_bgs</Filter>
     </ClCompile>
@@ -207,12 +210,6 @@
     <ClCompile Include="..\package_bgs\lb\LBSimpleGaussian.cpp">
       <Filter>Header Files\package_bgs\lb</Filter>
     </ClCompile>
-    <ClCompile Include="..\package_bgs\pt\PBAS.cpp">
-      <Filter>Header Files\package_bgs\pt</Filter>
-    </ClCompile>
-    <ClCompile Include="..\package_bgs\pt\PixelBasedAdaptiveSegmenter.cpp">
-      <Filter>Header Files\package_bgs\pt</Filter>
-    </ClCompile>
     <ClCompile Include="..\package_bgs\sjn\SJN_MultiCueBGS.cpp">
       <Filter>Header Files\package_bgs\sjn</Filter>
     </ClCompile>
@@ -251,6 +248,27 @@
     </ClCompile>
     <ClCompile Include="..\package_bgs\tb\T2FMRF_UV.cpp">
       <Filter>Header Files\package_bgs\tb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FrameProcessor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PreProcessor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\VideoAnalysis.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\VideoCapture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Demo.cpp">
+      <Filter>Source Files\demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\package_analysis\ForegroundMaskAnalysis.cpp">
+      <Filter>Header Files\package_analysis</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -437,12 +455,6 @@
     <ClInclude Include="..\package_bgs\lb\Types.h">
       <Filter>Header Files\package_bgs\lb</Filter>
     </ClInclude>
-    <ClInclude Include="..\package_bgs\pt\PBAS.h">
-      <Filter>Header Files\package_bgs\pt</Filter>
-    </ClInclude>
-    <ClInclude Include="..\package_bgs\pt\PixelBasedAdaptiveSegmenter.h">
-      <Filter>Header Files\package_bgs\pt</Filter>
-    </ClInclude>
     <ClInclude Include="..\package_bgs\sjn\SJN_MultiCueBGS.h">
       <Filter>Header Files\package_bgs\sjn</Filter>
     </ClInclude>
@@ -481,6 +493,27 @@
     </ClInclude>
     <ClInclude Include="..\package_bgs\tb\T2FMRF_UV.h">
       <Filter>Header Files\package_bgs\tb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Config.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FrameProcessor.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\IFrameProcessor.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PreProcessor.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\VideoAnalysis.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\VideoCapture.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\package_analysis\ForegroundMaskAnalysis.h">
+      <Filter>Header Files\package_analysis</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

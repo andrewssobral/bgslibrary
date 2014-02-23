@@ -18,9 +18,12 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <cv.h>
 
-class IFrameProcessor
+namespace bgslibrary
 {
+  class IFrameProcessor
+  {
   public:
-  virtual void process(const cv:: Mat &input) = 0;
-  virtual ~IFrameProcessor(){}
-};
+    virtual void process(const cv::Mat &input) = 0;
+    virtual ~IFrameProcessor(){}
+  };
+}
