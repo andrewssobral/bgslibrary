@@ -68,7 +68,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #include "package_bgs/db/IndependentMultimodalBGS.h"
 #include "package_bgs/sjn/SJN_MultiCueBGS.h"
 
-void main(int argc, char **argv)
+int main(int argc, char **argv)
 {
   std::cout << "Using OpenCV " << CV_MAJOR_VERSION << "." << CV_MINOR_VERSION << "." << CV_SUBMINOR_VERSION << std::endl;
 
@@ -89,7 +89,7 @@ void main(int argc, char **argv)
   if(!capture)
   {
     std::cerr << "Cannot initialize video!" << std::endl;
-    return;
+    return -1;
   }
   
   IplImage *frame_aux = cvQueryFrame(capture);
@@ -182,4 +182,6 @@ void main(int argc, char **argv)
 
   cvDestroyAllWindows();
   cvReleaseCapture(&capture);
+
+  return 0;
 }

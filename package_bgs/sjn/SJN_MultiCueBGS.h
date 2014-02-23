@@ -18,7 +18,10 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 
 #define MIN3(x,y,z)  ((y) <= (z) ? ((x) <= (y) ? (x) : (y)) : ((x) <= (z) ? (x) : (z)))
 #define MAX3(x,y,z)  ((y) >= (z) ? ((x) >= (y) ? (x) : (y)) : ((x) >= (z) ? (x) : (z)))
-#define PI 3.14159
+
+#ifndef PI
+  #define PI 3.14159
+#endif
 
 typedef int BOOL;
 
