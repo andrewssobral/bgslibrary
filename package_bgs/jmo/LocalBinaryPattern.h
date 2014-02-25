@@ -17,7 +17,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 /* --- --- ---
 * Copyright (C) 2008--2010 Idiap Research Institute (.....@idiap.ch)
 * All rights reserved.
-* 
+*
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the following conditions
 * are met:
@@ -28,7 +28,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 *    documentation and/or other materials provided with the distribution.
 * 3. The name of the author may not be used to endorse or promote products
 *    derived from this software without specific prior written permission.
-* 
+*
 * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
 * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
@@ -62,20 +62,20 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #include "OpenCvDataConversion.h"
 
 
-class CLocalBinaryPattern  
+class CLocalBinaryPattern
 {
 public:
-  void CalImageDifferenceMap(IplImage *cent_img, IplImage *neig_img, float *pattern, CvRect *roi=NULL);
+  void CalImageDifferenceMap(IplImage *cent_img, IplImage *neig_img, float *pattern, CvRect *roi = NULL);
   void CalNeigPixelOffset(float radius, int tot_neig_pts_num, int neig_pt_idx, int &offset_x, int &offset_y);
-  void CalShiftedImage(IplImage *src, int offset_x, int offset_y, IplImage *dst, CvRect *roi=NULL);
+  void CalShiftedImage(IplImage *src, int offset_x, int offset_y, IplImage *dst, CvRect *roi = NULL);
   void FreeMemories();
-  void ComputeLBP(PixelLBPStruct *PLBP, CvRect *roi=NULL);
+  void ComputeLBP(PixelLBPStruct *PLBP, CvRect *roi = NULL);
   void SetNewImages(IplImage **new_imgs);
 
   IplImage** m_ppOrgImgs;			/* the original images used for computing the LBP operators */
 
-  void Initialization(IplImage **first_imgs, int imgs_num, 
-    int level_num, float *radius, int *neig_pt_num, 
+  void Initialization(IplImage **first_imgs, int imgs_num,
+    int level_num, float *radius, int *neig_pt_num,
     float robust_white_noise = 3.0f, int type = GENERAL_LBP);
 
   CLocalBinaryPattern();

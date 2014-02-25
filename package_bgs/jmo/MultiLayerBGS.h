@@ -28,8 +28,8 @@ class MultiLayerBGS : public IBGS
 public:
   enum Status
   {
-    MLBGS_NONE   = -1,
-    MLBGS_LEARN  = 0,
+    MLBGS_NONE = -1,
+    MLBGS_LEARN = 0,
     MLBGS_DETECT = 1
   };
 
@@ -55,7 +55,7 @@ private:
   IplImage* fg_prob_img3;
   IplImage* merged_img;
   std::string bg_model_preload;
-  
+
   bool loadDefaultParams;
 
   int max_mode_num;
@@ -82,7 +82,7 @@ private:
   float learn_mode_learn_rate_per_second;
   float learn_weight_learn_rate_per_second;
   float learn_init_mode_weight;
-  
+
   float detect_mode_learn_rate_per_second;
   float detect_weight_learn_rate_per_second;
   float detect_init_mode_weight;

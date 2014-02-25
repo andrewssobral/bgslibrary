@@ -17,7 +17,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 /* --- --- ---
 * Copyright (C) 2008--2010 Idiap Research Institute (.....@idiap.ch)
 * All rights reserved.
-* 
+*
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the following conditions
 * are met:
@@ -28,7 +28,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 *    documentation and/or other materials provided with the distribution.
 * 3. The name of the author may not be used to endorse or promote products
 *    derived from this software without specific prior written permission.
-* 
+*
 * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
 * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
@@ -83,7 +83,7 @@ public:
   //-------------------------------------------------------------
   // TO CALL AT INITIALISATION: DEFINES THE SIZE OF THE INPUT IMAGES
   // NORMALLY, UNNECESSARY IF A CONFIGURATION FILE IS LOADED
-  void   Init(int width,int height);
+  void   Init(int width, int height);
 
   //-------------------------------------------------------------
   // PROVIDE A MASK TO DEFINE THE SET OF POINTS WHERE BACKGROUND
@@ -134,7 +134,7 @@ public:
   //    The return value indicate whether the actual Background
   //    Subtraction algorithm handles RGB images (1) or not (0).
   //
-  int   SetRGBInputImage(IplImage  *  inputImage, CvRect *roi=NULL);
+  int   SetRGBInputImage(IplImage  *  inputImage, CvRect *roi = NULL);
 
   //-------------------------------------------------------------
   //   PROVIDE A POINTER TO THE RESULT IMAGE
@@ -173,22 +173,22 @@ public:
   void SetCurrentFrameNumber(unsigned long cur_frame_no);
 
   void GetForegroundMaskImage(IplImage *fg_mask_img);
-  void GetForegroundImage(IplImage *fg_img, CvScalar bg_color=CV_RGB(0,255,0));
+  void GetForegroundImage(IplImage *fg_img, CvScalar bg_color = CV_RGB(0, 255, 0));
   void GetBackgroundImage(IplImage *bk_img);
   void GetForegroundProbabilityImage(IplImage* fg_prob_img);
 
-  void GetBgLayerNoImage(IplImage *bg_layer_no_img, CvScalar* layer_colors=NULL, int layer_num=0);
-  void GetLayeredBackgroundImage(int layered_no, IplImage *layered_bg_img, CvScalar empty_color=CV_RGB(0,0,0));
-  void GetCurrentLayeredBackgroundImage(int layered_no, IplImage *layered_bg_img, IplImage *layered_fg_img=NULL,
-    CvScalar layered_bg_bk_color=CV_RGB(0,0,0), CvScalar layered_fg_color=CV_RGB(255,0,0),
-    int smooth_win=13, float smooth_sigma=3.0f, float below_layer_noise=0.5f, float above_layer_noise=0.3f, int min_blob_size=50);
+  void GetBgLayerNoImage(IplImage *bg_layer_no_img, CvScalar* layer_colors = NULL, int layer_num = 0);
+  void GetLayeredBackgroundImage(int layered_no, IplImage *layered_bg_img, CvScalar empty_color = CV_RGB(0, 0, 0));
+  void GetCurrentLayeredBackgroundImage(int layered_no, IplImage *layered_bg_img, IplImage *layered_fg_img = NULL,
+    CvScalar layered_bg_bk_color = CV_RGB(0, 0, 0), CvScalar layered_fg_color = CV_RGB(255, 0, 0),
+    int smooth_win = 13, float smooth_sigma = 3.0f, float below_layer_noise = 0.5f, float above_layer_noise = 0.3f, int min_blob_size = 50);
   float DistLBP(LBPStruct *LBP1, LBPStruct *LBP2);
   void GetColoredBgMultiLayeredImage(IplImage *bg_multi_layer_img, CvScalar *layer_colors);
   void UpdatePatternColorDistWeights(float *cur_pattern, float *bg_pattern);
   void ExportLogMessage(char* msg);
   void Postprocessing();
   void GetFloatEdgeImage(IplImage *src, IplImage *dst);
-  void RemoveBackgroundLayers(PixelLBPStruct *PLBP, bool *removed_modes=NULL);
+  void RemoveBackgroundLayers(PixelLBPStruct *PLBP, bool *removed_modes = NULL);
   float CalColorRangeDist(unsigned char *cur_intensity, float *bg_intensity, float *max_intensity,
     float *min_intensity, float shadow_rate, float highlight_rate);
   float CalVectorsAngle(float *c1, unsigned char *c2, int length);
@@ -202,7 +202,7 @@ public:
   void GetCurrentBackgroundDistMap(CvMat *bk_dist_map);
   void BackgroundSubtractionProcess();
   void SetBkMaskImage(IplImage *mask_img);
-  void SetNewImage(IplImage *new_img, CvRect *roi=NULL);
+  void SetNewImage(IplImage *new_img, CvRect *roi = NULL);
 
   void ResetAllParameters();
   void QuickSort(float *pData, unsigned short *pIdxes, long low, long high, bool bAscent);

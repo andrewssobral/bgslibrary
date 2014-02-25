@@ -17,7 +17,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 /* --- --- ---
  * Copyright (C) 2008--2010 Idiap Research Institute (.....@idiap.ch)
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
@@ -28,7 +28,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
  *    documentation and/or other materials provided with the distribution.
  * 3. The name of the author may not be used to endorse or promote products
  *    derived from this software without specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
  * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
@@ -39,19 +39,19 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
  * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+ */
 /************************************************************************
-  			BlobResult.h
-  			
-FUNCIONALITAT: Definició de la classe CBlobResult
-AUTOR: Inspecta S.L.
-MODIFICACIONS (Modificació, Autor, Data):
+        BlobResult.h
 
-FUNCTIONALITY: Definition of the CBlobResult class
-AUTHOR: Inspecta S.L.
-MODIFICATIONS (Modification, Author, Date):
+        FUNCIONALITAT: Definició de la classe CBlobResult
+        AUTOR: Inspecta S.L.
+        MODIFICACIONS (Modificació, Autor, Data):
 
-**************************************************************************/
+        FUNCTIONALITY: Definition of the CBlobResult class
+        AUTHOR: Inspecta S.L.
+        MODIFICATIONS (Modification, Author, Date):
+
+        **************************************************************************/
 #pragma once
 
 #if !defined(_CLASSE_BLOBRESULT_INCLUDED)
@@ -67,8 +67,8 @@ MODIFICATIONS (Modification, Author, Date):
 typedef std::vector<double> double_stl_vector;
 
 /**************************************************************************
-	Filtres / Filters
-**************************************************************************/
+  Filtres / Filters
+  **************************************************************************/
 
 //! accions que es poden fer amb els filtres
 //! Actions performed by a filter (include or exclude blobs)
@@ -88,8 +88,8 @@ typedef std::vector<double> double_stl_vector;
 
 
 /**************************************************************************
-	Excepcions / Exceptions
-**************************************************************************/
+  Excepcions / Exceptions
+  **************************************************************************/
 
 //! Excepcions llençades per les funcions:
 #define EXCEPTION_BLOB_OUT_OF_BOUNDS	1000
@@ -98,102 +98,102 @@ typedef std::vector<double> double_stl_vector;
 namespace Blob
 {
 
-//! definició de que es un vector de blobs
-typedef std::vector<CBlob*>	blob_vector;
+  //! definició de que es un vector de blobs
+  typedef std::vector<CBlob*>	blob_vector;
 
-/** 
-	Classe que conté un conjunt de blobs i permet extreure'n propietats 
-	o filtrar-los segons determinats criteris.
-	Class to calculate the blobs of an image and calculate some properties 
-	on them. Also, the class provides functions to filter the blobs using
-	some criteria.
-*/
-class CBlobResult  
-{
-public:
+  /**
+    Classe que conté un conjunt de blobs i permet extreure'n propietats
+    o filtrar-los segons determinats criteris.
+    Class to calculate the blobs of an image and calculate some properties
+    on them. Also, the class provides functions to filter the blobs using
+    some criteria.
+    */
+  class CBlobResult
+  {
+  public:
 
-	//! constructor estandard, crea un conjunt buit de blobs
-	//! Standard constructor, it creates an empty set of blobs
-	CBlobResult();
-	//! constructor a partir d'una imatge
-	//! Image constructor, it creates an object with the blobs of the image
-	CBlobResult(IplImage *source, IplImage *mask, int threshold, bool findmoments);
-	//! constructor de còpia
-	//! Copy constructor
-	CBlobResult( const CBlobResult &source );
-	//! Destructor
-	virtual ~CBlobResult();
+    //! constructor estandard, crea un conjunt buit de blobs
+    //! Standard constructor, it creates an empty set of blobs
+    CBlobResult();
+    //! constructor a partir d'una imatge
+    //! Image constructor, it creates an object with the blobs of the image
+    CBlobResult(IplImage *source, IplImage *mask, int threshold, bool findmoments);
+    //! constructor de còpia
+    //! Copy constructor
+    CBlobResult(const CBlobResult &source);
+    //! Destructor
+    virtual ~CBlobResult();
 
-	//! operador = per a fer assignacions entre CBlobResult
-	//! Assigment operator
-	CBlobResult& operator=(const CBlobResult& source);
-	//! operador + per concatenar dos CBlobResult
-	//! Addition operator to concatenate two sets of blobs
-	CBlobResult operator+( const CBlobResult& source );
-	
-	//! Afegeix un blob al conjunt
-	//! Adds a blob to the set of blobs
-	void AddBlob( CBlob *blob );
+    //! operador = per a fer assignacions entre CBlobResult
+    //! Assigment operator
+    CBlobResult& operator=(const CBlobResult& source);
+    //! operador + per concatenar dos CBlobResult
+    //! Addition operator to concatenate two sets of blobs
+    CBlobResult operator+(const CBlobResult& source);
+
+    //! Afegeix un blob al conjunt
+    //! Adds a blob to the set of blobs
+    void AddBlob(CBlob *blob);
 
 #ifdef MATRIXCV_ACTIU
-	//! Calcula un valor sobre tots els blobs de la classe retornant una MatrixCV
-	//! Computes some property on all the blobs of the class
-	double_vector GetResult( funcio_calculBlob *evaluador ) const;
+    //! Calcula un valor sobre tots els blobs de la classe retornant una MatrixCV
+    //! Computes some property on all the blobs of the class
+    double_vector GetResult( funcio_calculBlob *evaluador ) const;
 #endif
-	//! Calcula un valor sobre tots els blobs de la classe retornant un std::vector<double>
-	//! Computes some property on all the blobs of the class
-	double_stl_vector GetSTLResult( funcio_calculBlob *evaluador ) const;
-	
-	//! Calcula un valor sobre un blob de la classe
-	//! Computes some property on one blob of the class
-	double GetNumber( int indexblob, funcio_calculBlob *evaluador ) const;
+    //! Calcula un valor sobre tots els blobs de la classe retornant un std::vector<double>
+    //! Computes some property on all the blobs of the class
+    double_stl_vector GetSTLResult(funcio_calculBlob *evaluador) const;
 
-	//! Retorna aquells blobs que compleixen les condicions del filtre en el destination 
-	//! Filters the blobs of the class using some property
-	void Filter(CBlobResult &dst,
-				int filterAction, funcio_calculBlob *evaluador, 
-				int condition, double lowLimit, double highLimit = 0 );
-			
-	//! Retorna l'enèssim blob segons un determinat criteri
-	//! Sorts the blobs of the class acording to some criteria and returns the n-th blob
-	void GetNthBlob( funcio_calculBlob *criteri, int nBlob, CBlob &dst ) const;
-	
-	//! Retorna el blob enèssim
-	//! Gets the n-th blob of the class ( without sorting )
-	CBlob GetBlob(int indexblob) const;
-	CBlob *GetBlob(int indexblob);
-	
-	//! Elimina tots els blobs de l'objecte
-	//! Clears all the blobs of the class
-	void ClearBlobs();
+    //! Calcula un valor sobre un blob de la classe
+    //! Computes some property on one blob of the class
+    double GetNumber(int indexblob, funcio_calculBlob *evaluador) const;
 
-	//! Escriu els blobs a un fitxer
-	//! Prints some features of all the blobs in a file
-	void PrintBlobs( char *nom_fitxer ) const;
+    //! Retorna aquells blobs que compleixen les condicions del filtre en el destination 
+    //! Filters the blobs of the class using some property
+    void Filter(CBlobResult &dst,
+      int filterAction, funcio_calculBlob *evaluador,
+      int condition, double lowLimit, double highLimit = 0);
 
+    //! Retorna l'enèssim blob segons un determinat criteri
+    //! Sorts the blobs of the class acording to some criteria and returns the n-th blob
+    void GetNthBlob(funcio_calculBlob *criteri, int nBlob, CBlob &dst) const;
 
-//Metodes GET/SET
+    //! Retorna el blob enèssim
+    //! Gets the n-th blob of the class ( without sorting )
+    CBlob GetBlob(int indexblob) const;
+    CBlob *GetBlob(int indexblob);
 
-	//! Retorna el total de blobs
-	//! Gets the total number of blobs
-	int GetNumBlobs() const 
-	{ 
-		return(m_blobs.size()); 
-	}
+    //! Elimina tots els blobs de l'objecte
+    //! Clears all the blobs of the class
+    void ClearBlobs();
+
+    //! Escriu els blobs a un fitxer
+    //! Prints some features of all the blobs in a file
+    void PrintBlobs(char *nom_fitxer) const;
 
 
-private:
+    //Metodes GET/SET
 
-	//! Funció per gestionar els errors
-	//! Function to manage the errors
-	void RaiseError(const int errorCode) const;
+    //! Retorna el total de blobs
+    //! Gets the total number of blobs
+    int GetNumBlobs() const
+    {
+      return(m_blobs.size());
+    }
 
-protected:
 
-	//! Vector amb els blobs
-	//! Vector with all the blobs
-	blob_vector		m_blobs;
-};
+  private:
+
+    //! Funció per gestionar els errors
+    //! Function to manage the errors
+    void RaiseError(const int errorCode) const;
+
+  protected:
+
+    //! Vector amb els blobs
+    //! Vector with all the blobs
+    blob_vector		m_blobs;
+  };
 
 }
 

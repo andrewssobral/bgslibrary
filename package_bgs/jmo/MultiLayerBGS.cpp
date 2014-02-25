@@ -16,9 +16,9 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "MultiLayerBGS.h"
 
-MultiLayerBGS::MultiLayerBGS() : firstTime(true), showOutput(true), 
-  bg_model_preload(""), saveModel(false), disableLearning(false), disableDetectMode(true), loadDefaultParams(true), 
-  detectAfter(0), frameNumber(0)
+MultiLayerBGS::MultiLayerBGS() : firstTime(true), showOutput(true),
+bg_model_preload(""), saveModel(false), disableLearning(false), disableDetectMode(true), loadDefaultParams(true),
+detectAfter(0), frameNumber(0)
 {
   std::cout << "MultiLayerBGS()" << std::endl;
 }
@@ -36,13 +36,13 @@ void MultiLayerBGS::setStatus(Status _status)
 
 void MultiLayerBGS::finish(void)
 {
-  if(bg_model_preload.empty())
+  if (bg_model_preload.empty())
   {
     bg_model_preload = "./models/MultiLayerBGSModel.yml";
     saveConfig();
   }
 
-  if(status == MLBGS_LEARN && saveModel == true)
+  if (status == MLBGS_LEARN && saveModel == true)
   {
     std::cout << "MultiLayerBGS saving background model: " << bg_model_preload << std::endl;
     BGS->Save(bg_model_preload.c_str());
@@ -60,22 +60,22 @@ void MultiLayerBGS::finish(void)
 
 void MultiLayerBGS::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
 {
-  if(img_input.empty())
+  if (img_input.empty())
     return;
 
   loadConfig();
 
-  CvSize img_size = cvSize(cvCeil((double) img_input.size().width), cvCeil((double) img_input.size().height));
+  CvSize img_size = cvSize(cvCeil((double)img_input.size().width), cvCeil((double)img_input.size().height));
 
-  if(firstTime)
+  if (firstTime)
   {
-    if(disableDetectMode)
+    if (disableDetectMode)
       status = MLBGS_LEARN;
 
-    if(status == MLBGS_LEARN)
+    if (status == MLBGS_LEARN)
       std::cout << "MultiLayerBGS in LEARN mode" << std::endl;
 
-    if(status == MLBGS_DETECT)
+    if (status == MLBGS_DETECT)
       std::cout << "MultiLayerBGS in DETECT mode" << std::endl;
 
     org_img = new IplImage(img_input);
@@ -92,23 +92,23 @@ void MultiLayerBGS::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
     BGS->SetForegroundMaskImage(fg_mask_img);
     BGS->SetForegroundProbImage(fg_prob_img);
 
-    if(bg_model_preload.empty() == false)
+    if (bg_model_preload.empty() == false)
     {
       std::cout << "MultiLayerBGS loading background model: " << bg_model_preload << std::endl;
       BGS->Load(bg_model_preload.c_str());
     }
 
-    if(status == MLBGS_DETECT)
+    if (status == MLBGS_DETECT)
     {
       BGS->m_disableLearning = disableLearning;
 
-      if(disableLearning)
+      if (disableLearning)
         std::cout << "MultiLayerBGS disabled learning in DETECT mode" << std::endl;
       else
         std::cout << "MultiLayerBGS enabled learning in DETECT mode" << std::endl;
     }
 
-    if(loadDefaultParams)
+    if (loadDefaultParams)
     {
       std::cout << "MultiLayerBGS loading default params" << std::endl;
 
@@ -145,7 +145,7 @@ void MultiLayerBGS::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
     BGS->m_fSigmaS = bilater_filter_sigma_s;
     BGS->m_fSigmaR = bilater_filter_sigma_r;
 
-    if(loadDefaultParams)
+    if (loadDefaultParams)
     {
       //frame_duration = 1.0 / 30.0;
       //frame_duration = 1.0 / 25.0;
@@ -154,9 +154,9 @@ void MultiLayerBGS::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
 
     BGS->SetFrameRate(frame_duration);
 
-    if(status == MLBGS_LEARN)
+    if (status == MLBGS_LEARN)
     {
-      if(loadDefaultParams)
+      if (loadDefaultParams)
       {
         mode_learn_rate_per_second = 0.5;
         weight_learn_rate_per_second = 0.5;
@@ -170,9 +170,9 @@ void MultiLayerBGS::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
       }
     }
 
-    if(status == MLBGS_DETECT)
+    if (status == MLBGS_DETECT)
     {
-      if(loadDefaultParams)
+      if (loadDefaultParams)
       {
         mode_learn_rate_per_second = 0.01;
         weight_learn_rate_per_second = 0.01;
@@ -192,13 +192,13 @@ void MultiLayerBGS::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
 
     delete org_img;
   }
-  
+
   //IplImage* inputImage = new IplImage(img_input);
   //IplImage* img = cvCreateImage(img_size, IPL_DEPTH_8U, 3);
   //cvCopy(inputImage, img);
   //delete inputImage;
 
-  if(detectAfter > 0 && detectAfter == frameNumber)
+  if (detectAfter > 0 && detectAfter == frameNumber)
   {
     std::cout << "MultiLayerBGS in DETECT mode" << std::endl;
 
@@ -212,7 +212,7 @@ void MultiLayerBGS::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
 
     BGS->m_disableLearning = disableLearning;
 
-    if(disableLearning)
+    if (disableLearning)
       std::cout << "MultiLayerBGS disabled learning in DETECT mode" << std::endl;
     else
       std::cout << "MultiLayerBGS enabled learning in DETECT mode" << std::endl;
@@ -222,7 +222,7 @@ void MultiLayerBGS::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
 
   BGS->SetRGBInputImage(img);
   BGS->Process();
-  
+
   BGS->GetBackgroundImage(bg_img);
   BGS->GetForegroundImage(fg_img);
   BGS->GetForegroundProbabilityImage(fg_prob_img3);
@@ -233,7 +233,7 @@ void MultiLayerBGS::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
   img_foreground = cv::Mat(fg_mask_img);
   img_background = cv::Mat(bg_img);
 
-  if(showOutput)
+  if (showOutput)
   {
     cv::imshow("MLBGS Layers", img_merged);
     cv::imshow("MLBGS FG Mask", img_foreground);
@@ -241,7 +241,7 @@ void MultiLayerBGS::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
 
   img_foreground.copyTo(img_output);
   img_background.copyTo(img_bgmodel);
-  
+
   delete img;
   //cvReleaseImage(&img);
 
@@ -259,7 +259,7 @@ void MultiLayerBGS::saveConfig()
   cvWriteInt(fs, "disableDetectMode", disableDetectMode);
   cvWriteInt(fs, "disableLearningInDetecMode", disableLearning);
   cvWriteInt(fs, "loadDefaultParams", loadDefaultParams);
-  
+
   cvWriteInt(fs, "max_mode_num", max_mode_num);
   cvWriteReal(fs, "weight_updating_constant", weight_updating_constant);
   cvWriteReal(fs, "texture_weight", texture_weight);
@@ -280,7 +280,7 @@ void MultiLayerBGS::saveConfig()
   cvWriteReal(fs, "learn_mode_learn_rate_per_second", learn_mode_learn_rate_per_second);
   cvWriteReal(fs, "learn_weight_learn_rate_per_second", learn_weight_learn_rate_per_second);
   cvWriteReal(fs, "learn_init_mode_weight", learn_init_mode_weight);
-  
+
   cvWriteReal(fs, "detect_mode_learn_rate_per_second", detect_mode_learn_rate_per_second);
   cvWriteReal(fs, "detect_weight_learn_rate_per_second", detect_weight_learn_rate_per_second);
   cvWriteReal(fs, "detect_init_mode_weight", detect_init_mode_weight);
@@ -293,7 +293,7 @@ void MultiLayerBGS::saveConfig()
 void MultiLayerBGS::loadConfig()
 {
   CvFileStorage* fs = cvOpenFileStorage("./config/MultiLayerBGS.xml", 0, CV_STORAGE_READ);
-  
+
   bg_model_preload = cvReadStringByName(fs, 0, "preloadModel", "");
   saveModel = cvReadIntByName(fs, 0, "saveModel", false);
   detectAfter = cvReadIntByName(fs, 0, "detectAfter", 0);
@@ -321,7 +321,7 @@ void MultiLayerBGS::loadConfig()
   learn_mode_learn_rate_per_second = cvReadRealByName(fs, 0, "learn_mode_learn_rate_per_second", 0.5);
   learn_weight_learn_rate_per_second = cvReadRealByName(fs, 0, "learn_weight_learn_rate_per_second", 0.5);
   learn_init_mode_weight = cvReadRealByName(fs, 0, "learn_init_mode_weight", 0.05);
-  
+
   detect_mode_learn_rate_per_second = cvReadRealByName(fs, 0, "detect_mode_learn_rate_per_second", 0.01);
   detect_weight_learn_rate_per_second = cvReadRealByName(fs, 0, "detect_weight_learn_rate_per_second", 0.01);
   detect_init_mode_weight = cvReadRealByName(fs, 0, "detect_init_mode_weight", 0.001);
