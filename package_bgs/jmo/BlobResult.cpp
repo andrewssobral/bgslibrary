@@ -55,10 +55,6 @@ MODIFICACIONS (Modificació, Autor, Data):
 #include <algorithm>
 #include "BlobResult.h"
 #include "BlobExtraction.h"
-#ifdef _DEBUG
-#include <afx.h>			//suport per a CStrings
-#include <afxwin.h>			//suport per a AfxMessageBox
-#endif
 
 /**************************************************************************
 Constructors / Destructors
@@ -348,58 +344,6 @@ void CBlobResult::AddBlob( CBlob *blob )
     m_blobs.push_back( new CBlob( blob ) );
 }
 
-
-#ifdef MATRIXCV_ACTIU
-
-/**
-- FUNCIÓ: GetResult
-- FUNCIONALITAT: Calcula el resultat especificat sobre tots els blobs de la classe
-- PARÀMETRES:
-- evaluador: Qualsevol objecte derivat de COperadorBlob
-- RESULTAT:
-- Retorna un array de double's amb el resultat per cada blob
-- RESTRICCIONS:
-- AUTOR: Ricard Borràs
-- DATA DE CREACIÓ: 25-05-2005.
-- MODIFICACIÓ: Data. Autor. Descripció.
-*/
-/**
-- FUNCTION: GetResult
-- FUNCTIONALITY: Computes the function evaluador on all the blobs of the class
-and returns a vector with the result
-- PARAMETERS:
-- evaluador: function to apply to each blob (any object derived from the 
-COperadorBlob class )
-- RESULT:
-- vector with all the results in the same order as the blobs
-- RESTRICTIONS:
-- AUTHOR: Ricard Borràs
-- CREATION DATE: 25-05-2005.
-- MODIFICATION: Date. Author. Description.
-*/
-double_vector CBlobResult::GetResult( funcio_calculBlob *evaluador ) const
-{
-  if( GetNumBlobs() <= 0 )
-  {
-    return double_vector();
-  }
-
-  // definim el resultat
-  double_vector result = double_vector( GetNumBlobs() );
-  // i iteradors sobre els blobs i el resultat
-  double_vector::iterator itResult = result.GetIterator();
-  blob_vector::const_iterator itBlobs = m_blobs.begin();
-
-  // avaluem la funció en tots els blobs
-  while( itBlobs != m_blobs.end() )
-  {
-    *itResult = (*evaluador)(**itBlobs);
-    itBlobs++;
-    itResult++;
-  }
-  return result;
-}
-#endif
 
 /**
 - FUNCIÓ: GetSTLResult
@@ -840,23 +784,6 @@ In both cases throws an exception with the error.
 */
 void CBlobResult::RaiseError(const int errorCode) const
 {
-  // estem en mode debug?
-#ifdef _DEBUG
-  CString msg, format = "Error en CBlobResult: %s";
-
-  switch (errorCode)
-  {
-  case EXCEPTION_BLOB_OUT_OF_BOUNDS:
-    msg.Format(format, "Intentant accedir a un blob no existent");
-    break;
-  default:
-    msg.Format(format, "Codi d'error desconegut");
-    break;
-  }
-
-  AfxMessageBox(msg);
-
-#endif
   throw errorCode;
 }
 

@@ -66,13 +66,6 @@ MODIFICATIONS (Modification, Author, Date):
 #include <vector>
 #include <algorithm>
 
-
-#ifdef BLOB_OBJECT_FACTORY
-//! Object factory pattern implementation
-#include "..\inspecta\DesignPatterns\ObjectFactory.h"
-#endif
-
-
 //! Factor de conversió de graus a radians
 #define DEGREE2RAD		(CV_PI / 180.0)
 

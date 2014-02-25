@@ -52,31 +52,19 @@ AUTHOR: Inspecta S.L.
 MODIFICATIONS (Modification, Author, Date):
 
 **************************************************************************/
-
+#pragma once
 
 #if !defined(_CLASSE_BLOBRESULT_INCLUDED)
 #define _CLASSE_BLOBRESULT_INCLUDED
 
-#if _MSC_VER > 1000 
-#pragma once
-#endif // _MSC_VER > 1000
-
 #include "BlobLibraryConfiguration.h"
 #include <math.h>
 #include "cxcore.h"
-
-#ifdef MATRIXCV_ACTIU
-	#include "matrixCV.h"
-#else
-	// llibreria STL
-	#include "vector"
-	//! Vector de doubles
-	typedef std::vector<double> double_stl_vector;
-#endif
-
-#include <vector>		// vectors de la STL
+#include <vector>
 #include <functional>
 #include "blob.h"
+
+typedef std::vector<double> double_stl_vector;
 
 /**************************************************************************
 	Filtres / Filters
