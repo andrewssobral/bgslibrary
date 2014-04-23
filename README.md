@@ -159,11 +159,15 @@ Legend:
 Download links
 --------------
 
+* BGSLibrary v1.9.1 with MFC GUI v1.4.1 (x86/x64) (+src)
+
+https://github.com/andrewssobral/bgslibrary/blob/master/binaries/mfc_bgslibrary_x86_v1.4.1.zip
+
+Old versions:
+
 * BGSLibrary v1.9.0 with MFC GUI v1.4.0 (x86/x64) (+src)
 
 https://github.com/andrewssobral/bgslibrary/blob/master/binaries/mfc_bgslibrary_x86_v1.4.0.7z
-
-Old versions:
 
 * BGSLibrary v1.5.0 with Java GUI for Windows 32bits (x86)
 
