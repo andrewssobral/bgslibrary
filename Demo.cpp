@@ -67,6 +67,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #include "package_bgs/ae/KDE.h"
 #include "package_bgs/db/IndependentMultimodalBGS.h"
 #include "package_bgs/sjn/SJN_MultiCueBGS.h"
+#include "package_bgs/bl/SigmaDeltaBGS.h"
 
 int main(int argc, char **argv)
 {
@@ -155,6 +156,9 @@ int main(int argc, char **argv)
 
   /*** SJN Package (thanks to SeungJong Noh) ***/
   //bgs = new SJN_MultiCueBGS;
+
+  /*** BL Package (thanks to Benjamin Laugraud) ***/
+  //bgs = new SigmaDeltaBGS;
 
   int key = 0;
   while(key != 'q')
