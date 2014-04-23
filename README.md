@@ -3,11 +3,11 @@ BGSLibrary
 
 A Background Subtraction Library
 
-Last Page Update: **22/02/2014**
+Last Page Update: **23/04/2014**
 
-Latest Library Version: **1.9.0** (see Release Notes for more info)
+Latest Library Version: **1.9.1** (see Release Notes for more info)
 
-The BGSLibrary was developed by [Andrews Sobral](http://about.me/andrewssobral/) and provides a C++ framework to perform background subtraction (BGS). The code works either on Windows or on Linux. Currently the library offers **34** BGS algorithms (*the PBAS algorithm was removed from BGSLibrary because it is based on patented algorithm [ViBE](http://www2.ulg.ac.be/telecom/research/vibe/)*). A large amount of algorithms were provided by several authors. The source code is available under GNU GPL v3 license, the library is free and open source for academic purposes. Any user can be download latest project source code using SVN client. In Windows, a demo project for Visual Studio 2010 is provided. An executable version of BGSLibrary is available for Windows 32 bits and 64 bits. For Linux users, a Makefile can be used to compile all files and generate an executable example.
+The BGSLibrary was developed by [Andrews Sobral](http://about.me/andrewssobral/) and provides a C++ framework to perform background subtraction (BGS). The code works either on Windows or on Linux. Currently the library offers **35** BGS algorithms (*the PBAS algorithm was removed from BGSLibrary because it is based on patented algorithm [ViBE](http://www2.ulg.ac.be/telecom/research/vibe/)*). A large amount of algorithms were provided by several authors. The source code is available under GNU GPL v3 license, the library is free and open source for academic purposes. Any user can be download latest project source code using SVN client. In Windows, a demo project for Visual Studio 2010 is provided. An executable version of BGSLibrary is available for Windows 32 bits and 64 bits. For Linux users, a Makefile can be used to compile all files and generate an executable example.
 <p align="center">
 <img src="https://sites.google.com/site/andrewssobral/bgslibrary190_world_countries.png" />
 </p>
@@ -58,6 +58,7 @@ List of the algorithms available in BGSLibrary
 * *  (1) Temporal Median of Cucchiara et al (2003) and Calderara et al (2006)  ([paper1](http://ieeexplore.ieee.org/iel5/34/27651/01233909.pdf?tp=a&amp;arnumber=1233909&amp;authDecision=-203))
 ([paper2](http://dl.acm.org/citation.cfm?id=1178814))
 ([paper3](http://cvrr.ucsd.edu/aton/publications/pdfpapers/96_cucchiara_r.PDF))
+* *  (11) Sigma-Delta of Manzanera and Richefeu (2004) ([paper1](https://www.researchgate.net/publication/220265885_A_Robust_and_Computationally_Efficient_Motion_Detection_Algorithm_Based_on_Sigma-Delta_Background_Estimation)) ([paper2](http://perso.ensta-paristech.fr/~manzaner/Publis/icip09.pdf))
 
 * Fuzzy based methods:
 * * (2) Fuzzy Sugeno Integral (with Adaptive-Selective Update) of Hongxun Zhang and De Xu (2006) ([paper](http://www.springerlink.com/content/m73165175218731l/))
@@ -135,6 +136,7 @@ Legend:
 * (8) thanks to [Csaba Kertész](http://www.linkedin.com/pub/csaba-kert%C3%A9sz/8/341/6b6)
 * (9) thanks to [Domenico Daniele Bloisi](http://www.dis.uniroma1.it/~bloisi/software/imbs.html)
 * (10) thanks to [SeungJong Noh](http://www.informatik.uni-trier.de/~ley/pers/hd/n/Noh:SeungJong)
+* (11) thanks to [Benjamin Laugraud](http://www.montefiore.ulg.ac.be/~blaugraud/index.php)
 
 ![](https://sites.google.com/site/andrewssobral/bgslibrary_benchmark.png "")
 
@@ -283,6 +285,9 @@ Java GUI
 
 Release Notes:
 --------------
+* Version 1.9.1:
+Added Sigma-Delta background subtraction algorithm (SigmaDeltaBGS) of Manzanera and Richefeu (2004).
+
 * Version 1.9.0:
 Added A New Framework for Background Subtraction Using Multiple Cues (SJN_MultiCueBGS) of SeungJong Noh and Moongu Jeon (2012). Added OpenCV 2.4.8 support (all dependencies are linked statically).
 
