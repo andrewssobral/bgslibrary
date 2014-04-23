@@ -147,6 +147,8 @@ Download links
 
 https://github.com/andrewssobral/bgslibrary/blob/master/binaries/mfc_bgslibrary_x86_v1.4.0.7z
 
+Old versions:
+
 * BGSLibrary v1.5.0 with Java GUI for Windows 32bits (x86)
 
 https://github.com/andrewssobral/bgslibrary/blob/master/binaries/bgs_library_x86_v1.5.0_with_gui.7z
