@@ -58,7 +58,7 @@ List of the algorithms available in BGSLibrary
 * *  (1) Temporal Median of Cucchiara et al (2003) and Calderara et al (2006)  ([paper1](http://ieeexplore.ieee.org/iel5/34/27651/01233909.pdf?tp=a&amp;arnumber=1233909&amp;authDecision=-203))
 ([paper2](http://dl.acm.org/citation.cfm?id=1178814))
 ([paper3](http://cvrr.ucsd.edu/aton/publications/pdfpapers/96_cucchiara_r.PDF))
-* *  (11) Sigma-Delta of Manzanera and Richefeu (2004) ([paper1](https://www.researchgate.net/publication/220265885_A_Robust_and_Computationally_Efficient_Motion_Detection_Algorithm_Based_on_Sigma-Delta_Background_Estimation)) ([paper2](http://perso.ensta-paristech.fr/~manzaner/Publis/icip09.pdf))
+* *  (11) Sigma-Delta of Manzanera and Richefeu (2004) ([paper1](http://perso.ensta-paristech.fr/~manzaner/Publis/icvgip04.pdf)) ([paper2](http://perso.ensta-paristech.fr/~manzaner/Publis/icip09.pdf))
 
 * Fuzzy based methods:
 * * (2) Fuzzy Sugeno Integral (with Adaptive-Selective Update) of Hongxun Zhang and De Xu (2006) ([paper](http://www.springerlink.com/content/m73165175218731l/))
