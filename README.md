@@ -34,6 +34,7 @@ url       = {http://iris.sel.eesc.usp.br/wvc/Anais_WVC2013/Poster/2/15.pdf}
 ```
 Some algorithms of the BGSLibrary was used successfully in the following papers: 
 * (2014) Sobral, Andrews; Vacavant, Antoine. A comprehensive review of background subtraction algorithms evaluated with synthetic and real videos. Computer Vision and Image Understanding (CVIU), 2014.
+* (2013) Paul, Manoranjan; Haque, Shah M E; Chakraborty, Subrata. Human detection in surveillance videos and its applications - a review. EURASIP Journal on Advances in Signal Processing 2013. 
 * (2013) Sobral, Andrews; Oliveira, Luciano; Schnitman, Leizer; Souza, Felippe. (**Best Paper Award**) Highway Traffic Congestion Classification Using Holistic Properties. In International Conference on Signal Processing, Pattern Recognition and Applications (SPPRA'2013), Innsbruck, Austria, Feb 2013.
 
 List of the algorithms available in BGSLibrary
