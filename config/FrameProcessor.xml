@@ -35,4 +35,5 @@
 <enableKDE>0</enableKDE>
 <enableIMBS>0</enableIMBS>
 <enableMultiCueBGS>0</enableMultiCueBGS>
+<enableSigmaDeltaBGS>0</enableSigmaDeltaBGS>
 </opencv_storage>

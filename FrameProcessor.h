@@ -68,6 +68,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #include "package_bgs/ae/KDE.h"
 #include "package_bgs/db/IndependentMultimodalBGS.h"
 #include "package_bgs/sjn/SJN_MultiCueBGS.h"
+#include "package_bgs/bl/SigmaDeltaBGS.h"
 
 #include "package_analysis/ForegroundMaskAnalysis.h"
 
@@ -225,6 +226,10 @@ namespace bgslibrary
     cv::Mat img_mcbgs;
     SJN_MultiCueBGS* mcbgs;
     bool enableMultiCueBGS;
+
+    cv::Mat img_sdbgs;
+    SigmaDeltaBGS* sdbgs;
+    bool enableSigmaDeltaBGS;
 
     ForegroundMaskAnalysis* foregroundMaskAnalysis;
     bool enableForegroundMaskAnalysis;

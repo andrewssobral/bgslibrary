@@ -142,6 +142,9 @@ namespace bgslibrary
     if (enableMultiCueBGS)
       mcbgs = new SJN_MultiCueBGS;
 
+    if (enableSigmaDeltaBGS)
+      sdbgs = new SigmaDeltaBGS;
+
     if (enableForegroundMaskAnalysis)
       foregroundMaskAnalysis = new ForegroundMaskAnalysis;
   }
@@ -275,6 +278,9 @@ namespace bgslibrary
     if (enableMultiCueBGS)
       process("MultiCueBGS", mcbgs, img_prep, img_mcbgs);
 
+    if (enableSigmaDeltaBGS)
+      process("SigmaDeltaBGS", sdbgs, img_prep, img_sdbgs);
+
     if (enableForegroundMaskAnalysis)
     {
       foregroundMaskAnalysis->stopAt = frameToStop;
@@ -318,6 +324,7 @@ namespace bgslibrary
       foregroundMaskAnalysis->process(frameNumber, "KDE", img_kde);
       foregroundMaskAnalysis->process(frameNumber, "IMBS", img_imbs);
       foregroundMaskAnalysis->process(frameNumber, "MultiCueBGS", img_mcbgs);
+      foregroundMaskAnalysis->process(frameNumber, "SigmaDeltaBGS", img_sdbgs);
     }
 
     firstTime = false;
@@ -345,6 +352,9 @@ namespace bgslibrary
 
     if (enableForegroundMaskAnalysis)
       delete foregroundMaskAnalysis;
+
+    if (enableSigmaDeltaBGS)
+      delete sdbgs;
 
     if (enableMultiCueBGS)
       delete mcbgs;
@@ -521,6 +531,7 @@ namespace bgslibrary
     cvWriteInt(fs, "enableKDE", enableKDE);
     cvWriteInt(fs, "enableIMBS", enableIMBS);
     cvWriteInt(fs, "enableMultiCueBGS", enableMultiCueBGS);
+    cvWriteInt(fs, "enableSigmaDeltaBGS", enableSigmaDeltaBGS);
 
     cvReleaseFileStorage(&fs);
   }
@@ -578,6 +589,7 @@ namespace bgslibrary
     enableKDE = cvReadIntByName(fs, 0, "enableKDE", false);
     enableIMBS = cvReadIntByName(fs, 0, "enableIMBS", false);
     enableMultiCueBGS = cvReadIntByName(fs, 0, "enableMultiCueBGS", false);
+    enableSigmaDeltaBGS = cvReadIntByName(fs, 0, "enableSigmaDeltaBGS", false);
 
     cvReleaseFileStorage(&fs);
   }

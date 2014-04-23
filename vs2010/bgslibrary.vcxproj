@@ -81,8 +81,15 @@
     <ClCompile Include="..\Demo.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\FrameProcessor.cpp" />
-    <ClCompile Include="..\Main.cpp" />
+    <ClCompile Include="..\Demo2.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\FrameProcessor.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\Main.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\package_analysis\ForegroundMaskAnalysis.cpp" />
     <ClCompile Include="..\package_bgs\AdaptiveBackgroundLearning.cpp" />
     <ClCompile Include="..\package_bgs\AdaptiveSelectiveBackgroundLearning.cpp" />
@@ -93,6 +100,8 @@
     <ClCompile Include="..\package_bgs\av\TBackground.cpp" />
     <ClCompile Include="..\package_bgs\av\TBackgroundVuMeter.cpp" />
     <ClCompile Include="..\package_bgs\av\VuMeter.cpp" />
+    <ClCompile Include="..\package_bgs\bl\sdLaMa091.cpp" />
+    <ClCompile Include="..\package_bgs\bl\SigmaDeltaBGS.cpp" />
     <ClCompile Include="..\package_bgs\db\imbs.cpp" />
     <ClCompile Include="..\package_bgs\db\IndependentMultimodalBGS.cpp" />
     <ClCompile Include="..\package_bgs\dp\AdaptiveMedianBGS.cpp" />
@@ -150,14 +159,26 @@
     <ClCompile Include="..\package_bgs\tb\T2FMRF_UV.cpp" />
     <ClCompile Include="..\package_bgs\WeightedMovingMeanBGS.cpp" />
     <ClCompile Include="..\package_bgs\WeightedMovingVarianceBGS.cpp" />
-    <ClCompile Include="..\PreProcessor.cpp" />
-    <ClCompile Include="..\VideoAnalysis.cpp" />
-    <ClCompile Include="..\VideoCapture.cpp" />
+    <ClCompile Include="..\PreProcessor.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\VideoAnalysis.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\VideoCapture.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Config.h" />
-    <ClInclude Include="..\FrameProcessor.h" />
-    <ClInclude Include="..\IFrameProcessor.h" />
+    <ClInclude Include="..\Config.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="..\FrameProcessor.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="..\IFrameProcessor.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="..\package_analysis\ForegroundMaskAnalysis.h" />
     <ClInclude Include="..\package_bgs\AdaptiveBackgroundLearning.h" />
     <ClInclude Include="..\package_bgs\AdaptiveSelectiveBackgroundLearning.h" />
@@ -168,6 +189,9 @@
     <ClInclude Include="..\package_bgs\av\TBackground.h" />
     <ClInclude Include="..\package_bgs\av\TBackgroundVuMeter.h" />
     <ClInclude Include="..\package_bgs\av\VuMeter.h" />
+    <ClInclude Include="..\package_bgs\bl\sdLaMa091.h" />
+    <ClInclude Include="..\package_bgs\bl\SigmaDeltaBGS.h" />
+    <ClInclude Include="..\package_bgs\bl\stdbool.h" />
     <ClInclude Include="..\package_bgs\db\imbs.hpp" />
     <ClInclude Include="..\package_bgs\db\IndependentMultimodalBGS.h" />
     <ClInclude Include="..\package_bgs\dp\AdaptiveMedianBGS.h" />
@@ -233,9 +257,15 @@
     <ClInclude Include="..\package_bgs\tb\T2FMRF_UV.h" />
     <ClInclude Include="..\package_bgs\WeightedMovingMeanBGS.h" />
     <ClInclude Include="..\package_bgs\WeightedMovingVarianceBGS.h" />
-    <ClInclude Include="..\PreProcessor.h" />
-    <ClInclude Include="..\VideoAnalysis.h" />
-    <ClInclude Include="..\VideoCapture.h" />
+    <ClInclude Include="..\PreProcessor.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="..\VideoAnalysis.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="..\VideoCapture.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -29,7 +29,7 @@ namespace bgslibrary
     static void start(int argc, const char **argv)
     {
       std::cout << "-----------------------------------------" << std::endl;
-      std::cout << "Background Subtraction Library v1.9.0     " << std::endl;
+      std::cout << "Background Subtraction Library v1.9.1     " << std::endl;
       std::cout << "http://code.google.com/p/bgslibrary       " << std::endl;
       std::cout << "by:                                       " << std::endl;
       std::cout << "Andrews Sobral (andrewssobral@gmail.com)  " << std::endl;
