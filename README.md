@@ -167,6 +167,14 @@ https://github.com/andrewssobral/bgslibrary/blob/master/binaries/bgs_library_x64
 
 ![MFC BGSLibrary](https://sites.google.com/site/andrewssobral/mfc_bgslibrary_120.png "MFC BGSLibrary")
 
+For Linux users
+---------------
+Check out latest project source code.
+
+Read instructions in README.txt file.
+
+<p align="center"><img src="https://sites.google.com/site/andrewssobral/bgslibrary_ubuntu.png" border="0" /></p>
+
 Videos
 ------
 
@@ -185,14 +193,6 @@ Videos
 <!--
 [![ScreenShot](https://sites.google.com/site/andrewssobral/bgslibrary_mfc_youtube.png)](https://www.youtube.com/watch?v=yjorJu7rRiE)
 -->
-
-For Linux users
----------------
-Check out latest project source code.
-
-Read instructions in README.txt file.
-
-<p align="center"><img src="https://sites.google.com/site/andrewssobral/bgslibrary_ubuntu.png" border="0" /></p>
 
 How to use BGS Library in other C++ code
 ----------------------------------------
