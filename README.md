@@ -205,25 +205,6 @@ Read instructions in README.txt file.
 
 <p align="center"><img src="https://sites.google.com/site/andrewssobral/bgslibrary_ubuntu.png" border="0" /></p>
 
-Videos
-------
-
-<p align="center">
-<a href="https://www.youtube.com/watch?v=yjorJu7rRiE" target="_blank">
-<img src="https://sites.google.com/site/andrewssobral/bgslibrary_mfc_youtube.png" border="0" />
-</a>
-</p>
-
-<p align="center">
-<a href="https://www.youtube.com/watch?v=Ccqa9KBO9_U" target="_blank">
-<img src="https://sites.google.com/site/andrewssobral/bgslibrary_youtube.png" border="0" />
-</a>
-</p>
-
-<!--
-[![ScreenShot](https://sites.google.com/site/andrewssobral/bgslibrary_mfc_youtube.png)](https://www.youtube.com/watch?v=yjorJu7rRiE)
--->
-
 How to use BGS Library in other C++ code
 ----------------------------------------
 Download latest project source code, copy package_bgs directory to your project and create config folder (bgslibrary use it to store xml configuration files). For Windows users, a demo project for Visual Studio 2010 is provided. 
@@ -327,6 +308,25 @@ Java GUI
 <img src="https://sites.google.com/site/andrewssobral/bgslibrary_gui_screen04.png?width=815" border="0" />
 </a>
 </p>
+
+Videos
+------
+
+<p align="center">
+<a href="https://www.youtube.com/watch?v=yjorJu7rRiE" target="_blank">
+<img src="https://sites.google.com/site/andrewssobral/bgslibrary_mfc_youtube.png" border="0" />
+</a>
+</p>
+
+<p align="center">
+<a href="https://www.youtube.com/watch?v=Ccqa9KBO9_U" target="_blank">
+<img src="https://sites.google.com/site/andrewssobral/bgslibrary_youtube.png" border="0" />
+</a>
+</p>
+
+<!--
+[![ScreenShot](https://sites.google.com/site/andrewssobral/bgslibrary_mfc_youtube.png)](https://www.youtube.com/watch?v=yjorJu7rRiE)
+-->
 
 Release Notes:
 --------------
