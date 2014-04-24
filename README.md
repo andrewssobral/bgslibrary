@@ -231,6 +231,11 @@ Download latest project source code, copy package_bgs directory to your project 
 See Demo.cpp example source code at:
 https://github.com/andrewssobral/bgslibrary/blob/master/Demo.cpp
 
+How to contribute with BGSLibrary project
+----------------------------------------
+Everyone is invited to cooperate with the BGSLibrary project by sending any implementation of background subtraction (BS) algorithms. Please see the following tutorial:
+https://github.com/andrewssobral/bgslibrary/blob/master/docs/bgslibrary_how_to_contribute.pdf
+
 Example code
 ------------
 ```C++
