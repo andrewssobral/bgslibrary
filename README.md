@@ -163,6 +163,15 @@ Legend:
 * (10) thanks to [SeungJong Noh](http://www.informatik.uni-trier.de/~ley/pers/hd/n/Noh:SeungJong)
 * (11) thanks to [Benjamin Laugraud](http://www.montefiore.ulg.ac.be/~blaugraud/index.php)
 
+Full list of BGSLibrary collaborators
+----------------------------------------------
+I would like to thanks all those who have contributed in some way to the success of this library, especially, the following peoples (in alphabetical order):
+
+Ahmed Elgammal	(USA), Antoine Vacavant	(France), Benjamin Laugraud	(Belgium), Csaba Kertész	(Finland), Domenico Bloisi	(Italy), Donovan Parks	(Canada), Eduardo Barreto Alexandre	(Brazil), Fida EL BAF	(France), Iñigo Martínez	, Jean-Marc Odobez	(Switzerland), Jean-Philippe Jodoin	(Canada), JIA Pei	(China), Jian Yao	(China), Laurence Bender	(Argentina), Lionel Robinault	(France), Luca Iocchi	(Italy), Luiz Vitor Martinez Cardoso	(Brazil), Martin Hofmann, Philipp Tiefenbacher and Gerhard Rigoll	(Germany), Rim Trabelsi	(Tunisia), Simone Gasparini	(France), Stefano Tommesani	(Italy), Thierry Bouwmans	(France), Vikas Reddy	(Australia), Yani Ioannou	(Canada), Zhenjie Zhao	(China) and Zoran Zivkovic	(Netherlands).
+
+Algorithms benchmark
+----------------------------------------------
+
 ![](https://sites.google.com/site/andrewssobral/bgslibrary_benchmark.png "")
 
 Download links
