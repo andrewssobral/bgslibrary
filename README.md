@@ -275,6 +275,25 @@ Best public video databases
 * ChangeDetection: http://changedetection.net/
 * BMC: http://bmc.univ-bpclermont.fr/
 
+Videos
+------
+
+<p align="center">
+<a href="https://www.youtube.com/watch?v=yjorJu7rRiE" target="_blank">
+<img src="https://sites.google.com/site/andrewssobral/bgslibrary_mfc_youtube.png" border="0" />
+</a>
+</p>
+
+<p align="center">
+<a href="https://www.youtube.com/watch?v=Ccqa9KBO9_U" target="_blank">
+<img src="https://sites.google.com/site/andrewssobral/bgslibrary_youtube.png" border="0" />
+</a>
+</p>
+
+<!--
+[![ScreenShot](https://sites.google.com/site/andrewssobral/bgslibrary_mfc_youtube.png)](https://www.youtube.com/watch?v=yjorJu7rRiE)
+-->
+
 Project Diagram
 ---------------
 <p align="center">
@@ -308,25 +327,6 @@ Java GUI
 <img src="https://sites.google.com/site/andrewssobral/bgslibrary_gui_screen04.png?width=815" border="0" />
 </a>
 </p>
-
-Videos
-------
-
-<p align="center">
-<a href="https://www.youtube.com/watch?v=yjorJu7rRiE" target="_blank">
-<img src="https://sites.google.com/site/andrewssobral/bgslibrary_mfc_youtube.png" border="0" />
-</a>
-</p>
-
-<p align="center">
-<a href="https://www.youtube.com/watch?v=Ccqa9KBO9_U" target="_blank">
-<img src="https://sites.google.com/site/andrewssobral/bgslibrary_youtube.png" border="0" />
-</a>
-</p>
-
-<!--
-[![ScreenShot](https://sites.google.com/site/andrewssobral/bgslibrary_mfc_youtube.png)](https://www.youtube.com/watch?v=yjorJu7rRiE)
--->
 
 Release Notes:
 --------------
