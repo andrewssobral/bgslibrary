@@ -14,7 +14,7 @@ A Background Subtraction Library
 
 <p align="center"><img src="https://sites.google.com/site/andrewssobral/new-release.png?width=128" /></p>
 
-Last Page Update: **23/04/2014**
+Last Page Update: **26/04/2014**
 
 Latest Library Version: **1.9.1** (see Release Notes for more info) 
 
@@ -52,13 +52,16 @@ Sobral, Andrews. BGSLibrary: An OpenCV C++ Background Subtraction Library. IX Wo
 Some algorithms of the BGSLibrary was used successfully in the following papers: 
 * (2014) Sobral, Andrews; Vacavant, Antoine. A comprehensive review of background subtraction algorithms evaluated with synthetic and real videos. Computer Vision and Image Understanding (CVIU), 2014. ([Online](http://dx.doi.org/10.1016/j.cviu.2013.12.005))
 * (2014) Hettiarachchi, C.; Nanayakkara, A.; Dissanayaka, A.; Wijenayake, C.; De Silva, C. Abandoned object detection with logical reasoning. IEEE International Advance Computing Conference (IACC), pp.1137,1141, 21-22 Feb. 2014. ([Online](http://dx.doi.org/10.1109/IAdCC.2014.6779486))
+* (2013) Beleznai, C.; Gemeiner, P.; Zinner, C. Reliable Left Luggage Detection Using Stereo Depth and Intensity Cues. IEEE International Conference on Computer Vision Workshops (ICCVW), pp.59,66, 2-8 Dec. 2013. ([Online](http://dx.doi.org/10.1109/ICCVW.2013.15))
 * (2013) Mukherjee, D.; Wu, Q.M.J.; Nguyen, T.M. Multiresolution Based Gaussian Mixture Model for Background Suppression. IEEE Transactions on Image Processing, vol.22, no.12, pp.5022,5035, Dec. 2013. ([Online](http://dx.doi.org/10.1109/TIP.2013.2281423))
 * (2013) Mukherjee, D.; Wu, Q.; Nguyen, T. Gaussian Mixture Model with Advanced Distance Measure based on Support Weights and Histogram of Gradients for Background Suppression. IEEE Transactions on Industrial Informatics, no.99, pp.1, Dec. 2013. ([Online](http://dx.doi.org/10.1109/TII.2013.2294134))
+* (2013) Nanayakkara, A.; Dissanayaka, A.; Wijenayake, C.; Hettiarachchi, C.; De Silva, C. NoobaVSS: Video Processing Framework to Enhance Processing and Automated Manipulation of Surveillance Videos. Proceedings of the Research Symposium of Uva Wellassa University, December 12-13, 2013.
 * (2013) DeMarco, K.J.; West, M.E.; Howard, A.M. Sonar-Based Detection and Tracking of a Diver for Underwater Human-Robot Interaction Scenarios. IEEE International Conference on Systems, Man, and Cybernetics (SMC), pp.2378,2383, 13-16 Oct. 2013. ([Online](http://dx.doi.org/10.1109/SMC.2013.406))
 * (2013) Varadarajan, S.; Miller, P.; Huiyu Zhou. Spatial mixture of Gaussians for dynamic background modelling. 10th IEEE International Conference on Advanced Video and Signal Based Surveillance (AVSS), pp.63,68, 27-30 Aug. 2013. ([Online](http://dx.doi.org/10.1109/AVSS.2013.6636617))
 * (2013) Liem, M. C.; Gavrila, D. M. A comparative study on multi-person tracking using overlapping cameras. Proc. of the International Conference on Computer Vision Systems (ICVS), St. Petersburg, Russia, 2013. ([Online](http://link.springer.com/chapter/10.1007%2F978-3-642-39402-7_21))
 * (2013) Kostyrev, Dmitry; Anishchenko, Sergey; Petrushan, Mikhail. Time Invariant Hand Gesture Recognition For Human-Computer Interaction. Russian International Workshop on Assessment Methods Information Retrieval, 2013. ([Online](http://romip.ru/russiras/doc/2013_for_participant/russirysc2013_submission_4_1.pdf))
 * (2013) Paul, Manoranjan; Haque, Shah M E; Chakraborty, Subrata. Human detection in surveillance videos and its applications - a review. EURASIP Journal on Advances in Signal Processing 2013. ([Online](http://asp.eurasipjournals.com/content/2013/1/176))
+* (2013) Subudhi, BadriNarayan; Ghosh, Susmita; Ghosh, Ashish. Change detection for moving object segmentation with robust background construction under Wronskian framework. Machine Vision and Applications, vol.24, n.4, pp.795-809, May 2013. ([Online](http://link.springer.com/article/10.1007%2Fs00138-012-0475-8#))
 * (2013) Sobral, Andrews; Oliveira, Luciano; Schnitman, Leizer; Souza, Felippe. (**Best Paper Award**) Highway Traffic Congestion Classification Using Holistic Properties. In International Conference on Signal Processing, Pattern Recognition and Applications (SPPRA'2013), Innsbruck, Austria, Feb 2013. ([Online](http://dx.doi.org/10.2316/P.2013.798-105))
 
 List of the algorithms available in BGSLibrary
