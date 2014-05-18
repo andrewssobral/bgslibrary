@@ -45,8 +45,7 @@ PratiMediodBGS::PratiMediodBGS()
 
 PratiMediodBGS::~PratiMediodBGS()
 {
-	if(m_median_buffer != NULL)
-		delete[] m_median_buffer;
+	delete[] m_median_buffer;
 }
 
 void PratiMediodBGS::Initalize(const BgsParams& param)
