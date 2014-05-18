@@ -186,14 +186,10 @@ void CLocalBinaryPattern::ComputeLBP(PixelLBPStruct *PLBP, CvRect *roi)
 
 void CLocalBinaryPattern::FreeMemories()
 {
-  if (m_pRadiuses != NULL)
-    delete[] m_pRadiuses;
-  if (m_pNeigPointsNums != NULL)
-    delete[] m_pNeigPointsNums;
-  if (m_pXYShifts)
-    delete[] m_pXYShifts;
-  if (m_pShiftedImg)
-    cvReleaseImage(&m_pShiftedImg);
+  delete[] m_pRadiuses;
+  delete[] m_pNeigPointsNums;
+  delete[] m_pXYShifts;
+  cvReleaseImage(&m_pShiftedImg);
 
   m_pXYShifts = NULL;
   m_pRadiuses = NULL;
