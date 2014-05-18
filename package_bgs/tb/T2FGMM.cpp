@@ -48,8 +48,7 @@ T2FGMM::T2FGMM()
 
 T2FGMM::~T2FGMM()
 {
-  if(m_modes != NULL) 
-    delete[] m_modes;
+  delete[] m_modes;
 }
 
 void T2FGMM::Initalize(const BgsParams& param)
