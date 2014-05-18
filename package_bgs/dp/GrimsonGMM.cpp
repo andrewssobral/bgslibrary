@@ -65,8 +65,7 @@ GrimsonGMM::GrimsonGMM()
 
 GrimsonGMM::~GrimsonGMM()
 {
-	if(m_modes != NULL) 
-		delete[] m_modes;
+	delete[] m_modes;
 }
 
 void GrimsonGMM::Initalize(const BgsParams& param)
