@@ -41,8 +41,7 @@ WrenGA::WrenGA()
 
 WrenGA::~WrenGA()
 {
-	if(m_gaussian != NULL)
-		delete[] m_gaussian;
+	delete[] m_gaussian;
 }
 
 void WrenGA::Initalize(const BgsParams& param)
