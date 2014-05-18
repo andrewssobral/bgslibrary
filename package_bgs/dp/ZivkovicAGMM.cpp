@@ -52,11 +52,8 @@ ZivkovicAGMM::ZivkovicAGMM()
 
 ZivkovicAGMM::~ZivkovicAGMM()
 {
-	if(m_modes != NULL)
-		delete[] m_modes;
-
-	if(m_modes_per_pixel != NULL)
-		delete[] m_modes_per_pixel;
+	delete[] m_modes;
+	delete[] m_modes_per_pixel;
 }
 
 void ZivkovicAGMM::Initalize(const BgsParams& param)
