@@ -61,8 +61,7 @@ T2FMRF::T2FMRF()
 
 T2FMRF::~T2FMRF()
 {
-  if(m_modes != NULL) 
-    delete[] m_modes;
+  delete[] m_modes;
 }
 
 void T2FMRF::Initalize(const BgsParams& param)
