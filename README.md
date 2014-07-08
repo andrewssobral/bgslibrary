@@ -14,11 +14,14 @@ A Background Subtraction Library
 
 <p align="center"><img src="https://sites.google.com/site/andrewssobral/new-release.png?width=128" /></p>
 
-Last Page Update: **26/04/2014**
+Last Page Update: **08/07/2014**
 
 Latest Library Version: **1.9.1** (see Release Notes for more info) 
 
-The BGSLibrary was developed by [Andrews Sobral](http://about.me/andrewssobral/) and provides a C++ framework to perform background subtraction (BGS). The code works either on Windows or on Linux. Currently the library offers **35** BGS algorithms (*the PBAS algorithm was removed from BGSLibrary because it is based on patented algorithm [ViBE](http://www2.ulg.ac.be/telecom/research/vibe/)*). A large amount of algorithms were provided by several authors. The source code is available under GNU GPL v3 license, the library is free and open source for academic purposes. Any user can be download latest project source code using SVN client. In Windows, a demo project for Visual Studio 2010 is provided. An executable version of BGSLibrary is available for Windows 32 bits and 64 bits. For Linux users, a Makefile can be used to compile all files and generate an executable example.
+The BGSLibrary was developed by [Andrews Sobral](http://about.me/andrewssobral/) and provides a C++ framework to perform background subtraction (BGS). The code works either on Windows or on Linux. Currently the library offers **35** BGS algorithms (*the PBAS algorithm was removed from BGSLibrary because it is based on patented algorithm [ViBE](http://www2.ulg.ac.be/telecom/research/vibe/)*). A large amount of algorithms were provided by several authors. The source code is available under GNU GPL v3 license, the library is free and open source for academic purposes¹. Any user can be download latest project source code using SVN client. In Windows, a demo project for Visual Studio 2010 is provided. An executable version of BGSLibrary is available for Windows 32 bits and 64 bits. For Linux users, a Makefile can be used to compile all files and generate an executable example.
+
+***¹ If you want to use bgslibrary for commercial purposes, you needs to contact the authors of your desired background subtraction method to check if they are agree with you. Please, read this for more info: [Can I use a GPLv3 software as a part of my commercial application?](http://stackoverflow.com/questions/2280742/gplv3-can-i-use-these-programs-in-commercial)***
+
 <p align="center">
 <img src="https://sites.google.com/site/andrewssobral/bgslibrary_world_statistics2.png" />
 </p>
@@ -26,7 +29,7 @@ The BGSLibrary was developed by [Andrews Sobral](http://about.me/andrewssobral/)
 <p align="center"><img src="https://sites.google.com/site/andrewssobral/please-donate-cat3.jpg" /></p>
 
 <p align="center">
-Have you found this software useful? Consider donating US$10 so it can get even better! <br />
+Have you found this software useful? Consider donating US$ 1, 5 or 10 so it can get even better! <br />
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=andrewssobral%40gmail%2ecom&lc=BR&item_name=bgslibrary&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" hspace="0" vspace="0" border="0" /></a><br />
 This software is completely free and will always stay free. Enjoy!
 </p>
