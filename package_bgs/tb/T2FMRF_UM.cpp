@@ -77,7 +77,7 @@ void T2FMRF_UM::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
   }
 
   bgs.Subtract(frameNumber, frame_data, lowThresholdMask, highThresholdMask);
-  cvCopyImage(lowThresholdMask.Ptr(), old);
+  cvCopy(lowThresholdMask.Ptr(), old);
 
   /************************************************************************/
 	/* the code for MRF, it can be noted when using other methods   */
@@ -92,10 +92,10 @@ void T2FMRF_UM::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
 		mrf.out_image = lowThresholdMask.Ptr();
 		mrf.InitEvidence2(gmm,hmm,old_labeling);
 		mrf.ICM2();
-		cvCopyImage(mrf.out_image, lowThresholdMask.Ptr());
+		cvCopy(mrf.out_image, lowThresholdMask.Ptr());
 	}
 
-  cvCopyImage(old, old_labeling);
+  cvCopy(old, old_labeling);
 
   lowThresholdMask.Clear();
   bgs.Update(frameNumber, frame_data, lowThresholdMask);

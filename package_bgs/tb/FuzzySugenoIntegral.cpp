@@ -15,6 +15,7 @@ You should have received a copy of the GNU General Public License
 along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "FuzzySugenoIntegral.h"
+#include <opencv2/legacy/compat.hpp>
 
 FuzzySugenoIntegral::FuzzySugenoIntegral() : firstTime(true), frameNumber(0), showOutput(true),
   framesToLearn(10), alphaLearn(0.1), alphaUpdate(0.01), colorSpace(1), option(2), smooth(true), threshold(0.67)

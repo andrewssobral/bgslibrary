@@ -25,11 +25,7 @@
 
 #include "graph.h"
 
-#if defined(__MINGW32__) || defined(__MINGW64__)
-#include <cvaux.h>
-#else
-#include <opencv/cvaux.h>
-#endif
+#include <opencv2/opencv.hpp>
 
 #include "MEHistogram.hpp"
 #include "MEImage.hpp"

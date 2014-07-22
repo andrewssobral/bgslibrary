@@ -28,8 +28,8 @@ tbouwman@univ-lr.fr
 http://sites.google.com/site/thierrybouwmans/
 */
 #include <stdio.h>
-#include <cv.h>
-#include <highgui.h>
+#include <opencv2/opencv.hpp>
+
 
 class PixelUtils
 {

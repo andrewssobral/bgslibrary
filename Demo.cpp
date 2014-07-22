@@ -15,8 +15,8 @@ You should have received a copy of the GNU General Public License
 along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include <iostream>
-#include <cv.h>
-#include <highgui.h>
+#include <opencv2/opencv.hpp>
+
 
 #include "package_bgs/FrameDifferenceBGS.h"
 #include "package_bgs/StaticFrameDifferenceBGS.h"

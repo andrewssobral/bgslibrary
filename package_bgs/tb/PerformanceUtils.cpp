@@ -15,6 +15,7 @@ You should have received a copy of the GNU General Public License
 along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "PerformanceUtils.h"
+#include <opencv2/legacy/compat.hpp>
 
 PerformanceUtils::PerformanceUtils(void){}
 

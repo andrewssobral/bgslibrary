@@ -37,7 +37,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef BGMODEL_H
 #define BGMODEL_H
 
-#include <cv.h>
+#include <opencv2/opencv.hpp>
 #include <math.h>
 #include <float.h>
 

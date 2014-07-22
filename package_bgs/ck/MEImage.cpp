@@ -21,13 +21,7 @@
 
 #include "MEImage.hpp"
 
-#if defined(__MINGW32__) || defined(__MINGW64__)
-#include <cv.h>
-#include <highgui.h>
-#else
-#include <opencv/cv.h>
-#include <opencv/highgui.h>
-#endif
+#include <opencv2/opencv.hpp>
 
 #include "MEDefs.hpp"
 

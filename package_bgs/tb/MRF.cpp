@@ -215,7 +215,7 @@ void MRF_TC::InitEvidence2(GMM *gmm, HMM *hmm, IplImage *labeling)
   int i, j;
 
   background = cvCreateImage(cvSize(width, height), IPL_DEPTH_8U, 3);
-  cvCopyImage(background2,background.Ptr());
+  cvCopy(background2,background.Ptr());
 
   unsigned char *in_data = (unsigned char *)(in_image->imageData);
   unsigned char *labeling_data = (unsigned char *)(labeling->imageData);

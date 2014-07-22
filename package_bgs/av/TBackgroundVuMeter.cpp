@@ -227,24 +227,24 @@ int TBackgroundVuMeter::Init(IplImage * pSource)
 
 bool TBackgroundVuMeter::isInitOk(IplImage * pSource, IplImage *pBackground, IplImage *pMotionMask)
 {
-  bool bResult = TRUE;
+  bool bResult = true;
   int i;
   int nbl, nbc;
 
   bResult = TBackground::isInitOk(pSource, pBackground, pMotionMask);
 
   if(pSource == NULL)
-    bResult = FALSE;
+    bResult = false;
 
   if(m_nBinSize == 0)
-    bResult = FALSE;
+    bResult = false;
 
   if(bResult)
   {
     i = (m_nBinSize != 0) ? 256 / m_nBinSize : 0;
 
     if(i != m_nBinCount || m_pHist == NULL)
-      bResult = FALSE;
+      bResult = false;
   }
 
   if(bResult)
@@ -255,7 +255,7 @@ bool TBackgroundVuMeter::isInitOk(IplImage * pSource, IplImage *pBackground, Ipl
     for(i = 0; i < m_nBinCount; ++i)
     {
       if(m_pHist[i] == NULL || m_pHist[i]->width != nbc || m_pHist[i]->height != nbl)
-        bResult = FALSE;
+        bResult = false;
     }
   }
 

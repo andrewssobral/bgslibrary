@@ -53,6 +53,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #include <fstream>						// file I/O
 #include <cmath>						// math includes
 #include <iostream>                                             // I/O streams
+#include <opencv2/legacy/compat.hpp>
 
 using namespace Blob;
 

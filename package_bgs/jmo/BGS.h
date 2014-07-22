@@ -43,7 +43,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #if !defined(_BGS_H_)
 #define _BGS_H_
 
-#include <cv.h>
+#include <opencv2/opencv.hpp>
 
 
 // TODO check these defines are not used (or not redundant with real params)

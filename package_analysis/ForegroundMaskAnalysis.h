@@ -18,8 +18,8 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <iostream>
 #include <string>
-#include <cv.h>
-#include <highgui.h>
+#include <opencv2/opencv.hpp>
+
 
 namespace bgslibrary
 {

@@ -27,11 +27,7 @@
 
 #include "MEHistogram.hpp"
 
-#if defined(__MINGW32__) || defined(__MINGW64__)
-#include <cv.h>
-#else
-#include <opencv/cv.h>
-#endif
+#include <opencv2/opencv.hpp>
 
 #include "MEDefs.hpp"
 #include "MEImage.hpp"
