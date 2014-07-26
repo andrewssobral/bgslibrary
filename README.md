@@ -50,10 +50,10 @@ month     = {Jun},
 url       = {https://github.com/andrewssobral/bgslibrary}
 }
 ```
-Sobral, Andrews. BGSLibrary: An OpenCV C++ Background Subtraction Library. IX Workshop de Visão Computacional (WVC'2013), Rio de Janeiro, Brazil, Jun. 2013. ([PDF](http://iris.sel.eesc.usp.br/wvc/Anais_WVC2013/Poster/2/15.pdf))
+Sobral, Andrews. BGSLibrary: An OpenCV C++ Background Subtraction Library. IX Workshop de Visão Computacional (WVC'2013), Rio de Janeiro, Brazil, Jun. 2013. ([PDF](http://iris.sel.eesc.usp.br/wvc/Anais_WVC2013/Poster/2/15.pdf) in brazilian portuguese). One chapter about the BGSLibrary will be published in the Handbook on "[Background Modeling and Foreground Detection for Video Surveillance](https://sites.google.com/site/backgroundmodeling/)".
 
 Some algorithms of the BGSLibrary was used successfully in the following papers: 
-* (2014) Sobral, Andrews; Vacavant, Antoine. A comprehensive review of background subtraction algorithms evaluated with synthetic and real videos. Computer Vision and Image Understanding (CVIU), 2014. ([Online](http://dx.doi.org/10.1016/j.cviu.2013.12.005))
+* (2014) Sobral, Andrews; Vacavant, Antoine. A comprehensive review of background subtraction algorithms evaluated with synthetic and real videos. Computer Vision and Image Understanding (CVIU), 2014. ([Online](http://dx.doi.org/10.1016/j.cviu.2013.12.005)) (**Top 6 in the Most Downloaded CVIU Articles**)
 * (2014) Hettiarachchi, C.; Nanayakkara, A.; Dissanayaka, A.; Wijenayake, C.; De Silva, C. Abandoned object detection with logical reasoning. IEEE International Advance Computing Conference (IACC), pp.1137,1141, 21-22 Feb. 2014. ([Online](http://dx.doi.org/10.1109/IAdCC.2014.6779486))
 * (2013) Beleznai, C.; Gemeiner, P.; Zinner, C. Reliable Left Luggage Detection Using Stereo Depth and Intensity Cues. IEEE International Conference on Computer Vision Workshops (ICCVW), pp.59,66, 2-8 Dec. 2013. ([Online](http://dx.doi.org/10.1109/ICCVW.2013.15))
 * (2013) Mukherjee, D.; Wu, Q.M.J.; Nguyen, T.M. Multiresolution Based Gaussian Mixture Model for Background Suppression. IEEE Transactions on Image Processing, vol.22, no.12, pp.5022,5035, Dec. 2013. ([Online](http://dx.doi.org/10.1109/TIP.2013.2281423))
