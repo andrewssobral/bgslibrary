@@ -15,6 +15,7 @@ You should have received a copy of the GNU General Public License
 along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "FrameProcessor.h"
+#include <iomanip>
 
 namespace bgslibrary
 {
@@ -258,8 +259,8 @@ namespace bgslibrary
 
     if(enableMultiLayerBGS)
     {
-      multiLayerBGS->setStatus(MultiLayerBGS::Status::MLBGS_LEARN);
-      //multiLayerBGS->setStatus(MultiLayerBGS::Status::MLBGS_DETECT);
+      multiLayerBGS->setStatus(MultiLayerBGS::MLBGS_LEARN);
+      //multiLayerBGS->setStatus(MultiLayerBGS::MLBGS_DETECT);
       process("MultiLayerBGS", multiLayerBGS, img_prep, img_mlbgs);
     }
 

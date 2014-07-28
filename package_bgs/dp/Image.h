@@ -30,8 +30,8 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef _IMAGE_H_
 #define _IMAGE_H_
 
-#include <cv.h>
-#include <cxcore.h>
+#include <opencv2/opencv.hpp>
+//#include <cxcore.h>
 
 // --- Image Iterator ---------------------------------------------------------
 

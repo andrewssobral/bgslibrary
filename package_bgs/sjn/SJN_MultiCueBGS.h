@@ -42,8 +42,8 @@ using std::vector;
 #include <algorithm>
 using std::sort;
 
-#include <cv.h>
-#include <highgui.h>
+#include <opencv2/opencv.hpp>
+
 
 #include "../IBGS.h"
 

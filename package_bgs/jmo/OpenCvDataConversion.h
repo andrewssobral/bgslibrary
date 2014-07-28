@@ -47,7 +47,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #if !defined(_OPENCV_DATA_CONVERSION_H_)
 #define _OPENCV_DATA_CONVERSION_H_
 
-#include <cv.h>
+#include <opencv2/opencv.hpp>
 #include <stdio.h>
 
 template <class TI, class TM>		/* class TI - the type of image data, class TM - the type of matrix data */

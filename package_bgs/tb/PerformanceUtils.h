@@ -29,8 +29,8 @@ http://sites.google.com/site/thierrybouwmans/
 */
 #include <stdio.h>
 #include <fstream>
-#include <cv.h>
-#include <highgui.h>
+#include <opencv2/opencv.hpp>
+
 
 #include "PixelUtils.h"
 

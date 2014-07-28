@@ -37,7 +37,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #ifndef TYPES_H
 #define TYPES_H
 
-#include <cv.h>
+#include <opencv2/opencv.hpp>
 
 namespace lb_library
 {

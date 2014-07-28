@@ -70,11 +70,11 @@ int TBackground::Init(IplImage * pSource)
 
 bool TBackground::isInitOk(IplImage * pSource, IplImage *pBackground, IplImage *pMotionMask)
 {
-  bool bResult = TRUE;
+  bool bResult = true;
   int nbl, nbc;
 
   if(pSource == NULL || pSource->nChannels != 1 || pSource->depth != IPL_DEPTH_8U)
-    bResult = FALSE;
+    bResult = false;
 
   if(bResult)
   {
@@ -82,10 +82,10 @@ bool TBackground::isInitOk(IplImage * pSource, IplImage *pBackground, IplImage *
     nbc = pSource->width;
     
     if(pBackground == NULL || pBackground->width != nbc || pBackground->height != nbl || pBackground->imageSize != pSource->imageSize)
-      bResult = FALSE;
+      bResult = false;
     
     if(pMotionMask == NULL || pMotionMask->width != nbc || pMotionMask->height != nbl || pMotionMask->imageSize != pSource->imageSize)
-      bResult = FALSE;
+      bResult = false;
   }
 
   return bResult;

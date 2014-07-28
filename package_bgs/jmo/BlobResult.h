@@ -59,9 +59,10 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "BlobLibraryConfiguration.h"
 #include <math.h>
-#include "cxcore.h"
+//#include "cxcore.h"
 #include <vector>
 #include <functional>
+#include <opencv2/core/types_c.h>
 #include "blob.h"
 
 typedef std::vector<double> double_stl_vector;

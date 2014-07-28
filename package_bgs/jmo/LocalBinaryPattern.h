@@ -47,7 +47,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #if !defined(_LOCAL_BINARY_PATTERN_H_)
 #define _LOCAL_BINARY_PATTERN_H_
 
-#include <cv.h>
+#include <opencv2/opencv.hpp>
 #include "BGS.h"
 
 

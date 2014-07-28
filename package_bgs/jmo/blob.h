@@ -60,12 +60,12 @@ MODIFICATIONS (Modification, Author, Date):
 #ifndef CBLOB_INSPECTA_INCLUDED
 #define CBLOB_INSPECTA_INCLUDED
 
-#include "cxcore.h"
+//#include "cxcore.h"
 #include "BlobLibraryConfiguration.h"
 #include <functional>
 #include <vector>
 #include <algorithm>
-
+#include <opencv2/core/types_c.h>
 //! Factor de conversió de graus a radians
 #define DEGREE2RAD		(CV_PI / 180.0)
 

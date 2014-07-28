@@ -16,7 +16,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
 #pragma once
 
-#include <cv.h>
+#include <opencv2/opencv.hpp>
 
 class IBGS
 {

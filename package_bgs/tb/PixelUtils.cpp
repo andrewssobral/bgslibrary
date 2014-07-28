@@ -23,7 +23,7 @@ void PixelUtils::ColorConversion(IplImage* RGBImage, IplImage* ConvertedImage, i
 {
   // Space Color RGB - Nothing to do!
   if(color_space == 1)
-    cvCopyImage(RGBImage, ConvertedImage);
+    cvCopy(RGBImage, ConvertedImage);
 
   // Space Color Ohta
   if(color_space == 2) 
