@@ -85,5 +85,5 @@ namespace Algorithms
 
 			RgbImage m_median;
 		};
-	};
-};
+	}
+}

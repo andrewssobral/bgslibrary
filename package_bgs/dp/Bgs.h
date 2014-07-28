@@ -61,7 +61,7 @@ namespace Algorithms
 			// Return the current background model.
 			virtual RgbImage *Background() = 0;
 		};
-	};
-};
+	}
+}
 
 #endif

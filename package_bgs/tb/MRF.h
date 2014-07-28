@@ -101,7 +101,7 @@ namespace Algorithms
       void ICM2();
       void Metropolis2(bool mmd);
     };
-  };
-};
+  }
+}
 
 #endif

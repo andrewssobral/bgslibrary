@@ -148,8 +148,8 @@ namespace Algorithms
       //number of Gaussian components per pixel
       unsigned char* m_modes_per_pixel;
     };
-  };
-};
+  }
+}
 
 #endif
 

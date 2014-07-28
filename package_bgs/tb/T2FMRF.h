@@ -158,7 +158,7 @@ namespace Algorithms
       // Factor control for the T2FGMM-UV
       float kv;
     };
-  };
-};
+  }
+}
 
 #endif
