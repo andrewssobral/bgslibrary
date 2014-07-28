@@ -3,6 +3,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LocalDebuggerWorkingDirectory>../</LocalDebuggerWorkingDirectory>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerCommandArguments>./dataset/video.avi</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>-uf=true -fn=dataset/video.avi</LocalDebuggerCommandArguments>
   </PropertyGroup>
 </Project>
