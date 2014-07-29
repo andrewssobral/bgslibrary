@@ -14,7 +14,7 @@ A Background Subtraction Library
 
 <p align="center"><img src="https://sites.google.com/site/andrewssobral/new-release.png?width=128" /></p>
 
-Last Page Update: **08/07/2014**
+Last Page Update: **29/07/2014**
 
 Latest Library Version: **1.9.1** (see Release Notes for more info) 
 
@@ -179,7 +179,7 @@ Full list of BGSLibrary collaborators
 ----------------------------------------------
 I would like to thanks all those who have contributed in some way to the success of this library, especially, the following peoples (in alphabetical order):
 
-Ahmed Elgammal	(USA), Antoine Vacavant	(France), Benjamin Laugraud	(Belgium), Csaba Kertész	(Finland), Domenico Bloisi	(Italy), Donovan Parks	(Canada), Eduardo Barreto Alexandre	(Brazil), Fida EL BAF	(France), Iñigo Martínez	, Jean-Marc Odobez	(Switzerland), Jean-Philippe Jodoin	(Canada), JIA Pei	(China), Jian Yao	(China), Laurence Bender	(Argentina), Lionel Robinault	(France), Luca Iocchi	(Italy), Luiz Vitor Martinez Cardoso	(Brazil), Martin Hofmann, Philipp Tiefenbacher and Gerhard Rigoll	(Germany), Rim Trabelsi	(Tunisia), Simone Gasparini	(France), Stefano Tommesani	(Italy), Thierry Bouwmans	(France), Vikas Reddy	(Australia), Yani Ioannou	(Canada), Zhenjie Zhao	(China) and Zoran Zivkovic	(Netherlands).
+Ahmed Elgammal	(USA), Antoine Vacavant	(France), Benjamin Laugraud	(Belgium), Csaba Kertész	(Finland), Domenico Bloisi	(Italy), Donovan Parks	(Canada), Eduardo Barreto Alexandre	(Brazil), Fida EL BAF	(France), Iñigo Martínez, Jean-Marc Odobez	(Switzerland), Jean-Philippe Jodoin	(Canada), JIA Pei	(China), Jian Yao	(China), Holger Friedrich, Laurence Bender	(Argentina), Lionel Robinault	(France), Luca Iocchi	(Italy), Luiz Vitor Martinez Cardoso	(Brazil), Martin Hofmann, Philipp Tiefenbacher and Gerhard Rigoll	(Germany), Rim Trabelsi	(Tunisia), Simone Gasparini	(France), Stefano Tommesani	(Italy), Thierry Bouwmans	(France), Vikas Reddy	(Australia), Yani Ioannou	(Canada), Zhenjie Zhao	(China) and Zoran Zivkovic	(Netherlands).
 
 Algorithms benchmark
 ----------------------------------------------
