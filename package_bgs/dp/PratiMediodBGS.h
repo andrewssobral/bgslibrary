@@ -130,8 +130,8 @@ namespace Algorithms
       BwImage m_mask_high_threshold;
     };
 
-  };
-};
+  }
+}
 
 #endif
 

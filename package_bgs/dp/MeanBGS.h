@@ -89,8 +89,8 @@ namespace Algorithms
       RgbImage m_background;
     };
 
-  };
-};
+  }
+}
 
 
 

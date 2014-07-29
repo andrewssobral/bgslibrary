@@ -32,8 +32,8 @@ BackgroundSubtractorIMBS::BackgroundSubtractorIMBS()
   samplingPeriod = 250.;//500.ms
   minBinHeight = 2;
   numSamples = 10; //30
-  alpha = 0.65;
-  beta = 1.15;
+  alpha = 0.65f;
+  beta = 1.15f;
   tau_s = 60.;
   tau_h = 40.;
   minArea = 30.;
@@ -106,7 +106,7 @@ void BackgroundSubtractorIMBS::initialize(Size frameSize, int frameType)
   this->numPixels = frameSize.width*frameSize.height;
 
   persistenceMap = new unsigned int[numPixels];
-  for(int i = 0; i < numPixels; i++) {
+  for(unsigned int i = 0; i < numPixels; i++) {
     persistenceMap[i] = 0;
   }
 
@@ -432,7 +432,7 @@ void BackgroundSubtractorIMBS::createBg(unsigned int bg_sample_number) {
       sudden_change = false;
     }
 
-    for(int i = 0; i < numPixels; i++) {
+    for(unsigned int i = 0; i < numPixels; i++) {
       persistenceMap[i] = 0;
     }
 
@@ -727,7 +727,7 @@ void BackgroundSubtractorIMBS::getBgModel(BgModel bgModel_copy[], int size) {
   if(size != numPixels) {
     return;
   }
-  for(int i = 0; i < numPixels; ++i){
+  for(unsigned int i = 0; i < numPixels; ++i){
     bgModel_copy[i].values = new Vec3b[maxBgBins];
     bgModel_copy[i].isValid = new bool[maxBgBins];
     bgModel_copy[i].isValid[0] = false;

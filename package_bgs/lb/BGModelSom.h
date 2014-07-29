@@ -55,7 +55,7 @@ namespace lb_library
     const float EPS1 = 100.0; // model match distance during training
     const float EPS2 = 20.0;  // model match distance
     const float C1 = 1.0;     // learning rate during training
-    const float C2 = 0.05;    // learning rate
+    const float C2 = 0.05f;    // learning rate
 
     class BGModelSom : public BGModel
     {

@@ -144,7 +144,7 @@ namespace Algorithms
 			// Current background model
 			RgbImage m_background;
 		};
-	};
-};
+	}
+}
 
 #endif

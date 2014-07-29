@@ -16,7 +16,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "T2FGMM_UM.h"
 
-T2FGMM_UM::T2FGMM_UM() : firstTime(true), frameNumber(0), showOutput(true), threshold(9.0), alpha(0.01), gaussians(3), km(1.5), kv(0.6)
+T2FGMM_UM::T2FGMM_UM() : firstTime(true), frameNumber(0), showOutput(true), threshold(9.0), alpha(0.01), gaussians(3), km(1.5f), kv(0.6f)
 {
   std::cout << "T2FGMM_UM()" << std::endl;
 }

@@ -106,14 +106,14 @@ void FuzzyChoquetIntegral::process(const cv::Mat &img_input, cv::Mat &img_output
     // 3 color components
     if(option == 1)
     {
-      fu.FuzzyMeasureG(0.4, 0.3, 0.3, measureG);
+      fu.FuzzyMeasureG(0.4f, 0.3f, 0.3f, measureG);
       fu.getFuzzyIntegralChoquet(sim_texture_f1, sim_color_f3, option, measureG, integral_choquet_f1);
     }
 
     // 2 color components + 1 texture component
     if(option == 2)
     {
-      fu.FuzzyMeasureG(0.6, 0.3, 0.1, measureG);
+      fu.FuzzyMeasureG(0.6f, 0.3f, 0.1f, measureG);
       fu.getFuzzyIntegralChoquet(sim_texture_f1, sim_color_f3, option, measureG, integral_choquet_f1);
     }
 

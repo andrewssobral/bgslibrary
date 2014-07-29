@@ -1308,7 +1308,7 @@ void MotionDetection::SetSampleMaskHU(SampleMaskType mask_type, int desiredarea)
   IplImage *MaskImage = cvCreateImage(cvSize(HUHistogramArea, HUHistogramArea), 8, 1);
   int DesiredArea = desiredarea <= 0 ? HUHistogramBins*2 : desiredarea;
   int CalculationMask[HUHistogramArea][HUHistogramArea];
-  int SquareSide = (int)MERound(sqrt(DesiredArea));
+  int SquareSide = (int)MERound(sqrtf(DesiredArea));
   int CircleRadius = (int)MERound(sqrt((float)DesiredArea / ME_PI_VALUE));
   int EllipseA = (int)MERound(HUHistogramArea / 2+1);
   int EllipseB = (int)MERound(DesiredArea / (EllipseA*1.2*ME_PI_VALUE));

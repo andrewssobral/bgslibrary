@@ -116,11 +116,11 @@ void T2FMRF::InitModel(const RgbImage& data)
   for (unsigned int j = 0; j < m_params.Size(); ++j)
   {
     m_state[j].State = background;
-    m_state[j].Ab2b = 0.7;
-    m_state[j].Ab2f = 0.3;
-    m_state[j].Af2b = 0.4;
-    m_state[j].Af2f = 0.6;
-    m_state[j].T = 0.7;
+    m_state[j].Ab2b = 0.7f;
+    m_state[j].Ab2f = 0.3f;
+    m_state[j].Af2b = 0.4f;
+    m_state[j].Af2f = 0.6f;
+    m_state[j].T = 0.7f;
   }
 }
 

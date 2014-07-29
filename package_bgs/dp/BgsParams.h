@@ -53,7 +53,7 @@ namespace Algorithms
 			unsigned int m_height;
 			unsigned int m_size;
 		};
-	};
-};
+	}
+}
 
 #endif
