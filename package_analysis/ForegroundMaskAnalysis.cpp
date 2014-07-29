@@ -18,7 +18,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace bgslibrary
 {
-  ForegroundMaskAnalysis::ForegroundMaskAnalysis() : firstTime(true), stopAt(0), showOutput(true), img_ref_path("")
+  ForegroundMaskAnalysis::ForegroundMaskAnalysis() : firstTime(true), showOutput(true), stopAt(0), img_ref_path("")
   {
     std::cout << "ForegroundMaskAnalysis()" << std::endl;
   }

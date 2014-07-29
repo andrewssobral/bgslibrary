@@ -16,7 +16,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "DPZivkovicAGMMBGS.h"
 
-DPZivkovicAGMMBGS::DPZivkovicAGMMBGS() : firstTime(true), frameNumber(0), showOutput(true), threshold(25.0f), alpha(0.001f), gaussians(3)
+DPZivkovicAGMMBGS::DPZivkovicAGMMBGS() : firstTime(true), frameNumber(0), threshold(25.0f), alpha(0.001f), gaussians(3), showOutput(true) 
 {
   std::cout << "DPZivkovicAGMMBGS()" << std::endl;
 }

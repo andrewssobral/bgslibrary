@@ -16,7 +16,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "DPEigenbackgroundBGS.h"
 
-DPEigenbackgroundBGS::DPEigenbackgroundBGS() : firstTime(true), frameNumber(0), showOutput(true), threshold(225), historySize(20), embeddedDim(10)
+DPEigenbackgroundBGS::DPEigenbackgroundBGS() : firstTime(true), frameNumber(0), threshold(225), historySize(20), embeddedDim(10), showOutput(true) 
 {
   std::cout << "DPEigenbackgroundBGS()" << std::endl;
 }

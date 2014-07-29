@@ -16,7 +16,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "DPAdaptiveMedianBGS.h"
 
-DPAdaptiveMedianBGS::DPAdaptiveMedianBGS() : firstTime(true), frameNumber(0), showOutput(true), threshold(40), samplingRate(7), learningFrames(30)
+DPAdaptiveMedianBGS::DPAdaptiveMedianBGS() : firstTime(true), frameNumber(0), threshold(40), samplingRate(7), learningFrames(30), showOutput(true) 
 {
   std::cout << "DPAdaptiveMedianBGS()" << std::endl;
 }

@@ -27,11 +27,11 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 
 TBackgroundVuMeter::TBackgroundVuMeter(void)
   : m_pHist(NULL)
-  , m_nBinSize(8)
   , m_nBinCount(0)
+  , m_nBinSize(8)
+  , m_nCount(0)
   , m_fAlpha(0.995)
   , m_fThreshold(0.03)
-  , m_nCount(0)
 {
   std::cout << "TBackgroundVuMeter()" << std::endl;
 }
