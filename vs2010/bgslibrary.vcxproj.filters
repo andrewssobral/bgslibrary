@@ -52,6 +52,9 @@
     <Filter Include="Header Files\package_bgs\bl">
       <UniqueIdentifier>{0494c5d4-b4bb-421c-b032-176903ba8e1b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\package_bgs\ck">
+      <UniqueIdentifier>{87961eee-b843-45bd-b642-9dcd9d78b661}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\package_bgs\AdaptiveBackgroundLearning.cpp">
@@ -281,6 +284,27 @@
     </ClCompile>
     <ClCompile Include="..\package_bgs\bl\sdLaMa091.cpp">
       <Filter>Header Files\package_bgs\bl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\package_bgs\ck\graph.cpp">
+      <Filter>Header Files\package_bgs\ck</Filter>
+    </ClCompile>
+    <ClCompile Include="..\package_bgs\ck\LbpMrf.cpp">
+      <Filter>Header Files\package_bgs\ck</Filter>
+    </ClCompile>
+    <ClCompile Include="..\package_bgs\ck\maxflow.cpp">
+      <Filter>Header Files\package_bgs\ck</Filter>
+    </ClCompile>
+    <ClCompile Include="..\package_bgs\ck\MEDefs.cpp">
+      <Filter>Header Files\package_bgs\ck</Filter>
+    </ClCompile>
+    <ClCompile Include="..\package_bgs\ck\MEHistogram.cpp">
+      <Filter>Header Files\package_bgs\ck</Filter>
+    </ClCompile>
+    <ClCompile Include="..\package_bgs\ck\MEImage.cpp">
+      <Filter>Header Files\package_bgs\ck</Filter>
+    </ClCompile>
+    <ClCompile Include="..\package_bgs\ck\MotionDetection.cpp">
+      <Filter>Header Files\package_bgs\ck</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -535,6 +559,27 @@
     </ClInclude>
     <ClInclude Include="..\package_bgs\bl\stdbool.h">
       <Filter>Header Files\package_bgs\bl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\package_bgs\ck\block.h">
+      <Filter>Header Files\package_bgs\ck</Filter>
+    </ClInclude>
+    <ClInclude Include="..\package_bgs\ck\graph.h">
+      <Filter>Header Files\package_bgs\ck</Filter>
+    </ClInclude>
+    <ClInclude Include="..\package_bgs\ck\LbpMrf.h">
+      <Filter>Header Files\package_bgs\ck</Filter>
+    </ClInclude>
+    <ClInclude Include="..\package_bgs\ck\MEDefs.hpp">
+      <Filter>Header Files\package_bgs\ck</Filter>
+    </ClInclude>
+    <ClInclude Include="..\package_bgs\ck\MEHistogram.hpp">
+      <Filter>Header Files\package_bgs\ck</Filter>
+    </ClInclude>
+    <ClInclude Include="..\package_bgs\ck\MEImage.hpp">
+      <Filter>Header Files\package_bgs\ck</Filter>
+    </ClInclude>
+    <ClInclude Include="..\package_bgs\ck\MotionDetection.hpp">
+      <Filter>Header Files\package_bgs\ck</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
