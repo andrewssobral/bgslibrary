@@ -338,7 +338,6 @@ void FuzzyUtils::getFuzzyIntegralChoquet(IplImage* H, IplImage* Delta, int n, fl
   float *Integral = (float*) malloc(3*(sizeof(float)));
   float* X = (float*) malloc(1*sizeof(float));
   float* XiXj = (float*) malloc(1*sizeof(float));
-  float* IntegralFlou1 = (float*) malloc(1*sizeof(float));
   float IntegralFlou;
 
   *Indice = 0;
@@ -508,4 +507,6 @@ void FuzzyUtils::AdaptativeSelectiveBackgroundModelUpdate(IplImage* CurrentImage
   free(BGImagePixel);
   free(OutputImagePixel);
   free(IntegralImagePixel);
+  free(Maximum);
+  free(Minimum);
 }

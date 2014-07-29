@@ -56,7 +56,7 @@ void TBackgroundVuMeter::Clear(void)
         cvReleaseImage(&m_pHist[i]);
     }
 
-    delete m_pHist;
+    delete[] m_pHist;
     m_pHist = NULL;
     m_nBinCount = 0;
   }

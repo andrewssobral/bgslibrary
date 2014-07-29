@@ -1241,7 +1241,12 @@ namespace Blob
         }
       }	// end Main loop
 
-      if (ErrorFlag != 0) return false;
+      if (ErrorFlag != 0) {
+          delete[] Transition;
+          delete[] ThisRegion;
+          delete[] LastRegion;
+          return false;
+      }
       // ens situem al primer pixel de la seguent fila
       pImage = inputImage->imageData - 1 + startCol + (ThisRow + startRow) * inputImage->widthStep;
 
@@ -1362,9 +1367,9 @@ namespace Blob
 
     //free(RegionData);
     free(SubsumedRegion);
-    delete Transition;
-    delete ThisRegion;
-    delete LastRegion;
+    delete[] Transition;
+    delete[] ThisRegion;
+    delete[] LastRegion;
 
     if (imatgePerimetreExtern) cvReleaseImage(&imatgePerimetreExtern);
 
