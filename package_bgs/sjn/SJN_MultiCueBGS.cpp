@@ -31,7 +31,7 @@ SJN_MultiCueBGS::SJN_MultiCueBGS() : firstTime(true), showOutput(true)
   g_iT_ModelThreshold = 1;										//the threshold for texture-model based BGS.		(The parameter tau_T in the paper)
   g_iC_ModelThreshold = 10;										//the threshold for appearance based verification.  (The parameter tau_A in the paper)
 
-  g_fLearningRate = 0.05;											//the learning rate for background models.			(The parameter alpha in the paper)
+  g_fLearningRate = 0.05f;											//the learning rate for background models.			(The parameter alpha in the paper)
 
   g_nTextureTrainVolRange = 15;									//the codebook size factor for texture models.		(The parameter k in the paper)
   g_nColorTrainVolRange = 20;										//the codebook size factor for color models.		(The parameter eta_1 in the paper)

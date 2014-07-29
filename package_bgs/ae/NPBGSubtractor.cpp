@@ -67,7 +67,7 @@ void BGR2SnGnRn(unsigned char * in_image,
                 unsigned int cols)
 {
   unsigned int i;
-  unsigned int r1,r2,r3;
+  unsigned int r2,r3;
   unsigned int r,g,b;
   double s;
 

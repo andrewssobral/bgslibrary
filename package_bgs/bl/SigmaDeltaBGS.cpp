@@ -43,7 +43,7 @@ void SigmaDeltaBGS::process(
   unsigned char* tmpBuffer = (unsigned char*)img_output_tmp.data;
   unsigned char* outBuffer = (unsigned char*)img_output.data;
 
-  for (int i = 0; i < img_output.total(); ++i) {
+  for (size_t i = 0; i < img_output.total(); ++i) {
     *outBuffer = *tmpBuffer;
 
     ++outBuffer;

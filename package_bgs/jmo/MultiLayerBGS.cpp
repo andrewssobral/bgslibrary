@@ -115,17 +115,17 @@ void MultiLayerBGS::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
       max_mode_num = 5;
       weight_updating_constant = 5.0;
       texture_weight = 0.5;
-      bg_mode_percent = 0.6;
+      bg_mode_percent = 0.6f;
       pattern_neig_half_size = 4;
-      pattern_neig_gaus_sigma = 3.0;
-      bg_prob_threshold = 0.2;
-      bg_prob_updating_threshold = 0.2;
+      pattern_neig_gaus_sigma = 3.0f;
+      bg_prob_threshold = 0.2f;
+      bg_prob_updating_threshold = 0.2f;
       robust_LBP_constant = 3;
       min_noised_angle = 10.0 / 180.0 * PI; //0,01768
-      shadow_rate = 0.6;
-      highlight_rate = 1.2;
-      bilater_filter_sigma_s = 3.0;
-      bilater_filter_sigma_r = 0.1;
+      shadow_rate = 0.6f;
+      highlight_rate = 1.2f;
+      bilater_filter_sigma_s = 3.0f;
+      bilater_filter_sigma_r = 0.1f;
     }
     else
       std::cout << "MultiLayerBGS loading config params" << std::endl;
@@ -149,7 +149,7 @@ void MultiLayerBGS::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
     {
       //frame_duration = 1.0 / 30.0;
       //frame_duration = 1.0 / 25.0;
-      frame_duration = 1.0 / 10.0;
+      frame_duration = 1.0f / 10.0f;
     }
 
     BGS->SetFrameRate(frame_duration);
@@ -160,7 +160,7 @@ void MultiLayerBGS::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
       {
         mode_learn_rate_per_second = 0.5;
         weight_learn_rate_per_second = 0.5;
-        init_mode_weight = 0.05;
+        init_mode_weight = 0.05f;
       }
       else
       {
@@ -174,9 +174,9 @@ void MultiLayerBGS::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
     {
       if (loadDefaultParams)
       {
-        mode_learn_rate_per_second = 0.01;
-        weight_learn_rate_per_second = 0.01;
-        init_mode_weight = 0.001;
+        mode_learn_rate_per_second = 0.01f;
+        weight_learn_rate_per_second = 0.01f;
+        init_mode_weight = 0.001f;
       }
       else
       {
@@ -204,9 +204,9 @@ void MultiLayerBGS::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
 
     status = MLBGS_DETECT;
 
-    mode_learn_rate_per_second = 0.01;
-    weight_learn_rate_per_second = 0.01;
-    init_mode_weight = 0.001;
+    mode_learn_rate_per_second = 0.01f;
+    weight_learn_rate_per_second = 0.01f;
+    init_mode_weight = 0.001f;
 
     BGS->SetParameters(max_mode_num, mode_learn_rate_per_second, weight_learn_rate_per_second, init_mode_weight);
 

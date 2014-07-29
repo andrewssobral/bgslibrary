@@ -597,7 +597,9 @@ void MotionDetection::DetectMotionsHU(MEImage& image)
 
 void MotionDetection::UpdateModelHU(MEImage& image, MEPixelDataType*** model)
 {
-  float CurrentHistogram[HUHistogramBins], CurrentHistogram2[HUHistogramBins];
+  float *CurrentHistogram, *CurrentHistogram2;
+  CurrentHistogram = new float[HUHistogramBins];
+  CurrentHistogram2 = new float[HUHistogramBins];
   unsigned char *ImgData = image.GetImageData();
   int RowWidth = image.GetRowWidth();
   int RowStart = (HUImageHeight-1)*RowWidth;
@@ -787,6 +789,8 @@ void MotionDetection::UpdateModelHU(MEImage& image, MEPixelDataType*** model)
 
     }
   }
+  delete[] CurrentHistogram;
+  delete[] CurrentHistogram2;
 }
 
 
@@ -795,7 +799,7 @@ void MotionDetection::UpdateHUPixelData(MEPixelDataType* PixelData, const float 
   int MaxIndex = 0;
   float MaxValue = -1;
   bool Replace = true;
-  float IntersectionResults[HUHistogramsPerPixel];
+  float *IntersectionResults = new float[HUHistogramsPerPixel];
 
   PixelData->LifeCycle++;
   PixelData->BackgroundRate = 0.0;
@@ -856,6 +860,7 @@ void MotionDetection::UpdateHUPixelData(MEPixelDataType* PixelData, const float 
     for (int i1 = HUHistogramsPerPixel-1; i1 >= 0; --i1)
       PixelData->Weights[i1] = PixelData->Weights[i1] / sum;
 
+    delete[] IntersectionResults;
     return;
   }
 
@@ -928,6 +933,7 @@ void MotionDetection::UpdateHUPixelData(MEPixelDataType* PixelData, const float 
   {
     PixelData->BackgroundHistogram[(int)Weights[i1][0]] = false;
   }
+  delete[] IntersectionResults;
 }
 
 
@@ -1308,7 +1314,7 @@ void MotionDetection::SetSampleMaskHU(SampleMaskType mask_type, int desiredarea)
   IplImage *MaskImage = cvCreateImage(cvSize(HUHistogramArea, HUHistogramArea), 8, 1);
   int DesiredArea = desiredarea <= 0 ? HUHistogramBins*2 : desiredarea;
   int CalculationMask[HUHistogramArea][HUHistogramArea];
-  int SquareSide = (int)MERound(sqrt(DesiredArea));
+  int SquareSide = (int)MERound(sqrtf(DesiredArea));
   int CircleRadius = (int)MERound(sqrt((float)DesiredArea / ME_PI_VALUE));
   int EllipseA = (int)MERound(HUHistogramArea / 2+1);
   int EllipseB = (int)MERound(DesiredArea / (EllipseA*1.2*ME_PI_VALUE));

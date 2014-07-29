@@ -309,7 +309,6 @@ double MRF_TC::LocalEnergy2(int i, int j, int label)
 void MRF_TC::ICM2()
 {
   int i, j;
-  int r;
   //double summa_deltaE = 0;
   double localenergy0 = 0, localenergy1 = 0;
 
