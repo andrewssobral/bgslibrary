@@ -44,13 +44,11 @@ TBackgroundVuMeter::~TBackgroundVuMeter(void)
 
 void TBackgroundVuMeter::Clear(void)
 {
-  int i;
-
   TBackground::Clear();
 
   if(m_pHist != NULL)
   {
-    for(i = 0; i < m_nBinCount; ++i)
+    for(int i = 0; i < m_nBinCount; ++i)
     {
       if(m_pHist[i] != NULL)
         cvReleaseImage(&m_pHist[i]);
@@ -66,7 +64,6 @@ void TBackgroundVuMeter::Clear(void)
 
 void TBackgroundVuMeter::Reset(void)
 {
-  int i;
   float fVal = 0.0;
 
   TBackground::Reset();
@@ -76,7 +73,7 @@ void TBackgroundVuMeter::Reset(void)
     //		fVal = (m_nBinCount != 0) ? (float)(1.0 / (double)m_nBinCount) : (float)0.0;
     fVal = 0.0;
 
-    for(i = 0; i < m_nBinCount; ++i)
+    for(int i = 0; i < m_nBinCount; ++i)
     {
       if(m_pHist[i] != NULL)
       {
@@ -175,7 +172,6 @@ int TBackgroundVuMeter::SetParameterValue(int nInd, std::string csNew)
 int TBackgroundVuMeter::Init(IplImage * pSource)
 {
   int nErr = 0;
-  int i;
   int nbl, nbc;
 
   Clear();
@@ -208,7 +204,7 @@ int TBackgroundVuMeter::Init(IplImage * pSource)
   // creation des images
   if(!nErr)
   {
-    for(i = 0; i < m_nBinCount; ++i)
+    for(int i = 0; i < m_nBinCount; ++i)
     {
       m_pHist[i] = cvCreateImage(cvSize(nbc, nbl), IPL_DEPTH_32F, 1);
 
@@ -229,7 +225,6 @@ bool TBackgroundVuMeter::isInitOk(IplImage * pSource, IplImage *pBackground, Ipl
 {
   bool bResult = true;
   int i;
-  int nbl, nbc;
 
   bResult = TBackground::isInitOk(pSource, pBackground, pMotionMask);
 
@@ -249,8 +244,8 @@ bool TBackgroundVuMeter::isInitOk(IplImage * pSource, IplImage *pBackground, Ipl
 
   if(bResult)
   {
-    nbl = pSource->height;
-    nbc = pSource->width;
+    int nbl = pSource->height;
+    int nbc = pSource->width;
 
     for(i = 0; i < m_nBinCount; ++i)
     {
@@ -265,10 +260,8 @@ bool TBackgroundVuMeter::isInitOk(IplImage * pSource, IplImage *pBackground, Ipl
 int TBackgroundVuMeter::UpdateBackground(IplImage *pSource, IplImage *pBackground, IplImage *pMotionMask)
 {
   int nErr = 0;
-  int i, l, c, nbl, nbc;
   unsigned char *ptrs, *ptrb, *ptrm;
   float *ptr1, *ptr2;
-  unsigned char v;
 
   if(!isInitOk(pSource, pBackground, pMotionMask))
     nErr = Init(pSource);
@@ -276,24 +269,24 @@ int TBackgroundVuMeter::UpdateBackground(IplImage *pSource, IplImage *pBackgroun
   if(!nErr)
   {
     m_nCount++;
-    nbc = pSource->width;
-    nbl = pSource->height;
-    v = m_nBinSize;
+    int nbc = pSource->width;
+    int nbl = pSource->height;
+    unsigned char v = m_nBinSize;
 
     // multiplie tout par alpha
-    for(i = 0; i < m_nBinCount; ++i)
+    for(int i = 0; i < m_nBinCount; ++i)
       cvConvertScale(m_pHist[i], m_pHist[i], m_fAlpha, 0.0);
 
-    for(l = 0; l < nbl; ++l)
+    for(int l = 0; l < nbl; ++l)
     {
       ptrs = (unsigned char *)(pSource->imageData + pSource->widthStep * l);
       ptrm = (unsigned char *)(pMotionMask->imageData + pMotionMask->widthStep * l);
       ptrb = (unsigned char *)(pBackground->imageData + pBackground->widthStep * l);
 
-      for(c = 0; c < nbc; ++c, ptrs++, ptrb++, ptrm++)
+      for(int c = 0; c < nbc; ++c, ptrs++, ptrb++, ptrm++)
       {
         // recherche le bin à augmenter
-        i = *ptrs / v;
+        int i = *ptrs / v;
         
         if(i < 0 || i >= m_nBinCount)
           i = 0;
@@ -341,7 +334,6 @@ IplImage *TBackgroundVuMeter::CreateTestImg()
 int TBackgroundVuMeter::UpdateTest(IplImage *pSource, IplImage *pBackground, IplImage *pTest, int nX, int nY, int nInd)
 {
   int nErr = 0;
-  int i, nbl, nbc;
   float *ptrf;
 
   if(pTest == NULL || !isInitOk(pSource, pBackground, pSource)) 
@@ -349,8 +341,8 @@ int TBackgroundVuMeter::UpdateTest(IplImage *pSource, IplImage *pBackground, Ipl
 
   if(!nErr)
   {
-    nbl = pTest->height;
-    nbc = pTest->width;
+    int nbl = pTest->height;
+    int nbc = pTest->width;
 
     if(nbl != 100 || nbc != m_nBinCount) 
       nErr = 1;
@@ -363,7 +355,7 @@ int TBackgroundVuMeter::UpdateTest(IplImage *pSource, IplImage *pBackground, Ipl
   {
     cvSetZero(pTest);
 
-    for(i = 0; i < m_nBinCount; ++i)
+    for(int i = 0; i < m_nBinCount; ++i)
     {
       ptrf = (float *)(m_pHist[i]->imageData + m_pHist[i]->widthStep * nY);
       ptrf += nX;

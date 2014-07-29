@@ -902,7 +902,7 @@ void NPBGSubtractor::NPBGSubtraction_Subset_Kernel(
   double p;
   double th;
 
-  double alpha,beta,beta_over_alpha, betau,betau_over_alpha;
+  double alpha;
 
   alpha= AlphaValue;
 
@@ -954,11 +954,11 @@ void NPBGSubtractor::NPBGSubtraction_Subset_Kernel(
 
     unsigned int kerneltablewidth=2*KernelHalfWidth+1;
 
-    beta=3.0;    // minimum bound on the range.
-    betau=100.0;
+    double beta=3.0;    // minimum bound on the range.
+    double betau=100.0;
 
-    beta_over_alpha = beta / alpha;
-    betau_over_alpha = betau / alpha;
+    double beta_over_alpha = beta / alpha;
+    double betau_over_alpha = betau / alpha;
 
 
     double brightness_lowerbound = 1-alpha;
