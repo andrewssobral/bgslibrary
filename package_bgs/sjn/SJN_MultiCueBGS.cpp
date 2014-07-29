@@ -207,7 +207,6 @@ void SJN_MultiCueBGS::Destroy()
 {
   if (g_bModelMemAllocated == FALSE && g_bNonModelMemAllocated == FALSE) return;
 
-  int i, j;
   short nNeighborNum = g_nNeighborNum;
 
   if (g_bModelMemAllocated == TRUE){
@@ -221,28 +220,28 @@ void SJN_MultiCueBGS::Destroy()
 
     cvReleaseImage(&g_ResizedFrame);
 
-    for (i = 0; i < g_iRHeight; i++){
-      for (j = 0; j < g_iRWidth; j++) free(g_aGaussFilteredFrame[i][j]);
+    for (int i = 0; i < g_iRHeight; i++){
+      for (int j = 0; j < g_iRWidth; j++) free(g_aGaussFilteredFrame[i][j]);
       free(g_aGaussFilteredFrame[i]);
     }
     free(g_aGaussFilteredFrame);
 
-    for (i = 0; i < g_iRHeight; i++){
-      for (j = 0; j < g_iRWidth; j++) free(g_aXYZFrame[i][j]);
+    for (int i = 0; i < g_iRHeight; i++){
+      for (int j = 0; j < g_iRWidth; j++) free(g_aXYZFrame[i][j]);
       free(g_aXYZFrame[i]);
     }
     free(g_aXYZFrame);
 
-    for (i = 0; i < g_iRHeight; i++) free(g_aLandmarkArray[i]);
+    for (int i = 0; i < g_iRHeight; i++) free(g_aLandmarkArray[i]);
     free(g_aLandmarkArray);
 
-    for (i = 0; i < g_iRHeight; i++) free(g_aResizedForeMap[i]);
+    for (int i = 0; i < g_iRHeight; i++) free(g_aResizedForeMap[i]);
     free(g_aResizedForeMap);
 
-    for (i = 0; i < g_iHeight; i++) free(g_aForegroundMap[i]);
+    for (int i = 0; i < g_iHeight; i++) free(g_aForegroundMap[i]);
     free(g_aForegroundMap);
 
-    for (i = 0; i < g_iRHeight; i++) free(g_aUpdateMap[i]);
+    for (int i = 0; i < g_iRHeight; i++) free(g_aUpdateMap[i]);
     free(g_aUpdateMap);
 
     free(g_BoundBoxInfo->m_aLeft); free(g_BoundBoxInfo->m_aRight); free(g_BoundBoxInfo->m_aBottom); free(g_BoundBoxInfo->m_aUpper);
@@ -1081,9 +1080,9 @@ double SJN_MultiCueBGS::CalculateHausdorffDist(IplImage* input_image, IplImage* 
     }
   }
 
-  if (vInput.size() == 0 && vModel.size() != 0) return (double)vModel.size();
-  else if (vInput.size() != 0 && vModel.size() == 0) return (double)vInput.size();
-  else if (vInput.size() == 0 && vModel.size() == 0) return 0.0;
+  if (vInput.empty() && !vModel.empty()) return (double)vModel.size();
+  else if (!vInput.empty() && vModel.empty()) return (double)vInput.size();
+  else if (vInput.empty() && vModel.empty()) return 0.0;
 
   //Step2: Calculating forward distance h(Model,Image)
   double dDist, temp1, temp2, dMinDist;
@@ -1805,14 +1804,13 @@ void SJN_MultiCueBGS::C_ReleaseColorModelRelatedMemory(){
 void SJN_MultiCueBGS::C_CodebookConstruction(uchar* aP, int iPosX, int iPosY, short nTrainVolRange, float fLearningRate, ColorModel* pC){
 
   //Step1: matching
-  int i, j;
   short nMatchedIndex;
 
   float fNegLearningRate = 1 - fLearningRate;
 
   nMatchedIndex = -1;
 
-  for (i = 0; i < pC->m_iNumEntries; i++){
+  for (int i = 0; i < pC->m_iNumEntries; i++){
 
     //Checking X
     if (pC->m_Codewords[i]->m_dMean[0] - nTrainVolRange <= aP[0] && aP[0] <= pC->m_Codewords[i]->m_dMean[0] + nTrainVolRange){
@@ -1834,7 +1832,7 @@ void SJN_MultiCueBGS::C_CodebookConstruction(uchar* aP, int iPosX, int iPosY, sh
     if (pC->m_iElementArraySize == pC->m_iNumEntries){
       pC->m_iElementArraySize = pC->m_iElementArraySize + 5;
       ColorCodeword **temp = (ColorCodeword**)malloc(sizeof(ColorCodeword*)*pC->m_iElementArraySize);
-      for (j = 0; j < pC->m_iNumEntries; j++){
+      for (int j = 0; j < pC->m_iNumEntries; j++){
         temp[j] = pC->m_Codewords[j];
         pC->m_Codewords[j] = NULL;
       }
@@ -1868,7 +1866,7 @@ void SJN_MultiCueBGS::C_CodebookConstruction(uchar* aP, int iPosX, int iPosY, sh
   if (pC->m_bID == 1){
     //1. m_iMNRL update
     int iNegTime;
-    for (i = 0; i < pC->m_iNumEntries; i++){
+    for (int i = 0; i < pC->m_iNumEntries; i++){
       //m_iMNRL update
       iNegTime = pC->m_iTotal - pC->m_Codewords[i]->m_iT_last_time + pC->m_Codewords[i]->m_iT_first_time - 1;
       if (pC->m_Codewords[i]->m_iMNRL < iNegTime) pC->m_Codewords[i]->m_iMNRL = iNegTime;

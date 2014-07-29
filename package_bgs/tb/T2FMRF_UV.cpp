@@ -16,8 +16,8 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "T2FMRF_UV.h"
 
-T2FMRF_UV::T2FMRF_UV() : firstTime(true), frameNumber(0), showOutput(true), threshold(9.0), alpha(0.01), 
-gaussians(3), km(2.f), kv(0.9f)
+T2FMRF_UV::T2FMRF_UV() : firstTime(true), frameNumber(0), threshold(9.0), alpha(0.01), 
+km(2.f), kv(0.9f), gaussians(3), showOutput(true) 
 {
   std::cout << "T2FMRF_UV()" << std::endl;
 }

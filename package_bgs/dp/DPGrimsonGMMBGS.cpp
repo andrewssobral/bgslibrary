@@ -16,7 +16,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "DPGrimsonGMMBGS.h"
 
-DPGrimsonGMMBGS::DPGrimsonGMMBGS() : firstTime(true), frameNumber(0), showOutput(true), threshold(9.0), alpha(0.01), gaussians(3)
+DPGrimsonGMMBGS::DPGrimsonGMMBGS() : firstTime(true), frameNumber(0), threshold(9.0), alpha(0.01), gaussians(3), showOutput(true) 
 {
   std::cout << "DPGrimsonGMMBGS()" << std::endl;
 }

@@ -1,6 +1,6 @@
 #include "IndependentMultimodalBGS.h"
 
-IndependentMultimodalBGS::IndependentMultimodalBGS() : firstTime(true), fps(10), showOutput(true){
+IndependentMultimodalBGS::IndependentMultimodalBGS() : fps(10), firstTime(true), showOutput(true){
   pIMBS = new BackgroundSubtractorIMBS(fps);
 }
 IndependentMultimodalBGS::~IndependentMultimodalBGS(){

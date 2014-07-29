@@ -117,7 +117,7 @@ void WeightedMovingVarianceBGS::process(const cv::Mat &img_input, cv::Mat &img_o
 }
 
 //unused
-cv::Mat WeightedMovingVarianceBGS::computeWeightedMean(const std::vector<cv::Mat> &v_img_input_f, const std::vector<double> weights)
+cv::Mat WeightedMovingVarianceBGS::computeWeightedMean(const std::vector<cv::Mat> &v_img_input_f, const std::vector<double> &weights)
 {
   cv::Mat img;
   return img;

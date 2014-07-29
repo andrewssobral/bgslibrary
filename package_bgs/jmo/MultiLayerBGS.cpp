@@ -16,9 +16,8 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "MultiLayerBGS.h"
 
-MultiLayerBGS::MultiLayerBGS() : firstTime(true), showOutput(true),
-bg_model_preload(""), saveModel(false), disableLearning(false), disableDetectMode(true), loadDefaultParams(true),
-detectAfter(0), frameNumber(0)
+MultiLayerBGS::MultiLayerBGS() : firstTime(true), frameNumber(0), showOutput(true), 
+saveModel(false), disableDetectMode(true), disableLearning(false), detectAfter(0), bg_model_preload(""), loadDefaultParams(true)
 {
   std::cout << "MultiLayerBGS()" << std::endl;
 }
