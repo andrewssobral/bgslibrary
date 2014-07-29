@@ -597,9 +597,7 @@ void MotionDetection::DetectMotionsHU(MEImage& image)
 
 void MotionDetection::UpdateModelHU(MEImage& image, MEPixelDataType*** model)
 {
-  float *CurrentHistogram, *CurrentHistogram2;
-  CurrentHistogram = new float[HUHistogramBins];
-  CurrentHistogram2 = new float[HUHistogramBins];
+  float CurrentHistogram[HUHistogramBins], CurrentHistogram2[HUHistogramBins];
   unsigned char *ImgData = image.GetImageData();
   int RowWidth = image.GetRowWidth();
   int RowStart = (HUImageHeight-1)*RowWidth;
@@ -789,8 +787,6 @@ void MotionDetection::UpdateModelHU(MEImage& image, MEPixelDataType*** model)
 
     }
   }
-  delete[] CurrentHistogram;
-  delete[] CurrentHistogram2;
 }
 
 
@@ -799,7 +795,7 @@ void MotionDetection::UpdateHUPixelData(MEPixelDataType* PixelData, const float 
   int MaxIndex = 0;
   float MaxValue = -1;
   bool Replace = true;
-  float *IntersectionResults = new float[HUHistogramsPerPixel];
+  float IntersectionResults[HUHistogramsPerPixel];
 
   PixelData->LifeCycle++;
   PixelData->BackgroundRate = 0.0;
@@ -860,7 +856,6 @@ void MotionDetection::UpdateHUPixelData(MEPixelDataType* PixelData, const float 
     for (int i1 = HUHistogramsPerPixel-1; i1 >= 0; --i1)
       PixelData->Weights[i1] = PixelData->Weights[i1] / sum;
 
-    delete[] IntersectionResults;
     return;
   }
 
@@ -933,7 +928,6 @@ void MotionDetection::UpdateHUPixelData(MEPixelDataType* PixelData, const float 
   {
     PixelData->BackgroundHistogram[(int)Weights[i1][0]] = false;
   }
-  delete[] IntersectionResults;
 }
 
 
