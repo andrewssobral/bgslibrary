@@ -373,7 +373,7 @@ namespace Blob
     {
       CV_READ_SEQ_ELEM(edgeactual, reader);
       *itEdges = edgeactual;
-      itEdges++;
+      ++itEdges;
     }
     // ordenem el vector per les Y's i les X's d'esquerra a dreta
     std::sort(vectorEdges.begin(), vectorEdges.end(), comparaCvPoint());
@@ -404,8 +404,8 @@ namespace Blob
         }
         dinsBlob = !dinsBlob;
       }
-      itEdges++;
-      itEdgesSeguent++;
+      ++itEdges;
+      ++itEdgesSeguent;
       if ((*itEdges).y != yActual) dinsBlob = true;
     }
     vectorEdges.clear();
@@ -1039,7 +1039,7 @@ namespace Blob
         vectorEdges.push_back(edgeactual);
     }
 
-    if (vectorEdges.size() == 0) return 0.0;
+    if (vectorEdges.empty()) return 0.0;
 
     // ordenem el vector per les Y's i les X's d'esquerra a dreta
     std::sort(vectorEdges.begin(), vectorEdges.end(), CBlob::comparaCvPoint());
@@ -1059,8 +1059,8 @@ namespace Blob
         return 1.0;
       }
 
-      itEdges++;
-      itEdgesSeguent++;
+      ++itEdges;
+      ++itEdgesSeguent;
       dinsBlob = !dinsBlob;
     }
 

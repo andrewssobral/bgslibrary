@@ -183,8 +183,8 @@ namespace Blob
       // vector de CBlob*. Per tant, creem un blob nou a partir del
       // blob original
       *pBlobsDst = new CBlob(**pBlobsSrc);
-      pBlobsSrc++;
-      pBlobsDst++;
+      ++pBlobsSrc;
+      ++pBlobsDst;
     }
   }
 
@@ -266,8 +266,8 @@ namespace Blob
         // vector de CBlob*. Per tant, creem un blob nou a partir del
         // blob original
         *pBlobsDst = new CBlob(**pBlobsSrc);
-        pBlobsSrc++;
-        pBlobsDst++;
+        ++pBlobsSrc;
+        ++pBlobsDst;
       }
     }
     return *this;
@@ -314,9 +314,9 @@ namespace Blob
     // insertem els blobs de l'origen a l'actual
     while (pBlobsSrc != source.m_blobs.end())
     {
-      pBlobsDst--;
+      --pBlobsDst;
       *pBlobsDst = new CBlob(**pBlobsSrc);
-      pBlobsSrc++;
+      ++pBlobsSrc;
     }
 
     return resultat;
@@ -388,8 +388,8 @@ namespace Blob
     while (itBlobs != m_blobs.end())
     {
       *itResult = (*evaluador)(**itBlobs);
-      itBlobs++;
-      itResult++;
+      ++itBlobs;
+      ++itResult;
     }
     return result;
   }
@@ -601,7 +601,7 @@ namespace Blob
       for (int i = 0; i < numBlobs; i++)
       {
         delete *itBlobs;
-        itBlobs++;
+        ++itBlobs;
       }
       m_blobs.erase(m_blobs.begin(), itBlobs);
     }
@@ -714,7 +714,7 @@ namespace Blob
         trobatBlob = true;
         dst = CBlob(GetBlob(indexBlob));
       }
-      itAvaluacio++;
+      ++itAvaluacio;
       indexBlob++;
     }
   }
@@ -750,7 +750,7 @@ namespace Blob
     while (itBlobs != m_blobs.end())
     {
       delete *itBlobs;
-      itBlobs++;
+      ++itBlobs;
     }
 
     m_blobs.clear();

@@ -1291,10 +1291,10 @@ namespace Blob
           //if(RegionData[i]->parent == iOld) { RegionData[i]->parent = iNew; }
           if ((*iti)->parent == iOld) { (*iti)->parent = iNew; }
 
-          iti++;
+          ++iti;
         }
         iNew++;
-        itNew++;
+        ++itNew;
       }
     }
 
@@ -1361,7 +1361,7 @@ namespace Blob
     {
       delete *itBlobs;
       //RegionData.erase( itBlobs );
-      itBlobs++;
+      ++itBlobs;
     }
     RegionData.erase(RegionData.begin() + HighRegionNum + 1, RegionData.end());
 

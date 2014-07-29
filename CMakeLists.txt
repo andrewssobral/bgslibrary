@@ -7,7 +7,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99")
 
 IF(UNIX)
   # add some standard warnings
-  ADD_DEFINITIONS(-Wno-variadic-macros -Wno-long-long -Wall -Wextra -Winit-self -Woverloaded-virtual -Wsign-promo -Wsynth -Wno-unused-parameter -pedantic -Woverloaded-virtual -Wno-unknown-pragmas)
+  ADD_DEFINITIONS(-Wno-variadic-macros -Wno-long-long -Wall -Wextra -Winit-self -Woverloaded-virtual -Wsign-promo -Wno-unused-parameter -pedantic -Woverloaded-virtual -Wno-unknown-pragmas)
   
   # -ansi does not compile with sjn module
   #ADD_DEFINITIONS(-ansi)

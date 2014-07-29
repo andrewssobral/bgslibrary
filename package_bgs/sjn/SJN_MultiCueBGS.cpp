@@ -1081,9 +1081,9 @@ double SJN_MultiCueBGS::CalculateHausdorffDist(IplImage* input_image, IplImage* 
     }
   }
 
-  if (vInput.size() == 0 && vModel.size() != 0) return (double)vModel.size();
-  else if (vInput.size() != 0 && vModel.size() == 0) return (double)vInput.size();
-  else if (vInput.size() == 0 && vModel.size() == 0) return 0.0;
+  if (vInput.empty() && !vModel.empty()) return (double)vModel.size();
+  else if (!vInput.empty() && vModel.empty()) return (double)vInput.size();
+  else if (vInput.empty() && vModel.empty()) return 0.0;
 
   //Step2: Calculating forward distance h(Model,Image)
   double dDist, temp1, temp2, dMinDist;

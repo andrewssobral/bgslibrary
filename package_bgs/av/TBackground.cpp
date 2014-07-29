@@ -71,13 +71,13 @@ int TBackground::Init(IplImage * pSource)
 bool TBackground::isInitOk(IplImage * pSource, IplImage *pBackground, IplImage *pMotionMask)
 {
   bool bResult = true;
-  int nbl, nbc;
 
   if(pSource == NULL || pSource->nChannels != 1 || pSource->depth != IPL_DEPTH_8U)
     bResult = false;
 
   if(bResult)
   {
+    int nbl, nbc;
     nbl = pSource->height;
     nbc = pSource->width;
     
@@ -111,7 +111,6 @@ int TBackground::UpdateTest(IplImage *pSource, IplImage *pBackground, IplImage *
   int nErr = 0;
   CvScalar Color;
   unsigned char *ptr;
-  int l, c;
 
   if(pTest == NULL || !isInitOk(pSource, pBackground, pSource))
     nErr = 1;
@@ -135,6 +134,7 @@ int TBackground::UpdateTest(IplImage *pSource, IplImage *pBackground, IplImage *
 
   if(!nErr)
   {
+    int l, c;
     // recupere l'indice de la colonne
     ptr = (unsigned char *)(pTest->imageData);
     c = *ptr;
