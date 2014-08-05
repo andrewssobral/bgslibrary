@@ -55,7 +55,7 @@ Sobral, Andrews. BGSLibrary: An OpenCV C++ Background Subtraction Library. IX Wo
 References
 ---------------
 Some algorithms of the BGSLibrary was used successfully in the following papers: 
-* (2014) Sobral, Andrews; Vacavant, Antoine. A comprehensive review of background subtraction algorithms evaluated with synthetic and real videos. Computer Vision and Image Understanding (CVIU), 2014. ([Online](http://dx.doi.org/10.1016/j.cviu.2013.12.005)) (**Top 6 in the Most Downloaded CVIU Articles**)
+* (2014) Sobral, Andrews; Vacavant, Antoine. A comprehensive review of background subtraction algorithms evaluated with synthetic and real videos. Computer Vision and Image Understanding (CVIU), 2014. ([Online](http://dx.doi.org/10.1016/j.cviu.2013.12.005)) (**Top 4 in the Most Downloaded CVIU Articles**)
 * (2014) Wang, T.; Gong, S.; Zhu, X.; Wang, S. Person Re-Identification by Video Ranking. European Conference on Computer Vision (ECCV), Sep. 2014. ([Online](http://www.eecs.qmul.ac.uk/~sgg/papers/WangEtAl_ECCV14.pdf))
 * (2014) Gerónimo, D.;  Kjellström, H. Unsupervised Surveillance Video Retrieval based on Human Action and Appearance. International Conference on Pattern Recognition (ICPR), Aug. 2014. ([Online](http://www.nada.kth.se/~hedvig/publications/icpr_14.pdf))
 * (2014) Martijn C. Liema; Dariu M. Gavrila. Joint multi-person detection and tracking from overlapping cameras. Computer Vision and Image Understanding (CVIU), Jun. 2014. ([Online](http://www.sciencedirect.com/science/article/pii/S1077314214001301))
