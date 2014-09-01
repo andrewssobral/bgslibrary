@@ -33,7 +33,9 @@ typedef int BOOL;
   #define TRUE 1
 #endif
 
+#if !defined(__APPLE__)
 #include <malloc.h>
+#endif
 #include "math.h"
 
 #include <vector>
