@@ -2,7 +2,7 @@
 #include <cv.h>
 #include <highgui.h>
 
-#include "package_bgs/FrameDifferenceBGS.h"
+#include "../package_bgs/FrameDifferenceBGS.h"
 
 int main(int argc, char **argv)
 {
