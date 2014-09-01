@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<opencv_storage>
+<framesToLearn>10</framesToLearn>
+<SequenceLength>50</SequenceLength>
+<TimeWindowSize>100</TimeWindowSize>
+<SDEstimationFlag>1</SDEstimationFlag>
+<lUseColorRatiosFlag>1</lUseColorRatiosFlag>
+<th>9.9999999999999995e-008</th>
+<alpha>2.9999999999999999e-001</alpha>
+<showOutput>0</showOutput>
+</opencv_storage>

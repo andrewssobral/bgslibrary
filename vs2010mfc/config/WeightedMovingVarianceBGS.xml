@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<opencv_storage>
+<enableWeight>1</enableWeight>
+<enableThreshold>1</enableThreshold>
+<threshold>15</threshold>
+<showOutput>0</showOutput>
+</opencv_storage>
