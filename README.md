@@ -238,22 +238,21 @@ Example code
 
 #include "package_bgs/FrameDifferenceBGS.h"
 
-void main(int argc, char **argv)
+int main(int argc, char **argv)
 {
   CvCapture *capture = 0;
   capture = cvCaptureFromCAM(0);
-  
+
   if(!capture){
     std::cerr << "Cannot initialize video!" << std::endl;
-    return;
+    return -1;
   }
-  
+
   IBGS *bgs;
   bgs = new FrameDifferenceBGS;
-  
+
   IplImage *frame;
-  int key = 0;
-  while(key != 'q')
+  while(1)
   {
     frame = cvQueryFrame(capture);
     if(!frame) break;
@@ -263,21 +262,24 @@ void main(int argc, char **argv)
 
     cv::Mat img_mask;
     cv::Mat img_bkgmodel;
-    
+
     // by default, it shows automatically the foreground mask image
     bgs->process(img_input, img_mask, img_bkgmodel);
-    
+
     //if(!img_mask.empty())
     //  cv::imshow("Foreground", img_mask);
     //  do something
-    
-    key = cvWaitKey(33);
+
+    if(cvWaitKey(33) >= 0)
+		  break;
   }
 
   delete bgs;
 
   cvDestroyAllWindows();
   cvReleaseCapture(&capture);
+
+  return 0;
 }
 ```
 
