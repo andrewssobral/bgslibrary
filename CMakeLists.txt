@@ -52,12 +52,12 @@ set_target_properties(bgs_bin
 add_executable(bgs_demo ${demo})
 target_link_libraries(bgs_demo ${OpenCV_LIBS} bgs)
 
-INSTALL(TARGETS bgs
-	bgs_demo
-	bgs_bin
-  RUNTIME DESTINATION bin COMPONENT app
-  LIBRARY DESTINATION lib COMPONENT runtime
-  ARCHIVE DESTINATION lib COMPONENT runtime
-  PUBLIC_HEADER DESTINATION include/package_bgs COMPONENT dev
-  FRAMEWORK DESTINATION "/Library/Frameworks"
-)
+#INSTALL(TARGETS bgs
+#	bgs_demo
+#	bgs_bin
+#  RUNTIME DESTINATION bin COMPONENT app
+#  LIBRARY DESTINATION lib COMPONENT runtime
+#  ARCHIVE DESTINATION lib COMPONENT runtime
+#  PUBLIC_HEADER DESTINATION include/package_bgs COMPONENT dev
+#  FRAMEWORK DESTINATION "/Library/Frameworks"
+#)
