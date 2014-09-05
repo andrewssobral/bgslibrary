@@ -35,7 +35,6 @@ This software is completely free and will always stay free. Enjoy!
 </p>
 
 
-
 Citation
 --------
 If you use this library for your publications, please cite it as:
@@ -50,7 +49,9 @@ month     = {Jun},
 url       = {https://github.com/andrewssobral/bgslibrary}
 }
 ```
-Sobral, Andrews. BGSLibrary: An OpenCV C++ Background Subtraction Library. IX Workshop de Visão Computacional (WVC'2013), Rio de Janeiro, Brazil, Jun. 2013. ([PDF](http://iris.sel.eesc.usp.br/wvc/Anais_WVC2013/Poster/2/15.pdf) in brazilian portuguese). One chapter about the BGSLibrary will be published in the Handbook on "[Background Modeling and Foreground Detection for Video Surveillance](https://sites.google.com/site/backgroundmodeling/)".
+Sobral, Andrews. BGSLibrary: An OpenCV C++ Background Subtraction Library. IX Workshop de Visão Computacional (WVC'2013), Rio de Janeiro, Brazil, Jun. 2013. ([PDF](http://iris.sel.eesc.usp.br/wvc/Anais_WVC2013/Poster/2/15.pdf) in brazilian portuguese). 
+
+One chapter about the BGSLibrary will be published in the Handbook on "[Background Modeling and Foreground Detection for Video Surveillance](https://sites.google.com/site/backgroundmodeling/)".
 
 References
 ---------------
