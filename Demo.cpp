@@ -159,7 +159,7 @@ int main(int argc, char **argv)
   /*** BL Package (thanks to Benjamin Laugraud) ***/
   //bgs = new SigmaDeltaBGS;
 
-  /*** PL Package ***/
+  /*** PL Package (thanks to Pierre-Luc) ***/
   //bgs = new SuBSENSEBGS();
   //bgs = new LOBSTERBGS();
 
