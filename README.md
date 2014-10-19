@@ -14,17 +14,13 @@ A Background Subtraction Library
 
 <p align="center"><img src="https://sites.google.com/site/andrewssobral/new-release.png?width=128" /></p>
 
-Last Page Update: **05/09/2014**
+Last Page Update: **19/10/2014**
 
-Latest Library Version: **1.9.1** (see Release Notes for more info) 
+Latest Library Version: **1.9.2** (see Release Notes for more info) 
 
-The BGSLibrary was developed by [Andrews Sobral](https://sites.google.com/site/andrewssobral) and provides a C++ framework to perform background subtraction (BGS). The code works either on Windows or on Linux. Currently the library offers **35** BGS algorithms (*the [PBAS](https://sites.google.com/site/pbassegmenter/home) algorithm was removed from BGSLibrary because it is based on patented algorithm [ViBE](http://www2.ulg.ac.be/telecom/research/vibe/)*). A large amount of algorithms were provided by several authors. The source code is available under GNU GPL v3 license, the library is free and open source for academic purposes¹. Any user can be download latest project source code using SVN client. In Windows, a demo project for Visual Studio 2010 is provided. An executable version of BGSLibrary is available for Windows 32 bits and 64 bits. For Linux and Mac users, a Makefile can be used to compile all files and generate an executable example.
+The BGSLibrary was developed by [Andrews Sobral](https://sites.google.com/site/andrewssobral) and provides a C++ framework to perform background subtraction (BGS). The code works either on Windows or on Linux. Currently the library offers **36** BGS algorithms (*the [PBAS](https://sites.google.com/site/pbassegmenter/home) algorithm was removed from BGSLibrary because it is based on patented algorithm [ViBE](http://www2.ulg.ac.be/telecom/research/vibe/)*). A large amount of algorithms were provided by several authors. The source code is available under GNU GPL v3 license, the library is free and open source for academic purposes¹. Any user can be download latest project source code using SVN client. In Windows, a demo project for Visual Studio 2010 is provided. An executable version of BGSLibrary is available for Windows 32 bits and 64 bits. For Linux and Mac users, a Makefile can be used to compile all files and generate an executable example.
 
 ***¹ If you want to use bgslibrary for commercial purposes, you needs to contact the authors of your desired background subtraction method to check if they are agree with you. Please, read this for more info: [Can I use a GPLv3 software as a part of my commercial application?](http://stackoverflow.com/questions/2280742/gplv3-can-i-use-these-programs-in-commercial)***
-
-<p align="center">
-<img src="https://sites.google.com/site/andrewssobral/bgslibrary_world_statistics2.png" />
-</p>
 
 <p align="center"><img src="https://sites.google.com/site/andrewssobral/please-donate-cat3.jpg" /></p>
 
@@ -56,7 +52,7 @@ One chapter about the BGSLibrary will be published in the Handbook on "[Backgrou
 References
 ---------------
 Some algorithms of the BGSLibrary was used successfully in the following papers: 
-* (2014) Sobral, Andrews; Vacavant, Antoine. A comprehensive review of background subtraction algorithms evaluated with synthetic and real videos. Computer Vision and Image Understanding (CVIU), 2014. ([Online](http://dx.doi.org/10.1016/j.cviu.2013.12.005)) (**Top 6 in the Most Downloaded CVIU Articles**)
+* (2014) Sobral, Andrews; Vacavant, Antoine. A comprehensive review of background subtraction algorithms evaluated with synthetic and real videos. Computer Vision and Image Understanding (CVIU), 2014. ([Online](http://dx.doi.org/10.1016/j.cviu.2013.12.005))
 * (2013) Sobral, Andrews; Oliveira, Luciano; Schnitman, Leizer; Souza, Felippe. (**Best Paper Award**) Highway Traffic Congestion Classification Using Holistic Properties. In International Conference on Signal Processing, Pattern Recognition and Applications (SPPRA'2013), Innsbruck, Austria, Feb 2013. ([Online](http://dx.doi.org/10.2316/P.2013.798-105))
 
 List of the algorithms available in BGSLibrary
@@ -127,6 +123,10 @@ List of the algorithms available in BGSLibrary
 
 * * (10) MultiCue BGS of SeungJong Noh and Moongu Jeon (2012) ([paper](http://link.springer.com/chapter/10.1007%2F978-3-642-37431-9_38))
 
+* * (12) SuBSENSE of Pierre-Luc et al. (2014) ([paper](http://www.polymtl.ca/litiv/doc/StCharlesetalCVPRW2014.pdf))
+
+* * (12) LOBSTER of Pierre-Luc and Guillaume-Alexandre (2014) ([paper](http://www.polymtl.ca/litiv/doc/StCharlesBilodeauWACV2014.pdf))
+
 * Non-parametric methods:
 * * ~~(5) Pixel-Based Adaptive Segmenter (PBAS) of Hofmann et al (2012)~~ 
 **The PBAS algorithm was removed from BGSLibrary because it is based on patented algorithm [ViBE](http://www2.ulg.ac.be/telecom/research/vibe/).** ([paper](http://www.mmk.ei.tum.de/publ//pdf/12/12hof2.pdf))
@@ -160,12 +160,13 @@ Legend:
 * (9) thanks to [Domenico Daniele Bloisi](http://www.dis.uniroma1.it/~bloisi/software/imbs.html)
 * (10) thanks to [SeungJong Noh](http://www.informatik.uni-trier.de/~ley/pers/hd/n/Noh:SeungJong)
 * (11) thanks to [Benjamin Laugraud](http://www.montefiore.ulg.ac.be/~blaugraud/index.php)
+* (12) thanks to [Pierre-Luc St-Charles](http://scholar.google.ca/citations?user=30mr9vYAAAAJ&hl=en)
 
 Full list of BGSLibrary collaborators
 ----------------------------------------------
 I would like to thanks all those who have contributed in some way to the success of this library, especially, the following peoples (in alphabetical order):
 
-Ahmed Elgammal	(USA), Antoine Vacavant	(France), Benjamin Laugraud	(Belgium), Csaba Kertész	(Finland), Domenico Bloisi	(Italy), Donovan Parks	(Canada), Eduardo Barreto Alexandre	(Brazil), Fida EL BAF	(France), Iñigo Martínez, Jean-Marc Odobez	(Switzerland), Jean-Philippe Jodoin	(Canada), JIA Pei	(China), Jian Yao	(China), Holger Friedrich, Laurence Bender	(Argentina), Lionel Robinault	(France), Luca Iocchi	(Italy), Luiz Vitor Martinez Cardoso	(Brazil), Martin Hofmann, Philipp Tiefenbacher and Gerhard Rigoll	(Germany), Rim Trabelsi	(Tunisia), Simone Gasparini	(France), Stefano Tommesani	(Italy), Thierry Bouwmans	(France), Vikas Reddy	(Australia), Yani Ioannou	(Canada), Zhenjie Zhao	(China) and Zoran Zivkovic	(Netherlands).
+Ahmed Elgammal	(USA), Antoine Vacavant	(France), Benjamin Laugraud	(Belgium), Csaba Kertész	(Finland), Domenico Bloisi	(Italy), Donovan Parks	(Canada), Eduardo Barreto Alexandre	(Brazil), Fida EL BAF	(France), Iñigo Martínez, Jean-Marc Odobez	(Switzerland), Jean-Philippe Jodoin	(Canada), JIA Pei	(China), Jian Yao	(China), Hemang Shah, Holger Friedrich, Laurence Bender	(Argentina), Lionel Robinault	(France), Luca Iocchi	(Italy), Luiz Vitor Martinez Cardoso	(Brazil), Martin Hofmann, Philipp Tiefenbacher and Gerhard Rigoll	(Germany), Rim Trabelsi	(Tunisia), Simone Gasparini	(France), Stefano Tommesani	(Italy), Thierry Bouwmans	(France), Vikas Reddy	(Australia), Yani Ioannou	(Canada), Zhenjie Zhao	(China) and Zoran Zivkovic	(Netherlands).
 
 Algorithms benchmark
 ----------------------------------------------
@@ -175,11 +176,15 @@ Algorithms benchmark
 Download links
 --------------
 
+* BGSLibrary v1.9.2 with MFC GUI v1.4.2 (x86/x64)
+
+https://github.com/andrewssobral/bgslibrary/blob/master/binaries/mfc_bgslibrary_x86_v1.4.2.zip
+
+Old versions:
+
 * BGSLibrary v1.9.1 with MFC GUI v1.4.1 (x86/x64) (+src)
 
 https://github.com/andrewssobral/bgslibrary/blob/master/binaries/mfc_bgslibrary_x86_v1.4.1.zip
-
-Old versions:
 
 * BGSLibrary v1.9.0 with MFC GUI v1.4.0 (x86/x64) (+src)
 
@@ -330,6 +335,9 @@ Java GUI
 
 Release Notes:
 --------------
+* Version 1.9.2:
+Added SuBSENSE and LOBSTER algorithms of Pierre-Luc et al. (2014).
+
 * Version 1.9.1:
 Added Sigma-Delta background subtraction algorithm (SigmaDeltaBGS) of Manzanera and Richefeu (2004).
 
