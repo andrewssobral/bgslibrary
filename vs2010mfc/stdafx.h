@@ -100,3 +100,6 @@ typedef boost::chrono::microseconds microseconds;
 #include "../package_bgs/db/IndependentMultimodalBGS.h"
 #include "../package_bgs/sjn/SJN_MultiCueBGS.h"
 #include "../package_bgs/bl/SigmaDeltaBGS.h"
+
+#include "../package_bgs/pl/SuBSENSE.h"
+#include "../package_bgs/pl/LOBSTER.h"

@@ -55,6 +55,9 @@
     <Filter Include="Header Files\package_bgs\ck">
       <UniqueIdentifier>{87961eee-b843-45bd-b642-9dcd9d78b661}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\package_bgs\pl">
+      <UniqueIdentifier>{cd33a41f-6151-46a5-95b6-b79022786144}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\package_bgs\AdaptiveBackgroundLearning.cpp">
@@ -305,6 +308,24 @@
     </ClCompile>
     <ClCompile Include="..\package_bgs\ck\MotionDetection.cpp">
       <Filter>Header Files\package_bgs\ck</Filter>
+    </ClCompile>
+    <ClCompile Include="..\package_bgs\pl\BackgroundSubtractorLBSP.cpp">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\package_bgs\pl\BackgroundSubtractorLOBSTER.cpp">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\package_bgs\pl\BackgroundSubtractorSuBSENSE.cpp">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\package_bgs\pl\LBSP.cpp">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\package_bgs\pl\LOBSTER.cpp">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\package_bgs\pl\SuBSENSE.cpp">
+      <Filter>Header Files\package_bgs\pl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -581,5 +602,43 @@
     <ClInclude Include="..\package_bgs\ck\MotionDetection.hpp">
       <Filter>Header Files\package_bgs\ck</Filter>
     </ClInclude>
+    <ClInclude Include="..\package_bgs\pl\BackgroundSubtractorLBSP.h">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\package_bgs\pl\BackgroundSubtractorLOBSTER.h">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\package_bgs\pl\BackgroundSubtractorSuBSENSE.h">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\package_bgs\pl\DistanceUtils.h">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\package_bgs\pl\LBSP.h">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\package_bgs\pl\LOBSTER.h">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\package_bgs\pl\RandUtils.h">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\package_bgs\pl\SuBSENSE.h">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\package_bgs\pl\LBSP_16bits_dbcross_1ch.i">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </None>
+    <None Include="..\package_bgs\pl\LBSP_16bits_dbcross_3ch1t.i">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </None>
+    <None Include="..\package_bgs\pl\LBSP_16bits_dbcross_3ch3t.i">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </None>
+    <None Include="..\package_bgs\pl\LBSP_16bits_dbcross_s3ch.i">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -30,10 +30,13 @@
 <enableLBMixtureOfGaussians>0</enableLBMixtureOfGaussians>
 <enableLBAdaptiveSOM>0</enableLBAdaptiveSOM>
 <enableLBFuzzyAdaptiveSOM>0</enableLBFuzzyAdaptiveSOM>
+<enableLbpMrf>0</enableLbpMrf>
 <enableMultiLayerBGS>0</enableMultiLayerBGS>
 <enableVuMeter>0</enableVuMeter>
 <enableKDE>0</enableKDE>
 <enableIMBS>0</enableIMBS>
 <enableMultiCueBGS>0</enableMultiCueBGS>
 <enableSigmaDeltaBGS>0</enableSigmaDeltaBGS>
+<enableSuBSENSEBGS>0</enableSuBSENSEBGS>
+<enableLOBSTERBGS>0</enableLOBSTERBGS>
 </opencv_storage>

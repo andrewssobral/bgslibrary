@@ -94,6 +94,8 @@ namespace bgslibrary
 
   void VideoAnalysis::start()
   {
+    //std::cout << "Press 'ESC' to stop..." << std::endl;
+
     do
     {
       videoCapture = new VideoCapture;

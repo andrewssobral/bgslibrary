@@ -54,6 +54,7 @@ void SuBSENSEBGS::saveConfig()
 	cvWriteInt(fs, "nBGSamples", nBGSamples);
 	cvWriteInt(fs, "nRequiredBGSamples", nRequiredBGSamples);
 	cvWriteInt(fs, "nSamplesForMovingAvgs", nSamplesForMovingAvgs);
+  cvWriteInt(fs, "showOutput", showOutput);
 
 	cvReleaseFileStorage(&fs);
 }
@@ -68,6 +69,7 @@ void SuBSENSEBGS::loadConfig()
 	nBGSamples = cvReadIntByName(fs, 0, "nBGSamples", BGSSUBSENSE_DEFAULT_NB_BG_SAMPLES);
 	nRequiredBGSamples = cvReadIntByName(fs, 0, "nRequiredBGSamples", BGSSUBSENSE_DEFAULT_REQUIRED_NB_BG_SAMPLES);
 	nSamplesForMovingAvgs = cvReadIntByName(fs, 0, "nSamplesForMovingAvgs", BGSSUBSENSE_DEFAULT_N_SAMPLES_FOR_MV_AVGS);
+  showOutput = cvReadIntByName(fs, 0, "showOutput", true);
 
 	cvReleaseFileStorage(&fs);
 }

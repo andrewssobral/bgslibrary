@@ -55,9 +55,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #include "package_bgs/lb/LBAdaptiveSOM.h"
 #include "package_bgs/lb/LBFuzzyAdaptiveSOM.h"
 
-#if !defined(_WIN32)
 #include "package_bgs/ck/LbpMrf.h"
-#endif
 
 #include "package_bgs/jmo/MultiLayerBGS.h"
 // The PBAS algorithm was removed from BGSLibrary because it is
@@ -69,6 +67,9 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #include "package_bgs/db/IndependentMultimodalBGS.h"
 #include "package_bgs/sjn/SJN_MultiCueBGS.h"
 #include "package_bgs/bl/SigmaDeltaBGS.h"
+
+#include "package_bgs/pl/SuBSENSE.h"
+#include "package_bgs/pl/LOBSTER.h"
 
 #include "package_analysis/ForegroundMaskAnalysis.h"
 
@@ -197,11 +198,9 @@ namespace bgslibrary
     LBFuzzyAdaptiveSOM* lbFuzzyAdaptiveSOM;
     bool enableLBFuzzyAdaptiveSOM;
 
-#if !defined(_WIN32)
     cv::Mat img_lbp_mrf;
     LbpMrf* lbpMrf;
     bool enableLbpMrf;
-#endif
 
     cv::Mat img_mlbgs;
     MultiLayerBGS* multiLayerBGS;
@@ -230,6 +229,14 @@ namespace bgslibrary
     cv::Mat img_sdbgs;
     SigmaDeltaBGS* sdbgs;
     bool enableSigmaDeltaBGS;
+
+    cv::Mat img_ssbgs;
+    SuBSENSEBGS* ssbgs;
+    bool enableSuBSENSEBGS;
+
+    cv::Mat img_lobgs;
+    LOBSTERBGS* lobgs;
+    bool enableLOBSTERBGS;
 
     ForegroundMaskAnalysis* foregroundMaskAnalysis;
     bool enableForegroundMaskAnalysis;

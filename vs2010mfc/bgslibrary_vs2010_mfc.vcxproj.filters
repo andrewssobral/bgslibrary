@@ -43,6 +43,9 @@
     <Filter Include="Header Files\package_bgs\bl">
       <UniqueIdentifier>{e23418b4-562b-41ae-bd15-e9ad45ece1d1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\package_bgs\pl">
+      <UniqueIdentifier>{2a0f8129-33e2-4829-a112-edba4c8f5ef6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -51,6 +54,18 @@
     </None>
     <None Include="res\bgslibrary_vs2010_mfc.ico">
       <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\package_bgs\pl\LBSP_16bits_dbcross_1ch.i">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </None>
+    <None Include="..\package_bgs\pl\LBSP_16bits_dbcross_3ch1t.i">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </None>
+    <None Include="..\package_bgs\pl\LBSP_16bits_dbcross_3ch3t.i">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </None>
+    <None Include="..\package_bgs\pl\LBSP_16bits_dbcross_s3ch.i">
+      <Filter>Header Files\package_bgs\pl</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -300,6 +315,30 @@
     <ClInclude Include="..\package_bgs\bl\stdbool.h">
       <Filter>Header Files\package_bgs\bl</Filter>
     </ClInclude>
+    <ClInclude Include="..\package_bgs\pl\BackgroundSubtractorLBSP.h">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\package_bgs\pl\BackgroundSubtractorLOBSTER.h">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\package_bgs\pl\BackgroundSubtractorSuBSENSE.h">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\package_bgs\pl\DistanceUtils.h">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\package_bgs\pl\LBSP.h">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\package_bgs\pl\LOBSTER.h">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\package_bgs\pl\RandUtils.h">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\package_bgs\pl\SuBSENSE.h">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Dlg.cpp">
@@ -514,6 +553,24 @@
     </ClCompile>
     <ClCompile Include="..\package_bgs\bl\SigmaDeltaBGS.cpp">
       <Filter>Header Files\package_bgs\bl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\package_bgs\pl\BackgroundSubtractorLBSP.cpp">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\package_bgs\pl\BackgroundSubtractorLOBSTER.cpp">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\package_bgs\pl\BackgroundSubtractorSuBSENSE.cpp">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\package_bgs\pl\LBSP.cpp">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\package_bgs\pl\LOBSTER.cpp">
+      <Filter>Header Files\package_bgs\pl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\package_bgs\pl\SuBSENSE.cpp">
+      <Filter>Header Files\package_bgs\pl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

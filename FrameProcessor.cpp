@@ -120,10 +120,8 @@ namespace bgslibrary
     if (enableLBFuzzyAdaptiveSOM)
       lbFuzzyAdaptiveSOM = new LBFuzzyAdaptiveSOM;
 
-#if !defined(_WIN32)
     if (enableLbpMrf)
       lbpMrf = new LbpMrf;
-#endif
 
     if(enableMultiLayerBGS)
       multiLayerBGS = new MultiLayerBGS;
@@ -145,6 +143,12 @@ namespace bgslibrary
 
     if (enableSigmaDeltaBGS)
       sdbgs = new SigmaDeltaBGS;
+
+    if (enableSuBSENSEBGS)
+      ssbgs = new SuBSENSEBGS;
+
+    if (enableLOBSTERBGS)
+      lobgs = new LOBSTERBGS;
 
     if (enableForegroundMaskAnalysis)
       foregroundMaskAnalysis = new ForegroundMaskAnalysis;
@@ -252,10 +256,8 @@ namespace bgslibrary
     if (enableLBFuzzyAdaptiveSOM)
       process("LBFuzzyAdaptiveSOM", lbFuzzyAdaptiveSOM, img_prep, img_lb_fsom);
 
-#if !defined(_WIN32)
     if (enableLbpMrf)
       process("LbpMrf", lbpMrf, img_prep, img_lbp_mrf);
-#endif
 
     if(enableMultiLayerBGS)
     {
@@ -281,6 +283,12 @@ namespace bgslibrary
 
     if (enableSigmaDeltaBGS)
       process("SigmaDeltaBGS", sdbgs, img_prep, img_sdbgs);
+
+    if (enableSuBSENSEBGS)
+      process("SuBSENSEBGS", ssbgs, img_prep, img_ssbgs);
+
+    if (enableLOBSTERBGS)
+      process("LOBSTERBGS", lobgs, img_prep, img_lobgs);
 
     if (enableForegroundMaskAnalysis)
     {
@@ -316,9 +324,7 @@ namespace bgslibrary
       foregroundMaskAnalysis->process(frameNumber, "LBMixtureOfGaussians", img_lb_mog);
       foregroundMaskAnalysis->process(frameNumber, "LBAdaptiveSOM", img_lb_som);
       foregroundMaskAnalysis->process(frameNumber, "LBFuzzyAdaptiveSOM", img_lb_fsom);
-#if !defined(_WIN32)
       foregroundMaskAnalysis->process(frameNumber, "LbpMrf", img_lbp_mrf);
-#endif
       foregroundMaskAnalysis->process(frameNumber, "MultiLayerBGS", img_mlbgs);
       //foregroundMaskAnalysis->process(frameNumber, "PBAS", img_pt_pbas);
       foregroundMaskAnalysis->process(frameNumber, "VuMeter", img_vumeter);
@@ -326,6 +332,8 @@ namespace bgslibrary
       foregroundMaskAnalysis->process(frameNumber, "IMBS", img_imbs);
       foregroundMaskAnalysis->process(frameNumber, "MultiCueBGS", img_mcbgs);
       foregroundMaskAnalysis->process(frameNumber, "SigmaDeltaBGS", img_sdbgs);
+      foregroundMaskAnalysis->process(frameNumber, "SuBSENSEBGS", img_ssbgs);
+      foregroundMaskAnalysis->process(frameNumber, "LOBSTERBGS", img_lobgs);
     }
 
     firstTime = false;
@@ -353,6 +361,12 @@ namespace bgslibrary
 
     if (enableForegroundMaskAnalysis)
       delete foregroundMaskAnalysis;
+
+    if (enableLOBSTERBGS)
+      delete lobgs;
+
+    if (enableSuBSENSEBGS)
+      delete ssbgs;
 
     if (enableSigmaDeltaBGS)
       delete sdbgs;
@@ -522,9 +536,7 @@ namespace bgslibrary
     cvWriteInt(fs, "enableLBAdaptiveSOM", enableLBAdaptiveSOM);
     cvWriteInt(fs, "enableLBFuzzyAdaptiveSOM", enableLBFuzzyAdaptiveSOM);
 
-#if !defined(_WIN32)
     cvWriteInt(fs, "enableLbpMrf", enableLbpMrf);
-#endif
 
     cvWriteInt(fs, "enableMultiLayerBGS", enableMultiLayerBGS);
     //cvWriteInt(fs, "enablePBAS", enablePBAS);
@@ -533,6 +545,8 @@ namespace bgslibrary
     cvWriteInt(fs, "enableIMBS", enableIMBS);
     cvWriteInt(fs, "enableMultiCueBGS", enableMultiCueBGS);
     cvWriteInt(fs, "enableSigmaDeltaBGS", enableSigmaDeltaBGS);
+    cvWriteInt(fs, "enableSuBSENSEBGS", enableSuBSENSEBGS);
+    cvWriteInt(fs, "enableLOBSTERBGS", enableLOBSTERBGS);
 
     cvReleaseFileStorage(&fs);
   }
@@ -580,9 +594,7 @@ namespace bgslibrary
     enableLBAdaptiveSOM = cvReadIntByName(fs, 0, "enableLBAdaptiveSOM", false);
     enableLBFuzzyAdaptiveSOM = cvReadIntByName(fs, 0, "enableLBFuzzyAdaptiveSOM", false);
 
-#if !defined(_WIN32)
     enableLbpMrf = cvReadIntByName(fs, 0, "enableLbpMrf", false);
-#endif
 
     enableMultiLayerBGS = cvReadIntByName(fs, 0, "enableMultiLayerBGS", false);
     //enablePBAS = cvReadIntByName(fs, 0, "enablePBAS", false);
@@ -591,6 +603,8 @@ namespace bgslibrary
     enableIMBS = cvReadIntByName(fs, 0, "enableIMBS", false);
     enableMultiCueBGS = cvReadIntByName(fs, 0, "enableMultiCueBGS", false);
     enableSigmaDeltaBGS = cvReadIntByName(fs, 0, "enableSigmaDeltaBGS", false);
+    enableSuBSENSEBGS = cvReadIntByName(fs, 0, "enableSuBSENSEBGS", false);
+    enableLOBSTERBGS = cvReadIntByName(fs, 0, "enableLOBSTERBGS", false);
 
     cvReleaseFileStorage(&fs);
   }

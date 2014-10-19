@@ -43,7 +43,6 @@
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LinkIncremental>false</LinkIncremental>
     <OutDir>.</OutDir>
     <TargetName>$(ProjectName)_x86</TargetName>
   </PropertyGroup>
@@ -78,13 +77,16 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\OpenCV2.4.9\build\include;C:\OpenCV2.4.9\build\include\opencv;C:\boost_1_55_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>C:\OpenCV2.4.9\build\x86\vc10\staticlib\*.lib;C:\boost_1_55_0\stage32\lib\vc10\*.lib;comctl32.lib;VFW32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>C:\OpenCV2.4.9\build\x86\vc10\staticlib\*.lib;C:\boost_1_55_0\stage32\lib\vc10\*.lib;comctl32.lib;VFW32.lib;uafxcw.lib;LIBCMT.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ShowProgress>NotSet</ShowProgress>
+      <IgnoreSpecificDefaultLibraries>uafxcw.lib;LIBCMT.lib</IgnoreSpecificDefaultLibraries>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -98,11 +100,23 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="..\package_bgs\pl\LBSP_16bits_dbcross_1ch.i" />
+    <None Include="..\package_bgs\pl\LBSP_16bits_dbcross_3ch1t.i" />
+    <None Include="..\package_bgs\pl\LBSP_16bits_dbcross_3ch3t.i" />
+    <None Include="..\package_bgs\pl\LBSP_16bits_dbcross_s3ch.i" />
     <None Include="ReadMe.txt" />
     <None Include="res\bgslibrary_vs2010_mfc.ico" />
     <None Include="res\bgslibrary_vs2010_mfc.rc2" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\package_bgs\pl\BackgroundSubtractorLBSP.h" />
+    <ClInclude Include="..\package_bgs\pl\BackgroundSubtractorLOBSTER.h" />
+    <ClInclude Include="..\package_bgs\pl\BackgroundSubtractorSuBSENSE.h" />
+    <ClInclude Include="..\package_bgs\pl\DistanceUtils.h" />
+    <ClInclude Include="..\package_bgs\pl\LBSP.h" />
+    <ClInclude Include="..\package_bgs\pl\LOBSTER.h" />
+    <ClInclude Include="..\package_bgs\pl\RandUtils.h" />
+    <ClInclude Include="..\package_bgs\pl\SuBSENSE.h" />
     <ClInclude Include="App.h" />
     <ClInclude Include="Dlg.h" />
     <ClInclude Include="..\package_bgs\AdaptiveBackgroundLearning.h" />
@@ -187,6 +201,12 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\package_bgs\pl\BackgroundSubtractorLBSP.cpp" />
+    <ClCompile Include="..\package_bgs\pl\BackgroundSubtractorLOBSTER.cpp" />
+    <ClCompile Include="..\package_bgs\pl\BackgroundSubtractorSuBSENSE.cpp" />
+    <ClCompile Include="..\package_bgs\pl\LBSP.cpp" />
+    <ClCompile Include="..\package_bgs\pl\LOBSTER.cpp" />
+    <ClCompile Include="..\package_bgs\pl\SuBSENSE.cpp" />
     <ClCompile Include="App.cpp" />
     <ClCompile Include="Dlg.cpp" />
     <ClCompile Include="..\package_bgs\AdaptiveBackgroundLearning.cpp" />

@@ -65,6 +65,9 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #include "package_bgs/sjn/SJN_MultiCueBGS.h"
 #include "package_bgs/bl/SigmaDeltaBGS.h"
 
+#include "package_bgs/pl/SuBSENSE.h"
+#include "package_bgs/pl/LOBSTER.h"
+
 int main(int argc, char **argv)
 {
   std::cout << "Using OpenCV " << CV_MAJOR_VERSION << "." << CV_MINOR_VERSION << "." << CV_SUBMINOR_VERSION << std::endl;
@@ -131,6 +134,10 @@ int main(int argc, char **argv)
 
   /*** BL Package (thanks to Benjamin Laugraud) ***/
   //bgs = new SigmaDeltaBGS;
+
+  /*** PL Package (thanks to Pierre-Luc) ***/
+  //bgs = new SuBSENSEBGS();
+  //bgs = new LOBSTERBGS();
 
   int frameNumber = 1;
   int key = 0;

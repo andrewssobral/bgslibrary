@@ -53,7 +53,8 @@ void LOBSTERBGS::saveConfig()
 	cvWriteInt(fs, "nDescDistThreshold", nDescDistThreshold);
 	cvWriteInt(fs, "nColorDistThreshold", nColorDistThreshold);
 	cvWriteInt(fs, "nBGSamples", nBGSamples);
-	cvWriteInt(fs, "nRequiredBGSamples", nRequiredBGSamples);
+  cvWriteInt(fs, "nRequiredBGSamples", nRequiredBGSamples);
+  cvWriteInt(fs, "showOutput", showOutput);
 
 	cvReleaseFileStorage(&fs);
 }
@@ -68,6 +69,7 @@ void LOBSTERBGS::loadConfig()
 	nColorDistThreshold = cvReadIntByName(fs, 0, "nColorDistThreshold", BGSLOBSTER_DEFAULT_COLOR_DIST_THRESHOLD);
 	nBGSamples = cvReadIntByName(fs, 0, "nBGSamples", BGSLOBSTER_DEFAULT_NB_BG_SAMPLES);
 	nRequiredBGSamples = cvReadIntByName(fs, 0, "nRequiredBGSamples", BGSLOBSTER_DEFAULT_REQUIRED_NB_BG_SAMPLES);
+  showOutput = cvReadIntByName(fs, 0, "showOutput", true);
 
 	cvReleaseFileStorage(&fs);
 }

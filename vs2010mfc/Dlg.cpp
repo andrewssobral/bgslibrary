@@ -235,7 +235,7 @@ HCURSOR CDlg::OnQueryDragIcon()
 
 void CDlg::addBgsList()
 {
-  // 34 algorithms
+  // 36 algorithms (37 with PBAS)
   m_bgslist.AddString(L"FrameDifferenceBGS");
   m_bgslist.AddString(L"StaticFrameDifferenceBGS");
   m_bgslist.AddString(L"WeightedMovingMeanBGS");
@@ -271,6 +271,8 @@ void CDlg::addBgsList()
   m_bgslist.AddString(L"IndependentMultimodalBGS");
   m_bgslist.AddString(L"SJN_MultiCueBGS");
   m_bgslist.AddString(L"SigmaDeltaBGS");
+  m_bgslist.AddString(L"SuBSENSEBGS");
+  m_bgslist.AddString(L"LOBSTERBGS");
 }
 
 bool CDlg::getBgsMethodName()
@@ -491,6 +493,10 @@ void CDlg::ThreadProcess()
     bgs = new SJN_MultiCueBGS;
   if (methodName == "SigmaDeltaBGS")
     bgs = new SigmaDeltaBGS;
+  if (methodName == "SuBSENSEBGS")
+    bgs = new SuBSENSEBGS;
+  if (methodName == "LOBSTERBGS")
+    bgs = new LOBSTERBGS;
 
   if(bgs == NULL)
   {

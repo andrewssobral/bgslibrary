@@ -146,6 +146,7 @@ namespace bgslibrary
       loopDelay = (1. / input_fps)*1000.;
     std::cout << "loopDelay:" << loopDelay << std::endl;
 
+    std::cout << "Press 'ESC' to stop..." << std::endl;
     bool firstTime = true;
     do
     {
