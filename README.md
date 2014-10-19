@@ -12,8 +12,6 @@ BGSLibrary
 
 A Background Subtraction Library
 
-<p align="center"><img src="https://sites.google.com/site/andrewssobral/new-release.png?width=128" /></p>
-
 Last Page Update: **19/10/2014**
 
 Latest Library Version: **1.9.2** (see Release Notes for more info) 
@@ -57,7 +55,7 @@ Some algorithms of the BGSLibrary was used successfully in the following papers:
 
 List of the algorithms available in BGSLibrary
 ----------------------------------------------
-* Basic methods, mean and variance over time:
+* Basic methods (i.e. mean and variance over time):
 * *  Static Frame Difference 
 
 * *  Frame Difference
@@ -86,12 +84,12 @@ List of the algorithms available in BGSLibrary
 
 * * (3) Fuzzy Gaussian of Laurence Bender (adapted version of Wren (1997) with Sigari et al (2008) approach) ([paper](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.113.9538))
 
-* Statistical methods using one gaussian:
+* Single gaussian based methods:
 * * (1) Gaussian Average of Wren (1997) ([paper](http://www.cvmt.dk/education/teaching/e06/CVG9/CV/CVG9ExercisePapers/pfinder.pdf))
 
 * * (3) Simple Gaussian of Benezeth et al (2008) ([paper](http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=4760998))
 
-* Statistical methods using multiple gaussians:
+* Multiple gaussians based methods:
 * * (1) Gaussian Mixture Model of Stauffer and Grimson (1999) ([paper](http://www.ai.mit.edu/projects/vsam/Publications/stauffer_cvpr98_track.pdf))
 
 * * (0) Gaussian Mixture Model of KadewTraKuPong and Bowden (2001) ([paper](http://info.ee.surrey.ac.uk/CVSSP/Publications/papers/KaewTraKulPong-AVBS01.pdf))
@@ -114,7 +112,7 @@ List of the algorithms available in BGSLibrary
 * * (2) Type-2 Fuzzy GMM-UV with MRF of Zhao et al (2012) ([paper1](http://link.springer.com/chapter/10.1007%2F978-3-642-35286-7_23))
 ([paper2](https://sites.google.com/site/andrewssobral/2012_Zhao.pdf))
 
-* Statistical methods using color and texture features:
+* Multiple features based methods (i.e. color, texture and edge features):
 * * (1) Texture BGS of Heikkila et al. (2006) ([paper](http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=1597122&tag=1))
 
 * * (8) Texture-Based Foreground Detection with MRF of Csaba Kertész (2011) ([paper](http://www.sersc.org/journals/IJSIP/vol4_no4/5.pdf))
@@ -139,7 +137,7 @@ List of the algorithms available in BGSLibrary
 
 * * (9) IMBS of Domenico Bloisi and Luca Iocchi (2012) ([paper](http://www.dis.uniroma1.it/~bloisi/papers/bloisi-iocchi-imbs.pdf))
 
-* Eigenspace-based methods:
+* Subspace-based methods:
 * * (1) Eigenbackground / SL-PCA of Oliver et al (2000) ([paper](http://cis.temple.edu/~latecki/Courses/CIS750-03/Papers/oliver00.pdf))
 
 * Neural and neuro-fuzzy methods:
