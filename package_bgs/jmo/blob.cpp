@@ -43,9 +43,9 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 /************************************************************************
 Blob.cpp
 
-- FUNCIONALITAT: Implementació de la classe CBlob
+- FUNCIONALITAT: Implementaciï¿½ de la classe CBlob
 - AUTOR: Inspecta S.L.
-MODIFICACIONS (Modificació, Autor, Data):
+MODIFICACIONS (Modificaciï¿½, Autor, Data):
 
 
 FUNCTIONALITY: Implementation of the CBlob class and some helper classes to perform
@@ -59,21 +59,24 @@ MODIFICATIONS (Modification, Author, Date):
 #include <limits.h>
 #include "blob.h"
 #include <opencv2/opencv.hpp>
+#include <opencv2/imgproc/imgproc_c.h>
+#include <opencv2/imgproc/types_c.h>
+
 
 namespace Blob
 {
 
   /**
-  - FUNCIÓ: CBlob
-  - FUNCIONALITAT: Constructor estàndard
-  - PARÀMETRES:
+  - FUNCIï¿½: CBlob
+  - FUNCIONALITAT: Constructor estï¿½ndard
+  - PARï¿½METRES:
   - RESULTAT:
-  - inicialització de totes les variables internes i de l'storage i la sequencia
+  - inicialitzaciï¿½ de totes les variables internes i de l'storage i la sequencia
   per a les cantonades del blob
   - RESTRICCIONS:
-  - AUTOR: Ricard Borràs
-  - DATA DE CREACIÓ: 25-05-2005.
-  - MODIFICACIÓ: Data. Autor. Descripció.
+  - AUTOR: Ricard Borrï¿½s
+  - DATA DE CREACIï¿½: 25-05-2005.
+  - MODIFICACIï¿½: Data. Autor. Descripciï¿½.
   */
   /**
   - FUNCTION: CBlob
@@ -82,7 +85,7 @@ namespace Blob
   - RESULT:
   - memory allocation for the blob edges and initialization of member variables
   - RESTRICTIONS:
-  - AUTHOR: Ricard Borràs
+  - AUTHOR: Ricard Borrï¿½s
   - CREATION DATE: 25-05-2005.
   - MODIFICATION: Date. Author. Description.
   */
@@ -113,14 +116,14 @@ namespace Blob
   }
 
   /**
-  - FUNCIÓ: CBlob
-  - FUNCIONALITAT: Constructor de còpia
-  - PARÀMETRES:
+  - FUNCIï¿½: CBlob
+  - FUNCIONALITAT: Constructor de cï¿½pia
+  - PARï¿½METRES:
   - RESULTAT:
   - RESTRICCIONS:
-  - AUTOR: Ricard Borràs
-  - DATA DE CREACIÓ: 25-05-2005.
-  - MODIFICACIÓ: Data. Autor. Descripció.
+  - AUTOR: Ricard Borrï¿½s
+  - DATA DE CREACIï¿½: 25-05-2005.
+  - MODIFICACIï¿½: Data. Autor. Descripciï¿½.
   */
   /**
   - FUNCTION: CBlob
@@ -128,7 +131,7 @@ namespace Blob
   - PARAMETERS:
   - RESULT:
   - RESTRICTIONS:
-  - AUTHOR: Ricard Borràs
+  - AUTHOR: Ricard Borrï¿½s
   - CREATION DATE: 25-05-2005.
   - MODIFICATION: Date. Author. Description.
   */
@@ -220,14 +223,14 @@ namespace Blob
   }
 
   /**
-  - FUNCIÓ: ~CBlob
-  - FUNCIONALITAT: Destructor estàndard
-  - PARÀMETRES:
+  - FUNCIï¿½: ~CBlob
+  - FUNCIONALITAT: Destructor estï¿½ndard
+  - PARï¿½METRES:
   - RESULTAT:
   - RESTRICCIONS:
-  - AUTOR: Ricard Borràs
-  - DATA DE CREACIÓ: 25-05-2005.
-  - MODIFICACIÓ: Data. Autor. Descripció.
+  - AUTOR: Ricard Borrï¿½s
+  - DATA DE CREACIï¿½: 25-05-2005.
+  - MODIFICACIï¿½: Data. Autor. Descripciï¿½.
   */
   /**
   - FUNCTION: CBlob
@@ -235,29 +238,29 @@ namespace Blob
   - PARAMETERS:
   - RESULT:
   - RESTRICTIONS:
-  - AUTHOR: Ricard Borràs
+  - AUTHOR: Ricard Borrï¿½s
   - CREATION DATE: 25-05-2005.
   - MODIFICATION: Date. Author. Description.
   */
   CBlob::~CBlob()
   {
-    // Eliminar vèrtexs del blob 
+    // Eliminar vï¿½rtexs del blob 
     cvClearSeq(edges);
-    // i la zona de memòria on són
+    // i la zona de memï¿½ria on sï¿½n
     cvReleaseMemStorage(&m_storage);
   }
 
   /**
-  - FUNCIÓ: operator=
-  - FUNCIONALITAT: Operador d'assignació
-  - PARÀMETRES:
+  - FUNCIï¿½: operator=
+  - FUNCIONALITAT: Operador d'assignaciï¿½
+  - PARï¿½METRES:
   - src: blob a assignar a l'actual
   - RESULTAT:
   - Substitueix el blob actual per el src
   - RESTRICCIONS:
-  - AUTOR: Ricard Borràs
-  - DATA DE CREACIÓ: 25-05-2005.
-  - MODIFICACIÓ: Data. Autor. Descripció.
+  - AUTOR: Ricard Borrï¿½s
+  - DATA DE CREACIï¿½: 25-05-2005.
+  - MODIFICACIï¿½: Data. Autor. Descripciï¿½.
   */
   /**
   - FUNCTION: Assigment operator
@@ -267,18 +270,18 @@ namespace Blob
   - RESULT:
   - the current blob is replaced by the src blob
   - RESTRICTIONS:
-  - AUTHOR: Ricard Borràs
+  - AUTHOR: Ricard Borrï¿½s
   - CREATION DATE: 25-05-2005.
   - MODIFICATION: Date. Author. Description.
   */
   CBlob& CBlob::operator=(const CBlob &src)
   {
-    // si ja són el mateix, no cal fer res
+    // si ja sï¿½n el mateix, no cal fer res
     if (this != &src)
     {
-      // Eliminar vèrtexs del blob 
+      // Eliminar vï¿½rtexs del blob 
       cvClearSeq(edges);
-      // i la zona de memòria on són
+      // i la zona de memï¿½ria on sï¿½n
       cvReleaseMemStorage(&m_storage);
 
       // creem una sequencia buida per als edges
@@ -326,18 +329,18 @@ namespace Blob
   }
 
   /**
-  - FUNCIÓ: FillBlob
+  - FUNCIï¿½: FillBlob
   - FUNCIONALITAT: Pinta l'interior d'un blob amb el color especificat
-  - PARÀMETRES:
+  - PARï¿½METRES:
   - imatge: imatge on es vol pintar el el blob
   - color: color amb que es vol pintar el blob
   - RESULTAT:
   - retorna la imatge d'entrada amb el blob pintat
   - RESTRICCIONS:
   - AUTOR:
-  - Ricard Borràs
-  - DATA DE CREACIÓ: 25-05-2005.
-  - MODIFICACIÓ: Data. Autor. Descripció.
+  - Ricard Borrï¿½s
+  - DATA DE CREACIï¿½: 25-05-2005.
+  - MODIFICACIï¿½: Data. Autor. Descripciï¿½.
   */
   /**
   - FUNCTION: FillBlob
@@ -349,7 +352,7 @@ namespace Blob
   - RESULT:
   - modifies input image and returns the seed point used to fill the blob
   - RESTRICTIONS:
-  - AUTHOR: Ricard Borràs
+  - AUTHOR: Ricard Borrï¿½s
   - CREATION DATE: 25-05-2005.
   - MODIFICATION: Date. Author. Description.
   */
@@ -412,15 +415,15 @@ namespace Blob
   }
 
   /**
-  - FUNCIÓ: CopyEdges
-  - FUNCIONALITAT: Afegeix els vèrtexs del blob al blob destination
-  - PARÀMETRES:
-  - destination: blob al que volem afegir els vèrtexs
+  - FUNCIï¿½: CopyEdges
+  - FUNCIONALITAT: Afegeix els vï¿½rtexs del blob al blob destination
+  - PARï¿½METRES:
+  - destination: blob al que volem afegir els vï¿½rtexs
   - RESULTAT:
   - RESTRICCIONS:
-  - AUTOR: Ricard Borràs
-  - DATA DE CREACIÓ: 25-05-2005.
-  - MODIFICACIÓ: Data. Autor. Descripció.
+  - AUTOR: Ricard Borrï¿½s
+  - DATA DE CREACIï¿½: 25-05-2005.
+  - MODIFICACIï¿½: Data. Autor. Descripciï¿½.
   */
   /**
   - FUNCTION: CopyEdges
@@ -429,7 +432,7 @@ namespace Blob
   - destination: where to add the edges
   - RESULT:
   - RESTRICTIONS:
-  - AUTHOR: Ricard Borràs
+  - AUTHOR: Ricard Borrï¿½s
   - CREATION DATE: 25-05-2005.
   - MODIFICATION: Date. Author. Description.
   */
@@ -452,14 +455,14 @@ namespace Blob
   }
 
   /**
-  - FUNCIÓ: ClearEdges
-  - FUNCIONALITAT: Elimina els vèrtexs del blob
-  - PARÀMETRES:
+  - FUNCIï¿½: ClearEdges
+  - FUNCIONALITAT: Elimina els vï¿½rtexs del blob
+  - PARï¿½METRES:
   - RESULTAT:
   - RESTRICCIONS:
-  - AUTOR: Ricard Borràs
-  - DATA DE CREACIÓ: 25-05-2005.
-  - MODIFICACIÓ: Data. Autor. Descripció.
+  - AUTOR: Ricard Borrï¿½s
+  - DATA DE CREACIï¿½: 25-05-2005.
+  - MODIFICACIï¿½: Data. Autor. Descripciï¿½.
   */
   /**
   - FUNCTION: ClearEdges
@@ -467,27 +470,27 @@ namespace Blob
   - PARAMETERS:
   - RESULT:
   - RESTRICTIONS:
-  - AUTHOR: Ricard Borràs
+  - AUTHOR: Ricard Borrï¿½s
   - CREATION DATE: 25-05-2005.
   - MODIFICATION: Date. Author. Description.
   */
   void CBlob::ClearEdges()
   {
-    // Eliminar vèrtexs del blob eliminat
+    // Eliminar vï¿½rtexs del blob eliminat
     cvClearSeq(edges);
   }
 
   /**
-  - FUNCIÓ: GetConvexHull
+  - FUNCIï¿½: GetConvexHull
   - FUNCIONALITAT: Retorna el poligon convex del blob
-  - PARÀMETRES:
+  - PARï¿½METRES:
   - dst: sequencia on desarem el resultat (no ha d'estar inicialitzada)
   - RESULTAT:
-  - true si tot ha anat bé
+  - true si tot ha anat bï¿½
   - RESTRICCIONS:
-  - AUTOR: Ricard Borràs
-  - DATA DE CREACIÓ: 25-05-2005.
-  - MODIFICACIÓ: Data. Autor. Descripció.
+  - AUTOR: Ricard Borrï¿½s
+  - DATA DE CREACIï¿½: 25-05-2005.
+  - MODIFICACIï¿½: Data. Autor. Descripciï¿½.
   */
   /**
   - FUNCTION: GetConvexHull
@@ -497,7 +500,7 @@ namespace Blob
   - RESULT:
   - true if no error ocurred
   - RESTRICTIONS:
-  - AUTHOR: Ricard Borràs
+  - AUTHOR: Ricard Borrï¿½s
   - CREATION DATE: 25-05-2005.
   - MODIFICATION: Date. Author. Description.
   */
@@ -512,15 +515,15 @@ namespace Blob
   }
 
   /**
-  - FUNCIÓ: GetEllipse
+  - FUNCIï¿½: GetEllipse
   - FUNCIONALITAT: Retorna l'ellipse que s'ajusta millor a les cantonades del blob
-  - PARÀMETRES:
+  - PARï¿½METRES:
   - RESULTAT:
   - estructura amb l'ellipse
   - RESTRICCIONS:
-  - AUTOR: Ricard Borràs
-  - DATA DE CREACIÓ: 25-05-2005.
-  - MODIFICACIÓ: Data. Autor. Descripció.
+  - AUTOR: Ricard Borrï¿½s
+  - DATA DE CREACIï¿½: 25-05-2005.
+  - MODIFICACIï¿½: Data. Autor. Descripciï¿½.
   */
   /**
   - FUNCTION: GetEllipse
@@ -529,7 +532,7 @@ namespace Blob
   - RESULT:
   - CvBox2D struct with the calculated ellipse
   - RESTRICTIONS:
-  - AUTHOR: Ricard Borràs
+  - AUTHOR: Ricard Borrï¿½s
   - CREATION DATE: 25-05-2005.
   - MODIFICATION: Date. Author. Description.
   */
@@ -555,21 +558,21 @@ namespace Blob
 
 
   /***************************************************************************
-  Implementació de les classes per al càlcul de característiques sobre el blob
+  Implementaciï¿½ de les classes per al cï¿½lcul de caracterï¿½stiques sobre el blob
 
   Implementation of the helper classes to perform operations on blobs
   **************************************************************************/
 
   /**
-  - FUNCIÓ: Moment
+  - FUNCIï¿½: Moment
   - FUNCIONALITAT: Calcula el moment pq del blob
   - RESULTAT:
-  - retorna el moment pq especificat o 0 si el moment no està implementat
+  - retorna el moment pq especificat o 0 si el moment no estï¿½ implementat
   - RESTRICCIONS:
   - Implementats els moments pq: 00, 01, 10, 20, 02
-  - AUTOR: Ricard Borràs
-  - DATA DE CREACIÓ: 20-07-2004.
-  - MODIFICACIÓ: Data. Autor. Descripció.
+  - AUTOR: Ricard Borrï¿½s
+  - DATA DE CREACIï¿½: 20-07-2004.
+  - MODIFICACIï¿½: Data. Autor. Descripciï¿½.
   */
   /**
   - FUNCTION: Moment
@@ -579,7 +582,7 @@ namespace Blob
   - returns the pq moment or 0 if the moment it is not implemented
   - RESTRICTIONS:
   - Currently, only implemented the 00, 01, 10, 20, 02 pq moments
-  - AUTHOR: Ricard Borràs
+  - AUTHOR: Ricard Borrï¿½s
   - CREATION DATE: 20-07-2004.
   - MODIFICATION: Date. Author. Description.
   */
@@ -609,19 +612,19 @@ namespace Blob
   }
 
   /**
-  - FUNCIÓ: HullPerimeter
+  - FUNCIï¿½: HullPerimeter
   - FUNCIONALITAT: Calcula la longitud del perimetre convex del blob.
-  Fa servir la funció d'OpenCV cvConvexHull2 per a
+  Fa servir la funciï¿½ d'OpenCV cvConvexHull2 per a
   calcular el perimetre convex.
 
-  - PARÀMETRES:
+  - PARï¿½METRES:
   - RESULTAT:
-  - retorna la longitud del perímetre convex del blob. Si el blob no té coordenades
-  associades retorna el perímetre normal del blob.
+  - retorna la longitud del perï¿½metre convex del blob. Si el blob no tï¿½ coordenades
+  associades retorna el perï¿½metre normal del blob.
   - RESTRICCIONS:
-  - AUTOR: Ricard Borràs
-  - DATA DE CREACIÓ: 20-07-2004.
-  - MODIFICACIÓ: Data. Autor. Descripció.
+  - AUTOR: Ricard Borrï¿½s
+  - DATA DE CREACIï¿½: 20-07-2004.
+  - MODIFICACIï¿½: Data. Autor. Descripciï¿½.
   */
   /**
   - FUNCTION: CBlobGetHullPerimeter
@@ -631,7 +634,7 @@ namespace Blob
   - returns the convex hull perimeter of the blob or the perimeter if the
   blob edges could not be retrieved
   - RESTRICTIONS:
-  - AUTHOR: Ricard Borràs
+  - AUTHOR: Ricard Borrï¿½s
   - CREATION DATE: 25-05-2005.
   - MODIFICATION: Date. Author. Description.
   */
@@ -656,16 +659,16 @@ namespace Blob
   }
 
   /**
-  - FUNCIÓ: MinX_at_MinY
+  - FUNCIï¿½: MinX_at_MinY
   - FUNCIONALITAT: Calcula el valor MinX a MinY.
-  - PARÀMETRES:
+  - PARï¿½METRES:
   - blob: blob del que volem calcular el valor
   - RESULTAT:
   - retorna la X minima en la Y minima.
   - RESTRICCIONS:
-  - AUTOR: Ricard Borràs
-  - DATA DE CREACIÓ: 20-07-2004.
-  - MODIFICACIÓ: Data. Autor. Descripció.
+  - AUTOR: Ricard Borrï¿½s
+  - DATA DE CREACIï¿½: 20-07-2004.
+  - MODIFICACIï¿½: Data. Autor. Descripciï¿½.
   */
   /**
   - FUNCTION: CBlobGetMinXatMinY
@@ -673,7 +676,7 @@ namespace Blob
   - PARAMETERS:
   - RESULT:
   - RESTRICTIONS:
-  - AUTHOR: Ricard Borràs
+  - AUTHOR: Ricard Borrï¿½s
   - CREATION DATE: 25-05-2005.
   - MODIFICATION: Date. Author. Description.
   */
@@ -699,16 +702,16 @@ namespace Blob
   }
 
   /**
-  - FUNCIÓ: MinY_at_MaxX
+  - FUNCIï¿½: MinY_at_MaxX
   - FUNCIONALITAT: Calcula el valor MinX a MaxX.
-  - PARÀMETRES:
+  - PARï¿½METRES:
   - blob: blob del que volem calcular el valor
   - RESULTAT:
   - retorna la Y minima en la X maxima.
   - RESTRICCIONS:
-  - AUTOR: Ricard Borràs
-  - DATA DE CREACIÓ: 20-07-2004.
-  - MODIFICACIÓ: Data. Autor. Descripció.
+  - AUTOR: Ricard Borrï¿½s
+  - DATA DE CREACIï¿½: 20-07-2004.
+  - MODIFICACIï¿½: Data. Autor. Descripciï¿½.
   */
   /**
   - FUNCTION: CBlobGetMinXatMinY
@@ -716,7 +719,7 @@ namespace Blob
   - PARAMETERS:
   - RESULT:
   - RESTRICTIONS:
-  - AUTHOR: Ricard Borràs
+  - AUTHOR: Ricard Borrï¿½s
   - CREATION DATE: 25-05-2005.
   - MODIFICATION: Date. Author. Description.
   */
@@ -742,16 +745,16 @@ namespace Blob
   }
 
   /**
-  - FUNCIÓ: MaxX_at_MaxY
+  - FUNCIï¿½: MaxX_at_MaxY
   - FUNCIONALITAT: Calcula el valor MaxX a MaxY.
-  - PARÀMETRES:
+  - PARï¿½METRES:
   - blob: blob del que volem calcular el valor
   - RESULTAT:
   - retorna la X maxima en la Y maxima.
   - RESTRICCIONS:
-  - AUTOR: Ricard Borràs
-  - DATA DE CREACIÓ: 20-07-2004.
-  - MODIFICACIÓ: Data. Autor. Descripció.
+  - AUTOR: Ricard Borrï¿½s
+  - DATA DE CREACIï¿½: 20-07-2004.
+  - MODIFICACIï¿½: Data. Autor. Descripciï¿½.
   */
   /**
   - FUNCTION: CBlobGetMaxXatMaxY
@@ -759,7 +762,7 @@ namespace Blob
   - PARAMETERS:
   - RESULT:
   - RESTRICTIONS:
-  - AUTHOR: Ricard Borràs
+  - AUTHOR: Ricard Borrï¿½s
   - CREATION DATE: 25-05-2005.
   - MODIFICATION: Date. Author. Description.
   */
@@ -785,16 +788,16 @@ namespace Blob
   }
 
   /**
-  - FUNCIÓ: MaxY_at_MinX
+  - FUNCIï¿½: MaxY_at_MinX
   - FUNCIONALITAT: Calcula el valor MaxY a MinX.
-  - PARÀMETRES:
+  - PARï¿½METRES:
   - blob: blob del que volem calcular el valor
   - RESULTAT:
   - retorna la Y maxima en la X minima.
   - RESTRICCIONS:
-  - AUTOR: Ricard Borràs
-  - DATA DE CREACIÓ: 20-07-2004.
-  - MODIFICACIÓ: Data. Autor. Descripció.
+  - AUTOR: Ricard Borrï¿½s
+  - DATA DE CREACIï¿½: 20-07-2004.
+  - MODIFICACIï¿½: Data. Autor. Descripciï¿½.
   */
   /**
   - FUNCTION: CBlobGetMaxYatMinX
@@ -802,7 +805,7 @@ namespace Blob
   - PARAMETERS:
   - RESULT:
   - RESTRICTIONS:
-  - AUTHOR: Ricard Borràs
+  - AUTHOR: Ricard Borrï¿½s
   - CREATION DATE: 25-05-2005.
   - MODIFICATION: Date. Author. Description.
   */
@@ -828,7 +831,7 @@ namespace Blob
   }
 
   /**
-  Retorna l'elongació del blob (longitud/amplada)
+  Retorna l'elongaciï¿½ del blob (longitud/amplada)
   */
   /**
   - FUNCTION: CBlobGetElongation
@@ -837,7 +840,7 @@ namespace Blob
   - RESULT:
   - RESTRICTIONS:
   - See below to see how the lenght and the breadth are aproximated
-  - AUTHOR: Ricard Borràs
+  - AUTHOR: Ricard Borrï¿½s
   - CREATION DATE: 25-05-2005.
   - MODIFICATION: Date. Author. Description.
   */
@@ -865,7 +868,7 @@ namespace Blob
   - PARAMETERS:
   - RESULT:
   - RESTRICTIONS:
-  - AUTHOR: Ricard Borràs
+  - AUTHOR: Ricard Borrï¿½s
   - CREATION DATE: 25-05-2005.
   - MODIFICATION: Date. Author. Description.
   */
@@ -887,7 +890,7 @@ namespace Blob
   - PARAMETERS:
   - RESULT:
   - RESTRICTIONS:
-  - AUTHOR: Ricard Borràs
+  - AUTHOR: Ricard Borrï¿½s
   - CREATION DATE: 25-05-2005.
   - MODIFICATION: Date. Author. Description.
   */
@@ -913,7 +916,7 @@ namespace Blob
   - RESULT:
   - RESTRICTIONS:
   - The lenght is an aproximation to the real lenght
-  - AUTHOR: Ricard Borràs
+  - AUTHOR: Ricard Borrï¿½s
   - CREATION DATE: 25-05-2005.
   - MODIFICATION: Date. Author. Description.
   */
@@ -926,7 +929,7 @@ namespace Blob
 
     if (tmp > 0.0)
       ampladaC = (double)(blob.Perimeter() + sqrt(tmp)) / 4;
-    // error intrínsec en els càlculs de l'àrea i el perímetre 
+    // error intrï¿½nsec en els cï¿½lculs de l'ï¿½rea i el perï¿½metre 
     else
       ampladaC = (double)(blob.Perimeter()) / 4;
 
@@ -946,7 +949,7 @@ namespace Blob
   - RESULT:
   - RESTRICTIONS:
   - The breadth is an aproximation to the real breadth
-  - AUTHOR: Ricard Borràs
+  - AUTHOR: Ricard Borrï¿½s
   - CREATION DATE: 25-05-2005.
   - MODIFICATION: Date. Author. Description.
   */
@@ -959,7 +962,7 @@ namespace Blob
 
     if (tmp > 0.0)
       ampladaC = (double)(blob.Perimeter() + sqrt(tmp)) / 4;
-    // error intrínsec en els càlculs de l'àrea i el perímetre 
+    // error intrï¿½nsec en els cï¿½lculs de l'ï¿½rea i el perï¿½metre 
     else
       ampladaC = (double)(blob.Perimeter()) / 4;
 
@@ -970,7 +973,7 @@ namespace Blob
   }
 
   /**
-  Calcula la distància entre un punt i el centre del blob
+  Calcula la distï¿½ncia entre un punt i el centre del blob
   */
   /**
   - FUNCTION: CBlobGetDistanceFromPoint
@@ -979,7 +982,7 @@ namespace Blob
   - PARAMETERS:
   - RESULT:
   - RESTRICTIONS:
-  - AUTHOR: Ricard Borràs
+  - AUTHOR: Ricard Borrï¿½s
   - CREATION DATE: 25-05-2005.
   - MODIFICATION: Date. Author. Description.
   */
@@ -996,15 +999,15 @@ namespace Blob
   }
 
   /**
-  - FUNCIÓ: BlobGetXYInside
+  - FUNCIï¿½: BlobGetXYInside
   - FUNCIONALITAT: Calcula si un punt cau dins de la capsa rectangular
   del blob
   - RESULTAT:
-  - retorna 1 si hi està; 0 si no
+  - retorna 1 si hi estï¿½; 0 si no
   - RESTRICCIONS:
   - AUTOR: Francesc Pinyol Margalef
-  - DATA DE CREACIÓ: 16-01-2006.
-  - MODIFICACIÓ: Data. Autor. Descripció.
+  - DATA DE CREACIï¿½: 16-01-2006.
+  - MODIFICACIï¿½: Data. Autor. Descripciï¿½.
   */
   /**
   - FUNCTION: BlobGetXYInside
@@ -1045,7 +1048,7 @@ namespace Blob
     std::sort(vectorEdges.begin(), vectorEdges.end(), CBlob::comparaCvPoint());
 
     // recorrem el punts del blob de la mateixa fila que el punt d'entrada
-    // i mirem si la X del punt d'entrada està entre dos coordenades "plenes"
+    // i mirem si la X del punt d'entrada estï¿½ entre dos coordenades "plenes"
     // del blob
     itEdges = vectorEdges.begin();
     itEdgesSeguent = vectorEdges.begin() + 1;
@@ -1071,18 +1074,18 @@ namespace Blob
 #ifdef BLOB_OBJECT_FACTORY
 
   /**
-  - FUNCIÓ: RegistraTotsOperadors
+  - FUNCIï¿½: RegistraTotsOperadors
   - FUNCIONALITAT: Registrar tots els operadors definits a blob.h
-  - PARÀMETRES:
-  - fabricaOperadorsBlob: fàbrica on es registraran els operadors
+  - PARï¿½METRES:
+  - fabricaOperadorsBlob: fï¿½brica on es registraran els operadors
   - RESULTAT:
   - Modifica l'objecte fabricaOperadorsBlob
   - RESTRICCIONS:
-  - Només es registraran els operadors de blob.h. Si se'n volen afegir, cal afegir-los amb 
-  el mètode Register de la fàbrica.
+  - Nomï¿½s es registraran els operadors de blob.h. Si se'n volen afegir, cal afegir-los amb 
+  el mï¿½tode Register de la fï¿½brica.
   - AUTOR: rborras
-  - DATA DE CREACIÓ: 2006/05/18
-  - MODIFICACIÓ: Data. Autor. Descripció.
+  - DATA DE CREACIï¿½: 2006/05/18
+  - MODIFICACIï¿½: Data. Autor. Descripciï¿½.
   */
   void RegistraTotsOperadors( t_OperadorBlobFactory &fabricaOperadorsBlob )
   {

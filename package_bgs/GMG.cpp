@@ -14,6 +14,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+#if 0 // cv::BackgroundSubtractorGMG is not available in opencv3.0+
+
 #include "GMG.h"
 
 GMG::GMG() : firstTime(true), initializationFrames(20), decisionThreshold(0.7), showOutput(true)
@@ -97,3 +100,5 @@ void GMG::loadConfig()
   
   cvReleaseFileStorage(&fs);
 }
+
+#endif

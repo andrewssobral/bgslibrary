@@ -11,11 +11,13 @@ nColorDistThreshold 		(BGSLOBSTER_DEFAULT_COLOR_DIST_THRESHOLD),
 nBGSamples 					(BGSLOBSTER_DEFAULT_NB_BG_SAMPLES),
 nRequiredBGSamples 			(BGSLOBSTER_DEFAULT_REQUIRED_NB_BG_SAMPLES)
 {
+	std::cout << "LOBSTERBGS()" << std::endl;
 }
 
 LOBSTERBGS::~LOBSTERBGS() {
 	if (pLOBSTER)
 		delete pLOBSTER;
+	std::cout << "~LOBSTERBGS()" << std::endl;
 }
 
 void LOBSTERBGS::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)

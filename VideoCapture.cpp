@@ -15,6 +15,7 @@ You should have received a copy of the GNU General Public License
 along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "VideoCapture.h"
+#include <opencv2/highgui/highgui_c.h>
 
 namespace bgslibrary
 {
@@ -166,7 +167,7 @@ namespace bgslibrary
 
         do
         {
-          cv::Mat img_input(frame);
+          cv::Mat img_input = cv::cvarrToMat(frame);
 
           if (showOutput)
           {
@@ -206,7 +207,7 @@ namespace bgslibrary
         cvSetImageROI(frame, rect);
       }
 
-      cv::Mat img_input(frame);
+      cv::Mat img_input = cv::cvarrToMat(frame);
 
       if (showOutput)
         cv::imshow("Input", img_input);

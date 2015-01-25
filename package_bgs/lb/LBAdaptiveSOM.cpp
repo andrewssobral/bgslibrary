@@ -56,8 +56,8 @@ void LBAdaptiveSOM::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
 
   m_pBGModel->UpdateModel(frame);
 
-  img_foreground = cv::Mat(m_pBGModel->GetFG());
-  img_background = cv::Mat(m_pBGModel->GetBG());
+  img_foreground = cv::cvarrToMat(m_pBGModel->GetFG());
+  img_background = cv::cvarrToMat(m_pBGModel->GetBG());
     
   if(showOutput)
   {

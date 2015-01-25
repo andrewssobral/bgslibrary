@@ -16,6 +16,8 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
 #pragma once
 
+#if 0 // cv::BackgroundSubtractorMOG is not available in opencv3.0+
+
 #include <iostream>
 #include <opencv2/opencv.hpp>
 
@@ -45,3 +47,4 @@ private:
   void loadConfig();
 };
 
+#endif

@@ -16,27 +16,30 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
 #pragma once
 
-#if 0 // cv::BackgroundSubtractorGMG is not available in opencv3.0+
-
 #include <iostream>
 #include <opencv2/opencv.hpp>
 
+#include <opencv2/video/background_segm.hpp>
+
 #include "IBGS.h"
 
-class GMG : public IBGS
+class KNNBGS : public IBGS
 {
 private:
   bool firstTime;
-  cv::Ptr<cv::BackgroundSubtractorGMG> fgbg;
-  int initializationFrames;
-  double decisionThreshold;
-  cv::Mat img_foreground;
-  cv::Mat img_segmentation;
+  cv::Ptr<cv::BackgroundSubtractorKNN> knn;
+  int history;
+  int nSamples;
+  float dist2Threshold;
+  int knnSamples;
+  bool doShadowDetection;
+  int shadowValue;
+  float shadowThreshold;
   bool showOutput;
 
 public:
-  GMG();
-  ~GMG();
+  KNNBGS();
+  ~KNNBGS();
 
   void process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel);
 
@@ -45,4 +48,3 @@ private:
   void loadConfig();
 };
 
-#endif

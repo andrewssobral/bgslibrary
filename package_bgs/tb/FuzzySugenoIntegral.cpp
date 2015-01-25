@@ -87,11 +87,11 @@ void FuzzySugenoIntegral::process(const cv::Mat &img_input, cv::Mat &img_output,
     IplImage* background_f1 = new IplImage(img_background_f1);
 
     IplImage* lbp_input_f1 = cvCreateImage(cvSize(input_f1->width, input_f1->height), IPL_DEPTH_32F, 1);
-    cvFillImage(lbp_input_f1, 0.0);
+    cvSet(lbp_input_f1, 0.0);
     fu.LBP(input_f1, lbp_input_f1);
 
     IplImage* lbp_background_f1 = cvCreateImage(cvSize(background_f1->width, background_f1->height), IPL_DEPTH_32F , 1);
-    cvFillImage(lbp_background_f1, 0.0);
+    cvSet(lbp_background_f1, 0.0);
     fu.LBP(background_f1, lbp_background_f1);
 
     IplImage* sim_texture_f1 = cvCreateImage(cvSize(input_f1->width, input_f1->height), IPL_DEPTH_32F, 1);
@@ -118,7 +118,7 @@ void FuzzySugenoIntegral::process(const cv::Mat &img_input, cv::Mat &img_output,
     }
 
     free(measureG);
-    cv::Mat img_integral_sugeno_f1(integral_sugeno_f1);
+    cv::Mat img_integral_sugeno_f1 = cv::cvarrToMat(integral_sugeno_f1);
 
     if(smooth)
       cv::medianBlur(img_integral_sugeno_f1, img_integral_sugeno_f1, 3);
@@ -150,9 +150,9 @@ void FuzzySugenoIntegral::process(const cv::Mat &img_input, cv::Mat &img_output,
       std::cout << "FuzzySugenoIntegral updating background model by adaptive-selective learning..." << std::endl;
 
     IplImage* updated_background_f3 = cvCreateImage(cvSize(input_f1->width, input_f1->height), IPL_DEPTH_32F, 3);
-    cvFillImage(updated_background_f3, 0.0);
+    cvSet(updated_background_f3, 0.0);
     fu.AdaptativeSelectiveBackgroundModelUpdate(input_f3, background_f3, updated_background_f3, integral_sugeno_f1, threshold, alphaUpdate);
-    cv::Mat img_updated_background_f3(updated_background_f3);
+    cv::Mat img_updated_background_f3 = cv::cvarrToMat(updated_background_f3);
     img_updated_background_f3.copyTo(img_background_f3);
 
     cvReleaseImage(&lbp_input_f1);

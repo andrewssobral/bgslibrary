@@ -22,13 +22,14 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #include "package_bgs/StaticFrameDifferenceBGS.h"
 #include "package_bgs/WeightedMovingMeanBGS.h"
 #include "package_bgs/WeightedMovingVarianceBGS.h"
-#include "package_bgs/MixtureOfGaussianV1BGS.h"
+//#include "package_bgs/MixtureOfGaussianV1BGS.h"		// Unavailable in opencv3.0+
 #include "package_bgs/MixtureOfGaussianV2BGS.h"
 #include "package_bgs/AdaptiveBackgroundLearning.h"
 #include "package_bgs/AdaptiveSelectiveBackgroundLearning.h"
+#include "package_bgs/KNNBGS.h"
 
 #if CV_MAJOR_VERSION >= 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
-#include "package_bgs/GMG.h"
+//#include "package_bgs/GMG.h"		// Unavailable in opencv3.0+
 #endif
 
 #include "package_bgs/dp/DPAdaptiveMedianBGS.h"
@@ -100,7 +101,7 @@ int main(int argc, char **argv)
   IBGS *bgs;
 
   /*** Default Package ***/
-  bgs = new FrameDifferenceBGS;
+  //bgs = new FrameDifferenceBGS;
   //bgs = new StaticFrameDifferenceBGS;
   //bgs = new WeightedMovingMeanBGS;
   //bgs = new WeightedMovingVarianceBGS;
@@ -109,6 +110,7 @@ int main(int argc, char **argv)
   //bgs = new AdaptiveBackgroundLearning;
   //bgs = new AdaptiveSelectiveBackgroundLearning;
   //bgs = new GMG;
+  bgs = new KNNBGS();
   
   /*** DP Package (thanks to Donovan Parks) ***/
   //bgs = new DPAdaptiveMedianBGS;
@@ -171,7 +173,7 @@ int main(int argc, char **argv)
 
     cvResize(frame_aux, frame);
     
-    cv::Mat img_input(frame);
+    cv::Mat img_input = cv::cvarrToMat(frame);
     cv::imshow("input", img_input);
 
     cv::Mat img_mask;

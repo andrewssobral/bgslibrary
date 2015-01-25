@@ -14,6 +14,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
+#if 0 // cv::BackgroundSubtractorMOG is not available in opencv3.0+
+
 #include "MixtureOfGaussianV1BGS.h"
 
 MixtureOfGaussianV1BGS::MixtureOfGaussianV1BGS() : firstTime(true), alpha(0.05), enableThreshold(true), threshold(15), showOutput(true)
@@ -93,3 +95,5 @@ void MixtureOfGaussianV1BGS::loadConfig()
 
   cvReleaseFileStorage(&fs);
 }
+
+#endif

@@ -49,8 +49,8 @@ namespace bgslibrary
     if (enableWeightedMovingVarianceBGS)
       weightedMovingVariance = new WeightedMovingVarianceBGS;
 
-    if (enableMixtureOfGaussianV1BGS)
-      mixtureOfGaussianV1BGS = new MixtureOfGaussianV1BGS;
+//    if (enableMixtureOfGaussianV1BGS)
+//      mixtureOfGaussianV1BGS = new MixtureOfGaussianV1BGS;
 
     if (enableMixtureOfGaussianV2BGS)
       mixtureOfGaussianV2BGS = new MixtureOfGaussianV2BGS;
@@ -185,8 +185,8 @@ namespace bgslibrary
     if (enableWeightedMovingVarianceBGS)
       process("WeightedMovingVarianceBGS", weightedMovingVariance, img_prep, img_movvar);
 
-    if (enableMixtureOfGaussianV1BGS)
-      process("MixtureOfGaussianV1BGS", mixtureOfGaussianV1BGS, img_prep, img_mog1);
+//    if (enableMixtureOfGaussianV1BGS)
+//      process("MixtureOfGaussianV1BGS", mixtureOfGaussianV1BGS, img_prep, img_mog1);
 
     if (enableMixtureOfGaussianV2BGS)
       process("MixtureOfGaussianV2BGS", mixtureOfGaussianV2BGS, img_prep, img_mog2);
@@ -299,7 +299,7 @@ namespace bgslibrary
       foregroundMaskAnalysis->process(frameNumber, "StaticFrameDifferenceBGS", img_staticfdiff);
       foregroundMaskAnalysis->process(frameNumber, "WeightedMovingMeanBGS", img_wmovmean);
       foregroundMaskAnalysis->process(frameNumber, "WeightedMovingVarianceBGS", img_movvar);
-      foregroundMaskAnalysis->process(frameNumber, "MixtureOfGaussianV1BGS", img_mog1);
+//      foregroundMaskAnalysis->process(frameNumber, "MixtureOfGaussianV1BGS", img_mog1);
       foregroundMaskAnalysis->process(frameNumber, "MixtureOfGaussianV2BGS", img_mog2);
       foregroundMaskAnalysis->process(frameNumber, "AdaptiveBackgroundLearning", img_bkgl_fgmask);
 #if CV_MAJOR_VERSION >= 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
@@ -462,8 +462,8 @@ namespace bgslibrary
     if (enableMixtureOfGaussianV2BGS)
       delete mixtureOfGaussianV2BGS;
 
-    if (enableMixtureOfGaussianV1BGS)
-      delete mixtureOfGaussianV1BGS;
+//    if (enableMixtureOfGaussianV1BGS)
+//      delete mixtureOfGaussianV1BGS;
 
     if (enableWeightedMovingVarianceBGS)
       delete weightedMovingVariance;
@@ -507,7 +507,7 @@ namespace bgslibrary
     cvWriteInt(fs, "enableStaticFrameDifferenceBGS", enableStaticFrameDifferenceBGS);
     cvWriteInt(fs, "enableWeightedMovingMeanBGS", enableWeightedMovingMeanBGS);
     cvWriteInt(fs, "enableWeightedMovingVarianceBGS", enableWeightedMovingVarianceBGS);
-    cvWriteInt(fs, "enableMixtureOfGaussianV1BGS", enableMixtureOfGaussianV1BGS);
+//    cvWriteInt(fs, "enableMixtureOfGaussianV1BGS", enableMixtureOfGaussianV1BGS);
     cvWriteInt(fs, "enableMixtureOfGaussianV2BGS", enableMixtureOfGaussianV2BGS);
     cvWriteInt(fs, "enableAdaptiveBackgroundLearning", enableAdaptiveBackgroundLearning);
 #if CV_MAJOR_VERSION >= 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
@@ -565,7 +565,7 @@ namespace bgslibrary
     enableStaticFrameDifferenceBGS = cvReadIntByName(fs, 0, "enableStaticFrameDifferenceBGS", false);
     enableWeightedMovingMeanBGS = cvReadIntByName(fs, 0, "enableWeightedMovingMeanBGS", false);
     enableWeightedMovingVarianceBGS = cvReadIntByName(fs, 0, "enableWeightedMovingVarianceBGS", false);
-    enableMixtureOfGaussianV1BGS = cvReadIntByName(fs, 0, "enableMixtureOfGaussianV1BGS", false);
+//    enableMixtureOfGaussianV1BGS = cvReadIntByName(fs, 0, "enableMixtureOfGaussianV1BGS", false);
     enableMixtureOfGaussianV2BGS = cvReadIntByName(fs, 0, "enableMixtureOfGaussianV2BGS", false);
     enableAdaptiveBackgroundLearning = cvReadIntByName(fs, 0, "enableAdaptiveBackgroundLearning", false);
 #if CV_MAJOR_VERSION >= 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
