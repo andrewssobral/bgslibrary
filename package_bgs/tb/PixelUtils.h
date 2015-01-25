@@ -18,9 +18,9 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 /*
 Code provided by Thierry BOUWMANS
 
-Maitre de Conférences
+Maitre de Confï¿½rences
 Laboratoire MIA
-Université de La Rochelle
+Universitï¿½ de La Rochelle
 17000 La Rochelle
 France
 tbouwman@univ-lr.fr
@@ -29,6 +29,8 @@ http://sites.google.com/site/thierrybouwmans/
 */
 #include <stdio.h>
 #include <opencv2/opencv.hpp>
+#include <opencv2/imgproc/imgproc_c.h>
+#include <opencv2/imgproc/types_c.h>
 
 
 class PixelUtils

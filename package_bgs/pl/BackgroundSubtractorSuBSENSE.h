@@ -43,6 +43,7 @@ public:
 	virtual void refreshModel(float fSamplesRefreshFrac, bool bForceFGUpdate=false);
 	//! primary model update function; the learning param is used to override the internal learning thresholds (ignored when <= 0)
 	virtual void operator()(cv::InputArray image, cv::OutputArray fgmask, double learningRateOverride=0);
+	virtual void apply(cv::InputArray image, cv::OutputArray fgmask, double learningRateOverride = 0);
 	//! returns a copy of the latest reconstructed background image
 	void getBackgroundImage(cv::OutputArray backgroundImage) const;
 	//! returns a copy of the latest reconstructed background descriptors image

@@ -38,6 +38,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #define TYPES_H
 
 #include <opencv2/opencv.hpp>
+#include <opencv2/imgproc/imgproc_c.h>
+#include <opencv2/imgproc/types_c.h>
 
 namespace lb_library
 {

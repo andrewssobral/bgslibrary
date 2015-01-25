@@ -99,7 +99,7 @@ void SJN_MultiCueBGS::process(const cv::Mat &img_input, cv::Mat &img_output, cv:
   }
   delete frame;
 
-  cv::Mat temp(result_image, TRUE);
+  cv::Mat temp = cv::cvarrToMat(result_image, TRUE);
   temp.copyTo(img_output);
 
   cvReleaseImage(&result_image);
@@ -520,7 +520,7 @@ void SJN_MultiCueBGS::GaussianFiltering(IplImage* frame, uchar*** aFilteredFrame
   }
   else
   {
-    cv::Mat temp_img(frame, TRUE);
+    cv::Mat temp_img = cv::cvarrToMat(frame, true);
     cv::GaussianBlur(temp_img, temp_img, cv::Size(7, 7), dSigma);
 
     //Store results into aFilteredFrame[][][]

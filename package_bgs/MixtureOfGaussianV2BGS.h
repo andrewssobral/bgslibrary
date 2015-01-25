@@ -27,7 +27,7 @@ class MixtureOfGaussianV2BGS : public IBGS
 {
 private:
   bool firstTime;
-  cv::BackgroundSubtractorMOG2 mog;
+  cv::Ptr<cv::BackgroundSubtractorMOG2> mog;
   cv::Mat img_foreground;
   double alpha;
   bool enableThreshold;

@@ -717,6 +717,12 @@ void BackgroundSubtractorSuBSENSE::getBackgroundImage(cv::OutputArray background
 	oAvgBGImg.convertTo(backgroundImage,CV_8U);
 }
 
+
+void BackgroundSubtractorSuBSENSE::apply(cv::InputArray image, cv::OutputArray fgmask, double learningRateOverride)
+{
+	operator()(image, fgmask, learningRateOverride);
+}
+
 void BackgroundSubtractorSuBSENSE::getBackgroundDescriptorsImage(cv::OutputArray backgroundDescImage) const {
 	CV_Assert(LBSP::DESC_SIZE==2);
 	CV_Assert(m_bInitialized);

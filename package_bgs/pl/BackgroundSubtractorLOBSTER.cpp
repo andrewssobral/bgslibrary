@@ -288,6 +288,12 @@ void BackgroundSubtractorLOBSTER::operator()(cv::InputArray _image, cv::OutputAr
 	m_oLastFGMask.copyTo(oCurrFGMask);
 }
 
+void BackgroundSubtractorLOBSTER::apply(cv::InputArray image, cv::OutputArray fgmask, double learningRateOverride)
+{
+	operator()(image, fgmask, learningRateOverride);
+}
+
+
 void BackgroundSubtractorLOBSTER::getBackgroundImage(cv::OutputArray backgroundImage) const {
 	CV_DbgAssert(m_bInitialized);
 	cv::Mat oAvgBGImg = cv::Mat::zeros(m_oImgSize,CV_32FC((int)m_nImgChannels));

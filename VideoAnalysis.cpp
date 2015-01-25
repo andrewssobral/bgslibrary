@@ -15,6 +15,7 @@ You should have received a copy of the GNU General Public License
 along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "VideoAnalysis.h"
+#include <opencv2/highgui/highgui_c.h>
 
 namespace bgslibrary
 {
@@ -47,8 +48,8 @@ namespace bgslibrary
     if (argc <= 1 || cmd.get<bool>("help") == true)
     {
       std::cout << "Usage: " << argv[0] << " [options]" << std::endl;
-      std::cout << "Avaible options:" << std::endl;
-      cmd.printParams();
+      std::cout << "Available options:" << std::endl;
+      cmd.printMessage();
       return false;
     }
 

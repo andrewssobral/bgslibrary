@@ -27,10 +27,14 @@
 using namespace ck;
 
 #if defined(__MINGW32__) || defined(__MINGW64__)
-#include <cvaux.h>
+//#include <cvaux.h>
 #else
-#include <opencv/cvaux.h>
+//#include <opencv/cvaux.h>
 #endif
+
+#include <opencv2/imgproc/imgproc_c.h>
+#include <opencv2/imgproc/types_c.h>
+#include <opencv2/video/tracking_c.h>
 
 #include "MEHistogram.hpp"
 #include "MEImage.hpp"

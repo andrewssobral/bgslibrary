@@ -44,7 +44,9 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #define _BGS_H_
 
 #include <opencv2/opencv.hpp>
-
+#include <opencv2/core/types_c.h>
+#include <opencv2/core/core_c.h>
+#include <opencv2/imgproc/imgproc_c.h>
 
 // TODO check these defines are not used (or not redundant with real params)
 #define MAX_LBP_MODE_NUM	5

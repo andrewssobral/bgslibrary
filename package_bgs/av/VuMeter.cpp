@@ -60,8 +60,8 @@ void VuMeter::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &im
     cvCvtColor(frame,gray,CV_RGB2GRAY);
   
   bgs.UpdateBackground(gray,background,mask);
-  cv::Mat img_foreground(mask);
-  cv::Mat img_bkg(background);
+  cv::Mat img_foreground = cv::cvarrToMat(mask);
+  cv::Mat img_bkg = cv::cvarrToMat(background);
 
   if(enableFilter)
   {

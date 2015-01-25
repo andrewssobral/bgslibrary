@@ -26,7 +26,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #include "package_bgs/StaticFrameDifferenceBGS.h"
 #include "package_bgs/WeightedMovingMeanBGS.h"
 #include "package_bgs/WeightedMovingVarianceBGS.h"
-#include "package_bgs/MixtureOfGaussianV1BGS.h"
+//#include "package_bgs/MixtureOfGaussianV1BGS.h"
 #include "package_bgs/MixtureOfGaussianV2BGS.h"
 #include "package_bgs/AdaptiveBackgroundLearning.h"
 #if CV_MAJOR_VERSION >= 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
@@ -104,9 +104,9 @@ namespace bgslibrary
     WeightedMovingVarianceBGS* weightedMovingVariance;
     bool enableWeightedMovingVarianceBGS;
 
-    cv::Mat img_mog1;
-    MixtureOfGaussianV1BGS* mixtureOfGaussianV1BGS;
-    bool enableMixtureOfGaussianV1BGS;
+//    cv::Mat img_mog1;
+//    MixtureOfGaussianV1BGS* mixtureOfGaussianV1BGS;
+//    bool enableMixtureOfGaussianV1BGS;
 
     cv::Mat img_mog2;
     MixtureOfGaussianV2BGS* mixtureOfGaussianV2BGS;

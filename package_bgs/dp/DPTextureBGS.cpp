@@ -120,7 +120,7 @@ void DPTextureBGS::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Ma
   //  cvErode(fgMask.Ptr(), fgMask.Ptr(), erodeElement, 1);
   //}
 
-  cv::Mat foreground(fgMask.Ptr());
+  cv::Mat foreground = cv::cvarrToMat(fgMask.Ptr());
   if(!foreground.empty())
     foreground.copyTo(img_output);
   

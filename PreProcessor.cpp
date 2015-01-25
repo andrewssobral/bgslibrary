@@ -78,6 +78,12 @@ namespace bgslibrary
 
   void PreProcessor::rotate(const cv::Mat &img_input, cv::Mat &img_output, float angle)
   {
+	  cv::Mat rotMat = cv::getRotationMatrix2D(
+			  cv::Point2f((float)img_input.cols / 2.f, (float)img_input.rows / 2.f),
+			  angle, 1.0);
+
+	  cv::warpAffine(img_input, img_output, rotMat, img_output.size());
+#if 0
     IplImage* image = new IplImage(img_input);
 
     //IplImage *rotatedImage = cvCreateImage(cvSize(480,320), IPL_DEPTH_8U, image->nChannels);
@@ -101,6 +107,7 @@ namespace bgslibrary
     cvReleaseImage(&image);
     cvReleaseImage(&rotatedImage);
     cvReleaseMat(&mapMatrix);
+#endif
   }
 
   void PreProcessor::applyCanny(const cv::Mat &img_input, cv::Mat &img_output)
@@ -116,10 +123,10 @@ namespace bgslibrary
 
     cv::Mat img_canny;
     cv::Canny(
-      img_input, // image – Single-channel 8-bit input image
-      img_canny,  // edges – The output edge map. It will have the same size and the same type as image
-      100,       // threshold1 – The first threshold for the hysteresis procedure
-      200);      // threshold2 – The second threshold for the hysteresis procedure
+      img_input, // image ï¿½ Single-channel 8-bit input image
+      img_canny,  // edges ï¿½ The output edge map. It will have the same size and the same type as image
+      100,       // threshold1 ï¿½ The first threshold for the hysteresis procedure
+      200);      // threshold2 ï¿½ The second threshold for the hysteresis procedure
     cv::threshold(img_canny, img_canny, 128, 255, cv::THRESH_BINARY_INV);
 
     img_canny.copyTo(img_output);
