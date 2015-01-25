@@ -79,9 +79,9 @@ List of the algorithms available in BGSLibrary
 
 * *  (1) Adaptive Median of [McFarlane and Schofield (1995)](http://link.springer.com/article/10.1007%2FBF01215814).
 
-* *  (1) Temporal Median of [Cucchiara et al (2003)](http://cvrr.ucsd.edu/aton/publications/pdfpapers/96_cucchiara_r.PDF) and [Calderara et al (2006)](http://dl.acm.org/citation.cfm?id=1178814), ([extra paper](http://ieeexplore.ieee.org/iel5/34/27651/01233909.pdf?tp=a&amp;arnumber=1233909&amp;authDecision=-203))
+* *  (1) Temporal Median of [Cucchiara et al (2003)](http://cvrr.ucsd.edu/aton/publications/pdfpapers/96_cucchiara_r.PDF) and [Calderara et al (2006)](http://dl.acm.org/citation.cfm?id=1178814) ([extra paper](http://ieeexplore.ieee.org/iel5/34/27651/01233909.pdf?tp=a&amp;arnumber=1233909&amp;authDecision=-203)).
 
-* *  (11) Sigma-Delta of [Manzanera and Richefeu (2004)](http://perso.ensta-paristech.fr/~manzaner/Publis/icvgip04.pdf),  ([extra paper](http://perso.ensta-paristech.fr/~manzaner/Publis/icip09.pdf))
+* *  (11) Sigma-Delta of [Manzanera and Richefeu (2004)](http://perso.ensta-paristech.fr/~manzaner/Publis/icvgip04.pdf)  ([extra paper](http://perso.ensta-paristech.fr/~manzaner/Publis/icip09.pdf)).
 
 * Fuzzy based methods:
 * * (2) Fuzzy Sugeno Integral (with Adaptive-Selective Update) of [Hongxun Zhang and De Xu (2006)](http://www.springerlink.com/content/m73165175218731l/).
@@ -100,7 +100,7 @@ List of the algorithms available in BGSLibrary
 
 * * (0) Gaussian Mixture Model of [KadewTraKuPong and Bowden (2001)](http://info.ee.surrey.ac.uk/CVSSP/Publications/papers/KaewTraKulPong-AVBS01.pdf).
 
-* * (0) Gaussian Mixture Model of [Zivkovic (2004)](http://staff.science.uva.nl/~zivkovic/Publications/zivkovic2004ICPR.pdf), ([extra paper](http://staff.science.uva.nl/~zivkovic/Publications/zivkovicPRL2006.pdf).
+* * (0) Gaussian Mixture Model of [Zivkovic (2004)](http://staff.science.uva.nl/~zivkovic/Publications/zivkovic2004ICPR.pdf) ([extra paper](http://staff.science.uva.nl/~zivkovic/Publications/zivkovicPRL2006.pdf)).
 
 * * (1) Gaussian Mixture Model of [Zivkovic (2004)](http://staff.science.uva.nl/~zivkovic/Publications/zivkovic2004ICPR.pdf).
 
