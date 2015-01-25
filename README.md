@@ -12,13 +12,19 @@ BGSLibrary
 
 A Background Subtraction Library
 
-Last Page Update: **19/10/2014**
+Last Page Update: **25/01/2015**
 
 Latest Library Version: **1.9.2** (see Release Notes for more info) 
 
-The BGSLibrary was developed by [Andrews Sobral](https://sites.google.com/site/andrewssobral) and provides a C++ framework to perform background subtraction (BGS). The code works either on Windows or on Linux. Currently the library offers **36** BGS algorithms (*the [PBAS](https://sites.google.com/site/pbassegmenter/home) algorithm was removed from BGSLibrary because it is based on patented algorithm [ViBE](http://www2.ulg.ac.be/telecom/research/vibe/)*). A large amount of algorithms were provided by several authors. The source code is available under GNU GPL v3 license, the library is free and open source for academic purposes¹. Any user can be download latest project source code using SVN client. In Windows, a demo project for Visual Studio 2010 is provided. An executable version of BGSLibrary is available for Windows 32 bits and 64 bits. For Linux and Mac users, a Makefile can be used to compile all files and generate an executable example.
+The BGSLibrary was developed by [Andrews Sobral](https://sites.google.com/site/andrewssobral) and provides an easy-to-use C++ framework based on [OpenCV](http://www.opencv.org/) to perform background subtraction (BGS) in videos. The BGSLibrary compiles under Linux, Mac OS X and Windows. Currently the library offers **37**¹ BGS algorithms. A large amount of algorithms were provided by several authors. The source code is available under GNU GPL v3 license, the library is free and open source for academic purposes².
 
-***¹ If you want to use bgslibrary for commercial purposes, you needs to contact the authors of your desired background subtraction method to check if they are agree with you. Please, read this for more info: [Can I use a GPLv3 software as a part of my commercial application?](http://stackoverflow.com/questions/2280742/gplv3-can-i-use-these-programs-in-commercial)***
+For Windows users, a demo project for Visual Studio 2010 is provided. An executable version of BGSLibrary is available for Windows 32 bits and 64 bits. For Linux and Mac users, a Makefile can be used to compile all files.
+
+Note: the BGSLibrary is based on OpenCV 2.X, if you want to use with OpenCV 3.x please check-out our [opencv3](https://github.com/andrewssobral/bgslibrary/tree/opencv3) branch.
+
+***¹ The [PBAS](https://sites.google.com/site/pbassegmenter/home) algorithm was removed from BGSLibrary because it is based on patented algorithm [ViBE](http://www2.ulg.ac.be/telecom/research/vibe/).***
+
+***² If you want to use bgslibrary for commercial purposes, you needs to contact the authors of your desired background subtraction method to check if they are agree with you. Please, read this for more info: [Can I use a GPLv3 software as a part of my commercial application?](http://stackoverflow.com/questions/2280742/gplv3-can-i-use-these-programs-in-commercial).***
 
 <p align="center"><img src="https://sites.google.com/site/andrewssobral/please-donate-cat3.jpg" /></p>
 
@@ -43,9 +49,10 @@ month     = {Jun},
 url       = {https://github.com/andrewssobral/bgslibrary}
 }
 ```
+or:
 Sobral, Andrews. BGSLibrary: An OpenCV C++ Background Subtraction Library. IX Workshop de Visão Computacional (WVC'2013), Rio de Janeiro, Brazil, Jun. 2013. ([PDF](http://iris.sel.eesc.usp.br/wvc/Anais_WVC2013/Poster/2/15.pdf) in brazilian portuguese). 
 
-One chapter about the BGSLibrary will be published in the Handbook on "[Background Modeling and Foreground Detection for Video Surveillance](https://sites.google.com/site/backgroundmodeling/)".
+One chapter about the BGSLibrary has been published in the Handbook on "[Background Modeling and Foreground Detection for Video Surveillance](https://sites.google.com/site/backgroundmodeling/)".
 
 References
 ---------------
@@ -56,109 +63,106 @@ Some algorithms of the BGSLibrary was used successfully in the following papers:
 List of the algorithms available in BGSLibrary
 ----------------------------------------------
 * Basic methods (i.e. mean and variance over time):
-* *  Static Frame Difference 
+* *  Static Frame Difference. 
 
-* *  Frame Difference
+* *  Frame Difference.
 
-* *  Weighted Moving Mean
+* *  Weighted Moving Mean.
 
-* *  Weighted Moving Variance
+* *  Weighted Moving Variance.
  
-* *  Adaptive Background Learning
+* *  Adaptive Background Learning.
 
-* *  Adaptive-Selective Background Learning
+* *  Adaptive-Selective Background Learning.
  
-* *  (1) Temporal Mean
+* *  (1) Temporal Mean.
 
-* *  (1) Adaptive Median of McFarlane and Schofield (1995) ([paper](http://link.springer.com/article/10.1007%2FBF01215814))
+* *  (1) Adaptive Median of [McFarlane and Schofield (1995)](http://link.springer.com/article/10.1007%2FBF01215814).
 
-* *  (1) Temporal Median of Cucchiara et al (2003) and Calderara et al (2006)  ([paper1](http://ieeexplore.ieee.org/iel5/34/27651/01233909.pdf?tp=a&amp;arnumber=1233909&amp;authDecision=-203))
-([paper2](http://dl.acm.org/citation.cfm?id=1178814))
-([paper3](http://cvrr.ucsd.edu/aton/publications/pdfpapers/96_cucchiara_r.PDF))
-* *  (11) Sigma-Delta of Manzanera and Richefeu (2004) ([paper1](http://perso.ensta-paristech.fr/~manzaner/Publis/icvgip04.pdf)) ([paper2](http://perso.ensta-paristech.fr/~manzaner/Publis/icip09.pdf))
+* *  (1) Temporal Median of [Cucchiara et al (2003)](http://cvrr.ucsd.edu/aton/publications/pdfpapers/96_cucchiara_r.PDF) and [Calderara et al (2006)](http://dl.acm.org/citation.cfm?id=1178814) ([extra paper](http://ieeexplore.ieee.org/iel5/34/27651/01233909.pdf?tp=a&amp;arnumber=1233909&amp;authDecision=-203)).
+
+* *  (11) Sigma-Delta of [Manzanera and Richefeu (2004)](http://perso.ensta-paristech.fr/~manzaner/Publis/icvgip04.pdf)  ([extra paper](http://perso.ensta-paristech.fr/~manzaner/Publis/icip09.pdf)).
 
 * Fuzzy based methods:
-* * (2) Fuzzy Sugeno Integral (with Adaptive-Selective Update) of Hongxun Zhang and De Xu (2006) ([paper](http://www.springerlink.com/content/m73165175218731l/))
+* * (2) Fuzzy Sugeno Integral (with Adaptive-Selective Update) of [Hongxun Zhang and De Xu (2006)](http://www.springerlink.com/content/m73165175218731l/).
 
-* * (2) Fuzzy Choquet Integral (with Adaptive-Selective Update) of Baf et al (2008) ([paper](http://hal.inria.fr/docs/00/33/30/86/PDF/FUZZ-IEEE_2008.pdf))
+* * (2) Fuzzy Choquet Integral (with Adaptive-Selective Update) of [Baf et al (2008)](http://hal.inria.fr/docs/00/33/30/86/PDF/FUZZ-IEEE_2008.pdf).
 
-* * (3) Fuzzy Gaussian of Laurence Bender (adapted version of Wren (1997) with Sigari et al (2008) approach) ([paper](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.113.9538))
+* * (3) Fuzzy Gaussian of Laurence Bender (adapted version of [Wren (1997)](http://www.cvmt.dk/education/teaching/e06/CVG9/CV/CVG9ExercisePapers/pfinder.pdf) with [Sigari et al (2008)](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.113.9538) approach).
 
 * Single gaussian based methods:
-* * (1) Gaussian Average of Wren (1997) ([paper](http://www.cvmt.dk/education/teaching/e06/CVG9/CV/CVG9ExercisePapers/pfinder.pdf))
+* * (1) Gaussian Average of [Wren (1997)](http://www.cvmt.dk/education/teaching/e06/CVG9/CV/CVG9ExercisePapers/pfinder.pdf).
 
-* * (3) Simple Gaussian of Benezeth et al (2008) ([paper](http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=4760998))
+* * (3) Simple Gaussian of [Benezeth et al (2008)](http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=4760998).
 
 * Multiple gaussians based methods:
-* * (1) Gaussian Mixture Model of Stauffer and Grimson (1999) ([paper](http://www.ai.mit.edu/projects/vsam/Publications/stauffer_cvpr98_track.pdf))
+* * (1) Gaussian Mixture Model of [Stauffer and Grimson (1999)](http://www.ai.mit.edu/projects/vsam/Publications/stauffer_cvpr98_track.pdf).
 
-* * (0) Gaussian Mixture Model of KadewTraKuPong and Bowden (2001) ([paper](http://info.ee.surrey.ac.uk/CVSSP/Publications/papers/KaewTraKulPong-AVBS01.pdf))
+* * (0) Gaussian Mixture Model of [KadewTraKuPong and Bowden (2001)](http://info.ee.surrey.ac.uk/CVSSP/Publications/papers/KaewTraKulPong-AVBS01.pdf).
 
-* * (0) Gaussian Mixture Model of Zivkovic (2004) ([paper1](http://staff.science.uva.nl/~zivkovic/Publications/zivkovic2004ICPR.pdf))
-([paper2](http://staff.science.uva.nl/~zivkovic/Publications/zivkovicPRL2006.pdf))
+* * (0) Gaussian Mixture Model of [Zivkovic (2004)](http://staff.science.uva.nl/~zivkovic/Publications/zivkovic2004ICPR.pdf) ([extra paper](http://staff.science.uva.nl/~zivkovic/Publications/zivkovicPRL2006.pdf)).
 
-* * (1) Gaussian Mixture Model of Zivkovic (2004)
+* * (1) Gaussian Mixture Model of [Zivkovic (2004)](http://staff.science.uva.nl/~zivkovic/Publications/zivkovic2004ICPR.pdf).
 
-* * (3) Gaussian Mixture Model of Laurence Bender (implements the classic GMM with Mahalanobis distance) ([paper](http://hal.archives-ouvertes.fr/docs/00/33/82/06/PDF/RPCS_2008.pdf))
+* * (3) Gaussian Mixture Model implemented by Laurence Bender (classic GMM with Mahalanobis distance) ([related paper](http://hal.archives-ouvertes.fr/docs/00/33/82/06/PDF/RPCS_2008.pdf)).
 
 * Type-2 Fuzzy based methods:
-* * (2) Type-2 Fuzzy GMM-UM of Baf et al (2008) ([paper](http://hal.inria.fr/docs/00/33/65/12/PDF/ISVC_2008.pdf))
+* * (2) Type-2 Fuzzy GMM-UM of [Baf et al (2008)](http://hal.inria.fr/docs/00/33/65/12/PDF/ISVC_2008.pdf).
 
-* * (2) Type-2 Fuzzy GMM-UV of Baf et al (2008) ([paper](http://hal.inria.fr/docs/00/33/65/12/PDF/ISVC_2008.pdf))
+* * (2) Type-2 Fuzzy GMM-UV of [Baf et al (2008)](http://hal.inria.fr/docs/00/33/65/12/PDF/ISVC_2008.pdf).
 
-* * (2) Type-2 Fuzzy GMM-UM with MRF of Zhao et al (2012) ([paper1](http://link.springer.com/chapter/10.1007%2F978-3-642-35286-7_23))
-([paper2](https://sites.google.com/site/andrewssobral/2012_Zhao.pdf))
+* * (2) Type-2 Fuzzy GMM-UM with MRF of [Zhao et al (2012)](http://link.springer.com/chapter/10.1007%2F978-3-642-35286-7_23).
 
-* * (2) Type-2 Fuzzy GMM-UV with MRF of Zhao et al (2012) ([paper1](http://link.springer.com/chapter/10.1007%2F978-3-642-35286-7_23))
-([paper2](https://sites.google.com/site/andrewssobral/2012_Zhao.pdf))
+* * (2) Type-2 Fuzzy GMM-UV with MRF of [Zhao et al (2012)](http://link.springer.com/chapter/10.1007%2F978-3-642-35286-7_23).
 
 * Multiple features based methods (i.e. color, texture and edge features):
-* * (1) Texture BGS of Heikkila et al. (2006) ([paper](http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=1597122&tag=1))
+* * (1) Texture BGS of [Heikkila et al. (2006)](http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=1597122&tag=1).
 
-* * (8) Texture-Based Foreground Detection with MRF of Csaba Kertész (2011) ([paper](http://www.sersc.org/journals/IJSIP/vol4_no4/5.pdf))
+* * (8) Texture-Based Foreground Detection with MRF of [Csaba Kertész (2011)](http://www.sersc.org/journals/IJSIP/vol4_no4/5.pdf).
 
-* * (4) Multi-Layer BGS of Jian Yao and Jean-Marc Odobez (2007) ([paper](http://www.idiap.ch/~odobez/human-detection/doc/YaoOdobezCVPR-VS2007.pdf))
+* * (4) Multi-Layer BGS of [Jian Yao and Jean-Marc Odobez (2007)](http://www.idiap.ch/~odobez/human-detection/doc/YaoOdobezCVPR-VS2007.pdf).
 
-* * (10) MultiCue BGS of SeungJong Noh and Moongu Jeon (2012) ([paper](http://link.springer.com/chapter/10.1007%2F978-3-642-37431-9_38))
+* * (10) MultiCue BGS of [SeungJong Noh and Moongu Jeon (2012)](http://link.springer.com/chapter/10.1007%2F978-3-642-37431-9_38).
 
-* * (12) SuBSENSE of Pierre-Luc et al. (2014) ([paper](http://www.polymtl.ca/litiv/doc/StCharlesetalCVPRW2014.pdf))
+* * (12) SuBSENSE of [Pierre-Luc et al. (2014)](http://www.polymtl.ca/litiv/doc/StCharlesetalCVPRW2014.pdf).
 
-* * (12) LOBSTER of Pierre-Luc and Guillaume-Alexandre (2014) ([paper](http://www.polymtl.ca/litiv/doc/StCharlesBilodeauWACV2014.pdf))
+* * (12) LOBSTER of [Pierre-Luc and Guillaume-Alexandre (2014)](http://www.polymtl.ca/litiv/doc/StCharlesBilodeauWACV2014.pdf).
 
 * Non-parametric methods:
-* * ~~(5) Pixel-Based Adaptive Segmenter (PBAS) of Hofmann et al (2012)~~ 
-**The PBAS algorithm was removed from BGSLibrary because it is based on patented algorithm [ViBE](http://www2.ulg.ac.be/telecom/research/vibe/).** ([paper](http://www.mmk.ei.tum.de/publ//pdf/12/12hof2.pdf))
+* * ~~(5) Pixel-Based Adaptive Segmenter (PBAS) of [Hofmann et al (2012)](http://www.mmk.ei.tum.de/publ//pdf/12/12hof2.pdf)~~ **The PBAS algorithm was removed from BGSLibrary because it is based on patented algorithm [ViBE](http://www2.ulg.ac.be/telecom/research/vibe/).**
 
-* * (0) GMG of Godbehere et al (2012) ([paper](http://goldberg.berkeley.edu/pubs/acc-2012-visual-tracking-final.pdf))
+* * (0) GMG of [Godbehere et al (2012)](http://goldberg.berkeley.edu/pubs/acc-2012-visual-tracking-final.pdf).
 
-* * (6) VuMeter of Goyat et al (2006) ([paper](http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=1706852))
+* * (6) VuMeter of [Goyat et al (2006)](http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=1706852).
 
-* * (7) KDE of Elgammal et al (2000) ([paper](http://www.cs.umd.edu/users/elgammal/docs/bgmodel_ECCV00_postfinal.pdf))
+* * (7) KDE of [Elgammal et al (2000)](http://www.cs.umd.edu/users/elgammal/docs/bgmodel_ECCV00_postfinal.pdf).
 
-* * (9) IMBS of Domenico Bloisi and Luca Iocchi (2012) ([paper](http://www.dis.uniroma1.it/~bloisi/papers/bloisi-iocchi-imbs.pdf))
+* * (9) IMBS of [Domenico Bloisi and Luca Iocchi (2012)](http://www.dis.uniroma1.it/~bloisi/papers/bloisi-iocchi-imbs.pdf).
+
+* * (0) [KNN Background Subtractor](http://docs.opencv.org/trunk/modules/video/doc/motion_analysis_and_object_tracking.html#backgroundsubtractorknn) (available only in opencv3 branch).
 
 * Subspace-based methods:
-* * (1) Eigenbackground / SL-PCA of Oliver et al (2000) ([paper](http://cis.temple.edu/~latecki/Courses/CIS750-03/Papers/oliver00.pdf))
+* * (1) Eigenbackground / SL-PCA of [Oliver et al (2000)](http://cis.temple.edu/~latecki/Courses/CIS750-03/Papers/oliver00.pdf).
 
 * Neural and neuro-fuzzy methods:
-* * (3) Adaptive SOM of Maddalena and Petrosino (2008) ([paper](http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=4527178))
+* * (3) Adaptive SOM of [Maddalena and Petrosino (2008)](http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=4527178).
 
-* * (3) Fuzzy Adaptive SOM of Maddalena and Petrosino (2010) ([paper](http://www.springerlink.com/content/112681k31222013n/))
+* * (3) Fuzzy Adaptive SOM of [Maddalena and Petrosino (2010)](http://www.springerlink.com/content/112681k31222013n/).
 
 Legend:
-* (0) native from [OpenCV](http://docs.opencv.org/trunk/doc/tutorials/video/background_subtraction/background_subtraction.html)
-* (1) thanks to [Donovan Parks](http://dparks.wikidot.com/source-code)
-* (2) thanks to [Thierry Bouwmans](http://sites.google.com/site/thierrybouwmans/), [Fida EL BAF](https://sites.google.com/site/fidaelbaf/) and Zhenjie Zhao
-* (3) thanks to [Laurence Bender](http://scene.sourceforge.net/)
-* (4) thanks to [Jian Yao and Jean-Marc Odobez](http://www.idiap.ch/~odobez/human-detection/related-publications.html)
-* (5) thanks to [Martin Hofmann, Philipp Tiefenbacher and Gerhard Rigoll](https://sites.google.com/site/pbassegmenter/home)
-* (6) thanks to Lionel Robinault and [Antoine Vacavant](http://isit.u-clermont1.fr/~anvacava/index.html)
-* (7) thanks to [Ahmed Elgammal](http://www.cs.rutgers.edu/~elgammal/Web_Page/Ahmed_Elgammal_Web_Page.html)
-* (8) thanks to [Csaba Kertész](http://www.linkedin.com/pub/csaba-kert%C3%A9sz/8/341/6b6)
-* (9) thanks to [Domenico Daniele Bloisi](http://www.dis.uniroma1.it/~bloisi/software/imbs.html)
-* (10) thanks to [SeungJong Noh](http://www.informatik.uni-trier.de/~ley/pers/hd/n/Noh:SeungJong)
-* (11) thanks to [Benjamin Laugraud](http://www.montefiore.ulg.ac.be/~blaugraud/index.php)
-* (12) thanks to [Pierre-Luc St-Charles](http://scholar.google.ca/citations?user=30mr9vYAAAAJ&hl=en)
+* (0) native from [OpenCV](http://docs.opencv.org/trunk/doc/tutorials/video/background_subtraction/background_subtraction.html).
+* (1) thanks to [Donovan Parks](http://dparks.wikidot.com/source-code).
+* (2) thanks to [Thierry Bouwmans](http://sites.google.com/site/thierrybouwmans/), [Fida EL BAF](https://sites.google.com/site/fidaelbaf/) and Zhenjie Zhao.
+* (3) thanks to [Laurence Bender](http://scene.sourceforge.net/).
+* (4) thanks to [Jian Yao and Jean-Marc Odobez](http://www.idiap.ch/~odobez/human-detection/related-publications.html).
+* (5) thanks to [Martin Hofmann, Philipp Tiefenbacher and Gerhard Rigoll](https://sites.google.com/site/pbassegmenter/home).
+* (6) thanks to Lionel Robinault and [Antoine Vacavant](http://isit.u-clermont1.fr/~anvacava/index.html).
+* (7) thanks to [Ahmed Elgammal](http://www.cs.rutgers.edu/~elgammal/Web_Page/Ahmed_Elgammal_Web_Page.html).
+* (8) thanks to [Csaba Kertész](http://www.linkedin.com/pub/csaba-kert%C3%A9sz/8/341/6b6).
+* (9) thanks to [Domenico Daniele Bloisi](http://www.dis.uniroma1.it/~bloisi/software/imbs.html).
+* (10) thanks to [SeungJong Noh](http://www.informatik.uni-trier.de/~ley/pers/hd/n/Noh:SeungJong).
+* (11) thanks to [Benjamin Laugraud](http://www.montefiore.ulg.ac.be/~blaugraud/index.php).
+* (12) thanks to [Pierre-Luc St-Charles](http://scholar.google.ca/citations?user=30mr9vYAAAAJ&hl=en).
 
 Full list of BGSLibrary collaborators
 ----------------------------------------------
