@@ -101,7 +101,7 @@ int main(int argc, char **argv)
   IBGS *bgs;
 
   /*** Default Package ***/
-  //bgs = new FrameDifferenceBGS;
+  bgs = new FrameDifferenceBGS;
   //bgs = new StaticFrameDifferenceBGS;
   //bgs = new WeightedMovingMeanBGS;
   //bgs = new WeightedMovingVarianceBGS;
@@ -110,7 +110,7 @@ int main(int argc, char **argv)
   //bgs = new AdaptiveBackgroundLearning;
   //bgs = new AdaptiveSelectiveBackgroundLearning;
   //bgs = new GMG;
-  bgs = new KNNBGS();
+  //bgs = new KNNBGS();
   
   /*** DP Package (thanks to Donovan Parks) ***/
   //bgs = new DPAdaptiveMedianBGS;
