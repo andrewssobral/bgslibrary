@@ -19,7 +19,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace bgslibrary
 {
-  VideoAnalysis::VideoAnalysis() : use_file(false), use_camera(false), cameraIndex(0), use_comp(false), frameToStop(0)
+  VideoAnalysis::VideoAnalysis() : useVideo(false), useCamera(false), cameraId(0), frameToStop(0)
   {
     std::cout << "VideoAnalysis()" << std::endl;
   }
@@ -31,21 +31,15 @@ namespace bgslibrary
 
   bool VideoAnalysis::setup(int argc, const char **argv)
   {
-    bool flag = false;
-
-    const char* keys =
-      "{hp|help|false|Print help message}"
-      "{uf|use_file|false|Use video file}"
-      "{fn|filename||Specify video file}"
-      "{uc|use_cam|false|Use camera}"
-      "{ca|camera|0|Specify camera index}"
-      "{co|use_comp|false|Use mask comparator}"
-      "{st|stopAt|0|Frame number to stop}"
-      "{im|imgref||Specify image file}"
+    const std::string keys =
+      "{h help ? |   | print this message     }"
+      "{i input  |   | input video file       }"
+      "{c camera | 0 | camera id              }"
+      "{s stop   | 0 | stop at frame number s }"
       ;
     cv::CommandLineParser cmd(argc, argv, keys);
 
-    if (argc <= 1 || cmd.get<bool>("help") == true)
+    if (argc <= 1 || cmd.has("help"))
     {
       std::cout << "Usage: " << argv[0] << " [options]" << std::endl;
       std::cout << "Available options:" << std::endl;
@@ -53,44 +47,26 @@ namespace bgslibrary
       return false;
     }
 
-    use_file = cmd.get<bool>("use_file");
-    if (use_file)
+    if (!cmd.check())
     {
-      filename = cmd.get<std::string>("filename");
-
-      if (filename.empty())
-      {
-        std::cout << "Specify filename" << std::endl;
-        return false;
-      }
-
-      flag = true;
+      cmd.printErrors();
+      return false;
     }
 
-    use_camera = cmd.get<bool>("use_cam");
-    if (use_camera)
-    {
-      cameraIndex = cmd.get<int>("camera");
-      flag = true;
-    }
+    filename = cmd.get<std::string>("i");
+    cameraId = cmd.get<int>("c");
+    frameToStop = cmd.get<int>("s");
 
-    if (flag == true)
-    {
-      use_comp = cmd.get<bool>("use_comp");
-      if (use_comp)
-      {
-        frameToStop = cmd.get<int>("stopAt");
-        imgref = cmd.get<std::string>("imgref");
+    if (!filename.empty())
+      useVideo = true;
+    else
+      if (cameraId >= 0)
+        useCamera = true;
 
-        if (imgref.empty())
-        {
-          std::cout << "Specify image reference" << std::endl;
-          return false;
-        }
-      }
-    }
-
-    return flag;
+    if (useVideo || useCamera)
+      return true;
+    else
+      return false;
   }
 
   void VideoAnalysis::start()
@@ -104,19 +80,18 @@ namespace bgslibrary
 
       frameProcessor->init();
       frameProcessor->frameToStop = frameToStop;
-      frameProcessor->imgref = imgref;
 
       videoCapture->setFrameProcessor(frameProcessor);
 
-      if (use_file)
+      if (useVideo)
         videoCapture->setVideo(filename);
 
-      if (use_camera)
-        videoCapture->setCamera(cameraIndex);
+      if (useCamera)
+        videoCapture->setCamera(cameraId);
 
       videoCapture->start();
 
-      if (use_file || use_camera)
+      if (useVideo || useCamera)
         break;
 
       frameProcessor->finish();

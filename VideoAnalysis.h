@@ -29,14 +29,12 @@ namespace bgslibrary
   private:
     VideoCapture* videoCapture;
     FrameProcessor* frameProcessor;
-    bool use_file;
+    bool useVideo;
     std::string filename;
-    bool use_camera;
-    int cameraIndex;
-    bool use_comp;
+    bool useCamera;
+    int cameraId;
     long frameToStop;
-    std::string imgref;
-
+    
   public:
     VideoAnalysis();
     ~VideoAnalysis();

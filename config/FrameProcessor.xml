@@ -7,10 +7,8 @@
 <enableStaticFrameDifferenceBGS>0</enableStaticFrameDifferenceBGS>
 <enableWeightedMovingMeanBGS>0</enableWeightedMovingMeanBGS>
 <enableWeightedMovingVarianceBGS>0</enableWeightedMovingVarianceBGS>
-<enableMixtureOfGaussianV1BGS>0</enableMixtureOfGaussianV1BGS>
 <enableMixtureOfGaussianV2BGS>0</enableMixtureOfGaussianV2BGS>
 <enableAdaptiveBackgroundLearning>0</enableAdaptiveBackgroundLearning>
-<enableGMG>0</enableGMG>
 <enableDPAdaptiveMedianBGS>0</enableDPAdaptiveMedianBGS>
 <enableDPGrimsonGMMBGS>0</enableDPGrimsonGMMBGS>
 <enableDPZivkovicAGMMBGS>0</enableDPZivkovicAGMMBGS>

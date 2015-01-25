@@ -1,3 +1,3 @@
 @echo off
 cls
-bgslibrary.exe -uf -fn=dataset/video.avi
+bgslibrary.exe -i=dataset/video.avi

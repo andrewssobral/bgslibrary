@@ -118,10 +118,13 @@ namespace bgslibrary
 
   void VideoCapture::setUpVideo()
   {
+    std::cout << "Openning: " << videoFileName << std::endl;
     capture = cvCaptureFromFile(videoFileName.c_str());
 
     if (!capture)
       std::cerr << "Cannot open video file " << videoFileName << std::endl;
+    else
+      std::cout << "OK" << std::endl;
   }
 
   void VideoCapture::start()
@@ -136,7 +139,9 @@ namespace bgslibrary
     std::cout << "input->fps:" << input_fps << std::endl;
 
     IplImage* frame1 = cvQueryFrame(capture);
-    frame = cvCreateImage(cvSize((int)((frame1->width*input_resize_percent) / 100), (int)((frame1->height*input_resize_percent) / 100)), frame1->depth, frame1->nChannels);
+    frame = cvCreateImage(cvSize(
+      (int)((frame1->width*input_resize_percent) / 100), 
+      (int)((frame1->height*input_resize_percent) / 100)), frame1->depth, frame1->nChannels);
     //cvCreateImage(cvSize(frame1->width/input_resize_factor, frame1->height/input_resize_factor), frame1->depth, frame1->nChannels);
     std::cout << "input->resize_percent:" << input_resize_percent << std::endl;
     std::cout << "input->width:" << frame->width << std::endl;

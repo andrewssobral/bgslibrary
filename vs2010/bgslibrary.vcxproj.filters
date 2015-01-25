@@ -327,6 +327,9 @@
     <ClCompile Include="..\package_bgs\pl\SuBSENSE.cpp">
       <Filter>Header Files\package_bgs\pl</Filter>
     </ClCompile>
+    <ClCompile Include="..\package_bgs\KNNBGS.cpp">
+      <Filter>Header Files\package_bgs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\package_bgs\AdaptiveBackgroundLearning.h">
@@ -625,6 +628,9 @@
     </ClInclude>
     <ClInclude Include="..\package_bgs\pl\SuBSENSE.h">
       <Filter>Header Files\package_bgs\pl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\package_bgs\KNNBGS.h">
+      <Filter>Header Files\package_bgs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
