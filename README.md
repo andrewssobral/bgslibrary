@@ -12,13 +12,19 @@ BGSLibrary
 
 A Background Subtraction Library
 
-Last Page Update: **19/10/2014**
+Last Page Update: **25/01/2015**
 
 Latest Library Version: **1.9.2** (see Release Notes for more info) 
 
-The BGSLibrary was developed by [Andrews Sobral](https://sites.google.com/site/andrewssobral) and provides a C++ framework to perform background subtraction (BGS). The code works either on Windows or on Linux. Currently the library offers **36** BGS algorithms (*the [PBAS](https://sites.google.com/site/pbassegmenter/home) algorithm was removed from BGSLibrary because it is based on patented algorithm [ViBE](http://www2.ulg.ac.be/telecom/research/vibe/)*). A large amount of algorithms were provided by several authors. The source code is available under GNU GPL v3 license, the library is free and open source for academic purposes¹. Any user can be download latest project source code using SVN client. In Windows, a demo project for Visual Studio 2010 is provided. An executable version of BGSLibrary is available for Windows 32 bits and 64 bits. For Linux and Mac users, a Makefile can be used to compile all files and generate an executable example.
+The BGSLibrary was developed by [Andrews Sobral](https://sites.google.com/site/andrewssobral) and provides an easy-to-use C++ framework based on [OpenCV](http://www.opencv.org/) to perform background subtraction (BGS) in videos. The BGSLibrary compiles under Linux, Mac OS X and Windows. Currently the library offers **36**¹ BGS algorithms. A large amount of algorithms were provided by several authors. The source code is available under GNU GPL v3 license, the library is free and open source for academic purposes².
 
-***¹ If you want to use bgslibrary for commercial purposes, you needs to contact the authors of your desired background subtraction method to check if they are agree with you. Please, read this for more info: [Can I use a GPLv3 software as a part of my commercial application?](http://stackoverflow.com/questions/2280742/gplv3-can-i-use-these-programs-in-commercial)***
+For Windows users, a demo project for Visual Studio 2010 is provided. An executable version of BGSLibrary is available for Windows 32 bits and 64 bits. For Linux and Mac users, a Makefile can be used to compile all files.
+
+Note: the BGSLibrary is based on OpenCV 2.X, if you want to use with OpenCV 3.x please check-out our [opencv3](https://github.com/andrewssobral/bgslibrary/tree/opencv3) branch.
+
+***¹ The [PBAS](https://sites.google.com/site/pbassegmenter/home) algorithm was removed from BGSLibrary because it is based on patented algorithm [ViBE](http://www2.ulg.ac.be/telecom/research/vibe/). ***
+
+***² If you want to use bgslibrary for commercial purposes, you needs to contact the authors of your desired background subtraction method to check if they are agree with you. Please, read this for more info: [Can I use a GPLv3 software as a part of my commercial application?](http://stackoverflow.com/questions/2280742/gplv3-can-i-use-these-programs-in-commercial).***
 
 <p align="center"><img src="https://sites.google.com/site/andrewssobral/please-donate-cat3.jpg" /></p>
 
@@ -43,9 +49,10 @@ month     = {Jun},
 url       = {https://github.com/andrewssobral/bgslibrary}
 }
 ```
+or:
 Sobral, Andrews. BGSLibrary: An OpenCV C++ Background Subtraction Library. IX Workshop de Visão Computacional (WVC'2013), Rio de Janeiro, Brazil, Jun. 2013. ([PDF](http://iris.sel.eesc.usp.br/wvc/Anais_WVC2013/Poster/2/15.pdf) in brazilian portuguese). 
 
-One chapter about the BGSLibrary will be published in the Handbook on "[Background Modeling and Foreground Detection for Video Surveillance](https://sites.google.com/site/backgroundmodeling/)".
+One chapter about the BGSLibrary is published in the Handbook on "[Background Modeling and Foreground Detection for Video Surveillance](https://sites.google.com/site/backgroundmodeling/)".
 
 References
 ---------------
