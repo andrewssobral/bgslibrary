@@ -8,7 +8,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99")
 IF(UNIX)
   # add some standard warnings
   ADD_DEFINITIONS(-Wno-variadic-macros -Wno-long-long -Wall -Wextra -Winit-self -Woverloaded-virtual -Wsign-promo -Wno-unused-parameter -pedantic -Woverloaded-virtual -Wno-unknown-pragmas)
-  
+
   # -ansi does not compile with sjn module
   #ADD_DEFINITIONS(-ansi)
 
@@ -17,6 +17,7 @@ IF(UNIX)
 endif(UNIX)
 
 find_package(OpenCV REQUIRED)
+include_directories(${OpenCV_INCLUDE_DIRS})
 
 if(${OpenCV_VERSION} VERSION_LESS 2.3.1)
   message (FATAL_ERROR "OpenCV version is not compatible: ${OpenCV_VERSION}")
