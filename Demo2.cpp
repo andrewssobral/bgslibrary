@@ -145,7 +145,7 @@ int main(int argc, char **argv)
   {
     std::stringstream ss;
     ss << frameNumber;
-    std::string fileName = "./frames/" + ss.str() + ".png";
+    std::string fileName = "frames/" + ss.str() + ".png";
     std::cout << "reading " << fileName << std::endl;
 
     cv::Mat img_input = cv::imread(fileName, CV_LOAD_IMAGE_COLOR);

@@ -26,15 +26,6 @@ Note: the BGSLibrary is based on OpenCV 2.X, if you want to use with OpenCV 3.x 
 
 ***² If you want to use bgslibrary for commercial purposes, you needs to contact the authors of your desired background subtraction method to check if they are agree with you. Please, read this for more info: [Can I use a GPLv3 software as a part of my commercial application?](http://stackoverflow.com/questions/2280742/gplv3-can-i-use-these-programs-in-commercial).***
 
-<p align="center"><img src="https://sites.google.com/site/andrewssobral/please-donate-cat3.jpg" /></p>
-
-<p align="center">
-Have you found this software useful? Consider donating US$ 1, 5 or 10 so it can get even better! <br />
-<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=andrewssobral%40gmail%2ecom&lc=BR&item_name=bgslibrary&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" hspace="0" vspace="0" border="0" /></a><br />
-This software is completely free and will always stay free. Enjoy!
-</p>
-
-
 Citation
 --------
 If you use this library for your publications, please cite it as:
