@@ -58,4 +58,11 @@ public interface Configuration
   final String T2FMRF_UV = "T2FMRF_UV.xml";
   final String FuzzySugenoIntegral = "FuzzySugenoIntegral.xml";
   final String FuzzyChoquetIntegral = "FuzzyChoquetIntegral.xml";
+  
+  final String KDE = "KDE.xml";
+  final String IndependentMultimodalBGS = "IndependentMultimodalBGS.xml";
+  final String MultiCueBGS = "MultiCueBGS.xml";
+  final String SigmaDeltaBGS = "SigmaDeltaBGS.xml";
+  final String SuBSENSEBGS = "SuBSENSEBGS.xml";
+  final String LOBSTERBGS = "LOBSTERBGS.xml";
 }

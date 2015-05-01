@@ -159,7 +159,7 @@
                           </Group>
                           <Component id="runButton" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="245" max="32767" attributes="0"/>
+                      <EmptySpace pref="294" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -539,8 +539,8 @@
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel11" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="jPanel11" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -847,8 +847,8 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jPanel13" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -998,116 +998,162 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="frameDifferenceLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="staticFrameDifferenceLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="weightedMovingMeanLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="weightedMovingVarianceLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="adaptiveBackgroundLearningLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="openCVMoGV1Label" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="openCVMoGV2Label" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="staticFrameDifferenceCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="weightedMovingMeanCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="weightedMovingVarianceCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="adaptiveBackgroundLearningCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="frameDifferenceCheckBox" min="-2" max="-2" attributes="0"/>
-                                          <Component id="openCVMoGV1CheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="openCVMoGV2CheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="grimsonGMMLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="zivkovicGMMLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="temporalMeanLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="gaussianAverageLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="eigenbackgroundLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="temporalMedianLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="adaptiveMedianLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="grimsonGMMCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="gaussianAverageCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="eigenbackgroundCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="temporalMedianCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="zivkovicGMMCheckBox" min="-2" max="-2" attributes="0"/>
-                                          <Component id="adaptiveMedianCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="temporalMeanCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="fuzzyGaussianLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="simpleGaussianLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="T2FGMMUVLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="mixtureOfGaussiansLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="adaptiveSOMLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="fuzzyAdaptiveSOMLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="T2FGMMUMLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="T2FGMMUVCheckBox" min="-2" max="-2" attributes="0"/>
-                                          <Component id="T2FGMMUMCheckBox" min="-2" max="-2" attributes="0"/>
-                                          <Component id="fuzzyAdaptiveSOMCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="simpleGaussianCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="mixtureOfGaussiansCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="fuzzyGaussianCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="adaptiveSOMCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="fuzzySugenoIntegralLabel" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="fuzzySugenoIntegralCheckBox" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="fuzzyChoquetIntegralLabel" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="fuzzyChoquetIntegralCheckBox" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="multiLayerBGSLabel" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="multiLayerBGSCheckBox" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="T2FMRFUVLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="T2FMRFUMLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="T2FMRFUVCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="T2FMRFUMCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <Group type="102" attributes="0">
-                                              <Component id="GMGLabel" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="GMGCheckBox" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="VuMeterLabel" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="VuMeterCheckBox" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="checkAllButton" min="-2" pref="100" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="uncheckAllButton" min="-2" pref="100" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Component id="openConfigButton" min="-2" pref="100" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="frameDifferenceLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="staticFrameDifferenceLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="weightedMovingMeanLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="weightedMovingVarianceLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="adaptiveBackgroundLearningLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="openCVMoGV1Label" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="openCVMoGV2Label" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="staticFrameDifferenceCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="weightedMovingMeanCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="weightedMovingVarianceCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="adaptiveBackgroundLearningCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="frameDifferenceCheckBox" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="openCVMoGV1CheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="openCVMoGV2CheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="KDELabel" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="KDECheckBox" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="SuBSENSELabel" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="SuBSENSECheckBox" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="LOBSTERLabel" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="LOBSTERCheckBox" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Component id="grimsonGMMLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="zivkovicGMMLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="temporalMeanLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="gaussianAverageLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="eigenbackgroundLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="temporalMedianLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="adaptiveMedianLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Component id="grimsonGMMCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="gaussianAverageCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="eigenbackgroundCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="temporalMedianCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="zivkovicGMMCheckBox" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="adaptiveMedianCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="temporalMeanCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="IMBSLabel" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="IMBSCheckBox" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Component id="fuzzyGaussianLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="simpleGaussianLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="T2FGMMUVLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="mixtureOfGaussiansLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="adaptiveSOMLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="fuzzyAdaptiveSOMLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="T2FGMMUMLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Component id="T2FGMMUVCheckBox" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="T2FGMMUMCheckBox" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="fuzzyAdaptiveSOMCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="simpleGaussianCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="mixtureOfGaussiansCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="fuzzyGaussianCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="adaptiveSOMCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="MultiCueLabel" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="MultiCueCheckBox" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="SigmaDeltaLabel" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="SigmaDeltaCheckBox" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="fuzzySugenoIntegralLabel" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="fuzzySugenoIntegralCheckBox" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="fuzzyChoquetIntegralLabel" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="fuzzyChoquetIntegralCheckBox" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="multiLayerBGSLabel" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="multiLayerBGSCheckBox" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" attributes="0">
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Component id="T2FMRFUVLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="T2FMRFUMLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Component id="T2FMRFUVCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="T2FMRFUMCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="GMGLabel" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="GMGCheckBox" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="VuMeterLabel" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="VuMeterCheckBox" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1222,7 +1268,35 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="30" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="KDECheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="KDELabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                      <Component id="IMBSCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="IMBSLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                      <Component id="SigmaDeltaCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="SigmaDeltaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="MultiCueCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="MultiCueLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="SuBSENSECheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="SuBSENSELabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                      <Component id="LOBSTERCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="LOBSTERLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace pref="6" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="checkAllButton" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="uncheckAllButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1930,6 +2004,150 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="VuMeterCheckBoxActionPerformed"/>
                       </Events>
                     </Component>
+                    <Component class="javax.swing.JLabel" name="KDELabel">
+                      <Properties>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="0" red="0" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="C"/>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                            <EtchetBorder/>
+                          </Border>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="KDELabelMouseClicked"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JCheckBox" name="KDECheckBox">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="KDE"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="KDECheckBoxActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="IMBSLabel">
+                      <Properties>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="0" red="0" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="C"/>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                            <EtchetBorder/>
+                          </Border>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="IMBSLabelMouseClicked"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JCheckBox" name="IMBSCheckBox">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="IMBS"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="IMBSCheckBoxActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="SigmaDeltaLabel">
+                      <Properties>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="0" red="0" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="C"/>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                            <EtchetBorder/>
+                          </Border>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="SigmaDeltaLabelMouseClicked"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JCheckBox" name="SigmaDeltaCheckBox">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Sigma-Delta"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SigmaDeltaCheckBoxActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JCheckBox" name="MultiCueCheckBox">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="MultiCue"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MultiCueCheckBoxActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="MultiCueLabel">
+                      <Properties>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="0" red="0" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="C"/>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                            <EtchetBorder/>
+                          </Border>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MultiCueLabelMouseClicked"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JCheckBox" name="SuBSENSECheckBox">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="SuBSENSE"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SuBSENSECheckBoxActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="SuBSENSELabel">
+                      <Properties>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="0" red="0" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="C"/>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                            <EtchetBorder/>
+                          </Border>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="SuBSENSELabelMouseClicked"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JCheckBox" name="LOBSTERCheckBox">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="LOBSTER"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LOBSTERCheckBoxActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="LOBSTERLabel">
+                      <Properties>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="0" red="0" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="C"/>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                            <EtchetBorder/>
+                          </Border>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LOBSTERLabelMouseClicked"/>
+                      </Events>
+                    </Component>
                   </SubComponents>
                 </Container>
               </SubComponents>
@@ -2040,12 +2258,12 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
+                              <Component id="jScrollPane1" min="-2" pref="710" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="fileNameLabel" min="-2" pref="200" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane1" min="-2" pref="710" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="18" max="32767" attributes="0"/>
                       </Group>
@@ -2055,7 +2273,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" pref="487" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="536" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -2127,7 +2345,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jToolBar2" min="-2" pref="25" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="logTextScrollPane" pref="552" max="32767" attributes="0"/>
+                      <Component id="logTextScrollPane" pref="601" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>

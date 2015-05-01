@@ -1,12 +1,12 @@
 VISUAL STUDIO 2010 TEMPLATE PROJECT
 -----------------------------------
-Release|Win32
+Change to [Release][Win32]
 
 COMPATIBLE WITH:
   VISUAL STUDIO 2012
   VISUAL STUDIO 2013
 
 YOU NEEDS TO INSTALL OPENCV AT:
-  C:\OpenCV2.4.9
+  C:\OpenCV2.4.10
 
 BUILD AND RUN!

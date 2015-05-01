@@ -1,5 +1,5 @@
 ---------------------------------------------------
-BGSLibrary with Visual Studio 2010 and Opencv 2.4.9
+BGSLibrary with Visual Studio 2010 and Opencv 2.4.x
 ---------------------------------------------------
 
 1) Clone our VS2010 example project at [vs2010] folder
@@ -8,10 +8,10 @@ https://github.com/andrewssobral/bgslibrary/tree/master/vs2010
 Or configure manually by:
 
 1) Install OpenCV
-1.a) Download OpenCV 2.4.9 from http://opencv.org/
-2.b) Install in: C:\OpenCV2.4.9
+1.a) Download OpenCV 2.4.x from http://opencv.org/
+2.b) Install in: C:\OpenCV2.4.x
 2.c) Add OpenCV binaries in your Path
-C:\OpenCV2.4.9\build\x86\vc10\bin
+C:\OpenCV2.4.x\build\x86\vc10\bin
 
 2) Download BGSLibrary
 2.a) Clone bgslibrary on GitHub at C:\bgslibrary
@@ -29,9 +29,9 @@ C:\OpenCV2.4.9\build\x86\vc10\bin
 3.j) Click on Project->Properties
 3.k) Change [Output Directory] to ..\
 3.l) Add OpenCV include in [C/C++] -> [Additional Include Directories]
-C:\OpenCV2.4.9\build\include;C:\OpenCV2.4.9\build\include\opencv;
+C:\OpenCV2.4.x\build\include;C:\OpenCV2.4.x\build\include\opencv;
 3.m) Add OpenCV libraries in [Linker]->[Input]
-C:\OpenCV2.4.9\build\x86\vc10\lib\*.lib
+C:\OpenCV2.4.x\build\x86\vc10\lib\*.lib
 3.n) Click in Build and wait
 3.o) Run C:\bgslibrary\bgslibrary.exe
 Enjoy!

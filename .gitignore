@@ -1,4 +1,9 @@
+etc/
+binaries/
 java_gui/dist/
 java_gui/build/
+java_gui/bgslibrary.exe
+python/
 qt_gui/
 vs2013/
+fet/etc/

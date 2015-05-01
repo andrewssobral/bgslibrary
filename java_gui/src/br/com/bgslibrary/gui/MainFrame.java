@@ -753,6 +753,18 @@ public class MainFrame extends javax.swing.JFrame
     GMGLabel = new javax.swing.JLabel();
     VuMeterLabel = new javax.swing.JLabel();
     VuMeterCheckBox = new javax.swing.JCheckBox();
+    KDELabel = new javax.swing.JLabel();
+    KDECheckBox = new javax.swing.JCheckBox();
+    IMBSLabel = new javax.swing.JLabel();
+    IMBSCheckBox = new javax.swing.JCheckBox();
+    SigmaDeltaLabel = new javax.swing.JLabel();
+    SigmaDeltaCheckBox = new javax.swing.JCheckBox();
+    MultiCueCheckBox = new javax.swing.JCheckBox();
+    MultiCueLabel = new javax.swing.JLabel();
+    SuBSENSECheckBox = new javax.swing.JCheckBox();
+    SuBSENSELabel = new javax.swing.JLabel();
+    LOBSTERCheckBox = new javax.swing.JCheckBox();
+    LOBSTERLabel = new javax.swing.JLabel();
     runButton2 = new javax.swing.JButton();
     jPanel16 = new javax.swing.JPanel();
     jToolBar1 = new javax.swing.JToolBar();
@@ -1086,7 +1098,7 @@ public class MainFrame extends javax.swing.JFrame
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
           .addComponent(runButton))
-        .addContainerGap(245, Short.MAX_VALUE))
+        .addContainerGap(294, Short.MAX_VALUE))
     );
 
     appTabbedPane.addTab("Main", jPanel1);
@@ -1995,6 +2007,126 @@ public class MainFrame extends javax.swing.JFrame
       }
     });
 
+    KDELabel.setForeground(new java.awt.Color(0, 0, 255));
+    KDELabel.setText("C");
+    KDELabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+    KDELabel.addMouseListener(new java.awt.event.MouseAdapter()
+    {
+      public void mouseClicked(java.awt.event.MouseEvent evt)
+      {
+        KDELabelMouseClicked(evt);
+      }
+    });
+
+    KDECheckBox.setText("KDE");
+    KDECheckBox.addActionListener(new java.awt.event.ActionListener()
+    {
+      public void actionPerformed(java.awt.event.ActionEvent evt)
+      {
+        KDECheckBoxActionPerformed(evt);
+      }
+    });
+
+    IMBSLabel.setForeground(new java.awt.Color(0, 0, 255));
+    IMBSLabel.setText("C");
+    IMBSLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+    IMBSLabel.addMouseListener(new java.awt.event.MouseAdapter()
+    {
+      public void mouseClicked(java.awt.event.MouseEvent evt)
+      {
+        IMBSLabelMouseClicked(evt);
+      }
+    });
+
+    IMBSCheckBox.setText("IMBS");
+    IMBSCheckBox.addActionListener(new java.awt.event.ActionListener()
+    {
+      public void actionPerformed(java.awt.event.ActionEvent evt)
+      {
+        IMBSCheckBoxActionPerformed(evt);
+      }
+    });
+
+    SigmaDeltaLabel.setForeground(new java.awt.Color(0, 0, 255));
+    SigmaDeltaLabel.setText("C");
+    SigmaDeltaLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+    SigmaDeltaLabel.addMouseListener(new java.awt.event.MouseAdapter()
+    {
+      public void mouseClicked(java.awt.event.MouseEvent evt)
+      {
+        SigmaDeltaLabelMouseClicked(evt);
+      }
+    });
+
+    SigmaDeltaCheckBox.setText("Sigma-Delta");
+    SigmaDeltaCheckBox.addActionListener(new java.awt.event.ActionListener()
+    {
+      public void actionPerformed(java.awt.event.ActionEvent evt)
+      {
+        SigmaDeltaCheckBoxActionPerformed(evt);
+      }
+    });
+
+    MultiCueCheckBox.setText("MultiCue");
+    MultiCueCheckBox.addActionListener(new java.awt.event.ActionListener()
+    {
+      public void actionPerformed(java.awt.event.ActionEvent evt)
+      {
+        MultiCueCheckBoxActionPerformed(evt);
+      }
+    });
+
+    MultiCueLabel.setForeground(new java.awt.Color(0, 0, 255));
+    MultiCueLabel.setText("C");
+    MultiCueLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+    MultiCueLabel.addMouseListener(new java.awt.event.MouseAdapter()
+    {
+      public void mouseClicked(java.awt.event.MouseEvent evt)
+      {
+        MultiCueLabelMouseClicked(evt);
+      }
+    });
+
+    SuBSENSECheckBox.setText("SuBSENSE");
+    SuBSENSECheckBox.addActionListener(new java.awt.event.ActionListener()
+    {
+      public void actionPerformed(java.awt.event.ActionEvent evt)
+      {
+        SuBSENSECheckBoxActionPerformed(evt);
+      }
+    });
+
+    SuBSENSELabel.setForeground(new java.awt.Color(0, 0, 255));
+    SuBSENSELabel.setText("C");
+    SuBSENSELabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+    SuBSENSELabel.addMouseListener(new java.awt.event.MouseAdapter()
+    {
+      public void mouseClicked(java.awt.event.MouseEvent evt)
+      {
+        SuBSENSELabelMouseClicked(evt);
+      }
+    });
+
+    LOBSTERCheckBox.setText("LOBSTER");
+    LOBSTERCheckBox.addActionListener(new java.awt.event.ActionListener()
+    {
+      public void actionPerformed(java.awt.event.ActionEvent evt)
+      {
+        LOBSTERCheckBoxActionPerformed(evt);
+      }
+    });
+
+    LOBSTERLabel.setForeground(new java.awt.Color(0, 0, 255));
+    LOBSTERLabel.setText("C");
+    LOBSTERLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+    LOBSTERLabel.addMouseListener(new java.awt.event.MouseAdapter()
+    {
+      public void mouseClicked(java.awt.event.MouseEvent evt)
+      {
+        LOBSTERLabelMouseClicked(evt);
+      }
+    });
+
     javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
     jPanel13.setLayout(jPanel13Layout);
     jPanel13Layout.setHorizontalGroup(
@@ -2003,96 +2135,128 @@ public class MainFrame extends javax.swing.JFrame
         .addContainerGap()
         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(jPanel13Layout.createSequentialGroup()
-            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(frameDifferenceLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-              .addComponent(staticFrameDifferenceLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-              .addComponent(weightedMovingMeanLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-              .addComponent(weightedMovingVarianceLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-              .addComponent(adaptiveBackgroundLearningLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-              .addComponent(openCVMoGV1Label, javax.swing.GroupLayout.Alignment.TRAILING)
-              .addComponent(openCVMoGV2Label, javax.swing.GroupLayout.Alignment.TRAILING))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(staticFrameDifferenceCheckBox)
-              .addComponent(weightedMovingMeanCheckBox)
-              .addComponent(weightedMovingVarianceCheckBox)
-              .addComponent(adaptiveBackgroundLearningCheckBox)
-              .addComponent(frameDifferenceCheckBox)
-              .addComponent(openCVMoGV1CheckBox)
-              .addComponent(openCVMoGV2CheckBox))
-            .addGap(18, 18, 18)
-            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(grimsonGMMLabel)
-              .addComponent(zivkovicGMMLabel)
-              .addComponent(temporalMeanLabel)
-              .addComponent(gaussianAverageLabel)
-              .addComponent(eigenbackgroundLabel)
-              .addComponent(temporalMedianLabel)
-              .addComponent(adaptiveMedianLabel))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(grimsonGMMCheckBox)
-              .addComponent(gaussianAverageCheckBox)
-              .addComponent(eigenbackgroundCheckBox)
-              .addComponent(temporalMedianCheckBox)
-              .addComponent(zivkovicGMMCheckBox)
-              .addComponent(adaptiveMedianCheckBox)
-              .addComponent(temporalMeanCheckBox))
-            .addGap(18, 18, 18)
-            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(fuzzyGaussianLabel)
-              .addComponent(simpleGaussianLabel)
-              .addComponent(T2FGMMUVLabel)
-              .addComponent(mixtureOfGaussiansLabel)
-              .addComponent(adaptiveSOMLabel)
-              .addComponent(fuzzyAdaptiveSOMLabel)
-              .addComponent(T2FGMMUMLabel))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(T2FGMMUVCheckBox)
-              .addComponent(T2FGMMUMCheckBox)
-              .addComponent(fuzzyAdaptiveSOMCheckBox)
-              .addComponent(simpleGaussianCheckBox)
-              .addComponent(mixtureOfGaussiansCheckBox)
-              .addComponent(fuzzyGaussianCheckBox)
-              .addComponent(adaptiveSOMCheckBox))
-            .addGap(18, 18, 18)
-            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addGroup(jPanel13Layout.createSequentialGroup()
-                .addComponent(fuzzySugenoIntegralLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fuzzySugenoIntegralCheckBox))
-              .addGroup(jPanel13Layout.createSequentialGroup()
-                .addComponent(fuzzyChoquetIntegralLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fuzzyChoquetIntegralCheckBox))
-              .addGroup(jPanel13Layout.createSequentialGroup()
-                .addComponent(multiLayerBGSLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(multiLayerBGSCheckBox))
-              .addGroup(jPanel13Layout.createSequentialGroup()
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addComponent(T2FMRFUVLabel)
-                  .addComponent(T2FMRFUMLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addComponent(T2FMRFUVCheckBox)
-                  .addComponent(T2FMRFUMCheckBox)))
-              .addGroup(jPanel13Layout.createSequentialGroup()
-                .addComponent(GMGLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(GMGCheckBox))
-              .addGroup(jPanel13Layout.createSequentialGroup()
-                .addComponent(VuMeterLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(VuMeterCheckBox)))
-            .addGap(0, 0, Short.MAX_VALUE))
-          .addGroup(jPanel13Layout.createSequentialGroup()
             .addComponent(checkAllButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(uncheckAllButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(openConfigButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addComponent(openConfigButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addGroup(jPanel13Layout.createSequentialGroup()
+            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                  .addComponent(frameDifferenceLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                  .addComponent(staticFrameDifferenceLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                  .addComponent(weightedMovingMeanLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                  .addComponent(weightedMovingVarianceLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                  .addComponent(adaptiveBackgroundLearningLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                  .addComponent(openCVMoGV1Label, javax.swing.GroupLayout.Alignment.TRAILING)
+                  .addComponent(openCVMoGV2Label, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                  .addComponent(staticFrameDifferenceCheckBox)
+                  .addComponent(weightedMovingMeanCheckBox)
+                  .addComponent(weightedMovingVarianceCheckBox)
+                  .addComponent(adaptiveBackgroundLearningCheckBox)
+                  .addComponent(frameDifferenceCheckBox)
+                  .addComponent(openCVMoGV1CheckBox)
+                  .addComponent(openCVMoGV2CheckBox)))
+              .addGroup(jPanel13Layout.createSequentialGroup()
+                .addComponent(KDELabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(KDECheckBox))
+              .addGroup(jPanel13Layout.createSequentialGroup()
+                .addComponent(SuBSENSELabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(SuBSENSECheckBox)))
+            .addGap(18, 18, 18)
+            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addGroup(jPanel13Layout.createSequentialGroup()
+                .addComponent(LOBSTERLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(LOBSTERCheckBox))
+              .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                  .addGroup(jPanel13Layout.createSequentialGroup()
+                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                      .addComponent(grimsonGMMLabel)
+                      .addComponent(zivkovicGMMLabel)
+                      .addComponent(temporalMeanLabel)
+                      .addComponent(gaussianAverageLabel)
+                      .addComponent(eigenbackgroundLabel)
+                      .addComponent(temporalMedianLabel)
+                      .addComponent(adaptiveMedianLabel))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                      .addComponent(grimsonGMMCheckBox)
+                      .addComponent(gaussianAverageCheckBox)
+                      .addComponent(eigenbackgroundCheckBox)
+                      .addComponent(temporalMedianCheckBox)
+                      .addComponent(zivkovicGMMCheckBox)
+                      .addComponent(adaptiveMedianCheckBox)
+                      .addComponent(temporalMeanCheckBox)))
+                  .addGroup(jPanel13Layout.createSequentialGroup()
+                    .addComponent(IMBSLabel)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(IMBSCheckBox)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                  .addGroup(jPanel13Layout.createSequentialGroup()
+                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                      .addComponent(fuzzyGaussianLabel)
+                      .addComponent(simpleGaussianLabel)
+                      .addComponent(T2FGMMUVLabel)
+                      .addComponent(mixtureOfGaussiansLabel)
+                      .addComponent(adaptiveSOMLabel)
+                      .addComponent(fuzzyAdaptiveSOMLabel)
+                      .addComponent(T2FGMMUMLabel))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                      .addComponent(T2FGMMUVCheckBox)
+                      .addComponent(T2FGMMUMCheckBox)
+                      .addComponent(fuzzyAdaptiveSOMCheckBox)
+                      .addComponent(simpleGaussianCheckBox)
+                      .addComponent(mixtureOfGaussiansCheckBox)
+                      .addComponent(fuzzyGaussianCheckBox)
+                      .addComponent(adaptiveSOMCheckBox)))
+                  .addGroup(jPanel13Layout.createSequentialGroup()
+                    .addComponent(MultiCueLabel)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(MultiCueCheckBox)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                  .addGroup(jPanel13Layout.createSequentialGroup()
+                    .addComponent(SigmaDeltaLabel)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(SigmaDeltaCheckBox))
+                  .addGroup(jPanel13Layout.createSequentialGroup()
+                    .addComponent(fuzzySugenoIntegralLabel)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(fuzzySugenoIntegralCheckBox))
+                  .addGroup(jPanel13Layout.createSequentialGroup()
+                    .addComponent(fuzzyChoquetIntegralLabel)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(fuzzyChoquetIntegralCheckBox))
+                  .addGroup(jPanel13Layout.createSequentialGroup()
+                    .addComponent(multiLayerBGSLabel)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(multiLayerBGSCheckBox))
+                  .addGroup(jPanel13Layout.createSequentialGroup()
+                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                      .addComponent(T2FMRFUVLabel)
+                      .addComponent(T2FMRFUMLabel))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                      .addComponent(T2FMRFUVCheckBox)
+                      .addComponent(T2FMRFUMCheckBox)))
+                  .addGroup(jPanel13Layout.createSequentialGroup()
+                    .addComponent(GMGLabel)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(GMGCheckBox))
+                  .addGroup(jPanel13Layout.createSequentialGroup()
+                    .addComponent(VuMeterLabel)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(VuMeterCheckBox)))))
+            .addGap(0, 0, Short.MAX_VALUE)))
         .addContainerGap())
     );
     jPanel13Layout.setVerticalGroup(
@@ -2184,7 +2348,28 @@ public class MainFrame extends javax.swing.JFrame
             .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
               .addComponent(VuMeterCheckBox)
               .addComponent(VuMeterLabel))))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            .addComponent(KDECheckBox)
+            .addComponent(KDELabel))
+          .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            .addComponent(IMBSCheckBox)
+            .addComponent(IMBSLabel))
+          .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            .addComponent(SigmaDeltaCheckBox)
+            .addComponent(SigmaDeltaLabel)
+            .addComponent(MultiCueCheckBox)
+            .addComponent(MultiCueLabel)))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            .addComponent(SuBSENSECheckBox)
+            .addComponent(SuBSENSELabel))
+          .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            .addComponent(LOBSTERCheckBox)
+            .addComponent(LOBSTERLabel)))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(checkAllButton)
           .addComponent(uncheckAllButton)
@@ -2215,8 +2400,8 @@ public class MainFrame extends javax.swing.JFrame
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addContainerGap())
+        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
     runButton2.setText("Run");
@@ -2261,8 +2446,8 @@ public class MainFrame extends javax.swing.JFrame
             .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addContainerGap())
+        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
     appTabbedPane.addTab("Config", jPanel2);
@@ -2326,18 +2511,18 @@ public class MainFrame extends javax.swing.JFrame
       .addGroup(jPanel17Layout.createSequentialGroup()
         .addContainerGap()
         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addGroup(jPanel17Layout.createSequentialGroup()
             .addComponent(jLabel12)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(fileNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-          .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(fileNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
         .addContainerGap(18, Short.MAX_VALUE))
     );
     jPanel17Layout.setVerticalGroup(
       jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel17Layout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE)
+        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel12)
@@ -2475,7 +2660,7 @@ public class MainFrame extends javax.swing.JFrame
         .addContainerGap()
         .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(logTextScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
+        .addComponent(logTextScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
         .addContainerGap())
     );
 
@@ -3077,10 +3262,82 @@ public class MainFrame extends javax.swing.JFrame
       changeParam("enableVuMeter", VuMeterCheckBox, Configuration.FrameProcessor);
     }//GEN-LAST:event_VuMeterCheckBoxActionPerformed
 
+  private void KDELabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_KDELabelMouseClicked
+  {//GEN-HEADEREND:event_KDELabelMouseClicked
+    openFileContent(Configuration.KDE);
+  }//GEN-LAST:event_KDELabelMouseClicked
+
+  private void KDECheckBoxActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_KDECheckBoxActionPerformed
+  {//GEN-HEADEREND:event_KDECheckBoxActionPerformed
+    changeParam("enableKDE", KDECheckBox, Configuration.FrameProcessor);
+  }//GEN-LAST:event_KDECheckBoxActionPerformed
+
+  private void IMBSLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_IMBSLabelMouseClicked
+  {//GEN-HEADEREND:event_IMBSLabelMouseClicked
+    openFileContent(Configuration.IndependentMultimodalBGS);
+  }//GEN-LAST:event_IMBSLabelMouseClicked
+
+  private void IMBSCheckBoxActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_IMBSCheckBoxActionPerformed
+  {//GEN-HEADEREND:event_IMBSCheckBoxActionPerformed
+    changeParam("enableIMBS", IMBSCheckBox, Configuration.FrameProcessor);
+  }//GEN-LAST:event_IMBSCheckBoxActionPerformed
+
+  private void SigmaDeltaLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_SigmaDeltaLabelMouseClicked
+  {//GEN-HEADEREND:event_SigmaDeltaLabelMouseClicked
+    openFileContent(Configuration.SigmaDeltaBGS);
+  }//GEN-LAST:event_SigmaDeltaLabelMouseClicked
+
+  private void SigmaDeltaCheckBoxActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_SigmaDeltaCheckBoxActionPerformed
+  {//GEN-HEADEREND:event_SigmaDeltaCheckBoxActionPerformed
+    changeParam("enableSigmaDeltaBGS", SigmaDeltaCheckBox, Configuration.FrameProcessor);
+  }//GEN-LAST:event_SigmaDeltaCheckBoxActionPerformed
+
+  private void MultiCueCheckBoxActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_MultiCueCheckBoxActionPerformed
+  {//GEN-HEADEREND:event_MultiCueCheckBoxActionPerformed
+    changeParam("enableMultiCueBGS", MultiCueCheckBox, Configuration.FrameProcessor);
+  }//GEN-LAST:event_MultiCueCheckBoxActionPerformed
+
+  private void MultiCueLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_MultiCueLabelMouseClicked
+  {//GEN-HEADEREND:event_MultiCueLabelMouseClicked
+    openFileContent(Configuration.MultiCueBGS);
+  }//GEN-LAST:event_MultiCueLabelMouseClicked
+
+  private void SuBSENSECheckBoxActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_SuBSENSECheckBoxActionPerformed
+  {//GEN-HEADEREND:event_SuBSENSECheckBoxActionPerformed
+    changeParam("enableSuBSENSEBGS", SuBSENSECheckBox, Configuration.FrameProcessor);
+  }//GEN-LAST:event_SuBSENSECheckBoxActionPerformed
+
+  private void SuBSENSELabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_SuBSENSELabelMouseClicked
+  {//GEN-HEADEREND:event_SuBSENSELabelMouseClicked
+    openFileContent(Configuration.SuBSENSEBGS);
+  }//GEN-LAST:event_SuBSENSELabelMouseClicked
+
+  private void LOBSTERCheckBoxActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_LOBSTERCheckBoxActionPerformed
+  {//GEN-HEADEREND:event_LOBSTERCheckBoxActionPerformed
+    changeParam("enableLOBSTERBGS", LOBSTERCheckBox, Configuration.FrameProcessor);
+  }//GEN-LAST:event_LOBSTERCheckBoxActionPerformed
+
+  private void LOBSTERLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_LOBSTERLabelMouseClicked
+  {//GEN-HEADEREND:event_LOBSTERLabelMouseClicked
+    openFileContent(Configuration.LOBSTERBGS);
+  }//GEN-LAST:event_LOBSTERLabelMouseClicked
+
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JCheckBox GMGCheckBox;
   private javax.swing.JLabel GMGLabel;
+  private javax.swing.JCheckBox IMBSCheckBox;
+  private javax.swing.JLabel IMBSLabel;
+  private javax.swing.JCheckBox KDECheckBox;
+  private javax.swing.JLabel KDELabel;
+  private javax.swing.JCheckBox LOBSTERCheckBox;
+  private javax.swing.JLabel LOBSTERLabel;
+  private javax.swing.JCheckBox MultiCueCheckBox;
+  private javax.swing.JLabel MultiCueLabel;
   private javax.swing.JCheckBox ROIdefinedCheckBox;
+  private javax.swing.JCheckBox SigmaDeltaCheckBox;
+  private javax.swing.JLabel SigmaDeltaLabel;
+  private javax.swing.JCheckBox SuBSENSECheckBox;
+  private javax.swing.JLabel SuBSENSELabel;
   private javax.swing.JCheckBox T2FGMMUMCheckBox;
   private javax.swing.JLabel T2FGMMUMLabel;
   private javax.swing.JCheckBox T2FGMMUVCheckBox;
