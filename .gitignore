@@ -1,5 +1,6 @@
 etc/
 binaries/
+package_bgs/pt/
 java_gui/dist/
 java_gui/build/
 java_gui/bgslibrary.exe
@@ -8,3 +9,4 @@ qt_gui/
 fet/etc/
 *.exe
 *.pdb
+vs2010mfc/src/bgslibrary_vs2010_mfc.aps

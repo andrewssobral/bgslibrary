@@ -1,24 +1,15 @@
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-6131398-5', 'andrewssobral.github.io');
-  ga('send', 'pageview');
-</script>
-
 BGSLibrary
 ==========
 
 A Background Subtraction Library
 
-Last Page Update: **25/01/2015**
+Last Page Update: **01/05/2015**
 
 Latest Library Version: **1.9.2** (see Release Notes for more info) 
 
 The BGSLibrary was developed by [Andrews Sobral](https://sites.google.com/site/andrewssobral) and provides an easy-to-use C++ framework based on [OpenCV](http://www.opencv.org/) to perform background subtraction (BGS) in videos. The BGSLibrary compiles under Linux, Mac OS X and Windows. Currently the library offers **37**¹ BGS algorithms. A large amount of algorithms were provided by several authors. The source code is available under GNU GPL v3 license, the library is free and open source for academic purposes².
 
-For Windows users, a demo project for Visual Studio 2010 is provided. An executable version of BGSLibrary is available for Windows 32 bits and 64 bits. For Linux and Mac users, a Makefile can be used to compile all files.
+For Windows users, a demo project for Visual Studio 2010/2013 is provided. An executable version of BGSLibrary is available for Windows 32 bits and 64 bits. For Linux and Mac users, a Makefile can be used to compile all files.
 
 Note: the BGSLibrary is based on OpenCV 2.X, if you want to use with OpenCV 3.x please check-out our [opencv3](https://github.com/andrewssobral/bgslibrary/tree/opencv3) branch.
 
@@ -171,25 +162,15 @@ Download links
 
 * BGSLibrary v1.9.2 with MFC GUI v1.4.2 (x86/x64)
 
-https://github.com/andrewssobral/bgslibrary/blob/master/binaries/mfc_bgslibrary_x86_v1.4.2.zip
+https://github.com/andrewssobral/bgslibrary/releases/download/v1.9.2_x86_mfc_gui/bgslibrary_x86_v1.9.2_with_mfc_gui_v1.4.2.7z
 
-Old versions:
+* BGSLibrary v1.9.2 with Java GUI for Windows 32bits (x86)
 
-* BGSLibrary v1.9.1 with MFC GUI v1.4.1 (x86/x64) (+src)
+https://github.com/andrewssobral/bgslibrary/releases/download/v1.9.2_x86_java_gui/bgslibrary_x86_v1.9.2_with_java_gui_v1.0.4.7z
 
-https://github.com/andrewssobral/bgslibrary/blob/master/binaries/mfc_bgslibrary_x86_v1.4.1.zip
+* BGSLibrary v1.9.2 with Java GUI for Windows 64bits (x64)
 
-* BGSLibrary v1.9.0 with MFC GUI v1.4.0 (x86/x64) (+src)
-
-https://github.com/andrewssobral/bgslibrary/blob/master/binaries/mfc_bgslibrary_x86_v1.4.0.7z
-
-* BGSLibrary v1.5.0 with Java GUI for Windows 32bits (x86)
-
-https://github.com/andrewssobral/bgslibrary/blob/master/binaries/bgs_library_x86_v1.5.0_with_gui.7z
-
-* BGSLibrary v1.5.0 with Java GUI for Windows 64bits (x64)
-
-https://github.com/andrewssobral/bgslibrary/blob/master/binaries/bgs_library_x64_v1.5.0_with_gui.7z
+https://github.com/andrewssobral/bgslibrary/releases/download/v1.9.2_x64_java_gui/bgslibrary_x64_v1.9.2_with_java_gui_v1.0.4.7z
 
 ![MFC BGSLibrary](https://sites.google.com/site/andrewssobral/mfc_bgslibrary_120.png "MFC BGSLibrary")
 

@@ -37,4 +37,6 @@
 <enableIMBS>0</enableIMBS>
 <enableMultiCueBGS>0</enableMultiCueBGS>
 <enableSigmaDeltaBGS>0</enableSigmaDeltaBGS>
+<enableSuBSENSEBGS>0</enableSuBSENSEBGS>
+<enableLOBSTERBGS>0</enableLOBSTERBGS>
 </opencv_storage>

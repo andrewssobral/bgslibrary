@@ -1,0 +1,6 @@
+Release/
+ipch/
+*.exe
+*.pdb
+*.sdf
+*.opensdf
