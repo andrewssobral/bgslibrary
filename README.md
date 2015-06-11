@@ -31,16 +31,25 @@ month     = {Jun},
 url       = {https://github.com/andrewssobral/bgslibrary}
 }
 ```
-or:
-Sobral, Andrews. BGSLibrary: An OpenCV C++ Background Subtraction Library. IX Workshop de Visão Computacional (WVC'2013), Rio de Janeiro, Brazil, Jun. 2013. ([PDF](http://iris.sel.eesc.usp.br/wvc/Anais_WVC2013/Poster/2/15.pdf) in brazilian portuguese). 
-
 One chapter about the BGSLibrary has been published in the Handbook on "[Background Modeling and Foreground Detection for Video Surveillance](https://sites.google.com/site/backgroundmodeling/)".
+```
+@incollection{bgslibrarychapter,
+author    = {Sobral, Andrews and Bouwmans, Thierry},
+title     = {BGS Library: A Library Framework for Algorithm’s Evaluation in Foreground/Background Segmentation},
+booktitle = {Background Modeling and Foreground Detection for Video Surveillance},
+publisher = {CRC Press, Taylor and Francis Group.}
+year      = {2014},
+}
+```
+Download PDF:
+* Sobral, Andrews. BGSLibrary: An OpenCV C++ Background Subtraction Library. IX Workshop de Visão Computacional (WVC'2013), Rio de Janeiro, Brazil, Jun. 2013. ([PDF](http://www.researchgate.net/publication/257424214_BGSLibrary_An_OpenCV_C_Background_Subtraction_Library) in brazilian portuguese with english abstract).
+* Sobral, Andrews; Bouwmans, Thierry. "BGS Library: A Library Framework for Algorithm’s Evaluation in Foreground/Background Segmentation". Chapter on the handbook "Background Modeling and Foreground Detection for Video Surveillance", CRC Press, Taylor and Francis Group, 2014. ([PDF](http://www.researchgate.net/publication/257424214_BGSLibrary_An_OpenCV_C_Background_Subtraction_Library) in english).
 
 References
 ---------------
-Some algorithms of the BGSLibrary was used successfully in the following papers: 
-* (2014) Sobral, Andrews; Vacavant, Antoine. A comprehensive review of background subtraction algorithms evaluated with synthetic and real videos. Computer Vision and Image Understanding (CVIU), 2014. ([Online](http://dx.doi.org/10.1016/j.cviu.2013.12.005))
-* (2013) Sobral, Andrews; Oliveira, Luciano; Schnitman, Leizer; Souza, Felippe. (**Best Paper Award**) Highway Traffic Congestion Classification Using Holistic Properties. In International Conference on Signal Processing, Pattern Recognition and Applications (SPPRA'2013), Innsbruck, Austria, Feb 2013. ([Online](http://dx.doi.org/10.2316/P.2013.798-105))
+Some algorithms of the BGSLibrary was used successfully in my following papers: 
+* (2014) Sobral, Andrews; Vacavant, Antoine. A comprehensive review of background subtraction algorithms evaluated with synthetic and real videos. Computer Vision and Image Understanding (CVIU), 2014. ([Online](http://dx.doi.org/10.1016/j.cviu.2013.12.005)) ([PDF](http://www.researchgate.net/publication/259340906_A_comprehensive_review_of_background_subtraction_algorithms_evaluated_with_synthetic_and_real_videos))
+* (2013) Sobral, Andrews; Oliveira, Luciano; Schnitman, Leizer; Souza, Felippe. (**Best Paper Award**) Highway Traffic Congestion Classification Using Holistic Properties. In International Conference on Signal Processing, Pattern Recognition and Applications (SPPRA'2013), Innsbruck, Austria, Feb 2013. ([Online](http://dx.doi.org/10.2316/P.2013.798-105)) ([PDF](http://www.researchgate.net/publication/233427564_HIGHWAY_TRAFFIC_CONGESTION_CLASSIFICATION_USING_HOLISTIC_PROPERTIES))
 
 List of the algorithms available in BGSLibrary
 ----------------------------------------------
