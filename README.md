@@ -3,7 +3,7 @@ BGSLibrary
 
 A Background Subtraction Library
 
-Last Page Update: **01/05/2015**
+Last Page Update: **14/06/2015**
 
 Latest Library Version: **1.9.2** (see Release Notes for more info) 
 
@@ -46,7 +46,7 @@ Download PDF:
 * Sobral, Andrews; Bouwmans, Thierry. "BGS Library: A Library Framework for Algorithm’s Evaluation in Foreground/Background Segmentation". Chapter on the handbook "Background Modeling and Foreground Detection for Video Surveillance", CRC Press, Taylor and Francis Group, 2014. ([PDF](http://www.researchgate.net/publication/257424214_BGSLibrary_An_OpenCV_C_Background_Subtraction_Library) in english).
 
 References
----------------
+----------
 Some algorithms of the BGSLibrary was used successfully in my following papers: 
 * (2014) Sobral, Andrews; Vacavant, Antoine. A comprehensive review of background subtraction algorithms evaluated with synthetic and real videos. Computer Vision and Image Understanding (CVIU), 2014. ([Online](http://dx.doi.org/10.1016/j.cviu.2013.12.005)) ([PDF](http://www.researchgate.net/publication/259340906_A_comprehensive_review_of_background_subtraction_algorithms_evaluated_with_synthetic_and_real_videos))
 * (2013) Sobral, Andrews; Oliveira, Luciano; Schnitman, Leizer; Souza, Felippe. (**Best Paper Award**) Highway Traffic Congestion Classification Using Holistic Properties. In International Conference on Signal Processing, Pattern Recognition and Applications (SPPRA'2013), Innsbruck, Austria, Feb 2013. ([Online](http://dx.doi.org/10.2316/P.2013.798-105)) ([PDF](http://www.researchgate.net/publication/233427564_HIGHWAY_TRAFFIC_CONGESTION_CLASSIFICATION_USING_HOLISTIC_PROPERTIES))
@@ -155,11 +155,15 @@ Legend:
 * (11) thanks to [Benjamin Laugraud](http://www.montefiore.ulg.ac.be/~blaugraud/index.php).
 * (12) thanks to [Pierre-Luc St-Charles](http://scholar.google.ca/citations?user=30mr9vYAAAAJ&hl=en).
 
-Full list of BGSLibrary collaborators
-----------------------------------------------
-I would like to thanks all those who have contributed in some way to the success of this library, especially, the following peoples (in alphabetical order):
+Are you in doubt about which algorithm to choose?
+-------------------------------------------------
+Frequently, the question arises that given a problem, what is the best algorithm to choose? Unfortunately there is no exact answer, the performance of each algorithm may vary due to application and environment. However, the following resources are available to help you in this challenge:
 
-Ahmed Elgammal	(USA), Antoine Vacavant	(France), Benjamin Laugraud	(Belgium), Csaba Kertész	(Finland), Domenico Bloisi	(Italy), Donovan Parks	(Canada), Eduardo Barreto Alexandre	(Brazil), Fida EL BAF	(France), Iñigo Martínez, Jean-Marc Odobez	(Switzerland), Jean-Philippe Jodoin	(Canada), JIA Pei	(China), Jian Yao	(China), Hemang Shah, Holger Friedrich, Laurence Bender	(Argentina), Lionel Robinault	(France), Luca Iocchi	(Italy), Luiz Vitor Martinez Cardoso	(Brazil), Martin Hofmann, Philipp Tiefenbacher and Gerhard Rigoll	(Germany), Rim Trabelsi	(Tunisia), Simone Gasparini	(France), Stefano Tommesani	(Italy), Thierry Bouwmans	(France), Vikas Reddy	(Australia), Yani Ioannou	(Canada), Zhenjie Zhao	(China) and Zoran Zivkovic	(Netherlands).
+* [A comprehensive review of background subtraction algorithms evaluated with synthetic and real videos](https://www.researchgate.net/publication/259340906_A_comprehensive_review_of_background_subtraction_algorithms_evaluated_with_synthetic_and_real_videos) (by Andrews Sobral and Antoine Vacavant)
+* [Background Subtraction - A Survey](https://sites.google.com/site/thierrybouwmans/recherche---background-subtraction---survey) and [Background Subtraction Website](https://sites.google.com/site/backgroundsubtraction/overview) (by Thierry Bouwmans)
+* [Comparing background subtraction algorithms](http://tommesani.com/index.php/video/comparing-background-subtraction-algorithms.html) (by Stefano Tommesani)
+* [Results for CD.net 2014](http://wordpress-jodoin.dmi.usherb.ca/results2014/)
+* See also: [Books, Journals, Workshops, Resources, Datasets, Codes, ...](https://en.wikipedia.org/wiki/Background_subtraction)
 
 Algorithms benchmark
 ----------------------------------------------
@@ -199,9 +203,15 @@ See Demo.cpp example source code at:
 https://github.com/andrewssobral/bgslibrary/blob/master/Demo.cpp
 
 How to contribute with BGSLibrary project
-----------------------------------------
+-----------------------------------------
 Everyone is invited to cooperate with the BGSLibrary project by sending any implementation of background subtraction (BS) algorithms. Please see the following tutorial:
 https://github.com/andrewssobral/bgslibrary/blob/master/docs/bgslibrary_how_to_contribute.pdf
+
+Full list of BGSLibrary collaborators
+-------------------------------------
+I would like to thanks all those who have contributed in some way to the success of this library, especially, the following peoples (in alphabetical order):
+
+Ahmed Elgammal	(USA), Antoine Vacavant	(France), Benjamin Laugraud	(Belgium), Csaba Kertész	(Finland), Domenico Bloisi	(Italy), Donovan Parks	(Canada), Eduardo Barreto Alexandre	(Brazil), Fida EL BAF	(France), Iñigo Martínez, Jean-Marc Odobez	(Switzerland), Jean-Philippe Jodoin	(Canada), JIA Pei	(China), Jian Yao	(China), Hemang Shah, Holger Friedrich, Laurence Bender	(Argentina), Lionel Robinault	(France), Luca Iocchi	(Italy), Luiz Vitor Martinez Cardoso	(Brazil), Martin Hofmann, Philipp Tiefenbacher and Gerhard Rigoll	(Germany), Rim Trabelsi	(Tunisia), Simone Gasparini	(France), Stefano Tommesani	(Italy), Thierry Bouwmans	(France), Vikas Reddy	(Australia), Yani Ioannou	(Canada), Zhenjie Zhao	(China) and Zoran Zivkovic	(Netherlands).
 
 Example code
 ------------
@@ -257,8 +267,8 @@ int main(int argc, char **argv)
 }
 ```
 
-Best public video databases
----------------------------
+Some related video databases
+----------------------------
 ![Alt text](https://sites.google.com/site/andrewssobral/datasets_public.png "Optional title")
 * ChangeDetection: http://changedetection.net/
 * BMC: http://bmc.univ-bpclermont.fr/
