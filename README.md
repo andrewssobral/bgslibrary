@@ -267,12 +267,6 @@ int main(int argc, char **argv)
 }
 ```
 
-Some related video databases
-----------------------------
-![Alt text](https://sites.google.com/site/andrewssobral/datasets_public.png "Optional title")
-* ChangeDetection: http://changedetection.net/
-* BMC: http://bmc.univ-bpclermont.fr/
-
 Videos
 ------
 
