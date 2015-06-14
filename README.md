@@ -15,7 +15,7 @@ Note: the BGSLibrary is based on OpenCV 2.X, if you want to use with OpenCV 3.x 
 
 ***¹ The [PBAS](https://sites.google.com/site/pbassegmenter/home) algorithm was removed from BGSLibrary because it is based on patented algorithm [ViBE](http://www2.ulg.ac.be/telecom/research/vibe/).***
 
-***² If you want to use bgslibrary for commercial purposes, you needs to contact the authors of your desired background subtraction method to check if they are agree with you. Please, read this for more info: [Can I use a GPLv3 software as a part of my commercial application?](http://stackoverflow.com/questions/2280742/gplv3-can-i-use-these-programs-in-commercial).***
+***² Some algorithms of the bgslibrary are free for commercial purposes and others not. First you need to contact the authors of your desired background subtraction method and check with them the appropriate license. For more additional information, please see: [Can I use a GPLv3 software as a part of my commercial application?](http://stackoverflow.com/questions/2280742/gplv3-can-i-use-these-programs-in-commercial).***
 
 Citation
 --------
