@@ -1,6 +1,5 @@
 #include <iostream>
-#include <cv.h>
-#include <highgui.h>
+#include <opencv2/opencv.hpp>
 
 #include "../package_bgs/FrameDifferenceBGS.h"
 
@@ -23,7 +22,8 @@ int main(int argc, char **argv)
     frame = cvQueryFrame(capture);
     if(!frame) break;
 
-    cv::Mat img_input(frame);
+    // cv::Mat img_input(frame); // don't works with opencv3
+		cv::Mat img_input = cv::cvarrToMat(frame);
     cv::imshow("Input", img_input);
 
     cv::Mat img_mask;

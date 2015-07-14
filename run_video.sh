@@ -1,3 +1,3 @@
 #!/bin/bash
-./build/bgs -uf -fn=dataset/video.avi
+./build/bgs -i=dataset/video.avi
 
