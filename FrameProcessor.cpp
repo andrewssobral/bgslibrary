@@ -123,8 +123,9 @@ namespace bgslibrary
     if (enableLbpMrf)
       lbpMrf = new LbpMrf;
 
-    if(enableMultiLayerBGS)
-      multiLayerBGS = new MultiLayerBGS;
+    // don't works with opencv3
+    /*if(enableMultiLayerBGS)
+      multiLayerBGS = new MultiLayerBGS;*/
 
     //if(enablePBAS)
     //  pixelBasedAdaptiveSegmenter = new PixelBasedAdaptiveSegmenter;
@@ -259,12 +260,13 @@ namespace bgslibrary
     if (enableLbpMrf)
       process("LbpMrf", lbpMrf, img_prep, img_lbp_mrf);
 
-    if(enableMultiLayerBGS)
+    // don't works with opencv3
+    /*if(enableMultiLayerBGS)
     {
       multiLayerBGS->setStatus(MultiLayerBGS::MLBGS_LEARN);
       //multiLayerBGS->setStatus(MultiLayerBGS::MLBGS_DETECT);
       process("MultiLayerBGS", multiLayerBGS, img_prep, img_mlbgs);
-    }
+    }*/
 
     //if(enablePBAS)
     //  process("PBAS", pixelBasedAdaptiveSegmenter, img_prep, img_pt_pbas);
@@ -325,7 +327,7 @@ namespace bgslibrary
       foregroundMaskAnalysis->process(frameNumber, "LBAdaptiveSOM", img_lb_som);
       foregroundMaskAnalysis->process(frameNumber, "LBFuzzyAdaptiveSOM", img_lb_fsom);
       foregroundMaskAnalysis->process(frameNumber, "LbpMrf", img_lbp_mrf);
-      foregroundMaskAnalysis->process(frameNumber, "MultiLayerBGS", img_mlbgs);
+      //foregroundMaskAnalysis->process(frameNumber, "MultiLayerBGS", img_mlbgs); // don't works with opencv3
       //foregroundMaskAnalysis->process(frameNumber, "PBAS", img_pt_pbas);
       foregroundMaskAnalysis->process(frameNumber, "VuMeter", img_vumeter);
       foregroundMaskAnalysis->process(frameNumber, "KDE", img_kde);
@@ -386,8 +388,9 @@ namespace bgslibrary
     //if(enablePBAS)
     //  delete pixelBasedAdaptiveSegmenter;
 
-    if (enableMultiLayerBGS)
-      delete multiLayerBGS;
+    // don't works with opencv3
+    /*if (enableMultiLayerBGS)
+      delete multiLayerBGS;*/
 
     if (enableLBFuzzyAdaptiveSOM)
       delete lbFuzzyAdaptiveSOM;
@@ -538,7 +541,7 @@ namespace bgslibrary
 
     cvWriteInt(fs, "enableLbpMrf", enableLbpMrf);
 
-    cvWriteInt(fs, "enableMultiLayerBGS", enableMultiLayerBGS);
+    //cvWriteInt(fs, "enableMultiLayerBGS", enableMultiLayerBGS); // don't works with opencv3
     //cvWriteInt(fs, "enablePBAS", enablePBAS);
     cvWriteInt(fs, "enableVuMeter", enableVuMeter);
     cvWriteInt(fs, "enableKDE", enableKDE);
@@ -596,7 +599,7 @@ namespace bgslibrary
 
     enableLbpMrf = cvReadIntByName(fs, 0, "enableLbpMrf", false);
 
-    enableMultiLayerBGS = cvReadIntByName(fs, 0, "enableMultiLayerBGS", false);
+    //enableMultiLayerBGS = cvReadIntByName(fs, 0, "enableMultiLayerBGS", false); // don't works with opencv3
     //enablePBAS = cvReadIntByName(fs, 0, "enablePBAS", false);
     enableVuMeter = cvReadIntByName(fs, 0, "enableVuMeter", false);
     enableKDE = cvReadIntByName(fs, 0, "enableKDE", false);

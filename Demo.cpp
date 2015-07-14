@@ -55,7 +55,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #include "package_bgs/lb/LBFuzzyAdaptiveSOM.h"
 
 #include "package_bgs/ck/LbpMrf.h"
-#include "package_bgs/jmo/MultiLayerBGS.h"
+//#include "package_bgs/jmo/MultiLayerBGS.h" // don't works with opencv3
 // The PBAS algorithm was removed from BGSLibrary because it is
 // based on patented algorithm ViBE
 // http://www2.ulg.ac.be/telecom/research/vibe/
@@ -131,7 +131,7 @@ int main(int argc, char **argv)
   //bgs = new FuzzyChoquetIntegral;
 
   /*** JMO Package (thanks to Jean-Marc Odobez) ***/
-  //bgs = new MultiLayerBGS;
+  //bgs = new MultiLayerBGS; // don't works with opencv3
 
   /*** PT Package (thanks to Martin Hofmann, Philipp Tiefenbacher and Gerhard Rigoll) ***/
   //bgs = new PixelBasedAdaptiveSegmenter;
