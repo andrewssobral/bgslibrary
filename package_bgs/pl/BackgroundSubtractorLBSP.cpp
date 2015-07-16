@@ -44,9 +44,9 @@ void BackgroundSubtractorLBSP::initialize(const cv::Mat& oInitImg) {
 	this->initialize(oInitImg,cv::Mat());
 }
 
-cv::AlgorithmInfo* BackgroundSubtractorLBSP::info() const {
+/*cv::AlgorithmInfo* BackgroundSubtractorLBSP::info() const {
 	return nullptr;
-}
+}*/
 
 cv::Mat BackgroundSubtractorLBSP::getROICopy() const {
 	return m_oROI.clone();
