@@ -61,6 +61,11 @@ void DPAdaptiveMedianBGS::process(const cv::Mat &img_input, cv::Mat &img_output,
     
     bgs.Initalize(params);
     bgs.InitModel(frame_data);
+
+    std::cout << "threshold: " << threshold << std::endl;
+    std::cout << "samplingRate: " << samplingRate << std::endl;
+    std::cout << "learningFrames: " << learningFrames << std::endl;
+    std::cout << "showOutput: " << showOutput << std::endl;
   }
 
   bgs.Subtract(frameNumber, frame_data, lowThresholdMask, highThresholdMask);
@@ -68,11 +73,15 @@ void DPAdaptiveMedianBGS::process(const cv::Mat &img_input, cv::Mat &img_output,
   bgs.Update(frameNumber, frame_data, lowThresholdMask);
   
   cv::Mat foreground(highThresholdMask.Ptr());
+  cv::Mat background(bgs.Background()->Ptr());
 
-  if(showOutput)
-    cv::imshow("Adaptive Median (McFarlane&Schofield)", foreground);
+  if(showOutput){
+    cv::imshow("Adaptive Median FG (McFarlane&Schofield)", foreground);
+    cv::imshow("Adaptive Median BG (McFarlane&Schofield)", background);
+  }
   
   foreground.copyTo(img_output);
+  background.copyTo(img_bgmodel);
 
   delete frame;
   firstTime = false;

@@ -69,11 +69,15 @@ void DPPratiMediodBGS::process(const cv::Mat &img_input, cv::Mat &img_output, cv
   bgs.Update(frameNumber, frame_data, lowThresholdMask);
   
   cv::Mat foreground(highThresholdMask.Ptr());
+  cv::Mat background(bgs.Background()->Ptr());
 
-  if(showOutput)
-    cv::imshow("Temporal Median (Cucchiara&Calderara)", foreground);
+  if(showOutput){
+    cv::imshow("Temporal Median FG (Cucchiara&Calderara)", foreground);
+    cv::imshow("Temporal Median BG (Cucchiara&Calderara)", background);
+  }
 
   foreground.copyTo(img_output);
+  background.copyTo(img_bgmodel);
 
   delete frame;
   firstTime = false;

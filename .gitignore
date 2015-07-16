@@ -10,3 +10,5 @@ fet/etc/
 *.exe
 *.pdb
 vs2010mfc/src/bgslibrary_vs2010_mfc.aps
+*.suo
+vs2010mfc/src/bgslibrary_vs2010_mfc.v12.suo
