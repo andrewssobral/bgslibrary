@@ -139,7 +139,7 @@ void TextureBGS::UpdateModel(BwImage& fgMask, TextureArray* bgModel,
     {		
       int index = x+y*(fgMask.Ptr()->width);
 
-      if(fgMask(x,y) == 0)
+      if(fgMask(y,x) == 0)
       {
         for(int i = 0; i < NUM_BINS; ++i)
         {
