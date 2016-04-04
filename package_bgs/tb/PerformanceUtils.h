@@ -48,7 +48,7 @@ public:
   float NrFalseNegatives(IplImage *image, IplImage *ground_truth, bool debug = false);
   float SimilarityMeasure(IplImage *image, IplImage *ground_truth, bool debug = false);
 
-  void ImageROC(IplImage *image, IplImage* ground_truth, bool saveResults = false, char* filename = "");
-  void PerformanceEvaluation(IplImage *image, IplImage *ground_truth, bool saveResults = false, char* filename = "", bool debug = false);
+  void ImageROC(IplImage *image, IplImage* ground_truth, bool saveResults = false, const char* filename = "");
+  void PerformanceEvaluation(IplImage *image, IplImage *ground_truth, bool saveResults = false, const char* filename = "", bool debug = false);
 };
 

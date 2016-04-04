@@ -56,7 +56,7 @@ void LbpMrf::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img
 
   Detector->DetectMotions(InputImage);
   Detector->GetMotionsMask(OutputImage);
-  img_output = (IplImage*)OutputImage.GetIplImage();
+  img_output = cv::cvarrToMat((IplImage*)OutputImage.GetIplImage());
   bitwise_not(img_output, img_bgmodel);
 
   if(showOutput)

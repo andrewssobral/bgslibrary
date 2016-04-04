@@ -35,7 +35,7 @@ void LOBSTERBGS::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat 
     firstTime = false;
   }
 
-  (*pLOBSTER)(img_input, img_output);
+  pLOBSTER->apply(img_input, img_output);
   pLOBSTER->getBackgroundImage(img_bgmodel);
 
   if(showOutput) {

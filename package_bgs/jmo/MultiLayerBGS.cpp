@@ -228,9 +228,9 @@ void MultiLayerBGS::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
   BGS->GetForegroundMaskImage(fg_mask_img);
   BGS->MergeImages(4, img, bg_img, fg_prob_img3, fg_img, merged_img);
 
-  img_merged = cv::Mat(merged_img);
-  img_foreground = cv::Mat(fg_mask_img);
-  img_background = cv::Mat(bg_img);
+  img_merged = cv::cvarrToMat(merged_img);
+  img_foreground = cv::cvarrToMat(fg_mask_img);
+  img_background = cv::cvarrToMat(bg_img);
 
   if (showOutput)
   {

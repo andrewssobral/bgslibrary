@@ -24,7 +24,7 @@ public:
 	//! (re)initiaization method; needs to be called before starting background subtraction
 	virtual void initialize(const cv::Mat& oInitImg, const cv::Mat& oROI)=0;
 	//! primary model update function; the learning param is used to override the internal learning speed (ignored when <= 0)
-	virtual void operator()(cv::InputArray image, cv::OutputArray fgmask, double learningRate=0)=0;
+	virtual void apply(cv::InputArray image, cv::OutputArray fgmask, double learningRate=0)=0;
 	//! unused, always returns nullptr
 	//virtual cv::AlgorithmInfo* info() const;
 	//! returns a copy of the ROI used for descriptor extraction

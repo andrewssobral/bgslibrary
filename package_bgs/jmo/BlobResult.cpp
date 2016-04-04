@@ -53,6 +53,7 @@ MODIFICACIONS (Modificació, Autor, Data):
 #include <stdio.h>
 #include <functional>
 #include <algorithm>
+#include <opencv2/opencv.hpp>
 #include "BlobResult.h"
 #include "BlobExtraction.h"
 

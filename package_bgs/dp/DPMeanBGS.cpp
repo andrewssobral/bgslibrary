@@ -68,7 +68,7 @@ void DPMeanBGS::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
   lowThresholdMask.Clear();
   bgs.Update(frameNumber, frame_data, lowThresholdMask);
   
-  cv::Mat foreground(highThresholdMask.Ptr());
+  cv::Mat foreground=cv::cvarrToMat(highThresholdMask.Ptr());
 
   if(showOutput)
     cv::imshow("Temporal Mean (Donovan Parks)", foreground);

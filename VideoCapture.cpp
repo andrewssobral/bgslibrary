@@ -166,7 +166,7 @@ namespace bgslibrary
 
         do
         {
-          cv::Mat img_input(frame);
+          cv::Mat img_input=cv::cvarrToMat(frame);
 
           if (showOutput)
           {
@@ -206,7 +206,7 @@ namespace bgslibrary
         cvSetImageROI(frame, rect);
       }
 
-      cv::Mat img_input(frame);
+      cv::Mat img_input=cv::cvarrToMat(frame);
 
       if (showOutput)
         cv::imshow("Input", img_input);

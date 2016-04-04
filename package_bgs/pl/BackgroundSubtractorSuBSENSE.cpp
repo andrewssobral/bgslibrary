@@ -290,7 +290,7 @@ void BackgroundSubtractorSuBSENSE::refreshModel(float fSamplesRefreshFrac, bool 
 	}
 }
 
-void BackgroundSubtractorSuBSENSE::operator()(cv::InputArray _image, cv::OutputArray _fgmask, double learningRateOverride) {
+void BackgroundSubtractorSuBSENSE::apply(cv::InputArray _image, cv::OutputArray _fgmask, double learningRateOverride) {
 	// == process
 	CV_Assert(m_bInitialized);
 	cv::Mat oInputImg = _image.getMat();

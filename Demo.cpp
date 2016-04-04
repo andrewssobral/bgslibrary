@@ -171,7 +171,7 @@ int main(int argc, char **argv)
 
     cvResize(frame_aux, frame);
     
-    cv::Mat img_input(frame);
+    cv::Mat img_input = cv::cvarrToMat(frame);
     cv::imshow("input", img_input);
 
     cv::Mat img_mask;

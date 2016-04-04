@@ -15,7 +15,7 @@ You should have received a copy of the GNU General Public License
 along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "PerformanceUtils.h"
-#include <opencv2/legacy/compat.hpp>
+#include <opencv2/opencv.hpp>
 
 PerformanceUtils::PerformanceUtils(void){}
 
@@ -66,7 +66,7 @@ float PerformanceUtils::NrTruePositives(IplImage *image, IplImage *ground_truth,
   if(debug)
   {
     TPimage = cvCreateImage(cvSize(image->width,image->height),image->depth,image->nChannels);
-    cvFillImage(TPimage,0.0);
+    cvSet(TPimage,0.0);
   }
 
   PixelUtils p;
@@ -116,7 +116,7 @@ float PerformanceUtils::NrTrueNegatives(IplImage* image, IplImage* ground_truth,
   if(debug)
   {
     TNimage = cvCreateImage(cvSize(image->width,image->height),image->depth,image->nChannels);
-    cvFillImage(TNimage, 0.0);
+    cvSet(TNimage, 0.0);
   }
 
   PixelUtils p;
@@ -168,7 +168,7 @@ float PerformanceUtils::NrFalsePositives(IplImage *image, IplImage *ground_truth
   if(debug)
   {
     FPimage = cvCreateImage(cvSize(image->width,image->height),image->depth,image->nChannels);
-    cvFillImage(FPimage, 0.0);
+    cvSet(FPimage, 0.0);
   }
 
   PixelUtils p;
@@ -218,7 +218,7 @@ float PerformanceUtils::NrFalseNegatives(IplImage * image, IplImage *ground_trut
   if(debug)
   {
     FNimage = cvCreateImage(cvSize(image->width,image->height),image->depth,image->nChannels);
-    cvFillImage(FNimage, 0.0);
+    cvSet(FNimage, 0.0);
   }
 
   PixelUtils p;
@@ -258,8 +258,8 @@ float PerformanceUtils::NrFalseNegatives(IplImage * image, IplImage *ground_trut
 
 float PerformanceUtils::SimilarityMeasure(IplImage *image, IplImage *ground_truth, bool debug)
 {
-  cv::Mat img_input(image,true);
-  cv::Mat img_ref(ground_truth,true);
+  cv::Mat img_input=cv::cvarrToMat(image,true);
+  cv::Mat img_ref=cv::cvarrToMat(ground_truth,true);
 
   int rn = cv::countNonZero(img_ref);
   cv::Mat i;
@@ -295,13 +295,13 @@ float PerformanceUtils::SimilarityMeasure(IplImage *image, IplImage *ground_trut
   return s;
 }
 
-void PerformanceUtils::ImageROC(IplImage *image, IplImage* ground_truth, bool saveResults, char* filename)
+void PerformanceUtils::ImageROC(IplImage *image, IplImage* ground_truth, bool saveResults, const char* filename)
 {
   unsigned char *pixelGT = (unsigned char*) malloc(1*sizeof(unsigned char));
   unsigned char *pixelI = (unsigned char*) malloc(1*sizeof(unsigned char));
 
   IplImage *ROCimage = cvCreateImage(cvSize(image->width,image->height),image->depth,image->nChannels);
-  cvFillImage(ROCimage, 0.0);
+  cvSet(ROCimage, 0.0);
 
   PixelUtils p;
 
@@ -454,7 +454,7 @@ void PerformanceUtils::ImageROC(IplImage *image, IplImage* ground_truth, bool sa
   free(pixelI);
 }
 
-void PerformanceUtils::PerformanceEvaluation(IplImage *image, IplImage *ground_truth, bool saveResults, char* filename, bool debug)
+void PerformanceUtils::PerformanceEvaluation(IplImage *image, IplImage *ground_truth, bool saveResults, const char* filename, bool debug)
 {
   float N = 0;
   N = NrPixels(image);

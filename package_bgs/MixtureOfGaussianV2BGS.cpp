@@ -18,6 +18,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 
 MixtureOfGaussianV2BGS::MixtureOfGaussianV2BGS() : firstTime(true), alpha(0.05), enableThreshold(true), threshold(15), showOutput(true)
 {
+  mog=cv::createBackgroundSubtractorMOG2();
   std::cout << "MixtureOfGaussianV2BGS()" << std::endl;
 }
 
@@ -53,10 +54,10 @@ void MixtureOfGaussianV2BGS::process(const cv::Mat &img_input, cv::Mat &img_outp
   //    vol.26, no.5, pages 651-656, 2004.
   //------------------------------------------------------------------
 
-  mog(img_input, img_foreground, alpha);
+  mog->apply(img_input, img_foreground, alpha);
   
   cv::Mat img_background;
-  mog.getBackgroundImage(img_background);
+  mog->getBackgroundImage(img_background);
 
   if(enableThreshold)
     cv::threshold(img_foreground, img_foreground, threshold, 255, cv::THRESH_BINARY);

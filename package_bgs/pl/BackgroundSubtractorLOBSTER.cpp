@@ -169,7 +169,7 @@ void BackgroundSubtractorLOBSTER::refreshModel(float fSamplesRefreshFrac, bool b
 	}
 }
 
-void BackgroundSubtractorLOBSTER::operator()(cv::InputArray _image, cv::OutputArray _fgmask, double learningRate) {
+void BackgroundSubtractorLOBSTER::apply(cv::InputArray _image, cv::OutputArray _fgmask, double learningRate) {
 	CV_Assert(m_bInitialized);
 	CV_Assert(learningRate>0);
 	cv::Mat oInputImg = _image.getMat();

@@ -72,8 +72,8 @@ void DPAdaptiveMedianBGS::process(const cv::Mat &img_input, cv::Mat &img_output,
   lowThresholdMask.Clear();
   bgs.Update(frameNumber, frame_data, lowThresholdMask);
   
-  cv::Mat foreground(highThresholdMask.Ptr());
-  cv::Mat background(bgs.Background()->Ptr());
+  cv::Mat foreground=cv::cvarrToMat(highThresholdMask.Ptr());
+  cv::Mat background=cv::cvarrToMat(bgs.Background()->Ptr());
 
   if(showOutput){
     cv::imshow("Adaptive Median FG (McFarlane&Schofield)", foreground);

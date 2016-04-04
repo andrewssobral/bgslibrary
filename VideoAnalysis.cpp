@@ -48,7 +48,7 @@ namespace bgslibrary
     {
       std::cout << "Usage: " << argv[0] << " [options]" << std::endl;
       std::cout << "Avaible options:" << std::endl;
-      cmd.printParams();
+      cmd.printMessage();
       return false;
     }
 

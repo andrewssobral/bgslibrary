@@ -20,6 +20,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #include <opencv2/opencv.hpp>
 
 #include <opencv2/video/background_segm.hpp>
+#include <opencv2/bgsegm.hpp>
 
 #include "IBGS.h"
 
@@ -27,7 +28,7 @@ class MixtureOfGaussianV1BGS : public IBGS
 {
 private:
   bool firstTime;
-  cv::BackgroundSubtractorMOG mog;
+  cv::Ptr<cv::bgsegm::BackgroundSubtractorMOG> mog;
   cv::Mat img_foreground;
   double alpha;
   bool enableThreshold;

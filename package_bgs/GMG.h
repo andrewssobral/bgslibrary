@@ -18,6 +18,8 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <iostream>
 #include <opencv2/opencv.hpp>
+#include <opencv2/video/background_segm.hpp>
+#include <opencv2/bgsegm.hpp>
 
 #include "IBGS.h"
 
@@ -25,7 +27,7 @@ class GMG : public IBGS
 {
 private:
   bool firstTime;
-  cv::Ptr<cv::BackgroundSubtractorGMG> fgbg;
+  cv::Ptr<cv::bgsegm::BackgroundSubtractorGMG> fgbg;
   int initializationFrames;
   double decisionThreshold;
   cv::Mat img_foreground;

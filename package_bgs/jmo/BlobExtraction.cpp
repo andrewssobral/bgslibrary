@@ -67,10 +67,10 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 // color dels píxels de la màscara per ser exteriors
 #define PIXEL_EXTERIOR 0
 
+#include <opencv2/opencv.hpp>
 
 #include "BlobResult.h"
 #include "BlobExtraction.h"
-#include <opencv2/legacy/compat.hpp>
 
 namespace Blob
 {

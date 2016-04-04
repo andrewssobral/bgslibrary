@@ -19,6 +19,8 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 MixtureOfGaussianV1BGS::MixtureOfGaussianV1BGS() : firstTime(true), alpha(0.05), enableThreshold(true), threshold(15), showOutput(true)
 {
   std::cout << "MixtureOfGaussianV1BGS()" << std::endl;
+  
+  mog = cv::bgsegm::createBackgroundSubtractorMOG();
 }
 
 MixtureOfGaussianV1BGS::~MixtureOfGaussianV1BGS()
@@ -48,9 +50,9 @@ void MixtureOfGaussianV1BGS::process(const cv::Mat &img_input, cv::Mat &img_outp
   //   Proc. 2nd European Workshp on Advanced Video-Based Surveillance Systems, 2001
   //------------------------------------------------------------------
 
-  mog(img_input, img_foreground, alpha);
+  mog->apply(img_input, img_foreground, alpha);
   cv::Mat img_background;
-  mog.getBackgroundImage(img_background);
+  mog->getBackgroundImage(img_background);
 
   if(enableThreshold)
     cv::threshold(img_foreground, img_foreground, threshold, 255, cv::THRESH_BINARY);

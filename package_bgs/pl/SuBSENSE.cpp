@@ -35,7 +35,7 @@ void SuBSENSEBGS::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat
     firstTime = false;
   }
 
-  (*pSubsense)(img_input, img_output);
+  pSubsense->apply(img_input, img_output);
   pSubsense->getBackgroundImage(img_bgmodel);
 
   if(showOutput) {

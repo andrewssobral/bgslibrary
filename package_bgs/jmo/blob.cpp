@@ -57,8 +57,8 @@ MODIFICATIONS (Modification, Author, Date):
 
 
 #include <limits.h>
-#include "blob.h"
 #include <opencv2/opencv.hpp>
+#include "blob.h"
 
 namespace Blob
 {

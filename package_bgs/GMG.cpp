@@ -20,11 +20,11 @@ GMG::GMG() : firstTime(true), initializationFrames(20), decisionThreshold(0.7), 
 {
   std::cout << "GMG()" << std::endl;
 
-  cv::initModule_video();
+  //cv::initModule_video();
   cv::setUseOptimized(true);
   cv::setNumThreads(8);
 
-  fgbg = cv::Algorithm::create<cv::BackgroundSubtractorGMG>("BackgroundSubtractor.GMG");
+  fgbg = cv::bgsegm::createBackgroundSubtractorGMG();
 }
 
 GMG::~GMG()
@@ -41,8 +41,8 @@ void GMG::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bg
 
   if(firstTime)
   {
-    fgbg->set("initializationFrames", initializationFrames);
-    fgbg->set("decisionThreshold", decisionThreshold);
+    fgbg->setNumFrames(initializationFrames);
+    fgbg->setDecisionThreshold(decisionThreshold);
 
     saveConfig();
   }
@@ -53,7 +53,7 @@ void GMG::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bg
     return;
   }
 
-  (*fgbg)(img_input, img_foreground);
+  fgbg->apply(img_input,img_foreground);
 
   cv::Mat img_background;
   (*fgbg).getBackgroundImage(img_background);

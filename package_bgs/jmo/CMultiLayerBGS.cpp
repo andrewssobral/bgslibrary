@@ -53,7 +53,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #include <fstream>						// file I/O
 #include <cmath>						// math includes
 #include <iostream>                                             // I/O streams
-#include <opencv2/legacy/compat.hpp>
+#include <opencv2/opencv.hpp>
 
 using namespace Blob;
 
@@ -227,7 +227,7 @@ void CMultiLayerBGS::MergeImages(int num, ...) {
     imgROIRect = cvRect(b * imgSize.width, a * imgSize.height, imgSize.width, imgSize.height);
 
     cvSetImageROI(ppIplImg[num], imgROIRect);
-    cvCopyImage(ppIplImg[img_idx++], ppIplImg[num]);
+    cvCopy(ppIplImg[img_idx++], ppIplImg[num]);
     cvResetImageROI(ppIplImg[num]);
   }
 
@@ -369,7 +369,7 @@ void CMultiLayerBGS::SetBkMaskImage(IplImage *mask_img) {
   if (m_pBkMaskImg == NULL) {
     m_pBkMaskImg = cvCreateImage(cvGetSize(mask_img), mask_img->depth, mask_img->nChannels);
   }
-  cvCopyImage(mask_img, m_pBkMaskImg);
+  cvCopy(mask_img, m_pBkMaskImg);
 }
 
 void CMultiLayerBGS::BackgroundSubtractionProcess() {
@@ -835,7 +835,7 @@ void CMultiLayerBGS::GetBackgroundImage(IplImage *bk_img) {
   ODC.SetImageData(bg_img, org_data);
   delete[] org_data;
 
-  cvCopyImage(m_pBgImg, bk_img);
+  cvCopy(m_pBgImg, bk_img);
 }
 
 void CMultiLayerBGS::GetForegroundImage(IplImage *fg_img, CvScalar bg_color) {
@@ -1391,7 +1391,7 @@ void CMultiLayerBGS::GetCurrentLayeredBackgroundImage(int layered_no, IplImage *
 }
 
 void CMultiLayerBGS::GetColoredBgMultiLayeredImage(IplImage *bg_multi_layer_img, CvScalar *layer_colors) {
-  cvCopyImage(m_pOrgImg, bg_multi_layer_img);
+  cvCopy(m_pOrgImg, bg_multi_layer_img);
 
   COpencvDataConversion<uchar, uchar> ODC;
 
