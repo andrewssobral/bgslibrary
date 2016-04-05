@@ -33,14 +33,14 @@ namespace bgslibrary
     bool flag = false;
 
     const char* keys =
-      "{hp|help|false|Print help message}"
-      "{uf|use_file|false|Use video file}"
-      "{fn|filename||Specify video file}"
-      "{uc|use_cam|false|Use camera}"
-      "{ca|camera|0|Specify camera index}"
-      "{co|use_comp|false|Use mask comparator}"
-      "{st|stopAt|0|Frame number to stop}"
-      "{im|imgref||Specify image file}"
+      "{hp help|false|Print help message}"
+      "{uf use_file|false|Use video file}"
+      "{fn filename||Specify video file}"
+      "{uc use_cam|false|Use camera}"
+      "{ca camera|0|Specify camera index}"
+      "{co use_comp|false|Use mask comparator}"
+      "{st stopAt|0|Frame number to stop}"
+      "{im imgref||Specify image file}"
       ;
     cv::CommandLineParser cmd(argc, argv, keys);
 
