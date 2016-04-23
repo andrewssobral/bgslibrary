@@ -4,6 +4,7 @@ project(bgs)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99")
+#set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake-modules)
 
 IF(UNIX)
   # add some standard warnings
@@ -25,8 +26,9 @@ endif()
 file(GLOB sources FrameProcessor.cpp PreProcessor.cpp VideoAnalysis.cpp  VideoCapture.cpp)
 file(GLOB main Main.cpp)
 file(GLOB demo Demo.cpp)
+file(GLOB demo2 Demo2.cpp)
 
-list(REMOVE_ITEM sources ${demo})
+list(REMOVE_ITEM sources ${demo} ${demo2})
 
 file(GLOB_RECURSE analysis package_analysis/*.cpp)
 file(GLOB_RECURSE bgs package_bgs/*.cpp package_bgs/*.c)
@@ -51,6 +53,9 @@ set_target_properties(bgs_bin
 
 add_executable(bgs_demo ${demo})
 target_link_libraries(bgs_demo ${OpenCV_LIBS} bgs)
+
+add_executable(bgs_demo2 ${demo2})
+target_link_libraries(bgs_demo2 ${OpenCV_LIBS} bgs)
 
 #INSTALL(TARGETS bgs
 #	bgs_demo

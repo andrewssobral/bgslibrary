@@ -7,7 +7,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{3B6BF763-9CDE-4859-ADD9-8EB7B282659F}</ProjectGuid>
+    <ProjectGuid>{EAA15CCC-270A-460B-A61C-2DB864D67718}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>bgslibrary</RootNamespace>
   </PropertyGroup>
@@ -50,19 +50,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Demo.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="..\Demo2.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\FrameProcessor.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\Main.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\package_analysis\ForegroundMaskAnalysis.cpp" />
     <ClCompile Include="..\package_bgs\AdaptiveBackgroundLearning.cpp" />
     <ClCompile Include="..\package_bgs\AdaptiveSelectiveBackgroundLearning.cpp" />
     <ClCompile Include="..\package_bgs\ae\KDE.cpp" />
@@ -144,27 +134,8 @@
     <ClCompile Include="..\package_bgs\tb\T2FMRF_UV.cpp" />
     <ClCompile Include="..\package_bgs\WeightedMovingMeanBGS.cpp" />
     <ClCompile Include="..\package_bgs\WeightedMovingVarianceBGS.cpp" />
-    <ClCompile Include="..\PreProcessor.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\VideoAnalysis.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\VideoCapture.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Config.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\FrameProcessor.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\IFrameProcessor.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\package_analysis\ForegroundMaskAnalysis.h" />
     <ClInclude Include="..\package_bgs\AdaptiveBackgroundLearning.h" />
     <ClInclude Include="..\package_bgs\AdaptiveSelectiveBackgroundLearning.h" />
     <ClInclude Include="..\package_bgs\ae\KDE.h" />
@@ -257,15 +228,6 @@
     <ClInclude Include="..\package_bgs\tb\T2FMRF_UV.h" />
     <ClInclude Include="..\package_bgs\WeightedMovingMeanBGS.h" />
     <ClInclude Include="..\package_bgs\WeightedMovingVarianceBGS.h" />
-    <ClInclude Include="..\PreProcessor.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\VideoAnalysis.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\VideoCapture.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\package_bgs\pl\LBSP_16bits_dbcross_1ch.i" />

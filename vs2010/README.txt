@@ -2,11 +2,14 @@ VISUAL STUDIO 2010 TEMPLATE PROJECT
 -----------------------------------
 Change to [Release][Win32]
 
-COMPATIBLE WITH:
+Tested with:
+  VISUAL STUDIO 2010
   VISUAL STUDIO 2012
   VISUAL STUDIO 2013
+  VISUAL STUDIO 2015
 
-YOU NEEDS TO INSTALL OPENCV AT:
+You need to install OpenCV at:
   C:\OpenCV2.4.10
+or change the project settings.
 
-BUILD AND RUN!
+Build and run! ;)
