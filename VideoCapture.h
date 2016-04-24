@@ -21,7 +21,6 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #include <opencv2/imgproc/imgproc_c.h>
 #include <opencv2/imgproc/types_c.h>
 
-
 #include "Config.h"
 #include "IFrameProcessor.h"
 
@@ -31,7 +30,7 @@ namespace bgslibrary
   {
   private:
     IFrameProcessor* frameProcessor;
-    CvCapture* capture;
+    cv::VideoCapture capture;
     IplImage* frame;
     int key;
     int64 start_time;

@@ -1,0 +1,15 @@
+# Ignore everything in this directory
+*
+# Except these files
+!.gitignore
+!bgslibrary.sln
+!bgslibrary.suo
+!bgslibrary.vcxproj
+!bgslibrary.vcxproj.filters
+!bgslibrary.vcxproj.user
+!bgslibrary_demo.vcxproj
+!bgslibrary_demo.vcxproj.filters
+!bgslibrary_demo.vcxproj.user
+!bgslibrary_demo2.vcxproj
+!bgslibrary_demo2.vcxproj.filters
+!bgslibrary_demo2.vcxproj.user

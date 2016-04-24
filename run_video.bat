@@ -1,3 +1,3 @@
 @echo off
 cls
-bgslibrary.exe -i=dataset/video.avi
+build\bgslibrary.exe -i=dataset/video.avi

@@ -73,30 +73,22 @@ int main(int argc, char **argv)
 {
   std::cout << "Using OpenCV " << CV_MAJOR_VERSION << "." << CV_MINOR_VERSION << "." << CV_SUBMINOR_VERSION << std::endl;
 
-  CvCapture *capture = 0;
-  int resize_factor = 100;
+  VideoCapture capture;
 
   if(argc > 1)
   {
     std::cout << "Openning: " << argv[1] << std::endl;
-    capture = cvCaptureFromAVI(argv[1]);
+    capture.open(argv[1]);
   }
   else
-  {
-    capture = cvCaptureFromCAM(0);
-    resize_factor = 50; // set size = 50% of original image
-  }
+    capture.open(0);
 
-  if(!capture)
+  if(!capture.isOpened())
   {
     std::cerr << "Cannot initialize video!" << std::endl;
     return -1;
   }
   
-  IplImage *frame_aux = cvQueryFrame(capture);
-  IplImage *frame = cvCreateImage(cvSize((int)((frame_aux->width*resize_factor)/100) , (int)((frame_aux->height*resize_factor)/100)), frame_aux->depth, frame_aux->nChannels);
-  cvResize(frame_aux, frame);
-
   /* Background Subtraction Methods */
   IBGS *bgs;
 
@@ -166,14 +158,12 @@ int main(int argc, char **argv)
   //bgs = new LOBSTERBGS();
 
   int key = 0;
+  cv::Mat img_input;
   while(key != 'q')
   {
-    frame_aux = cvQueryFrame(capture);
-    if(!frame_aux) break;
+    capture >> img_input;
+    if(img_input.empty()) break;
 
-    cvResize(frame_aux, frame);
-    
-    cv::Mat img_input = cv::cvarrToMat(frame);
     cv::imshow("input", img_input);
 
     cv::Mat img_mask;
@@ -190,7 +180,7 @@ int main(int argc, char **argv)
   delete bgs;
 
   cvDestroyAllWindows();
-  cvReleaseCapture(&capture);
+  capture.release();
 
   return 0;
 }

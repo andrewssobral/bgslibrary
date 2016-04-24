@@ -1,3 +1,3 @@
 @echo off
 cls
-bgslibrary.exe -c
+build\bgslibrary.exe -c

@@ -102,10 +102,10 @@ namespace bgslibrary
   void VideoCapture::setUpCamera()
   {
     std::cout << "Camera index:" << cameraIndex << std::endl;
-    capture = cvCaptureFromCAM(cameraIndex);
+    capture.open(cameraIndex);
 
-    if (!capture)
-      std::cerr << "Cannot open initialize webcam!\n" << std::endl;
+    if (!capture.isOpened())
+      std::cerr << "Cannot initialize webcam!\n" << std::endl;
   }
 
   void VideoCapture::setVideo(std::string filename)
@@ -119,9 +119,9 @@ namespace bgslibrary
   void VideoCapture::setUpVideo()
   {
     std::cout << "Openning: " << videoFileName << std::endl;
-    capture = cvCaptureFromFile(videoFileName.c_str());
+    capture.open(videoFileName.c_str());
 
-    if (!capture)
+    if (!capture.isOpened())
       std::cerr << "Cannot open video file " << videoFileName << std::endl;
     else
       std::cout << "OK" << std::endl;
@@ -133,11 +133,12 @@ namespace bgslibrary
 
     if (useCamera) setUpCamera();
     if (useVideo)  setUpVideo();
-    if (!capture)  std::cerr << "Capture error..." << std::endl;
+    //if (!capture)  std::cerr << "Capture error..." << std::endl;
 
-    int input_fps = cvGetCaptureProperty(capture, CV_CAP_PROP_FPS);
+    int input_fps = capture.get(CV_CAP_PROP_FPS);
     std::cout << "input->fps:" << input_fps << std::endl;
 
+    /*
     IplImage* frame1 = cvQueryFrame(capture);
     frame = cvCreateImage(cvSize(
       (int)((frame1->width*input_resize_percent) / 100), 
@@ -146,6 +147,7 @@ namespace bgslibrary
     std::cout << "input->resize_percent:" << input_resize_percent << std::endl;
     std::cout << "input->width:" << frame->width << std::endl;
     std::cout << "input->height:" << frame->height << std::endl;
+    */
 
     double loopDelay = 33.333;
     if (input_fps > 0)
@@ -158,13 +160,14 @@ namespace bgslibrary
     {
       frameNumber++;
 
-      frame1 = cvQueryFrame(capture);
-      if (!frame1) break;
+      cv::Mat frame;
+      capture >> frame;
+      if (frame.empty()) break;
 
-      cvResize(frame1, frame);
+      //cvResize(frame1, frame);
 
-      if (enableFlip)
-        cvFlip(frame, frame, 0);
+      //if (enableFlip)
+      //  cvFlip(frame, frame, 0);
 
       if (VC_ROI::use_roi == true && VC_ROI::roi_defined == false && firstTime == true)
       {
@@ -172,7 +175,9 @@ namespace bgslibrary
 
         do
         {
-          cv::Mat img_input = cv::cvarrToMat(frame);
+          //cv::Mat img_input = cv::cvarrToMat(frame);
+          cv::Mat img_input;
+          frame.copyTo(img_input);
 
           if (showOutput)
           {
@@ -208,11 +213,13 @@ namespace bgslibrary
 
       if (VC_ROI::use_roi == true && VC_ROI::roi_defined == true)
       {
-        CvRect rect = cvRect(VC_ROI::roi_x0, VC_ROI::roi_y0, VC_ROI::roi_x1 - VC_ROI::roi_x0, VC_ROI::roi_y1 - VC_ROI::roi_y0);
-        cvSetImageROI(frame, rect);
+        cv::Rect roi(VC_ROI::roi_x0, VC_ROI::roi_y0, VC_ROI::roi_x1 - VC_ROI::roi_x0, VC_ROI::roi_y1 - VC_ROI::roi_y0);
+        frame = frame(roi);
       }
 
-      cv::Mat img_input = cv::cvarrToMat(frame);
+      //cv::Mat img_input = cv::cvarrToMat(frame);
+      cv::Mat img_input;
+      frame.copyTo(img_input);
 
       if (showOutput)
         cv::imshow("Input", img_input);
@@ -227,7 +234,7 @@ namespace bgslibrary
       fps = freq / delta_time;
       //std::cout << "FPS: " << fps << std::endl;
 
-      cvResetImageROI(frame);
+      //cvResetImageROI(frame);
 
       key = cvWaitKey(loopDelay);
       //std::cout << "key: " << key << std::endl;
@@ -244,7 +251,7 @@ namespace bgslibrary
       firstTime = false;
     } while (1);
 
-    cvReleaseCapture(&capture);
+    capture.release();
   }
 
   void VideoCapture::saveConfig()
