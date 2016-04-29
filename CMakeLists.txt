@@ -19,6 +19,15 @@ endif(UNIX)
 
 find_package(OpenCV REQUIRED)
 
+message(STATUS "OpenCV library status:")
+message(STATUS "    version: ${OpenCV_VERSION}")
+message(STATUS "    libraries: ${OpenCV_LIBS}")
+message(STATUS "    include path: ${OpenCV_INCLUDE_DIRS}")
+
+if(${OpenCV_VERSION} VERSION_EQUAL 3 OR ${OpenCV_VERSION} VERSION_GREATER 3)
+  message (FATAL_ERROR "OpenCV version is not compatible: ${OpenCV_VERSION}")
+endif()
+
 if(${OpenCV_VERSION} VERSION_LESS 2.3.1)
   message (FATAL_ERROR "OpenCV version is not compatible: ${OpenCV_VERSION}")
 endif()
@@ -57,12 +66,11 @@ target_link_libraries(bgs_demo ${OpenCV_LIBS} bgs)
 add_executable(bgs_demo2 ${demo2})
 target_link_libraries(bgs_demo2 ${OpenCV_LIBS} bgs)
 
-#INSTALL(TARGETS bgs
-#	bgs_demo
-#	bgs_bin
-#  RUNTIME DESTINATION bin COMPONENT app
-#  LIBRARY DESTINATION lib COMPONENT runtime
-#  ARCHIVE DESTINATION lib COMPONENT runtime
-#  PUBLIC_HEADER DESTINATION include/package_bgs COMPONENT dev
-#  FRAMEWORK DESTINATION "/Library/Frameworks"
-#)
+INSTALL(TARGETS bgs
+	bgs_bin
+  RUNTIME DESTINATION bin COMPONENT app
+  LIBRARY DESTINATION lib COMPONENT runtime
+  ARCHIVE DESTINATION lib COMPONENT runtime
+  PUBLIC_HEADER DESTINATION include/package_bgs COMPONENT dev
+  FRAMEWORK DESTINATION "/Library/Frameworks"
+)
