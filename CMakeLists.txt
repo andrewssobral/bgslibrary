@@ -25,8 +25,13 @@ endif(UNIX)
 
 find_package(OpenCV REQUIRED)
 
-if(${OpenCV_VERSION} VERSION_LESS 2.3.1)
-  message (FATAL_ERROR "OpenCV version is not compatible: ${OpenCV_VERSION}")
+message(STATUS "OpenCV library status:")
+message(STATUS "    version: ${OpenCV_VERSION}")
+message(STATUS "    libraries: ${OpenCV_LIBS}")
+message(STATUS "    include path: ${OpenCV_INCLUDE_DIRS}")
+
+if(${OpenCV_VERSION} VERSION_LESS 3)
+  message (FATAL_ERROR "This branch of BGSLibrary is not compatible with your OpenCV version: ${OpenCV_VERSION}")
 endif()
 
 file(GLOB sources FrameProcessor.cpp PreProcessor.cpp VideoAnalysis.cpp  VideoCapture.cpp)
@@ -39,12 +44,6 @@ list(REMOVE_ITEM sources ${demo} ${demo2})
 file(GLOB_RECURSE analysis package_analysis/*.cpp)
 file(GLOB_RECURSE bgs package_bgs/*.cpp package_bgs/*.c)
 file(GLOB_RECURSE bgs_include package_bgs/*.h)
-
-# GMG is not available in older OpenCV versions
-if(${OpenCV_VERSION} VERSION_LESS 2.4.3)
-  file(GLOB gmg package_bgs/GMG.cpp)
-  list(REMOVE_ITEM bgs ${gmg})
-endif()
 
 include_directories(${CMAKE_SOURCE_DIR})
 
