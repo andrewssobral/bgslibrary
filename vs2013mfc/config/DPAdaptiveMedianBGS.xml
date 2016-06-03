@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<opencv_storage>
+<threshold>40</threshold>
+<samplingRate>7</samplingRate>
+<learningFrames>30</learningFrames>
+<showOutput>0</showOutput>
+</opencv_storage>
