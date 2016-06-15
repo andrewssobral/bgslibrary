@@ -3,7 +3,7 @@ BGSLibrary
 
 A Background Subtraction Library
 
-Last Page Update: **14/06/2015**
+Last Page Update: **15/06/2016**
 
 Latest Library Version: **1.9.2** (see Release Notes for more info) 
 
@@ -53,107 +53,79 @@ Some algorithms of the BGSLibrary was used successfully in my following papers:
 
 List of the algorithms available in BGSLibrary
 ----------------------------------------------
-* Basic methods (i.e. mean and variance over time):
-* *  Static Frame Difference. 
+|<sub>Type                       </sub>|<sub>Algorithm name <br/>(click to see the source code)                              </sub>|<sub>                   Author(s)                          </sub>|<sub> Contributor(s) </sub>|<sub> License        </sub>|
+|--------------------------------------|-------------------------------------------------------|:--------------------------------------------------------------:|:-------------------------:|:-------------------------:|
+|<sub>**Basic:**                 </sub>|                                                       |                                                                |                           |                           |
+|                                      |<sub>[Static Frame Difference](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/StaticFrameDifferenceBGS.cpp)                     </sub>|<sub> -                                                   </sub>|<sub>        -       </sub>|<sub>Free</sub>            |
+|                                      |<sub>[Frame Difference](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/FrameDifferenceBGS.cpp)                            </sub>|<sub> -                                                   </sub>|<sub>        -       </sub>|<sub>Free</sub>            |
+|                                      |<sub>[Weighted Moving Mean](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/WeightedMovingMeanBGS.cpp)                        </sub>|<sub> -                                                   </sub>|<sub>        -       </sub>|<sub>Free</sub>            |
+|                                      |<sub>[Weighted Moving Variance](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/WeightedMovingVarianceBGS.cpp)                    </sub>|<sub> -                                                   </sub>|<sub>        -       </sub>|<sub>Free</sub>            |
+|                                      |<sub>[Adaptive Background Learning](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/AdaptiveBackgroundLearning.cpp)                </sub>|<sub> -                                                   </sub>|<sub>        -       </sub>|<sub>Free</sub>            |
+|                                      |<sub>[Adaptive-Selective Background Learning](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/AdaptiveSelectiveBackgroundLearning.cpp)      </sub>|<sub> -                                                   </sub>|<sub>        -       </sub>|<sub>Free</sub>            |
+|                                      |<sub>[Temporal Mean](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/dp/DPMeanBGS.cpp)                               </sub>|<sub> -                                                   </sub>|<sub>        1       </sub>|<sub>GPLv3</sub>           |
+|                                      |<sub>[Adaptive Median](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/dp/DPAdaptiveMedianBGS.cpp)                             </sub>|<sub>[McFarlane and Schofield (1995)](http://link.springer.com/article/10.1007%2FBF01215814)                      </sub>|<sub>        1       </sub>|<sub>GPLv3</sub>           |
+|                                      |<sub>[Temporal Median](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/dp/DPPratiMediodBGS.cpp)                             </sub>|<sub>[Cucchiara et al. (2003)](http://ieeexplore.ieee.org/xpl/freeabs_all.jsp?arnumber=957036) and [Calderara et al. (2006)](http://dl.acm.org/citation.cfm?id=1178814) </sub>|<sub>        1       </sub>|<sub>GPLv3</sub>           |
+|                                      |<sub>[Sigma-Delta](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/bl/SigmaDeltaBGS.cpp)                                 </sub>|<sub>[Manzanera and Richefeu (2004)](http://dl.acm.org/citation.cfm?id=1222999)                       </sub>|<sub>       11       </sub>|<sub>GPLv3</sub>           |
+|                                      |                                                       |                                                                |                           |                           |
+|<sub>**Fuzzy:**                 </sub>|                                                       |                                                                |                           |                           |
+|                                      |<sub>[Fuzzy Sugeno Integral](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/tb/FuzzySugenoIntegral.cpp)                       </sub>|<sub>[Hongxun Zhang and De Xu (2006)](http://www.springerlink.com/content/m73165175218731l/)                       </sub>|<sub>        2       </sub>|<sub>GPLv3</sub>           |
+|                                      |<sub>[Fuzzy Choquet Integral](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/tb/FuzzyChoquetIntegral.cpp)                      </sub>|<sub>[Baf et al. (2008)](http://ieeexplore.ieee.org/xpl/freeabs_all.jsp?arnumber=4630604)                                    </sub>|<sub>        2       </sub>|<sub>GPLv3</sub>           |
+|                                      |<sub>[Fuzzy Gaussian](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/lb/LBFuzzyGaussian.cpp)                              </sub>|<sub>[Wren (1997)](http://ieeexplore.ieee.org/xpl/freeabs_all.jsp?arnumber=598236) with [Sigari et al. (2008)](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.113.9538) approach       </sub>|<sub>        3       </sub>|<sub>GPLv2</sub>           |
+|                                      |                                                       |                                                                |                           |                           |
+|<sub>**Single gaussian:**       </sub>|                                                       |                                                                |                           |                           |
+|                                      |<sub>[Gaussian Average](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/dp/DPWrenGABGS.cpp)                            </sub>|<sub>[Wren (1997)](http://ieeexplore.ieee.org/xpl/freeabs_all.jsp?arnumber=598236)                                          </sub>|<sub>        1       </sub>|<sub>GPLv3</sub>           |
+|                                      |<sub>[Simple Gaussian](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/lb/LBSimpleGaussian.cpp)                             </sub>|<sub>[Benezeth et al. (2008)](http://ieeexplore.ieee.org/xpl/freeabs_all.jsp?arnumber=4760998)                               </sub>|<sub>        3       </sub>|<sub>GPLv2</sub>           |
+|                                      |                                                       |                                                                |                           |                           |
+|<sub>**Multiple gaussians:**    </sub>|                                                       |                                                                |                           |                           |
+|                                      |<sub>[Gaussian Mixture Model (GMM or MoG)](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/dp/DPGrimsonGMMBGS.cpp)         </sub>|<sub>[Stauffer and Grimson (1999)](http://ieeexplore.ieee.org/xpl/freeabs_all.jsp?arnumber=784637)                          </sub>|<sub>        1       </sub>|<sub>GPLv3</sub>           |
+|                                      |<sub>[Gaussian Mixture Model (GMM or MoG)](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/MixtureOfGaussianV1BGS.cpp)         </sub>|<sub>[KadewTraKuPong and Bowden (2001)](http://link.springer.com/chapter/10.1007%2F978-1-4615-0913-4_11)                     </sub>|<sub>        0       </sub>|<sub>BSD</sub>             |
+|                                      |<sub>[Gaussian Mixture Model (GMM or MoG)](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/MixtureOfGaussianV2BGS.cpp)         </sub>|<sub>[Zivkovic (2004)](http://ieeexplore.ieee.org/xpl/freeabs_all.jsp?arnumber=1333992)                                      </sub>|<sub>        0       </sub>|<sub>BSD</sub>             |
+|                                      |<sub>[Gaussian Mixture Model (GMM or MoG)](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/dp/DPZivkovicAGMMBGS.cpp)         </sub>|<sub>[Zivkovic (2004)](http://ieeexplore.ieee.org/xpl/freeabs_all.jsp?arnumber=1333992)                                      </sub>|<sub>        1       </sub>|<sub>GPLv3</sub>           |
+|                                      |<sub>[Gaussian Mixture Model (GMM or MoG)](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/lb/LBMixtureOfGaussians.cpp)         </sub>|<sub>Laurence Bender implementation (GMM with Mahalanobis distance) ([related paper](https://hal.archives-ouvertes.fr/hal-00338206/en/))      </sub>|<sub>        3       </sub>|<sub>GPLv2</sub>           |
+|                                      |                                                       |                                                                |                           |                           |
+|<sub>**Type-2 Fuzzy:**          </sub>|                                                       |                                                                |                           |                           |
+|                                      |<sub>[Type-2 Fuzzy GMM-UM](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/tb/T2FGMM_UM.cpp)                         </sub>|<sub>[Baf et al. (2008)](http://dl.acm.org/citation.cfm?id=1486056)                                    </sub>|<sub>        2       </sub>|<sub>GPLv3</sub>           |
+|                                      |<sub>[Type-2 Fuzzy GMM-UV](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/tb/T2FGMM_UV.cpp)                         </sub>|<sub>[Baf et al. (2008)](http://dl.acm.org/citation.cfm?id=1486056)                                    </sub>|<sub>        2       </sub>|<sub>GPLv3</sub>           |
+|                                      |<sub>[Type-2 Fuzzy GMM-UM with MRF](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/tb/T2FMRF_UM.cpp)                </sub>|<sub>[Zhao et al. (2012)](http://link.springer.com/chapter/10.1007%2F978-3-642-35286-7_23)                                   </sub>|<sub>        2       </sub>|<sub>GPLv3</sub>           |
+|                                      |<sub>[Type-2 Fuzzy GMM-UV with MRF](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/tb/T2FMRF_UV.cpp)                </sub>|<sub>[Zhao et al. (2012)](http://link.springer.com/chapter/10.1007%2F978-3-642-35286-7_23)                                   </sub>|<sub>        2       </sub>|<sub>GPLv3</sub>           |
+|                                      |                                                       |                                                                |                           |                           |
+|<sub>**Multiple features:**     </sub>|                                                       |                                                                |                           |                           |
+|                                      |<sub>[Texture BGS](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/dp/DPTextureBGS.cpp)                                 </sub>|<sub>[Heikkila et al. (2006)](http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=1597122&tag=1)                               </sub>|<sub>        1       </sub>|<sub>GPLv3</sub>           |
+|                                      |<sub>[Texture-Based Foreground Detection with MRF](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/ck/LbpMrf.cpp) </sub>|<sub>[Csaba Kertész (2011)](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.359.4338)                                 </sub>|<sub>        8       </sub>|<sub>GPLv3</sub>           |
+|                                      |<sub>[Multi-Layer BGS](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/jmo/MultiLayerBGS.cpp)                             </sub>|<sub>[Jian Yao and Jean-Marc Odobez (2007)](http://ieeexplore.ieee.org/xpl/freeabs_all.jsp?arnumber=4270495)                 </sub>|<sub>        4       </sub>|<sub>BSD</sub>             |
+|                                      |<sub>[MultiCue BGS](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/sjn/SJN_MultiCueBGS.cpp)                                </sub>|<sub>[SeungJong Noh and Moongu Jeon (2012)](http://link.springer.com/chapter/10.1007%2F978-3-642-37431-9_38)                 </sub>|<sub>        10      </sub>|<sub>GPLv3</sub>           |
+|                                      |<sub>[SuBSENSE](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/pl/SuBSENSE.cpp)                                    </sub>|<sub>[Pierre-Luc et al. (2014)](http://ieeexplore.ieee.org/xpl/freeabs_all.jsp?arnumber=6910015)                             </sub>|<sub>        12      </sub>|<sub>GPLv3</sub>           |
+|                                      |<sub>[LOBSTER](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/pl/LOBSTER.cpp)                                     </sub>|<sub>[Pierre-Luc and Guillaume-Alexandre (2014)](http://ieeexplore.ieee.org/xpl/freeabs_all.jsp?arnumber=6836059)            </sub>|<sub>        12      </sub>|<sub>GPLv3</sub>           |
+|                                      |                                                       |                                                                |                           |                           |
+|<sub>**Non-parametric:**        </sub>|                                                       |                                                                |                           |                           |
+|                                      |<sub>[GMG](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/GMG.cpp)                                         </sub>|<sub>[Godbehere et al. (2012)](http://ieeexplore.ieee.org/xpl/freeabs_all.jsp?arnumber=6315174)                              </sub>|<sub>        0       </sub>|<sub>BSD</sub>             |
+|                                      |<sub>[VuMeter](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/av/VuMeter.cpp)                                     </sub>|<sub>[Goyat et al. (2006)](http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=1706852)                                  </sub>|<sub>        6       </sub>|<sub>GPLv3</sub>           |
+|                                      |<sub>[KDE](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/ae/KDE.cpp)                                         </sub>|<sub>[Elgammal et al. (2000)](http://link.springer.com/chapter/10.1007%2F3-540-45053-X_48)                               </sub>|<sub>        7       </sub>|<sub>GPLv3</sub>           |
+|                                      |<sub>[IMBS](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/db/IndependentMultimodalBGS.cpp)                                        </sub>|<sub>[Domenico Bloisi and Luca Iocchi (2012)](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.414.7754)               </sub>|<sub>        9       </sub>|<sub>GPLv3</sub>           |
+|<sub>*(only in opencv3 branch)* </sub>|<sub>[KNN Background Subtractor](https://github.com/andrewssobral/bgslibrary/blob/opencv3/package_bgs/KNNBGS.cpp)                   </sub>|<sub>[Zoran Zivkovic and Ferdinand van der Heijden](http://www.sciencedirect.com/science/article/pii/S0167865505003521)                                                     </sub>|<sub>        0       </sub>|<sub>BSD</sub>             |
+|                                      |                                                       |                                                                |                           |                           |
+|<sub>**Subspace:**              </sub>|                                                       |                                                                |                           |                           |
+|                                      |<sub>[Eigenbackground / SL-PCA](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/dp/DPEigenbackgroundBGS.cpp)                    </sub>|<sub>[Oliver et al. (2000)](http://ieeexplore.ieee.org/xpl/freeabs_all.jsp?arnumber=868684)                                 </sub>|<sub>        1       </sub>|<sub>GPLv3</sub>           |
+|                                      |                                                       |                                                                |                           |                           |
+|<sub>**Neural and neuro-fuzzy:**</sub>|                                                       |                                                                |                           |                           |
+|                                      |<sub>[Adaptive SOM](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/lb/LBAdaptiveSOM.cpp)                                </sub>|<sub>[Maddalena and Petrosino (2008)](http://dl.acm.org/citation.cfm?id=2321600)                       </sub>|<sub>        3       </sub>|<sub>GPLv3</sub>           |
+|                                      |<sub>[Fuzzy Adaptive SOM](https://github.com/andrewssobral/bgslibrary/blob/master/package_bgs/lb/LBFuzzyAdaptiveSOM.cpp)                          </sub>|<sub>[Maddalena and Petrosino (2010)](http://www.springerlink.com/content/112681k31222013n/)                       </sub>|<sub>        3       </sub>|<sub>GPLv3</sub>           |
 
-* *  Frame Difference.
+<sub>Legend:</sub>
+* <sub>(0) native from [OpenCV](http://docs.opencv.org/trunk/doc/tutorials/video/background_subtraction/background_subtraction.html).</sub>
+* <sub>(1) thanks to [Donovan Parks](http://dparks.wikidot.com/source-code).</sub>
+* <sub>(2) thanks to [Thierry Bouwmans](http://sites.google.com/site/thierrybouwmans/), [Fida EL BAF](https://sites.google.com/site/fidaelbaf/) and Zhenjie Zhao.</sub>
+* <sub>(3) thanks to [Laurence Bender](http://scene.sourceforge.net/).</sub>
+* <sub>(4) thanks to [Jian Yao and Jean-Marc Odobez](http://www.idiap.ch/~odobez/human-detection/related-publications.html).</sub>
+* <sub>(5) thanks to [Martin Hofmann, Philipp Tiefenbacher and Gerhard Rigoll](https://sites.google.com/site/pbassegmenter/home).</sub>
+* <sub>(6) thanks to Lionel Robinault and [Antoine Vacavant](http://isit.u-clermont1.fr/~anvacava/index.html).</sub>
+* <sub>(7) thanks to [Ahmed Elgammal](http://www.cs.rutgers.edu/~elgammal/Web_Page/Ahmed_Elgammal_Web_Page.html).</sub>
+* <sub>(8) thanks to [Csaba Kertész](http://www.linkedin.com/pub/csaba-kert%C3%A9sz/8/341/6b6).</sub>
+* <sub>(9) thanks to [Domenico Daniele Bloisi](http://www.dis.uniroma1.it/~bloisi/software/imbs.html).</sub>
+* <sub>(10) thanks to [SeungJong Noh](http://www.informatik.uni-trier.de/~ley/pers/hd/n/Noh:SeungJong).</sub>
+* <sub>(11) thanks to [Benjamin Laugraud](http://www.montefiore.ulg.ac.be/~blaugraud/index.php).</sub>
+* <sub>(12) thanks to [Pierre-Luc St-Charles](http://scholar.google.ca/citations?user=30mr9vYAAAAJ&hl=en).</sub>
 
-* *  Weighted Moving Mean.
-
-* *  Weighted Moving Variance.
- 
-* *  Adaptive Background Learning.
-
-* *  Adaptive-Selective Background Learning.
- 
-* *  (1) Temporal Mean.
-
-* *  (1) Adaptive Median of [McFarlane and Schofield (1995)](http://link.springer.com/article/10.1007%2FBF01215814).
-
-* *  (1) Temporal Median of [Cucchiara et al (2003)](http://cvrr.ucsd.edu/aton/publications/pdfpapers/96_cucchiara_r.PDF) and [Calderara et al (2006)](http://dl.acm.org/citation.cfm?id=1178814) ([extra paper](http://ieeexplore.ieee.org/iel5/34/27651/01233909.pdf?tp=a&amp;arnumber=1233909&amp;authDecision=-203)).
-
-* *  (11) Sigma-Delta of [Manzanera and Richefeu (2004)](http://perso.ensta-paristech.fr/~manzaner/Publis/icvgip04.pdf)  ([extra paper](http://perso.ensta-paristech.fr/~manzaner/Publis/icip09.pdf)).
-
-* Fuzzy based methods:
-* * (2) Fuzzy Sugeno Integral (with Adaptive-Selective Update) of [Hongxun Zhang and De Xu (2006)](http://www.springerlink.com/content/m73165175218731l/).
-
-* * (2) Fuzzy Choquet Integral (with Adaptive-Selective Update) of [Baf et al (2008)](http://hal.inria.fr/docs/00/33/30/86/PDF/FUZZ-IEEE_2008.pdf).
-
-* * (3) Fuzzy Gaussian of Laurence Bender (adapted version of [Wren (1997)](http://www.cvmt.dk/education/teaching/e06/CVG9/CV/CVG9ExercisePapers/pfinder.pdf) with [Sigari et al (2008)](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.113.9538) approach).
-
-* Single gaussian based methods:
-* * (1) Gaussian Average of [Wren (1997)](http://www.cvmt.dk/education/teaching/e06/CVG9/CV/CVG9ExercisePapers/pfinder.pdf).
-
-* * (3) Simple Gaussian of [Benezeth et al (2008)](http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=4760998).
-
-* Multiple gaussians based methods:
-* * (1) Gaussian Mixture Model of [Stauffer and Grimson (1999)](http://www.ai.mit.edu/projects/vsam/Publications/stauffer_cvpr98_track.pdf).
-
-* * (0) Gaussian Mixture Model of [KadewTraKuPong and Bowden (2001)](http://info.ee.surrey.ac.uk/CVSSP/Publications/papers/KaewTraKulPong-AVBS01.pdf).
-
-* * (0) Gaussian Mixture Model of [Zivkovic (2004)](http://staff.science.uva.nl/~zivkovic/Publications/zivkovic2004ICPR.pdf) ([extra paper](http://staff.science.uva.nl/~zivkovic/Publications/zivkovicPRL2006.pdf)).
-
-* * (1) Gaussian Mixture Model of [Zivkovic (2004)](http://staff.science.uva.nl/~zivkovic/Publications/zivkovic2004ICPR.pdf).
-
-* * (3) Gaussian Mixture Model implemented by Laurence Bender (classic GMM with Mahalanobis distance) ([related paper](http://hal.archives-ouvertes.fr/docs/00/33/82/06/PDF/RPCS_2008.pdf)).
-
-* Type-2 Fuzzy based methods:
-* * (2) Type-2 Fuzzy GMM-UM of [Baf et al (2008)](http://hal.inria.fr/docs/00/33/65/12/PDF/ISVC_2008.pdf).
-
-* * (2) Type-2 Fuzzy GMM-UV of [Baf et al (2008)](http://hal.inria.fr/docs/00/33/65/12/PDF/ISVC_2008.pdf).
-
-* * (2) Type-2 Fuzzy GMM-UM with MRF of [Zhao et al (2012)](http://link.springer.com/chapter/10.1007%2F978-3-642-35286-7_23).
-
-* * (2) Type-2 Fuzzy GMM-UV with MRF of [Zhao et al (2012)](http://link.springer.com/chapter/10.1007%2F978-3-642-35286-7_23).
-
-* Multiple features based methods (i.e. color, texture and edge features):
-* * (1) Texture BGS of [Heikkila et al. (2006)](http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=1597122&tag=1).
-
-* * (8) Texture-Based Foreground Detection with MRF of [Csaba Kertész (2011)](http://www.sersc.org/journals/IJSIP/vol4_no4/5.pdf).
-
-* * (4) Multi-Layer BGS of [Jian Yao and Jean-Marc Odobez (2007)](http://www.idiap.ch/~odobez/human-detection/doc/YaoOdobezCVPR-VS2007.pdf).
-
-* * (10) MultiCue BGS of [SeungJong Noh and Moongu Jeon (2012)](http://link.springer.com/chapter/10.1007%2F978-3-642-37431-9_38).
-
-* * (12) SuBSENSE of [Pierre-Luc et al. (2014)](http://www.polymtl.ca/litiv/doc/StCharlesetalCVPRW2014.pdf).
-
-* * (12) LOBSTER of [Pierre-Luc and Guillaume-Alexandre (2014)](http://www.polymtl.ca/litiv/doc/StCharlesBilodeauWACV2014.pdf).
-
-* Non-parametric methods:
-* * ~~(5) Pixel-Based Adaptive Segmenter (PBAS) of [Hofmann et al (2012)](http://www.mmk.ei.tum.de/publ//pdf/12/12hof2.pdf)~~ **The PBAS algorithm was removed from BGSLibrary because it is based on patented algorithm [ViBE](http://www2.ulg.ac.be/telecom/research/vibe/).**
-
-* * (0) GMG of [Godbehere et al (2012)](http://goldberg.berkeley.edu/pubs/acc-2012-visual-tracking-final.pdf).
-
-* * (6) VuMeter of [Goyat et al (2006)](http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=1706852).
-
-* * (7) KDE of [Elgammal et al (2000)](http://www.cs.umd.edu/users/elgammal/docs/bgmodel_ECCV00_postfinal.pdf).
-
-* * (9) IMBS of [Domenico Bloisi and Luca Iocchi (2012)](http://www.dis.uniroma1.it/~bloisi/papers/bloisi-iocchi-imbs.pdf).
-
-* * (0) [KNN Background Subtractor](http://docs.opencv.org/trunk/modules/video/doc/motion_analysis_and_object_tracking.html#backgroundsubtractorknn) (available only in opencv3 branch).
-
-* Subspace-based methods:
-* * (1) Eigenbackground / SL-PCA of [Oliver et al (2000)](http://cis.temple.edu/~latecki/Courses/CIS750-03/Papers/oliver00.pdf).
-
-* Neural and neuro-fuzzy methods:
-* * (3) Adaptive SOM of [Maddalena and Petrosino (2008)](http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=4527178).
-
-* * (3) Fuzzy Adaptive SOM of [Maddalena and Petrosino (2010)](http://www.springerlink.com/content/112681k31222013n/).
-
-Legend:
-* (0) native from [OpenCV](http://docs.opencv.org/trunk/doc/tutorials/video/background_subtraction/background_subtraction.html).
-* (1) thanks to [Donovan Parks](http://dparks.wikidot.com/source-code).
-* (2) thanks to [Thierry Bouwmans](http://sites.google.com/site/thierrybouwmans/), [Fida EL BAF](https://sites.google.com/site/fidaelbaf/) and Zhenjie Zhao.
-* (3) thanks to [Laurence Bender](http://scene.sourceforge.net/).
-* (4) thanks to [Jian Yao and Jean-Marc Odobez](http://www.idiap.ch/~odobez/human-detection/related-publications.html).
-* (5) thanks to [Martin Hofmann, Philipp Tiefenbacher and Gerhard Rigoll](https://sites.google.com/site/pbassegmenter/home).
-* (6) thanks to Lionel Robinault and [Antoine Vacavant](http://isit.u-clermont1.fr/~anvacava/index.html).
-* (7) thanks to [Ahmed Elgammal](http://www.cs.rutgers.edu/~elgammal/Web_Page/Ahmed_Elgammal_Web_Page.html).
-* (8) thanks to [Csaba Kertész](http://www.linkedin.com/pub/csaba-kert%C3%A9sz/8/341/6b6).
-* (9) thanks to [Domenico Daniele Bloisi](http://www.dis.uniroma1.it/~bloisi/software/imbs.html).
-* (10) thanks to [SeungJong Noh](http://www.informatik.uni-trier.de/~ley/pers/hd/n/Noh:SeungJong).
-* (11) thanks to [Benjamin Laugraud](http://www.montefiore.ulg.ac.be/~blaugraud/index.php).
-* (12) thanks to [Pierre-Luc St-Charles](http://scholar.google.ca/citations?user=30mr9vYAAAAJ&hl=en).
 
 Are you in doubt about which algorithm to choose?
 -------------------------------------------------
