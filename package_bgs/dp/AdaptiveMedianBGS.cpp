@@ -43,15 +43,15 @@ void AdaptiveMedianBGS::Initalize(const BgsParams& param)
 	m_params = (AdaptiveMedianParams&)param;
 
 	m_median = cvCreateImage(cvSize(m_params.Width(), m_params.Height()), IPL_DEPTH_8U, 3);
-	cvSet(m_median.Ptr(), CV_RGB(BACKGROUND,BACKGROUND,BACKGROUND));
+	cvSet(m_median.Ptr(), CV_RGB(BGSBACKGROUND,BGSBACKGROUND,BGSBACKGROUND));
 }
 
-RgbImage* AdaptiveMedianBGS::Background()
+BgsRgbImage* AdaptiveMedianBGS::Background()
 {
 	return &m_median;
 }
 
-void AdaptiveMedianBGS::InitModel(const RgbImage& data)
+void AdaptiveMedianBGS::InitModel(const BgsRgbImage& data)
 {
 	// initialize the background model
 	for (unsigned int r = 0; r < m_params.Height(); ++r)
@@ -63,7 +63,7 @@ void AdaptiveMedianBGS::InitModel(const RgbImage& data)
 	}
 }
 
-void AdaptiveMedianBGS::Update(int frame_num, const RgbImage& data,  const BwImage& update_mask)
+void AdaptiveMedianBGS::Update(int frame_num, const BgsRgbImage& data,  const BgsBwImage& update_mask)
 {
 	if(frame_num % m_params.SamplingRate() == 1)
 	{
@@ -73,7 +73,7 @@ void AdaptiveMedianBGS::Update(int frame_num, const RgbImage& data,  const BwIma
 			for(unsigned int c = 0; c < m_params.Width(); ++c)
 			{
 				// perform conditional updating only if we are passed the learning phase
-				if(update_mask(r,c) == BACKGROUND || frame_num < m_params.LearningFrames())
+				if(update_mask(r,c) == BGSBACKGROUND || frame_num < m_params.LearningFrames())
 				{
 					for(int ch = 0; ch < NUM_CHANNELS; ++ch)
 					{
@@ -92,11 +92,11 @@ void AdaptiveMedianBGS::Update(int frame_num, const RgbImage& data,  const BwIma
 	}
 }
 
-void AdaptiveMedianBGS::SubtractPixel(int r, int c, const RgbPixel& pixel, 
+void AdaptiveMedianBGS::SubtractPixel(int r, int c, const BgsRgbPixel& pixel, 
 																			unsigned char& low_threshold, unsigned char& high_threshold)
 {
 	// perform background subtraction
-	low_threshold = high_threshold = FOREGROUND;
+	low_threshold = high_threshold = BGSFOREGROUND;
 	
 	int diffR = abs(pixel(0) - m_median(r,c,0));
 	int diffG = abs(pixel(1) - m_median(r,c,1));
@@ -104,12 +104,12 @@ void AdaptiveMedianBGS::SubtractPixel(int r, int c, const RgbPixel& pixel,
 	
 	if(diffR <= m_params.LowThreshold() && diffG <= m_params.LowThreshold() &&  diffB <= m_params.LowThreshold())
 	{
-		low_threshold = BACKGROUND;
+		low_threshold = BGSBACKGROUND;
 	}
 
 	if(diffR <= m_params.HighThreshold() && diffG <= m_params.HighThreshold() &&  diffB <= m_params.HighThreshold())
 	{
-		high_threshold = BACKGROUND;
+		high_threshold = BGSBACKGROUND;
 	}
 }
 
@@ -121,8 +121,8 @@ void AdaptiveMedianBGS::SubtractPixel(int r, int c, const RgbPixel& pixel,
 //					(the memory should already be reserved) 
 //					values: 255-foreground, 0-background
 ///////////////////////////////////////////////////////////////////////////////
-void AdaptiveMedianBGS::Subtract(int frame_num, const RgbImage& data, 
-																	BwImage& low_threshold_mask, BwImage& high_threshold_mask)
+void AdaptiveMedianBGS::Subtract(int frame_num, const BgsRgbImage& data, 
+																	BgsBwImage& low_threshold_mask, BgsBwImage& high_threshold_mask)
 {
 	unsigned char low_threshold, high_threshold;
 

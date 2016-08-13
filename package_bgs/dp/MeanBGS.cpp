@@ -37,7 +37,7 @@ void MeanBGS::Initalize(const BgsParams& param)
 	m_background = cvCreateImage(cvSize(m_params.Width(), m_params.Height()), IPL_DEPTH_8U, 3);
 }
 
-void MeanBGS::InitModel(const RgbImage& data)
+void MeanBGS::InitModel(const BgsRgbImage& data)
 {
 	for (unsigned int r = 0; r < m_params.Height(); ++r)
 	{
@@ -51,7 +51,7 @@ void MeanBGS::InitModel(const RgbImage& data)
 	}
 }
 
-void MeanBGS::Update(int frame_num, const RgbImage& data,  const BwImage& update_mask)
+void MeanBGS::Update(int frame_num, const BgsRgbImage& data,  const BgsBwImage& update_mask)
 {
 	// update background model
 	for (unsigned int r = 0; r < m_params.Height(); ++r)
@@ -59,7 +59,7 @@ void MeanBGS::Update(int frame_num, const RgbImage& data,  const BwImage& update
 		for(unsigned int c = 0; c < m_params.Width(); ++c)
 		{
 			// perform conditional updating only if we are passed the learning phase
-			if(update_mask(r,c) == BACKGROUND || frame_num < m_params.LearningFrames())
+			if(update_mask(r,c) == BGSBACKGROUND || frame_num < m_params.LearningFrames())
 			{
 				// update B/G model
 				float mean;
@@ -74,7 +74,7 @@ void MeanBGS::Update(int frame_num, const RgbImage& data,  const BwImage& update
 	}
 }
 
-void MeanBGS::SubtractPixel(int r, int c, const RgbPixel& pixel, 
+void MeanBGS::SubtractPixel(int r, int c, const BgsRgbPixel& pixel, 
 															unsigned char& low_threshold, 
 															unsigned char& high_threshold)
 {
@@ -86,16 +86,16 @@ void MeanBGS::SubtractPixel(int r, int c, const RgbPixel& pixel,
 	}
 
 	// determine if sample point is F/G or B/G pixel
-	low_threshold = BACKGROUND;
+	low_threshold = BGSBACKGROUND;
 	if(dist > m_params.LowThreshold())
 	{
-		low_threshold = FOREGROUND;
+		low_threshold = BGSFOREGROUND;
 	}
 
-	high_threshold = BACKGROUND;
+	high_threshold = BGSBACKGROUND;
 	if(dist > m_params.HighThreshold())
 	{
-		high_threshold = FOREGROUND;
+		high_threshold = BGSFOREGROUND;
 	}
 }
 
@@ -106,8 +106,8 @@ void MeanBGS::SubtractPixel(int r, int c, const RgbPixel& pixel,
 //  output - a pointer to the data of a gray value image of the same size 
 //					values: 255-foreground, 0-background
 ///////////////////////////////////////////////////////////////////////////////
-void MeanBGS::Subtract(int frame_num, const RgbImage& data, 
-												BwImage& low_threshold_mask, BwImage& high_threshold_mask)
+void MeanBGS::Subtract(int frame_num, const BgsRgbImage& data, 
+												BgsBwImage& low_threshold_mask, BgsBwImage& high_threshold_mask)
 {
 	unsigned char low_threshold, high_threshold;
 

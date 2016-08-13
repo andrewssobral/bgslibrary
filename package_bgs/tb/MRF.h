@@ -82,7 +82,7 @@ namespace Algorithms
 
     public:
       IplImage *background2;
-      RgbImage background;
+      BgsRgbImage background;
       int **old_labeling;
 
     public:

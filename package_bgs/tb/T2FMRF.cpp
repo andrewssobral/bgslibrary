@@ -94,12 +94,12 @@ void T2FMRF::Initalize(const BgsParams& param)
   kv = (float) m_params.KV();
 }
 
-RgbImage* T2FMRF::Background()
+BgsRgbImage* T2FMRF::Background()
 {
   return &m_background;
 }
 
-void T2FMRF::InitModel(const RgbImage& data)
+void T2FMRF::InitModel(const BgsRgbImage& data)
 {
   m_modes_per_pixel.Clear();
 
@@ -124,12 +124,12 @@ void T2FMRF::InitModel(const RgbImage& data)
   }
 }
 
-void T2FMRF::Update(int frame_num, const RgbImage& data,  const BwImage& update_mask)
+void T2FMRF::Update(int frame_num, const BgsRgbImage& data,  const BgsBwImage& update_mask)
 {
   // it doesn't make sense to have conditional updates in the GMM framework
 }
 
-void T2FMRF::SubtractPixel(long posPixel, long posGMode, const RgbPixel& pixel, unsigned char& numModes, 
+void T2FMRF::SubtractPixel(long posPixel, long posGMode, const BgsRgbPixel& pixel, unsigned char& numModes, 
                            unsigned char& low_threshold, unsigned char& high_threshold)
 {
   // calculate distances to the modes (+ sort???)
@@ -337,7 +337,7 @@ void T2FMRF::SubtractPixel(long posPixel, long posGMode, const RgbPixel& pixel, 
 
   if(bBackgroundLow)
   {
-    low_threshold = BACKGROUND;
+    low_threshold = BGSBACKGROUND;
     m_state[posPixel].State = background;
 
     if(CurrentState == background)
@@ -363,7 +363,7 @@ void T2FMRF::SubtractPixel(long posPixel, long posGMode, const RgbPixel& pixel, 
   }
   else
   {
-    low_threshold = FOREGROUND;
+    low_threshold = BGSFOREGROUND;
     m_state[posPixel].State = foreground;
 
     if(CurrentState == background)
@@ -389,9 +389,9 @@ void T2FMRF::SubtractPixel(long posPixel, long posGMode, const RgbPixel& pixel, 
   }
 
   if(bBackgroundHigh)
-    high_threshold = BACKGROUND;
+    high_threshold = BGSBACKGROUND;
   else
-    high_threshold = FOREGROUND;
+    high_threshold = BGSFOREGROUND;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -402,8 +402,8 @@ void T2FMRF::SubtractPixel(long posPixel, long posGMode, const RgbPixel& pixel, 
 //					(the memory should already be reserved) 
 //					values: 255-foreground, 125-shadow, 0-background
 ///////////////////////////////////////////////////////////////////////////////
-void T2FMRF::Subtract(int frame_num, const RgbImage& data,  
-                      BwImage& low_threshold_mask, BwImage& high_threshold_mask)
+void T2FMRF::Subtract(int frame_num, const BgsRgbImage& data,  
+                      BgsBwImage& low_threshold_mask, BgsBwImage& high_threshold_mask)
 {
   unsigned char low_threshold, high_threshold;
   long posPixel;

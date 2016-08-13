@@ -31,12 +31,12 @@ private:
   bool firstTime;
   long frameNumber;
   IplImage* frame;
-  RgbImage frame_data;
+  BgsRgbImage frame_data;
 
   GrimsonParams params;
   GrimsonGMM bgs;
-  BwImage lowThresholdMask;
-  BwImage highThresholdMask;
+  BgsBwImage lowThresholdMask;
+  BgsBwImage highThresholdMask;
 
   double threshold;
   double alpha;

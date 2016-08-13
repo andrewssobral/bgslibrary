@@ -78,12 +78,12 @@ void T2FGMM::Initalize(const BgsParams& param)
   kv = (float) m_params.KV();
 }
 
-RgbImage* T2FGMM::Background()
+BgsRgbImage* T2FGMM::Background()
 {
   return &m_background;
 }
 
-void T2FGMM::InitModel(const RgbImage& data)
+void T2FGMM::InitModel(const BgsRgbImage& data)
 {
   m_modes_per_pixel.Clear();
 
@@ -98,12 +98,12 @@ void T2FGMM::InitModel(const RgbImage& data)
   }
 }
 
-void T2FGMM::Update(int frame_num, const RgbImage& data,  const BwImage& update_mask)
+void T2FGMM::Update(int frame_num, const BgsRgbImage& data,  const BgsBwImage& update_mask)
 {
   // it doesn't make sense to have conditional updates in the GMM framework
 }
 
-void T2FGMM::SubtractPixel(long posPixel, const RgbPixel& pixel, unsigned char& numModes, 
+void T2FGMM::SubtractPixel(long posPixel, const BgsRgbPixel& pixel, unsigned char& numModes, 
                            unsigned char& low_threshold, unsigned char& high_threshold)
 {
   // calculate distances to the modes (+ sort???)
@@ -292,14 +292,14 @@ void T2FGMM::SubtractPixel(long posPixel, const RgbPixel& pixel, unsigned char& 
   qsort(&(m_modes[posPixel]), numModes, sizeof(GMM), compareT2FGMM);
 
   if(bBackgroundLow)
-    low_threshold = BACKGROUND;
+    low_threshold = BGSBACKGROUND;
   else
-    low_threshold = FOREGROUND;
+    low_threshold = BGSFOREGROUND;
   
   if(bBackgroundHigh)
-    high_threshold = BACKGROUND;
+    high_threshold = BGSBACKGROUND;
   else
-    high_threshold = FOREGROUND;
+    high_threshold = BGSFOREGROUND;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -310,7 +310,7 @@ void T2FGMM::SubtractPixel(long posPixel, const RgbPixel& pixel, unsigned char& 
 //					(the memory should already be reserved) 
 //					values: 255-foreground, 125-shadow, 0-background
 ///////////////////////////////////////////////////////////////////////////////
-void T2FGMM::Subtract(int frame_num, const RgbImage& data, BwImage& low_threshold_mask, BwImage& high_threshold_mask)
+void T2FGMM::Subtract(int frame_num, const BgsRgbImage& data, BgsBwImage& low_threshold_mask, BgsBwImage& high_threshold_mask)
 {
   unsigned char low_threshold, high_threshold;
   long posPixel;

@@ -60,13 +60,13 @@ void PratiMediodBGS::Initalize(const BgsParams& param)
 	m_median_buffer = new MEDIAN_BUFFER[m_params.Size()];
 }
 
-void PratiMediodBGS::InitModel(const RgbImage& data)
+void PratiMediodBGS::InitModel(const BgsRgbImage& data)
 {
 	// there is no need to initialize the mode since it needs a buffer of frames
 	// before it can performing background subtraction
 }
 
-void PratiMediodBGS::Update(int frame_num, const RgbImage& data,  const BwImage& update_mask)
+void PratiMediodBGS::Update(int frame_num, const BgsRgbImage& data,  const BgsBwImage& update_mask)
 {
 	// update the image buffer with the new frame and calculate new median values
 	if(frame_num % m_params.SamplingRate() == 0)
@@ -80,7 +80,7 @@ void PratiMediodBGS::Update(int frame_num, const RgbImage& data,  const BwImage&
 				{	
 					int i = r*m_params.Width()+c;
 
-					if(update_mask(r,c) == BACKGROUND)
+					if(update_mask(r,c) == BGSBACKGROUND)
 					{
 						int oldPos = m_median_buffer[i].pos;
 						for(unsigned int s = 0; s < m_median_buffer[i].pixels.size(); ++s)
@@ -128,7 +128,7 @@ void PratiMediodBGS::Update(int frame_num, const RgbImage& data,  const BwImage&
 	}
 }
 
-void PratiMediodBGS::UpdateMediod(int r, int c, const RgbImage& new_frame, int& dist)
+void PratiMediodBGS::UpdateMediod(int r, int c, const BgsRgbImage& new_frame, int& dist)
 {
 	// calculate sum of L-inf distances for new point and 
 	// add distance from each sample point to this point to their L-inf sum
@@ -168,48 +168,48 @@ void PratiMediodBGS::UpdateMediod(int r, int c, const RgbImage& new_frame, int& 
 	}
 }
 
-void PratiMediodBGS::Combine(const BwImage& low_mask, const BwImage& high_mask, BwImage& output)
+void PratiMediodBGS::Combine(const BgsBwImage& low_mask, const BgsBwImage& high_mask, BgsBwImage& output)
 {
 	for(unsigned int r = 0; r < m_params.Height(); ++r)
 	{
 		for(unsigned int c = 0; c < m_params.Width(); ++c)
 		{
-			output(r,c) = BACKGROUND;
+			output(r,c) = BGSBACKGROUND;
 
 			if(r == 0 || c == 0 || r == m_params.Height()-1 || c == m_params.Width()-1)
 				continue;	
 			
-			if(high_mask(r,c) == FOREGROUND)
+			if(high_mask(r,c) == BGSFOREGROUND)
 			{
-				output(r,c) = FOREGROUND;
+				output(r,c) = BGSFOREGROUND;
 			}
-			else if(low_mask(r,c) == FOREGROUND)
+			else if(low_mask(r,c) == BGSFOREGROUND)
 			{
 				// consider the pixel to be a F/G pixel if it is 8-connected to
 				// a F/G pixel in the high mask
 				// check if there is an 8-connected foreground pixel
 				if(high_mask(r-1,c-1))	
-					output(r,c) = FOREGROUND;
+					output(r,c) = BGSFOREGROUND;
 				else if(high_mask(r-1,c))	
-					output(r,c) = FOREGROUND;
+					output(r,c) = BGSFOREGROUND;
 				else if(high_mask(r-1,c+1))	
-					output(r,c) = FOREGROUND;
+					output(r,c) = BGSFOREGROUND;
 				else if(high_mask(r,c-1))	
-					output(r,c) = FOREGROUND;
+					output(r,c) = BGSFOREGROUND;
 				else if(high_mask(r,c+1))	
-					output(r,c) = FOREGROUND;
+					output(r,c) = BGSFOREGROUND;
 				else if(high_mask(r+1,c-1))	
-					output(r,c) = FOREGROUND;
+					output(r,c) = BGSFOREGROUND;
 				else if(high_mask(r+1,c))	
-					output(r,c) = FOREGROUND;
+					output(r,c) = BGSFOREGROUND;
 				else if(high_mask(r+1,c+1))	
-					output(r,c) = FOREGROUND;
+					output(r,c) = BGSFOREGROUND;
 			}
 		}
 	}
 }
 
-void PratiMediodBGS::CalculateMasks(int r, int c, const RgbPixel& pixel)
+void PratiMediodBGS::CalculateMasks(int r, int c, const BgsRgbPixel& pixel)
 {
 	int pos = r*m_params.Width()+c;
 
@@ -224,17 +224,17 @@ void PratiMediodBGS::CalculateMasks(int r, int c, const RgbPixel& pixel)
 	m_background(r,c) = m_median_buffer[pos].median;
 
 	// check if pixel is a B/G or F/G pixel according to the low threshold B/G model
-	m_mask_low_threshold(r,c) = BACKGROUND;
+	m_mask_low_threshold(r,c) = BGSBACKGROUND;
 	if(dist > m_params.LowThreshold())
 	{
-		m_mask_low_threshold(r,c) = FOREGROUND;
+		m_mask_low_threshold(r,c) = BGSFOREGROUND;
 	}
 
 	// check if pixel is a B/G or F/G pixel according to the high threshold B/G model
-	m_mask_high_threshold(r,c)= BACKGROUND;
+	m_mask_high_threshold(r,c)= BGSBACKGROUND;
 	if(dist > m_params.HighThreshold())
 	{
-		m_mask_high_threshold(r,c) = FOREGROUND;
+		m_mask_high_threshold(r,c) = BGSFOREGROUND;
 	}
 }
 
@@ -245,8 +245,8 @@ void PratiMediodBGS::CalculateMasks(int r, int c, const RgbPixel& pixel)
 //  output - a pointer to the data of a gray value image of the same size 
 //					values: 255-foreground, 0-background
 ///////////////////////////////////////////////////////////////////////////////
-void PratiMediodBGS::Subtract(int frame_num, const RgbImage& data, 
-																BwImage& low_threshold_mark, BwImage& high_threshold_mark)
+void PratiMediodBGS::Subtract(int frame_num, const BgsRgbImage& data, 
+																BgsBwImage& low_threshold_mark, BgsBwImage& high_threshold_mark)
 {
 	if(frame_num < m_params.HistorySize())
 	{

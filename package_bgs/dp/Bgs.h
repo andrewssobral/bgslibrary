@@ -27,7 +27,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef BGS_H_
 #define BGS_H_
 
-#include "Image.h"
+#include "BgsImage.h"
 #include "BgsParams.h"
 
 namespace Algorithms
@@ -37,8 +37,8 @@ namespace Algorithms
 		class Bgs
 		{
 		public:
-			static const int BACKGROUND = 0;
-			static const int FOREGROUND = 255;
+			static const int BGSBACKGROUND = 0;
+			static const int BGSFOREGROUND = 255;
 
 			virtual ~Bgs() {}
 
@@ -48,18 +48,18 @@ namespace Algorithms
 
 			// Initialize the background model. Typically, the background model is initialized using the first
 			// frame of the incoming video stream, but alternatives are possible.
-			virtual void InitModel(const RgbImage& data) = 0;
+			virtual void InitModel(const BgsRgbImage& data) = 0;
 
 			// Subtract the current frame from the background model and produce a binary foreground mask using
 			// both a low and high threshold value.
-			virtual void Subtract(int frame_num, const RgbImage& data,  
-															BwImage& low_threshold_mask, BwImage& high_threshold_mask) = 0;	
+			virtual void Subtract(int frame_num, const BgsRgbImage& data,  
+															BgsBwImage& low_threshold_mask, BgsBwImage& high_threshold_mask) = 0;	
 
 			// Update the background model. Only pixels set to background in update_mask are updated.
-			virtual void Update(int frame_num, const RgbImage& data,  const BwImage& update_mask) = 0;
+			virtual void Update(int frame_num, const BgsRgbImage& data,  const BgsBwImage& update_mask) = 0;
 
 			// Return the current background model.
-			virtual RgbImage *Background() = 0;
+			virtual BgsRgbImage *Background() = 0;
 		};
 	}
 }

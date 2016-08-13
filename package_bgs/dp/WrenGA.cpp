@@ -64,7 +64,7 @@ void WrenGA::Initalize(const BgsParams& param)
 	m_background = cvCreateImage(cvSize(m_params.Width(), m_params.Height()), IPL_DEPTH_8U, 3);
 }
 
-void WrenGA::InitModel(const RgbImage& data)
+void WrenGA::InitModel(const BgsRgbImage& data)
 {
 	int pos = 0;
 
@@ -83,7 +83,7 @@ void WrenGA::InitModel(const RgbImage& data)
 	}
 }
 
-void WrenGA::Update(int frame_num, const RgbImage& data,  const BwImage& update_mask)
+void WrenGA::Update(int frame_num, const BgsRgbImage& data,  const BgsBwImage& update_mask)
 {
 	int pos = 0;
 
@@ -92,7 +92,7 @@ void WrenGA::Update(int frame_num, const RgbImage& data,  const BwImage& update_
 		for(unsigned int c = 0; c < m_params.Width(); ++c)
 		{
 			// perform conditional updating only if we are passed the learning phase
-			if(update_mask(r,c) == BACKGROUND || frame_num < m_params.LearningFrames())
+			if(update_mask(r,c) == BGSBACKGROUND || frame_num < m_params.LearningFrames())
 			{
 				float dR = m_gaussian[pos].mu[0] - data(r,c,0);
 				float dG = m_gaussian[pos].mu[1] - data(r,c,1);
@@ -117,7 +117,7 @@ void WrenGA::Update(int frame_num, const RgbImage& data,  const BwImage& update_
 	}
 }
 
-void WrenGA::SubtractPixel(int r, int c, const RgbPixel& pixel, 
+void WrenGA::SubtractPixel(int r, int c, const BgsRgbPixel& pixel, 
 															unsigned char& low_threshold, 
 															unsigned char& high_threshold)
 {
@@ -137,13 +137,13 @@ void WrenGA::SubtractPixel(int r, int c, const RgbPixel& pixel,
 	}
 
 	// calculate the squared distance and see if pixel fits the B/G model
-	low_threshold = BACKGROUND;
-	high_threshold = BACKGROUND;
+	low_threshold = BGSBACKGROUND;
+	high_threshold = BGSBACKGROUND;
 
 	if(dist > m_params.LowThreshold()*var[0])
-		low_threshold = FOREGROUND;
+		low_threshold = BGSFOREGROUND;
 	if(dist > m_params.HighThreshold()*var[0])
-		high_threshold = FOREGROUND;
+		high_threshold = BGSFOREGROUND;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -154,8 +154,8 @@ void WrenGA::SubtractPixel(int r, int c, const RgbPixel& pixel,
 //					(the memory should already be reserved) 
 //					values: 255-foreground, 125-shadow, 0-background
 ///////////////////////////////////////////////////////////////////////////////
-void WrenGA::Subtract(int frame_num, const RgbImage& data, 
-												BwImage& low_threshold_mask, BwImage& high_threshold_mask)
+void WrenGA::Subtract(int frame_num, const BgsRgbImage& data, 
+												BgsBwImage& low_threshold_mask, BgsBwImage& high_threshold_mask)
 {
 	unsigned char low_threshold, high_threshold;
 

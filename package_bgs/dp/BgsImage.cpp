@@ -27,7 +27,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 *  http://www.cs.iit.edu/~agam/cs512/lect-notes/opencv-intro/opencv-intro.hpptml
 ******************************************************************************/
 
-#include "Image.h"
+#include "BgsImage.h"
 
 ImageBase::~ImageBase()
 { 
@@ -36,7 +36,7 @@ ImageBase::~ImageBase()
   imgp = NULL;	
 }
 
-void DensityFilter(BwImage& image, BwImage& filtered, int minDensity, unsigned char fgValue)
+void DensityFilter(BgsBwImage& image, BgsBwImage& filtered, int minDensity, unsigned char fgValue)
 {
   for(int r = 1; r < image.Ptr()->height-1; ++r)
   {

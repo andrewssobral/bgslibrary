@@ -56,7 +56,7 @@ void Eigenbackground::Initalize(const BgsParams& param)
 	m_background.Clear();
 }
 
-void Eigenbackground::InitModel(const RgbImage& data)
+void Eigenbackground::InitModel(const BgsRgbImage& data)
 {
 	if(m_pcaData != NULL) cvReleaseMat(&m_pcaData);
 	if(m_pcaAvg != NULL) cvReleaseMat(&m_pcaAvg);
@@ -68,13 +68,13 @@ void Eigenbackground::InitModel(const RgbImage& data)
 	m_background.Clear();
 }
 
-void Eigenbackground::Update(int frame_num, const RgbImage& data,  const BwImage& update_mask)
+void Eigenbackground::Update(int frame_num, const BgsRgbImage& data,  const BgsBwImage& update_mask)
 {
 	// the eigenbackground model is not updated (serious limitation!)
 }
 
-void Eigenbackground::Subtract(int frame_num, const RgbImage& data,  
-																BwImage& low_threshold_mask, BwImage& high_threshold_mask)
+void Eigenbackground::Subtract(int frame_num, const BgsRgbImage& data,  
+																BgsBwImage& low_threshold_mask, BgsBwImage& high_threshold_mask)
 {
 	// create eigenbackground
 	if(frame_num == m_params.HistorySize())
@@ -139,20 +139,20 @@ void Eigenbackground::Subtract(int frame_num, const RgbImage& data,
 				
 				if(!bgLow)
 				{
-					low_threshold_mask(r,c) = FOREGROUND;
+					low_threshold_mask(r,c) = BGSFOREGROUND;
 				}
 				else
 				{
-					low_threshold_mask(r,c) = BACKGROUND;
+					low_threshold_mask(r,c) = BGSBACKGROUND;
 				}
 
 				if(!bgHigh)
 				{
-					high_threshold_mask(r,c) = FOREGROUND;
+					high_threshold_mask(r,c) = BGSFOREGROUND;
 				}
 				else
 				{
-					high_threshold_mask(r,c) = BACKGROUND;
+					high_threshold_mask(r,c) = BGSBACKGROUND;
 				}
 			}
 		}
@@ -169,8 +169,8 @@ void Eigenbackground::Subtract(int frame_num, const RgbImage& data,
 		{
 			for(unsigned int c = 0; c < m_params.Width(); ++c)
 			{
-				low_threshold_mask(r,c) = BACKGROUND;
-				high_threshold_mask(r,c) = BACKGROUND;
+				low_threshold_mask(r,c) = BGSBACKGROUND;
+				high_threshold_mask(r,c) = BGSBACKGROUND;
 			}
 		}
 	}
@@ -178,7 +178,7 @@ void Eigenbackground::Subtract(int frame_num, const RgbImage& data,
 	UpdateHistory(frame_num, data);
 }
 
-void Eigenbackground::UpdateHistory(int frame_num, const RgbImage& new_frame)
+void Eigenbackground::UpdateHistory(int frame_num, const BgsRgbImage& new_frame)
 {
 	if(frame_num < m_params.HistorySize())
 	{

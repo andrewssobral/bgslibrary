@@ -31,15 +31,15 @@ private:
   bool firstTime;
   long frameNumber;
   IplImage *frame;
-  RgbImage frame_data;
+  BgsRgbImage frame_data;
 
   IplImage *old_labeling;
   IplImage *old;
 
   T2FMRFParams params;
   T2FMRF bgs;
-  BwImage lowThresholdMask;
-  BwImage highThresholdMask;
+  BgsBwImage lowThresholdMask;
+  BgsBwImage highThresholdMask;
 
   double threshold;
   double alpha;

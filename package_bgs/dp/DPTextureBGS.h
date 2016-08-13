@@ -35,11 +35,11 @@ private:
   int size;
   TextureBGS bgs;
   IplImage* frame;
-  RgbImage image;
-  BwImage fgMask;
-  BwImage tempMask;
+  BgsRgbImage image;
+  BgsBwImage fgMask;
+  BgsBwImage tempMask;
   TextureArray* bgModel;
-  RgbImage texture;
+  BgsRgbImage texture;
   unsigned char* modeArray;
   TextureHistogram* curTextureHist;
   //ConnectedComponents cc;

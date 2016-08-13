@@ -87,12 +87,12 @@ void GrimsonGMM::Initalize(const BgsParams& param)
 	m_background = cvCreateImage(cvSize(m_params.Width(), m_params.Height()), IPL_DEPTH_8U, 3);
 }
 
-RgbImage* GrimsonGMM::Background()
+BgsRgbImage* GrimsonGMM::Background()
 {
 	return &m_background;
 }
 
-void GrimsonGMM::InitModel(const RgbImage& data)
+void GrimsonGMM::InitModel(const BgsRgbImage& data)
 {
 	m_modes_per_pixel.Clear();
 
@@ -107,12 +107,12 @@ void GrimsonGMM::InitModel(const RgbImage& data)
 	}
 }
 
-void GrimsonGMM::Update(int frame_num, const RgbImage& data,  const BwImage& update_mask)
+void GrimsonGMM::Update(int frame_num, const BgsRgbImage& data,  const BgsBwImage& update_mask)
 {
 	// it doesn't make sense to have conditional updates in the GMM framework
 }
 
-void GrimsonGMM::SubtractPixel(long posPixel, const RgbPixel& pixel, unsigned char& numModes, 
+void GrimsonGMM::SubtractPixel(long posPixel, const BgsRgbPixel& pixel, unsigned char& numModes, 
 																	unsigned char& low_threshold, unsigned char& high_threshold)
 {
 	// calculate distances to the modes (+ sort???)
@@ -278,20 +278,20 @@ void GrimsonGMM::SubtractPixel(long posPixel, const RgbPixel& pixel, unsigned ch
 
 	if(bBackgroundLow)
 	{
-		low_threshold = BACKGROUND;
+		low_threshold = BGSBACKGROUND;
 	}
 	else
 	{
-		low_threshold = FOREGROUND;
+		low_threshold = BGSFOREGROUND;
 	}
 
 	if(bBackgroundHigh)
 	{
-		high_threshold = BACKGROUND;
+		high_threshold = BGSBACKGROUND;
 	}
 	else
 	{
-		high_threshold = FOREGROUND;
+		high_threshold = BGSFOREGROUND;
 	}
 }
 
@@ -303,8 +303,8 @@ void GrimsonGMM::SubtractPixel(long posPixel, const RgbPixel& pixel, unsigned ch
 //					(the memory should already be reserved) 
 //					values: 255-foreground, 125-shadow, 0-background
 ///////////////////////////////////////////////////////////////////////////////
-void GrimsonGMM::Subtract(int frame_num, const RgbImage& data,  
-														BwImage& low_threshold_mask, BwImage& high_threshold_mask)
+void GrimsonGMM::Subtract(int frame_num, const BgsRgbImage& data,  
+														BgsBwImage& low_threshold_mask, BgsBwImage& high_threshold_mask)
 {
 	unsigned char low_threshold, high_threshold;
 	long posPixel;

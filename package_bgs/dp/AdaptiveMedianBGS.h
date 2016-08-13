@@ -70,20 +70,20 @@ namespace Algorithms
 
 			void Initalize(const BgsParams& param);
 
-			void InitModel(const RgbImage& data);
-			void Subtract(int frame_num, const RgbImage& data,  
-											BwImage& low_threshold_mask, BwImage& high_threshold_mask);	
-			void Update(int frame_num, const RgbImage& data,  const BwImage& update_mask);
+			void InitModel(const BgsRgbImage& data);
+			void Subtract(int frame_num, const BgsRgbImage& data,  
+											BgsBwImage& low_threshold_mask, BgsBwImage& high_threshold_mask);	
+			void Update(int frame_num, const BgsRgbImage& data,  const BgsBwImage& update_mask);
 
-			RgbImage* Background();
+			BgsRgbImage* Background();
 
 		private:	
-			void SubtractPixel(int r, int c, const RgbPixel& pixel, 
+			void SubtractPixel(int r, int c, const BgsRgbPixel& pixel, 
 													unsigned char& low_threshold, unsigned char& high_threshold);
 
 			AdaptiveMedianParams m_params;
 
-			RgbImage m_median;
+			BgsRgbImage m_median;
 		};
 	}
 }

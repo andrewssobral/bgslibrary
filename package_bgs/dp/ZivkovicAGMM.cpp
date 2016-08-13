@@ -74,7 +74,7 @@ void ZivkovicAGMM::Initalize(const BgsParams& param)
 	m_background = cvCreateImage(cvSize(m_params.Width(), m_params.Height()), IPL_DEPTH_8U, 3);
 }
 
-void ZivkovicAGMM::InitModel(const RgbImage& data)
+void ZivkovicAGMM::InitModel(const BgsRgbImage& data)
 {
 	for(unsigned int i = 0; i < m_params.Size(); ++i)
 	{
@@ -91,12 +91,12 @@ void ZivkovicAGMM::InitModel(const RgbImage& data)
 	}
 }
 
-void ZivkovicAGMM::Update(int frame_num, const RgbImage& data,  const BwImage& update_mask)
+void ZivkovicAGMM::Update(int frame_num, const BgsRgbImage& data,  const BgsBwImage& update_mask)
 {
 	// it doesn't make sense to have conditional updates in the GMM framework
 }
 
-void ZivkovicAGMM::SubtractPixel(long posPixel, const RgbPixel& pixel, unsigned char* pModesUsed, 
+void ZivkovicAGMM::SubtractPixel(long posPixel, const BgsRgbPixel& pixel, unsigned char* pModesUsed, 
 																	unsigned char& low_threshold, unsigned char& high_threshold)
 {
 	//calculate distances to the modes (+ sort???)
@@ -353,20 +353,20 @@ void ZivkovicAGMM::SubtractPixel(long posPixel, const RgbPixel& pixel, unsigned 
 
 	if(bBackgroundLow)
 	{
-		low_threshold = BACKGROUND;
+		low_threshold = BGSBACKGROUND;
 	}
 	else
 	{
-		low_threshold = FOREGROUND;
+		low_threshold = BGSFOREGROUND;
 	}
 
 	if(bBackgroundHigh)
 	{
-		high_threshold = BACKGROUND;
+		high_threshold = BGSBACKGROUND;
 	}
 	else
 	{
-		high_threshold = FOREGROUND;
+		high_threshold = BGSFOREGROUND;
 	}
 }
 
@@ -379,8 +379,8 @@ void ZivkovicAGMM::SubtractPixel(long posPixel, const RgbPixel& pixel, unsigned 
 //					(the memory should already be reserved) 
 //					values: 255-foreground, 125-shadow, 0-background
 ///////////////////////////////////////////////////////////////////////////////
-void ZivkovicAGMM::Subtract(int frame_num, const RgbImage& data,  
-															BwImage& low_threshold_mask, BwImage& high_threshold_mask)
+void ZivkovicAGMM::Subtract(int frame_num, const BgsRgbImage& data,  
+															BgsBwImage& low_threshold_mask, BgsBwImage& high_threshold_mask)
 {
 	unsigned char low_threshold, high_threshold;
 

@@ -87,15 +87,15 @@ namespace Algorithms
 
       void Initalize(const BgsParams& param);
 
-      void InitModel(const RgbImage& data);
-      void Subtract(int frame_num, const RgbImage& data,  
-        BwImage& low_threshold_mask, BwImage& high_threshold_mask);	
-      void Update(int frame_num, const RgbImage& data,  const BwImage& update_mask);
+      void InitModel(const BgsRgbImage& data);
+      void Subtract(int frame_num, const BgsRgbImage& data,  
+        BgsBwImage& low_threshold_mask, BgsBwImage& high_threshold_mask);	
+      void Update(int frame_num, const BgsRgbImage& data,  const BgsBwImage& update_mask);
 
-      RgbImage* Background() { return &m_background; }
+      BgsRgbImage* Background() { return &m_background; }
 
     private:	
-      void SubtractPixel(int r, int c, const RgbPixel& pixel, 
+      void SubtractPixel(int r, int c, const BgsRgbPixel& pixel, 
         unsigned char& lowThreshold, unsigned char& highThreshold);
 
       WrenParams m_params;
@@ -106,7 +106,7 @@ namespace Algorithms
       // dynamic array for the mixture of Gaussians
       GAUSSIAN* m_gaussian;
 
-      RgbImage m_background;
+      BgsRgbImage m_background;
     };
   }
 }

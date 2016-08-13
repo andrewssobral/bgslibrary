@@ -91,14 +91,14 @@ namespace Algorithms
 
       void Initalize(const BgsParams& param);
 
-      void InitModel(const RgbImage& data);
-      void Subtract(int frame_num, const RgbImage& data, BwImage& low_threshold_mask, BwImage& high_threshold_mask);	
-      void Update(int frame_num, const RgbImage& data, const BwImage& update_mask);
+      void InitModel(const BgsRgbImage& data);
+      void Subtract(int frame_num, const BgsRgbImage& data, BgsBwImage& low_threshold_mask, BgsBwImage& high_threshold_mask);	
+      void Update(int frame_num, const BgsRgbImage& data, const BgsBwImage& update_mask);
 
-      RgbImage* Background();
+      BgsRgbImage* Background();
 
     private:	
-      void SubtractPixel(long posPixel, const RgbPixel& pixel, unsigned char& numModes, unsigned char& lowThreshold, unsigned char& highThreshold);
+      void SubtractPixel(long posPixel, const BgsRgbPixel& pixel, unsigned char& numModes, unsigned char& lowThreshold, unsigned char& highThreshold);
 
       // User adjustable parameters
       T2FGMMParams m_params;
@@ -118,10 +118,10 @@ namespace Algorithms
       GMM* m_modes;
 
       // Number of Gaussian components per pixel
-      BwImage m_modes_per_pixel;
+      BgsBwImage m_modes_per_pixel;
 
       // Current background model
-      RgbImage m_background;
+      BgsRgbImage m_background;
 
       // Factor control for the T2FGMM-UM
       float km;

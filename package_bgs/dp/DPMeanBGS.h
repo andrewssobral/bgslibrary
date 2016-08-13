@@ -31,12 +31,12 @@ private:
   bool firstTime;
   long frameNumber;
   IplImage* frame;
-  RgbImage frame_data;
+  BgsRgbImage frame_data;
 
   MeanParams params;
   MeanBGS bgs;
-  BwImage lowThresholdMask;
-  BwImage highThresholdMask;
+  BgsBwImage lowThresholdMask;
+  BgsBwImage highThresholdMask;
 
   int threshold;
   double alpha;

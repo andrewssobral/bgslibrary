@@ -15,7 +15,7 @@ You should have received a copy of the GNU General Public License
 along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include <math.h>
-#include "Image.h"
+#include "BgsImage.h"
 
 const int REGION_R = 5;			// Note: the code currently assumes this value is <= 7
 const int TEXTURE_POINTS = 6;	// Note: the code currently assumes this value is 6
@@ -45,11 +45,11 @@ public:
   TextureBGS();
   ~TextureBGS();
 
-  void LBP(RgbImage& image, RgbImage& texture);
-  void Histogram(RgbImage& texture, TextureHistogram* curTextureHist);
+  void LBP(BgsRgbImage& image, BgsRgbImage& texture);
+  void Histogram(BgsRgbImage& texture, TextureHistogram* curTextureHist);
   int ProximityMeasure(TextureHistogram& bgTexture, TextureHistogram& curTextureHist);
   void BgsCompare(TextureArray* bgModel, TextureHistogram* curTextureHist, 
-                unsigned char* modeArray, float threshold, BwImage& fgMask);
-  void UpdateModel(BwImage& fgMask, TextureArray* bgModel, 
+                unsigned char* modeArray, float threshold, BgsBwImage& fgMask);
+  void UpdateModel(BgsBwImage& fgMask, TextureArray* bgModel, 
                  TextureHistogram* curTextureHist, unsigned char* modeArray);
 };

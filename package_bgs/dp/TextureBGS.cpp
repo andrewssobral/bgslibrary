@@ -19,7 +19,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 TextureBGS::TextureBGS(){}
 TextureBGS::~TextureBGS(){}
 
-void TextureBGS::LBP(RgbImage& image, RgbImage& texture)
+void TextureBGS::LBP(BgsRgbImage& image, BgsRgbImage& texture)
 {
   for(int y = TEXTURE_R; y < image.Ptr()->height-TEXTURE_R; ++y)
   {
@@ -55,7 +55,7 @@ void TextureBGS::LBP(RgbImage& image, RgbImage& texture)
   }
 }
 
-void TextureBGS::Histogram(RgbImage& texture, TextureHistogram* curTextureHist)
+void TextureBGS::Histogram(BgsRgbImage& texture, TextureHistogram* curTextureHist)
 {
   // calculate histogram within a 2*REGION_R square
   for(int y = REGION_R+TEXTURE_R; y < texture.Ptr()->height-REGION_R-TEXTURE_R; ++y)
@@ -100,7 +100,7 @@ int TextureBGS::ProximityMeasure(TextureHistogram& bgTexture, TextureHistogram& 
 }
 
 void TextureBGS::BgsCompare(TextureArray* bgModel, TextureHistogram* curTextureHist, 
-                unsigned char* modeArray, float threshold, BwImage& fgMask)
+                unsigned char* modeArray, float threshold, BgsBwImage& fgMask)
 {
   cvZero(fgMask.Ptr());
 
@@ -130,7 +130,7 @@ void TextureBGS::BgsCompare(TextureArray* bgModel, TextureHistogram* curTextureH
   }
 }
 
-void TextureBGS::UpdateModel(BwImage& fgMask, TextureArray* bgModel, 
+void TextureBGS::UpdateModel(BgsBwImage& fgMask, TextureArray* bgModel, 
                  TextureHistogram* curTextureHist, unsigned char* modeArray)
 {
   for(int y = REGION_R+TEXTURE_R; y < fgMask.Ptr()->height-REGION_R-TEXTURE_R; ++y)

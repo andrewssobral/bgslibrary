@@ -94,11 +94,11 @@ namespace Algorithms
       // sum of L-inf distances from a sample point to all other sample points
       struct MEDIAN_BUFFER
       {
-        std::vector<RgbPixel> pixels;		// vector of pixels at give location in image
+        std::vector<BgsRgbPixel> pixels;		// vector of pixels at give location in image
         std::vector<int> dist;					// distance from pixel to all other pixels
         int pos;												// current position in circular buffer
 
-        RgbPixel median;								// median at this pixel location
+        BgsRgbPixel median;								// median at this pixel location
         int medianDist;									// distance from median pixel to all other pixels
       };
 
@@ -108,26 +108,26 @@ namespace Algorithms
 
       void Initalize(const BgsParams& param);
 
-      void InitModel(const RgbImage& data);
-      void Subtract(int frame_num, const RgbImage& data,  
-        BwImage& low_threshold_mask, BwImage& high_threshold_mask);	
-      void Update(int frame_num, const RgbImage& data,  const BwImage& update_mask);
+      void InitModel(const BgsRgbImage& data);
+      void Subtract(int frame_num, const BgsRgbImage& data,  
+      BgsBwImage& low_threshold_mask, BgsBwImage& high_threshold_mask);	
+      void Update(int frame_num, const BgsRgbImage& data,  const BgsBwImage& update_mask);
 
-      RgbImage* Background() { return &m_background; }
+      BgsRgbImage* Background() { return &m_background; }
 
     private:	
       MEDIAN_BUFFER* m_median_buffer;
 
-      void CalculateMasks(int r, int c, const RgbPixel& pixel);
-      void Combine(const BwImage& low_mask, const BwImage& high_mask, BwImage& output);
-      void UpdateMediod(int r, int c, const RgbImage& new_frame, int& dist);
+      void CalculateMasks(int r, int c, const BgsRgbPixel& pixel);
+      void Combine(const BgsBwImage& low_mask, const BgsBwImage& high_mask, BgsBwImage& output);
+      void UpdateMediod(int r, int c, const BgsRgbImage& new_frame, int& dist);
 
       PratiParams m_params;
 
-      RgbImage m_background;
+      BgsRgbImage m_background;
 
-      BwImage m_mask_low_threshold;
-      BwImage m_mask_high_threshold;
+      BgsBwImage m_mask_low_threshold;
+      BgsBwImage m_mask_high_threshold;
     };
 
   }

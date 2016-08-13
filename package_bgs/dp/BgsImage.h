@@ -27,12 +27,10 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 *  http://www.cs.iit.edu/~agam/cs512/lect-notes/opencv-intro/opencv-intro.html
 ******************************************************************************/
 
-#ifndef _IMAGE_H_
-#define _IMAGE_H_
+#ifndef _BGS_IMAGE_H_
+#define _BGS_IMAGE_H_
 
 #include <opencv2/opencv.hpp>
-#include <opencv2/core/types_c.h>
-#include <opencv2/core/core_c.h>
 //#include <cxcore.h>
 
 // --- Image Iterator ---------------------------------------------------------
@@ -127,16 +125,16 @@ const unsigned char NUM_CHANNELS = 3;
 
 // --- Pixel Types ------------------------------------------------------------
 
-class RgbPixel
+class BgsRgbPixel
 {
 public:
-  RgbPixel() {;}
-  RgbPixel(unsigned char _r, unsigned char _g, unsigned char _b)
+  BgsRgbPixel() {;}
+  BgsRgbPixel(unsigned char _r, unsigned char _g, unsigned char _b)
   {
     ch[0] = _r; ch[1] = _g; ch[2] = _b;
   }
 
-  RgbPixel& operator=(const RgbPixel& rhs)
+  BgsRgbPixel& operator=(const BgsRgbPixel& rhs)
   {
     ch[0] = rhs.ch[0]; ch[1] = rhs.ch[1]; ch[2] = rhs.ch[2];
     return *this;
@@ -155,16 +153,16 @@ public:
   unsigned char ch[3];
 };
 
-class RgbPixelFloat
+class BgsRgbPixelFloat
 {
 public:
-  RgbPixelFloat() {;}
-  RgbPixelFloat(float _r, float _g, float _b)
+  BgsRgbPixelFloat() {;}
+  BgsRgbPixelFloat(float _r, float _g, float _b)
   {
     ch[0] = _r; ch[1] = _g; ch[2] = _b;
   }
 
-  RgbPixelFloat& operator=(const RgbPixelFloat& rhs)
+  BgsRgbPixelFloat& operator=(const BgsRgbPixelFloat& rhs)
   {
     ch[0] = rhs.ch[0]; ch[1] = rhs.ch[1]; ch[2] = rhs.ch[2];
     return *this;
@@ -229,10 +227,10 @@ protected:
   bool m_bReleaseMemory;
 };
 
-class RgbImage : public ImageBase
+class BgsRgbImage : public ImageBase
 {
 public:
-  RgbImage(IplImage* img = NULL) : ImageBase(img) { ; }
+  BgsRgbImage(IplImage* img = NULL) : ImageBase(img) { ; }
 
   virtual void Clear()
   {
@@ -256,14 +254,14 @@ public:
   }
 
   // RGB pixel-level access using image(row, col)
-  inline RgbPixel& operator()(const int r, const int c) 
+  inline BgsRgbPixel& operator()(const int r, const int c) 
   {
-    return (RgbPixel &)imgp->imageData[r*imgp->widthStep+c*imgp->nChannels];
+    return (BgsRgbPixel &)imgp->imageData[r*imgp->widthStep+c*imgp->nChannels];
   }
 
-  inline const RgbPixel& operator()(const int r, const int c) const
+  inline const BgsRgbPixel& operator()(const int r, const int c) const
   {
-    return (RgbPixel &)imgp->imageData[r*imgp->widthStep+c*imgp->nChannels];
+    return (BgsRgbPixel &)imgp->imageData[r*imgp->widthStep+c*imgp->nChannels];
   }
 };
 
@@ -294,21 +292,21 @@ public:
   }
 
   // RGB pixel-level access using image(row, col)
-  inline RgbPixelFloat& operator()(const int r, const int c) 
+  inline BgsRgbPixelFloat& operator()(const int r, const int c) 
   {
-    return (RgbPixelFloat &)imgp->imageData[r*imgp->widthStep+c*imgp->nChannels*sizeof(float)];
+    return (BgsRgbPixelFloat &)imgp->imageData[r*imgp->widthStep+c*imgp->nChannels*sizeof(float)];
   }
 
-  inline const RgbPixelFloat& operator()(const int r, const int c) const
+  inline const BgsRgbPixelFloat& operator()(const int r, const int c) const
   {
-    return (RgbPixelFloat &)imgp->imageData[r*imgp->widthStep+c*imgp->nChannels*sizeof(float)];
+    return (BgsRgbPixelFloat &)imgp->imageData[r*imgp->widthStep+c*imgp->nChannels*sizeof(float)];
   }
 };
 
-class BwImage : public ImageBase
+class BgsBwImage : public ImageBase
 {
 public:
-  BwImage(IplImage* img = NULL) : ImageBase(img) { ; }
+  BgsBwImage(IplImage* img = NULL) : ImageBase(img) { ; }
 
   virtual void Clear()
   {
@@ -361,6 +359,6 @@ public:
 
 // --- Image Functions --------------------------------------------------------
 
-void DensityFilter(BwImage& image, BwImage& filtered, int minDensity, unsigned char fgValue);
+void DensityFilter(BgsBwImage& image, BgsBwImage& filtered, int minDensity, unsigned char fgValue);
 
 #endif
