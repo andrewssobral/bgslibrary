@@ -3,9 +3,9 @@ BGSLibrary
 
 A Background Subtraction Library
 
-Last Page Update: **15/06/2016**
+Last Page Update: **18/10/2016**
 
-Latest Library Version: **1.9.2** (see Release Notes for more info) 
+Latest Library Version: **1.9.2** (see Release Notes for more info)
 
 The BGSLibrary was developed by [Andrews Sobral](https://sites.google.com/site/andrewssobral) and provides an easy-to-use C++ framework based on [OpenCV](http://www.opencv.org/) to perform background subtraction (BGS) in videos. The BGSLibrary compiles under Linux, Mac OS X and Windows. Currently the library offers **37**¹ BGS algorithms. A large amount of algorithms were provided by several authors. The source code is available under GNU GPL v3 license, the library is free and open source for academic purposes².
 
@@ -167,9 +167,21 @@ Read instructions in README.txt file.
 
 <p align="center"><img src="https://sites.google.com/site/andrewssobral/bgslibrary_ubuntu.png" border="0" /></p>
 
+Docker images
+----------------------------------------
+Docker images are available for BGSLibrary with OpenCV 2.4.13 and OpenCV 3.1.0.
+
+* **Ubuntu 16.04 + VNC + OpenCV 2.4.13 + Python 2.7 + BGSLibrary (master branch)**
+https://hub.docker.com/r/andrewssobral/bgslibrary_opencv2/
+
+* **Ubuntu 16.04 + VNC + OpenCV 3.1.0 (+ contrib) + Python 2.7 + BGSLibrary (opencv3 branch)**
+https://hub.docker.com/r/andrewssobral/bgslibrary_opencv3/
+
+<p align="center"><img src="https://sites.google.com/site/andrewssobral/bgslibrary_opencv3_docker.png?width=640" border="0" /></p>
+
 How to use BGS Library in other C++ code
 ----------------------------------------
-Download latest project source code, copy package_bgs directory to your project and create config folder (bgslibrary use it to store xml configuration files). For Windows users, a demo project for Visual Studio 2010 is provided. 
+Download latest project source code, copy package_bgs directory to your project and create config folder (bgslibrary use it to store xml configuration files). For Windows users, a demo project for Visual Studio 2010 is provided.
 
 See Demo.cpp example source code at:
 https://github.com/andrewssobral/bgslibrary/blob/master/Demo.cpp

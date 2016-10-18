@@ -7,12 +7,16 @@ FET - FOREGROUND EVALUATION TOOL
 
 import numpy as np
 import cv2
+import os
 from os import listdir
 from os.path import isfile, join
 
 path_gt = 'GT/'
 path_fg = 'FG/'
 path_sc = 'SC/'
+
+if not os.path.exists(path_sc):
+	os.makedirs(path_sc)
 
 files_gt = [ f for f in listdir(path_gt) if isfile(join(path_gt,f)) ]
 files_fg = [ f for f in listdir(path_gt) if isfile(join(path_gt,f)) ]
@@ -42,8 +46,10 @@ for file_gt, file_fg in zip(files_gt, files_fg):
     print(k, file_gt, file_fg)
     img_gt = cv2.imread(path_gt + file_gt,cv2.IMREAD_GRAYSCALE)
     img_fg = cv2.imread(path_fg + file_fg,cv2.IMREAD_GRAYSCALE)
-    #print(img_gt.shape,img_fg.shape)
+    # img_gt = cv2.resize(img_gt, (0,0), fx=0.5, fy=0.5) 
+    # print(img_gt.shape,img_fg.shape)
     rows,cols = img_gt.shape
+    img_fg = cv2.resize(img_fg,(cols,rows)) 
     img_res = np.zeros((rows,cols,3),np.uint8)
     for i in xrange(rows):
         for j in xrange(cols):
@@ -85,4 +91,3 @@ print 'Fscore: ', Fscore
 print ''
 
 #####################################################################
-
