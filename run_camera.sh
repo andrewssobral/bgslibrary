@@ -1,3 +1,2 @@
 #!/bin/bash
-./build/bgs --use_cam --camera=0
-
+./build/bgslibrary --use_cam --camera=0
