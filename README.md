@@ -37,6 +37,7 @@ Note: the BGSLibrary is based on OpenCV 2.X, if you want to use with OpenCV 3.x 
 
 Citation
 --------
+
 If you use this library for your publications, please cite it as:
 ```
 @inproceedings{bgslibrary,
@@ -76,3 +77,17 @@ Some algorithms of the BGSLibrary were used successfully in the following papers
 
 * (2013) Sobral, Andrews; Oliveira, Luciano; Schnitman, Leizer; Souza, Felippe. (**Best Paper Award**) Highway Traffic Congestion Classification Using Holistic Properties. In International Conference on Signal Processing, Pattern Recognition and Applications (SPPRA'2013), Innsbruck, Austria, Feb 2013. ([Online](http://dx.doi.org/10.2316/P.2013.798-105)) ([PDF](http://www.researchgate.net/publication/233427564_HIGHWAY_TRAFFIC_CONGESTION_CLASSIFICATION_USING_HOLISTIC_PROPERTIES))
 
+Videos
+------
+
+<p align="center">
+<a href="https://www.youtube.com/watch?v=_UbERwuQ0OU" target="_blank">
+<img src="https://sites.google.com/site/andrewssobral/bgslibrary_qt_gui_video.png?width=600" border="0" />
+</a>
+</p>
+
+<p align="center">
+<a href="https://www.youtube.com/watch?v=Ccqa9KBO9_U" target="_blank">
+<img src="https://sites.google.com/site/andrewssobral/bgslibrary_youtube.png?width=600" border="0" />
+</a>
+</p>
