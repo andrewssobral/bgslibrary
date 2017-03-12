@@ -2,7 +2,7 @@
 
 A Background Subtraction Library
 
-![](https://sites.google.com/site/andrewssobral/bgs_giphy2.gif)
+[![bgslibrary](http://i.giphy.com/SFqAiXeQLyPAs.gif)](https://youtu.be/_UbERwuQ0OU)
 
 Last Page Update: **12/03/2017**
 
