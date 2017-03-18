@@ -19,7 +19,6 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <opencv2/opencv.hpp>
 
-
 namespace bgslibrary
 {
   class PreProcessor

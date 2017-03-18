@@ -18,7 +18,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 *
 * WrenGA.hpp
 *
-* Purpose: Implementation of the running Gaussian average background 
+* Purpose: Implementation of the running Gaussian average background
 *		  		 subtraction algorithm described in:
 *	  			 "Pfinder: real-time tracking of the human body"
 * 						by C. Wren et al (1997)
@@ -33,16 +33,14 @@ Example:
 Algorithms::BackgroundSubtraction::WrenParams params;
 params.SetFrameSize(width, height);
 params.LowThreshold() = 3.5f*3.5f;
-params.HighThreshold() = 2*params.LowThreshold();	// Note: high threshold is used by post-processing 
+params.HighThreshold() = 2*params.LowThreshold();	// Note: high threshold is used by post-processing
 params.Alpha() = 0.005f;
 params.LearningFrames() = 30;
 
 Algorithms::BackgroundSubtraction::WrenGA bgs;
 bgs.Initalize(params);
 ******************************************************************************/
-
-#ifndef WREN_GA_H
-#define WREN_GA_H
+#pragma once
 
 #include "Bgs.h"
 
@@ -74,7 +72,7 @@ namespace Algorithms
     // --- Mean BGS algorithm ---
     class WrenGA : public Bgs
     {
-    private:	
+    private:
       struct GAUSSIAN
       {
         float mu[NUM_CHANNELS];
@@ -88,19 +86,19 @@ namespace Algorithms
       void Initalize(const BgsParams& param);
 
       void InitModel(const RgbImage& data);
-      void Subtract(int frame_num, const RgbImage& data,  
-        BwImage& low_threshold_mask, BwImage& high_threshold_mask);	
-      void Update(int frame_num, const RgbImage& data,  const BwImage& update_mask);
+      void Subtract(int frame_num, const RgbImage& data,
+        BwImage& low_threshold_mask, BwImage& high_threshold_mask);
+      void Update(int frame_num, const RgbImage& data, const BwImage& update_mask);
 
       RgbImage* Background() { return &m_background; }
 
-    private:	
-      void SubtractPixel(int r, int c, const RgbPixel& pixel, 
+    private:
+      void SubtractPixel(int r, int c, const RgbPixel& pixel,
         unsigned char& lowThreshold, unsigned char& highThreshold);
 
       WrenParams m_params;
 
-      // Initial variance for the newly generated components. 
+      // Initial variance for the newly generated components.
       float m_variance;
 
       // dynamic array for the mixture of Gaussians
@@ -110,11 +108,3 @@ namespace Algorithms
     };
   }
 }
-
-#endif
-
-
-
-
-
-

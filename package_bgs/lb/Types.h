@@ -33,57 +33,55 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
-
-#ifndef TYPES_H
-#define TYPES_H
+#pragma once
 
 #include <opencv2/opencv.hpp>
 
 namespace lb_library
 {
-  template<class T> class Image
+template<class T> class Image
+{
+private:
+  IplImage* imgp;
+
+public:
+  Image(IplImage* img=0) {imgp=img;}
+  ~Image(){imgp=0;}
+  
+  void operator=(IplImage* img) {imgp=img;}
+  
+  inline T* operator[](const int rowIndx)
   {
-  private:
-    IplImage* imgp;
+    return ((T *)(imgp->imageData + rowIndx*imgp->widthStep));
+  }
+};
 
-  public:
-    Image(IplImage* img=0) {imgp=img;}
-    ~Image(){imgp=0;}
-  
-    void operator=(IplImage* img) {imgp=img;}
-  
-    inline T* operator[](const int rowIndx)
-    {
-      return ((T *)(imgp->imageData + rowIndx*imgp->widthStep));
-    }
-  };
+typedef struct{
+  unsigned char b,g,r;
+} RgbPixel;
 
-  typedef struct{
-    unsigned char b,g,r;
-  } RgbPixel;
+typedef struct{
+  unsigned char Blue,Green,Red;
+} BYTERGB;
 
-  typedef struct{
-    unsigned char Blue,Green,Red;
-  } BYTERGB;
+typedef struct{
+  unsigned int Blue,Green,Red;
+} INTRGB;
 
-  typedef struct{
-    unsigned int Blue,Green,Red;
-  } INTRGB;
+typedef struct{
+  float b,g,r;
+}RgbPixelFloat;
 
-  typedef struct{
-    float b,g,r;
-  }RgbPixelFloat;
+typedef struct{
+  double Blue,Green,Red;
+} DBLRGB;
 
-  typedef struct{
-    double Blue,Green,Red;
-  } DBLRGB;
+typedef Image<RgbPixel>       RgbImage;
+typedef Image<RgbPixelFloat>  RgbImageFloat;
+typedef Image<unsigned char>  BwImage;
+typedef Image<float>          BwImageFloat;
 
-  typedef Image<RgbPixel>       RgbImage;
-  typedef Image<RgbPixelFloat>  RgbImageFloat;
-  typedef Image<unsigned char>  BwImage;
-  typedef Image<float>          BwImageFloat;
-
-  /*
+/*
   IplImage* img = cvCreateImage(cvSize(640,480), IPL_DEPTH_32F, 3);
   RgbImageFloat imgA(img);
   for(int i = 0; i < m_height; i++)
@@ -93,7 +91,3 @@ namespace lb_library
       imgA[i][j].r = 111;
   */
 }
-
-//---------------------------------------------
-
-#endif

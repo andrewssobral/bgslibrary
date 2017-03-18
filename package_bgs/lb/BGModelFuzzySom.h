@@ -14,7 +14,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
-/*  Scene 1.0.1 -- Background subtraction and object tracking for complex environments  
+/*  Scene 1.0.1 -- Background subtraction and object tracking for complex environments
 BGModelFuzzySom.h
 
 Copyright (C) 2011 Laurence Bender <lbender@untref.edu.ar>
@@ -33,9 +33,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
-
-#ifndef BGMODELFUZZYSOM_H
-#define BGMODELFUZZYSOM_H
+#pragma once
 
 #include "BGModel.h"
 
@@ -47,9 +45,9 @@ namespace lb_library
 
     const int M = 3;				// width SOM (per pixel)
     const int N = 3;				// height SOM (per pixel)
-    const int KERNEL = 3; 	// size Gaussian kernel 
+    const int KERNEL = 3; 	// size Gaussian kernel
 
-    const bool SPAN_NEIGHBORS = false; // true if update neighborhood spans different pixels			// 
+    const bool SPAN_NEIGHBORS = false; // true if update neighborhood spans different pixels			//
     const int TRAINING_STEPS = 100;			// number of training steps
 
     const double EPS1 = 100.0; // model match distance during training
@@ -84,12 +82,10 @@ namespace lb_library
       double m_alpha2;
 
       DBLRGB** m_ppSOM;					// SOM grid
-      double** m_ppW;						// Weights 
+      double** m_ppW;						// Weights
 
       void Init();
       void Update();
     };
   }
 }
-
-#endif

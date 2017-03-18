@@ -16,9 +16,14 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "GMG.h"
 
-GMG::GMG() : firstTime(true), initializationFrames(20), decisionThreshold(0.7), showOutput(true)
+#if CV_MAJOR_VERSION == 2
+
+using namespace bgslibrary::algorithms;
+
+GMG::GMG() : initializationFrames(20), decisionThreshold(0.7)
 {
   std::cout << "GMG()" << std::endl;
+  setup("./config/GMG.xml");
 
   cv::initModule_video();
   cv::setUseOptimized(true);
@@ -34,41 +39,33 @@ GMG::~GMG()
 
 void GMG::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
 {
-  if(img_input.empty())
-    return;
+  init(img_input, img_output, img_bgmodel);
 
-  loadConfig();
-
-  if(firstTime)
+  if (firstTime)
   {
     fgbg->set("initializationFrames", initializationFrames);
     fgbg->set("decisionThreshold", decisionThreshold);
-
-    saveConfig();
   }
-  
-  if(fgbg.empty())
+
+  if (fgbg.empty())
   {
     std::cerr << "Failed to create BackgroundSubtractor.GMG Algorithm." << std::endl;
     return;
   }
 
   (*fgbg)(img_input, img_foreground);
-
-  cv::Mat img_background;
   (*fgbg).getBackgroundImage(img_background);
 
   img_input.copyTo(img_segmentation);
   cv::add(img_input, cv::Scalar(100, 100, 0), img_segmentation, img_foreground);
 
-  if(showOutput)
+#ifndef MEX_COMPILE_FLAG
+  if (showOutput)
   {
-    if (!img_foreground.empty())
-      cv::imshow("GMG FG (Godbehere-Matsukawa-Goldberg)", img_foreground);
-    
-    if (!img_background.empty())
-      cv::imshow("GMG BG (Godbehere-Matsukawa-Goldberg)", img_background);
+    cv::imshow("GMG FG (Godbehere-Matsukawa-Goldberg)", img_foreground);
+    cv::imshow("GMG BG (Godbehere-Matsukawa-Goldberg)", img_background);
   }
+#endif
 
   img_foreground.copyTo(img_output);
   img_background.copyTo(img_bgmodel);
@@ -78,7 +75,7 @@ void GMG::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bg
 
 void GMG::saveConfig()
 {
-  CvFileStorage* fs = cvOpenFileStorage("./config/GMG.xml", 0, CV_STORAGE_WRITE);
+  CvFileStorage* fs = cvOpenFileStorage(config_xml.c_str(), nullptr, CV_STORAGE_WRITE);
 
   cvWriteInt(fs, "initializationFrames", initializationFrames);
   cvWriteReal(fs, "decisionThreshold", decisionThreshold);
@@ -89,11 +86,13 @@ void GMG::saveConfig()
 
 void GMG::loadConfig()
 {
-  CvFileStorage* fs = cvOpenFileStorage("./config/GMG.xml", 0, CV_STORAGE_READ);
-  
-  initializationFrames = cvReadIntByName(fs, 0, "initializationFrames", 20);
-  decisionThreshold = cvReadRealByName(fs, 0, "decisionThreshold", 0.7);
-  showOutput = cvReadIntByName(fs, 0, "showOutput", true);
-  
+  CvFileStorage* fs = cvOpenFileStorage(config_xml.c_str(), nullptr, CV_STORAGE_READ);
+
+  initializationFrames = cvReadIntByName(fs, nullptr, "initializationFrames", 20);
+  decisionThreshold = cvReadRealByName(fs, nullptr, "decisionThreshold", 0.7);
+  showOutput = cvReadIntByName(fs, nullptr, "showOutput", true);
+
   cvReleaseFileStorage(&fs);
 }
+
+#endif

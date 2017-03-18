@@ -14,6 +14,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
+#pragma once
+
 #include <math.h>
 #include "Image.h"
 
@@ -23,7 +25,7 @@ const int TEXTURE_R = 2;		// Note: the code currently assumes this value is 2
 const int NUM_BINS = 64;		// 2^TEXTURE_POINTS
 const int HYSTERSIS = 3;
 const double ALPHA = 0.05f;
-const double THRESHOLD = 0.5*(REGION_R+REGION_R+1)*(REGION_R+REGION_R+1)*NUM_CHANNELS;
+const double THRESHOLD = 0.5*(REGION_R + REGION_R + 1)*(REGION_R + REGION_R + 1)*NUM_CHANNELS;
 const int NUM_MODES = 1;		// The paper describes how multiple modes can be maintained,
 // but this implementation does not fully support more than one
 
@@ -48,8 +50,8 @@ public:
   void LBP(RgbImage& image, RgbImage& texture);
   void Histogram(RgbImage& texture, TextureHistogram* curTextureHist);
   int ProximityMeasure(TextureHistogram& bgTexture, TextureHistogram& curTextureHist);
-  void BgsCompare(TextureArray* bgModel, TextureHistogram* curTextureHist, 
-                unsigned char* modeArray, float threshold, BwImage& fgMask);
-  void UpdateModel(BwImage& fgMask, TextureArray* bgModel, 
-                 TextureHistogram* curTextureHist, unsigned char* modeArray);
+  void BgsCompare(TextureArray* bgModel, TextureHistogram* curTextureHist,
+    unsigned char* modeArray, float threshold, BwImage& fgMask);
+  void UpdateModel(BwImage& fgMask, TextureArray* bgModel,
+    TextureHistogram* curTextureHist, unsigned char* modeArray);
 };

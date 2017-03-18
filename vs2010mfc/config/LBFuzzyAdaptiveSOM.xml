@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<opencv_storage>
-<sensitivity>90</sensitivity>
-<trainingSensitivity>240</trainingSensitivity>
-<learningRate>38</learningRate>
-<trainingLearningRate>255</trainingLearningRate>
-<trainingSteps>81</trainingSteps>
-<showOutput>0</showOutput>
-</opencv_storage>

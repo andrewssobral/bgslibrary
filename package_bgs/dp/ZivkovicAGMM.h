@@ -18,7 +18,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 *
 * ZivkovicAGMM.hpp
 *
-* Purpose: Implementation of the Gaussian mixture model (GMM) background 
+* Purpose: Implementation of the Gaussian mixture model (GMM) background
 *		  		 subtraction algorithm developed by Z. Zivkovic.
 *
 * Author: Donovan Parks, September 2007
@@ -28,13 +28,13 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 * following papers:
 *
 *	"Improved adaptive Gausian mixture model for background subtraction"
-*		Z.Zivkovic 
+*		Z.Zivkovic
 *		International Conference Pattern Recognition, UK, August, 2004
 *
 *
-* "Efficient Adaptive Density Estimapion per Image Pixel for the 
+* "Efficient Adaptive Density Estimapion per Image Pixel for the
 *			Task of Background Subtraction"
-*		Z.Zivkovic, F. van der Heijden 
+*		Z.Zivkovic, F. van der Heijden
 *		Pattern Recognition Letters, vol. 27, no. 7, pages 773-780, 2006.
 *
 * Zivkovic's code can be obtained at: www.zoranz.net
@@ -43,16 +43,14 @@ Example:
 Algorithms::BackgroundSubtraction::ZivkovicParams params;
 params.SetFrameSize(width, height);
 params.LowThreshold() = 5.0f*5.0f;
-params.HighThreshold() = 2*params.LowThreshold();	// Note: high threshold is used by post-processing 
+params.HighThreshold() = 2*params.LowThreshold();	// Note: high threshold is used by post-processing
 params.Alpha() = 0.001f;
 params.MaxModes() = 3;
 
 Algorithms::BackgroundSubtraction::ZivkovicAGMM bgs;
 bgs.Initalize(params);
 ******************************************************************************/
-
-#ifndef ZIVKOVIC_AGMM_H
-#define ZIVKOVIC_AGMM_H
+#pragma once
 
 #include "Bgs.h"
 
@@ -71,18 +69,18 @@ namespace Algorithms
       int &MaxModes() { return m_max_modes; }
 
     private:
-      // Threshold on the squared dist. to decide when a sample is close to an existing 
-      // components. If it is not close to any a new component will be generated. 
-      // Smaller threshold values lead to more generated components and higher threshold values 
+      // Threshold on the squared dist. to decide when a sample is close to an existing
+      // components. If it is not close to any a new component will be generated.
+      // Smaller threshold values lead to more generated components and higher threshold values
       // lead to a small number of components but they can grow too large.
       //
-      // It is usual easiest to think of these thresholds as being the number of variances (not standard deviations) 
+      // It is usual easiest to think of these thresholds as being the number of variances (not standard deviations)
       // away from the mean of a pixel before it is considered to be from the foreground.
       float m_low_threshold;
       float m_high_threshold;
 
       // alpha - speed of update - if the time interval you want to average over is T
-      // set alpha=1/T. 
+      // set alpha=1/T.
       float m_alpha;
 
       // Maximum number of modes (Gaussian components) that will be used per pixel
@@ -109,14 +107,14 @@ namespace Algorithms
       void Initalize(const BgsParams& param);
 
       void InitModel(const RgbImage& data);
-      void Subtract(int frame_num, const RgbImage& data,  
-        BwImage& low_threshold_mask, BwImage& high_threshold_mask);	
-      void Update(int frame_num, const RgbImage& data,  const BwImage& update_mask);
+      void Subtract(int frame_num, const RgbImage& data,
+        BwImage& low_threshold_mask, BwImage& high_threshold_mask);
+      void Update(int frame_num, const RgbImage& data, const BwImage& update_mask);
 
       RgbImage* Background() { return &m_background; }
 
     private:
-      void SubtractPixel(long posPixel, const RgbPixel& pixel, unsigned char* pModesUsed, 
+      void SubtractPixel(long posPixel, const RgbPixel& pixel, unsigned char* pModesUsed,
         unsigned char& lowThreshold, unsigned char& highThreshold);
 
       // User adjustable parameters
@@ -128,13 +126,13 @@ namespace Algorithms
       // it is considered foreground
       float m_bg_threshold; //1-cf from the paper
 
-      // Initial variance for the newly generated components. 
-      // It will will influence the speed of adaptation. A good guess should be made. 
+      // Initial variance for the newly generated components.
+      // It will will influence the speed of adaptation. A good guess should be made.
       // A simple way is to estimate the typical standard deviation from the images.
       float m_variance;
 
       // This is related to the number of samples needed to accept that a component
-      // actually exists. 
+      // actually exists.
       float m_complexity_prior;
 
       //data
@@ -150,11 +148,3 @@ namespace Algorithms
     };
   }
 }
-
-#endif
-
-
-
-
-
-

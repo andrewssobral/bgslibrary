@@ -95,7 +95,7 @@ namespace bgslibrary
     cv2DRotationMatrix(center, angle, 1.0, mapMatrix);
     cvWarpAffine(image, rotatedImage, mapMatrix, CV_INTER_LINEAR + CV_WARP_FILL_OUTLIERS, cvScalarAll(0));
 
-    cv::Mat img_rot(rotatedImage);
+    cv::Mat img_rot = cv::cvarrToMat(rotatedImage);
     img_rot.copyTo(img_output);
 
     cvReleaseImage(&image);

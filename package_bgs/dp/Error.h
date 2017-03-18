@@ -23,14 +23,9 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 * Author: Donovan Parks, July 2007
 *
 ******************************************************************************/
-
-#ifndef ERROR_H
-#define ERROR_H
+#pragma once
 
 bool Error(const char* msg, const char* code, int data);
-
 bool TraceInit(const char* filename);
 void Trace(const char* msg);
 void TraceClose();
-
-#endif

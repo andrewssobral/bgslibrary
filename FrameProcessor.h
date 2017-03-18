@@ -21,56 +21,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #include "PreProcessor.h"
 
 #include "package_bgs/IBGS.h"
-
-#include "package_bgs/FrameDifferenceBGS.h"
-#include "package_bgs/StaticFrameDifferenceBGS.h"
-#include "package_bgs/WeightedMovingMeanBGS.h"
-#include "package_bgs/WeightedMovingVarianceBGS.h"
-#include "package_bgs/MixtureOfGaussianV1BGS.h"
-#include "package_bgs/MixtureOfGaussianV2BGS.h"
-#include "package_bgs/AdaptiveBackgroundLearning.h"
-#if CV_MAJOR_VERSION >= 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
-#include "package_bgs/GMG.h"
-#endif
-
-#include "package_bgs/dp/DPAdaptiveMedianBGS.h"
-#include "package_bgs/dp/DPGrimsonGMMBGS.h"
-#include "package_bgs/dp/DPZivkovicAGMMBGS.h"
-#include "package_bgs/dp/DPMeanBGS.h"
-#include "package_bgs/dp/DPWrenGABGS.h"
-#include "package_bgs/dp/DPPratiMediodBGS.h"
-#include "package_bgs/dp/DPEigenbackgroundBGS.h"
-#include "package_bgs/dp/DPTextureBGS.h"
-
-#include "package_bgs/tb/T2FGMM_UM.h"
-#include "package_bgs/tb/T2FGMM_UV.h"
-#include "package_bgs/tb/T2FMRF_UM.h"
-#include "package_bgs/tb/T2FMRF_UV.h"
-#include "package_bgs/tb/FuzzySugenoIntegral.h"
-#include "package_bgs/tb/FuzzyChoquetIntegral.h"
-
-#include "package_bgs/lb/LBSimpleGaussian.h"
-#include "package_bgs/lb/LBFuzzyGaussian.h"
-#include "package_bgs/lb/LBMixtureOfGaussians.h"
-#include "package_bgs/lb/LBAdaptiveSOM.h"
-#include "package_bgs/lb/LBFuzzyAdaptiveSOM.h"
-
-#include "package_bgs/ck/LbpMrf.h"
-
-#include "package_bgs/jmo/MultiLayerBGS.h"
-// The PBAS algorithm was removed from BGSLibrary because it is
-// based on patented algorithm ViBE
-// http://www2.ulg.ac.be/telecom/research/vibe/
-//#include "package_bgs/pt/PixelBasedAdaptiveSegmenter.h"
-#include "package_bgs/av/VuMeter.h"
-#include "package_bgs/ae/KDE.h"
-#include "package_bgs/db/IndependentMultimodalBGS.h"
-#include "package_bgs/sjn/SJN_MultiCueBGS.h"
-#include "package_bgs/bl/SigmaDeltaBGS.h"
-
-#include "package_bgs/pl/SuBSENSE.h"
-#include "package_bgs/pl/LOBSTER.h"
-
+#include "package_bgs/bgslibrary.h"
 #include "package_analysis/ForegroundMaskAnalysis.h"
 
 namespace bgslibrary
@@ -84,35 +35,37 @@ namespace bgslibrary
     double duration;
     std::string tictoc;
 
-    cv::Mat img_prep;
+    cv::Mat img_preProcessor;
     PreProcessor* preProcessor;
     bool enablePreProcessor;
 
-    cv::Mat img_framediff;
-    FrameDifferenceBGS* frameDifference;
-    bool enableFrameDifferenceBGS;
+    cv::Mat img_frameDifference;
+    FrameDifference* frameDifference;
+    bool enableFrameDifference;
 
-    cv::Mat img_staticfdiff;
-    StaticFrameDifferenceBGS* staticFrameDifference;
-    bool enableStaticFrameDifferenceBGS;
+    cv::Mat img_staticFrameDifference;
+    StaticFrameDifference* staticFrameDifference;
+    bool enableStaticFrameDifference;
 
-    cv::Mat img_wmovmean;
-    WeightedMovingMeanBGS* weightedMovingMean;
-    bool enableWeightedMovingMeanBGS;
+    cv::Mat img_weightedMovingMean;
+    WeightedMovingMean* weightedMovingMean;
+    bool enableWeightedMovingMean;
 
-    cv::Mat img_movvar;
-    WeightedMovingVarianceBGS* weightedMovingVariance;
-    bool enableWeightedMovingVarianceBGS;
+    cv::Mat img_weightedMovingVariance;
+    WeightedMovingVariance* weightedMovingVariance;
+    bool enableWeightedMovingVariance;
 
-    cv::Mat img_mog1;
-    MixtureOfGaussianV1BGS* mixtureOfGaussianV1BGS;
-    bool enableMixtureOfGaussianV1BGS;
+#if CV_MAJOR_VERSION == 2
+    cv::Mat img_mixtureOfGaussianV1;
+    MixtureOfGaussianV1* mixtureOfGaussianV1;
+    bool enableMixtureOfGaussianV1;
+#endif
 
-    cv::Mat img_mog2;
-    MixtureOfGaussianV2BGS* mixtureOfGaussianV2BGS;
-    bool enableMixtureOfGaussianV2BGS;
+    cv::Mat img_mixtureOfGaussianV2;
+    MixtureOfGaussianV2* mixtureOfGaussianV2;
+    bool enableMixtureOfGaussianV2;
 
-    cv::Mat img_bkgl_fgmask;
+    cv::Mat img_adaptiveBackgroundLearning;
     AdaptiveBackgroundLearning* adaptiveBackgroundLearning;
     bool enableAdaptiveBackgroundLearning;
 
@@ -122,93 +75,95 @@ namespace bgslibrary
     bool enableGMG;
 #endif
 
-    cv::Mat img_adpmed;
-    DPAdaptiveMedianBGS* adaptiveMedian;
-    bool enableDPAdaptiveMedianBGS;
+    cv::Mat img_dpAdaptiveMedian;
+    DPAdaptiveMedian* dpAdaptiveMedian;
+    bool enableDPAdaptiveMedian;
 
-    cv::Mat img_grigmm;
-    DPGrimsonGMMBGS* grimsonGMM;
-    bool enableDPGrimsonGMMBGS;
+    cv::Mat img_dpGrimsonGMM;
+    DPGrimsonGMM* dpGrimsonGMM;
+    bool enableDPGrimsonGMM;
 
-    cv::Mat img_zivgmm;
-    DPZivkovicAGMMBGS* zivkovicAGMM;
-    bool enableDPZivkovicAGMMBGS;
+    cv::Mat img_dpZivkovicAGMM;
+    DPZivkovicAGMM* dpZivkovicAGMM;
+    bool enableDPZivkovicAGMM;
 
-    cv::Mat img_tmpmean;
-    DPMeanBGS* temporalMean;
-    bool enableDPMeanBGS;
+    cv::Mat img_dpTemporalMean;
+    DPMean* dpTemporalMean;
+    bool enableDPMean;
 
-    cv::Mat img_wrenga;
-    DPWrenGABGS* wrenGA;
-    bool enableDPWrenGABGS;
+    cv::Mat img_dpWrenGA;
+    DPWrenGA* dpWrenGA;
+    bool enableDPWrenGA;
 
-    cv::Mat img_pramed;
-    DPPratiMediodBGS* pratiMediod;
-    bool enableDPPratiMediodBGS;
+    cv::Mat img_dpPratiMediod;
+    DPPratiMediod* dpPratiMediod;
+    bool enableDPPratiMediod;
 
-    cv::Mat img_eigbkg;
-    DPEigenbackgroundBGS* eigenBackground;
-    bool enableDPEigenbackgroundBGS;
+    cv::Mat img_dpEigenBackground;
+    DPEigenbackground* dpEigenBackground;
+    bool enableDPEigenbackground;
 
-    cv::Mat img_texbgs;
-    DPTextureBGS* textureBGS;
-    bool enableDPTextureBGS;
+    cv::Mat img_dpTexture;
+    DPTexture* dpTexture;
+    bool enableDPTexture;
 
-    cv::Mat img_t2fgmm_um;
+    cv::Mat img_type2FuzzyGMM_UM;
     T2FGMM_UM* type2FuzzyGMM_UM;
     bool enableT2FGMM_UM;
 
-    cv::Mat img_t2fgmm_uv;
+    cv::Mat img_type2FuzzyGMM_UV;
     T2FGMM_UV* type2FuzzyGMM_UV;
     bool enableT2FGMM_UV;
 
-    cv::Mat img_t2fmrf_um;
+    cv::Mat img_type2FuzzyMRF_UM;
     T2FMRF_UM* type2FuzzyMRF_UM;
     bool enableT2FMRF_UM;
 
-    cv::Mat img_t2fmrf_uv;
+    cv::Mat img_type2FuzzyMRF_UV;
     T2FMRF_UV* type2FuzzyMRF_UV;
     bool enableT2FMRF_UV;
 
-    cv::Mat img_fsi;
+    cv::Mat img_fuzzySugenoIntegral;
     FuzzySugenoIntegral* fuzzySugenoIntegral;
     bool enableFuzzySugenoIntegral;
 
-    cv::Mat img_fci;
+    cv::Mat img_fuzzyChoquetIntegral;
     FuzzyChoquetIntegral* fuzzyChoquetIntegral;
     bool enableFuzzyChoquetIntegral;
 
-    cv::Mat img_lb_sg;
+    cv::Mat img_lbSimpleGaussian;
     LBSimpleGaussian* lbSimpleGaussian;
     bool enableLBSimpleGaussian;
 
-    cv::Mat img_lb_fg;
+    cv::Mat img_lbFuzzyGaussian;
     LBFuzzyGaussian* lbFuzzyGaussian;
     bool enableLBFuzzyGaussian;
 
-    cv::Mat img_lb_mog;
+    cv::Mat img_lbMixtureOfGaussians;
     LBMixtureOfGaussians* lbMixtureOfGaussians;
     bool enableLBMixtureOfGaussians;
 
-    cv::Mat img_lb_som;
+    cv::Mat img_lbAdaptiveSOM;
     LBAdaptiveSOM* lbAdaptiveSOM;
     bool enableLBAdaptiveSOM;
 
-    cv::Mat img_lb_fsom;
+    cv::Mat img_lbFuzzyAdaptiveSOM;
     LBFuzzyAdaptiveSOM* lbFuzzyAdaptiveSOM;
     bool enableLBFuzzyAdaptiveSOM;
 
-    cv::Mat img_lbp_mrf;
-    LbpMrf* lbpMrf;
+    cv::Mat img_lbpMrf;
+    LBP_MRF* lbpMrf;
     bool enableLbpMrf;
 
-    cv::Mat img_mlbgs;
-    MultiLayerBGS* multiLayerBGS;
-    bool enableMultiLayerBGS;
+#if CV_MAJOR_VERSION == 2
+    cv::Mat img_multiLayer;
+    MultiLayer* multiLayer;
+    bool enableMultiLayer;
+#endif
 
-    //cv::Mat img_pt_pbas;
-    //PixelBasedAdaptiveSegmenter* pixelBasedAdaptiveSegmenter;
-    //bool enablePBAS;
+    cv::Mat img_pixelBasedAdaptiveSegmenter;
+    PixelBasedAdaptiveSegmenter* pixelBasedAdaptiveSegmenter;
+    bool enablePBAS;
 
     cv::Mat img_vumeter;
     VuMeter* vuMeter;
@@ -219,24 +174,24 @@ namespace bgslibrary
     bool enableKDE;
 
     cv::Mat img_imbs;
-    IndependentMultimodalBGS* imbs;
+    IndependentMultimodal* imbs;
     bool enableIMBS;
 
-    cv::Mat img_mcbgs;
-    SJN_MultiCueBGS* mcbgs;
-    bool enableMultiCueBGS;
+    cv::Mat img_multiCue;
+    MultiCue* multiCue;
+    bool enableMultiCue;
 
-    cv::Mat img_sdbgs;
-    SigmaDeltaBGS* sdbgs;
-    bool enableSigmaDeltaBGS;
+    cv::Mat img_sigmaDelta;
+    SigmaDelta* sigmaDelta;
+    bool enableSigmaDelta;
 
-    cv::Mat img_ssbgs;
-    SuBSENSEBGS* ssbgs;
-    bool enableSuBSENSEBGS;
+    cv::Mat img_subSENSE;
+    SuBSENSE* subSENSE;
+    bool enableSuBSENSE;
 
-    cv::Mat img_lobgs;
-    LOBSTERBGS* lobgs;
-    bool enableLOBSTERBGS;
+    cv::Mat img_lobster;
+    LOBSTER* lobster;
+    bool enableLOBSTER;
 
     ForegroundMaskAnalysis* foregroundMaskAnalysis;
     bool enableForegroundMaskAnalysis;

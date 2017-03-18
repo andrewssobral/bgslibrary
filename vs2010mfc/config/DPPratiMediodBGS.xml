@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<opencv_storage>
-<threshold>30</threshold>
-<samplingRate>5</samplingRate>
-<historySize>16</historySize>
-<weight>5</weight>
-<showOutput>0</showOutput>
-</opencv_storage>

@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<opencv_storage>
-<threshold>225</threshold>
-<historySize>20</historySize>
-<embeddedDim>10</embeddedDim>
-<showOutput>0</showOutput>
-</opencv_storage>

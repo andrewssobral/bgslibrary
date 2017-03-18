@@ -16,35 +16,32 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
 #pragma once
 
-#include <iostream>
-#include <opencv2/opencv.hpp>
-
-
 #include "IBGS.h"
 
-class AdaptiveBackgroundLearning : public IBGS
+namespace bgslibrary
 {
-private:
-  bool firstTime;
-  cv::Mat img_background;
-  double alpha;
-  long limit;
-  long counter;
-  double minVal;
-  double maxVal;
-  bool enableThreshold;
-  int threshold;
-  bool showForeground;
-  bool showBackground;
+  namespace algorithms
+  {
+    class AdaptiveBackgroundLearning : public IBGS
+    {
+    private:
+      double alpha;
+      long limit;
+      long counter;
+      double minVal;
+      double maxVal;
+      bool enableThreshold;
+      int threshold;
 
-public:
-  AdaptiveBackgroundLearning();
-  ~AdaptiveBackgroundLearning();
+    public:
+      AdaptiveBackgroundLearning();
+      ~AdaptiveBackgroundLearning();
 
-  void process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel);
+      void process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel);
 
-private:
-  void saveConfig();
-  void loadConfig();
-};
-
+    private:
+      void saveConfig();
+      void loadConfig();
+    };
+  }
+}

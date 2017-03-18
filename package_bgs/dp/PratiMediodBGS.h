@@ -18,7 +18,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 *
 * PratiMediodBGS.hpp
 *
-* Purpose: Implementation of the temporal median background 
+* Purpose: Implementation of the temporal median background
 *		  		 subtraction algorithm described in:
 *
 * [1] "Detecting Moving Objects, Shosts, and Shadows in Video Stream"
@@ -29,7 +29,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 *
 * Author: Donovan Parks, September 2007
 *
-* Please note that this is not an implementation of the complete system 
+* Please note that this is not an implementation of the complete system
 * given in the above papers. It simply implements the temporal media background
 * subtraction algorithm.
 
@@ -37,7 +37,7 @@ Example:
 Algorithms::BackgroundSubtraction::PratiParams params;
 params.SetFrameSize(width, height);
 params.LowThreshold() = 30;
-params.HighThreshold() = 2*params.LowThreshold();	// Note: high threshold is used by post-processing 
+params.HighThreshold() = 2*params.LowThreshold();	// Note: high threshold is used by post-processing
 params.SamplingRate() = 5;
 params.HistorySize() = 16;
 params.Weight() = 5;
@@ -45,9 +45,7 @@ params.Weight() = 5;
 Algorithms::BackgroundSubtraction::PratiMediodBGS bgs;
 bgs.Initalize(params);
 ******************************************************************************/
-
-#ifndef PRATI_MEDIA_BGS_H
-#define PRATI_MEDIA_BGS_H
+#pragma once
 
 #include <vector>
 #include "Bgs.h"
@@ -68,9 +66,9 @@ namespace Algorithms
       int &HistorySize() { return m_history_size; }
 
     private:
-      // The low threshold is used to supress noise. The high thresohld is used 
-      // to find pixels highly likely to be foreground. This implementation uses an L-inf 
-      // distance measure and a pixel p is considered F/G if D(I(p), B(p)) > threshold. 
+      // The low threshold is used to supress noise. The high thresohld is used
+      // to find pixels highly likely to be foreground. This implementation uses an L-inf
+      // distance measure and a pixel p is considered F/G if D(I(p), B(p)) > threshold.
       // The two threshold maps are combined as in [2].
       unsigned int m_low_threshold;
       unsigned int m_high_threshold;
@@ -88,9 +86,9 @@ namespace Algorithms
     };
 
     // --- Prati Mediod BGS algorithm ---
-    class PratiMediodBGS : public Bgs 
+    class PratiMediodBGS : public Bgs
     {
-    private:	
+    private:
       // sum of L-inf distances from a sample point to all other sample points
       struct MEDIAN_BUFFER
       {
@@ -109,13 +107,13 @@ namespace Algorithms
       void Initalize(const BgsParams& param);
 
       void InitModel(const RgbImage& data);
-      void Subtract(int frame_num, const RgbImage& data,  
-        BwImage& low_threshold_mask, BwImage& high_threshold_mask);	
-      void Update(int frame_num, const RgbImage& data,  const BwImage& update_mask);
+      void Subtract(int frame_num, const RgbImage& data,
+        BwImage& low_threshold_mask, BwImage& high_threshold_mask);
+      void Update(int frame_num, const RgbImage& data, const BwImage& update_mask);
 
       RgbImage* Background() { return &m_background; }
 
-    private:	
+    private:
       MEDIAN_BUFFER* m_median_buffer;
 
       void CalculateMasks(int r, int c, const RgbPixel& pixel);
@@ -132,11 +130,3 @@ namespace Algorithms
 
   }
 }
-
-#endif
-
-
-
-
-
-

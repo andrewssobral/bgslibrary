@@ -1,0 +1,44 @@
+  Authors:
+  --------
+  Olivier Barnich and
+  Marc Van Droogenbroeck <m.vandroogenbroeck@ulg.ac.be>
+  
+  Licence:
+  --------
+  ViBe is covered by a patent (see http://www.ulg.ac.be/telecom/research/vibe).
+  We do not provide the source code but provide an object file and an interface.
+
+  Permission to use ViBe without payment of fee is granted 
+  for nonprofit educational and research purposes only.
+
+  This work may not be copied or reproduced in whole or in part for any 
+  purpose. 
+
+  Copying, reproduction, or republishing for any purpose shall require 
+  a license. Please contact the author in such cases.
+  All the code is provided without any guarantee.
+
+
+ How to refer to us:
+ -------------------
+
+ If you want to refer to this work, please cite the following publications:
+
+ Barnich and M. Van Droogenbroeck. ViBe: A universal background subtraction algorithm for video sequences. In IEEE Transactions on Image Processing, 20(6):1709-1724, June 2011. 
+
+@article{Barnich2011ViBe,
+  title = {{ViBe}: A universal background subtraction algorithm for video sequences},
+  author = {O. Barnich and M. {Van Droogenbroeck}},
+  journal = {IEEE Transactions on Image Processing},
+  volume = {20},
+  number = {6},
+  pages = {1709-1724},
+  month = {June},
+  year = {2011},
+  keywords = {ViBe, Background, Background subtraction, Segmentation, Motion, Motion detection},
+  pdf = {http://orbi.ulg.ac.be/bitstream/2268/81248/1/Barnich2011ViBe.pdf},
+  doi = {10.1109/TIP.2010.2101613},
+  url = {http://hdl.handle.net/2268/81248} 
+}
+
+

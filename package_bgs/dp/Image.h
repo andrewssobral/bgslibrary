@@ -18,17 +18,15 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 *
 * Image.h
 *
-* Purpose:  C++ wrapper for OpenCV IplImage which supports simple and 
+* Purpose:  C++ wrapper for OpenCV IplImage which supports simple and
 *						efficient access to the image data
 *
 * Author: Donovan Parks, September 2007
 *
-* Based on code from: 
+* Based on code from:
 *  http://www.cs.iit.edu/~agam/cs512/lect-notes/opencv-intro/opencv-intro.html
 ******************************************************************************/
-
-#ifndef _IMAGE_H_
-#define _IMAGE_H_
+#pragma once
 
 #include <opencv2/opencv.hpp>
 //#include <cxcore.h>
@@ -36,30 +34,30 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 // --- Image Iterator ---------------------------------------------------------
 
 template <class T>
-class ImageIterator 
+class ImageIterator
 {
-public: 
-  ImageIterator(IplImage* image, int x=0, int y=0, int dx= 0, int dy=0) :
-    i(x), j(y), i0(0) 
-  {    
+public:
+  ImageIterator(IplImage* image, int x = 0, int y = 0, int dx = 0, int dy = 0) :
+    i(x), j(y), i0(0)
+  {
     data = reinterpret_cast<T*>(image->imageData);
     step = image->widthStep / sizeof(T);
 
-    nl= image->height;
-    if ((y+dy)>0 && (y+dy) < nl) 
-      nl= y+dy;
+    nl = image->height;
+    if ((y + dy) > 0 && (y + dy) < nl)
+      nl = y + dy;
 
-    if (y<0) 
-      j=0;
+    if (y < 0)
+      j = 0;
 
     data += step*j;
 
     nc = image->width;
-    if ((x+dx) > 0 && (x+dx) < nc) 
-      nc = x+dx;
+    if ((x + dx) > 0 && (x + dx) < nc)
+      nc = x + dx;
 
     nc *= image->nChannels;
-    if (x>0) 
+    if (x > 0)
       i0 = x*image->nChannels;
     i = i0;
 
@@ -71,26 +69,26 @@ public:
   bool operator!() const { return j < nl; }
 
   /* next pixel */
-  ImageIterator& operator++() 
+  ImageIterator& operator++()
   {
     i++;
-    if (i >= nc) 
-    { 
-      i=i0; 
-      j++; 
-      data += step; 
+    if (i >= nc)
+    {
+      i = i0;
+      j++;
+      data += step;
     }
     return *this;
   }
 
-  ImageIterator& operator+=(int s) 
+  ImageIterator& operator+=(int s)
   {
-    i+=s;
-    if (i >= nc) 
-    { 
-      i=i0; 
-      j++; 
-      data += step; 
+    i += s;
+    if (i >= nc)
+    {
+      i = i0;
+      j++;
+      data += step;
     }
     return *this;
   }
@@ -101,18 +99,18 @@ public:
   const T operator*() const { return data[i]; }
 
   const T neighbor(int dx, int dy) const
-  { 
-    return *(data+dy*step+i+dx); 
+  {
+    return *(data + dy*step + i + dx);
   }
 
-  T* operator&() const { return data+i; }
+  T* operator&() const { return data + i; }
 
   /* current pixel coordinates */
-  int column() const { return i/nch; }
+  int column() const { return i / nch; }
   int line() const { return j; }
 
 private:
-  int i, i0,j;
+  int i, i0, j;
   T* data;
   int step;
   int nl, nc;
@@ -128,7 +126,7 @@ const unsigned char NUM_CHANNELS = 3;
 class RgbPixel
 {
 public:
-  RgbPixel() {;}
+  RgbPixel() { ; }
   RgbPixel(unsigned char _r, unsigned char _g, unsigned char _b)
   {
     ch[0] = _r; ch[1] = _g; ch[2] = _b;
@@ -156,7 +154,7 @@ public:
 class RgbPixelFloat
 {
 public:
-  RgbPixelFloat() {;}
+  RgbPixelFloat() { ; }
   RgbPixelFloat(float _r, float _g, float _b)
   {
     ch[0] = _r; ch[1] = _g; ch[2] = _b;
@@ -199,14 +197,14 @@ public:
     cvReleaseImage(&imgp);
   }
 
-  void operator=(IplImage* img) 
-  { 
+  void operator=(IplImage* img)
+  {
     imgp = img;
   }
 
   // copy-constructor
   ImageBase(const ImageBase& rhs)
-  {	
+  {
     // it is very inefficent if this copy-constructor is called
     assert(false);
   }
@@ -237,31 +235,31 @@ public:
     cvZero(imgp);
   }
 
-  void operator=(IplImage* img) 
-  { 
+  void operator=(IplImage* img)
+  {
     imgp = img;
   }
 
   // channel-level access using image(row, col, channel)
   inline unsigned char& operator()(const int r, const int c, const int ch)
   {
-    return (unsigned char &)imgp->imageData[r*imgp->widthStep+c*imgp->nChannels+ch];
+    return (unsigned char &)imgp->imageData[r*imgp->widthStep + c*imgp->nChannels + ch];
   }
 
   inline const unsigned char& operator()(const int r, const int c, const int ch) const
   {
-    return (unsigned char &)imgp->imageData[r*imgp->widthStep+c*imgp->nChannels+ch];
+    return (unsigned char &)imgp->imageData[r*imgp->widthStep + c*imgp->nChannels + ch];
   }
 
   // RGB pixel-level access using image(row, col)
-  inline RgbPixel& operator()(const int r, const int c) 
+  inline RgbPixel& operator()(const int r, const int c)
   {
-    return (RgbPixel &)imgp->imageData[r*imgp->widthStep+c*imgp->nChannels];
+    return (RgbPixel &)imgp->imageData[r*imgp->widthStep + c*imgp->nChannels];
   }
 
   inline const RgbPixel& operator()(const int r, const int c) const
   {
-    return (RgbPixel &)imgp->imageData[r*imgp->widthStep+c*imgp->nChannels];
+    return (RgbPixel &)imgp->imageData[r*imgp->widthStep + c*imgp->nChannels];
   }
 };
 
@@ -275,31 +273,31 @@ public:
     cvZero(imgp);
   }
 
-  void operator=(IplImage* img) 
-  { 
+  void operator=(IplImage* img)
+  {
     imgp = img;
   }
 
   // channel-level access using image(row, col, channel)
   inline float& operator()(const int r, const int c, const int ch)
   {
-    return (float &)imgp->imageData[r*imgp->widthStep+(c*imgp->nChannels+ch)*sizeof(float)];
+    return (float &)imgp->imageData[r*imgp->widthStep + (c*imgp->nChannels + ch) * sizeof(float)];
   }
 
   inline float operator()(const int r, const int c, const int ch) const
   {
-    return (float)imgp->imageData[r*imgp->widthStep+(c*imgp->nChannels+ch)*sizeof(float)];
+    return (float)imgp->imageData[r*imgp->widthStep + (c*imgp->nChannels + ch) * sizeof(float)];
   }
 
   // RGB pixel-level access using image(row, col)
-  inline RgbPixelFloat& operator()(const int r, const int c) 
+  inline RgbPixelFloat& operator()(const int r, const int c)
   {
-    return (RgbPixelFloat &)imgp->imageData[r*imgp->widthStep+c*imgp->nChannels*sizeof(float)];
+    return (RgbPixelFloat &)imgp->imageData[r*imgp->widthStep + c*imgp->nChannels * sizeof(float)];
   }
 
   inline const RgbPixelFloat& operator()(const int r, const int c) const
   {
-    return (RgbPixelFloat &)imgp->imageData[r*imgp->widthStep+c*imgp->nChannels*sizeof(float)];
+    return (RgbPixelFloat &)imgp->imageData[r*imgp->widthStep + c*imgp->nChannels * sizeof(float)];
   }
 };
 
@@ -313,20 +311,20 @@ public:
     cvZero(imgp);
   }
 
-  void operator=(IplImage* img) 
-  { 
+  void operator=(IplImage* img)
+  {
     imgp = img;
   }
 
   // pixel-level access using image(row, col)
   inline unsigned char& operator()(const int r, const int c)
   {
-    return (unsigned char &)imgp->imageData[r*imgp->widthStep+c];
+    return (unsigned char &)imgp->imageData[r*imgp->widthStep + c];
   }
 
   inline unsigned char operator()(const int r, const int c) const
   {
-    return (unsigned char)imgp->imageData[r*imgp->widthStep+c];
+    return (unsigned char)imgp->imageData[r*imgp->widthStep + c];
   }
 };
 
@@ -340,25 +338,23 @@ public:
     cvZero(imgp);
   }
 
-  void operator=(IplImage* img) 
-  { 
+  void operator=(IplImage* img)
+  {
     imgp = img;
   }
 
   // pixel-level access using image(row, col)
   inline float& operator()(const int r, const int c)
   {
-    return (float &)imgp->imageData[r*imgp->widthStep+c*sizeof(float)];
+    return (float &)imgp->imageData[r*imgp->widthStep + c * sizeof(float)];
   }
 
   inline float operator()(const int r, const int c) const
   {
-    return (float)imgp->imageData[r*imgp->widthStep+c*sizeof(float)];
+    return (float)imgp->imageData[r*imgp->widthStep + c * sizeof(float)];
   }
 };
 
 // --- Image Functions --------------------------------------------------------
 
 void DensityFilter(BwImage& image, BwImage& filtered, int minDensity, unsigned char fgValue);
-
-#endif

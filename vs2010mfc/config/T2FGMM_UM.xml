@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<opencv_storage>
-<threshold>9.</threshold>
-<alpha>1.0000000000000000e-002</alpha>
-<km>1.5000000000000000e+000</km>
-<kv>6.0000002384185791e-001</kv>
-<gaussians>3</gaussians>
-<showOutput>0</showOutput>
-</opencv_storage>

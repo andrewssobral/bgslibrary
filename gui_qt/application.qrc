@@ -1,0 +1,10 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file>figs/copy.png</file>
+    <file>figs/cut.png</file>
+    <file>figs/new.png</file>
+    <file>figs/open.png</file>
+    <file>figs/paste.png</file>
+    <file>figs/save.png</file>
+</qresource>
+</RCC>

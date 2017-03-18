@@ -37,23 +37,25 @@ namespace bgslibrary
     if (enablePreProcessor)
       preProcessor = new PreProcessor;
 
-    if (enableFrameDifferenceBGS)
-      frameDifference = new FrameDifferenceBGS;
+    if (enableFrameDifference)
+      frameDifference = new FrameDifference;
 
-    if (enableStaticFrameDifferenceBGS)
-      staticFrameDifference = new StaticFrameDifferenceBGS;
+    if (enableStaticFrameDifference)
+      staticFrameDifference = new StaticFrameDifference;
 
-    if (enableWeightedMovingMeanBGS)
-      weightedMovingMean = new WeightedMovingMeanBGS;
+    if (enableWeightedMovingMean)
+      weightedMovingMean = new WeightedMovingMean;
 
-    if (enableWeightedMovingVarianceBGS)
-      weightedMovingVariance = new WeightedMovingVarianceBGS;
+    if (enableWeightedMovingVariance)
+      weightedMovingVariance = new WeightedMovingVariance;
 
-    if (enableMixtureOfGaussianV1BGS)
-      mixtureOfGaussianV1BGS = new MixtureOfGaussianV1BGS;
+#if CV_MAJOR_VERSION == 2
+    if (enableMixtureOfGaussianV1)
+      mixtureOfGaussianV1 = new MixtureOfGaussianV1;
+#endif
 
-    if (enableMixtureOfGaussianV2BGS)
-      mixtureOfGaussianV2BGS = new MixtureOfGaussianV2BGS;
+    if (enableMixtureOfGaussianV2)
+      mixtureOfGaussianV2 = new MixtureOfGaussianV2;
 
     if (enableAdaptiveBackgroundLearning)
       adaptiveBackgroundLearning = new AdaptiveBackgroundLearning;
@@ -63,29 +65,29 @@ namespace bgslibrary
       gmg = new GMG;
 #endif
 
-    if (enableDPAdaptiveMedianBGS)
-      adaptiveMedian = new DPAdaptiveMedianBGS;
+    if (enableDPAdaptiveMedian)
+      dpAdaptiveMedian = new DPAdaptiveMedian;
 
-    if (enableDPGrimsonGMMBGS)
-      grimsonGMM = new DPGrimsonGMMBGS;
+    if (enableDPGrimsonGMM)
+      dpGrimsonGMM = new DPGrimsonGMM;
 
-    if (enableDPZivkovicAGMMBGS)
-      zivkovicAGMM = new DPZivkovicAGMMBGS;
+    if (enableDPZivkovicAGMM)
+      dpZivkovicAGMM = new DPZivkovicAGMM;
 
-    if (enableDPMeanBGS)
-      temporalMean = new DPMeanBGS;
+    if (enableDPMean)
+      dpTemporalMean = new DPMean;
 
-    if (enableDPWrenGABGS)
-      wrenGA = new DPWrenGABGS;
+    if (enableDPWrenGA)
+      dpWrenGA = new DPWrenGA;
 
-    if (enableDPPratiMediodBGS)
-      pratiMediod = new DPPratiMediodBGS;
+    if (enableDPPratiMediod)
+      dpPratiMediod = new DPPratiMediod;
 
-    if (enableDPEigenbackgroundBGS)
-      eigenBackground = new DPEigenbackgroundBGS;
+    if (enableDPEigenbackground)
+      dpEigenBackground = new DPEigenbackground;
 
-    if (enableDPTextureBGS)
-      textureBGS = new DPTextureBGS;
+    if (enableDPTexture)
+      dpTexture = new DPTexture;
 
     if (enableT2FGMM_UM)
       type2FuzzyGMM_UM = new T2FGMM_UM;
@@ -121,13 +123,15 @@ namespace bgslibrary
       lbFuzzyAdaptiveSOM = new LBFuzzyAdaptiveSOM;
 
     if (enableLbpMrf)
-      lbpMrf = new LbpMrf;
+      lbpMrf = new LBP_MRF;
 
-    if(enableMultiLayerBGS)
-      multiLayerBGS = new MultiLayerBGS;
+#if CV_MAJOR_VERSION == 2
+    if (enableMultiLayer)
+      multiLayer = new MultiLayer;
+#endif
 
-    //if(enablePBAS)
-    //  pixelBasedAdaptiveSegmenter = new PixelBasedAdaptiveSegmenter;
+    if (enablePBAS)
+      pixelBasedAdaptiveSegmenter = new PixelBasedAdaptiveSegmenter;
 
     if (enableVuMeter)
       vuMeter = new VuMeter;
@@ -136,19 +140,19 @@ namespace bgslibrary
       kde = new KDE;
 
     if (enableIMBS)
-      imbs = new IndependentMultimodalBGS;
+      imbs = new IndependentMultimodal;
 
-    if (enableMultiCueBGS)
-      mcbgs = new SJN_MultiCueBGS;
+    if (enableMultiCue)
+      multiCue = new MultiCue;
 
-    if (enableSigmaDeltaBGS)
-      sdbgs = new SigmaDeltaBGS;
+    if (enableSigmaDelta)
+      sigmaDelta = new SigmaDelta;
 
-    if (enableSuBSENSEBGS)
-      ssbgs = new SuBSENSEBGS;
+    if (enableSuBSENSE)
+      subSENSE = new SuBSENSE;
 
-    if (enableLOBSTERBGS)
-      lobgs = new LOBSTERBGS;
+    if (enableLOBSTER)
+      lobster = new LOBSTER;
 
     if (enableForegroundMaskAnalysis)
       foregroundMaskAnalysis = new ForegroundMaskAnalysis;
@@ -171,169 +175,177 @@ namespace bgslibrary
     frameNumber++;
 
     if (enablePreProcessor)
-      preProcessor->process(img_input, img_prep);
+      preProcessor->process(img_input, img_preProcessor);
 
-    if (enableFrameDifferenceBGS)
-      process("FrameDifferenceBGS", frameDifference, img_prep, img_framediff);
+    if (enableFrameDifference)
+      process("FrameDifference", frameDifference, img_preProcessor, img_frameDifference);
 
-    if (enableStaticFrameDifferenceBGS)
-      process("StaticFrameDifferenceBGS", staticFrameDifference, img_prep, img_staticfdiff);
+    if (enableStaticFrameDifference)
+      process("StaticFrameDifference", staticFrameDifference, img_preProcessor, img_staticFrameDifference);
 
-    if (enableWeightedMovingMeanBGS)
-      process("WeightedMovingMeanBGS", weightedMovingMean, img_prep, img_wmovmean);
+    if (enableWeightedMovingMean)
+      process("WeightedMovingMean", weightedMovingMean, img_preProcessor, img_weightedMovingMean);
 
-    if (enableWeightedMovingVarianceBGS)
-      process("WeightedMovingVarianceBGS", weightedMovingVariance, img_prep, img_movvar);
+    if (enableWeightedMovingVariance)
+      process("WeightedMovingVariance", weightedMovingVariance, img_preProcessor, img_weightedMovingVariance);
 
-    if (enableMixtureOfGaussianV1BGS)
-      process("MixtureOfGaussianV1BGS", mixtureOfGaussianV1BGS, img_prep, img_mog1);
+#if CV_MAJOR_VERSION == 2
+    if (enableMixtureOfGaussianV1)
+      process("MixtureOfGaussianV1", mixtureOfGaussianV1, img_preProcessor, img_mixtureOfGaussianV1);
+#endif
 
-    if (enableMixtureOfGaussianV2BGS)
-      process("MixtureOfGaussianV2BGS", mixtureOfGaussianV2BGS, img_prep, img_mog2);
+    if (enableMixtureOfGaussianV2)
+      process("MixtureOfGaussianV2", mixtureOfGaussianV2, img_preProcessor, img_mixtureOfGaussianV2);
 
     if (enableAdaptiveBackgroundLearning)
-      process("AdaptiveBackgroundLearning", adaptiveBackgroundLearning, img_prep, img_bkgl_fgmask);
+      process("AdaptiveBackgroundLearning", adaptiveBackgroundLearning, img_preProcessor, img_adaptiveBackgroundLearning);
 
 #if CV_MAJOR_VERSION >= 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
     if (enableGMG)
-      process("GMG", gmg, img_prep, img_gmg);
+      process("GMG", gmg, img_preProcessor, img_gmg);
 #endif
 
-    if (enableDPAdaptiveMedianBGS)
-      process("DPAdaptiveMedianBGS", adaptiveMedian, img_prep, img_adpmed);
+    if (enableDPAdaptiveMedian)
+      process("DPAdaptiveMedian", dpAdaptiveMedian, img_preProcessor, img_dpAdaptiveMedian);
 
-    if (enableDPGrimsonGMMBGS)
-      process("DPGrimsonGMMBGS", grimsonGMM, img_prep, img_grigmm);
+    if (enableDPGrimsonGMM)
+      process("DPGrimsonGMM", dpGrimsonGMM, img_preProcessor, img_dpGrimsonGMM);
 
-    if (enableDPZivkovicAGMMBGS)
-      process("DPZivkovicAGMMBGS", zivkovicAGMM, img_prep, img_zivgmm);
+    if (enableDPZivkovicAGMM)
+      process("DPZivkovicAGMM", dpZivkovicAGMM, img_preProcessor, img_dpZivkovicAGMM);
 
-    if (enableDPMeanBGS)
-      process("DPMeanBGS", temporalMean, img_prep, img_tmpmean);
+    if (enableDPMean)
+      process("DPMean", dpTemporalMean, img_preProcessor, img_dpTemporalMean);
 
-    if (enableDPWrenGABGS)
-      process("DPWrenGABGS", wrenGA, img_prep, img_wrenga);
+    if (enableDPWrenGA)
+      process("DPWrenGA", dpWrenGA, img_preProcessor, img_dpWrenGA);
 
-    if (enableDPPratiMediodBGS)
-      process("DPPratiMediodBGS", pratiMediod, img_prep, img_pramed);
+    if (enableDPPratiMediod)
+      process("DPPratiMediod", dpPratiMediod, img_preProcessor, img_dpPratiMediod);
 
-    if (enableDPEigenbackgroundBGS)
-      process("DPEigenbackgroundBGS", eigenBackground, img_prep, img_eigbkg);
+    if (enableDPEigenbackground)
+      process("DPEigenbackground", dpEigenBackground, img_preProcessor, img_dpEigenBackground);
 
-    if (enableDPTextureBGS)
-      process("DPTextureBGS", textureBGS, img_prep, img_texbgs);
+    if (enableDPTexture)
+      process("DPTexture", dpTexture, img_preProcessor, img_dpTexture);
 
     if (enableT2FGMM_UM)
-      process("T2FGMM_UM", type2FuzzyGMM_UM, img_prep, img_t2fgmm_um);
+      process("T2FGMM_UM", type2FuzzyGMM_UM, img_preProcessor, img_type2FuzzyGMM_UM);
 
     if (enableT2FGMM_UV)
-      process("T2FGMM_UV", type2FuzzyGMM_UV, img_prep, img_t2fgmm_uv);
+      process("T2FGMM_UV", type2FuzzyGMM_UV, img_preProcessor, img_type2FuzzyGMM_UV);
 
     if (enableT2FMRF_UM)
-      process("T2FMRF_UM", type2FuzzyMRF_UM, img_prep, img_t2fmrf_um);
+      process("T2FMRF_UM", type2FuzzyMRF_UM, img_preProcessor, img_type2FuzzyMRF_UM);
 
     if (enableT2FMRF_UV)
-      process("T2FMRF_UV", type2FuzzyMRF_UV, img_prep, img_t2fmrf_uv);
+      process("T2FMRF_UV", type2FuzzyMRF_UV, img_preProcessor, img_type2FuzzyMRF_UV);
 
     if (enableFuzzySugenoIntegral)
-      process("FuzzySugenoIntegral", fuzzySugenoIntegral, img_prep, img_fsi);
+      process("FuzzySugenoIntegral", fuzzySugenoIntegral, img_preProcessor, img_fuzzySugenoIntegral);
 
     if (enableFuzzyChoquetIntegral)
-      process("FuzzyChoquetIntegral", fuzzyChoquetIntegral, img_prep, img_fci);
+      process("FuzzyChoquetIntegral", fuzzyChoquetIntegral, img_preProcessor, img_fuzzyChoquetIntegral);
 
     if (enableLBSimpleGaussian)
-      process("LBSimpleGaussian", lbSimpleGaussian, img_prep, img_lb_sg);
+      process("LBSimpleGaussian", lbSimpleGaussian, img_preProcessor, img_lbSimpleGaussian);
 
     if (enableLBFuzzyGaussian)
-      process("LBFuzzyGaussian", lbFuzzyGaussian, img_prep, img_lb_fg);
+      process("LBFuzzyGaussian", lbFuzzyGaussian, img_preProcessor, img_lbFuzzyGaussian);
 
     if (enableLBMixtureOfGaussians)
-      process("LBMixtureOfGaussians", lbMixtureOfGaussians, img_prep, img_lb_mog);
+      process("LBMixtureOfGaussians", lbMixtureOfGaussians, img_preProcessor, img_lbMixtureOfGaussians);
 
     if (enableLBAdaptiveSOM)
-      process("LBAdaptiveSOM", lbAdaptiveSOM, img_prep, img_lb_som);
+      process("LBAdaptiveSOM", lbAdaptiveSOM, img_preProcessor, img_lbAdaptiveSOM);
 
     if (enableLBFuzzyAdaptiveSOM)
-      process("LBFuzzyAdaptiveSOM", lbFuzzyAdaptiveSOM, img_prep, img_lb_fsom);
+      process("LBFuzzyAdaptiveSOM", lbFuzzyAdaptiveSOM, img_preProcessor, img_lbFuzzyAdaptiveSOM);
 
     if (enableLbpMrf)
-      process("LbpMrf", lbpMrf, img_prep, img_lbp_mrf);
+      process("LbpMrf", lbpMrf, img_preProcessor, img_lbpMrf);
 
-    if(enableMultiLayerBGS)
+#if CV_MAJOR_VERSION == 2
+    if (enableMultiLayer)
     {
-      multiLayerBGS->setStatus(MultiLayerBGS::MLBGS_LEARN);
-      //multiLayerBGS->setStatus(MultiLayerBGS::MLBGS_DETECT);
-      process("MultiLayerBGS", multiLayerBGS, img_prep, img_mlbgs);
+      multiLayer->setStatus(MultiLayer::MLBGS_LEARN);
+      //multiLayer->setStatus(MultiLayer::MLBGS_DETECT);
+      process("MultiLayer", multiLayer, img_preProcessor, img_multiLayer);
     }
+#endif
 
-    //if(enablePBAS)
-    //  process("PBAS", pixelBasedAdaptiveSegmenter, img_prep, img_pt_pbas);
+    if (enablePBAS)
+      process("PBAS", pixelBasedAdaptiveSegmenter, img_preProcessor, img_pixelBasedAdaptiveSegmenter);
 
     if (enableVuMeter)
-      process("VuMeter", vuMeter, img_prep, img_vumeter);
+      process("VuMeter", vuMeter, img_preProcessor, img_vumeter);
 
     if (enableKDE)
-      process("KDE", kde, img_prep, img_kde);
+      process("KDE", kde, img_preProcessor, img_kde);
 
     if (enableIMBS)
-      process("IMBS", imbs, img_prep, img_imbs);
+      process("IMBS", imbs, img_preProcessor, img_imbs);
 
-    if (enableMultiCueBGS)
-      process("MultiCueBGS", mcbgs, img_prep, img_mcbgs);
+    if (enableMultiCue)
+      process("MultiCue", multiCue, img_preProcessor, img_multiCue);
 
-    if (enableSigmaDeltaBGS)
-      process("SigmaDeltaBGS", sdbgs, img_prep, img_sdbgs);
+    if (enableSigmaDelta)
+      process("SigmaDelta", sigmaDelta, img_preProcessor, img_sigmaDelta);
 
-    if (enableSuBSENSEBGS)
-      process("SuBSENSEBGS", ssbgs, img_prep, img_ssbgs);
+    if (enableSuBSENSE)
+      process("SuBSENSE", subSENSE, img_preProcessor, img_subSENSE);
 
-    if (enableLOBSTERBGS)
-      process("LOBSTERBGS", lobgs, img_prep, img_lobgs);
+    if (enableLOBSTER)
+      process("LOBSTER", lobster, img_preProcessor, img_lobster);
 
     if (enableForegroundMaskAnalysis)
     {
       foregroundMaskAnalysis->stopAt = frameToStop;
       foregroundMaskAnalysis->img_ref_path = imgref;
 
-      foregroundMaskAnalysis->process(frameNumber, "FrameDifferenceBGS", img_framediff);
-      foregroundMaskAnalysis->process(frameNumber, "StaticFrameDifferenceBGS", img_staticfdiff);
-      foregroundMaskAnalysis->process(frameNumber, "WeightedMovingMeanBGS", img_wmovmean);
-      foregroundMaskAnalysis->process(frameNumber, "WeightedMovingVarianceBGS", img_movvar);
-      foregroundMaskAnalysis->process(frameNumber, "MixtureOfGaussianV1BGS", img_mog1);
-      foregroundMaskAnalysis->process(frameNumber, "MixtureOfGaussianV2BGS", img_mog2);
-      foregroundMaskAnalysis->process(frameNumber, "AdaptiveBackgroundLearning", img_bkgl_fgmask);
+      foregroundMaskAnalysis->process(frameNumber, "FrameDifference", img_frameDifference);
+      foregroundMaskAnalysis->process(frameNumber, "StaticFrameDifference", img_staticFrameDifference);
+      foregroundMaskAnalysis->process(frameNumber, "WeightedMovingMean", img_weightedMovingMean);
+      foregroundMaskAnalysis->process(frameNumber, "WeightedMovingVariance", img_weightedMovingVariance);
+#if CV_MAJOR_VERSION == 2
+      foregroundMaskAnalysis->process(frameNumber, "MixtureOfGaussianV1", img_mixtureOfGaussianV1);
+#endif
+      foregroundMaskAnalysis->process(frameNumber, "MixtureOfGaussianV2", img_mixtureOfGaussianV2);
+      foregroundMaskAnalysis->process(frameNumber, "AdaptiveBackgroundLearning", img_adaptiveBackgroundLearning);
 #if CV_MAJOR_VERSION >= 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
       foregroundMaskAnalysis->process(frameNumber, "GMG", img_gmg);
 #endif
-      foregroundMaskAnalysis->process(frameNumber, "DPAdaptiveMedianBGS", img_adpmed);
-      foregroundMaskAnalysis->process(frameNumber, "DPGrimsonGMMBGS", img_grigmm);
-      foregroundMaskAnalysis->process(frameNumber, "DPZivkovicAGMMBGS", img_zivgmm);
-      foregroundMaskAnalysis->process(frameNumber, "DPMeanBGS", img_tmpmean);
-      foregroundMaskAnalysis->process(frameNumber, "DPWrenGABGS", img_wrenga);
-      foregroundMaskAnalysis->process(frameNumber, "DPPratiMediodBGS", img_pramed);
-      foregroundMaskAnalysis->process(frameNumber, "DPEigenbackgroundBGS", img_eigbkg);
-      foregroundMaskAnalysis->process(frameNumber, "DPTextureBGS", img_texbgs);
-      foregroundMaskAnalysis->process(frameNumber, "T2FGMM_UM", img_t2fgmm_um);
-      foregroundMaskAnalysis->process(frameNumber, "T2FGMM_UV", img_t2fgmm_uv);
-      foregroundMaskAnalysis->process(frameNumber, "T2FMRF_UM", img_t2fmrf_um);
-      foregroundMaskAnalysis->process(frameNumber, "T2FMRF_UV", img_t2fmrf_uv);
-      foregroundMaskAnalysis->process(frameNumber, "FuzzySugenoIntegral", img_fsi);
-      foregroundMaskAnalysis->process(frameNumber, "FuzzyChoquetIntegral", img_fci);
-      foregroundMaskAnalysis->process(frameNumber, "LBSimpleGaussian", img_lb_sg);
-      foregroundMaskAnalysis->process(frameNumber, "LBFuzzyGaussian", img_lb_fg);
-      foregroundMaskAnalysis->process(frameNumber, "LBMixtureOfGaussians", img_lb_mog);
-      foregroundMaskAnalysis->process(frameNumber, "LBAdaptiveSOM", img_lb_som);
-      foregroundMaskAnalysis->process(frameNumber, "LBFuzzyAdaptiveSOM", img_lb_fsom);
-      foregroundMaskAnalysis->process(frameNumber, "LbpMrf", img_lbp_mrf);
-      foregroundMaskAnalysis->process(frameNumber, "MultiLayerBGS", img_mlbgs);
-      //foregroundMaskAnalysis->process(frameNumber, "PBAS", img_pt_pbas);
+      foregroundMaskAnalysis->process(frameNumber, "DPAdaptiveMedian", img_dpAdaptiveMedian);
+      foregroundMaskAnalysis->process(frameNumber, "DPGrimsonGMM", img_dpGrimsonGMM);
+      foregroundMaskAnalysis->process(frameNumber, "DPZivkovicAGMM", img_dpZivkovicAGMM);
+      foregroundMaskAnalysis->process(frameNumber, "DPMean", img_dpTemporalMean);
+      foregroundMaskAnalysis->process(frameNumber, "DPWrenGA", img_dpWrenGA);
+      foregroundMaskAnalysis->process(frameNumber, "DPPratiMediod", img_dpPratiMediod);
+      foregroundMaskAnalysis->process(frameNumber, "DPEigenbackground", img_dpEigenBackground);
+      foregroundMaskAnalysis->process(frameNumber, "DPTexture", img_dpTexture);
+      foregroundMaskAnalysis->process(frameNumber, "T2FGMM_UM", img_type2FuzzyGMM_UM);
+      foregroundMaskAnalysis->process(frameNumber, "T2FGMM_UV", img_type2FuzzyGMM_UV);
+      foregroundMaskAnalysis->process(frameNumber, "T2FMRF_UM", img_type2FuzzyMRF_UM);
+      foregroundMaskAnalysis->process(frameNumber, "T2FMRF_UV", img_type2FuzzyMRF_UV);
+      foregroundMaskAnalysis->process(frameNumber, "FuzzySugenoIntegral", img_fuzzySugenoIntegral);
+      foregroundMaskAnalysis->process(frameNumber, "FuzzyChoquetIntegral", img_fuzzyChoquetIntegral);
+      foregroundMaskAnalysis->process(frameNumber, "LBSimpleGaussian", img_lbSimpleGaussian);
+      foregroundMaskAnalysis->process(frameNumber, "LBFuzzyGaussian", img_lbFuzzyGaussian);
+      foregroundMaskAnalysis->process(frameNumber, "LBMixtureOfGaussians", img_lbMixtureOfGaussians);
+      foregroundMaskAnalysis->process(frameNumber, "LBAdaptiveSOM", img_lbAdaptiveSOM);
+      foregroundMaskAnalysis->process(frameNumber, "LBFuzzyAdaptiveSOM", img_lbFuzzyAdaptiveSOM);
+      foregroundMaskAnalysis->process(frameNumber, "LbpMrf", img_lbpMrf);
+#if CV_MAJOR_VERSION == 2
+      foregroundMaskAnalysis->process(frameNumber, "MultiLayer", img_multiLayer);
+#endif
+      foregroundMaskAnalysis->process(frameNumber, "PBAS", img_pixelBasedAdaptiveSegmenter);
       foregroundMaskAnalysis->process(frameNumber, "VuMeter", img_vumeter);
       foregroundMaskAnalysis->process(frameNumber, "KDE", img_kde);
       foregroundMaskAnalysis->process(frameNumber, "IMBS", img_imbs);
-      foregroundMaskAnalysis->process(frameNumber, "MultiCueBGS", img_mcbgs);
-      foregroundMaskAnalysis->process(frameNumber, "SigmaDeltaBGS", img_sdbgs);
-      foregroundMaskAnalysis->process(frameNumber, "SuBSENSEBGS", img_ssbgs);
-      foregroundMaskAnalysis->process(frameNumber, "LOBSTERBGS", img_lobgs);
+      foregroundMaskAnalysis->process(frameNumber, "MultiCue", img_multiCue);
+      foregroundMaskAnalysis->process(frameNumber, "SigmaDelta", img_sigmaDelta);
+      foregroundMaskAnalysis->process(frameNumber, "SuBSENSE", img_subSENSE);
+      foregroundMaskAnalysis->process(frameNumber, "LOBSTER", img_lobster);
     }
 
     firstTime = false;
@@ -341,8 +353,8 @@ namespace bgslibrary
 
   void FrameProcessor::finish(void)
   {
-    /*if(enableMultiLayerBGS)
-    multiLayerBGS->finish();
+    /*if(enableMultiLayer)
+    multiLayer->finish();
 
     if(enableLBSimpleGaussian)
     lbSimpleGaussian->finish();
@@ -362,17 +374,17 @@ namespace bgslibrary
     if (enableForegroundMaskAnalysis)
       delete foregroundMaskAnalysis;
 
-    if (enableLOBSTERBGS)
-      delete lobgs;
+    if (enableLOBSTER)
+      delete lobster;
 
-    if (enableSuBSENSEBGS)
-      delete ssbgs;
+    if (enableSuBSENSE)
+      delete subSENSE;
 
-    if (enableSigmaDeltaBGS)
-      delete sdbgs;
+    if (enableSigmaDelta)
+      delete sigmaDelta;
 
-    if (enableMultiCueBGS)
-      delete mcbgs;
+    if (enableMultiCue)
+      delete multiCue;
 
     if (enableIMBS)
       delete imbs;
@@ -383,11 +395,13 @@ namespace bgslibrary
     if (enableVuMeter)
       delete vuMeter;
 
-    //if(enablePBAS)
-    //  delete pixelBasedAdaptiveSegmenter;
+    if (enablePBAS)
+      delete pixelBasedAdaptiveSegmenter;
 
-    if (enableMultiLayerBGS)
-      delete multiLayerBGS;
+#if CV_MAJOR_VERSION == 2
+    if (enableMultiLayer)
+      delete multiLayer;
+#endif
 
     if (enableLBFuzzyAdaptiveSOM)
       delete lbFuzzyAdaptiveSOM;
@@ -409,7 +423,7 @@ namespace bgslibrary
       delete lbpMrf;
 #endif
 
-    if(enableFuzzyChoquetIntegral)
+    if (enableFuzzyChoquetIntegral)
       delete fuzzyChoquetIntegral;
 
     if (enableFuzzySugenoIntegral)
@@ -427,29 +441,29 @@ namespace bgslibrary
     if (enableT2FGMM_UM)
       delete type2FuzzyGMM_UM;
 
-    if (enableDPTextureBGS)
-      delete textureBGS;
+    if (enableDPTexture)
+      delete dpTexture;
 
-    if (enableDPEigenbackgroundBGS)
-      delete eigenBackground;
+    if (enableDPEigenbackground)
+      delete dpEigenBackground;
 
-    if (enableDPPratiMediodBGS)
-      delete pratiMediod;
+    if (enableDPPratiMediod)
+      delete dpPratiMediod;
 
-    if (enableDPWrenGABGS)
-      delete wrenGA;
+    if (enableDPWrenGA)
+      delete dpWrenGA;
 
-    if (enableDPMeanBGS)
-      delete temporalMean;
+    if (enableDPMean)
+      delete dpTemporalMean;
 
-    if (enableDPZivkovicAGMMBGS)
-      delete zivkovicAGMM;
+    if (enableDPZivkovicAGMM)
+      delete dpZivkovicAGMM;
 
-    if (enableDPGrimsonGMMBGS)
-      delete grimsonGMM;
+    if (enableDPGrimsonGMM)
+      delete dpGrimsonGMM;
 
-    if (enableDPAdaptiveMedianBGS)
-      delete adaptiveMedian;
+    if (enableDPAdaptiveMedian)
+      delete dpAdaptiveMedian;
 
 #if CV_MAJOR_VERSION >= 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
     if (enableGMG)
@@ -459,22 +473,24 @@ namespace bgslibrary
     if (enableAdaptiveBackgroundLearning)
       delete adaptiveBackgroundLearning;
 
-    if (enableMixtureOfGaussianV2BGS)
-      delete mixtureOfGaussianV2BGS;
+    if (enableMixtureOfGaussianV2)
+      delete mixtureOfGaussianV2;
 
-    if (enableMixtureOfGaussianV1BGS)
-      delete mixtureOfGaussianV1BGS;
+#if CV_MAJOR_VERSION == 2
+    if (enableMixtureOfGaussianV1)
+      delete mixtureOfGaussianV1;
+#endif
 
-    if (enableWeightedMovingVarianceBGS)
+    if (enableWeightedMovingVariance)
       delete weightedMovingVariance;
 
-    if (enableWeightedMovingMeanBGS)
+    if (enableWeightedMovingMean)
       delete weightedMovingMean;
 
-    if (enableStaticFrameDifferenceBGS)
+    if (enableStaticFrameDifference)
       delete staticFrameDifference;
 
-    if (enableFrameDifferenceBGS)
+    if (enableFrameDifference)
       delete frameDifference;
 
     if (enablePreProcessor)
@@ -503,25 +519,27 @@ namespace bgslibrary
 
     cvWriteInt(fs, "enableForegroundMaskAnalysis", enableForegroundMaskAnalysis);
 
-    cvWriteInt(fs, "enableFrameDifferenceBGS", enableFrameDifferenceBGS);
-    cvWriteInt(fs, "enableStaticFrameDifferenceBGS", enableStaticFrameDifferenceBGS);
-    cvWriteInt(fs, "enableWeightedMovingMeanBGS", enableWeightedMovingMeanBGS);
-    cvWriteInt(fs, "enableWeightedMovingVarianceBGS", enableWeightedMovingVarianceBGS);
-    cvWriteInt(fs, "enableMixtureOfGaussianV1BGS", enableMixtureOfGaussianV1BGS);
-    cvWriteInt(fs, "enableMixtureOfGaussianV2BGS", enableMixtureOfGaussianV2BGS);
+    cvWriteInt(fs, "enableFrameDifference", enableFrameDifference);
+    cvWriteInt(fs, "enableStaticFrameDifference", enableStaticFrameDifference);
+    cvWriteInt(fs, "enableWeightedMovingMean", enableWeightedMovingMean);
+    cvWriteInt(fs, "enableWeightedMovingVariance", enableWeightedMovingVariance);
+#if CV_MAJOR_VERSION == 2
+    cvWriteInt(fs, "enableMixtureOfGaussianV1", enableMixtureOfGaussianV1);
+#endif
+    cvWriteInt(fs, "enableMixtureOfGaussianV2", enableMixtureOfGaussianV2);
     cvWriteInt(fs, "enableAdaptiveBackgroundLearning", enableAdaptiveBackgroundLearning);
 #if CV_MAJOR_VERSION >= 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
     cvWriteInt(fs, "enableGMG", enableGMG);
 #endif
 
-    cvWriteInt(fs, "enableDPAdaptiveMedianBGS", enableDPAdaptiveMedianBGS);
-    cvWriteInt(fs, "enableDPGrimsonGMMBGS", enableDPGrimsonGMMBGS);
-    cvWriteInt(fs, "enableDPZivkovicAGMMBGS", enableDPZivkovicAGMMBGS);
-    cvWriteInt(fs, "enableDPMeanBGS", enableDPMeanBGS);
-    cvWriteInt(fs, "enableDPWrenGABGS", enableDPWrenGABGS);
-    cvWriteInt(fs, "enableDPPratiMediodBGS", enableDPPratiMediodBGS);
-    cvWriteInt(fs, "enableDPEigenbackgroundBGS", enableDPEigenbackgroundBGS);
-    cvWriteInt(fs, "enableDPTextureBGS", enableDPTextureBGS);
+    cvWriteInt(fs, "enableDPAdaptiveMedian", enableDPAdaptiveMedian);
+    cvWriteInt(fs, "enableDPGrimsonGMM", enableDPGrimsonGMM);
+    cvWriteInt(fs, "enableDPZivkovicAGMM", enableDPZivkovicAGMM);
+    cvWriteInt(fs, "enableDPMean", enableDPMean);
+    cvWriteInt(fs, "enableDPWrenGA", enableDPWrenGA);
+    cvWriteInt(fs, "enableDPPratiMediod", enableDPPratiMediod);
+    cvWriteInt(fs, "enableDPEigenbackground", enableDPEigenbackground);
+    cvWriteInt(fs, "enableDPTexture", enableDPTexture);
 
     cvWriteInt(fs, "enableT2FGMM_UM", enableT2FGMM_UM);
     cvWriteInt(fs, "enableT2FGMM_UV", enableT2FGMM_UV);
@@ -538,15 +556,17 @@ namespace bgslibrary
 
     cvWriteInt(fs, "enableLbpMrf", enableLbpMrf);
 
-    cvWriteInt(fs, "enableMultiLayerBGS", enableMultiLayerBGS);
-    //cvWriteInt(fs, "enablePBAS", enablePBAS);
+#if CV_MAJOR_VERSION == 2
+    cvWriteInt(fs, "enableMultiLayer", enableMultiLayer);
+#endif
+    cvWriteInt(fs, "enablePBAS", enablePBAS);
     cvWriteInt(fs, "enableVuMeter", enableVuMeter);
     cvWriteInt(fs, "enableKDE", enableKDE);
     cvWriteInt(fs, "enableIMBS", enableIMBS);
-    cvWriteInt(fs, "enableMultiCueBGS", enableMultiCueBGS);
-    cvWriteInt(fs, "enableSigmaDeltaBGS", enableSigmaDeltaBGS);
-    cvWriteInt(fs, "enableSuBSENSEBGS", enableSuBSENSEBGS);
-    cvWriteInt(fs, "enableLOBSTERBGS", enableLOBSTERBGS);
+    cvWriteInt(fs, "enableMultiCue", enableMultiCue);
+    cvWriteInt(fs, "enableSigmaDelta", enableSigmaDelta);
+    cvWriteInt(fs, "enableSuBSENSE", enableSuBSENSE);
+    cvWriteInt(fs, "enableLOBSTER", enableLOBSTER);
 
     cvReleaseFileStorage(&fs);
   }
@@ -561,25 +581,27 @@ namespace bgslibrary
 
     enableForegroundMaskAnalysis = cvReadIntByName(fs, 0, "enableForegroundMaskAnalysis", false);
 
-    enableFrameDifferenceBGS = cvReadIntByName(fs, 0, "enableFrameDifferenceBGS", false);
-    enableStaticFrameDifferenceBGS = cvReadIntByName(fs, 0, "enableStaticFrameDifferenceBGS", false);
-    enableWeightedMovingMeanBGS = cvReadIntByName(fs, 0, "enableWeightedMovingMeanBGS", false);
-    enableWeightedMovingVarianceBGS = cvReadIntByName(fs, 0, "enableWeightedMovingVarianceBGS", false);
-    enableMixtureOfGaussianV1BGS = cvReadIntByName(fs, 0, "enableMixtureOfGaussianV1BGS", false);
-    enableMixtureOfGaussianV2BGS = cvReadIntByName(fs, 0, "enableMixtureOfGaussianV2BGS", false);
+    enableFrameDifference = cvReadIntByName(fs, 0, "enableFrameDifference", false);
+    enableStaticFrameDifference = cvReadIntByName(fs, 0, "enableStaticFrameDifference", false);
+    enableWeightedMovingMean = cvReadIntByName(fs, 0, "enableWeightedMovingMean", false);
+    enableWeightedMovingVariance = cvReadIntByName(fs, 0, "enableWeightedMovingVariance", false);
+#if CV_MAJOR_VERSION == 2
+    enableMixtureOfGaussianV1 = cvReadIntByName(fs, 0, "enableMixtureOfGaussianV1", false);
+#endif
+    enableMixtureOfGaussianV2 = cvReadIntByName(fs, 0, "enableMixtureOfGaussianV2", false);
     enableAdaptiveBackgroundLearning = cvReadIntByName(fs, 0, "enableAdaptiveBackgroundLearning", false);
 #if CV_MAJOR_VERSION >= 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
     enableGMG = cvReadIntByName(fs, 0, "enableGMG", false);
 #endif
 
-    enableDPAdaptiveMedianBGS = cvReadIntByName(fs, 0, "enableDPAdaptiveMedianBGS", false);
-    enableDPGrimsonGMMBGS = cvReadIntByName(fs, 0, "enableDPGrimsonGMMBGS", false);
-    enableDPZivkovicAGMMBGS = cvReadIntByName(fs, 0, "enableDPZivkovicAGMMBGS", false);
-    enableDPMeanBGS = cvReadIntByName(fs, 0, "enableDPMeanBGS", false);
-    enableDPWrenGABGS = cvReadIntByName(fs, 0, "enableDPWrenGABGS", false);
-    enableDPPratiMediodBGS = cvReadIntByName(fs, 0, "enableDPPratiMediodBGS", false);
-    enableDPEigenbackgroundBGS = cvReadIntByName(fs, 0, "enableDPEigenbackgroundBGS", false);
-    enableDPTextureBGS = cvReadIntByName(fs, 0, "enableDPTextureBGS", false);
+    enableDPAdaptiveMedian = cvReadIntByName(fs, 0, "enableDPAdaptiveMedian", false);
+    enableDPGrimsonGMM = cvReadIntByName(fs, 0, "enableDPGrimsonGMM", false);
+    enableDPZivkovicAGMM = cvReadIntByName(fs, 0, "enableDPZivkovicAGMM", false);
+    enableDPMean = cvReadIntByName(fs, 0, "enableDPMean", false);
+    enableDPWrenGA = cvReadIntByName(fs, 0, "enableDPWrenGA", false);
+    enableDPPratiMediod = cvReadIntByName(fs, 0, "enableDPPratiMediod", false);
+    enableDPEigenbackground = cvReadIntByName(fs, 0, "enableDPEigenbackground", false);
+    enableDPTexture = cvReadIntByName(fs, 0, "enableDPTexture", false);
 
     enableT2FGMM_UM = cvReadIntByName(fs, 0, "enableT2FGMM_UM", false);
     enableT2FGMM_UV = cvReadIntByName(fs, 0, "enableT2FGMM_UV", false);
@@ -596,15 +618,17 @@ namespace bgslibrary
 
     enableLbpMrf = cvReadIntByName(fs, 0, "enableLbpMrf", false);
 
-    enableMultiLayerBGS = cvReadIntByName(fs, 0, "enableMultiLayerBGS", false);
-    //enablePBAS = cvReadIntByName(fs, 0, "enablePBAS", false);
+#if CV_MAJOR_VERSION == 2
+    enableMultiLayer = cvReadIntByName(fs, 0, "enableMultiLayer", false);
+#endif
+    enablePBAS = cvReadIntByName(fs, 0, "enablePBAS", false);
     enableVuMeter = cvReadIntByName(fs, 0, "enableVuMeter", false);
     enableKDE = cvReadIntByName(fs, 0, "enableKDE", false);
     enableIMBS = cvReadIntByName(fs, 0, "enableIMBS", false);
-    enableMultiCueBGS = cvReadIntByName(fs, 0, "enableMultiCueBGS", false);
-    enableSigmaDeltaBGS = cvReadIntByName(fs, 0, "enableSigmaDeltaBGS", false);
-    enableSuBSENSEBGS = cvReadIntByName(fs, 0, "enableSuBSENSEBGS", false);
-    enableLOBSTERBGS = cvReadIntByName(fs, 0, "enableLOBSTERBGS", false);
+    enableMultiCue = cvReadIntByName(fs, 0, "enableMultiCue", false);
+    enableSigmaDelta = cvReadIntByName(fs, 0, "enableSigmaDelta", false);
+    enableSuBSENSE = cvReadIntByName(fs, 0, "enableSuBSENSE", false);
+    enableLOBSTER = cvReadIntByName(fs, 0, "enableLOBSTER", false);
 
     cvReleaseFileStorage(&fs);
   }

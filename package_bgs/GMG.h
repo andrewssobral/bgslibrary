@@ -16,30 +16,34 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
 #pragma once
 
-#include <iostream>
-#include <opencv2/opencv.hpp>
+#include "opencv2/core/version.hpp"
+#if CV_MAJOR_VERSION == 2
 
 #include "IBGS.h"
 
-class GMG : public IBGS
+namespace bgslibrary
 {
-private:
-  bool firstTime;
-  cv::Ptr<cv::BackgroundSubtractorGMG> fgbg;
-  int initializationFrames;
-  double decisionThreshold;
-  cv::Mat img_foreground;
-  cv::Mat img_segmentation;
-  bool showOutput;
+  namespace algorithms
+  {
+    class GMG : public IBGS
+    {
+    private:
+      cv::Ptr<cv::BackgroundSubtractorGMG> fgbg;
+      int initializationFrames;
+      double decisionThreshold;
+      cv::Mat img_segmentation;
 
-public:
-  GMG();
-  ~GMG();
+    public:
+      GMG();
+      ~GMG();
 
-  void process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel);
+      void process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel);
 
-private:
-  void saveConfig();
-  void loadConfig();
-};
+    private:
+      void saveConfig();
+      void loadConfig();
+    };
+  }
+}
 
+#endif

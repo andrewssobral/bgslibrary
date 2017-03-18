@@ -1,6 +1,7 @@
 etc/
 build_*/
-binaries/
+dataset_*/
+binaries*/
 java_gui/dist/
 java_gui/build/
 java_gui/bgslibrary.exe
@@ -10,3 +11,4 @@ fet/etc/
 *.exe
 *.pdb
 *.suo
+*.dll
