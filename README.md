@@ -25,8 +25,14 @@ The **BGSLibrary** was developed by [Andrews Sobral](http://andrewssobral.wixsit
 
 * Graphical User Interface:
 
-*  * [C++ MFC (Microsoft Foundation Class)](https://github.com/andrewssobral/bgslibrary/wiki/Graphical-User-Interface:-MFC)
+*  * [C++ QT](https://github.com/andrewssobral/bgslibrary/wiki/Graphical-User-Interface:-QT) ***(NEW)***
+*  * [C++ MFC](https://github.com/andrewssobral/bgslibrary/wiki/Graphical-User-Interface:-MFC)
 *  * [Java](https://github.com/andrewssobral/bgslibrary/wiki/Graphical-User-Interface:-Java)
+
+* Wrappers:
+
+*  * [Python](https://github.com/andrewssobral/bgslibrary/wiki/Wrapper:-Python) ***(NEW)***
+*  * [MATLAB](https://github.com/andrewssobral/bgslibrary/wiki/Wrapper:-MATLAB) ***(NEW)***
 
 * [Docker images](https://github.com/andrewssobral/bgslibrary/wiki/Docker-images)
 * [How to integrate BGSLibrary in your own CPP code](https://github.com/andrewssobral/bgslibrary/wiki/How-to-integrate-BGSLibrary-in-your-own-CPP-code)
