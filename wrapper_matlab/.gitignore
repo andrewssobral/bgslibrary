@@ -1,1 +1,5 @@
 *.mex*
+*.asv
+*.exe
+*.dll
+*.lib

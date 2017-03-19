@@ -1,11 +1,21 @@
+%% Installation instructions
+% First install the 'Computer Vision System Toolbox OpenCV Interface'
+% by double-clicking on 'opencvinterface.mlpkginstall'
+%
+% More info:
+% https://fr.mathworks.com/help/vision/ug/opencv-interface.html
+% https://fr.mathworks.com/help/vision/opencv-interface-support-package.html
+% https://fr.mathworks.com/matlabcentral/fileexchange/47953-computer-vision-system-toolbox-opencv-interface
+
 %% Compile the BGSLibrary wrapper
-compile;
+% Run 'compile' for your first usage.
+% compile;
 
 %% Run demo
 demo;
 
 %% Run a specific algorithm
-demo('FrameDifference')
+% demo('FrameDifference')
 % demo('StaticFrameDifference')
 % demo('WeightedMovingMean')
 % demo('WeightedMovingVariance')
