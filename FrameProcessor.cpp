@@ -65,6 +65,11 @@ namespace bgslibrary
       gmg = new GMG;
 #endif
 
+#if CV_MAJOR_VERSION == 3
+    if (enableKNN)
+      knn = new KNN;
+#endif
+
     if (enableDPAdaptiveMedian)
       dpAdaptiveMedian = new DPAdaptiveMedian;
 
@@ -125,10 +130,8 @@ namespace bgslibrary
     if (enableLbpMrf)
       lbpMrf = new LBP_MRF;
 
-#if CV_MAJOR_VERSION == 2
     if (enableMultiLayer)
       multiLayer = new MultiLayer;
-#endif
 
     if (enablePBAS)
       pixelBasedAdaptiveSegmenter = new PixelBasedAdaptiveSegmenter;
@@ -153,6 +156,18 @@ namespace bgslibrary
 
     if (enableLOBSTER)
       lobster = new LOBSTER;
+
+    if (enablePAWCS)
+      pawcs = new PAWCS;
+
+    if (enableTwoPoints)
+      twoPoints = new TwoPoints;
+
+    if (enableViBe)
+      vibe = new ViBe;
+
+    if (enableCodeBook)
+      codeBook = new CodeBook;
 
     if (enableForegroundMaskAnalysis)
       foregroundMaskAnalysis = new ForegroundMaskAnalysis;
@@ -203,6 +218,11 @@ namespace bgslibrary
 #if CV_MAJOR_VERSION >= 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
     if (enableGMG)
       process("GMG", gmg, img_preProcessor, img_gmg);
+#endif
+
+#if CV_MAJOR_VERSION == 3
+    if (enableKNN)
+      process("KNN", knn, img_preProcessor, img_knn);
 #endif
 
     if (enableDPAdaptiveMedian)
@@ -265,14 +285,12 @@ namespace bgslibrary
     if (enableLbpMrf)
       process("LbpMrf", lbpMrf, img_preProcessor, img_lbpMrf);
 
-#if CV_MAJOR_VERSION == 2
     if (enableMultiLayer)
     {
       multiLayer->setStatus(MultiLayer::MLBGS_LEARN);
       //multiLayer->setStatus(MultiLayer::MLBGS_DETECT);
       process("MultiLayer", multiLayer, img_preProcessor, img_multiLayer);
     }
-#endif
 
     if (enablePBAS)
       process("PBAS", pixelBasedAdaptiveSegmenter, img_preProcessor, img_pixelBasedAdaptiveSegmenter);
@@ -298,6 +316,18 @@ namespace bgslibrary
     if (enableLOBSTER)
       process("LOBSTER", lobster, img_preProcessor, img_lobster);
 
+    if (enablePAWCS)
+      process("PAWCS", pawcs, img_preProcessor, img_pawcs);
+
+    if (enableTwoPoints)
+      process("TwoPoints", twoPoints, img_preProcessor, img_twoPoints);
+
+    if (enableViBe)
+      process("ViBe", vibe, img_preProcessor, img_vibe);
+
+    if (enableCodeBook)
+      process("CodeBook", codeBook, img_preProcessor, img_codeBook);
+
     if (enableForegroundMaskAnalysis)
     {
       foregroundMaskAnalysis->stopAt = frameToStop;
@@ -314,6 +344,9 @@ namespace bgslibrary
       foregroundMaskAnalysis->process(frameNumber, "AdaptiveBackgroundLearning", img_adaptiveBackgroundLearning);
 #if CV_MAJOR_VERSION >= 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
       foregroundMaskAnalysis->process(frameNumber, "GMG", img_gmg);
+#endif
+#if CV_MAJOR_VERSION == 3
+      foregroundMaskAnalysis->process(frameNumber, "KNN", img_knn);
 #endif
       foregroundMaskAnalysis->process(frameNumber, "DPAdaptiveMedian", img_dpAdaptiveMedian);
       foregroundMaskAnalysis->process(frameNumber, "DPGrimsonGMM", img_dpGrimsonGMM);
@@ -335,9 +368,7 @@ namespace bgslibrary
       foregroundMaskAnalysis->process(frameNumber, "LBAdaptiveSOM", img_lbAdaptiveSOM);
       foregroundMaskAnalysis->process(frameNumber, "LBFuzzyAdaptiveSOM", img_lbFuzzyAdaptiveSOM);
       foregroundMaskAnalysis->process(frameNumber, "LbpMrf", img_lbpMrf);
-#if CV_MAJOR_VERSION == 2
       foregroundMaskAnalysis->process(frameNumber, "MultiLayer", img_multiLayer);
-#endif
       foregroundMaskAnalysis->process(frameNumber, "PBAS", img_pixelBasedAdaptiveSegmenter);
       foregroundMaskAnalysis->process(frameNumber, "VuMeter", img_vumeter);
       foregroundMaskAnalysis->process(frameNumber, "KDE", img_kde);
@@ -346,6 +377,10 @@ namespace bgslibrary
       foregroundMaskAnalysis->process(frameNumber, "SigmaDelta", img_sigmaDelta);
       foregroundMaskAnalysis->process(frameNumber, "SuBSENSE", img_subSENSE);
       foregroundMaskAnalysis->process(frameNumber, "LOBSTER", img_lobster);
+      foregroundMaskAnalysis->process(frameNumber, "PAWCS", img_pawcs);
+      foregroundMaskAnalysis->process(frameNumber, "TwoPoints", img_twoPoints);
+      foregroundMaskAnalysis->process(frameNumber, "ViBe", img_vibe);
+      foregroundMaskAnalysis->process(frameNumber, "CodeBook", img_codeBook);
     }
 
     firstTime = false;
@@ -374,6 +409,18 @@ namespace bgslibrary
     if (enableForegroundMaskAnalysis)
       delete foregroundMaskAnalysis;
 
+    if (enableCodeBook)
+      delete codeBook;
+
+    if (enableViBe)
+      delete vibe;
+
+    if (enableTwoPoints)
+      delete twoPoints;
+
+    if (enablePAWCS)
+      delete pawcs;
+
     if (enableLOBSTER)
       delete lobster;
 
@@ -398,10 +445,8 @@ namespace bgslibrary
     if (enablePBAS)
       delete pixelBasedAdaptiveSegmenter;
 
-#if CV_MAJOR_VERSION == 2
     if (enableMultiLayer)
       delete multiLayer;
-#endif
 
     if (enableLBFuzzyAdaptiveSOM)
       delete lbFuzzyAdaptiveSOM;
@@ -418,10 +463,8 @@ namespace bgslibrary
     if (enableLBSimpleGaussian)
       delete lbSimpleGaussian;
 
-#if !defined(_WIN32)
     if (enableLbpMrf)
       delete lbpMrf;
-#endif
 
     if (enableFuzzyChoquetIntegral)
       delete fuzzyChoquetIntegral;
@@ -468,6 +511,11 @@ namespace bgslibrary
 #if CV_MAJOR_VERSION >= 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
     if (enableGMG)
       delete gmg;
+#endif
+
+#if CV_MAJOR_VERSION == 3
+    if (enableKNN)
+      delete knn;
 #endif
 
     if (enableAdaptiveBackgroundLearning)
@@ -531,6 +579,9 @@ namespace bgslibrary
 #if CV_MAJOR_VERSION >= 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
     cvWriteInt(fs, "enableGMG", enableGMG);
 #endif
+#if CV_MAJOR_VERSION == 3
+    cvWriteInt(fs, "enableKNN", enableKNN);
+#endif
 
     cvWriteInt(fs, "enableDPAdaptiveMedian", enableDPAdaptiveMedian);
     cvWriteInt(fs, "enableDPGrimsonGMM", enableDPGrimsonGMM);
@@ -555,10 +606,7 @@ namespace bgslibrary
     cvWriteInt(fs, "enableLBFuzzyAdaptiveSOM", enableLBFuzzyAdaptiveSOM);
 
     cvWriteInt(fs, "enableLbpMrf", enableLbpMrf);
-
-#if CV_MAJOR_VERSION == 2
     cvWriteInt(fs, "enableMultiLayer", enableMultiLayer);
-#endif
     cvWriteInt(fs, "enablePBAS", enablePBAS);
     cvWriteInt(fs, "enableVuMeter", enableVuMeter);
     cvWriteInt(fs, "enableKDE", enableKDE);
@@ -567,6 +615,10 @@ namespace bgslibrary
     cvWriteInt(fs, "enableSigmaDelta", enableSigmaDelta);
     cvWriteInt(fs, "enableSuBSENSE", enableSuBSENSE);
     cvWriteInt(fs, "enableLOBSTER", enableLOBSTER);
+    cvWriteInt(fs, "enablePAWCS", enablePAWCS);
+    cvWriteInt(fs, "enableTwoPoints", enableTwoPoints);
+    cvWriteInt(fs, "enableViBe", enableViBe);
+    cvWriteInt(fs, "enableCodeBook", enableCodeBook);
 
     cvReleaseFileStorage(&fs);
   }
@@ -593,6 +645,9 @@ namespace bgslibrary
 #if CV_MAJOR_VERSION >= 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
     enableGMG = cvReadIntByName(fs, 0, "enableGMG", false);
 #endif
+#if CV_MAJOR_VERSION == 3
+    enableKNN = cvReadIntByName(fs, 0, "enableKNN", false);
+#endif
 
     enableDPAdaptiveMedian = cvReadIntByName(fs, 0, "enableDPAdaptiveMedian", false);
     enableDPGrimsonGMM = cvReadIntByName(fs, 0, "enableDPGrimsonGMM", false);
@@ -617,10 +672,7 @@ namespace bgslibrary
     enableLBFuzzyAdaptiveSOM = cvReadIntByName(fs, 0, "enableLBFuzzyAdaptiveSOM", false);
 
     enableLbpMrf = cvReadIntByName(fs, 0, "enableLbpMrf", false);
-
-#if CV_MAJOR_VERSION == 2
     enableMultiLayer = cvReadIntByName(fs, 0, "enableMultiLayer", false);
-#endif
     enablePBAS = cvReadIntByName(fs, 0, "enablePBAS", false);
     enableVuMeter = cvReadIntByName(fs, 0, "enableVuMeter", false);
     enableKDE = cvReadIntByName(fs, 0, "enableKDE", false);
@@ -629,6 +681,10 @@ namespace bgslibrary
     enableSigmaDelta = cvReadIntByName(fs, 0, "enableSigmaDelta", false);
     enableSuBSENSE = cvReadIntByName(fs, 0, "enableSuBSENSE", false);
     enableLOBSTER = cvReadIntByName(fs, 0, "enableLOBSTER", false);
+    enablePAWCS = cvReadIntByName(fs, 0, "enablePAWCS", false);
+    enableTwoPoints = cvReadIntByName(fs, 0, "enableTwoPoints", false);
+    enableViBe = cvReadIntByName(fs, 0, "enableViBe", false);
+    enableCodeBook = cvReadIntByName(fs, 0, "enableCodeBook", false);
 
     cvReleaseFileStorage(&fs);
   }

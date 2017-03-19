@@ -17,6 +17,8 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #include <iostream>
+#include <chrono>
+#include <thread>
 #include <opencv2/opencv.hpp>
 #include <opencv2/imgproc/imgproc_c.h>
 #include <opencv2/imgproc/types_c.h>
@@ -31,13 +33,13 @@ namespace bgslibrary
   private:
     IFrameProcessor* frameProcessor;
     cv::VideoCapture capture;
-    IplImage* frame;
+    cv::Mat frame;
     int key;
     int64 start_time;
     int64 delta_time;
     double freq;
     double fps;
-    long frameNumber;
+    long long frameNumber;
     long stopAt;
     bool useCamera;
     int cameraIndex;
@@ -46,6 +48,17 @@ namespace bgslibrary
     int input_resize_percent;
     bool showOutput;
     bool enableFlip;
+    double loopDelay = 33.333;
+    bool firstTime = true;
+    std::string config_xml;
+    void setup(const std::string _config_xml) {
+      config_xml = _config_xml;
+      if (!config_xml.empty()) {
+        if (!std::ifstream(config_xml))
+          saveConfig();
+        loadConfig();
+      }
+    }
 
   public:
     VideoCapture();

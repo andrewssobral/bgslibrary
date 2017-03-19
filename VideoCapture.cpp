@@ -82,6 +82,7 @@ namespace bgslibrary
     enableFlip(false), cameraIndex(0)
   {
     std::cout << "VideoCapture()" << std::endl;
+    setup("./config/VideoCapture.xml");
   }
 
   VideoCapture::~VideoCapture()
@@ -94,11 +95,10 @@ namespace bgslibrary
     frameProcessor = frameProcessorPtr;
   }
 
-  void VideoCapture::setCamera(int index)
+  void VideoCapture::setCamera(int _index)
   {
     useCamera = true;
-    cameraIndex = index;
-
+    cameraIndex = _index;
     useVideo = false;
   }
 
@@ -111,11 +111,10 @@ namespace bgslibrary
       std::cerr << "Cannot initialize webcam!\n" << std::endl;
   }
 
-  void VideoCapture::setVideo(std::string filename)
+  void VideoCapture::setVideo(std::string _filename)
   {
     useVideo = true;
-    videoFileName = filename;
-
+    videoFileName = _filename;
     useCamera = false;
   }
 
@@ -132,43 +131,49 @@ namespace bgslibrary
 
   void VideoCapture::start()
   {
-    loadConfig();
-
     if (useCamera) setUpCamera();
     if (useVideo)  setUpVideo();
     //if (!capture)  std::cerr << "Capture error..." << std::endl;
 
+    using namespace std::chrono_literals;
+    do
+    {
+      capture >> frame;
+      if (frame.empty())
+      {
+        std::cout << "Frame is not ready" << std::endl;
+        std::this_thread::sleep_for(1s);
+      }
+      else
+        break;
+    } while (1);
+
     int input_fps = capture.get(CV_CAP_PROP_FPS);
     std::cout << "input->fps:" << input_fps << std::endl;
+    std::cout << "input->width:" << frame.size().width << std::endl;
+    std::cout << "input->height:" << frame.size().height << std::endl;
 
-    /*
-    IplImage* frame1 = cvQueryFrame(capture);
-    frame = cvCreateImage(cvSize(
-      (int)((frame1->width*input_resize_percent) / 100),
-      (int)((frame1->height*input_resize_percent) / 100)), frame1->depth, frame1->nChannels);
-    //cvCreateImage(cvSize(frame1->width/input_resize_factor, frame1->height/input_resize_factor), frame1->depth, frame1->nChannels);
-    std::cout << "input->resize_percent:" << input_resize_percent << std::endl;
-    std::cout << "input->width:" << frame->width << std::endl;
-    std::cout << "input->height:" << frame->height << std::endl;
-    */
-
-    double loopDelay = 33.333;
     if (input_fps > 0)
       loopDelay = (1. / input_fps)*1000.;
     std::cout << "loopDelay:" << loopDelay << std::endl;
 
     std::cout << "Press 'ESC' to stop..." << std::endl;
-    bool firstTime = true;
     do
     {
       frameNumber++;
 
-      cv::Mat frame;
       capture >> frame;
       if (frame.empty()) break;
 
-      //cvResize(frame1, frame);
+      cv::resize(frame, frame, cv::Size(), input_resize_percent/100., input_resize_percent / 100.);
 
+      if (firstTime && input_resize_percent != 100)
+      {
+        std::cout << "Resized to:" << std::endl;
+        std::cout << "input->width:" << frame.size().width << std::endl;
+        std::cout << "input->height:" << frame.size().height << std::endl;
+      }
+      
       //if (enableFlip)
       //  cvFlip(frame, frame, 0);
 
@@ -178,7 +183,6 @@ namespace bgslibrary
 
         do
         {
-          //cv::Mat img_input = cv::cvarrToMat(frame);
           cv::Mat img_input;
           frame.copyTo(img_input);
 
@@ -220,15 +224,11 @@ namespace bgslibrary
         frame = frame(roi);
       }
 
-      //cv::Mat img_input = cv::cvarrToMat(frame);
       cv::Mat img_input;
       frame.copyTo(img_input);
 
       if (showOutput)
         cv::imshow("Input", img_input);
-
-      if (firstTime)
-        saveConfig();
 
       start_time = cv::getTickCount();
       frameProcessor->process(img_input);
@@ -259,7 +259,7 @@ namespace bgslibrary
 
   void VideoCapture::saveConfig()
   {
-    CvFileStorage* fs = cvOpenFileStorage("./config/VideoCapture.xml", 0, CV_STORAGE_WRITE);
+    CvFileStorage* fs = cvOpenFileStorage(config_xml.c_str(), 0, CV_STORAGE_WRITE);
 
     cvWriteInt(fs, "stopAt", stopAt);
     cvWriteInt(fs, "input_resize_percent", input_resize_percent);
@@ -277,18 +277,18 @@ namespace bgslibrary
 
   void VideoCapture::loadConfig()
   {
-    CvFileStorage* fs = cvOpenFileStorage("./config/VideoCapture.xml", 0, CV_STORAGE_READ);
+    CvFileStorage* fs = cvOpenFileStorage(config_xml.c_str(), nullptr, CV_STORAGE_READ);
 
-    stopAt = cvReadIntByName(fs, 0, "stopAt", 0);
-    input_resize_percent = cvReadIntByName(fs, 0, "input_resize_percent", 100);
-    enableFlip = cvReadIntByName(fs, 0, "enableFlip", false);
-    VC_ROI::use_roi = cvReadIntByName(fs, 0, "use_roi", true);
-    VC_ROI::roi_defined = cvReadIntByName(fs, 0, "roi_defined", false);
-    VC_ROI::roi_x0 = cvReadIntByName(fs, 0, "roi_x0", 0);
-    VC_ROI::roi_y0 = cvReadIntByName(fs, 0, "roi_y0", 0);
-    VC_ROI::roi_x1 = cvReadIntByName(fs, 0, "roi_x1", 0);
-    VC_ROI::roi_y1 = cvReadIntByName(fs, 0, "roi_y1", 0);
-    showOutput = cvReadIntByName(fs, 0, "showOutput", true);
+    stopAt = cvReadIntByName(fs, nullptr, "stopAt", 0);
+    input_resize_percent = cvReadIntByName(fs, nullptr, "input_resize_percent", 100);
+    enableFlip = cvReadIntByName(fs, nullptr, "enableFlip", false);
+    VC_ROI::use_roi = cvReadIntByName(fs, nullptr, "use_roi", true);
+    VC_ROI::roi_defined = cvReadIntByName(fs, nullptr, "roi_defined", false);
+    VC_ROI::roi_x0 = cvReadIntByName(fs, nullptr, "roi_x0", 0);
+    VC_ROI::roi_y0 = cvReadIntByName(fs, nullptr, "roi_y0", 0);
+    VC_ROI::roi_x1 = cvReadIntByName(fs, nullptr, "roi_x1", 0);
+    VC_ROI::roi_y1 = cvReadIntByName(fs, nullptr, "roi_y1", 0);
+    showOutput = cvReadIntByName(fs, nullptr, "showOutput", true);
 
     cvReleaseFileStorage(&fs);
   }

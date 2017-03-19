@@ -58,6 +58,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #include "PAWCS.h"
 #include "TwoPoints.h"
 #include "ViBe.h"
+#include "CodeBook.h"
 
 //#include "_template_/MyBGS.h"
 //#include "_template_/Amber.h"

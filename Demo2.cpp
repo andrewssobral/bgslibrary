@@ -68,6 +68,7 @@ int main(int argc, char **argv)
   //bgs = new PAWCS;
   //bgs = new TwoPoints;
   //bgs = new ViBe;
+  //bgs = new CodeBook;
 
   int frameNumber = 1;
   int key = 0;

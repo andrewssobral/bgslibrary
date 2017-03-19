@@ -7,10 +7,9 @@
 <enableStaticFrameDifference>0</enableStaticFrameDifference>
 <enableWeightedMovingMean>0</enableWeightedMovingMean>
 <enableWeightedMovingVariance>0</enableWeightedMovingVariance>
-<enableMixtureOfGaussianV1>0</enableMixtureOfGaussianV1>
 <enableMixtureOfGaussianV2>0</enableMixtureOfGaussianV2>
 <enableAdaptiveBackgroundLearning>0</enableAdaptiveBackgroundLearning>
-<enableGMG>0</enableGMG>
+<enableKNN>0</enableKNN>
 <enableDPAdaptiveMedian>0</enableDPAdaptiveMedian>
 <enableDPGrimsonGMM>0</enableDPGrimsonGMM>
 <enableDPZivkovicAGMM>0</enableDPZivkovicAGMM>
@@ -40,4 +39,8 @@
 <enableSigmaDelta>0</enableSigmaDelta>
 <enableSuBSENSE>0</enableSuBSENSE>
 <enableLOBSTER>0</enableLOBSTER>
+<enablePAWCS>0</enablePAWCS>
+<enableTwoPoints>0</enableTwoPoints>
+<enableViBe>0</enableViBe>
+<enableCodeBook>0</enableCodeBook>
 </opencv_storage>

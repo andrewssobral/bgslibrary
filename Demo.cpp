@@ -84,6 +84,7 @@ int main(int argc, char **argv)
   //bgs = new PAWCS;
   //bgs = new TwoPoints;
   //bgs = new ViBe;
+  //bgs = new CodeBook;
 
   int key = 0;
   cv::Mat img_input;

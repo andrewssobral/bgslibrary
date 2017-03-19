@@ -71,7 +71,7 @@ while True:
 
 	else:
 		capture.set(cv2.cv.CV_CAP_PROP_POS_FRAMES, pos_frame-1)
-		print "frame is not ready"
+		print "Frame is not ready"
 		cv2.waitKey(1000)
 		# break
 	

@@ -75,6 +75,12 @@ namespace bgslibrary
     bool enableGMG;
 #endif
 
+#if CV_MAJOR_VERSION == 3
+    cv::Mat img_knn;
+    KNN* knn;
+    bool enableKNN;
+#endif
+
     cv::Mat img_dpAdaptiveMedian;
     DPAdaptiveMedian* dpAdaptiveMedian;
     bool enableDPAdaptiveMedian;
@@ -155,11 +161,9 @@ namespace bgslibrary
     LBP_MRF* lbpMrf;
     bool enableLbpMrf;
 
-#if CV_MAJOR_VERSION == 2
     cv::Mat img_multiLayer;
     MultiLayer* multiLayer;
     bool enableMultiLayer;
-#endif
 
     cv::Mat img_pixelBasedAdaptiveSegmenter;
     PixelBasedAdaptiveSegmenter* pixelBasedAdaptiveSegmenter;
@@ -192,6 +196,22 @@ namespace bgslibrary
     cv::Mat img_lobster;
     LOBSTER* lobster;
     bool enableLOBSTER;
+
+    cv::Mat img_pawcs;
+    PAWCS* pawcs;
+    bool enablePAWCS;
+
+    cv::Mat img_twoPoints;
+    TwoPoints* twoPoints;
+    bool enableTwoPoints;
+
+    cv::Mat img_vibe;
+    ViBe* vibe;
+    bool enableViBe;
+
+    cv::Mat img_codeBook;
+    CodeBook* codeBook;
+    bool enableCodeBook;
 
     ForegroundMaskAnalysis* foregroundMaskAnalysis;
     bool enableForegroundMaskAnalysis;
