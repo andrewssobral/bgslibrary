@@ -13,9 +13,12 @@ https://fr.mathworks.com/matlabcentral/fileexchange/47953-computer-vision-system
     Windows 64 bit: MS Visual Studio 2012
     Linux 64 bit: gcc-4.7.2 (g++)
     Mac 64 bit: Xcode 6.2.0 (Clang++)
-		
+
 * * Note: It works successfully with MS Visual Studio 2013
-		
+
+* * For Xcode 7.3.1 and MATLAB R2015b please see:
+https://fr.mathworks.com/matlabcentral/answers/246507-why-can-t-mex-find-a-supported-compiler-in-matlab-r2015b-after-i-upgraded-to-xcode-7-0#answer_194526
+
 * First install [Computer Vision System Toolbox OpenCV Interface]
 * * Go to: bgslibrary/wrapper_matlab
 * * Double-click on [opencvinterface.mlpkginstall] inside your MATLAB.
