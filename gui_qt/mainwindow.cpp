@@ -72,6 +72,7 @@ namespace bgslibrary
     map["PAWCS"] = &createInstance<PAWCS>;
     map["TwoPoints"] = &createInstance<TwoPoints>;
     map["ViBe"] = &createInstance<ViBe>;
+    map["CodeBook"] = &createInstance<CodeBook>;
 
     return map[alg_name]();
   }
@@ -127,6 +128,7 @@ namespace bgslibrary
     stringList.append("PAWCS");
     stringList.append("TwoPoints");
     stringList.append("ViBe");
+    stringList.append("CodeBook");
     return stringList;
   }
 }
