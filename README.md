@@ -1,7 +1,7 @@
 ## BGSLibrary
 A Background Subtraction Library
 
-[![Release](https://img.shields.io/badge/Release-v2.0.0-blue.svg)]() [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0) [![Platform: Windows, Linux, OS X](https://img.shields.io/badge/Platform-Windows%2C%20Linux%2C%20OS%20X-blue.svg)]() [![Wrapper: Python, MATLAB](https://img.shields.io/badge/Wrapper-Python%2C%20MATLAB-orange.svg)]() [![Algorithms](https://img.shields.io/badge/Algorithms-40-red.svg)]()
+[![Release](https://img.shields.io/badge/Release-v2.0.0-blue.svg)](https://github.com/andrewssobral/bgslibrary/wiki/Build-status) [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0) [![Platform: Windows, Linux, OS X](https://img.shields.io/badge/Platform-Windows%2C%20Linux%2C%20OS%20X-blue.svg)](https://github.com/andrewssobral/bgslibrary/wiki/Build-status) [![Wrapper: Python, MATLAB](https://img.shields.io/badge/Wrapper-Python%2C%20MATLAB-orange.svg)](https://github.com/andrewssobral/bgslibrary/wiki/Build-status) [![Algorithms](https://img.shields.io/badge/Algorithms-40-red.svg)](https://github.com/andrewssobral/bgslibrary/wiki/List-of-available-algorithms)
 
 [![bgslibrary](http://i.giphy.com/5A94AZahSIVOw.gif)](https://youtu.be/_UbERwuQ0OU)
 
