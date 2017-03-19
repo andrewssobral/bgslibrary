@@ -57,3 +57,4 @@ demo;
 % demo('PAWCS')
 % demo('TwoPoints')
 % demo('ViBe')
+% demo('CodeBook')

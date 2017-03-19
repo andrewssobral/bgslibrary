@@ -66,6 +66,7 @@
 #include "PAWCS.h"
 #include "TwoPoints.h"
 #include "ViBe.h"
+#include "CodeBook.h"
 
 using namespace bgslibrary::algorithms;
 
@@ -165,6 +166,8 @@ namespace bgslibrary
       return (IBGS *)mxCalloc(1, sizeof(TwoPoints));
     if (alg_name.compare("ViBe") == 0)
       return (IBGS *)mxCalloc(1, sizeof(ViBe));
+    if (alg_name.compare("CodeBook") == 0)
+      return (IBGS *)mxCalloc(1, sizeof(CodeBook));
     return NULL;
   }
 
@@ -260,6 +263,8 @@ namespace bgslibrary
       return new (ptrBGS) TwoPoints();
     if (alg_name.compare("ViBe") == 0)
       return new (ptrBGS) ViBe();
+    if (alg_name.compare("CodeBook") == 0)
+      return new (ptrBGS) CodeBook();
     return NULL;
   }
 }

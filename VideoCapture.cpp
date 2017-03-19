@@ -135,14 +135,18 @@ namespace bgslibrary
     if (useVideo)  setUpVideo();
     //if (!capture)  std::cerr << "Capture error..." << std::endl;
 
-    using namespace std::chrono_literals;
+    //using namespace std::chrono_literals;
     do
     {
       capture >> frame;
       if (frame.empty())
       {
         std::cout << "Frame is not ready" << std::endl;
-        std::this_thread::sleep_for(1s);
+        std::string dummy;
+        std::cout << "Enter to continue..." << std::endl;
+        std::getline(std::cin, dummy);
+        //cv::waitKey(1000);
+        //std::this_thread::sleep_for(1s);
       }
       else
         break;
@@ -193,7 +197,7 @@ namespace bgslibrary
             std::cout << "Set ROI (press ESC to skip)" << std::endl;
             VC_ROI::img_input1 = new IplImage(img_input);
             cvSetMouseCallback("Input", VC_ROI::VideoCapture_on_mouse, NULL);
-            key = cvWaitKey(0);
+            key = cv::waitKey(0);
             delete VC_ROI::img_input1;
           }
           else
@@ -239,17 +243,17 @@ namespace bgslibrary
 
       //cvResetImageROI(frame);
 
-      key = cvWaitKey(loopDelay);
+      key = cv::waitKey(loopDelay);
       //std::cout << "key: " << key << std::endl;
 
       if (key == KEY_SPACE)
-        key = cvWaitKey(0);
+        key = cv::waitKey(0);
 
       if (key == KEY_ESC)
         break;
 
       if (stopAt > 0 && stopAt == frameNumber)
-        key = cvWaitKey(0);
+        key = cv::waitKey(0);
 
       firstTime = false;
     } while (1);

@@ -45,6 +45,7 @@ bgs = libbgs.FrameDifference()
 #bgs = libbgs.WeightedMovingVariance()
 #bgs = libbgs.TwoPoints()
 #bgs = libbgs.ViBe()
+#bgs = libbgs.CodeBook()
 
 video_file = "dataset/video.avi"
 

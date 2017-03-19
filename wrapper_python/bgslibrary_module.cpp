@@ -260,6 +260,11 @@ namespace fs
 				.def("apply", &ViBe::apply)
 				.def("getBackgroundModel", &ViBe::getBackgroundModel)
 				;
+
+			py::class_<CodeBook>("CodeBook")
+				.def("apply", &CodeBook::apply)
+				.def("getBackgroundModel", &CodeBook::getBackgroundModel)
+				;
 		}
 	} // namespace fs
 } // namespace python
