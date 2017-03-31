@@ -1,0 +1,9 @@
+nbproject/
+build.xml
+build/
+dist/
+build_*/
+*.dll
+*.bat
+*.sh
+*.lib
