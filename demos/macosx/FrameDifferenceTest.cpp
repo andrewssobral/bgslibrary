@@ -1,17 +1,17 @@
 #include <iostream>
-#include <cv.h>
-#include <highgui.h>
+#include <opencv2/opencv.hpp>
 
 #include "../../package_bgs/FrameDifference.h"
 
 using namespace bgslibrary::algorithms;
+//using namespace cv;
 
 int main(int argc, char **argv)
 {
-  CvCapture *capture = 0;
-  capture = cvCaptureFromCAM(0);
+  cv::VideoCapture capture(0);
 
-  if(!capture){
+  if (!capture.isOpened())
+  {
     std::cerr << "Cannot initialize video!" << std::endl;
     return -1;
   }
@@ -19,13 +19,13 @@ int main(int argc, char **argv)
   IBGS *bgs;
   bgs = new FrameDifference;
 
-  IplImage *frame;
-  while(1)
+  int key = 0;
+  cv::Mat img_input;
+  while (key != 'q')
   {
-    frame = cvQueryFrame(capture);
-    if(!frame) break;
+    capture >> img_input;
+    if(img_input.empty()) break;
 
-    cv::Mat img_input(frame);
     cv::imshow("Input", img_input);
 
     cv::Mat img_mask;
@@ -34,18 +34,16 @@ int main(int argc, char **argv)
     // by default, it shows automatically the foreground mask image
     bgs->process(img_input, img_mask, img_bkgmodel);
 
-    //if(!img_mask.empty())
-    //  cv::imshow("Foreground", img_mask);
-    //  do something
+    key = cvWaitKey(33);
 
-    if(cvWaitKey(33) >= 0)
+    if(key >= 0)
 		  break;
   }
 
   delete bgs;
 
+  capture.release();
   cvDestroyAllWindows();
-  cvReleaseCapture(&capture);
 
   return 0;
 }
