@@ -55,31 +55,31 @@ while not capture.isOpened():
 	cv2.waitKey(1000)
 	print "Wait for the header"
 
-pos_frame = capture.get(cv2.cv.CV_CAP_PROP_POS_FRAMES)
+pos_frame = capture.get(cv2.CAP_PROP_POS_FRAMES)
 while True:
 	flag, frame = capture.read()
-	
+
 	if flag:
 		cv2.imshow('video', frame)
-		pos_frame = capture.get(cv2.cv.CV_CAP_PROP_POS_FRAMES)
+		pos_frame = capture.get(cv2.CAP_PROP_POS_FRAMES)
 		#print str(pos_frame)+" frames"
-		
+
 		img_output = bgs.apply(frame)
 		img_bgmodel = bgs.getBackgroundModel();
-		
+
 		cv2.imshow('img_output', img_output)
 		cv2.imshow('img_bgmodel', img_bgmodel)
 
 	else:
-		capture.set(cv2.cv.CV_CAP_PROP_POS_FRAMES, pos_frame-1)
+		capture.set(cv2.CV_CAP_PROP_POS_FRAMES, pos_frame-1)
 		print "Frame is not ready"
 		cv2.waitKey(1000)
 		# break
-	
+
 	if 0xFF & cv2.waitKey(10) == 27:
 		break
-	
-	if capture.get(cv2.cv.CV_CAP_PROP_POS_FRAMES) == capture.get(cv2.cv.CV_CAP_PROP_FRAME_COUNT):
+
+	if capture.get(cv2.CAP_PROP_POS_FRAMES) == capture.get(cv2.CAP_PROP_FRAME_COUNT):
 		break
 
 cv2.destroyAllWindows()
