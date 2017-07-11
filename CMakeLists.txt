@@ -54,6 +54,10 @@ endif(UNIX)
 set(OpenCV_STATIC OFF)
 find_package(OpenCV REQUIRED)
 
+set(OpenCV_LIBS "/usr/local/opencv/lib/libopencv_core.so;/usr/local/opencv/lib/libopencv_videostab.so;/usr/local/opencv/lib/libopencv_video.so;/usr/local/opencv/lib/libopencv_superres.so;/usr/local/opencv/lib/libopencv_stitching.so;/usr/local/opencv/lib/libopencv_photo.so;/usr/local/opencv/lib/libopencv_objdetect.so;/usr/local/opencv/lib/libopencv_ml.so;/usr/local/opencv/lib/libopencv_imgproc.so;/usr/local/opencv/lib/libopencv_highgui.so;/usr/local/opencv/lib/libopencv_flann.so;/usr/local/opencv/lib/libopencv_features2d.so;/usr/local/opencv/lib/libopencv_calib3d.so;/usr/local/opencv/lib/libopencv_videoio.so;/usr/local/opencv/lib/libopencv_imgcodecs.so")
+set(OpenCV_INCLUDE_DIRS "/usr/local/opencv/include/")
+set(OpenCV_VERSION "3.3.0")
+
 message(STATUS "OpenCV library status:")
 message(STATUS "    version: ${OpenCV_VERSION}")
 message(STATUS "    libraries: ${OpenCV_LIBS}")
@@ -71,7 +75,7 @@ if(BGS_PYTHON_SUPPORT)
 	set(Boost_USE_STATIC_LIBS OFF)
 	set(Boost_USE_MULTITHREADED ON)
 	set(Boost_USE_STATIC_RUNTIME OFF)
-	
+
 	find_package(Boost REQUIRED COMPONENTS python)
 	find_package(PythonLibs REQUIRED)
 
