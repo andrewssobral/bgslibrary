@@ -53,7 +53,7 @@ capture = cv2.VideoCapture(video_file)
 while not capture.isOpened():
 	capture = cv2.VideoCapture(video_file)
 	cv2.waitKey(1000)
-	print "Wait for the header"
+	print("Wait for the header")
 
 #pos_frame = capture.get(cv2.cv.CV_CAP_PROP_POS_FRAMES)
 #pos_frame = capture.get(cv2.CV_CAP_PROP_POS_FRAMES)

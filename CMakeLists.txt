@@ -73,8 +73,12 @@ if(${OpenCV_VERSION} VERSION_LESS 2.3.1)
 endif()
 
 if(BGS_PYTHON_SUPPORT)
-	#set(Boost_USE_STATIC_LIBS OFF)
-	set(Boost_USE_STATIC_LIBS ON)
+	if(WIN32)
+		set(Boost_USE_STATIC_LIBS ON)
+	else()
+		set(Boost_USE_STATIC_LIBS OFF)
+	endif()
+	
 	set(Boost_USE_MULTITHREADED ON)
 	set(Boost_USE_STATIC_RUNTIME OFF)
 	
@@ -97,7 +101,7 @@ if(BGS_PYTHON_SUPPORT)
 	if(NOT NUMPY_INCLUDE_DIR)
 		# message(FATAL_ERROR "You must define NUMPY_INCLUDE_DIR by 'cmake -D NUMPY_INCLUDE_DIR=/python/lib/site-packages/numpy/core/include ..'")
 		exec_program ("${PYTHON_EXECUTABLE}"
-			ARGS "-c \"import numpy; print numpy.get_include()\""
+			ARGS "-c \"import numpy; print(numpy.get_include())\""
 			OUTPUT_VARIABLE NUMPY_INCLUDE_DIR
 			RETURN_VALUE NUMPY_NOT_FOUND)
 	endif()
