@@ -23,10 +23,18 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
  * inside modules/python/src2 folder.
  */
 
+#if PY_VERSION_HEX >= 0x03000000
+static int init()
+{
+  import_array();
+  return NULL;
+}
+#else
 static void init()
 {
-    import_array();
+  import_array();
 }
+#endif
 
 static int failmsg(const char *fmt, ...)
 {
@@ -204,10 +212,18 @@ NumpyAllocator g_numpyAllocator;
 
 NDArrayConverter::NDArrayConverter() { init(); }
 
+#if PY_VERSION_HEX >= 0x03000000
+int NDArrayConverter::init()
+{
+  import_array();
+  return NULL;
+}
+#else
 void NDArrayConverter::init()
 {
-    import_array();
+  import_array();
 }
+#endif
 
 cv::Mat NDArrayConverter::toMat(const PyObject *o)
 {

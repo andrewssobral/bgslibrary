@@ -19,10 +19,18 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 namespace fs { namespace python {
 
 // Static PyInit
-static void py_init() {
-  Py_Initialize();
-  import_array();
-}
+#if PY_VERSION_HEX >= 0x03000000
+  static int py_init() {
+    Py_Initialize();
+    import_array();
+    return NULL;
+  }
+#else
+  static void py_init() {
+    Py_Initialize();
+    import_array();
+  }
+#endif
 
 // Singleton init and export converters
 static bool export_type_conversions_once = false;

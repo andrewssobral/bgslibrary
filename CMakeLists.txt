@@ -10,6 +10,12 @@ elseif()
 endif()
 message(STATUS "BGSLIBRARY WITH PYTHON SUPPORT: ${BGS_PYTHON_SUPPORT}")
 
+# cmake -D BGS_PYTHON_SUPPORT=ON -D BGS_PYTHON_VERSION=2 ..
+if(NOT DEFINED BGS_PYTHON_VERSION)
+	set(BGS_PYTHON_VERSION 2)
+endif()
+message(STATUS "PYTHON VERSION: ${BGS_PYTHON_VERSION}")
+
 if(UNIX)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
 	set(CMAKE_MACOSX_RPATH 1)
@@ -82,7 +88,12 @@ if(BGS_PYTHON_SUPPORT)
 	set(Boost_USE_MULTITHREADED ON)
 	set(Boost_USE_STATIC_RUNTIME OFF)
 	
-	find_package(Boost REQUIRED COMPONENTS python)
+	message(STATUS "SEARCHING FOR BOOST COMPONENT FOR PYTHON ${BGS_PYTHON_VERSION}")
+	if(BGS_PYTHON_VERSION EQUAL 2)
+		find_package(Boost REQUIRED COMPONENTS python)
+	else()
+		find_package(Boost REQUIRED COMPONENTS python3)
+	endif()
 	find_package(PythonInterp REQUIRED)
 	find_package(PythonLibs REQUIRED)
 

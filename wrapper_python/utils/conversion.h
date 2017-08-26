@@ -66,7 +66,12 @@ enum { ARG_NONE = 0, ARG_MAT = 1, ARG_SCALAR = 2 };
 class NDArrayConverter
 {
 private:
-    void init();
+#if PY_VERSION_HEX >= 0x03000000
+  int init();
+#else
+  void init();
+#endif
+  
 public:
     NDArrayConverter();
     cv::Mat toMat(const PyObject* o);
