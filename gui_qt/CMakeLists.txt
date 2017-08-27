@@ -3,17 +3,17 @@ cmake_minimum_required(VERSION 2.8.11)
 project(bgslibrary_gui)
 
 if(UNIX)
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
-	set(CMAKE_MACOSX_RPATH 1)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
+  set(CMAKE_MACOSX_RPATH 1)
 
-	# add some standard warnings
-	ADD_DEFINITIONS(-Wno-variadic-macros -Wno-long-long -Wall -Wextra -Winit-self -Woverloaded-virtual -Wsign-promo -Wno-unused-parameter -pedantic -Woverloaded-virtual -Wno-unknown-pragmas)
+  # add some standard warnings
+  ADD_DEFINITIONS(-Wno-variadic-macros -Wno-long-long -Wall -Wextra -Winit-self -Woverloaded-virtual -Wsign-promo -Wno-unused-parameter -pedantic -Woverloaded-virtual -Wno-unknown-pragmas)
 
-	# -ansi does not compile with sjn module
-	#ADD_DEFINITIONS(-ansi)
+  # -ansi does not compile with sjn module
+  #ADD_DEFINITIONS(-ansi)
 
-	# if you like to have warinings about conversions, e.g. double->int or double->float etc., or float compare
-	#ADD_DEFINITIONS(-Wconversion -Wfloat-equal)
+  # if you like to have warinings about conversions, e.g. double->int or double->float etc., or float compare
+  #ADD_DEFINITIONS(-Wconversion -Wfloat-equal)
 endif(UNIX)
 
 # Find includes in corresponding build directories
@@ -27,6 +27,12 @@ set(CMAKE_AUTOUIC ON)
 
 # Find the Qt5Widgets library
 find_package(Qt5Widgets)
+if(Qt5Widgets_FOUND)
+  message(STATUS "Qt5Widgets status:")
+  message(STATUS "    version: ${Qt5Widgets_VERSION}")
+  message(STATUS "    libraries: ${Qt5Widgets_LIBRARIES}")
+  message(STATUS "    include path: ${Qt5Widgets_INCLUDE_DIRS}")
+endif()
 
 SET(app_RESOURCES application.qrc)
 QT5_ADD_RESOURCES(app_RESOURCES_RCC ${app_RESOURCES})
@@ -34,11 +40,12 @@ QT5_ADD_RESOURCES(app_RESOURCES_RCC ${app_RESOURCES})
 # Find the OpenCV library
 set(OpenCV_STATIC OFF)
 find_package(OpenCV REQUIRED)
-
-message(STATUS "OpenCV library status:")
-message(STATUS "    version: ${OpenCV_VERSION}")
-message(STATUS "    libraries: ${OpenCV_LIBS}")
-message(STATUS "    include path: ${OpenCV_INCLUDE_DIRS}")
+if(OpenCV_FOUND)
+  message(STATUS "OpenCV library status:")
+  message(STATUS "    version: ${OpenCV_VERSION}")
+  message(STATUS "    libraries: ${OpenCV_LIBS}")
+  message(STATUS "    include path: ${OpenCV_INCLUDE_DIRS}")
+endif()
 
 file(GLOB main bgslibrary_gui.cpp mainwindow.cpp qt_utils.cpp texteditor.cpp)
 
@@ -54,9 +61,9 @@ target_link_libraries(libbgs ${OpenCV_LIBS})
 set_property(TARGET libbgs PROPERTY PUBLIC_HEADER ${bgs_inc} ${analysis_inc})
 
 if(WIN32)
-	# set_property(TARGET libbgs PROPERTY SUFFIX ".lib")
+  # set_property(TARGET libbgs PROPERTY SUFFIX ".lib")
 else()
-	set_property(TARGET libbgs PROPERTY OUTPUT_NAME "bgs")
+  set_property(TARGET libbgs PROPERTY OUTPUT_NAME "bgs")
 endif()
 
 # Tell CMake to create the bgslibrary_gui executable
