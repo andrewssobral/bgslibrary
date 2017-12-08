@@ -43,7 +43,14 @@ void CodeBook::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &i
   } 
 
   cv::Mat img_input_gray;
-  cv::cvtColor(img_input, img_input_gray, CV_BGR2GRAY);
+
+  if (img_input.channels() == 1)
+  {
+    img_input_gray = img_input; 
+  } else
+  { 
+    cv::cvtColor(img_input, img_input_gray, CV_BGR2GRAY);
+  }
 
   fg_cb(img_input_gray, img_foreground);
 
