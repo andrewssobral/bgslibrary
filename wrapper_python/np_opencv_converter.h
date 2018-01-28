@@ -106,6 +106,10 @@ struct Mat_PyObject_converter
     using namespace boost::python;
     typedef converter::rvalue_from_python_storage< T > storage_t;
 
+    // Object is a borrowed reference, so create a handle indicating it is
+    // borrowed for proper reference counting.
+    boost::python::handle<> handle(boost::python::borrowed(obj_ptr));
+
     storage_t* the_storage = reinterpret_cast<storage_t*>( data );
     void* memory_chunk = the_storage->storage.bytes;
 

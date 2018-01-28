@@ -311,8 +311,11 @@ cv::Mat NDArrayConverter::toMat(const PyObject *o)
     {
 #if CV_MAJOR_VERSION == 3
       m.addref();
-      Py_INCREF(o);
+// Not needed anymore, the pointer is now managed by a borrowed handle, which
+// which will handle reference counting.
+//      Py_INCREF(o);
 #else
+// TODO: I assume this one is leaking too, but don't have CV v2 to test.
         m.refcount = refcountFromPyObject(o);
         m.addref(); // protect the original numpy array from deallocation
                     // (since Mat destructor will decrement the reference counter)
