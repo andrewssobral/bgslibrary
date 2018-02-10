@@ -165,15 +165,8 @@ void BackgroundSubtractorIMBS::initialize(Size frameSize, int frameType)
 
   for (unsigned int p = 0; p < numPixels; ++p)
   {
-    bgBins[p].binValues = new Vec3b[numSamples];
-    bgBins[p].binHeights = new uchar[numSamples];
-    bgBins[p].isFg = new bool[numSamples];
-
-    bgModel[p].values = new Vec3b[maxBgBins];
-    bgModel[p].isValid = new bool[maxBgBins];
-    bgModel[p].isValid[0] = false;
-    bgModel[p].isFg = new bool[maxBgBins];
-    bgModel[p].counter = new uchar[maxBgBins];
+    bgBins[p].initialize(numSamples);
+    bgModel[p].initialize(maxBgBins);
   }
 }
 
