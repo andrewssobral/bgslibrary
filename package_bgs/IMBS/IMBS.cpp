@@ -53,6 +53,10 @@ BackgroundSubtractorIMBS::BackgroundSubtractorIMBS()
   tau_s = 60;
   tau_h = 40;
   minArea = 30.;
+  nframes = 0;
+  bgBins = NULL;
+  bgModel = NULL;
+  persistenceMap = NULL;
   persistencePeriod = samplingPeriod*numSamples / 3.;//ms
 
   initial_tick_count = (double)getTickCount();
@@ -94,6 +98,10 @@ BackgroundSubtractorIMBS::BackgroundSubtractorIMBS(
   this->tau_s = tau_s;
   this->tau_h = tau_h;
   this->minArea = minArea;
+  nframes = 0;
+  bgBins = NULL;
+  bgModel = NULL;
+  persistenceMap = NULL;
 
   if (fps == 0.)
     initial_tick_count = (double)getTickCount();
