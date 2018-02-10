@@ -140,7 +140,7 @@ private:
     ~Bins() {
       if (binValues)  { delete[] binValues; }
       if (binHeights) { delete[] binHeights; }
-      if (isFg)       { delete[]  isFg; }
+      if (isFg)       { delete[] isFg; }
     }
     Vec3b* binValues;
     uchar* binHeights;
@@ -160,9 +160,9 @@ public:
     }
     ~BgModel() {
       if (values)  { delete[] values; }
-      if (isValid) { delete[]  isValid; }
-      if (isFg)    { delete[]  isFg; }
-      if (counter) { delete[]  counter; }
+      if (isValid) { delete[] isValid; }
+      if (isFg)    { delete[] isFg; }
+      if (counter) { delete[] counter; }
     }
     Vec3b* values;
     bool* isValid;
