@@ -184,6 +184,8 @@ void BackgroundSubtractorIMBS::apply(InputArray _frame, OutputArray _fgmask, dou
 
   CV_Assert(frame.depth() == CV_8U);
   CV_Assert(frame.channels() == 3);
+  CV_Assert(frame.size().width > 0);
+  CV_Assert(frame.size().height > 0);
 
   bool needToInitialize = nframes == 0 || frame.type() != frameType;
   if (needToInitialize) {
