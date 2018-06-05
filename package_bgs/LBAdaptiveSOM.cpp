@@ -74,7 +74,16 @@ void LBAdaptiveSOM::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
   delete frame;
 }
 
-void LBAdaptiveSOM::removeModel()
+void LBAdaptiveSOM::setParameters(int sensitivity, int trainingSensitivity, int learningRate, int trainingLearningRate, int trainingSteps)
+{
+  this->sensitivity = sensitivity;
+  this->trainingSensitivity = trainingSensitivity;
+  this->learningRate = learningRate;
+  this->trainingLearningRate = trainingLearningRate;
+  this->trainingSteps = trainingSteps;
+}
+
+void LBAdaptiveSOM::flush()
 {
   delete m_pBGModel;
   firstTime = true;
