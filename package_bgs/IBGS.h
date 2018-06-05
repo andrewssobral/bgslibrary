@@ -41,6 +41,12 @@ namespace bgslibrary
 			cv::Mat getBackgroundModel() {
 				return img_background;
 			}
+			void flush()
+			{
+				removeModel();
+			}
+
+			virtual void removeModel(){};
 			virtual void process(const cv::Mat &img_input, cv::Mat &img_foreground, cv::Mat &img_background) = 0;
 			virtual ~IBGS() {}
 

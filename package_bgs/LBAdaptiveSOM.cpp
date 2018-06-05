@@ -45,6 +45,8 @@ void LBAdaptiveSOM::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
 
     m_pBGModel = new BGModelSom(w, h);
     m_pBGModel->InitModel(frame);
+
+    firstTime = false;
   }
 
   m_pBGModel->setBGModelParameter(0, sensitivity);
@@ -70,8 +72,12 @@ void LBAdaptiveSOM::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
   img_background.copyTo(img_bgmodel);
 
   delete frame;
+}
 
-  firstTime = false;
+void LBAdaptiveSOM::removeModel()
+{
+  delete m_pBGModel;
+  firstTime = true;
 }
 
 void LBAdaptiveSOM::saveConfig()
