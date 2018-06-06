@@ -21,6 +21,7 @@ using namespace bgslibrary::algorithms;
 LBAdaptiveSOM::LBAdaptiveSOM() :
   sensitivity(75), trainingSensitivity(245), learningRate(62), trainingLearningRate(255), trainingSteps(55)
 {
+  m_pBGModel = nullptr;
   std::cout << "LBAdaptiveSOM()" << std::endl;
   setup("./config/LBAdaptiveSOM.xml");
 }
@@ -44,6 +45,8 @@ void LBAdaptiveSOM::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
 
     m_pBGModel = new BGModelSom(w, h);
     m_pBGModel->InitModel(frame);
+
+    firstTime = false;
   }
 
   m_pBGModel->setBGModelParameter(0, sensitivity);
@@ -69,8 +72,21 @@ void LBAdaptiveSOM::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
   img_background.copyTo(img_bgmodel);
 
   delete frame;
+}
 
-  firstTime = false;
+void LBAdaptiveSOM::setParameters(int sensitivity, int trainingSensitivity, int learningRate, int trainingLearningRate, int trainingSteps)
+{
+  this->sensitivity = sensitivity;
+  this->trainingSensitivity = trainingSensitivity;
+  this->learningRate = learningRate;
+  this->trainingLearningRate = trainingLearningRate;
+  this->trainingSteps = trainingSteps;
+}
+
+void LBAdaptiveSOM::flush()
+{
+  delete m_pBGModel;
+  firstTime = true;
 }
 
 void LBAdaptiveSOM::saveConfig()

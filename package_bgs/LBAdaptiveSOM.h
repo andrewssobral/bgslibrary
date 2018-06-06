@@ -38,6 +38,8 @@ namespace bgslibrary
 
     public:
       LBAdaptiveSOM();
+      void flush();
+      void setParameters(int sensitivity=75, int trainingSensitivity=245, int learningRate=62, int trainingLearningRate=255, int trainingSteps=55);
       ~LBAdaptiveSOM();
 
       void process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel);
