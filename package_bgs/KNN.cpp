@@ -16,7 +16,7 @@
  */
 #include "KNN.h"
 
-#if CV_MAJOR_VERSION == 3
+#if CV_MAJOR_VERSION >= 3
 
 using namespace bgslibrary::algorithms;
 
