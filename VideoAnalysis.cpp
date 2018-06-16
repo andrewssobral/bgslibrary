@@ -45,7 +45,7 @@ namespace bgslibrary
       "{st|stopAt|0|Frame number to stop}"
       "{im|imgref||Specify image file}"
       ;
-#elif CV_MAJOR_VERSION == 3
+#elif CV_MAJOR_VERSION >= 3
     const std::string keys =
       "{h help ?     |     | Print this message   }"
       "{uf use_file  |false| Use a video file     }"
@@ -68,7 +68,7 @@ namespace bgslibrary
       cmd.printParams();
       return false;
     }
-#elif CV_MAJOR_VERSION == 3
+#elif CV_MAJOR_VERSION >= 3
     if (argc <= 1 || cmd.has("help"))
     {
       std::cout << "Usage: " << argv[0] << " [options]" << std::endl;

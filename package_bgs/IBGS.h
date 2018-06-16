@@ -19,6 +19,12 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <fstream>
 #include <opencv2/opencv.hpp>
+#include <cv.h>
+#include <opencv2/imgproc/types_c.h>
+#include <opencv2/imgproc/imgproc_c.h>
+#include <opencv2/highgui/highgui_c.h>
+
+#define  CV_RGB(r, g, b)   cv::Scalar((b), (g), (r), 0)
 
 namespace bgslibrary
 {

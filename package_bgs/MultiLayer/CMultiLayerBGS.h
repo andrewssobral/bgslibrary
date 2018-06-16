@@ -51,7 +51,7 @@ we don't use the bilateral filter to remove the noise in the foreground detectio
 step. If you compile it under Linux, please uncomment it.
 */
 //#define LINUX_BILATERAL_FILTER
-
+#include <opencv2/imgproc.hpp>
 #include "LocalBinaryPattern.h"
 #include "BGS.h"
 #include <stdio.h>
