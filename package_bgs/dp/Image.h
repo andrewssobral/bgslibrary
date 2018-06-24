@@ -29,8 +29,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #include <opencv2/opencv.hpp>
-//#include <cxcore.h>
-
+#include <cv.h>
 // --- Image Iterator ---------------------------------------------------------
 
 template <class T>

@@ -24,6 +24,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "TBackground.h"
 
+
 TBackground::TBackground(void)
 {
   std::cout << "TBackground()" << std::endl;

@@ -48,6 +48,8 @@ using namespace ck;
 #include <opencv/cvaux.h>
 #endif
 
+#include <opencv2/imgproc.hpp>
+
 #include "MEHistogram.hpp"
 #include "MEImage.hpp"
 
