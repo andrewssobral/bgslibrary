@@ -18,8 +18,8 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #include <opencv2/opencv.hpp>
 using namespace cv;
 
-//#include "package_bgs/bgslibrary.h"
-#include "package_bgs/IBGS.h"
+#include "package_bgs/bgslibrary.h"
+
 using namespace ibgs;
 
 int main(int argc, char **argv)
@@ -45,8 +45,7 @@ int main(int argc, char **argv)
   /* Background Subtraction Methods */
   IBGS *bgs;
 
-  //bgs = new FrameDifference;
-  bgs=IBGS::create(std::string("FrameDifference"));
+  bgs = new FrameDifference;
   //bgs = new StaticFrameDifference;
   //bgs = new WeightedMovingMean;
   //bgs = new WeightedMovingVariance;
