@@ -24,7 +24,7 @@ if(UNIX)
   set(CMAKE_MACOSX_RPATH 1)
 endif(UNIX)
 
-# Avoid cmake warnings about changes in behavior of some Mac OS X path 
+# Avoid cmake warnings about changes in behavior of some Mac OS X path
 # variable we don't care about.
 if (POLICY CMP0042)
   cmake_policy(SET CMP0042 NEW)
@@ -97,10 +97,10 @@ if(BGS_PYTHON_SUPPORT)
   #else()
   #  set(Boost_USE_STATIC_LIBS OFF)
   #endif()
-  
+
   #set(Boost_USE_MULTITHREADED ON)
   #set(Boost_USE_STATIC_RUNTIME OFF)
-  
+
   #message(STATUS "SEARCHING FOR BOOST COMPONENT FOR PYTHON ${BGS_PYTHON_VERSION}")
   #if(BGS_PYTHON_VERSION EQUAL 2)
   #  find_package(Boost REQUIRED COMPONENTS python)
@@ -134,7 +134,6 @@ if(BGS_PYTHON_SUPPORT)
   #message(STATUS "    libraries: ${PYTHON_LIBRARIES}")
   message(STATUS "    library: ${PYTHON_LIBRARY}")
   message(STATUS "    include path: ${PYTHON_INCLUDE_DIRS}")
-    
   if(NOT NUMPY_INCLUDE_DIR)
     # message(FATAL_ERROR "You must define NUMPY_INCLUDE_DIR by 'cmake -D NUMPY_INCLUDE_DIR=/python/lib/site-packages/numpy/core/include ..'")
     exec_program ("${PYTHON_EXECUTABLE}"
@@ -236,10 +235,10 @@ if(UNIX AND BGS_PYTHON_SUPPORT)
     OUTPUT_VARIABLE PYTHON_SITE
     OUTPUT_STRIP_TRAILING_WHITESPACE
   )
-  
+
   message(STATUS "")
   message(STATUS "The bgslibrary python package will be installed at: ${PYTHON_SITE}\n")
-  
+
   install(TARGETS bgs_python DESTINATION ${PYTHON_SITE})
   #install(FILES ${mypackage_python_files} DESTINATION ${PYTHON_SITE}/mypackage)
   #install(TARGETS bgs_python DESTINATION ${CMAKE_CURRENT_SOURCE_DIR})

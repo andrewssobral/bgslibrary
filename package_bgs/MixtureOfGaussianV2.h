@@ -31,7 +31,7 @@ namespace bgslibrary
     private:
 #if CV_MAJOR_VERSION == 2
       cv::BackgroundSubtractorMOG2 mog;
-#elif CV_MAJOR_VERSION == 3
+#elif CV_MAJOR_VERSION >= 3
       cv::Ptr<cv::BackgroundSubtractorMOG2> mog;
 #endif
       double alpha;

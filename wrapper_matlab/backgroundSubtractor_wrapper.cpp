@@ -98,7 +98,7 @@ namespace bgslibrary
     if (alg_name.compare("GMG") == 0)
       return (IBGS *)mxCalloc(1, sizeof(GMG)); // only for OpenCV >= 2.4.3
 #endif
-#if CV_MAJOR_VERSION == 3
+#if CV_MAJOR_VERSION >= 3
     if (alg_name.compare("KNN") == 0)
       return (IBGS *)mxCalloc(1, sizeof(KNN)); // only for OpenCV 3.x
 #endif
@@ -195,7 +195,7 @@ namespace bgslibrary
     if (alg_name.compare("GMG") == 0)
       return new (ptrBGS) GMG(); // only for OpenCV >= 2.4.3
 #endif
-#if CV_MAJOR_VERSION == 3
+#if CV_MAJOR_VERSION >= 3
     if (alg_name.compare("KNN") == 0)
       return new (ptrBGS) KNN(); // only on OpenCV 3.x
 #endif

@@ -75,7 +75,7 @@ namespace bgslibrary
     bool enableGMG;
 #endif
 
-#if CV_MAJOR_VERSION == 3
+#if CV_MAJOR_VERSION >= 3
     cv::Mat img_knn;
     KNN* knn;
     bool enableKNN;

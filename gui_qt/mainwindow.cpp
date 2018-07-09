@@ -37,7 +37,7 @@ namespace bgslibrary
 #if CV_MAJOR_VERSION == 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
     map["GMG"] = &createInstance<GMG>; // only for OpenCV >= 2.4.3
 #endif
-#if CV_MAJOR_VERSION == 3
+#if CV_MAJOR_VERSION >= 3
     map["KNN"] = &createInstance<KNN>; // only on OpenCV 3.x
 #endif
     map["DPAdaptiveMedian"] = &createInstance<DPAdaptiveMedian>;
@@ -93,7 +93,7 @@ namespace bgslibrary
 #if CV_MAJOR_VERSION == 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
     stringList.append("GMG"); // only for OpenCV >= 2.4.3
 #endif
-#if CV_MAJOR_VERSION == 3
+#if CV_MAJOR_VERSION >= 3
     stringList.append("KNN"); // only on OpenCV 3.x
 #endif
     stringList.append("DPAdaptiveMedian");

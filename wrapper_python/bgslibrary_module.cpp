@@ -47,7 +47,7 @@ PYBIND11_MODULE(bgs, m)
 {
 	NDArrayConverter::init_numpy();
 	m.doc() = "python wrapper for bgslibrary using pybind11";
-	
+
 	// Basic test
   m.def("read_image", &read_image, "A function that read an image", py::arg("image"));
   m.def("show_image", &show_image, "A function that show an image", py::arg("image"));
@@ -157,7 +157,7 @@ PYBIND11_MODULE(bgs, m)
 		.def("getBackgroundModel", &KDE::getBackgroundModel)
 		;
 
-#if CV_MAJOR_VERSION == 3
+#if CV_MAJOR_VERSION >= 3
 	py::class_<KNN>(m, "KNN")
     .def(py::init<>())
 		.def("apply", &KNN::apply)
