@@ -16,8 +16,13 @@ TEMPLATE = app
 #LIBS += -LC:/OpenCV3.1.0/build/x64/vc14/lib -lopencv_world310
 
 # For Windows x64 + Visual Studio 2015 + OpenCV 3.2.0
-INCLUDEPATH += C:/OpenCV3.2.0/build/include
-LIBS += -LC:/OpenCV3.2.0/build/x64/vc14/lib -lopencv_world320
+#INCLUDEPATH += C:/OpenCV3.2.0/build/include
+#LIBS += -LC:/OpenCV3.2.0/build/x64/vc14/lib -lopencv_world320
+
+# For Windows x64 + Visual Studio 2017 + OpenCV 3.4.2
+INCLUDEPATH += E:/OpenCV3.4.2/build/include
+INCLUDEPATH += E:/OpenCV3.4.2/build/include/opencv
+LIBS += -LE:/OpenCV3.4.2/build/x64/vc15/lib -lopencv_world342
 
 # For Linux
 # INCLUDEPATH += /usr/local/include/opencv
@@ -124,7 +129,8 @@ SOURCES += bgslibrary_gui.cpp\
     ../package_bgs/VuMeter.cpp \
     ../package_bgs/WeightedMovingMean.cpp \
     ../package_bgs/WeightedMovingVariance.cpp \
-    ../package_bgs/_template_/amber/amber.c
+    ../package_bgs/_template_/amber/amber.c \
+    ../package_bgs/CodeBook.cpp
 
 HEADERS  += mainwindow.h \
     qt_utils.h \
@@ -236,7 +242,8 @@ HEADERS  += mainwindow.h \
     ../package_bgs/ViBe.h \
     ../package_bgs/VuMeter.h \
     ../package_bgs/WeightedMovingMean.h \
-    ../package_bgs/WeightedMovingVariance.h
+    ../package_bgs/WeightedMovingVariance.h \
+    ../package_bgs/CodeBook.h
 
 FORMS    += mainwindow.ui
 

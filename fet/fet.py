@@ -11,6 +11,10 @@ import os
 from os import listdir
 from os.path import isfile, join
 
+import sys
+if sys.version_info >= (3, 0):
+  from six.moves import xrange
+
 path_gt = 'GT/'
 path_fg = 'FG/'
 path_sc = 'SC/'
@@ -40,54 +44,54 @@ red   = [0,0,255] # for FP
 white = [255,255,255] # for TP
 black = [0,0,0] # for TN
 
-print 'Processing'
+print('Processing')
 k = 1
 for file_gt, file_fg in zip(files_gt, files_fg):
-    print(k, file_gt, file_fg)
-    img_gt = cv2.imread(path_gt + file_gt,cv2.IMREAD_GRAYSCALE)
-    img_fg = cv2.imread(path_fg + file_fg,cv2.IMREAD_GRAYSCALE)
-    # img_gt = cv2.resize(img_gt, (0,0), fx=0.5, fy=0.5) 
-    # print(img_gt.shape,img_fg.shape)
-    rows,cols = img_gt.shape
-    img_fg = cv2.resize(img_fg,(cols,rows)) 
-    img_res = np.zeros((rows,cols,3),np.uint8)
-    for i in xrange(rows):
-        for j in xrange(cols):
-            pixel_gt = img_gt[i,j]
-            pixel_fg = img_fg[i,j]        
-            if(pixel_gt == 255 and pixel_fg == 255):
-                TP = TP + 1
-                img_res[i,j] = white
-            if(pixel_gt == 0 and pixel_fg == 255):
-                FP = FP + 1
-                img_res[i,j] = red
-            if(pixel_gt == 0 and pixel_fg == 0):
-                TN = TN + 1
-                img_res[i,j] = black
-            if(pixel_gt == 255 and pixel_fg == 0):
-                FN = FN + 1
-                img_res[i,j] = green
-    cv2.imshow('GT',img_gt)
-    cv2.imshow('FG',img_fg)
-    cv2.imshow('SC',img_res)
-    cv2.imwrite(path_sc + file_gt, img_res)
-    cv2.waitKey(1) # 33
-    k = k + 1
-    #break
+  print(k, file_gt, file_fg)
+  img_gt = cv2.imread(path_gt + file_gt,cv2.IMREAD_GRAYSCALE)
+  img_fg = cv2.imread(path_fg + file_fg,cv2.IMREAD_GRAYSCALE)
+  # img_gt = cv2.resize(img_gt, (0,0), fx=0.5, fy=0.5) 
+  # print(img_gt.shape,img_fg.shape)
+  rows,cols = img_gt.shape
+  img_fg = cv2.resize(img_fg,(cols,rows)) 
+  img_res = np.zeros((rows,cols,3),np.uint8)
+  for i in xrange(rows):
+    for j in xrange(cols):
+      pixel_gt = img_gt[i,j]
+      pixel_fg = img_fg[i,j]        
+      if(pixel_gt == 255 and pixel_fg == 255):
+        TP = TP + 1
+        img_res[i,j] = white
+      if(pixel_gt == 0 and pixel_fg == 255):
+        FP = FP + 1
+        img_res[i,j] = red
+      if(pixel_gt == 0 and pixel_fg == 0):
+        TN = TN + 1
+        img_res[i,j] = black
+      if(pixel_gt == 255 and pixel_fg == 0):
+        FN = FN + 1
+        img_res[i,j] = green
+  cv2.imshow('GT',img_gt)
+  cv2.imshow('FG',img_fg)
+  cv2.imshow('SC',img_res)
+  cv2.imwrite(path_sc + file_gt, img_res)
+  cv2.waitKey(1) # 33
+  k = k + 1
+  #break
 cv2.destroyAllWindows()
 
 Recall = TP / (TP + FN)
 Precision = TP / (TP + FP)
 Fscore = 2*Precision*Recall/(Precision+Recall)
 
-print 'Score:'
-print 'TP: ', TP
-print 'FP: ', FP
-print 'TN: ', TN
-print 'FN: ', FN
-print 'Recall: ', Recall
-print 'Precision: ', Precision
-print 'Fscore: ', Fscore
-print ''
+print('Score:')
+print('TP: ', TP)
+print('FP: ', FP)
+print('TN: ', TN)
+print('FN: ', FN)
+print('Recall: ', Recall)
+print('Precision: ', Precision)
+print('Fscore: ', Fscore)
+print('')
 
 #####################################################################

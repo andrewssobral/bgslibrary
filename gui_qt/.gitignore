@@ -7,3 +7,4 @@ binaries*/
 Makefile*
 *.exe
 *.dll
+*.pro.user

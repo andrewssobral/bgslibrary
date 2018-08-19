@@ -27,6 +27,8 @@ set(CMAKE_AUTOUIC ON)
 
 # Find the Qt5Widgets library
 find_package(Qt5Widgets)
+# To fix the issue: https://stackoverflow.com/questions/38557755/cmake-cant-seem-to-find-needed-qt-cmake-files-even-though-ive-set-cmake-prefix
+#find_package(Qt5Widgets CONFIG PATHS C:/Qt/5.11.1/msvc2017_64/lib/cmake NO_DEFAULT_PATH)
 if(Qt5Widgets_FOUND)
   message(STATUS "Qt5Widgets status:")
   message(STATUS "    version: ${Qt5Widgets_VERSION}")
