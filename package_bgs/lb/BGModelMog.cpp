@@ -54,9 +54,9 @@ namespace lb_library
       MOGDATA *pMOG = m_pMOG;
       int *pK = m_pK;
 
-      for (int i = 0; i < (m_width * m_height); i++)
+      for (unsigned int i = 0; i < (m_width * m_height); i++)
       {
-        for (int k = 0; k < NUMBERGAUSSIANS; k++)
+        for (unsigned int k = 0; k < NUMBERGAUSSIANS; k++)
         {
           pMOG->mu.Red = 0.0;
           pMOG->mu.Green = 0.0;
@@ -116,9 +116,9 @@ namespace lb_library
       Image<BYTERGB> prgbSrc(m_SrcImage);
 
       int n = 0;
-      for (int i = 0; i < m_height; i++)
+      for (unsigned int i = 0; i < m_height; i++)
       {
-        for (int j = 0; j < m_width; j++)
+        for (unsigned int j = 0; j < m_width; j++)
         {
           pMOG[0].mu.Red = prgbSrc[i][j].Red;
           pMOG[0].mu.Green = prgbSrc[i][j].Green;
@@ -153,9 +153,9 @@ namespace lb_library
       Image<BYTERGB> prgbFG(m_FGImage);
 
       int n = 0;
-      for (int i = 0; i < m_height; i++)
+      for (unsigned int i = 0; i < m_height; i++)
       {
-        for (int j = 0; j < m_width; j++)
+        for (unsigned int j = 0; j < m_width; j++)
         {
           double srcR = (double)prgbSrc[i][j].Red;
           double srcG = (double)prgbSrc[i][j].Green;

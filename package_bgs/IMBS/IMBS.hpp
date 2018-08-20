@@ -212,5 +212,5 @@ public:
   unsigned int getFgThreshold() {
     return fgThreshold;
   }
-  void getBgModel(BgModel bgModel_copy[], int size);
+  void getBgModel(BgModel bgModel_copy[], unsigned int size);
 };

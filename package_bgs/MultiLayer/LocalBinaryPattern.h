@@ -85,7 +85,7 @@ private:
   void SetShiftedMeshGrid(CvSize img_size, float offset_x, float offset_y, CvMat *grid_map_x, CvMat *grid_map_y);
 
   float*	m_pRadiuses;			/* the circle radiuses for the LBP operator */
-  int	m_nLBPType;			/* the type of computing LBP operator */
+  //int	m_nLBPType;			/* the type of computing LBP operator */
   int*	m_pNeigPointsNums;		/* the numbers of neighboring pixels on multi-level circles */
   int	m_nImgsNum;			/* the number of multi-channel image */
   int	m_nLBPLevelNum;			/* the number of multi-level LBP operator */

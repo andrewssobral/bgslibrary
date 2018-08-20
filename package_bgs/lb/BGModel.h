@@ -65,8 +65,8 @@ namespace lb_library
     IplImage* m_BGImage;
     IplImage* m_FGImage;
 
-    const int m_width;
-    const int m_height;
+    const unsigned int m_width;
+    const unsigned int m_height;
 
     virtual void Init() = 0;
     virtual void Update() = 0;

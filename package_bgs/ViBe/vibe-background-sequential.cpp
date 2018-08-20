@@ -301,7 +301,7 @@ int32_t libvibeModel_Sequential_Segmentation_8u_C1R(
   uint32_t width = model->width;
   uint32_t height = model->height;
   uint32_t matchingNumber = model->matchingNumber;
-  uint32_t matchingThreshold = model->matchingThreshold;
+  //uint32_t matchingThreshold = model->matchingThreshold;
 
   uint8_t *historyImage = model->historyImage;
   uint8_t *historyBuffer = model->historyBuffer;
@@ -397,7 +397,7 @@ int32_t libvibeModel_Sequential_Update_8u_C1R(
 
   /* All the frame, except the border. */
   uint32_t shift, indX, indY;
-  int x, y;
+  unsigned int x, y;
 
   for (y = 1; y < height - 1; ++y) {
     shift = rand() % width;

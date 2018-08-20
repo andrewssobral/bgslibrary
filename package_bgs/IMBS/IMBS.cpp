@@ -742,7 +742,7 @@ void BackgroundSubtractorIMBS::changeBg() {
   }
 }
 
-void BackgroundSubtractorIMBS::getBgModel(BgModel bgModel_copy[], int size) {
+void BackgroundSubtractorIMBS::getBgModel(BgModel bgModel_copy[], unsigned int size) {
   if (size != numPixels) {
     return;
   }

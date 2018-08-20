@@ -45,7 +45,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #include "MEImage.hpp"
 
 class CvBGStatModel;
-class CvPoint2D32f;
+struct CvPoint2D32f;
 
 // Struct for histogram update data of a pixel
 struct MEPixelDataType;

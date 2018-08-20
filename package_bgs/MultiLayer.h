@@ -42,7 +42,7 @@ namespace bgslibrary
       int detectAfter;
       CMultiLayerBGS* BGS;
       Status status;
-      IplImage* img;
+      //IplImage* img;
       IplImage* org_img;
       IplImage* fg_img;
       IplImage* bg_img;

@@ -138,7 +138,7 @@ private:
 
   double sumMagnitude;
   double formerMeanMag;
-  float formerDistanceBack;
+  //float formerDistanceBack;
 
   //####################################################################################
   //N - Number: Defining the size of the background-history-model

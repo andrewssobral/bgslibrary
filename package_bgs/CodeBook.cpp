@@ -91,7 +91,7 @@ void CodeBook::update_cb(const cv::Mat& frame)
       int pix = frame.at<uchar>(i, j);
       std::vector<codeword>& cm = cbMain[i][j];
       bool found = false;
-      for (int k = 0; k<cm.size(); k++)
+      for (int k = 0; k < (int)cm.size(); k++)
       {
         if (cm[k].min <= pix && pix <= cm[k].max && !found)
         {
@@ -141,7 +141,7 @@ void CodeBook::fg_cb(const cv::Mat& frame, cv::Mat& fg)
       int pix = frame.at<uchar>(i, j);
       std::vector<codeword>& cm = cbMain[i][j];
       bool found = false;
-      for (int k = 0; k<cm.size(); k++)
+      for (int k = 0; k < (int)cm.size(); k++)
       {
         if (cm[k].min <= pix && pix <= cm[k].max && !found)
         {
@@ -160,7 +160,7 @@ void CodeBook::fg_cb(const cv::Mat& frame, cv::Mat& fg)
       if (found) continue;
       found = false;
       std::vector<codeword>& cc = cbCache[i][j];
-      for (int k = 0; k<cc.size(); k++)
+      for (int k = 0; k < (int)cc.size(); k++)
       {
         if (cc[k].min <= pix && pix <= cc[k].max && !found)
         {

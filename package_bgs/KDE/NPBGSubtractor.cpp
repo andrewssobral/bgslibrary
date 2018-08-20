@@ -667,7 +667,7 @@ void NPBGSubtractor::SequenceBGUpdate_Pairs(unsigned char * image,
   unsigned int i, ic;
   unsigned char * pSequence = BGModel->Sequence;
   unsigned char * PixelQTop = BGModel->PixelQTop;
-  unsigned int Top = BGModel->Top;
+  //unsigned int Top = BGModel->Top;
   unsigned int rate;
 
   int TemporalBufferTop = (int)BGModel->TemporalBufferTop;
@@ -882,13 +882,13 @@ void NPBGSubtractor::NPBGSubtraction_Subset_Kernel(
 
   double *kerneltable = KernelTable->kerneltable;
   int KernelHalfWidth = KernelTable->tablehalfwidth;
-  double *KernelSum = KernelTable->kernelsums;
+  //double *KernelSum = KernelTable->kernelsums;
   double KernelMaxSigma = KernelTable->maxsegma;
   double KernelMinSigma = KernelTable->minsegma;
   int KernelBins = KernelTable->segmabins;
   unsigned char * SDbins = BGModel->SDbinsImage;
 
-  unsigned char * SaturationImage = FilteredFGImage;
+  //unsigned char * SaturationImage = FilteredFGImage;
 
   // default sigmas .. to be removed.
   double sigma1;

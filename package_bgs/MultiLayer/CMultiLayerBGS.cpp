@@ -1419,7 +1419,7 @@ void CMultiLayerBGS::GetColoredBgMultiLayeredImage(IplImage *bg_multi_layer_img,
     lbp_idxes = (*PLBP).lbp_idxes;
     bLayeredBg = false;
 
-    if ((*_fg_maskD == 0)) {
+    if (*_fg_maskD == 0) {
       bg_layer_num = LBPs[lbp_idxes[0]].bg_layer_num;
       int first_layer_idx = 0;
       for (c = 0; c < (int)lbp_num; c++) {
@@ -1708,7 +1708,7 @@ void CMultiLayerBGS::UpdatePatternColorDistWeights(float *cur_pattern, float *bg
     bg_true_num += (bg_pattern[a] > 0.5f);
     bg_false_num += (bg_pattern[a] < 0.5f);
   }
-  m_fTextureWeight = expf(-(fabsf(cur_true_num - cur_false_num) + fabsf(bg_true_num - bg_false_num) + 0.8f) / (float)m_nLBPLength);
+  m_fTextureWeight = expf(-(std::abs(cur_true_num - cur_false_num) + std::abs(bg_true_num - bg_false_num) + 0.8f) / (float)m_nLBPLength);
   m_fTextureWeight = MAX(MIN(m_fTextureWeight, 0.5f), 0.1f);
   m_fColorWeight = 1.0f - m_fTextureWeight;
 }

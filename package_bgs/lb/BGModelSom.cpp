@@ -157,11 +157,11 @@ namespace lb_library
     {
       Image<BYTERGB> prgbSrc(m_SrcImage);
 
-      for (int j = 0; j < m_height; j++)
+      for (unsigned int j = 0; j < m_height; j++)
       {
         int jj = m_offset + j*(N + m_pad);
 
-        for (int i = 0; i < m_width; i++)
+        for (unsigned int i = 0; i < m_width; i++)
         {
           int ii = m_offset + i*(M + m_pad);
 
@@ -204,11 +204,11 @@ namespace lb_library
       Image<BYTERGB> prgbBG(m_BGImage);
       Image<BYTERGB> prgbFG(m_FGImage);
 
-      for (int j = 0; j < m_height; j++)
+      for (unsigned int j = 0; j < m_height; j++)
       {
         int jj = m_offset + j*(N + m_pad);
 
-        for (int i = 0; i < m_width; i++)
+        for (unsigned int i = 0; i < m_width; i++)
         {
           int ii = m_offset + i*(M + m_pad);
 

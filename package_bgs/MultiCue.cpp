@@ -212,7 +212,7 @@ void MultiCue::Destroy()
 {
   if (g_bModelMemAllocated == FALSE && g_bNonModelMemAllocated == FALSE) return;
 
-  short nNeighborNum = g_nNeighborNum;
+  //short nNeighborNum = g_nNeighborNum;
 
   if (g_bModelMemAllocated == TRUE) {
     T_ReleaseTextureModelRelatedMemory();
@@ -367,7 +367,7 @@ void MultiCue::PostProcessing(IplImage* frame) {
 //														the background-model update function			                                   //
 //-----------------------------------------------------------------------------------------------------------------------------------------//
 void MultiCue::UpdateModel_Par() {
-  short nNeighborNum = g_nNeighborNum;
+  //short nNeighborNum = g_nNeighborNum;
 
   //Step1: update map construction
   for (int i = 0; i < g_iRHeight; i++) {
@@ -825,7 +825,7 @@ void MultiCue::SetBoundingBox(int iLabelCount, int** aLabelTable) {
   for (int i = 1; i < g_iRHeight; i++) {
     for (int j = 1; j < g_iRWidth; j++) {
 
-      if ((aLabelTable[i][j] == 0)) continue;
+      if (aLabelTable[i][j] == 0) continue;
 
       iBoundBoxIndex = aLabelTable[i][j] - 1;
 
@@ -1108,11 +1108,11 @@ double MultiCue::CalculateHausdorffDist(IplImage* input_image, IplImage* model_i
   sort(vTempDist.begin(), vTempDist.end()); //in ascending order
 
   double dQuantileVal = 0.9, dForwardDistance;
-  int iDistIndex = (int)(dQuantileVal*vTempDist.size()); if (iDistIndex == vTempDist.size()) iDistIndex -= 1;
+  int iDistIndex = (int)(dQuantileVal*vTempDist.size());
+  if (iDistIndex == vTempDist.size()) iDistIndex -= 1;
 
   dForwardDistance = sqrt(vTempDist[iDistIndex]);
   return dForwardDistance;
-
 }
 
 

@@ -50,7 +50,7 @@ void Amber::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_
     return;
   }
 
-  unsigned int stride = width * 3;
+  //unsigned int stride = width * 3;
   unsigned char* image = static_cast<unsigned char*>(img_input.data);
 
   if (firstTime)
@@ -76,7 +76,7 @@ void Amber::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_
   unsigned char* oBuffer = static_cast<unsigned char*>(img_output.data);
   unsigned char* tmpSegmentationMap = output_segmentationMap;
 
-  for (int i = 0; i < width * height; i++)
+  for (unsigned int i = 0; i < width * height; i++)
   {
     *oBuffer = *tmpSegmentationMap;
 
