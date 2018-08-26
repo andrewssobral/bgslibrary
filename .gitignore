@@ -13,3 +13,4 @@ fet/etc/
 *.pdb
 *.suo
 *.dll
+*.pyd
