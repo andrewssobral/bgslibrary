@@ -14,7 +14,9 @@ message(STATUS "BGSLIBRARY WITH PYTHON SUPPORT: ${BGS_PYTHON_SUPPORT}")
 if(NOT DEFINED BGS_PYTHON_VERSION)
   set(BGS_PYTHON_VERSION 3)
 endif()
-message(STATUS "PYTHON VERSION: ${BGS_PYTHON_VERSION}")
+if(BGS_PYTHON_SUPPORT)
+  message(STATUS "PYTHON VERSION: ${BGS_PYTHON_VERSION}")
+endif()
 
 if(UNIX)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
@@ -95,8 +97,12 @@ if(BGS_PYTHON_SUPPORT)
   #else()
   #  find_package(Boost REQUIRED COMPONENTS python3)
   #endif()
-  find_package(PythonInterp ${BGS_PYTHON_VERSION} REQUIRED)
-  find_package(PythonLibs ${BGS_PYTHON_VERSION} REQUIRED)
+
+  #find_package(pybind11 REQUIRED)
+  add_subdirectory(pybind11)
+
+  #find_package(PythonInterp ${BGS_PYTHON_VERSION} REQUIRED)
+  #find_package(PythonLibs ${BGS_PYTHON_VERSION} REQUIRED)
 
   #message(STATUS "Boost library status:")
   #message(STATUS "    version: ${Boost_VERSION}")
@@ -105,7 +111,7 @@ if(BGS_PYTHON_SUPPORT)
 
   message(STATUS "Python library status:")
   message(STATUS "    executable: ${PYTHON_EXECUTABLE}")
-  message(STATUS "    version: ${PYTHON_VERSION_STRING}")
+  #message(STATUS "    version: ${PYTHON_VERSION_STRING}")
   #message(STATUS "    libraries: ${PYTHON_LIBRARIES}")
   message(STATUS "    library: ${PYTHON_LIBRARY}")
   message(STATUS "    include path: ${PYTHON_INCLUDE_DIRS}")
@@ -153,7 +159,11 @@ endif()
 if(BGS_PYTHON_SUPPORT)
   #add_library(libbgs SHARED ${sources} ${bgs_src} ${analysis_src})
   add_library(libbgs SHARED ${bgs_src} ${analysis_src})
-  target_link_libraries(libbgs ${OpenCV_LIBS} ${Boost_LIBRARIES} ${PYTHON_LIBRARY})
+  #target_link_libraries(libbgs ${OpenCV_LIBS} ${Boost_LIBRARIES} ${PYTHON_LIBRARY})
+  target_link_libraries(libbgs ${OpenCV_LIBS} ${PYTHON_LIBRARY} pybind11::module)
+  #target_link_libraries(libbgs PRIVATE ${OpenCV_LIBS} ${PYTHON_LIBRARY} pybind11::embed)
+  #set_target_properties(libbgs PROPERTIES PREFIX "${PYTHON_MODULE_PREFIX}" SUFFIX "${PYTHON_MODULE_EXTENSION}")
+  set_target_properties(libbgs PROPERTIES SUFFIX "${PYTHON_MODULE_EXTENSION}")
   target_compile_definitions(libbgs PRIVATE BGS_PYTHON_SUPPORT=1)
 else()
   #add_library(libbgs STATIC ${sources} ${bgs_src} ${analysis_src})
@@ -164,30 +174,37 @@ set_property(TARGET libbgs PROPERTY PUBLIC_HEADER ${bgs_include})
 
 if(WIN32)
   # set_property(TARGET libbgs PROPERTY SUFFIX ".lib")
-  if(BGS_PYTHON_SUPPORT)
-    set_property(TARGET libbgs PROPERTY SUFFIX ".pyd")
-  endif()
+  #if(BGS_PYTHON_SUPPORT)
+  #  set_property(TARGET libbgs PROPERTY SUFFIX ".pyd")
+  #endif()
 else()
   set_property(TARGET libbgs PROPERTY OUTPUT_NAME "bgs")
 endif()
 
+#if(APPLE)
+#  if(BGS_PYTHON_SUPPORT)
+#    set_property(TARGET libbgs PROPERTY SUFFIX ".so")
+#    set_target_properties(libbgs PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+#  endif()
+#endif()
+
 if(NOT BGS_PYTHON_SUPPORT)
-add_executable(bgslibrary ${main})
-target_link_libraries(bgslibrary ${OpenCV_LIBS} libbgs)
-# set_target_properties(bgslibrary PROPERTIES OUTPUT_NAME bgs)
+  add_executable(bgslibrary ${main})
+  target_link_libraries(bgslibrary ${OpenCV_LIBS} libbgs)
+  # set_target_properties(bgslibrary PROPERTIES OUTPUT_NAME bgs)
 
-add_executable(bgs_demo ${demo})
-target_link_libraries(bgs_demo ${OpenCV_LIBS} libbgs)
+  add_executable(bgs_demo ${demo})
+  target_link_libraries(bgs_demo ${OpenCV_LIBS} libbgs)
 
-add_executable(bgs_demo2 ${demo2})
-target_link_libraries(bgs_demo2 ${OpenCV_LIBS} libbgs)
+  add_executable(bgs_demo2 ${demo2})
+  target_link_libraries(bgs_demo2 ${OpenCV_LIBS} libbgs)
 
-install(TARGETS libbgs
-  bgslibrary
-  RUNTIME DESTINATION bin COMPONENT app
-  LIBRARY DESTINATION lib COMPONENT runtime
-  ARCHIVE DESTINATION lib COMPONENT runtime
-  PUBLIC_HEADER DESTINATION include/package_bgs COMPONENT dev
-  FRAMEWORK DESTINATION "/Library/Frameworks"
-)
+  install(TARGETS libbgs
+    bgslibrary
+    RUNTIME DESTINATION bin COMPONENT app
+    LIBRARY DESTINATION lib COMPONENT runtime
+    ARCHIVE DESTINATION lib COMPONENT runtime
+    PUBLIC_HEADER DESTINATION include/package_bgs COMPONENT dev
+    FRAMEWORK DESTINATION "/Library/Frameworks"
+  )
 endif()
