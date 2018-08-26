@@ -1,52 +1,8 @@
 import numpy as np
 import cv2
-import libbgs
+import bgs
 
-## BGS Library algorithms
-bgs = libbgs.FrameDifference()
-#bgs = libbgs.StaticFrameDifference()
-#bgs = libbgs.AdaptiveBackgroundLearning()
-#bgs = libbgs.AdaptiveSelectiveBackgroundLearning()
-#bgs = libbgs.DPAdaptiveMedian()
-#bgs = libbgs.DPEigenbackground()
-#bgs = libbgs.DPGrimsonGMM()
-#bgs = libbgs.DPMean()
-#bgs = libbgs.DPPratiMediod()
-#bgs = libbgs.DPTexture()
-#bgs = libbgs.DPWrenGA()
-#bgs = libbgs.DPZivkovicAGMM()
-#bgs = libbgs.FuzzyChoquetIntegral()
-#bgs = libbgs.FuzzySugenoIntegral()
-#bgs = libbgs.GMG() # if opencv 2.x
-#bgs = libbgs.IndependentMultimodal()
-#bgs = libbgs.KDE()
-#bgs = libbgs.KNN() # if opencv 3.x
-#bgs = libbgs.LBAdaptiveSOM()
-#bgs = libbgs.LBFuzzyAdaptiveSOM()
-#bgs = libbgs.LBFuzzyGaussian()
-#bgs = libbgs.LBMixtureOfGaussians()
-#bgs = libbgs.LBSimpleGaussian()
-#bgs = libbgs.LBP_MRF()
-#bgs = libbgs.LOBSTER()
-#bgs = libbgs.MixtureOfGaussianV1() # if opencv 2.x
-#bgs = libbgs.MixtureOfGaussianV2()
-#bgs = libbgs.MultiCue()
-#bgs = libbgs.MultiLayer()
-#bgs = libbgs.PAWCS()
-#bgs = libbgs.PixelBasedAdaptiveSegmenter()
-#bgs = libbgs.SigmaDelta()
-#bgs = libbgs.SuBSENSE()
-#bgs = libbgs.T2FGMM_UM()
-#bgs = libbgs.T2FGMM_UV()
-#bgs = libbgs.T2FMRF_UM()
-#bgs = libbgs.T2FMRF_UV()
-#bgs = libbgs.VuMeter()
-#bgs = libbgs.WeightedMovingMean()
-#bgs = libbgs.WeightedMovingVariance()
-#bgs = libbgs.TwoPoints()
-#bgs = libbgs.ViBe()
-#bgs = libbgs.CodeBook()
-
+algorithm = bgs.FrameDifference()
 video_file = "dataset/video.avi"
 
 capture = cv2.VideoCapture(video_file)
@@ -68,8 +24,8 @@ while True:
     pos_frame = capture.get(1)
     #print str(pos_frame)+" frames"
     
-    img_output = bgs.apply(frame)
-    img_bgmodel = bgs.getBackgroundModel();
+    img_output = algorithm.apply(frame)
+    img_bgmodel = algorithm.getBackgroundModel()
     
     cv2.imshow('img_output', img_output)
     cv2.imshow('img_bgmodel', img_bgmodel)

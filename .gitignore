@@ -13,3 +13,6 @@ fet/etc/
 *.pdb
 *.suo
 *.dll
+*.pyd
+*.so
+bgs.egg-info

@@ -75,6 +75,6 @@ int32_t libamberModelFree(amberModel* model)
 }
 
 /* For compilation with g++ */
-#ifdef __cplusplus
-}
-#endif
+//#ifdef __cplusplus
+//}
+//#endif
