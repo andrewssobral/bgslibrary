@@ -23,6 +23,12 @@ if(UNIX)
   set(CMAKE_MACOSX_RPATH 1)
 endif(UNIX)
 
+# Avoid cmake warnings about changes in behavior of some Mac OS X path 
+# variable we don't care about.
+if (POLICY CMP0042)
+  cmake_policy(SET CMP0042 NEW)
+endif()
+
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99")
 #set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake-modules)
 
@@ -98,6 +104,14 @@ if(BGS_PYTHON_SUPPORT)
   #  find_package(Boost REQUIRED COMPONENTS python3)
   #endif()
 
+  # Pybind11's cmake scripts enable link time optimization by default.  However,
+  # it makes linking take a really long time and doesn't seem to substantively
+  # improve runtime performance.  So we disable LTO here to make building bgslibrary
+  # faster.
+  set(PYBIND11_LTO_CXX_FLAGS "")
+
+  #set(PYBIND11_PYTHON_VERSION 2.7 3.5 3.6)
+  set(PYBIND11_PYTHON_VERSION ${BGS_PYTHON_VERSION})
   #find_package(pybind11 REQUIRED)
   add_subdirectory(pybind11)
 
@@ -157,49 +171,54 @@ if(${OpenCV_VERSION} VERSION_LESS 2.4.3)
 endif()
 
 if(BGS_PYTHON_SUPPORT)
-  #add_library(libbgs SHARED ${sources} ${bgs_src} ${analysis_src})
-  add_library(libbgs SHARED ${bgs_src} ${analysis_src})
-  #target_link_libraries(libbgs ${OpenCV_LIBS} ${Boost_LIBRARIES} ${PYTHON_LIBRARY})
-  target_link_libraries(libbgs ${OpenCV_LIBS} ${PYTHON_LIBRARY} pybind11::module)
-  #target_link_libraries(libbgs PRIVATE ${OpenCV_LIBS} ${PYTHON_LIBRARY} pybind11::embed)
-  #set_target_properties(libbgs PROPERTIES PREFIX "${PYTHON_MODULE_PREFIX}" SUFFIX "${PYTHON_MODULE_EXTENSION}")
-  set_target_properties(libbgs PROPERTIES SUFFIX "${PYTHON_MODULE_EXTENSION}")
-  target_compile_definitions(libbgs PRIVATE BGS_PYTHON_SUPPORT=1)
+  #add_library(bgs_python SHARED ${sources} ${bgs_src} ${analysis_src})
+  #add_library(bgs_python SHARED ${bgs_src} ${analysis_src})
+  pybind11_add_module(bgs_python ${bgs_src} ${analysis_src})
+  target_link_libraries(bgs_python PRIVATE ${OpenCV_LIBS} ${PYTHON_LIBRARY} pybind11::module)
+  #target_link_libraries(bgs_python ${OpenCV_LIBS} ${Boost_LIBRARIES} ${PYTHON_LIBRARY})
+  #target_link_libraries(bgs_python ${OpenCV_LIBS} ${PYTHON_LIBRARY} pybind11::module)
+  #target_link_libraries(bgs_python PRIVATE ${OpenCV_LIBS} ${PYTHON_LIBRARY} pybind11::embed)
+  #set_target_properties(bgs_python PROPERTIES PREFIX "${PYTHON_MODULE_PREFIX}" SUFFIX "${PYTHON_MODULE_EXTENSION}")
+  set_target_properties(bgs_python PROPERTIES SUFFIX "${PYTHON_MODULE_EXTENSION}")
+  target_compile_definitions(bgs_python PRIVATE BGS_PYTHON_SUPPORT=1)
+  install(TARGETS bgs_python DESTINATION ${CMAKE_CURRENT_SOURCE_DIR})
+  # Set the output library name to bgslibrary because that's what setup.py and distutils expects.
+  set_property(TARGET bgs_python PROPERTY OUTPUT_NAME "bgs")
 else()
-  #add_library(libbgs STATIC ${sources} ${bgs_src} ${analysis_src})
-  add_library(libbgs STATIC ${bgs_src} ${analysis_src})
-  target_link_libraries(libbgs ${OpenCV_LIBS})
+  #add_library(bgslibrary_core STATIC ${sources} ${bgs_src} ${analysis_src})
+  add_library(bgslibrary_core STATIC ${bgs_src} ${analysis_src})
+  target_link_libraries(bgslibrary_core ${OpenCV_LIBS})
+  set_property(TARGET bgslibrary_core PROPERTY PUBLIC_HEADER ${bgs_include})
 endif()
-set_property(TARGET libbgs PROPERTY PUBLIC_HEADER ${bgs_include})
 
-if(WIN32)
-  # set_property(TARGET libbgs PROPERTY SUFFIX ".lib")
-  #if(BGS_PYTHON_SUPPORT)
-  #  set_property(TARGET libbgs PROPERTY SUFFIX ".pyd")
-  #endif()
-else()
-  set_property(TARGET libbgs PROPERTY OUTPUT_NAME "bgs")
-endif()
+#if(WIN32)
+#  # set_property(TARGET bgslibrary_core PROPERTY SUFFIX ".lib")
+#  #if(BGS_PYTHON_SUPPORT)
+#  #  set_property(TARGET bgslibrary_core PROPERTY SUFFIX ".pyd")
+#  #endif()
+#else()
+#  set_property(TARGET bgslibrary_core PROPERTY OUTPUT_NAME "bgs")
+#endif()
 
 #if(APPLE)
 #  if(BGS_PYTHON_SUPPORT)
-#    set_property(TARGET libbgs PROPERTY SUFFIX ".so")
-#    set_target_properties(libbgs PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+#    set_property(TARGET bgslibrary_core PROPERTY SUFFIX ".so")
+#    set_target_properties(bgslibrary_core PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
 #  endif()
 #endif()
 
 if(NOT BGS_PYTHON_SUPPORT)
   add_executable(bgslibrary ${main})
-  target_link_libraries(bgslibrary ${OpenCV_LIBS} libbgs)
+  target_link_libraries(bgslibrary ${OpenCV_LIBS} bgslibrary_core)
   # set_target_properties(bgslibrary PROPERTIES OUTPUT_NAME bgs)
 
   add_executable(bgs_demo ${demo})
-  target_link_libraries(bgs_demo ${OpenCV_LIBS} libbgs)
+  target_link_libraries(bgs_demo ${OpenCV_LIBS} bgslibrary_core)
 
   add_executable(bgs_demo2 ${demo2})
-  target_link_libraries(bgs_demo2 ${OpenCV_LIBS} libbgs)
+  target_link_libraries(bgs_demo2 ${OpenCV_LIBS} bgslibrary_core)
 
-  install(TARGETS libbgs
+  install(TARGETS bgslibrary_core
     bgslibrary
     RUNTIME DESTINATION bin COMPONENT app
     LIBRARY DESTINATION lib COMPONENT runtime

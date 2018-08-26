@@ -15,4 +15,4 @@ fet/etc/
 *.dll
 *.pyd
 *.so
-libbgs.egg-info
+bgs.egg-info

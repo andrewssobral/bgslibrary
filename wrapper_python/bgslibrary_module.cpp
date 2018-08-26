@@ -43,7 +43,7 @@ cv::Mat read_image(std::string image_name)
 	return image;
 }
 
-PYBIND11_MODULE(libbgs, m)
+PYBIND11_MODULE(bgs, m)
 {
 	NDArrayConverter::init_numpy();
 	m.doc() = "python wrapper for bgslibrary using pybind11";

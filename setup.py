@@ -1,10 +1,23 @@
+"""
+To build the bgslibrary:
+    python setup.py build
+To build and install:
+    python setup.py install
+To package the wheel (after pip installing twine and wheel):
+    python setup.py bdist_wheel
+To upload the binary wheel to PyPi
+    twine upload dist/*.whl
+To upload the source distribution to PyPi
+    python setup.py sdist 
+    twine upload dist/bgs-*.tar.gz
+"""
 import os
 import re
 import sys
 import platform
 import subprocess
 
-from setuptools import setup, Extension
+from setuptools import setup, find_packages, Extension
 from setuptools.command.build_ext import build_ext
 from distutils.version import LooseVersion
 
@@ -32,11 +45,12 @@ class CMakeBuild(build_ext):
             self.build_extension(ext)
 
     def build_extension(self, ext):
+        python_version = str(sys.version_info[0]) + "." + str(sys.version_info[1])
         extdir = os.path.abspath(os.path.dirname(self.get_ext_fullpath(ext.name)))
         cmake_args = ['-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=' + extdir,
                       '-DPYTHON_EXECUTABLE=' + sys.executable,
-                      '-DBGS_PYTHON_SUPPORT=ON']
-        print(cmake_args)
+                      '-DBGS_PYTHON_SUPPORT=ON',
+                      '-DBGS_PYTHON_VERSION=' + python_version]
 
         cfg = 'Debug' if self.debug else 'Release'
         build_args = ['--config', cfg]
@@ -57,15 +71,21 @@ class CMakeBuild(build_ext):
             os.makedirs(self.build_temp)
         subprocess.check_call(['cmake', ext.sourcedir] + cmake_args, cwd=self.build_temp, env=env)
         subprocess.check_call(['cmake', '--build', '.'] + build_args, cwd=self.build_temp)
+        #subprocess.check_call(['cmake', ext.sourcedir] + cmake_args, cwd="./build", env=env)
+        #subprocess.check_call(['cmake', '--build', '.'] + build_args, cwd="./build")
 
 setup(
-    name='libbgs',
+    name='bgs',
     version='2.0.0',
     author='Andrews Sobral',
     author_email='andrewssobral@gmail.com',
+    url='https://github.com/andrewssobral/bgslibrary',
+    license='GPL v3',
     description='Python wrapper for bgslibrary using pybind11 and CMake',
     long_description='',
-    ext_modules=[CMakeExtension('libbgs')],
+    ext_modules=[CMakeExtension('bgs')],
     cmdclass=dict(build_ext=CMakeBuild),
     zip_safe=False,
+    packages=find_packages(),
+    keywords=['BGSLibrary', 'Background Subtraction', 'Computer Vision', 'Machine Learning'],
 )

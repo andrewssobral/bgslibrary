@@ -1,8 +1,8 @@
 import numpy as np
 import cv2
-import libbgs
+import bgs
 
-bgs = libbgs.FrameDifference()
+algorithm = bgs.FrameDifference()
 video_file = "dataset/video.avi"
 
 capture = cv2.VideoCapture(video_file)
@@ -24,8 +24,8 @@ while True:
     pos_frame = capture.get(1)
     #print str(pos_frame)+" frames"
     
-    img_output = bgs.apply(frame)
-    img_bgmodel = bgs.getBackgroundModel()
+    img_output = algorithm.apply(frame)
+    img_bgmodel = algorithm.getBackgroundModel()
     
     cv2.imshow('img_output', img_output)
     cv2.imshow('img_bgmodel', img_bgmodel)

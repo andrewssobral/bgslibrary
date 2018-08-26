@@ -1,6 +1,6 @@
 import numpy as np
 import cv2
-import libbgs
+import bgs
 
 print("OpenCV Version: {}".format(cv2.__version__))
 
@@ -13,58 +13,58 @@ def is_cv3():
 def check_opencv_version(major):
   return cv2.__version__.startswith(major)
 
-## BGS Library algorithms
+## bgslibrary algorithms
 algorithms=[]
-algorithms.append(libbgs.FrameDifference())
-algorithms.append(libbgs.StaticFrameDifference())
-algorithms.append(libbgs.AdaptiveBackgroundLearning())
-algorithms.append(libbgs.AdaptiveSelectiveBackgroundLearning())
-algorithms.append(libbgs.DPAdaptiveMedian())
-algorithms.append(libbgs.DPEigenbackground())
-algorithms.append(libbgs.DPGrimsonGMM())
-algorithms.append(libbgs.DPMean())
-algorithms.append(libbgs.DPPratiMediod())
-algorithms.append(libbgs.DPTexture())
-algorithms.append(libbgs.DPWrenGA())
-algorithms.append(libbgs.DPZivkovicAGMM())
-algorithms.append(libbgs.FuzzyChoquetIntegral())
-algorithms.append(libbgs.FuzzySugenoIntegral())
-algorithms.append(libbgs.IndependentMultimodal())
-algorithms.append(libbgs.KDE())
+algorithms.append(bgs.FrameDifference())
+algorithms.append(bgs.StaticFrameDifference())
+algorithms.append(bgs.AdaptiveBackgroundLearning())
+algorithms.append(bgs.AdaptiveSelectiveBackgroundLearning())
+algorithms.append(bgs.DPAdaptiveMedian())
+algorithms.append(bgs.DPEigenbackground())
+algorithms.append(bgs.DPGrimsonGMM())
+algorithms.append(bgs.DPMean())
+algorithms.append(bgs.DPPratiMediod())
+algorithms.append(bgs.DPTexture())
+algorithms.append(bgs.DPWrenGA())
+algorithms.append(bgs.DPZivkovicAGMM())
+algorithms.append(bgs.FuzzyChoquetIntegral())
+algorithms.append(bgs.FuzzySugenoIntegral())
+algorithms.append(bgs.IndependentMultimodal())
+algorithms.append(bgs.KDE())
 if is_cv3():
-  algorithms.append(libbgs.KNN()) # if opencv 3.x
-algorithms.append(libbgs.LBAdaptiveSOM())
-algorithms.append(libbgs.LBFuzzyAdaptiveSOM())
-algorithms.append(libbgs.LBFuzzyGaussian())
-algorithms.append(libbgs.LBMixtureOfGaussians())
-algorithms.append(libbgs.LBSimpleGaussian())
-algorithms.append(libbgs.LBP_MRF())
-algorithms.append(libbgs.LOBSTER())
+  algorithms.append(bgs.KNN()) # if opencv 3.x
+algorithms.append(bgs.LBAdaptiveSOM())
+algorithms.append(bgs.LBFuzzyAdaptiveSOM())
+algorithms.append(bgs.LBFuzzyGaussian())
+algorithms.append(bgs.LBMixtureOfGaussians())
+algorithms.append(bgs.LBSimpleGaussian())
+algorithms.append(bgs.LBP_MRF())
+algorithms.append(bgs.LOBSTER())
 if is_cv2():
-  algorithms.append(libbgs.GMG()) # if opencv 2.x
-  algorithms.append(libbgs.MixtureOfGaussianV1()) # if opencv 2.x
-algorithms.append(libbgs.MixtureOfGaussianV2())
-algorithms.append(libbgs.MultiCue())
-algorithms.append(libbgs.MultiLayer())
-algorithms.append(libbgs.PAWCS())
-algorithms.append(libbgs.PixelBasedAdaptiveSegmenter())
-algorithms.append(libbgs.SigmaDelta())
-algorithms.append(libbgs.SuBSENSE())
-algorithms.append(libbgs.T2FGMM_UM())
-algorithms.append(libbgs.T2FGMM_UV())
-algorithms.append(libbgs.T2FMRF_UM())
-algorithms.append(libbgs.T2FMRF_UV())
-algorithms.append(libbgs.VuMeter())
-algorithms.append(libbgs.WeightedMovingMean())
-algorithms.append(libbgs.WeightedMovingVariance())
-algorithms.append(libbgs.TwoPoints())
-algorithms.append(libbgs.ViBe())
-algorithms.append(libbgs.CodeBook())
+  algorithms.append(bgs.GMG()) # if opencv 2.x
+  algorithms.append(bgs.MixtureOfGaussianV1()) # if opencv 2.x
+algorithms.append(bgs.MixtureOfGaussianV2())
+algorithms.append(bgs.MultiCue())
+algorithms.append(bgs.MultiLayer())
+algorithms.append(bgs.PAWCS())
+algorithms.append(bgs.PixelBasedAdaptiveSegmenter())
+algorithms.append(bgs.SigmaDelta())
+algorithms.append(bgs.SuBSENSE())
+algorithms.append(bgs.T2FGMM_UM())
+algorithms.append(bgs.T2FGMM_UV())
+algorithms.append(bgs.T2FMRF_UM())
+algorithms.append(bgs.T2FMRF_UV())
+algorithms.append(bgs.VuMeter())
+algorithms.append(bgs.WeightedMovingMean())
+algorithms.append(bgs.WeightedMovingVariance())
+algorithms.append(bgs.TwoPoints())
+algorithms.append(bgs.ViBe())
+algorithms.append(bgs.CodeBook())
 
 video_file = "dataset/video.avi"
 
-for bgs in algorithms:
-  print("Running ", bgs.__class__)
+for algorithm in algorithms:
+  print("Running ", algorithm.__class__)
   
   capture = cv2.VideoCapture(video_file)
   while not capture.isOpened():
@@ -85,8 +85,8 @@ for bgs in algorithms:
       pos_frame = capture.get(1)
       #print str(pos_frame)+" frames"
       
-      img_output = bgs.apply(frame)
-      img_bgmodel = bgs.getBackgroundModel()
+      img_output = algorithm.apply(frame)
+      img_bgmodel = algorithm.getBackgroundModel()
       
       cv2.imshow('img_output', img_output)
       cv2.imshow('img_bgmodel', img_bgmodel)
