@@ -5,11 +5,11 @@ A Background Subtraction Library
 
 [![bgslibrary](http://i.giphy.com/5A94AZahSIVOw.gif)](https://youtu.be/_UbERwuQ0OU)
 
-Page Update: **01/04/2017**
+Page Update: **26/08/2018**
 
 Library Version: **2.0.0** (see **[Build Status](https://github.com/andrewssobral/bgslibrary/wiki/Build-status)** and **[Release Notes](https://github.com/andrewssobral/bgslibrary/wiki/Release-notes)** for more info)
 
-The **BGSLibrary** was developed by [Andrews Sobral](http://andrewssobral.wixsite.com/home) and provides an easy-to-use C++ framework based on [OpenCV](http://www.opencv.org/) to perform foreground-background separation in videos. The bgslibrary is compatible with OpenCV 2.x and 3.x, and compiles under Windows, Linux, and Mac OS X. Currently the library contains **43** algorithms. The source code is available under [GNU GPLv3 license](https://www.gnu.org/licenses/gpl-3.0.en.html), the library is free and open source for academic purposes.
+The **BGSLibrary** was developed early 2012 by [Andrews Sobral](http://andrewssobral.wixsite.com/home) to provide an easy-to-use C++ framework for foreground-background separation in videos based on [OpenCV](http://www.opencv.org/). The bgslibrary is compatible with OpenCV 2.x and 3.x, and compiles under Windows, Linux, and Mac OS X. Currently the library contains **43** algorithms. The source code is available under [GNU GPLv3 license](https://www.gnu.org/licenses/gpl-3.0.en.html), the library is available free of charge to all users, academic and commercial.
 
 * [List of available algorithms](https://github.com/andrewssobral/bgslibrary/wiki/List-of-available-algorithms)
 * [Algorithms benchmark](https://github.com/andrewssobral/bgslibrary/wiki/Algorithms-benchmark)
@@ -24,15 +24,15 @@ The **BGSLibrary** was developed by [Andrews Sobral](http://andrewssobral.wixsit
 
 * Graphical User Interface:
 
-*  * [C++ QT](https://github.com/andrewssobral/bgslibrary/wiki/Graphical-User-Interface:-QT) ***(NEW)***
-*  * [C++ MFC](https://github.com/andrewssobral/bgslibrary/wiki/Graphical-User-Interface:-MFC)
-*  * [Java](https://github.com/andrewssobral/bgslibrary/wiki/Graphical-User-Interface:-Java)
+*  * [C++ QT](https://github.com/andrewssobral/bgslibrary/wiki/Graphical-User-Interface:-QT)
+*  * [C++ MFC](https://github.com/andrewssobral/bgslibrary/wiki/Graphical-User-Interface:-MFC) ***(Deprecated)***
+*  * [Java](https://github.com/andrewssobral/bgslibrary/wiki/Graphical-User-Interface:-Java) ***(Obsolete)***
 
 * Wrappers:
 
-*  * [Python](https://github.com/andrewssobral/bgslibrary/wiki/Wrapper:-Python) ***(NEW)***
-*  * [MATLAB](https://github.com/andrewssobral/bgslibrary/wiki/Wrapper:-MATLAB) ***(NEW)***
-*  * [Java](https://github.com/andrewssobral/bgslibrary/wiki/Wrapper:-Java) ***(NEW)***
+*  * [Python](https://github.com/andrewssobral/bgslibrary/wiki/Wrapper:-Python)
+*  * [MATLAB](https://github.com/andrewssobral/bgslibrary/wiki/Wrapper:-MATLAB)
+*  * [Java](https://github.com/andrewssobral/bgslibrary/wiki/Wrapper:-Java)
 
 * [Docker images](https://github.com/andrewssobral/bgslibrary/wiki/Docker-images)
 * [How to integrate BGSLibrary in your own CPP code](https://github.com/andrewssobral/bgslibrary/wiki/How-to-integrate-BGSLibrary-in-your-own-CPP-code)
