@@ -37,13 +37,13 @@ set(CMAKE_BUILD_TYPE Release)
 #set(CMAKE_BUILD_TYPE Debug)
 
 if(WIN32)
-  if(BGS_PYTHON_SUPPORT)
+  #if(BGS_PYTHON_SUPPORT)
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MD")
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MDd")
-  else()
-    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
-    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
-  endif()
+  #else()
+  #  set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
+  #  set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
+  #endif()
 endif(WIN32)
 
 set(bgs_out_dir ".")
@@ -167,7 +167,7 @@ if(${OpenCV_VERSION} VERSION_LESS 2.4.3)
   list(REMOVE_ITEM bgs_src ${gmg})
 endif()
 
-add_library(bgslibrary_core STATIC ${bgs_src} ${analysis_src})
+add_library(bgslibrary_core SHARED ${bgs_src} ${analysis_src})
 target_link_libraries(bgslibrary_core ${OpenCV_LIBS})
 set_property(TARGET bgslibrary_core PROPERTY PUBLIC_HEADER ${bgs_include})
 
@@ -217,7 +217,17 @@ add_executable(bgs_demo2 ${demo2})
 target_link_libraries(bgs_demo2 ${OpenCV_LIBS} bgslibrary_core)
 
 if(BGS_PYTHON_SUPPORT)
-  install(TARGETS bgs_python DESTINATION ${CMAKE_CURRENT_SOURCE_DIR})
+  execute_process(
+    COMMAND "${PYTHON_EXECUTABLE}" -c "if True:
+      from distutils import sysconfig as sc
+      print(sc.get_python_lib(prefix='', plat_specific=True))"
+    OUTPUT_VARIABLE PYTHON_SITE
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+  )
+  message(STATUS "bgslibrary python package will be installed at: ${PYTHON_SITE}")
+  install(TARGETS bgs_python DESTINATION ${PYTHON_SITE})
+  #install(FILES ${mypackage_python_files} DESTINATION ${PYTHON_SITE}/mypackage)
+  #install(TARGETS bgs_python DESTINATION ${CMAKE_CURRENT_SOURCE_DIR})
 endif()
 
 install(TARGETS bgslibrary_core
@@ -228,3 +238,8 @@ install(TARGETS bgslibrary_core
   PUBLIC_HEADER DESTINATION include/package_bgs COMPONENT dev
   FRAMEWORK DESTINATION "/Library/Frameworks"
 )
+
+# to avoid: error while loading shared libraries: libbgslibrary_core.so
+message(STATUS "After make install, run:")
+message(STATUS "$ LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib")
+message(STATUS "$ export LD_LIBRARY_PATH")
