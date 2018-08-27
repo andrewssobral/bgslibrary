@@ -38,6 +38,8 @@ set(CMAKE_BUILD_TYPE Release)
 #set(CMAKE_BUILD_TYPE Debug)
 
 if(WIN32)
+  set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
+  set(BUILD_SHARED_LIBS TRUE)
   #if(BGS_PYTHON_SUPPORT)
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MD")
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MDd")
@@ -78,8 +80,7 @@ if(OpenCV_FOUND)
   message(STATUS "OpenCV library status:")
   message(STATUS "    version: ${OpenCV_VERSION}")
   message(STATUS "    libraries: ${OpenCV_LIBS}")
-  message(STATUS "    include path: ${OpenCV_INCLUDE_DIRS}")
-  message(STATUS "")
+  message(STATUS "    include path: ${OpenCV_INCLUDE_DIRS}\n")
 endif()
 
 # if(${OpenCV_VERSION} VERSION_EQUAL 3 OR ${OpenCV_VERSION} VERSION_GREATER 3)
@@ -141,8 +142,7 @@ if(BGS_PYTHON_SUPPORT)
       OUTPUT_VARIABLE NUMPY_INCLUDE_DIR
       RETURN_VALUE NUMPY_NOT_FOUND)
   endif()
-  message(STATUS "NUMPY_INCLUDE_DIR: ${NUMPY_INCLUDE_DIR}")
-  message(STATUS "")
+  message(STATUS "NUMPY_INCLUDE_DIR: ${NUMPY_INCLUDE_DIR}\n")
 endif()
 
 file(GLOB main Main.cpp FrameProcessor.cpp PreProcessor.cpp VideoAnalysis.cpp VideoCapture.cpp)
@@ -173,6 +173,13 @@ if(${OpenCV_VERSION} VERSION_LESS 2.4.3)
 endif()
 
 add_library(bgslibrary_core SHARED ${bgs_src} ${analysis_src})
+# generates the export header bgslibrary_core_EXPORTS.h automatically
+include(GenerateExportHeader)
+GENERATE_EXPORT_HEADER(bgslibrary_core
+    BASE_NAME bgslibrary_core
+    EXPORT_MACRO_NAME bgslibrary_core_EXPORTS
+    EXPORT_FILE_NAME bgslibrary_core_EXPORTS.h
+    STATIC_DEFINE BGSLIBRARY_CORE_EXPORTS_BUILT_AS_STATIC)
 target_link_libraries(bgslibrary_core ${OpenCV_LIBS})
 set_property(TARGET bgslibrary_core PROPERTY PUBLIC_HEADER ${bgs_include})
 
@@ -221,7 +228,7 @@ target_link_libraries(bgs_demo ${OpenCV_LIBS} bgslibrary_core)
 add_executable(bgs_demo2 ${demo2})
 target_link_libraries(bgs_demo2 ${OpenCV_LIBS} bgslibrary_core)
 
-if(BGS_PYTHON_SUPPORT)
+if(UNIX AND BGS_PYTHON_SUPPORT)
   execute_process(
     COMMAND "${PYTHON_EXECUTABLE}" -c "if True:
       from distutils import sysconfig as sc
@@ -230,8 +237,7 @@ if(BGS_PYTHON_SUPPORT)
     OUTPUT_STRIP_TRAILING_WHITESPACE
   )
   
-  message(STATUS "bgslibrary python package will be installed at: ${PYTHON_SITE}")
-  message(STATUS "")
+  message(STATUS "The bgslibrary python package will be installed at: ${PYTHON_SITE}\n")
   
   install(TARGETS bgs_python DESTINATION ${PYTHON_SITE})
   #install(FILES ${mypackage_python_files} DESTINATION ${PYTHON_SITE}/mypackage)
@@ -247,8 +253,15 @@ install(TARGETS bgslibrary_core
   FRAMEWORK DESTINATION "/Library/Frameworks"
 )
 
-# to avoid: error while loading shared libraries: libbgslibrary_core.so
-message(STATUS "After make install, run:")
-message(STATUS "$ LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib")
-message(STATUS "$ export LD_LIBRARY_PATH")
-message(STATUS "")
+if(UNIX)
+  # to avoid: error while loading shared libraries: libbgslibrary_core.so
+  message(STATUS "You might need to run:")
+  message(STATUS "$ LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib")
+  message(STATUS "$ export LD_LIBRARY_PATH")
+  message(STATUS "after 'make install' to avoid error while loading libbgslibrary_core\n")
+endif()
+
+if(WIN32)
+  message(STATUS "You might need to add ${CMAKE_CURRENT_BINARY_DIR} to your PATH to be able to run your applications.")
+  message(STATUS "> set PATH=%PATH%;${CMAKE_CURRENT_BINARY_DIR}\n")
+endif()
