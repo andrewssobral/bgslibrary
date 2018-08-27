@@ -140,28 +140,25 @@ if(BGS_PYTHON_SUPPORT)
   message(STATUS "NUMPY_INCLUDE_DIR: ${NUMPY_INCLUDE_DIR}")
 endif()
 
-#file(GLOB sources FrameProcessor.cpp PreProcessor.cpp VideoAnalysis.cpp VideoCapture.cpp)
 file(GLOB main Main.cpp FrameProcessor.cpp PreProcessor.cpp VideoAnalysis.cpp VideoCapture.cpp)
 file(GLOB demo Demo.cpp)
 file(GLOB demo2 Demo2.cpp)
 
-# list(REMOVE_ITEM sources ${demo} ${demo2})
-
 file(GLOB_RECURSE analysis_src package_analysis/*.cpp)
+file(GLOB_RECURSE bgs_src package_bgs/*.cpp package_bgs/*.c)
+file(GLOB_RECURSE bgs_include package_bgs/*.h)
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(${OpenCV_INCLUDE_DIRS})
+
 if(BGS_PYTHON_SUPPORT)
-  file(GLOB_RECURSE bgs_src package_bgs/*.cpp package_bgs/*.c wrapper_python/*.cpp)
-  file(GLOB_RECURSE bgs_include package_bgs/*.h wrapper_python/*.h)
-  include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+  file(GLOB_RECURSE bgs_python_src wrapper_python/*.cpp)
+  file(GLOB_RECURSE bgs_python_include wrapper_python/*.h)
+
   include_directories(${CMAKE_CURRENT_SOURCE_DIR}/pybind11/include)
-  include_directories(${OpenCV_INCLUDE_DIRS})
   #include_directories(${Boost_INCLUDE_DIRS})
   include_directories(${PYTHON_INCLUDE_DIRS})
   include_directories(${NUMPY_INCLUDE_DIR})
-else()
-  file(GLOB_RECURSE bgs_src package_bgs/*.cpp package_bgs/*.c)
-  file(GLOB_RECURSE bgs_include package_bgs/*.h)
-  include_directories(${CMAKE_CURRENT_SOURCE_DIR})
-  include_directories(${OpenCV_INCLUDE_DIRS})
 endif()
 
 # GMG is not available in older OpenCV versions
@@ -170,25 +167,27 @@ if(${OpenCV_VERSION} VERSION_LESS 2.4.3)
   list(REMOVE_ITEM bgs_src ${gmg})
 endif()
 
+add_library(bgslibrary_core STATIC ${bgs_src} ${analysis_src})
+target_link_libraries(bgslibrary_core ${OpenCV_LIBS})
+set_property(TARGET bgslibrary_core PROPERTY PUBLIC_HEADER ${bgs_include})
+
 if(BGS_PYTHON_SUPPORT)
-  #add_library(bgs_python SHARED ${sources} ${bgs_src} ${analysis_src})
   #add_library(bgs_python SHARED ${bgs_src} ${analysis_src})
-  pybind11_add_module(bgs_python ${bgs_src} ${analysis_src})
-  target_link_libraries(bgs_python PRIVATE ${OpenCV_LIBS} ${PYTHON_LIBRARY} pybind11::module)
+  #pybind11_add_module(bgs_python ${bgs_src} ${analysis_src})
+  pybind11_add_module(bgs_python ${bgs_python_src})
+
+  target_link_libraries(bgs_python PRIVATE bgslibrary_core ${OpenCV_LIBS} ${PYTHON_LIBRARY} pybind11::module)
   #target_link_libraries(bgs_python ${OpenCV_LIBS} ${Boost_LIBRARIES} ${PYTHON_LIBRARY})
   #target_link_libraries(bgs_python ${OpenCV_LIBS} ${PYTHON_LIBRARY} pybind11::module)
   #target_link_libraries(bgs_python PRIVATE ${OpenCV_LIBS} ${PYTHON_LIBRARY} pybind11::embed)
+
   #set_target_properties(bgs_python PROPERTIES PREFIX "${PYTHON_MODULE_PREFIX}" SUFFIX "${PYTHON_MODULE_EXTENSION}")
   set_target_properties(bgs_python PROPERTIES SUFFIX "${PYTHON_MODULE_EXTENSION}")
+
   target_compile_definitions(bgs_python PRIVATE BGS_PYTHON_SUPPORT=1)
-  install(TARGETS bgs_python DESTINATION ${CMAKE_CURRENT_SOURCE_DIR})
+
   # Set the output library name to bgslibrary because that's what setup.py and distutils expects.
   set_property(TARGET bgs_python PROPERTY OUTPUT_NAME "bgs")
-else()
-  #add_library(bgslibrary_core STATIC ${sources} ${bgs_src} ${analysis_src})
-  add_library(bgslibrary_core STATIC ${bgs_src} ${analysis_src})
-  target_link_libraries(bgslibrary_core ${OpenCV_LIBS})
-  set_property(TARGET bgslibrary_core PROPERTY PUBLIC_HEADER ${bgs_include})
 endif()
 
 #if(WIN32)
@@ -207,23 +206,25 @@ endif()
 #  endif()
 #endif()
 
-if(NOT BGS_PYTHON_SUPPORT)
-  add_executable(bgslibrary ${main})
-  target_link_libraries(bgslibrary ${OpenCV_LIBS} bgslibrary_core)
-  # set_target_properties(bgslibrary PROPERTIES OUTPUT_NAME bgs)
+add_executable(bgslibrary ${main})
+target_link_libraries(bgslibrary ${OpenCV_LIBS} bgslibrary_core)
+# set_target_properties(bgslibrary PROPERTIES OUTPUT_NAME bgs)
 
-  add_executable(bgs_demo ${demo})
-  target_link_libraries(bgs_demo ${OpenCV_LIBS} bgslibrary_core)
+add_executable(bgs_demo ${demo})
+target_link_libraries(bgs_demo ${OpenCV_LIBS} bgslibrary_core)
 
-  add_executable(bgs_demo2 ${demo2})
-  target_link_libraries(bgs_demo2 ${OpenCV_LIBS} bgslibrary_core)
+add_executable(bgs_demo2 ${demo2})
+target_link_libraries(bgs_demo2 ${OpenCV_LIBS} bgslibrary_core)
 
-  install(TARGETS bgslibrary_core
-    bgslibrary
-    RUNTIME DESTINATION bin COMPONENT app
-    LIBRARY DESTINATION lib COMPONENT runtime
-    ARCHIVE DESTINATION lib COMPONENT runtime
-    PUBLIC_HEADER DESTINATION include/package_bgs COMPONENT dev
-    FRAMEWORK DESTINATION "/Library/Frameworks"
-  )
+if(BGS_PYTHON_SUPPORT)
+  install(TARGETS bgs_python DESTINATION ${CMAKE_CURRENT_SOURCE_DIR})
 endif()
+
+install(TARGETS bgslibrary_core
+  bgslibrary
+  RUNTIME DESTINATION bin COMPONENT app
+  LIBRARY DESTINATION lib COMPONENT runtime
+  ARCHIVE DESTINATION lib COMPONENT runtime
+  PUBLIC_HEADER DESTINATION include/package_bgs COMPONENT dev
+  FRAMEWORK DESTINATION "/Library/Frameworks"
+)
