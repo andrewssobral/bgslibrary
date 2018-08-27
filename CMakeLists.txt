@@ -237,6 +237,7 @@ if(UNIX AND BGS_PYTHON_SUPPORT)
     OUTPUT_STRIP_TRAILING_WHITESPACE
   )
   
+  message(STATUS "")
   message(STATUS "The bgslibrary python package will be installed at: ${PYTHON_SITE}\n")
   
   install(TARGETS bgs_python DESTINATION ${PYTHON_SITE})
