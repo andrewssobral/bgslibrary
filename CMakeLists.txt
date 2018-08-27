@@ -8,6 +8,7 @@ if(NOT DEFINED BGS_PYTHON_SUPPORT)
 elseif()
   # add_definitions(-DBGS_PYTHON_SUPPORT)
 endif()
+message(STATUS "")
 message(STATUS "BGSLIBRARY WITH PYTHON SUPPORT: ${BGS_PYTHON_SUPPORT}")
 
 # cmake -D BGS_PYTHON_SUPPORT=ON -D BGS_PYTHON_VERSION=3 ..
@@ -73,10 +74,12 @@ endif(UNIX)
 set(OpenCV_STATIC OFF)
 find_package(OpenCV REQUIRED)
 if(OpenCV_FOUND)
+  message(STATUS "")
   message(STATUS "OpenCV library status:")
   message(STATUS "    version: ${OpenCV_VERSION}")
   message(STATUS "    libraries: ${OpenCV_LIBS}")
   message(STATUS "    include path: ${OpenCV_INCLUDE_DIRS}")
+  message(STATUS "")
 endif()
 
 # if(${OpenCV_VERSION} VERSION_EQUAL 3 OR ${OpenCV_VERSION} VERSION_GREATER 3)
@@ -123,13 +126,14 @@ if(BGS_PYTHON_SUPPORT)
   #message(STATUS "    libraries: ${Boost_LIBRARIES}")
   #message(STATUS "    include path: ${Boost_INCLUDE_DIRS}")
 
+  message(STATUS "")
   message(STATUS "Python library status:")
   message(STATUS "    executable: ${PYTHON_EXECUTABLE}")
   #message(STATUS "    version: ${PYTHON_VERSION_STRING}")
   #message(STATUS "    libraries: ${PYTHON_LIBRARIES}")
   message(STATUS "    library: ${PYTHON_LIBRARY}")
   message(STATUS "    include path: ${PYTHON_INCLUDE_DIRS}")
-  
+    
   if(NOT NUMPY_INCLUDE_DIR)
     # message(FATAL_ERROR "You must define NUMPY_INCLUDE_DIR by 'cmake -D NUMPY_INCLUDE_DIR=/python/lib/site-packages/numpy/core/include ..'")
     exec_program ("${PYTHON_EXECUTABLE}"
@@ -138,6 +142,7 @@ if(BGS_PYTHON_SUPPORT)
       RETURN_VALUE NUMPY_NOT_FOUND)
   endif()
   message(STATUS "NUMPY_INCLUDE_DIR: ${NUMPY_INCLUDE_DIR}")
+  message(STATUS "")
 endif()
 
 file(GLOB main Main.cpp FrameProcessor.cpp PreProcessor.cpp VideoAnalysis.cpp VideoCapture.cpp)
@@ -224,7 +229,10 @@ if(BGS_PYTHON_SUPPORT)
     OUTPUT_VARIABLE PYTHON_SITE
     OUTPUT_STRIP_TRAILING_WHITESPACE
   )
+  
   message(STATUS "bgslibrary python package will be installed at: ${PYTHON_SITE}")
+  message(STATUS "")
+  
   install(TARGETS bgs_python DESTINATION ${PYTHON_SITE})
   #install(FILES ${mypackage_python_files} DESTINATION ${PYTHON_SITE}/mypackage)
   #install(TARGETS bgs_python DESTINATION ${CMAKE_CURRENT_SOURCE_DIR})
@@ -243,3 +251,4 @@ install(TARGETS bgslibrary_core
 message(STATUS "After make install, run:")
 message(STATUS "$ LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib")
 message(STATUS "$ export LD_LIBRARY_PATH")
+message(STATUS "")
