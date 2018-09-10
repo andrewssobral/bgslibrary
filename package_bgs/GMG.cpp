@@ -16,7 +16,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "GMG.h"
 
-#if CV_MAJOR_VERSION == 2
+#if CV_MAJOR_VERSION == 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
 
 using namespace bgslibrary::algorithms;
 

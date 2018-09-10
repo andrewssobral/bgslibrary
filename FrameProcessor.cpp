@@ -60,7 +60,7 @@ namespace bgslibrary
     if (enableAdaptiveBackgroundLearning)
       adaptiveBackgroundLearning = new AdaptiveBackgroundLearning;
 
-#if CV_MAJOR_VERSION >= 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
+#if CV_MAJOR_VERSION == 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
     if (enableGMG)
       gmg = new GMG;
 #endif
@@ -215,7 +215,7 @@ namespace bgslibrary
     if (enableAdaptiveBackgroundLearning)
       process("AdaptiveBackgroundLearning", adaptiveBackgroundLearning, img_preProcessor, img_adaptiveBackgroundLearning);
 
-#if CV_MAJOR_VERSION >= 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
+#if CV_MAJOR_VERSION == 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
     if (enableGMG)
       process("GMG", gmg, img_preProcessor, img_gmg);
 #endif
@@ -342,7 +342,7 @@ namespace bgslibrary
 #endif
       foregroundMaskAnalysis->process(frameNumber, "MixtureOfGaussianV2", img_mixtureOfGaussianV2);
       foregroundMaskAnalysis->process(frameNumber, "AdaptiveBackgroundLearning", img_adaptiveBackgroundLearning);
-#if CV_MAJOR_VERSION >= 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
+#if CV_MAJOR_VERSION == 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
       foregroundMaskAnalysis->process(frameNumber, "GMG", img_gmg);
 #endif
 #if CV_MAJOR_VERSION >= 3
@@ -508,7 +508,7 @@ namespace bgslibrary
     if (enableDPAdaptiveMedian)
       delete dpAdaptiveMedian;
 
-#if CV_MAJOR_VERSION >= 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
+#if CV_MAJOR_VERSION == 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
     if (enableGMG)
       delete gmg;
 #endif
@@ -576,7 +576,7 @@ namespace bgslibrary
 #endif
     cvWriteInt(fs, "enableMixtureOfGaussianV2", enableMixtureOfGaussianV2);
     cvWriteInt(fs, "enableAdaptiveBackgroundLearning", enableAdaptiveBackgroundLearning);
-#if CV_MAJOR_VERSION >= 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
+#if CV_MAJOR_VERSION == 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
     cvWriteInt(fs, "enableGMG", enableGMG);
 #endif
 #if CV_MAJOR_VERSION >= 3
@@ -642,7 +642,7 @@ namespace bgslibrary
 #endif
     enableMixtureOfGaussianV2 = cvReadIntByName(fs, 0, "enableMixtureOfGaussianV2", false);
     enableAdaptiveBackgroundLearning = cvReadIntByName(fs, 0, "enableAdaptiveBackgroundLearning", false);
-#if CV_MAJOR_VERSION >= 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
+#if CV_MAJOR_VERSION == 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
     enableGMG = cvReadIntByName(fs, 0, "enableGMG", false);
 #endif
 #if CV_MAJOR_VERSION >= 3

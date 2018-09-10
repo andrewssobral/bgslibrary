@@ -69,7 +69,7 @@ namespace bgslibrary
     AdaptiveBackgroundLearning* adaptiveBackgroundLearning;
     bool enableAdaptiveBackgroundLearning;
 
-#if CV_MAJOR_VERSION >= 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
+#if CV_MAJOR_VERSION == 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
     cv::Mat img_gmg;
     GMG* gmg;
     bool enableGMG;
