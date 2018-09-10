@@ -65,7 +65,7 @@ namespace bgslibrary
       gmg = new GMG;
 #endif
 
-#if CV_MAJOR_VERSION == 3
+#if CV_MAJOR_VERSION >= 3
     if (enableKNN)
       knn = new KNN;
 #endif
@@ -220,7 +220,7 @@ namespace bgslibrary
       process("GMG", gmg, img_preProcessor, img_gmg);
 #endif
 
-#if CV_MAJOR_VERSION == 3
+#if CV_MAJOR_VERSION >= 3
     if (enableKNN)
       process("KNN", knn, img_preProcessor, img_knn);
 #endif
@@ -345,7 +345,7 @@ namespace bgslibrary
 #if CV_MAJOR_VERSION >= 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
       foregroundMaskAnalysis->process(frameNumber, "GMG", img_gmg);
 #endif
-#if CV_MAJOR_VERSION == 3
+#if CV_MAJOR_VERSION >= 3
       foregroundMaskAnalysis->process(frameNumber, "KNN", img_knn);
 #endif
       foregroundMaskAnalysis->process(frameNumber, "DPAdaptiveMedian", img_dpAdaptiveMedian);
@@ -513,7 +513,7 @@ namespace bgslibrary
       delete gmg;
 #endif
 
-#if CV_MAJOR_VERSION == 3
+#if CV_MAJOR_VERSION >= 3
     if (enableKNN)
       delete knn;
 #endif
@@ -579,7 +579,7 @@ namespace bgslibrary
 #if CV_MAJOR_VERSION >= 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
     cvWriteInt(fs, "enableGMG", enableGMG);
 #endif
-#if CV_MAJOR_VERSION == 3
+#if CV_MAJOR_VERSION >= 3
     cvWriteInt(fs, "enableKNN", enableKNN);
 #endif
 
@@ -645,7 +645,7 @@ namespace bgslibrary
 #if CV_MAJOR_VERSION >= 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
     enableGMG = cvReadIntByName(fs, 0, "enableGMG", false);
 #endif
-#if CV_MAJOR_VERSION == 3
+#if CV_MAJOR_VERSION >= 3
     enableKNN = cvReadIntByName(fs, 0, "enableKNN", false);
 #endif
 

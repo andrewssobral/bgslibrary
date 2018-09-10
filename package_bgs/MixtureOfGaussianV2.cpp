@@ -35,7 +35,7 @@ void MixtureOfGaussianV2::process(const cv::Mat &img_input, cv::Mat &img_output,
   init(img_input, img_output, img_bgmodel);
 
   if (firstTime) {
-#if CV_MAJOR_VERSION == 3
+#if CV_MAJOR_VERSION >= 3
     mog = cv::createBackgroundSubtractorMOG2();
 #endif
   }
@@ -60,7 +60,7 @@ void MixtureOfGaussianV2::process(const cv::Mat &img_input, cv::Mat &img_output,
 #if CV_MAJOR_VERSION == 2
   mog(img_input, img_foreground, alpha);
   mog.getBackgroundImage(img_background);
-#elif CV_MAJOR_VERSION == 3
+#elif CV_MAJOR_VERSION >= 3
   mog->apply(img_input, img_foreground, alpha);
   mog->getBackgroundImage(img_background);
 #endif
