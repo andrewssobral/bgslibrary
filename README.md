@@ -5,11 +5,11 @@ A Background Subtraction Library
 
 [![bgslibrary](http://i.giphy.com/5A94AZahSIVOw.gif)](https://youtu.be/_UbERwuQ0OU)
 
-Page Update: **26/08/2018**
+Last page update: **12/09/2018**
 
 Library Version: **2.0.0** (see **[Build Status](https://github.com/andrewssobral/bgslibrary/wiki/Build-status)** and **[Release Notes](https://github.com/andrewssobral/bgslibrary/wiki/Release-notes)** for more info)
 
-The **BGSLibrary** was developed early 2012 by [Andrews Sobral](http://andrewssobral.wixsite.com/home) to provide an easy-to-use C++ framework for foreground-background separation in videos based on [OpenCV](http://www.opencv.org/). The bgslibrary is compatible with OpenCV 2.x and 3.x, and compiles under Windows, Linux, and Mac OS X. Currently the library contains **43** algorithms. The source code is available under [GNU GPLv3 license](https://www.gnu.org/licenses/gpl-3.0.en.html), the library is available free of charge to all users, academic and commercial.
+The **BGSLibrary** was developed early 2012 by [Andrews Sobral](http://andrewssobral.wixsite.com/home) to provide an easy-to-use C++ framework (wrappers for Python, Java and MATLAB are also available) for foreground-background separation in videos based on [OpenCV](http://www.opencv.org/). The bgslibrary is compatible with OpenCV 2.x, 3.x and 4.x, and compiles under Windows, Linux, and Mac OS X. Currently the library contains **43** algorithms. The source code is available under [GNU GPLv3 license](https://www.gnu.org/licenses/gpl-3.0.en.html), the library is available free of charge to all users, academic and commercial.
 
 * [List of available algorithms](https://github.com/andrewssobral/bgslibrary/wiki/List-of-available-algorithms)
 * [Algorithms benchmark](https://github.com/andrewssobral/bgslibrary/wiki/Algorithms-benchmark)
@@ -18,9 +18,19 @@ The **BGSLibrary** was developed early 2012 by [Andrews Sobral](http://andrewsso
 
 * Installation instructions
 
+You can either install BGSLibrary via [pre-built binary package](https://github.com/andrewssobral/bgslibrary/releases) or build it from source:
+
 * * [Windows installation](https://github.com/andrewssobral/bgslibrary/wiki/Installation-instructions---Windows)
 
 * * [Ubuntu / OS X installation](https://github.com/andrewssobral/bgslibrary/wiki/Installation-instructions-Ubuntu-or-OSX)
+
+Supported Compilers are:
+
+    GCC 4.8 and above
+    Clang 3.4 and above
+    MSVC 2015, 2017
+
+Other compilers might work, but are not officially supported.
 
 * Graphical User Interface:
 
