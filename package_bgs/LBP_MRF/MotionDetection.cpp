@@ -42,12 +42,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #include "graph.h"
 using namespace ck;
 
-#if defined(__MINGW32__) || defined(__MINGW64__)
-#include <cvaux.h>
-#else
-#include <opencv/cvaux.h>
-#endif
-
+#include <opencv2/opencv.hpp>
 #include <opencv2/imgproc.hpp>
 
 #include "MEHistogram.hpp"
