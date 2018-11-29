@@ -122,6 +122,21 @@ void MultiCue::saveConfig()
   CvFileStorage* fs = cvOpenFileStorage(config_xml.c_str(), nullptr, CV_STORAGE_WRITE);
 
   cvWriteInt(fs, "showOutput", showOutput);
+  cvWriteReal(fs, "g_fLearningRate", g_fLearningRate);
+  cvWriteInt(fs, "g_iAbsortionPeriod", g_iAbsortionPeriod);
+  cvWriteInt(fs, "g_iC_ModelThreshold", g_iC_ModelThreshold);
+  cvWriteInt(fs, "g_iT_ModelThreshold", g_iT_ModelThreshold);
+
+  cvWriteInt(fs, "g_iBackClearPeriod", g_iBackClearPeriod);
+  cvWriteInt(fs, "g_iCacheClearPeriod", g_iCacheClearPeriod);
+  cvWriteInt(fs, "g_nNeighborNum", g_nNeighborNum);
+  cvWriteInt(fs, "g_nRadius", g_nRadius);
+
+  cvWriteInt(fs, "g_nTextureTrainVolRange", g_nTextureTrainVolRange);
+  cvWriteInt(fs, "g_bAbsorptionEnable", g_bAbsorptionEnable);
+  cvWriteInt(fs, "g_iTrainingPeriod", g_iTrainingPeriod);
+  cvWriteInt(fs, "g_iRWidth", g_iRWidth);
+  cvWriteInt(fs, "g_iRHeight", g_iRHeight);
 
   cvReleaseFileStorage(&fs);
 }
@@ -131,6 +146,21 @@ void MultiCue::loadConfig()
   CvFileStorage* fs = cvOpenFileStorage(config_xml.c_str(), nullptr, CV_STORAGE_READ);
 
   showOutput = cvReadIntByName(fs, nullptr, "showOutput", true);
+  g_fLearningRate = cvReadRealByName(fs, nullptr, "g_fLearningRate", g_fLearningRate);
+  g_iAbsortionPeriod = cvReadIntByName(fs, nullptr, "g_iAbsortionPeriod", g_iAbsortionPeriod);
+  g_iC_ModelThreshold = cvReadIntByName(fs, nullptr, "g_iC_ModelThreshold", g_iC_ModelThreshold);
+  g_iT_ModelThreshold = cvReadIntByName(fs, nullptr, "g_iT_ModelThreshold", g_iT_ModelThreshold);
+
+  g_iBackClearPeriod = cvReadIntByName(fs, nullptr, "g_iBackClearPeriod", g_iBackClearPeriod);
+  g_iCacheClearPeriod = cvReadIntByName(fs, nullptr, "g_iCacheClearPeriod", g_iCacheClearPeriod);
+  g_nNeighborNum = cvReadIntByName(fs, nullptr, "g_nNeighborNum", g_nNeighborNum);
+  g_nRadius = cvReadIntByName(fs, nullptr, "g_nRadius", g_nRadius);
+
+  g_nTextureTrainVolRange = cvReadIntByName(fs, nullptr, "g_nTextureTrainVolRange", g_nTextureTrainVolRange);
+  g_bAbsorptionEnable =  cvReadIntByName(fs, nullptr, "g_bAbsorptionEnable", g_bAbsorptionEnable);
+  g_iTrainingPeriod = cvReadIntByName(fs, nullptr, "g_iTrainingPeriod", g_iTrainingPeriod);
+  g_iRWidth = cvReadIntByName(fs, nullptr, "g_iRWidth", g_iRWidth);
+  g_iRHeight = cvReadIntByName(fs, nullptr, "g_iRHeight", g_iRHeight);
 
   cvReleaseFileStorage(&fs);
 }
