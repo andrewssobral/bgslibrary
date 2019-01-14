@@ -129,7 +129,7 @@ SOURCES += bgslibrary_gui.cpp\
     ../package_bgs/VuMeter.cpp \
     ../package_bgs/WeightedMovingMean.cpp \
     ../package_bgs/WeightedMovingVariance.cpp \
-    ../package_bgs/_template_/amber/amber.c \
+    ../package_bgs/_template_/amber/amber.cpp \
     ../package_bgs/CodeBook.cpp
 
 HEADERS  += mainwindow.h \
