@@ -28,12 +28,12 @@ namespace bgslibrary
   public:
     static void start(int argc, const char **argv)
     {
-      std::cout << "-----------------------------------------" << std::endl;
-      std::cout << "Background Subtraction Library v2.0.0     " << std::endl;
-      std::cout << "http://code.google.com/p/bgslibrary       " << std::endl;
-      std::cout << "by:                                       " << std::endl;
-      std::cout << "Andrews Sobral (andrewssobral@gmail.com)  " << std::endl;
-      std::cout << "-----------------------------------------" << std::endl;
+      std::cout << "---------------------------------------------" << std::endl;
+      std::cout << "Background Subtraction Library               " << std::endl;
+      std::cout << "https://github.com/andrewssobral/bgslibrary  " << std::endl;
+      std::cout << "by:                                          " << std::endl;
+      std::cout << "Andrews Sobral (andrewssobral@gmail.com)     " << std::endl;
+      std::cout << "---------------------------------------------" << std::endl;
       std::cout << "Using OpenCV version " << CV_VERSION << std::endl;
 
       try
