@@ -16,6 +16,8 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
 #pragma once
 
+#include "IBGS.h"
+
 #include "FrameDifference.h"
 #include "StaticFrameDifference.h"
 #include "WeightedMovingMean.h"

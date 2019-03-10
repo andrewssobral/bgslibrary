@@ -41,5 +41,7 @@ namespace bgslibrary
       void saveConfig();
       void loadConfig();
     };
+
+    static BGS_Register<Amber> register_Amber("Amber");
   }
 }

@@ -43,5 +43,7 @@ namespace bgslibrary
       void saveConfig();
       void loadConfig();
     };
+
+    static BGS_Register<AdaptiveBackgroundLearning> register_AdaptiveBackgroundLearning("AdaptiveBackgroundLearning");
   }
 }

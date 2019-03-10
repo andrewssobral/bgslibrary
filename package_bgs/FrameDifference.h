@@ -38,6 +38,8 @@ namespace bgslibrary
       void saveConfig();
       void loadConfig();
     };
+
+    static BGS_Register<FrameDifference> register_FrameDifference("FrameDifference");
   }
 }
 

@@ -19,6 +19,11 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <fstream>
 #include <list>
+#include <memory>
+#include <string>
+#include <functional>
+#include <map>
+
 #include <opencv2/opencv.hpp>
 #include <opencv2/imgproc/types_c.h>
 #include <opencv2/imgproc/imgproc_c.h>
@@ -79,7 +84,62 @@ namespace bgslibrary
       virtual void saveConfig() = 0;
       virtual void loadConfig() = 0;
     };
+
+    class BGS_Factory
+    {
+    public:
+      static BGS_Factory* BGS_Factory::Instance()
+      {
+        static BGS_Factory factory;
+        return &factory;
+      }
+
+      std::shared_ptr<IBGS> BGS_Factory::Create(std::string name)
+      {
+        IBGS* instance = nullptr;
+
+        // find name in the registry and call factory method.
+        auto it = factoryFunctionRegistry.find(name);
+        if (it != factoryFunctionRegistry.end())
+          instance = it->second();
+
+        // wrap instance in a shared ptr and return
+        if (instance != nullptr)
+          return std::shared_ptr<IBGS>(instance);
+        else
+          return nullptr;
+      }
+
+      std::vector<std::string> BGS_Factory::GetRegisteredAlgorithmsName()
+      {
+        std::vector<std::string> algorithmsName;
+        for (auto it = factoryFunctionRegistry.begin(); it != factoryFunctionRegistry.end(); ++it) {
+          algorithmsName.push_back(it->first);
+        }
+        return algorithmsName;
+      }
+
+      void BGS_Factory::RegisterFactoryFunction(std::string name,
+        std::function<IBGS*(void)> classFactoryFunction)
+      {
+        // register the class factory function
+        factoryFunctionRegistry[name] = classFactoryFunction;
+      }
+      
+    private:
+      std::map<std::string, std::function<IBGS*(void)>> factoryFunctionRegistry;
+    };
+
+    template<class T>
+    class BGS_Register
+    {
+    public:
+      BGS_Register(std::string className)
+      {
+        // register the class factory function
+        BGS_Factory::Instance()->RegisterFactoryFunction(className,
+          [](void) -> IBGS* { return new T(); });
+      }
+    };
   }
 }
-
-namespace ibgs = bgslibrary::algorithms;

@@ -46,5 +46,7 @@ namespace bgslibrary
       void saveConfig();
       void loadConfig();
     };
+
+    static BGS_Register<LBFuzzyAdaptiveSOM> register_LBFuzzyAdaptiveSOM("LBFuzzyAdaptiveSOM");
   }
 }

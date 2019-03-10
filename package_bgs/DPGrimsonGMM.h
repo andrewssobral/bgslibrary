@@ -51,5 +51,7 @@ namespace bgslibrary
       void saveConfig();
       void loadConfig();
     };
+
+    static BGS_Register<DPGrimsonGMM> register_DPGrimsonGMM("DPGrimsonGMM");
   }
 }

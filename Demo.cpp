@@ -15,18 +15,16 @@ You should have received a copy of the GNU General Public License
 along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include <iostream>
+#include <vector>
 #include <opencv2/opencv.hpp>
-using namespace cv;
 
 #include "package_bgs/bgslibrary.h"
-
-using namespace ibgs;
 
 int main(int argc, char **argv)
 {
   std::cout << "Using OpenCV " << CV_MAJOR_VERSION << "." << CV_MINOR_VERSION << "." << CV_SUBMINOR_VERSION << std::endl;
 
-  VideoCapture capture;
+  cv::VideoCapture capture;
 
   if (argc > 1)
   {
@@ -43,76 +41,57 @@ int main(int argc, char **argv)
   }
 
   /* Background Subtraction Methods */
-  IBGS *bgs;
+  auto algorithmsName = BGS_Factory::Instance()->GetRegisteredAlgorithmsName();
 
-  bgs = new FrameDifference;
-  //bgs = new StaticFrameDifference;
-  //bgs = new WeightedMovingMean;
-  //bgs = new WeightedMovingVariance;
-  //bgs = new MixtureOfGaussianV1; // only on OpenCV 2.x
-  //bgs = new MixtureOfGaussianV2;
-  //bgs = new AdaptiveBackgroundLearning;
-  //bgs = new AdaptiveSelectiveBackgroundLearning;
-  //bgs = new GMG; // only on OpenCV 2.x
-  //bgs = new KNN; // only on OpenCV 3.x
-  //bgs = new DPAdaptiveMedian;
-  //bgs = new DPGrimsonGMM;
-  //bgs = new DPZivkovicAGMM;
-  //bgs = new DPMean;
-  //bgs = new DPWrenGA;
-  //bgs = new DPPratiMediod;
-  //bgs = new DPEigenbackground;
-  //bgs = new DPTexture;
-  //bgs = new T2FGMM_UM;
-  //bgs = new T2FGMM_UV;
-  //bgs = new T2FMRF_UM;
-  //bgs = new T2FMRF_UV;
-  //bgs = new FuzzySugenoIntegral;
-  //bgs = new FuzzyChoquetIntegral;
-  //bgs = new MultiLayer;
-  //bgs = new PixelBasedAdaptiveSegmenter;
-  //bgs = new LBSimpleGaussian;
-  //bgs = new LBFuzzyGaussian;
-  //bgs = new LBMixtureOfGaussians;
-  //bgs = new LBAdaptiveSOM;
-  //bgs = new LBFuzzyAdaptiveSOM;
-  //bgs = new LBP_MRF;
-  //bgs = new VuMeter;
-  //bgs = new KDE;
-  //bgs = new IndependentMultimodal;
-  //bgs = new MultiCue;
-  //bgs = new SigmaDelta;
-  //bgs = new SuBSENSE;
-  //bgs = new LOBSTER;
-  //bgs = new PAWCS;
-  //bgs = new TwoPoints;
-  //bgs = new ViBe;
-  //bgs = new CodeBook;
-
-  int key = 0;
-  cv::Mat img_input;
-  while (key != 'q')
+  auto key = 0;
+  for (const std::string& algorithmName : algorithmsName)
   {
-    capture >> img_input;
-    if (img_input.empty()) break;
+    std::cout << "Running " << algorithmName << std::endl;
+    auto bgs = BGS_Factory::Instance()->Create(algorithmName);
 
-    cv::imshow("input", img_input);
+    cv::Mat img_input;
+    
+    capture.set(CV_CAP_PROP_POS_FRAMES, 0); // Set index to 0 (start frame)
+    auto frame_counter = 0;
+    std::cout << "Press 's' to stop:" << std::endl;
+    while (key != 's')
+    {
+      // Capture frame-by-frame
+      capture >> img_input;
+      frame_counter += 1;
 
-    cv::Mat img_mask;
-    cv::Mat img_bkgmodel;
-    bgs->process(img_input, img_mask, img_bkgmodel); // by default, it shows automatically the foreground mask image
+      if (img_input.empty()) break;
 
-    //if(!img_mask.empty())
-    //  cv::imshow("Foreground", img_mask);
-    //  do something
+      cv::imshow("input", img_input);
 
-    key = cvWaitKey(33);
+      cv::Mat img_mask;
+      cv::Mat img_bkgmodel;
+      try
+      {
+        bgs->process(img_input, img_mask, img_bkgmodel); // by default, it shows automatically the foreground mask image
+
+        //if(!img_mask.empty())
+        //  cv::imshow("Foreground", img_mask);
+        //  do something
+      }
+      catch (std::exception& e)
+      {
+        std::cout << "Exception occurred" << std::endl;
+        std::cout << e.what() << std::endl;
+      }
+
+      key = cv::waitKey(33);
+    }
+
+    std::cout << "Press 'q' to exit, or anything else to move to the next algorithm:" << std::endl;
+    key = cv::waitKey(0);
+    if (key == 'q')
+      break;
+
+    cv::destroyAllWindows();
   }
 
-  delete bgs;
-
   capture.release();
-  cvDestroyAllWindows();
 
   return 0;
 }

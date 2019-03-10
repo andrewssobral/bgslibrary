@@ -44,5 +44,7 @@ namespace bgslibrary
       void saveConfig();
       void loadConfig();
     };
+
+    static BGS_Register<LOBSTER> register_LOBSTER("LOBSTER");
   }
 }

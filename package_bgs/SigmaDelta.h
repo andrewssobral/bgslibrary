@@ -45,5 +45,7 @@ namespace bgslibrary
       void loadConfig();
       void applyParams();
     };
+
+    static BGS_Register<SigmaDelta> register_SigmaDelta("SigmaDelta");
   }
 }

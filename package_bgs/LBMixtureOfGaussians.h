@@ -45,6 +45,8 @@ namespace bgslibrary
       void saveConfig();
       void loadConfig();
     };
+
+    static BGS_Register<LBMixtureOfGaussians> register_LBMixtureOfGaussians("LBMixtureOfGaussians");
   }
 }
 

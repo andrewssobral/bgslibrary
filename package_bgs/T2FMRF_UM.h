@@ -60,5 +60,7 @@ namespace bgslibrary
       void saveConfig();
       void loadConfig();
     };
+
+    static BGS_Register<T2FMRF_UM> register_T2FMRF_UM("T2FMRF_UM");
   }
 }

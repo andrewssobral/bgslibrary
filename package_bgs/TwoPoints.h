@@ -42,5 +42,7 @@ namespace bgslibrary
       void saveConfig();
       void loadConfig();
     };
+
+    static BGS_Register<TwoPoints> register_TwoPoints("TwoPoints");
   }
 }

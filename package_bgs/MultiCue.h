@@ -250,5 +250,7 @@ namespace bgslibrary
       short** g_aCReferredIndex;					//To handle cache-book
       short** g_aCContinuousCnt;					//To handle cache-book
     };
+
+    static BGS_Register<MultiCue> register_MultiCue("MultiCue");
   }
 }

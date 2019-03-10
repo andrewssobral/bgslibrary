@@ -14,32 +14,5 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 */
-#pragma once
 
-#include "IBGS.h"
-#include "LBP_MRF/MotionDetection.hpp"
-
-namespace bgslibrary
-{
-  namespace algorithms
-  {
-    class LBP_MRF : public IBGS
-    {
-    private:
-      MotionDetection* Detector;
-      cv::Mat img_segmentation;
-
-    public:
-      LBP_MRF();
-      ~LBP_MRF();
-
-      void process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel);
-
-    private:
-      void saveConfig();
-      void loadConfig();
-    };
-
-    static BGS_Register<LBP_MRF> register_LBP_MRF("LBP_MRF");
-  }
-}
+#include "bgslibrary.h"

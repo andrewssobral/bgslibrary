@@ -44,5 +44,7 @@ namespace bgslibrary
       void saveConfig();
       void loadConfig();
     };
+
+    static BGS_Register<PAWCS> register_PAWCS("PAWCS");
   }
 }
