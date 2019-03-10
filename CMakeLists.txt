@@ -30,7 +30,7 @@ if (POLICY CMP0042)
   cmake_policy(SET CMP0042 NEW)
 endif()
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99")
+#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99")
 #set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake-modules)
 
 # compilation mode setup

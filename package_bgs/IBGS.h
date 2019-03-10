@@ -88,13 +88,13 @@ namespace bgslibrary
     class BGS_Factory
     {
     public:
-      static BGS_Factory* BGS_Factory::Instance()
+      static BGS_Factory* Instance()
       {
         static BGS_Factory factory;
         return &factory;
       }
 
-      std::shared_ptr<IBGS> BGS_Factory::Create(std::string name)
+      std::shared_ptr<IBGS> Create(std::string name)
       {
         IBGS* instance = nullptr;
 
@@ -110,7 +110,7 @@ namespace bgslibrary
           return nullptr;
       }
 
-      std::vector<std::string> BGS_Factory::GetRegisteredAlgorithmsName()
+      std::vector<std::string> GetRegisteredAlgorithmsName()
       {
         std::vector<std::string> algorithmsName;
         for (auto it = factoryFunctionRegistry.begin(); it != factoryFunctionRegistry.end(); ++it) {
@@ -119,7 +119,7 @@ namespace bgslibrary
         return algorithmsName;
       }
 
-      void BGS_Factory::RegisterFactoryFunction(std::string name,
+      void RegisterFactoryFunction(std::string name,
         std::function<IBGS*(void)> classFactoryFunction)
       {
         // register the class factory function
