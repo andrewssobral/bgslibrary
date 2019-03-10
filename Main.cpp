@@ -38,11 +38,11 @@ namespace bgslibrary
 
       try
       {
-        int key = KEY_ESC;
+        auto key = KEY_ESC;
 
         do
         {
-          VideoAnalysis* videoAnalysis = new VideoAnalysis;
+          auto videoAnalysis = std::make_unique<VideoAnalysis>();
 
           if (videoAnalysis->setup(argc, argv))
           {
@@ -56,7 +56,6 @@ namespace bgslibrary
           }
 
           cv::destroyAllWindows();
-          delete videoAnalysis;
 
         } while (key == KEY_REPEAT);
       }

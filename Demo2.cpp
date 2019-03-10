@@ -41,10 +41,10 @@ int main(int argc, char **argv)
       frame_counter++;
       std::stringstream ss;
       ss << frame_counter;
-      std::string fileName = "dataset/frames/" + ss.str() + ".png";
+      auto fileName = "dataset/frames/" + ss.str() + ".png";
       std::cout << "reading " << fileName << std::endl;
 
-      cv::Mat img_input = cv::imread(fileName, CV_LOAD_IMAGE_COLOR);
+      auto img_input = cv::imread(fileName, CV_LOAD_IMAGE_COLOR);
 
       if (img_input.empty())
         break;

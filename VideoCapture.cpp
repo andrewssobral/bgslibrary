@@ -90,7 +90,7 @@ namespace bgslibrary
     std::cout << "~VideoCapture()" << std::endl;
   }
 
-  void VideoCapture::setFrameProcessor(IFrameProcessor* frameProcessorPtr)
+  void VideoCapture::setFrameProcessor(std::shared_ptr<IFrameProcessor> frameProcessorPtr)
   {
     frameProcessor = frameProcessorPtr;
   }

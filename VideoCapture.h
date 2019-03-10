@@ -18,6 +18,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <iostream>
 #include <fstream>
+#include <memory>
 //#include <chrono>
 //#include <thread>
 #include <opencv2/opencv.hpp>
@@ -32,7 +33,7 @@ namespace bgslibrary
   class VideoCapture
   {
   private:
-    IFrameProcessor* frameProcessor;
+    std::shared_ptr<IFrameProcessor> frameProcessor;
     cv::VideoCapture capture;
     cv::Mat frame;
     int key;
@@ -65,7 +66,7 @@ namespace bgslibrary
     VideoCapture();
     ~VideoCapture();
 
-    void setFrameProcessor(IFrameProcessor* frameProcessorPtr);
+    void setFrameProcessor(std::shared_ptr<IFrameProcessor> frameProcessorPtr);
     void setCamera(int cameraIndex);
     void setVideo(std::string filename);
     void start();

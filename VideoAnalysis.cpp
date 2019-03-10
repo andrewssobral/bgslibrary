@@ -132,8 +132,8 @@ namespace bgslibrary
 
     do
     {
-      videoCapture = new VideoCapture;
-      frameProcessor = new FrameProcessor;
+      videoCapture = std::make_unique<VideoCapture>();
+      frameProcessor = std::make_shared<FrameProcessor>();
 
       frameProcessor->init();
       frameProcessor->frameToStop = frameToStop;
@@ -154,16 +154,10 @@ namespace bgslibrary
 
       frameProcessor->finish();
 
-      int key = cvWaitKey(500);
+      auto key = cv::waitKey(500);
       if (key == KEY_ESC)
         break;
 
-      delete frameProcessor;
-      delete videoCapture;
-
     } while (1);
-
-    delete frameProcessor;
-    delete videoCapture;
   }
 }
