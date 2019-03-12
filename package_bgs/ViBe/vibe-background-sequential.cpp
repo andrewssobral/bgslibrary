@@ -758,7 +758,7 @@ int32_t libvibeModel_Sequential_Update_8u_C3R(
 
           historyImage[index_neighbor + position[shift] * (3 * width) * height] = r;
           historyImage[index_neighbor + position[shift] * (3 * width) * height + 1] = g;
-          historyImage[index_neighbor + position[shift] * (3 * width) * height + 2] = r;
+          historyImage[index_neighbor + position[shift] * (3 * width) * height + 2] = b;
         }
         else {
           int pos = position[shift] - NUMBER_OF_HISTORY_IMAGES;
