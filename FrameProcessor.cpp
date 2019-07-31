@@ -1,30 +1,15 @@
-/*
-This file is part of BGSLibrary.
-
-BGSLibrary is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-BGSLibrary is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
-*/
-#include "FrameProcessor.h"
 #include <iomanip>
+
+#include "FrameProcessor.h"
 
 namespace bgslibrary
 {
-  FrameProcessor::FrameProcessor() : firstTime(true), frameNumber(0), duration(0), tictoc(""), frameToStop(0)
+  FrameProcessor::FrameProcessor() : 
+    firstTime(true), frameNumber(0), duration(0), 
+    tictoc(""), frameToStop(0)
   {
     std::cout << "FrameProcessor()" << std::endl;
-
-    loadConfig();
-    saveConfig();
+    setup("./config/FrameProcessor.xml");
   }
 
   FrameProcessor::~FrameProcessor()
@@ -559,133 +544,124 @@ namespace bgslibrary
 
   void FrameProcessor::saveConfig()
   {
-    CvFileStorage* fs = cvOpenFileStorage("./config/FrameProcessor.xml", 0, CV_STORAGE_WRITE);
+    cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
 
-    cvWriteString(fs, "tictoc", tictoc.c_str());
+    fs << "tictoc" << tictoc;
+    fs << "enablePreProcessor" << enablePreProcessor;
+    fs << "enableForegroundMaskAnalysis" << enableForegroundMaskAnalysis;
+    fs << "enableFrameDifference" << enableFrameDifference;
+    fs << "enableStaticFrameDifference" << enableStaticFrameDifference;
+    fs << "enableWeightedMovingMean" << enableWeightedMovingMean;
+    fs << "enableWeightedMovingVariance" << enableWeightedMovingVariance;
+    fs << "enableAdaptiveBackgroundLearning" << enableAdaptiveBackgroundLearning;
+    fs << "enableMixtureOfGaussianV2" << enableMixtureOfGaussianV2;
 
-    cvWriteInt(fs, "enablePreProcessor", enablePreProcessor);
-
-    cvWriteInt(fs, "enableForegroundMaskAnalysis", enableForegroundMaskAnalysis);
-
-    cvWriteInt(fs, "enableFrameDifference", enableFrameDifference);
-    cvWriteInt(fs, "enableStaticFrameDifference", enableStaticFrameDifference);
-    cvWriteInt(fs, "enableWeightedMovingMean", enableWeightedMovingMean);
-    cvWriteInt(fs, "enableWeightedMovingVariance", enableWeightedMovingVariance);
 #if CV_MAJOR_VERSION == 2
-    cvWriteInt(fs, "enableMixtureOfGaussianV1", enableMixtureOfGaussianV1);
+    fs << "enableMixtureOfGaussianV1" << enableMixtureOfGaussianV1;
 #endif
-    cvWriteInt(fs, "enableMixtureOfGaussianV2", enableMixtureOfGaussianV2);
-    cvWriteInt(fs, "enableAdaptiveBackgroundLearning", enableAdaptiveBackgroundLearning);
 #if CV_MAJOR_VERSION == 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
-    cvWriteInt(fs, "enableGMG", enableGMG);
+    fs << "enableGMG" << enableGMG;
 #endif
 #if CV_MAJOR_VERSION >= 3
-    cvWriteInt(fs, "enableKNN", enableKNN);
+    fs << "enableKNN" << enableKNN;
 #endif
 
-    cvWriteInt(fs, "enableDPAdaptiveMedian", enableDPAdaptiveMedian);
-    cvWriteInt(fs, "enableDPGrimsonGMM", enableDPGrimsonGMM);
-    cvWriteInt(fs, "enableDPZivkovicAGMM", enableDPZivkovicAGMM);
-    cvWriteInt(fs, "enableDPMean", enableDPMean);
-    cvWriteInt(fs, "enableDPWrenGA", enableDPWrenGA);
-    cvWriteInt(fs, "enableDPPratiMediod", enableDPPratiMediod);
-    cvWriteInt(fs, "enableDPEigenbackground", enableDPEigenbackground);
-    cvWriteInt(fs, "enableDPTexture", enableDPTexture);
+    fs << "enableDPAdaptiveMedian" << enableDPAdaptiveMedian;
+    fs << "enableDPGrimsonGMM" << enableDPGrimsonGMM;
+    fs << "enableDPZivkovicAGMM" << enableDPZivkovicAGMM;
+    fs << "enableDPMean" << enableDPMean;
+    fs << "enableDPWrenGA" << enableDPWrenGA;
+    fs << "enableDPPratiMediod" << enableDPPratiMediod;
+    fs << "enableDPEigenbackground" << enableDPEigenbackground;
+    fs << "enableDPTexture" << enableDPTexture;
+    fs << "enableT2FGMM_UM" << enableT2FGMM_UM;
+    fs << "enableT2FGMM_UV" << enableT2FGMM_UV;
+    fs << "enableT2FMRF_UM" << enableT2FMRF_UM;
+    fs << "enableT2FMRF_UV" << enableT2FMRF_UV;
+    fs << "enableFuzzySugenoIntegral" << enableFuzzySugenoIntegral;
+    fs << "enableFuzzyChoquetIntegral" << enableFuzzyChoquetIntegral;
+    fs << "enableLBSimpleGaussian" << enableLBSimpleGaussian;
+    fs << "enableLBFuzzyGaussian" << enableLBFuzzyGaussian;
+    fs << "enableLBMixtureOfGaussians" << enableLBMixtureOfGaussians;
+    fs << "enableLBAdaptiveSOM" << enableLBAdaptiveSOM;
+    fs << "enableLBFuzzyAdaptiveSOM" << enableLBFuzzyAdaptiveSOM;
+    fs << "enableLbpMrf" << enableLbpMrf;
+    fs << "enableMultiLayer" << enableMultiLayer;
+    fs << "enablePBAS" << enablePBAS;
+    fs << "enableVuMeter" << enableVuMeter;
+    fs << "enableKDE" << enableKDE;
+    fs << "enableIMBS" << enableIMBS;
+    fs << "enableMultiCue" << enableMultiCue;
+    fs << "enableSigmaDelta" << enableSigmaDelta;
+    fs << "enableSuBSENSE" << enableSuBSENSE;
+    fs << "enableLOBSTER" << enableLOBSTER;
+    fs << "enablePAWCS" << enablePAWCS;
+    fs << "enableTwoPoints" << enableTwoPoints;
+    fs << "enableViBe" << enableViBe;
+    fs << "enableCodeBook" << enableCodeBook;
 
-    cvWriteInt(fs, "enableT2FGMM_UM", enableT2FGMM_UM);
-    cvWriteInt(fs, "enableT2FGMM_UV", enableT2FGMM_UV);
-    cvWriteInt(fs, "enableT2FMRF_UM", enableT2FMRF_UM);
-    cvWriteInt(fs, "enableT2FMRF_UV", enableT2FMRF_UV);
-    cvWriteInt(fs, "enableFuzzySugenoIntegral", enableFuzzySugenoIntegral);
-    cvWriteInt(fs, "enableFuzzyChoquetIntegral", enableFuzzyChoquetIntegral);
-
-    cvWriteInt(fs, "enableLBSimpleGaussian", enableLBSimpleGaussian);
-    cvWriteInt(fs, "enableLBFuzzyGaussian", enableLBFuzzyGaussian);
-    cvWriteInt(fs, "enableLBMixtureOfGaussians", enableLBMixtureOfGaussians);
-    cvWriteInt(fs, "enableLBAdaptiveSOM", enableLBAdaptiveSOM);
-    cvWriteInt(fs, "enableLBFuzzyAdaptiveSOM", enableLBFuzzyAdaptiveSOM);
-
-    cvWriteInt(fs, "enableLbpMrf", enableLbpMrf);
-    cvWriteInt(fs, "enableMultiLayer", enableMultiLayer);
-    cvWriteInt(fs, "enablePBAS", enablePBAS);
-    cvWriteInt(fs, "enableVuMeter", enableVuMeter);
-    cvWriteInt(fs, "enableKDE", enableKDE);
-    cvWriteInt(fs, "enableIMBS", enableIMBS);
-    cvWriteInt(fs, "enableMultiCue", enableMultiCue);
-    cvWriteInt(fs, "enableSigmaDelta", enableSigmaDelta);
-    cvWriteInt(fs, "enableSuBSENSE", enableSuBSENSE);
-    cvWriteInt(fs, "enableLOBSTER", enableLOBSTER);
-    cvWriteInt(fs, "enablePAWCS", enablePAWCS);
-    cvWriteInt(fs, "enableTwoPoints", enableTwoPoints);
-    cvWriteInt(fs, "enableViBe", enableViBe);
-    cvWriteInt(fs, "enableCodeBook", enableCodeBook);
-
-    cvReleaseFileStorage(&fs);
+    fs.release();
   }
 
   void FrameProcessor::loadConfig()
   {
-    CvFileStorage* fs = cvOpenFileStorage("./config/FrameProcessor.xml", 0, CV_STORAGE_READ);
+    cv::FileStorage fs;
+    fs.open(config_xml, cv::FileStorage::READ);
+    
+    fs["tictoc"] >> tictoc;
+    fs["enablePreProcessor"] >> enablePreProcessor;
+    fs["enableForegroundMaskAnalysis"] >> enableForegroundMaskAnalysis;
+    fs["enableFrameDifference"] >> enableFrameDifference;
+    fs["enableStaticFrameDifference"] >> enableStaticFrameDifference;
+    fs["enableWeightedMovingMean"] >> enableWeightedMovingMean;
+    fs["enableWeightedMovingVariance"] >> enableWeightedMovingVariance;
+    fs["enableAdaptiveBackgroundLearning"] >> enableAdaptiveBackgroundLearning;
+    fs["enableMixtureOfGaussianV2"] >> enableMixtureOfGaussianV2;
 
-    tictoc = cvReadStringByName(fs, 0, "tictoc", "");
-
-    enablePreProcessor = cvReadIntByName(fs, 0, "enablePreProcessor", true);
-
-    enableForegroundMaskAnalysis = cvReadIntByName(fs, 0, "enableForegroundMaskAnalysis", false);
-
-    enableFrameDifference = cvReadIntByName(fs, 0, "enableFrameDifference", false);
-    enableStaticFrameDifference = cvReadIntByName(fs, 0, "enableStaticFrameDifference", false);
-    enableWeightedMovingMean = cvReadIntByName(fs, 0, "enableWeightedMovingMean", false);
-    enableWeightedMovingVariance = cvReadIntByName(fs, 0, "enableWeightedMovingVariance", false);
 #if CV_MAJOR_VERSION == 2
-    enableMixtureOfGaussianV1 = cvReadIntByName(fs, 0, "enableMixtureOfGaussianV1", false);
+    fs["enableMixtureOfGaussianV1"] >> enableMixtureOfGaussianV1;
 #endif
-    enableMixtureOfGaussianV2 = cvReadIntByName(fs, 0, "enableMixtureOfGaussianV2", false);
-    enableAdaptiveBackgroundLearning = cvReadIntByName(fs, 0, "enableAdaptiveBackgroundLearning", false);
 #if CV_MAJOR_VERSION == 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
-    enableGMG = cvReadIntByName(fs, 0, "enableGMG", false);
+    fs["enableGMG"] >> enableGMG;
 #endif
 #if CV_MAJOR_VERSION >= 3
-    enableKNN = cvReadIntByName(fs, 0, "enableKNN", false);
+    fs["enableKNN"] >> enableKNN;
 #endif
 
-    enableDPAdaptiveMedian = cvReadIntByName(fs, 0, "enableDPAdaptiveMedian", false);
-    enableDPGrimsonGMM = cvReadIntByName(fs, 0, "enableDPGrimsonGMM", false);
-    enableDPZivkovicAGMM = cvReadIntByName(fs, 0, "enableDPZivkovicAGMM", false);
-    enableDPMean = cvReadIntByName(fs, 0, "enableDPMean", false);
-    enableDPWrenGA = cvReadIntByName(fs, 0, "enableDPWrenGA", false);
-    enableDPPratiMediod = cvReadIntByName(fs, 0, "enableDPPratiMediod", false);
-    enableDPEigenbackground = cvReadIntByName(fs, 0, "enableDPEigenbackground", false);
-    enableDPTexture = cvReadIntByName(fs, 0, "enableDPTexture", false);
+    fs["enableDPAdaptiveMedian"] >> enableDPAdaptiveMedian;
+    fs["enableDPGrimsonGMM"] >> enableDPGrimsonGMM;
+    fs["enableDPZivkovicAGMM"] >> enableDPZivkovicAGMM;
+    fs["enableDPMean"] >> enableDPMean;
+    fs["enableDPWrenGA"] >> enableDPWrenGA;
+    fs["enableDPPratiMediod"] >> enableDPPratiMediod;
+    fs["enableDPEigenbackground"] >> enableDPEigenbackground;
+    fs["enableDPTexture"] >> enableDPTexture;
+    fs["enableT2FGMM_UM"] >> enableT2FGMM_UM;
+    fs["enableT2FGMM_UV"] >> enableT2FGMM_UV;
+    fs["enableT2FMRF_UM"] >> enableT2FMRF_UM;
+    fs["enableT2FMRF_UV"] >> enableT2FMRF_UV;
+    fs["enableFuzzySugenoIntegral"] >> enableFuzzySugenoIntegral;
+    fs["enableFuzzyChoquetIntegral"] >> enableFuzzyChoquetIntegral;
+    fs["enableLBSimpleGaussian"] >> enableLBSimpleGaussian;
+    fs["enableLBFuzzyGaussian"] >> enableLBFuzzyGaussian;
+    fs["enableLBMixtureOfGaussians"] >> enableLBMixtureOfGaussians;
+    fs["enableLBAdaptiveSOM"] >> enableLBAdaptiveSOM;
+    fs["enableLBFuzzyAdaptiveSOM"] >> enableLBFuzzyAdaptiveSOM;
+    fs["enableLbpMrf"] >> enableLbpMrf;
+    fs["enableMultiLayer"] >> enableMultiLayer;
+    fs["enablePBAS"] >> enablePBAS;
+    fs["enableVuMeter"] >> enableVuMeter;
+    fs["enableKDE"] >> enableKDE;
+    fs["enableIMBS"] >> enableIMBS;
+    fs["enableMultiCue"] >> enableMultiCue;
+    fs["enableSigmaDelta"] >> enableSigmaDelta;
+    fs["enableSuBSENSE"] >> enableSuBSENSE;
+    fs["enableLOBSTER"] >> enableLOBSTER;
+    fs["enablePAWCS"] >> enablePAWCS;
+    fs["enableTwoPoints"] >> enableTwoPoints;
+    fs["enableViBe"] >> enableViBe;
+    fs["enableCodeBook"] >> enableCodeBook;
 
-    enableT2FGMM_UM = cvReadIntByName(fs, 0, "enableT2FGMM_UM", false);
-    enableT2FGMM_UV = cvReadIntByName(fs, 0, "enableT2FGMM_UV", false);
-    enableT2FMRF_UM = cvReadIntByName(fs, 0, "enableT2FMRF_UM", false);
-    enableT2FMRF_UV = cvReadIntByName(fs, 0, "enableT2FMRF_UV", false);
-    enableFuzzySugenoIntegral = cvReadIntByName(fs, 0, "enableFuzzySugenoIntegral", false);
-    enableFuzzyChoquetIntegral = cvReadIntByName(fs, 0, "enableFuzzyChoquetIntegral", false);
-
-    enableLBSimpleGaussian = cvReadIntByName(fs, 0, "enableLBSimpleGaussian", false);
-    enableLBFuzzyGaussian = cvReadIntByName(fs, 0, "enableLBFuzzyGaussian", false);
-    enableLBMixtureOfGaussians = cvReadIntByName(fs, 0, "enableLBMixtureOfGaussians", false);
-    enableLBAdaptiveSOM = cvReadIntByName(fs, 0, "enableLBAdaptiveSOM", false);
-    enableLBFuzzyAdaptiveSOM = cvReadIntByName(fs, 0, "enableLBFuzzyAdaptiveSOM", false);
-
-    enableLbpMrf = cvReadIntByName(fs, 0, "enableLbpMrf", false);
-    enableMultiLayer = cvReadIntByName(fs, 0, "enableMultiLayer", false);
-    enablePBAS = cvReadIntByName(fs, 0, "enablePBAS", false);
-    enableVuMeter = cvReadIntByName(fs, 0, "enableVuMeter", false);
-    enableKDE = cvReadIntByName(fs, 0, "enableKDE", false);
-    enableIMBS = cvReadIntByName(fs, 0, "enableIMBS", false);
-    enableMultiCue = cvReadIntByName(fs, 0, "enableMultiCue", false);
-    enableSigmaDelta = cvReadIntByName(fs, 0, "enableSigmaDelta", false);
-    enableSuBSENSE = cvReadIntByName(fs, 0, "enableSuBSENSE", false);
-    enableLOBSTER = cvReadIntByName(fs, 0, "enableLOBSTER", false);
-    enablePAWCS = cvReadIntByName(fs, 0, "enablePAWCS", false);
-    enableTwoPoints = cvReadIntByName(fs, 0, "enableTwoPoints", false);
-    enableViBe = cvReadIntByName(fs, 0, "enableViBe", false);
-    enableCodeBook = cvReadIntByName(fs, 0, "enableCodeBook", false);
-
-    cvReleaseFileStorage(&fs);
+    fs.release();
   }
 }

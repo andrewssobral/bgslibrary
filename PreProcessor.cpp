@@ -18,9 +18,11 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace bgslibrary
 {
-  PreProcessor::PreProcessor() : firstTime(true), equalizeHist(false), gaussianBlur(false)
+  PreProcessor::PreProcessor() : 
+    firstTime(true), equalizeHist(false), gaussianBlur(false)
   {
     std::cout << "PreProcessor()" << std::endl;
+    setup("./config/PreProcessor.xml");
   }
 
   PreProcessor::~PreProcessor()
@@ -71,11 +73,11 @@ namespace bgslibrary
       cv::GaussianBlur(img_output, img_output, cv::Size(7, 7), 1.5);
 
     if (enableShow)
-      cv::imshow("Pre Processor", img_output);
+      cv::imshow("PreProcessor", img_output);
 
     firstTime = false;
   }
-
+  /*
   void PreProcessor::rotate(const cv::Mat &img_input, cv::Mat &img_output, float angle)
   {
     IplImage* image = new IplImage(img_input);
@@ -102,7 +104,7 @@ namespace bgslibrary
     cvReleaseImage(&rotatedImage);
     cvReleaseMat(&mapMatrix);
   }
-
+  */
   void PreProcessor::applyCanny(const cv::Mat &img_input, cv::Mat &img_output)
   {
     if (img_input.empty())
@@ -127,23 +129,24 @@ namespace bgslibrary
 
   void PreProcessor::saveConfig()
   {
-    CvFileStorage* fs = cvOpenFileStorage("./config/PreProcessor.xml", 0, CV_STORAGE_WRITE);
+    cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
 
-    cvWriteInt(fs, "equalizeHist", equalizeHist);
-    cvWriteInt(fs, "gaussianBlur", gaussianBlur);
-    cvWriteInt(fs, "enableShow", enableShow);
+    fs << "equalizeHist" << equalizeHist;
+    fs << "gaussianBlur" << gaussianBlur;
+    fs << "enableShow" << enableShow;
 
-    cvReleaseFileStorage(&fs);
+    fs.release();
   }
 
   void PreProcessor::loadConfig()
   {
-    CvFileStorage* fs = cvOpenFileStorage("./config/PreProcessor.xml", 0, CV_STORAGE_READ);
+    cv::FileStorage fs;
+    fs.open(config_xml, cv::FileStorage::READ);
+    
+    fs["equalizeHist"] >> equalizeHist;
+    fs["gaussianBlur"] >> gaussianBlur;
+    fs["enableShow"] >> enableShow;
 
-    equalizeHist = cvReadIntByName(fs, 0, "equalizeHist", false);
-    gaussianBlur = cvReadIntByName(fs, 0, "gaussianBlur", false);
-    enableShow = cvReadIntByName(fs, 0, "enableShow", true);
-
-    cvReleaseFileStorage(&fs);
+    fs.release();
   }
 }

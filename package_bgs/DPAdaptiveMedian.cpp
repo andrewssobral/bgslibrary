@@ -1,20 +1,6 @@
-/*
-This file is part of BGSLibrary.
-
-BGSLibrary is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-BGSLibrary is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
-*/
 #include "DPAdaptiveMedian.h"
+
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
 
 using namespace bgslibrary::algorithms;
 
@@ -87,24 +73,27 @@ void DPAdaptiveMedian::process(const cv::Mat &img_input, cv::Mat &img_output, cv
 
 void DPAdaptiveMedian::saveConfig()
 {
-  CvFileStorage* fs = cvOpenFileStorage(config_xml.c_str(), nullptr, CV_STORAGE_WRITE);
+  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
 
-  cvWriteInt(fs, "threshold", threshold);
-  cvWriteInt(fs, "samplingRate", samplingRate);
-  cvWriteInt(fs, "learningFrames", learningFrames);
-  cvWriteInt(fs, "showOutput", showOutput);
+  fs << "threshold" << threshold;
+  fs << "samplingRate" << samplingRate;
+  fs << "learningFrames" << learningFrames;
+  fs << "showOutput" << showOutput;
 
-  cvReleaseFileStorage(&fs);
+  fs.release();
 }
 
 void DPAdaptiveMedian::loadConfig()
 {
-  CvFileStorage* fs = cvOpenFileStorage(config_xml.c_str(), nullptr, CV_STORAGE_READ);
+  cv::FileStorage fs;
+  fs.open(config_xml, cv::FileStorage::READ);
 
-  threshold = cvReadIntByName(fs, nullptr, "threshold", 40);
-  samplingRate = cvReadIntByName(fs, nullptr, "samplingRate", 7);
-  learningFrames = cvReadIntByName(fs, nullptr, "learningFrames", 30);
-  showOutput = cvReadIntByName(fs, nullptr, "showOutput", true);
+  fs["threshold"] >> threshold;
+  fs["samplingRate"] >> samplingRate;
+  fs["learningFrames"] >> learningFrames;
+  fs["showOutput"] >> showOutput;
 
-  cvReleaseFileStorage(&fs);
+  fs.release();
 }
+
+#endif

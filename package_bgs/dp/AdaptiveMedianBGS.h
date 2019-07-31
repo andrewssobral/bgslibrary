@@ -1,42 +1,11 @@
-/*
-This file is part of BGSLibrary.
-
-BGSLibrary is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-BGSLibrary is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
-*/
-/****************************************************************************
-*
-* AdaptiveMedianBGS.hpp
-*
-* Purpose: Implementation of the simple adaptive median background
-*		  		 subtraction algorithm described in:
-*	  			 "Segmentation and tracking of piglets in images"
-* 						by McFarlane and Schofield
-*
-* Author: Donovan Parks, September 2007
-
-Example:
-    Algorithms::BackgroundSubtraction::AdaptiveMedianParams params;
-    params.SetFrameSize(width, height);
-    params.LowThreshold() = 40;
-    params.HighThreshold() = 2*params.LowThreshold();
-    params.SamplingRate() = 7;
-    params.LearningFrames() = 30;
-
-    Algorithms::BackgroundSubtraction::AdaptiveMedianBGS bgs;
-    bgs.Initalize(params);
-******************************************************************************/
 #pragma once
+
+#include "opencv2/core/version.hpp"
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+
+#include <iostream>
+#include <stdlib.h>
+#include <cmath>
 
 #include "Bgs.h"
 
@@ -88,3 +57,5 @@ namespace Algorithms
     };
   }
 }
+
+#endif

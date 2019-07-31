@@ -1,27 +1,13 @@
-/*
-This file is part of BGSLibrary.
+#include <iostream>
+#include <iomanip>
+#include <exception>
 
-BGSLibrary is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+#include <opencv2/imgproc/imgproc.hpp>
+#include <opencv2/highgui/highgui.hpp>
 
-BGSLibrary is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
-*/
 #include "BackgroundSubtractorLBSP_.h"
 #include "DistanceUtils.h"
 #include "RandUtils.h"
-#include <iostream>
-#include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/highgui/highgui.hpp>
-#include <iomanip>
-#include <exception>
 
 // local define used to determine the default median blur kernel size
 #define DEFAULT_MEDIAN_BLUR_KERNEL_SIZE (9)
