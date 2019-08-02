@@ -2,6 +2,12 @@
 
 #include "VideoCapture.h"
 
+#if  CV_MAJOR_VERSION >= 4
+//#define CV_CAP_PROP_POS_FRAMES cv::CAP_PROP_POS_FRAMES
+//#define CV_CAP_PROP_FRAME_COUNT cv::CAP_PROP_FRAME_COUNT
+#define CV_CAP_PROP_FPS cv::CAP_PROP_FPS
+#endif
+
 namespace bgslibrary
 {
   namespace VC_ROI

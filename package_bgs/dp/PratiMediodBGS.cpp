@@ -1,5 +1,7 @@
 #include "PratiMediodBGS.h"
 
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+
 using namespace Algorithms::BackgroundSubtraction;
 
 PratiMediodBGS::PratiMediodBGS()
@@ -233,3 +235,5 @@ void PratiMediodBGS::Subtract(int frame_num, const RgbImage& data,
   Combine(m_mask_low_threshold, m_mask_high_threshold, low_threshold_mark);
   Combine(m_mask_low_threshold, m_mask_high_threshold, high_threshold_mark);
 }
+
+#endif

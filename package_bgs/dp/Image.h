@@ -2,6 +2,8 @@
 
 #include <opencv2/opencv.hpp>
 
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+
 template <class T>
 class ImageIterator
 {
@@ -326,3 +328,5 @@ public:
 // --- Image Functions --------------------------------------------------------
 
 void DensityFilter(BwImage& image, BwImage& filtered, int minDensity, unsigned char fgValue);
+
+#endif

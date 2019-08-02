@@ -1,5 +1,7 @@
 #include "WrenGA.h"
 
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+
 using namespace Algorithms::BackgroundSubtraction;
 
 WrenGA::WrenGA()
@@ -138,3 +140,5 @@ void WrenGA::Subtract(int frame_num, const RgbImage& data,
     }
   }
 }
+
+#endif

@@ -1,54 +1,9 @@
-/*
-This file is part of BGSLibrary.
-
-BGSLibrary is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-BGSLibrary is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
-*/
-/****************************************************************************
-*
-* PratiMediodBGS.hpp
-*
-* Purpose: Implementation of the temporal median background
-*		  		 subtraction algorithm described in:
-*
-* [1] "Detecting Moving Objects, Shosts, and Shadows in Video Stream"
-* 			by R. Cucchiara et al (2003)
-*
-* [2] "Reliable Background Suppression for Complex Scenes"
-*				by S. Calderara et al (2006)
-*
-* Author: Donovan Parks, September 2007
-*
-* Please note that this is not an implementation of the complete system
-* given in the above papers. It simply implements the temporal media background
-* subtraction algorithm.
-
-Example:
-Algorithms::BackgroundSubtraction::PratiParams params;
-params.SetFrameSize(width, height);
-params.LowThreshold() = 30;
-params.HighThreshold() = 2*params.LowThreshold();	// Note: high threshold is used by post-processing
-params.SamplingRate() = 5;
-params.HistorySize() = 16;
-params.Weight() = 5;
-
-Algorithms::BackgroundSubtraction::PratiMediodBGS bgs;
-bgs.Initalize(params);
-******************************************************************************/
 #pragma once
 
 #include <vector>
 #include "Bgs.h"
+
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
 
 namespace Algorithms
 {
@@ -127,6 +82,7 @@ namespace Algorithms
       BwImage m_mask_low_threshold;
       BwImage m_mask_high_threshold;
     };
-
   }
 }
+
+#endif

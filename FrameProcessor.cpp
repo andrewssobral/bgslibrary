@@ -55,6 +55,7 @@ namespace bgslibrary
       knn = new KNN;
 #endif
 
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
     if (enableDPAdaptiveMedian)
       dpAdaptiveMedian = new DPAdaptiveMedian;
 
@@ -132,6 +133,7 @@ namespace bgslibrary
 
     if (enableMultiCue)
       multiCue = new MultiCue;
+#endif
 
     if (enableSigmaDelta)
       sigmaDelta = new SigmaDelta;
@@ -210,6 +212,7 @@ namespace bgslibrary
       process("KNN", knn, img_preProcessor, img_knn);
 #endif
 
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
     if (enableDPAdaptiveMedian)
       process("DPAdaptiveMedian", dpAdaptiveMedian, img_preProcessor, img_dpAdaptiveMedian);
 
@@ -291,7 +294,8 @@ namespace bgslibrary
 
     if (enableMultiCue)
       process("MultiCue", multiCue, img_preProcessor, img_multiCue);
-
+#endif
+    
     if (enableSigmaDelta)
       process("SigmaDelta", sigmaDelta, img_preProcessor, img_sigmaDelta);
 
@@ -322,17 +326,22 @@ namespace bgslibrary
       foregroundMaskAnalysis->process(frameNumber, "StaticFrameDifference", img_staticFrameDifference);
       foregroundMaskAnalysis->process(frameNumber, "WeightedMovingMean", img_weightedMovingMean);
       foregroundMaskAnalysis->process(frameNumber, "WeightedMovingVariance", img_weightedMovingVariance);
+      foregroundMaskAnalysis->process(frameNumber, "AdaptiveBackgroundLearning", img_adaptiveBackgroundLearning);
+      foregroundMaskAnalysis->process(frameNumber, "MixtureOfGaussianV2", img_mixtureOfGaussianV2);
+
 #if CV_MAJOR_VERSION == 2
       foregroundMaskAnalysis->process(frameNumber, "MixtureOfGaussianV1", img_mixtureOfGaussianV1);
 #endif
-      foregroundMaskAnalysis->process(frameNumber, "MixtureOfGaussianV2", img_mixtureOfGaussianV2);
-      foregroundMaskAnalysis->process(frameNumber, "AdaptiveBackgroundLearning", img_adaptiveBackgroundLearning);
+
 #if CV_MAJOR_VERSION == 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
       foregroundMaskAnalysis->process(frameNumber, "GMG", img_gmg);
 #endif
+      
 #if CV_MAJOR_VERSION >= 3
       foregroundMaskAnalysis->process(frameNumber, "KNN", img_knn);
 #endif
+      
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
       foregroundMaskAnalysis->process(frameNumber, "DPAdaptiveMedian", img_dpAdaptiveMedian);
       foregroundMaskAnalysis->process(frameNumber, "DPGrimsonGMM", img_dpGrimsonGMM);
       foregroundMaskAnalysis->process(frameNumber, "DPZivkovicAGMM", img_dpZivkovicAGMM);
@@ -359,6 +368,8 @@ namespace bgslibrary
       foregroundMaskAnalysis->process(frameNumber, "KDE", img_kde);
       foregroundMaskAnalysis->process(frameNumber, "IMBS", img_imbs);
       foregroundMaskAnalysis->process(frameNumber, "MultiCue", img_multiCue);
+#endif
+
       foregroundMaskAnalysis->process(frameNumber, "SigmaDelta", img_sigmaDelta);
       foregroundMaskAnalysis->process(frameNumber, "SuBSENSE", img_subSENSE);
       foregroundMaskAnalysis->process(frameNumber, "LOBSTER", img_lobster);
@@ -415,6 +426,7 @@ namespace bgslibrary
     if (enableSigmaDelta)
       delete sigmaDelta;
 
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
     if (enableMultiCue)
       delete multiCue;
 
@@ -492,6 +504,7 @@ namespace bgslibrary
 
     if (enableDPAdaptiveMedian)
       delete dpAdaptiveMedian;
+#endif
 
 #if CV_MAJOR_VERSION == 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
     if (enableGMG)
@@ -503,16 +516,16 @@ namespace bgslibrary
       delete knn;
 #endif
 
-    if (enableAdaptiveBackgroundLearning)
-      delete adaptiveBackgroundLearning;
-
-    if (enableMixtureOfGaussianV2)
-      delete mixtureOfGaussianV2;
-
 #if CV_MAJOR_VERSION == 2
     if (enableMixtureOfGaussianV1)
       delete mixtureOfGaussianV1;
 #endif
+    
+    if (enableMixtureOfGaussianV2)
+      delete mixtureOfGaussianV2;
+    
+    if (enableAdaptiveBackgroundLearning)
+      delete adaptiveBackgroundLearning;
 
     if (enableWeightedMovingVariance)
       delete weightedMovingVariance;
@@ -559,13 +572,16 @@ namespace bgslibrary
 #if CV_MAJOR_VERSION == 2
     fs << "enableMixtureOfGaussianV1" << enableMixtureOfGaussianV1;
 #endif
+    
 #if CV_MAJOR_VERSION == 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
     fs << "enableGMG" << enableGMG;
 #endif
+    
 #if CV_MAJOR_VERSION >= 3
     fs << "enableKNN" << enableKNN;
 #endif
 
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
     fs << "enableDPAdaptiveMedian" << enableDPAdaptiveMedian;
     fs << "enableDPGrimsonGMM" << enableDPGrimsonGMM;
     fs << "enableDPZivkovicAGMM" << enableDPZivkovicAGMM;
@@ -592,6 +608,8 @@ namespace bgslibrary
     fs << "enableKDE" << enableKDE;
     fs << "enableIMBS" << enableIMBS;
     fs << "enableMultiCue" << enableMultiCue;
+#endif
+    
     fs << "enableSigmaDelta" << enableSigmaDelta;
     fs << "enableSuBSENSE" << enableSuBSENSE;
     fs << "enableLOBSTER" << enableLOBSTER;
@@ -621,13 +639,16 @@ namespace bgslibrary
 #if CV_MAJOR_VERSION == 2
     fs["enableMixtureOfGaussianV1"] >> enableMixtureOfGaussianV1;
 #endif
+    
 #if CV_MAJOR_VERSION == 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
     fs["enableGMG"] >> enableGMG;
 #endif
+    
 #if CV_MAJOR_VERSION >= 3
     fs["enableKNN"] >> enableKNN;
 #endif
 
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
     fs["enableDPAdaptiveMedian"] >> enableDPAdaptiveMedian;
     fs["enableDPGrimsonGMM"] >> enableDPGrimsonGMM;
     fs["enableDPZivkovicAGMM"] >> enableDPZivkovicAGMM;
@@ -654,6 +675,8 @@ namespace bgslibrary
     fs["enableKDE"] >> enableKDE;
     fs["enableIMBS"] >> enableIMBS;
     fs["enableMultiCue"] >> enableMultiCue;
+#endif
+    
     fs["enableSigmaDelta"] >> enableSigmaDelta;
     fs["enableSuBSENSE"] >> enableSuBSENSE;
     fs["enableLOBSTER"] >> enableLOBSTER;

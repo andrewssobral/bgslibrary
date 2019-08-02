@@ -1,5 +1,7 @@
 #include "MeanBGS.h"
 
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+
 using namespace Algorithms::BackgroundSubtraction;
 
 void MeanBGS::Initalize(const BgsParams& param)
@@ -98,3 +100,5 @@ void MeanBGS::Subtract(int frame_num, const RgbImage& data,
     }
   }
 }
+
+#endif

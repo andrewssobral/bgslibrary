@@ -4,6 +4,11 @@
 
 #include "package_bgs/bgslibrary.h"
 
+#if CV_MAJOR_VERSION >= 4
+#define CV_CAP_PROP_POS_FRAMES cv::CAP_PROP_POS_FRAMES
+#define CV_CAP_PROP_FRAME_COUNT cv::CAP_PROP_FRAME_COUNT
+#endif
+
 int main(int argc, char **argv)
 {
   std::cout << "Using OpenCV " << CV_MAJOR_VERSION << "." << CV_MINOR_VERSION << "." << CV_SUBMINOR_VERSION << std::endl;

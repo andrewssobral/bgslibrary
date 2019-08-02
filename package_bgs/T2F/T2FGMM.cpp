@@ -1,5 +1,7 @@
 #include "T2FGMM.h"
 
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+
 using namespace Algorithms::BackgroundSubtraction;
 
 int compareT2FGMM(const void* _gmm1, const void* _gmm2)
@@ -308,3 +310,5 @@ void T2FGMM::Subtract(int frame_num, const RgbImage& data, BwImage& low_threshol
     }
   }
 }
+
+#endif

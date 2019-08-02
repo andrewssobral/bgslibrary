@@ -1,5 +1,7 @@
 #include "TextureBGS.h"
 
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+
 TextureBGS::TextureBGS() {}
 TextureBGS::~TextureBGS() {}
 
@@ -135,3 +137,5 @@ void TextureBGS::UpdateModel(BwImage& fgMask, TextureArray* bgModel,
     }
   }
 }
+
+#endif

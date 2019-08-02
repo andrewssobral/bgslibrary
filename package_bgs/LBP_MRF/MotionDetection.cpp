@@ -2,6 +2,9 @@
 #include <opencv2/imgproc.hpp>
 
 #include "MotionDetection.hpp"
+
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+
 #include "graph.h"
 #include "MEHistogram.hpp"
 #include "MEImage.hpp"
@@ -1455,3 +1458,5 @@ void MotionDetection::SetSampleMaskHU(SampleMaskType mask_type, int desiredarea)
     delete[] CalculationMask[i];
   delete[] CalculationMask;
 }
+
+#endif

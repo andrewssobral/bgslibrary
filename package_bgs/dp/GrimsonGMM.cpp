@@ -1,5 +1,7 @@
 #include "GrimsonGMM.h"
 
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+
 using namespace Algorithms::BackgroundSubtraction;
 
 int compareGMM(const void* _gmm1, const void* _gmm2)
@@ -286,3 +288,4 @@ void GrimsonGMM::Subtract(int frame_num, const RgbImage& data,
   }
 }
 
+#endif

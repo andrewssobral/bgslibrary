@@ -3,6 +3,8 @@
 #include <math.h>
 #include "Image.h"
 
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+
 const int REGION_R = 5;			// Note: the code currently assumes this value is <= 7
 const int TEXTURE_POINTS = 6;	// Note: the code currently assumes this value is 6
 const int TEXTURE_R = 2;		// Note: the code currently assumes this value is 2
@@ -39,3 +41,5 @@ public:
   void UpdateModel(BwImage& fgMask, TextureArray* bgModel,
     TextureHistogram* curTextureHist, unsigned char* modeArray);
 };
+
+#endif

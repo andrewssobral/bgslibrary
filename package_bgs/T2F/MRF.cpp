@@ -1,5 +1,7 @@
 #include "MRF.h"
 
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+
 using namespace Algorithms::BackgroundSubtraction;
 
 //init the basic MRF
@@ -320,3 +322,5 @@ void MRF_TC::ICM2()
     OnIterationOver2();
   } while (K < 2);
 }
+
+#endif

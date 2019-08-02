@@ -64,6 +64,7 @@ namespace bgslibrary
     bool enableKNN;
 #endif
 
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
     cv::Mat img_dpAdaptiveMedian;
     DPAdaptiveMedian* dpAdaptiveMedian;
     bool enableDPAdaptiveMedian;
@@ -139,7 +140,7 @@ namespace bgslibrary
     cv::Mat img_lbFuzzyAdaptiveSOM;
     LBFuzzyAdaptiveSOM* lbFuzzyAdaptiveSOM;
     bool enableLBFuzzyAdaptiveSOM;
-
+    
     cv::Mat img_lbpMrf;
     LBP_MRF* lbpMrf;
     bool enableLbpMrf;
@@ -167,6 +168,7 @@ namespace bgslibrary
     cv::Mat img_multiCue;
     MultiCue* multiCue;
     bool enableMultiCue;
+#endif
 
     cv::Mat img_sigmaDelta;
     SigmaDelta* sigmaDelta;

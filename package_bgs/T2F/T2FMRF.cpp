@@ -1,5 +1,7 @@
 #include "T2FMRF.h"
 
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+
 using namespace Algorithms::BackgroundSubtraction;
 
 int compareT2FMRF(const void* _gmm1, const void* _gmm2)
@@ -399,3 +401,5 @@ void T2FMRF::Subtract(int frame_num, const RgbImage& data,
     }
   }
 }
+
+#endif

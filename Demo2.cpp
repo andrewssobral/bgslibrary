@@ -4,6 +4,10 @@
 
 #include "package_bgs/bgslibrary.h"
 
+#if CV_MAJOR_VERSION >= 4
+#define CV_LOAD_IMAGE_COLOR cv::IMREAD_COLOR
+#endif
+
 int main(int argc, char **argv)
 {
   std::cout << "Using OpenCV " << CV_MAJOR_VERSION << "." << CV_MINOR_VERSION << "." << CV_SUBMINOR_VERSION << std::endl;

@@ -1,5 +1,7 @@
 #include "Image.h"
 
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+
 ImageBase::~ImageBase()
 {
   if (imgp != NULL && m_bReleaseMemory)
@@ -45,3 +47,5 @@ void DensityFilter(BwImage& image, BwImage& filtered, int minDensity, unsigned c
     }
   }
 }
+
+#endif

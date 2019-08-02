@@ -2,6 +2,8 @@
 
 #include "Bgs.h"
 
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+
 namespace Algorithms
 {
   namespace BackgroundSubtraction
@@ -96,3 +98,5 @@ namespace Algorithms
     };
   }
 }
+
+#endif

@@ -1,5 +1,7 @@
 #include "ZivkovicAGMM.h"
 
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+
 using namespace Algorithms::BackgroundSubtraction;
 
 ZivkovicAGMM::ZivkovicAGMM()
@@ -363,3 +365,5 @@ void ZivkovicAGMM::Subtract(int frame_num, const RgbImage& data,
     }
   }
 }
+
+#endif

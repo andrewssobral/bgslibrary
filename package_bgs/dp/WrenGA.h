@@ -2,6 +2,8 @@
 
 #include "Bgs.h"
 
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+
 namespace Algorithms
 {
   namespace BackgroundSubtraction
@@ -25,7 +27,6 @@ namespace Algorithms
       float m_alpha;
       int m_learning_frames;
     };
-
 
     // --- Mean BGS algorithm ---
     class WrenGA : public Bgs
@@ -66,3 +67,5 @@ namespace Algorithms
     };
   }
 }
+
+#endif

@@ -1,5 +1,7 @@
 #include "Eigenbackground.h"
 
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+
 using namespace Algorithms::BackgroundSubtraction;
 
 Eigenbackground::Eigenbackground()
@@ -158,3 +160,5 @@ void Eigenbackground::UpdateHistory(int frame_num, const RgbImage& new_frame)
     cvCopy(new_frame.Ptr(), &src_row);
   }
 }
+
+#endif
