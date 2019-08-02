@@ -1,19 +1,3 @@
-/*
- This file is part of BGSLibrary.
-
- BGSLibrary is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- (at your option) any later version.
-
- BGSLibrary is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
-
- You should have received a copy of the GNU General Public License
- along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
- */
 #include "KNN.h"
 
 #if CV_MAJOR_VERSION >= 3
@@ -78,34 +62,35 @@ void KNN::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bg
 
 void KNN::saveConfig()
 {
-  CvFileStorage* fs = cvOpenFileStorage(config_xml.c_str(), nullptr, CV_STORAGE_WRITE);
-
-  cvWriteInt(fs, "history", history);
-  cvWriteInt(fs, "nSamples", nSamples);
-  cvWriteReal(fs, "dist2Threshold", dist2Threshold);
-  cvWriteInt(fs, "knnSamples", knnSamples);
-  cvWriteInt(fs, "doShadowDetection", doShadowDetection);
-  cvWriteInt(fs, "shadowValue", shadowValue);
-  cvWriteReal(fs, "shadowThreshold", shadowThreshold);
-  cvWriteInt(fs, "showOutput", showOutput);
-
-  cvReleaseFileStorage(&fs);
+  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
+  
+  fs << "history" << history;
+  fs << "nSamples" << nSamples;
+  fs << "dist2Threshold" << dist2Threshold;
+  fs << "knnSamples" << knnSamples;
+  fs << "doShadowDetection" << doShadowDetection;
+  fs << "shadowValue" << shadowValue;
+  fs << "shadowThreshold" << shadowThreshold;
+  fs << "showOutput" << showOutput;
+  
+  fs.release();
 }
 
 void KNN::loadConfig()
 {
-  CvFileStorage* fs = cvOpenFileStorage(config_xml.c_str(), nullptr, CV_STORAGE_READ);
-
-  history = cvReadIntByName(fs, nullptr, "history", 500);
-  nSamples = cvReadIntByName(fs, nullptr, "nSamples", 7);
-  dist2Threshold = cvReadRealByName(fs, nullptr, "dist2Threshold", 20.0f * 20.0f);
-  knnSamples = cvReadIntByName(fs, nullptr, "knnSamples", 0);
-  doShadowDetection = cvReadIntByName(fs, nullptr, "doShadowDetection", 1);
-  shadowValue = cvReadIntByName(fs, nullptr, "shadowValue", 127);
-  shadowThreshold = cvReadRealByName(fs, nullptr, "shadowThreshold", 0.5f);
-  showOutput = cvReadIntByName(fs, nullptr, "showOutput", true);
-
-  cvReleaseFileStorage(&fs);
+  cv::FileStorage fs;
+  fs.open(config_xml, cv::FileStorage::READ);
+  
+  fs["history"] >> history;
+  fs["nSamples"] >> nSamples;
+  fs["dist2Threshold"] >> dist2Threshold;
+  fs["knnSamples"] >> knnSamples;
+  fs["doShadowDetection"] >> doShadowDetection;
+  fs["shadowValue"] >> shadowValue;
+  fs["shadowThreshold"] >> shadowThreshold;
+  fs["showOutput"] >> showOutput;
+  
+  fs.release();
 }
 
 #endif

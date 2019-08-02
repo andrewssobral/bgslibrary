@@ -1,20 +1,3 @@
-/*
-This file is part of BGSLibrary.
-
-BGSLibrary is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-BGSLibrary is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
 #include "ViBe.h"
 
 using namespace bgslibrary::algorithms;
@@ -73,26 +56,27 @@ void ViBe::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_b
 
 void ViBe::saveConfig()
 {
-  CvFileStorage* fs = cvOpenFileStorage(config_xml.c_str(), nullptr, CV_STORAGE_WRITE);
-
-  //cvWriteInt(fs, "numberOfSamples", numberOfSamples);
-  cvWriteInt(fs, "matchingThreshold", matchingThreshold);
-  cvWriteInt(fs, "matchingNumber", matchingNumber);
-  cvWriteInt(fs, "updateFactor", updateFactor);
-  cvWriteInt(fs, "showOutput", showOutput);
-
-  cvReleaseFileStorage(&fs);
+  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
+  
+  //fs << "numberOfSamples" << numberOfSamples;
+  fs << "matchingThreshold" << matchingThreshold;
+  fs << "matchingNumber" << matchingNumber;
+  fs << "updateFactor" << updateFactor;
+  fs << "showOutput" << showOutput;
+  
+  fs.release();
 }
 
 void ViBe::loadConfig()
 {
-  CvFileStorage* fs = cvOpenFileStorage(config_xml.c_str(), nullptr, CV_STORAGE_READ);
-
-  //numberOfSamples = cvReadIntByName(fs, nullptr, "numberOfSamples", DEFAULT_NUM_SAMPLES);
-  matchingThreshold = cvReadRealByName(fs, nullptr, "matchingThreshold", DEFAULT_MATCH_THRESH);
-  matchingNumber = cvReadRealByName(fs, nullptr, "matchingNumber", DEFAULT_MATCH_NUM);
-  updateFactor = cvReadRealByName(fs, nullptr, "updateFactor", DEFAULT_UPDATE_FACTOR);
-  showOutput = cvReadIntByName(fs, nullptr, "showOutput", false);
-
-  cvReleaseFileStorage(&fs);
+  cv::FileStorage fs;
+  fs.open(config_xml, cv::FileStorage::READ);
+  
+  //fs["numberOfSamples"] >> numberOfSamples;
+  fs["matchingThreshold"] >> matchingThreshold;
+  fs["matchingNumber"] >> matchingNumber;
+  fs["updateFactor"] >> updateFactor;
+  fs["showOutput"] >> showOutput;
+  
+  fs.release();
 }

@@ -26,8 +26,8 @@ namespace bgslibrary
     int64 delta_time;
     double freq;
     double fps;
-    long long frameNumber;
-    long stopAt;
+    int frameNumber;
+    int stopAt;
     bool useCamera;
     int cameraIndex;
     bool useVideo;

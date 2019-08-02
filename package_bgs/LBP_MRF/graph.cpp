@@ -1,40 +1,5 @@
-/*
-This file is part of BGSLibrary.
-
-BGSLibrary is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-BGSLibrary is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
-*/
-/* graph.cpp */
-/*
-    Copyright 2001 Vladimir Kolmogorov (vnk@cs.cornell.edu), Yuri Boykov (yuri@csd.uwo.ca).
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-    */
-
-
 #include <stdio.h>
+
 #include "graph.h"
 
 namespace ck
@@ -90,7 +55,8 @@ namespace ck
 
   void Graph::add_tweights(node_id i, captype cap_source, captype cap_sink)
   {
-    register captype delta = ((node*)i)->tr_cap; // 'register' storage class specifier is deprecated and incompatible with C++17
+    //register
+    captype delta = ((node*)i)->tr_cap; // 'register' storage class specifier is deprecated and incompatible with C++17
     if (delta > 0) cap_source += delta;
     else           cap_sink -= delta;
     flow += (cap_source < cap_sink) ? cap_source : cap_sink;

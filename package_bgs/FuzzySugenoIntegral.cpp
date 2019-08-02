@@ -1,20 +1,6 @@
-/*
-This file is part of BGSLibrary.
-
-BGSLibrary is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-BGSLibrary is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
-*/
 #include "FuzzySugenoIntegral.h"
+
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
 
 using namespace bgslibrary::algorithms;
 
@@ -183,32 +169,35 @@ void FuzzySugenoIntegral::process(const cv::Mat &img_input, cv::Mat &img_output,
 
 void FuzzySugenoIntegral::saveConfig()
 {
-  CvFileStorage* fs = cvOpenFileStorage(config_xml.c_str(), nullptr, CV_STORAGE_WRITE);
-
-  cvWriteInt(fs, "showOutput", showOutput);
-  cvWriteInt(fs, "framesToLearn", framesToLearn);
-  cvWriteReal(fs, "alphaLearn", alphaLearn);
-  cvWriteReal(fs, "alphaUpdate", alphaUpdate);
-  cvWriteInt(fs, "colorSpace", colorSpace);
-  cvWriteInt(fs, "option", option);
-  cvWriteInt(fs, "smooth", smooth);
-  cvWriteReal(fs, "threshold", threshold);
-
-  cvReleaseFileStorage(&fs);
+  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
+  
+  fs << "threshold" << threshold;
+  fs << "framesToLearn" << framesToLearn;
+  fs << "alphaLearn" << alphaLearn;
+  fs << "alphaUpdate" << alphaUpdate;
+  fs << "colorSpace" << colorSpace;
+  fs << "option" << option;
+  fs << "smooth" << smooth;
+  fs << "showOutput" << showOutput;
+  
+  fs.release();
 }
 
 void FuzzySugenoIntegral::loadConfig()
 {
-  CvFileStorage* fs = cvOpenFileStorage(config_xml.c_str(), nullptr, CV_STORAGE_READ);
-
-  showOutput = cvReadIntByName(fs, nullptr, "showOutput", true);
-  framesToLearn = cvReadIntByName(fs, nullptr, "framesToLearn", 10);
-  alphaLearn = cvReadRealByName(fs, nullptr, "alphaLearn", 0.1);
-  alphaUpdate = cvReadRealByName(fs, nullptr, "alphaUpdate", 0.01);
-  colorSpace = cvReadIntByName(fs, nullptr, "colorSpace", 1);
-  option = cvReadIntByName(fs, nullptr, "option", 2);
-  smooth = cvReadIntByName(fs, nullptr, "smooth", true);
-  threshold = cvReadRealByName(fs, nullptr, "threshold", 0.67);
-
-  cvReleaseFileStorage(&fs);
+  cv::FileStorage fs;
+  fs.open(config_xml, cv::FileStorage::READ);
+  
+  fs["threshold"] >> threshold;
+  fs["framesToLearn"] >> framesToLearn;
+  fs["alphaLearn"] >> alphaLearn;
+  fs["alphaUpdate"] >> alphaUpdate;
+  fs["colorSpace"] >> colorSpace;
+  fs["option"] >> option;
+  fs["smooth"] >> smooth;
+  fs["showOutput"] >> showOutput;
+  
+  fs.release();
 }
+
+#endif

@@ -1,62 +1,29 @@
-/*
-This file is part of BGSLibrary.
-
-BGSLibrary is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-BGSLibrary is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
-*/
-/* maxflow.cpp */
-/*
-    Copyright 2001 Vladimir Kolmogorov (vnk@cs.cornell.edu), Yuri Boykov (yuri@csd.uwo.ca).
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-    */
 #include <stdio.h>
+
 #include "graph.h"
 
-    /*
-      special constants for node->parent
-      */
+/*
+special constants for node->parent
+*/
 #define TERMINAL ( (arc *) 1 )		/* to terminal */
 #define ORPHAN   ( (arc *) 2 )		/* orphan */
 
 #define INFINITE_D 1000000000		/* infinite distance to the terminal */
 
-      /***********************************************************************/
+/***********************************************************************/
 
-      /*
-        Functions for processing active list.
-        i->next points to the next node in the list
-        (or to i, if i is the last node in the list).
-        If i->next is NULL iff i is not in the list.
+/*
+Functions for processing active list.
+i->next points to the next node in the list
+(or to i, if i is the last node in the list).
+If i->next is NULL iff i is not in the list.
 
-        There are two queues. Active nodes are added
-        to the end of the second queue and read from
-        the front of the first queue. If the first queue
-        is empty, it is replaced by the second queue
-        (and the second queue becomes empty).
-        */
+There are two queues. Active nodes are added
+to the end of the second queue and read from
+the front of the first queue. If the first queue
+is empty, it is replaced by the second queue
+(and the second queue becomes empty).
+*/
 namespace ck
 {
   inline void Graph::set_active(node *i)

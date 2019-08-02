@@ -1,39 +1,3 @@
-/*
-This file is part of BGSLibrary.
-
-BGSLibrary is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-BGSLibrary is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
-*/
-/****************************************************************************
-*
-* PratiMediodBGS.h
-*
-* Purpose: Implementation of the temporal median background
-*		  		 subtraction algorithm described in:
-*
-* [1] "Detecting Moving Objects, Shosts, and Shadows in Video Stream"
-* 			by R. Cucchiara et al (2003)
-*
-* [2] "Reliable Background Suppression for Complex Scenes"
-*				by S. Calderara et al (2006)
-*
-* Author: Donovan Parks, September 2007
-*
-* Please note that this is not an implementation of the complete system
-* given in the above papers. It simply implements the temporal media background
-* subtraction algorithm.
-******************************************************************************/
-
 #include "PratiMediodBGS.h"
 
 using namespace Algorithms::BackgroundSubtraction;
@@ -269,7 +233,3 @@ void PratiMediodBGS::Subtract(int frame_num, const RgbImage& data,
   Combine(m_mask_low_threshold, m_mask_high_threshold, low_threshold_mark);
   Combine(m_mask_low_threshold, m_mask_high_threshold, high_threshold_mark);
 }
-
-
-
-

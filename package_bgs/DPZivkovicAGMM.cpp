@@ -1,20 +1,6 @@
-/*
-This file is part of BGSLibrary.
-
-BGSLibrary is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-BGSLibrary is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
-*/
 #include "DPZivkovicAGMM.h"
+
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
 
 using namespace bgslibrary::algorithms;
 
@@ -84,24 +70,27 @@ void DPZivkovicAGMM::process(const cv::Mat &img_input, cv::Mat &img_output, cv::
 
 void DPZivkovicAGMM::saveConfig()
 {
-  CvFileStorage* fs = cvOpenFileStorage(config_xml.c_str(), nullptr, CV_STORAGE_WRITE);
-
-  cvWriteReal(fs, "threshold", threshold);
-  cvWriteReal(fs, "alpha", alpha);
-  cvWriteInt(fs, "gaussians", gaussians);
-  cvWriteInt(fs, "showOutput", showOutput);
-
-  cvReleaseFileStorage(&fs);
+  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
+  
+  fs << "threshold" << threshold;
+  fs << "alpha" << alpha;
+  fs << "gaussians" << gaussians;
+  fs << "showOutput" << showOutput;
+  
+  fs.release();
 }
 
 void DPZivkovicAGMM::loadConfig()
 {
-  CvFileStorage* fs = cvOpenFileStorage(config_xml.c_str(), nullptr, CV_STORAGE_READ);
-
-  threshold = cvReadRealByName(fs, nullptr, "threshold", 25.0f);
-  alpha = cvReadRealByName(fs, nullptr, "alpha", 0.001f);
-  gaussians = cvReadIntByName(fs, nullptr, "gaussians", 3);
-  showOutput = cvReadIntByName(fs, nullptr, "showOutput", true);
-
-  cvReleaseFileStorage(&fs);
+  cv::FileStorage fs;
+  fs.open(config_xml, cv::FileStorage::READ);
+  
+  fs["threshold"] >> threshold;
+  fs["alpha"] >> alpha;
+  fs["gaussians"] >> gaussians;
+  fs["showOutput"] >> showOutput;
+  
+  fs.release();
 }
+
+#endif

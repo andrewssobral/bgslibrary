@@ -1,19 +1,3 @@
-/*
-This file is part of BGSLibrary.
-
-BGSLibrary is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-BGSLibrary is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
-*/
 #include "SigmaDelta.h"
 
 using namespace bgslibrary::algorithms;
@@ -69,28 +53,29 @@ void SigmaDelta::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat 
 
 void SigmaDelta::saveConfig()
 {
-  CvFileStorage* fs = cvOpenFileStorage(config_xml.c_str(), nullptr, CV_STORAGE_WRITE);
-
-  cvWriteInt(fs, "ampFactor", ampFactor);
-  cvWriteInt(fs, "minVar", minVar);
-  cvWriteInt(fs, "maxVar", maxVar);
-  cvWriteInt(fs, "showOutput", showOutput);
-
-  cvReleaseFileStorage(&fs);
+  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
+  
+  fs << "ampFactor" << ampFactor;
+  fs << "minVar" << minVar;
+  fs << "maxVar" << maxVar;
+  fs << "showOutput" << showOutput;
+  
+  fs.release();
 }
 
 void SigmaDelta::loadConfig()
 {
-  CvFileStorage* fs = cvOpenFileStorage(config_xml.c_str(), nullptr, CV_STORAGE_READ);
-
-  ampFactor = cvReadIntByName(fs, nullptr, "ampFactor", 1);
-  minVar = cvReadIntByName(fs, nullptr, "minVar", 15);
-  maxVar = cvReadIntByName(fs, nullptr, "maxVar", 255);
-  showOutput = cvReadIntByName(fs, nullptr, "showOutput", true);
-
+  cv::FileStorage fs;
+  fs.open(config_xml, cv::FileStorage::READ);
+  
+  fs["ampFactor"] >> ampFactor;
+  fs["minVar"] >> minVar;
+  fs["maxVar"] >> maxVar;
+  fs["showOutput"] >> showOutput;
+  
+  fs.release();
+  
   applyParams();
-
-  cvReleaseFileStorage(&fs);
 }
 
 void SigmaDelta::applyParams()

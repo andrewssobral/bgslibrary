@@ -12,7 +12,7 @@ namespace bgslibrary
     {
     private:
       double alpha;
-      long limit;
+      int limit;
       long counter;
       double minVal;
       double maxVal;

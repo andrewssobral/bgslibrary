@@ -13,7 +13,7 @@ namespace bgslibrary
     private:
       double alphaLearn;
       double alphaDetection;
-      long learningFrames;
+      int learningFrames;
       long counter;
       double minVal;
       double maxVal;

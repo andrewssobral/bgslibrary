@@ -1,52 +1,9 @@
-/*
-This file is part of BGSLibrary.
-
-BGSLibrary is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-BGSLibrary is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
-*/
-/*
- *  This file is part of the AiBO+ project
- *
- *  Copyright (C) 2005-2013 Csaba Kertész (csaba.kertesz@gmail.com)
- *
- *  AiBO+ is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
- *
- *  AiBO+ is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Street #330, Boston, MA 02111-1307, USA.
- *
- *  Some histogram stretch codes are based on how Gimp does it, the same
- *  GPL 2 license applies for the following authors:
- *
- *  The GIMP -- an image manipulation program
- *  Copyright (C) 1995 Spencer Kimball and Peter Mattis
- *
- */
-
-#include "MEHistogram.hpp"
-
 #include <opencv2/opencv.hpp>
 #include <opencv2/core/core_c.h>
 #include <opencv2/imgproc/types_c.h>
 #include <opencv2/imgproc/imgproc_c.h>
+
+#include "MEHistogram.hpp"
 #include "MEDefs.hpp"
 #include "MEImage.hpp"
 
@@ -55,17 +12,14 @@ MEHistogram::MEHistogram()
   Clear();
 }
 
-
 MEHistogram::~MEHistogram()
 {
 }
-
 
 void MEHistogram::Clear()
 {
   memset(&HistogramData, 0, 256 * sizeof(int));
 }
-
 
 bool MEHistogram::operator==(MEHistogram& histogram) const
 {
@@ -81,7 +35,6 @@ bool MEHistogram::operator==(MEHistogram& histogram) const
   }
   return ret;
 }
-
 
 void MEHistogram::Calculate(MEImage& image, int channel, HistogramType mode)
 {
@@ -105,7 +58,6 @@ void MEHistogram::Calculate(MEImage& image, int channel, HistogramType mode)
   }
 }
 
-
 void MEHistogram::Calculate(MEImage& image, HistogramType mode)
 {
   if (mode == h_Overwrite)
@@ -126,7 +78,6 @@ void MEHistogram::Calculate(MEImage& image, HistogramType mode)
     RowStart += RowWidth;
   }
 }
-
 
 void MEHistogram::Calculate(MEImage& image, int channel, int x0, int y0, int x1, int y1)
 {
@@ -159,7 +110,6 @@ void MEHistogram::Calculate(MEImage& image, int channel, int x0, int y0, int x1,
   }
 }
 
-
 int MEHistogram::GetPeakIndex() const
 {
   int PeakIndex = 0;
@@ -176,7 +126,6 @@ int MEHistogram::GetPeakIndex() const
   return PeakIndex;
 }
 
-
 int MEHistogram::GetLowestLimitIndex(int threshold) const
 {
   int MinIndex = 0;
@@ -192,7 +141,6 @@ int MEHistogram::GetLowestLimitIndex(int threshold) const
   return MinIndex;
 }
 
-
 int MEHistogram::GetHighestLimitIndex(int threshold) const
 {
   int MaxIndex = 255;
@@ -207,7 +155,6 @@ int MEHistogram::GetHighestLimitIndex(int threshold) const
   }
   return MaxIndex;
 }
-
 
 int MEHistogram::GetPowerAmount(int minindex, int maxindex) const
 {
@@ -229,7 +176,6 @@ int MEHistogram::GetPowerAmount(int minindex, int maxindex) const
   return ValueAmount;
 }
 
-
 int MEHistogram::GetCentroidIndex() const
 {
   int ValueAmount = GetPowerAmount(0, 255);
@@ -245,7 +191,6 @@ int MEHistogram::GetCentroidIndex() const
   CentroidIndex = WeightedValueAmount / ValueAmount;
   return CentroidIndex;
 }
-
 
 bool MEHistogram::Stretch(StretchType mode)
 {
@@ -355,24 +300,20 @@ bool MEHistogram::Stretch(StretchType mode)
   return Ret;
 }
 
-
 MEHistogramTransform::MEHistogramTransform() : ChannelMode(p_SeparateChannels),
 StretchMode(MEHistogram::s_GimpMode), DiscreteStretchingDone(false)
 {
 }
 
-
 MEHistogramTransform::~MEHistogramTransform()
 {
 }
-
 
 void MEHistogramTransform::HistogramStretch(MEImage& image)
 {
   SetStretchProcessingMode(p_SeparateChannels, MEHistogram::s_GimpMode);
   HistogramStretch(image, t_Continuous);
 }
-
 
 void MEHistogramTransform::HistogramStretch(MEImage& image, TransformType time_mode)
 {
@@ -443,7 +384,6 @@ void MEHistogramTransform::HistogramStretch(MEImage& image, TransformType time_m
     }
 }
 
-
 void MEHistogramTransform::HistogramEqualize(MEImage& image)
 {
   DiscreteStretchingDone = false;
@@ -486,7 +426,6 @@ void MEHistogramTransform::HistogramEqualize(MEImage& image)
     break;
   }
 }
-
 
 void MEHistogramTransform::SetStretchProcessingMode(ProcessingType new_channel_mode,
   MEHistogram::StretchType new_stretch_mode)

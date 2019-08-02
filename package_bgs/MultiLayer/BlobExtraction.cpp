@@ -229,7 +229,7 @@ namespace Blob
               // pixels al sud de l'actual
               if (iRow < imatgePerimetreExtern->height - 1)
               {
-                if ((*(pMask + maskImage->widthStep) == PIXEL_EXTERIOR)) perimeter++;
+                if (*(pMask + maskImage->widthStep) == PIXEL_EXTERIOR) perimeter++;
               }
 
               *pPerimetre = perimeter;

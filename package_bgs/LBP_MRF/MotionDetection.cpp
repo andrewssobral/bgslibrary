@@ -1,52 +1,12 @@
-/*
-This file is part of BGSLibrary.
-
-BGSLibrary is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-BGSLibrary is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
-*/
-/*
-*  This file is part of the AiBO+ project
-*
-*  Copyright (C) 2005-2013 Csaba Kertész (csaba.kertesz@gmail.com)
-*
-*  AiBO+ is free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License as published by
-*  the Free Software Foundation; either version 2 of the License, or
-*  (at your option) any later version.
-*
-*  AiBO+ is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-*  GNU General Public License for more details.
-*
-*  You should have received a copy of the GNU General Public License
-*  along with this program; if not, write to the Free Software
-*  Foundation, Inc., 59 Temple Street #330, Boston, MA 02111-1307, USA.
-*
-*  Paper: Csaba, Kertész: Texture-Based Foreground Detection, International Journal of Signal Processing,
-*  Image Processing and Pattern Recognition (IJSIP), Vol. 4, No. 4, 2011.
-*/
-
-#include "MotionDetection.hpp"
-
-#include "graph.h"
-using namespace ck;
-
 #include <opencv2/opencv.hpp>
 #include <opencv2/imgproc.hpp>
 
+#include "MotionDetection.hpp"
+#include "graph.h"
 #include "MEHistogram.hpp"
 #include "MEImage.hpp"
+
+using namespace ck;
 
 // Pyramid picture for the tracking
 IplImage *HUOFPyramid;
@@ -82,7 +42,6 @@ MotionDetection::MotionDetection(DetectorType mode) :
   SetMode(mode);
 }
 
-
 MotionDetection::~MotionDetection()
 {
   if (MDMode != md_NotDefined)
@@ -90,7 +49,6 @@ MotionDetection::~MotionDetection()
     ReleaseData();
   }
 }
-
 
 void MotionDetection::SetMode(DetectorType newmode)
 {
@@ -119,7 +77,6 @@ void MotionDetection::SetMode(DetectorType newmode)
     break;
   }
 }
-
 
 float MotionDetection::GetParameter(ParametersType param) const
 {
@@ -177,7 +134,6 @@ float MotionDetection::GetParameter(ParametersType param) const
   return ret;
 }
 
-
 void MotionDetection::SetParameter(ParametersType param, float value)
 {
   switch (param)
@@ -231,7 +187,6 @@ void MotionDetection::SetParameter(ParametersType param, float value)
   }
 }
 
-
 void MotionDetection::DetectMotions(MEImage& image)
 {
   switch (MDMode)
@@ -245,7 +200,6 @@ void MotionDetection::DetectMotions(MEImage& image)
     break;
   }
 }
-
 
 void MotionDetection::GetMotionsMask(MEImage& mask_image)
 {
@@ -268,7 +222,6 @@ void MotionDetection::GetMotionsMask(MEImage& mask_image)
   ReadyMask = true;
   mask_image = MaskImage;
 }
-
 
 void MotionDetection::CalculateResults(MEImage& referenceimage, int& tnegatives, int& tpositives,
   int& ttnegatives, int& ttpositives)
@@ -334,7 +287,6 @@ void MotionDetection::CalculateResults(MEImage& referenceimage, int& tnegatives,
   ttpositives = TotalTruePositives;
 }
 
-
 void MotionDetection::ReleaseData()
 {
   if (MDMode == md_LBPHistograms || MDMode == md_DLBPHistograms)
@@ -342,7 +294,6 @@ void MotionDetection::ReleaseData()
     ReleaseHUData();
   }
 }
-
 
 void MotionDetection::InitHUData(int imagewidth, int imageheight)
 {
@@ -399,7 +350,6 @@ void MotionDetection::InitHUData(int imagewidth, int imageheight)
   }
 }
 
-
 void MotionDetection::InitHUOFData(int imagewidth, int imageheight)
 {
   if (HUOFDataState != ps_Uninitialized)
@@ -416,7 +366,6 @@ void MotionDetection::InitHUOFData(int imagewidth, int imageheight)
     HUOFPoints[1] = (CvPoint2D32f*)cvAlloc(HUOFPointsNumber * sizeof(HUOFPoints[1][0]));
   }
 }
-
 
 void MotionDetection::ReleaseHUData()
 {
@@ -462,7 +411,6 @@ void MotionDetection::ReleaseHUData()
   }
 }
 
-
 void MotionDetection::ReleaseHUOFData()
 {
   if (MDDataState != ps_Uninitialized)
@@ -491,7 +439,6 @@ void MotionDetection::ReleaseHUOFData()
   }
 }
 
-
 void MotionDetection::ClearHUData()
 {
   if (MDDataState != ps_Uninitialized)
@@ -512,7 +459,6 @@ void MotionDetection::ClearHUData()
     MDDataState = ps_Initialized;
   }
 }
-
 
 void MotionDetection::DetectMotionsHU(MEImage& image)
 {
@@ -612,7 +558,6 @@ void MotionDetection::DetectMotionsHU(MEImage& image)
   HUOFCamMovement = false;
   ReadyMask = false;
 }
-
 
 void MotionDetection::UpdateModelHU(MEImage& image, MEPixelDataType*** model)
 {
@@ -815,7 +760,6 @@ void MotionDetection::UpdateModelHU(MEImage& image, MEPixelDataType*** model)
   delete[] CurrentHistogram2;
 }
 
-
 void MotionDetection::UpdateHUPixelData(MEPixelDataType* PixelData, const float *histogram)
 {
   int MaxIndex = 0;
@@ -961,7 +905,6 @@ void MotionDetection::UpdateHUPixelData(MEPixelDataType* PixelData, const float 
     delete[] Weights[i];
   delete[] Weights;
 }
-
 
 void MotionDetection::OpticalFlowCorrection()
 {
@@ -1265,7 +1208,6 @@ void MotionDetection::OpticalFlowCorrection()
   delete[] Distances;
 }
 
-
 void MotionDetection::GetMotionsMaskHU(MEImage& mask_image)
 {
   if (MDDataState != ps_Successful)
@@ -1377,7 +1319,6 @@ void MotionDetection::GetMotionsMaskHU(MEImage& mask_image)
     delete[] Nodes[i];
   delete[] Nodes;
 }
-
 
 void MotionDetection::SetSampleMaskHU(SampleMaskType mask_type, int desiredarea)
 {

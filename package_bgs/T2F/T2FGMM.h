@@ -1,32 +1,3 @@
-/*
-This file is part of BGSLibrary.
-
-BGSLibrary is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-BGSLibrary is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
-*/
-/****************************************************************************
-*
-* T2FGMM.h
-*
-* Purpose: Implementation of the T2 Fuzzy Gaussian Mixture Models (T2GMMs)
-* "Modeling of Dynamic Backgrounds by Type-2 Fuzzy Gaussians Mixture Models"
-* Author: Fida El Baf, Thierry Bouwmans, September 2008
-*
-* This code is based on code by Z. Zivkovic's written for his enhanced GMM
-* background subtraction algorithm:
-*
-* Zivkovic's code can be obtained at: www.zoranz.net
-******************************************************************************/
 #pragma once
 
 #include "../dp/Bgs.h"

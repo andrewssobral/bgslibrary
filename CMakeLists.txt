@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.12)
 
 project(bgslibrary)
 
@@ -18,6 +18,8 @@ endif()
 if(BGS_PYTHON_SUPPORT)
   message(STATUS "PYTHON VERSION: ${BGS_PYTHON_VERSION}")
 endif()
+
+set(CMAKE_CXX_STANDARD 14)
 
 if(UNIX)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")

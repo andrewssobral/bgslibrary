@@ -1,20 +1,6 @@
-/*
-This file is part of BGSLibrary.
-
-BGSLibrary is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-BGSLibrary is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
-*/
 #include "DPWrenGA.h"
+
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
 
 using namespace bgslibrary::algorithms;
 
@@ -84,24 +70,27 @@ void DPWrenGA::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &i
 
 void DPWrenGA::saveConfig()
 {
-  CvFileStorage* fs = cvOpenFileStorage(config_xml.c_str(), nullptr, CV_STORAGE_WRITE);
-
-  cvWriteReal(fs, "threshold", threshold);
-  cvWriteReal(fs, "alpha", alpha);
-  cvWriteInt(fs, "learningFrames", learningFrames);
-  cvWriteInt(fs, "showOutput", showOutput);
-
-  cvReleaseFileStorage(&fs);
+  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
+  
+  fs << "threshold" << threshold;
+  fs << "alpha" << alpha;
+  fs << "learningFrames" << learningFrames;
+  fs << "showOutput" << showOutput;
+  
+  fs.release();
 }
 
 void DPWrenGA::loadConfig()
 {
-  CvFileStorage* fs = cvOpenFileStorage(config_xml.c_str(), nullptr, CV_STORAGE_READ);
-
-  threshold = cvReadRealByName(fs, nullptr, "threshold", 12.25f);
-  alpha = cvReadRealByName(fs, nullptr, "alpha", 0.005f);
-  learningFrames = cvReadIntByName(fs, nullptr, "learningFrames", 30);
-  showOutput = cvReadIntByName(fs, nullptr, "showOutput", true);
-
-  cvReleaseFileStorage(&fs);
+  cv::FileStorage fs;
+  fs.open(config_xml, cv::FileStorage::READ);
+  
+  fs["threshold"] >> threshold;
+  fs["alpha"] >> alpha;
+  fs["learningFrames"] >> learningFrames;
+  fs["showOutput"] >> showOutput;
+  
+  fs.release();
 }
+
+#endif

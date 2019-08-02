@@ -1,11 +1,11 @@
 #pragma once
 
+#include "opencv2/core/version.hpp"
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+
 #include "IBGS.h"
 #include "ILoadSaveConfig.h"
-
 #include "dp/AdaptiveMedianBGS.h"
-
-#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
 
 using namespace Algorithms::BackgroundSubtraction;
 

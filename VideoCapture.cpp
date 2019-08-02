@@ -62,9 +62,8 @@ namespace bgslibrary
 
   VideoCapture::VideoCapture() :
     key(0), start_time(0), delta_time(0), freq(0),
-    fps(0), frameNumber(0), stopAt(0), useCamera(false),
-    useVideo(false), input_resize_percent(100), showOutput(true),
-    enableFlip(false), cameraIndex(0)
+    fps(0), frameNumber(0), stopAt(0), useCamera(false), cameraIndex(0),
+    useVideo(false), input_resize_percent(100), showOutput(true), enableFlip(false)
   {
     std::cout << "VideoCapture()" << std::endl;
     setup("./config/VideoCapture.xml");
@@ -248,37 +247,38 @@ namespace bgslibrary
 
   void VideoCapture::saveConfig()
   {
-    CvFileStorage* fs = cvOpenFileStorage(config_xml.c_str(), 0, CV_STORAGE_WRITE);
-
-    cvWriteInt(fs, "stopAt", stopAt);
-    cvWriteInt(fs, "input_resize_percent", input_resize_percent);
-    cvWriteInt(fs, "enableFlip", enableFlip);
-    cvWriteInt(fs, "use_roi", VC_ROI::use_roi);
-    cvWriteInt(fs, "roi_defined", VC_ROI::roi_defined);
-    cvWriteInt(fs, "roi_x0", VC_ROI::roi_x0);
-    cvWriteInt(fs, "roi_y0", VC_ROI::roi_y0);
-    cvWriteInt(fs, "roi_x1", VC_ROI::roi_x1);
-    cvWriteInt(fs, "roi_y1", VC_ROI::roi_y1);
-    cvWriteInt(fs, "showOutput", showOutput);
-
-    cvReleaseFileStorage(&fs);
+    cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
+    
+    fs << "stopAt" << stopAt;
+    fs << "input_resize_percent" << input_resize_percent;
+    fs << "enableFlip" << enableFlip;
+    fs << "use_roi" << VC_ROI::use_roi;
+    fs << "roi_defined" << VC_ROI::roi_defined;
+    fs << "roi_x0" << VC_ROI::roi_x0;
+    fs << "roi_y0" << VC_ROI::roi_y0;
+    fs << "roi_x1" << VC_ROI::roi_x1;
+    fs << "roi_y1" << VC_ROI::roi_y1;
+    fs << "showOutput" << showOutput;
+    
+    fs.release();
   }
 
   void VideoCapture::loadConfig()
   {
-    CvFileStorage* fs = cvOpenFileStorage(config_xml.c_str(), nullptr, CV_STORAGE_READ);
-
-    stopAt = cvReadIntByName(fs, nullptr, "stopAt", 0);
-    input_resize_percent = cvReadIntByName(fs, nullptr, "input_resize_percent", 100);
-    enableFlip = cvReadIntByName(fs, nullptr, "enableFlip", false);
-    VC_ROI::use_roi = cvReadIntByName(fs, nullptr, "use_roi", true);
-    VC_ROI::roi_defined = cvReadIntByName(fs, nullptr, "roi_defined", false);
-    VC_ROI::roi_x0 = cvReadIntByName(fs, nullptr, "roi_x0", 0);
-    VC_ROI::roi_y0 = cvReadIntByName(fs, nullptr, "roi_y0", 0);
-    VC_ROI::roi_x1 = cvReadIntByName(fs, nullptr, "roi_x1", 0);
-    VC_ROI::roi_y1 = cvReadIntByName(fs, nullptr, "roi_y1", 0);
-    showOutput = cvReadIntByName(fs, nullptr, "showOutput", true);
-
-    cvReleaseFileStorage(&fs);
+    cv::FileStorage fs;
+    fs.open(config_xml, cv::FileStorage::READ);
+    
+    fs["stopAt"] >> stopAt;
+    fs["input_resize_percent"] >> input_resize_percent;
+    fs["enableFlip"] >> enableFlip;
+    fs["use_roi"] >> VC_ROI::use_roi;
+    fs["roi_defined"] >> VC_ROI::roi_defined;
+    fs["roi_x0"] >> VC_ROI::roi_x0;
+    fs["roi_y0"] >> VC_ROI::roi_y0;
+    fs["roi_x1"] >> VC_ROI::roi_x1;
+    fs["roi_y1"] >> VC_ROI::roi_y1;
+    fs["showOutput"] >> showOutput;
+    
+    fs.release();
   }
 }

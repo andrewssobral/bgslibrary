@@ -1,9 +1,12 @@
 #include "DPMean.h"
 
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+
 using namespace bgslibrary::algorithms;
 
 DPMean::DPMean() :
-  frameNumber(0), threshold(2700), alpha(1e-6f), learningFrames(30)
+  frameNumber(0), threshold(2700),
+  alpha(1e-6f), learningFrames(30)
 {
   std::cout << "DPMean()" << std::endl;
   setup("./config/DPMean.xml");
@@ -91,3 +94,5 @@ void DPMean::loadConfig()
 
   fs.release();
 }
+
+#endif

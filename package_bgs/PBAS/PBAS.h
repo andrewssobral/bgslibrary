@@ -1,56 +1,3 @@
-/*
-This file is part of BGSLibrary.
-
-BGSLibrary is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-BGSLibrary is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
-*/
-//Implementation of the PBAS from:
-//
-//M. Hofmann, P. Tiefenbacher, G. Rigoll 
-//"Background Segmentation with Feedback: The Pixel-Based Adaptive Segmenter", 
-//in proc of IEEE Workshop on Change Detection, 2012
-//
-//Note: some changes, to improve the speed and memory requirements, were achieved in comparison to the 
-//described PBAS algorithm in the paper above.
-//
-//Example usage:
-// //Somewhere during initalization:
-// #include "PBAS.h"
-// #include <opencv2/opencv.hpp>
-// PBAS pbas;
-//
-// //you might want to change some parameters of the PBAS here...
-// ....
-//
-// //repeat for each frame
-// //make gaussian blur for reducing image noise
-//cv::Mat bluredImage;
-//cv::Mat pbastResult;
-//cv::GaussianBlur(singleFrame, bluredImage, cv::Size(5,5), 1.5);
-// 
-// //process image and receive segmentation in pbasResult
-//pbas.process(&bluredImage, &pbasResult);
-//
-// //make medianBlur on the result to reduce "salt and pepper noise"
-// //of the per pixel wise segmentation
-//cv::medianBlur(pbasResult, pbasResult, 5);
-//
-//
-//
-//Author: P.Tiefenbacher, https://sites.google.com/site/pbassegmenter/
-//Technische Universität München, Germany
-//Date: 22-May-2012, Version:0.1
-///////////
 #pragma once
 
 #include <iostream>
@@ -78,7 +25,6 @@ public:
   void setBeta(double);
 
   bool isMovement();
-
 
 private:
   void calculateFeatures(std::vector<cv::Mat>* feature, cv::Mat* inputImage);
@@ -201,7 +147,5 @@ private:
 
   //#####################################################################################
 
-
   cv::Mat sobelX, sobelY;
 };
-

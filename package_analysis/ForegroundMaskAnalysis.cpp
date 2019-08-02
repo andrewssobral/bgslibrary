@@ -1,26 +1,13 @@
-/*
-This file is part of BGSLibrary.
-
-BGSLibrary is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-BGSLibrary is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
-*/
 #include "ForegroundMaskAnalysis.h"
 
 namespace bgslibrary
 {
-  ForegroundMaskAnalysis::ForegroundMaskAnalysis() : firstTime(true), showOutput(true), stopAt(0), img_ref_path("")
+  ForegroundMaskAnalysis::ForegroundMaskAnalysis() :
+    firstTime(true), showOutput(true),
+    stopAt(0), img_ref_path("")
   {
     std::cout << "ForegroundMaskAnalysis()" << std::endl;
+    setup("./config/ForegroundMaskAnalysis.xml");
   }
 
   ForegroundMaskAnalysis::~ForegroundMaskAnalysis()
@@ -84,21 +71,22 @@ namespace bgslibrary
 
   void ForegroundMaskAnalysis::saveConfig()
   {
-    CvFileStorage* fs = cvOpenFileStorage("./config/ForegroundMaskAnalysis.xml", 0, CV_STORAGE_WRITE);
-
-    cvWriteInt(fs, "stopAt", stopAt);
-    cvWriteString(fs, "img_ref_path", img_ref_path.c_str());
-
-    cvReleaseFileStorage(&fs);
+    cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
+    
+    fs << "stopAt" << stopAt;
+    fs << "img_ref_path" << img_ref_path;
+    
+    fs.release();
   }
 
   void ForegroundMaskAnalysis::loadConfig()
   {
-    CvFileStorage* fs = cvOpenFileStorage("./config/ForegroundMaskAnalysis.xml", 0, CV_STORAGE_READ);
-
-    stopAt = cvReadIntByName(fs, 0, "stopAt", 0);
-    img_ref_path = cvReadStringByName(fs, 0, "img_ref_path", "");
-
-    cvReleaseFileStorage(&fs);
+    cv::FileStorage fs;
+    fs.open(config_xml, cv::FileStorage::READ);
+    
+    fs["stopAt"] >> stopAt;
+    fs["img_ref_path"] >> img_ref_path;
+    
+    fs.release();
   }
 }

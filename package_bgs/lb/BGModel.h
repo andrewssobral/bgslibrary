@@ -1,8 +1,9 @@
 #pragma once
 
-#include <opencv2/opencv.hpp>
 #include <math.h>
 #include <float.h>
+
+#include <opencv2/opencv.hpp>
 
 #include "Types.h"
 

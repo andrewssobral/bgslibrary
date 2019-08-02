@@ -59,24 +59,25 @@ void GMG::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bg
 
 void GMG::saveConfig()
 {
-  CvFileStorage* fs = cvOpenFileStorage(config_xml.c_str(), nullptr, CV_STORAGE_WRITE);
-
-  cvWriteInt(fs, "initializationFrames", initializationFrames);
-  cvWriteReal(fs, "decisionThreshold", decisionThreshold);
-  cvWriteInt(fs, "showOutput", showOutput);
-
-  cvReleaseFileStorage(&fs);
+  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
+  
+  fs << "initializationFrames" << initializationFrames;
+  fs << "decisionThreshold" << decisionThreshold;
+  fs << "showOutput" << showOutput;
+  
+  fs.release();
 }
 
 void GMG::loadConfig()
 {
-  CvFileStorage* fs = cvOpenFileStorage(config_xml.c_str(), nullptr, CV_STORAGE_READ);
-
-  initializationFrames = cvReadIntByName(fs, nullptr, "initializationFrames", 20);
-  decisionThreshold = cvReadRealByName(fs, nullptr, "decisionThreshold", 0.7);
-  showOutput = cvReadIntByName(fs, nullptr, "showOutput", true);
-
-  cvReleaseFileStorage(&fs);
+  cv::FileStorage fs;
+  fs.open(config_xml, cv::FileStorage::READ);
+  
+  fs["initializationFrames"] >> initializationFrames;
+  fs["decisionThreshold"] >> decisionThreshold;
+  fs["showOutput"] >> showOutput;
+  
+  fs.release();
 }
 
 #endif

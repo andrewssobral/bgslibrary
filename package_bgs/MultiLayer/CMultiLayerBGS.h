@@ -21,7 +21,6 @@ step. If you compile it under Linux, please uncomment it.
 #include <opencv2/imgproc.hpp>
 
 #include "LocalBinaryPattern.h"
-#include "BGS.h"
 #include "BlobResult.h"
 #include "OpenCvDataConversion.h"
 

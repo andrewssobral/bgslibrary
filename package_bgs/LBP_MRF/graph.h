@@ -1,67 +1,12 @@
-/*
-This file is part of BGSLibrary.
-
-BGSLibrary is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-BGSLibrary is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
-*/
-/* graph.h */
-/*
-  This software library implements the maxflow algorithm
-  described in
-
-  An Experimental Comparison of Min-Cut/Max-Flow Algorithms
-  for Energy Minimization in Vision.
-  Yuri Boykov and Vladimir Kolmogorov.
-  In IEEE Transactions on Pattern Analysis and Machine Intelligence (PAMI),
-  September 2004
-
-  This algorithm was developed by Yuri Boykov and Vladimir Kolmogorov
-  at Siemens Corporate Research. To make it available for public use,
-  it was later reimplemented by Vladimir Kolmogorov based on open publications.
-
-  If you use this software for research purposes, you should cite
-  the aforementioned paper in any resulting publication.
-  */
-  /*
-    Copyright 2001 Vladimir Kolmogorov (vnk@cs.cornell.edu), Yuri Boykov (yuri@csd.uwo.ca).
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-    */
-    /*
-      For description, example usage, discussion of graph representation
-      and memory usage see README.TXT.
-      */
 #pragma once
 
 #include "block.h"
 
-      /*
-        Nodes, arcs and pointers to nodes are
-        added in blocks for memory and time efficiency.
-        Below are numbers of items in blocks
-        */
+/*
+  Nodes, arcs and pointers to nodes are
+  added in blocks for memory and time efficiency.
+  Below are numbers of items in blocks
+  */
 #define NODE_BLOCK_SIZE 512
 #define ARC_BLOCK_SIZE 1024
 #define NODEPTR_BLOCK_SIZE 128

@@ -1,27 +1,6 @@
-/*
-This file is part of BGSLibrary.
-
-BGSLibrary is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-BGSLibrary is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
-*/
-//------------------------------------------------------------------------------------------------------------------------------------//
-//									A BGS Method Using Multiple Color, Texture, Appearance Cues in the Scene						  //
-//																																	  //
-//  - Paper: A New Framework for Background Subtraction Using Multiple Cues (ACCV2012)												  //
-//  - Code by: SeungJon Noh																											  //
-//------------------------------------------------------------------------------------------------------------------------------------//
-//#include "StdAfx.h"
 #include "MultiCue.h"
+
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
 
 using namespace bgslibrary::algorithms::libMultiCue;
 using namespace bgslibrary::algorithms;
@@ -119,50 +98,47 @@ void MultiCue::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &i
 
 void MultiCue::saveConfig()
 {
-  CvFileStorage* fs = cvOpenFileStorage(config_xml.c_str(), nullptr, CV_STORAGE_WRITE);
-
-  cvWriteInt(fs, "showOutput", showOutput);
-  cvWriteReal(fs, "g_fLearningRate", g_fLearningRate);
-  cvWriteInt(fs, "g_iAbsortionPeriod", g_iAbsortionPeriod);
-  cvWriteInt(fs, "g_iC_ModelThreshold", g_iC_ModelThreshold);
-  cvWriteInt(fs, "g_iT_ModelThreshold", g_iT_ModelThreshold);
-
-  cvWriteInt(fs, "g_iBackClearPeriod", g_iBackClearPeriod);
-  cvWriteInt(fs, "g_iCacheClearPeriod", g_iCacheClearPeriod);
-  cvWriteInt(fs, "g_nNeighborNum", g_nNeighborNum);
-  cvWriteInt(fs, "g_nRadius", g_nRadius);
-
-  cvWriteInt(fs, "g_nTextureTrainVolRange", g_nTextureTrainVolRange);
-  cvWriteInt(fs, "g_bAbsorptionEnable", g_bAbsorptionEnable);
-  cvWriteInt(fs, "g_iTrainingPeriod", g_iTrainingPeriod);
-  cvWriteInt(fs, "g_iRWidth", g_iRWidth);
-  cvWriteInt(fs, "g_iRHeight", g_iRHeight);
-
-  cvReleaseFileStorage(&fs);
+  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
+  
+  fs << "g_fLearningRate" << g_fLearningRate;
+  fs << "g_iAbsortionPeriod" << g_iAbsortionPeriod;
+  fs << "g_iC_ModelThreshold" << g_iC_ModelThreshold;
+  fs << "g_iT_ModelThreshold" << g_iT_ModelThreshold;
+  fs << "g_iBackClearPeriod" << g_iBackClearPeriod;
+  fs << "g_iCacheClearPeriod" << g_iCacheClearPeriod;
+  fs << "g_nNeighborNum" << g_nNeighborNum;
+  fs << "g_nRadius" << g_nRadius;
+  fs << "g_nTextureTrainVolRange" << g_nTextureTrainVolRange;
+  fs << "g_bAbsorptionEnable" << g_bAbsorptionEnable;
+  fs << "g_iTrainingPeriod" << g_iTrainingPeriod;
+  fs << "g_iRWidth" << g_iRWidth;
+  fs << "g_iRHeight" << g_iRHeight;
+  fs << "showOutput" << showOutput;
+  
+  fs.release();
 }
 
 void MultiCue::loadConfig()
 {
-  CvFileStorage* fs = cvOpenFileStorage(config_xml.c_str(), nullptr, CV_STORAGE_READ);
-
-  showOutput = cvReadIntByName(fs, nullptr, "showOutput", true);
-  g_fLearningRate = cvReadRealByName(fs, nullptr, "g_fLearningRate", g_fLearningRate);
-  g_iAbsortionPeriod = cvReadIntByName(fs, nullptr, "g_iAbsortionPeriod", g_iAbsortionPeriod);
-  g_iC_ModelThreshold = cvReadIntByName(fs, nullptr, "g_iC_ModelThreshold", g_iC_ModelThreshold);
-  g_iT_ModelThreshold = cvReadIntByName(fs, nullptr, "g_iT_ModelThreshold", g_iT_ModelThreshold);
-
-  g_iBackClearPeriod = cvReadIntByName(fs, nullptr, "g_iBackClearPeriod", g_iBackClearPeriod);
-  g_iCacheClearPeriod = cvReadIntByName(fs, nullptr, "g_iCacheClearPeriod", g_iCacheClearPeriod);
-  g_nNeighborNum = cvReadIntByName(fs, nullptr, "g_nNeighborNum", g_nNeighborNum);
-  g_nRadius = cvReadIntByName(fs, nullptr, "g_nRadius", g_nRadius);
-
-  g_nTextureTrainVolRange = cvReadIntByName(fs, nullptr, "g_nTextureTrainVolRange", g_nTextureTrainVolRange);
-  g_bAbsorptionEnable =  cvReadIntByName(fs, nullptr, "g_bAbsorptionEnable", g_bAbsorptionEnable);
-  g_iTrainingPeriod = cvReadIntByName(fs, nullptr, "g_iTrainingPeriod", g_iTrainingPeriod);
-  g_iRWidth = cvReadIntByName(fs, nullptr, "g_iRWidth", g_iRWidth);
-  g_iRHeight = cvReadIntByName(fs, nullptr, "g_iRHeight", g_iRHeight);
-
-  cvReleaseFileStorage(&fs);
+  cv::FileStorage fs;
+  fs.open(config_xml, cv::FileStorage::READ);
+  
+  fs["g_fLearningRate"] >> g_fLearningRate;
+  fs["g_iAbsortionPeriod"] >> g_iAbsortionPeriod;
+  fs["g_iC_ModelThreshold"] >> g_iC_ModelThreshold;
+  fs["g_iT_ModelThreshold"] >> g_iT_ModelThreshold;
+  fs["g_iBackClearPeriod"] >> g_iBackClearPeriod;
+  fs["g_iCacheClearPeriod"] >> g_iCacheClearPeriod;
+  fs["g_nNeighborNum"] >> g_nNeighborNum;
+  fs["g_nRadius"] >> g_nRadius;
+  fs["g_nTextureTrainVolRange"] >> g_nTextureTrainVolRange;
+  fs["g_bAbsorptionEnable"] >> g_bAbsorptionEnable;
+  fs["g_iTrainingPeriod"] >> g_iTrainingPeriod;
+  fs["g_iRWidth"] >> g_iRWidth;
+  fs["g_iRHeight"] >> g_iRHeight;
+  fs["showOutput"] >> showOutput;
+  
+  fs.release();
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------//
@@ -2097,3 +2073,5 @@ void MultiCue::C_Absorption(int iAbsorbCnt, point pos, short** aContinuCnt, shor
   pCache->m_Codewords = pTempCache;
   pCache->m_iNumEntries = k;
 }
+
+#endif

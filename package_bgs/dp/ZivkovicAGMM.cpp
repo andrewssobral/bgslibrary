@@ -1,45 +1,3 @@
-/*
-This file is part of BGSLibrary.
-
-BGSLibrary is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-BGSLibrary is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
-*/
-/****************************************************************************
-*
-* ZivkovicAGMM.cpp
-*
-* Purpose: Implementation of the Gaussian mixture model (GMM) background
-*		  		 subtraction algorithm developed by Z. Zivkovic.
-*
-* Author: Donovan Parks, September 2007
-*
-* This code is based on code by Z. Zivkovic's. I have changed it from a pure
-* C implementation to a cleaner (IMHO) C++ implementation. It is based on the
-* following papers:
-*
-*	"Improved adaptive Gausian mixture model for background subtraction"
-*		Z.Zivkovic
-*		International Conference Pattern Recognition, UK, August, 2004
-*
-*
-* "Efficient Adaptive Density Estimapion per Image Pixel for the
-*			Task of Background Subtraction"
-*		Z.Zivkovic, F. van der Heijden
-*		Pattern Recognition Letters, vol. 27, no. 7, pages 773-780, 2006.
-*
-* Zivkovic's code can be obtained at: www.zoranz.net
-******************************************************************************/
-
 #include "ZivkovicAGMM.h"
 
 using namespace Algorithms::BackgroundSubtraction;
@@ -405,4 +363,3 @@ void ZivkovicAGMM::Subtract(int frame_num, const RgbImage& data,
     }
   }
 }
-

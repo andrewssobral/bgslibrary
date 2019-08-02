@@ -1,46 +1,8 @@
-/*
-This file is part of BGSLibrary.
-
-BGSLibrary is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-BGSLibrary is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
-*/
-/*
- *  This file is part of the AiBO+ project
- *
- *  Copyright (C) 2005-2013 Csaba Kertész (csaba.kertesz@gmail.com)
- *
- *  AiBO+ is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
- *
- *  AiBO+ is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Street #330, Boston, MA 02111-1307, USA.
- *
- */
-
-#include "MEImage.hpp"
-
 #include <opencv2/opencv.hpp>
 #include <opencv2/imgproc/types_c.h>
 #include <opencv2/imgproc/imgproc_c.h>
 
+#include "MEImage.hpp"
 #include "MEDefs.hpp"
 
 #define ME_CAST_TO_IPLIMAGE(image_ptr) ((IplImage*)image_ptr)
@@ -65,12 +27,10 @@ MEImage::MEImage(int width, int height, int layers) : cvImg(NULL)
   _Init(width, height, layers);
 }
 
-
 MEImage::MEImage(const MEImage& other) : cvImg(NULL)
 {
   _Copy(other);
 }
-
 
 MEImage::~MEImage()
 {
@@ -80,12 +40,10 @@ MEImage::~MEImage()
   }
 }
 
-
 void MEImage::Clear()
 {
   cvSetZero(ME_CAST_TO_IPLIMAGE(cvImg));
 }
-
 
 void MEImage::GetLayer(MEImage& new_layer, int layer_number) const
 {
@@ -114,7 +72,6 @@ void MEImage::GetLayer(MEImage& new_layer, int layer_number) const
   cvCopy(ME_CAST_TO_IPLIMAGE(cvImg), (IplImage*)new_layer.GetIplImage(), NULL);
   cvSetImageCOI(ME_CAST_TO_IPLIMAGE(cvImg), 0);
 }
-
 
 void MEImage::SetLayer(MEImage& layer, int layer_number)
 {
@@ -150,18 +107,15 @@ void MEImage::SetLayer(MEImage& layer, int layer_number)
   cvSetImageCOI(ME_CAST_TO_IPLIMAGE(cvImg), 0);
 }
 
-
 void MEImage::CopyImageData(unsigned char* data)
 {
   memcpy(ME_CAST_TO_IPLIMAGE(cvImg)->imageData, data, ME_CAST_TO_IPLIMAGE(cvImg)->width*ME_CAST_TO_IPLIMAGE(cvImg)->height*ME_CAST_TO_IPLIMAGE(cvImg)->nChannels);
 }
 
-
 void* MEImage::GetIplImage() const
 {
   return (void*)ME_CAST_TO_IPLIMAGE(cvImg);
 }
-
 
 void MEImage::SetIplImage(void* image)
 {
@@ -178,18 +132,15 @@ void MEImage::SetIplImage(void* image)
   }
 }
 
-
 bool MEImage::operator==(const MEImage& image)
 {
   return Equal(image);
 }
 
-
 bool MEImage::operator!=(const MEImage& image)
 {
   return !operator==(image);
 }
-
 
 MEImage& MEImage::operator=(const MEImage& other_image)
 {
@@ -200,42 +151,35 @@ MEImage& MEImage::operator=(const MEImage& other_image)
   return *this;
 }
 
-
 int MEImage::GetWidth() const
 {
   return ME_CAST_TO_IPLIMAGE(cvImg) ? ME_CAST_TO_IPLIMAGE(cvImg)->width : 0;
 }
-
 
 int MEImage::GetRowWidth() const
 {
   return ME_CAST_TO_IPLIMAGE(cvImg) ? ME_CAST_TO_IPLIMAGE(cvImg)->widthStep : 0;
 }
 
-
 int MEImage::GetHeight() const
 {
   return ME_CAST_TO_IPLIMAGE(cvImg) ? ME_CAST_TO_IPLIMAGE(cvImg)->height : 0;
 }
-
 
 int MEImage::GetLayers() const
 {
   return ME_CAST_TO_IPLIMAGE(cvImg) ? ME_CAST_TO_IPLIMAGE(cvImg)->nChannels : 0;
 }
 
-
 int MEImage::GetPixelDataNumber() const
 {
   return ME_CAST_TO_IPLIMAGE(cvImg) ? GetWidth()*GetHeight()*GetLayers() : 0;
 }
 
-
 unsigned char* MEImage::GetImageData() const
 {
   return ME_CAST_TO_IPLIMAGE(cvImg) ? (unsigned char*)ME_CAST_TO_IPLIMAGE(cvImg)->imageData : NULL;
 }
-
 
 void MEImage::SetData(unsigned char* image_data, int width, int height, int channels)
 {
@@ -250,24 +194,20 @@ void MEImage::SetData(unsigned char* image_data, int width, int height, int chan
   }
 }
 
-
 float MEImage::GetRatio() const
 {
   return ME_CAST_TO_IPLIMAGE(cvImg) ? (float)ME_CAST_TO_IPLIMAGE(cvImg)->height / (float)ME_CAST_TO_IPLIMAGE(cvImg)->width : 0.0;
 }
-
 
 void MEImage::Realloc(int width, int height)
 {
   Realloc(width, height, ME_CAST_TO_IPLIMAGE(cvImg)->nChannels);
 }
 
-
 void MEImage::Realloc(int width, int height, int layers)
 {
   _Init(width, height, layers);
 }
-
 
 void MEImage::Resize(int new_width, int new_height)
 {
@@ -299,7 +239,6 @@ void MEImage::ResizeScaleX(int new_width)
   Resize(new_width, (int)((float)new_width*GetRatio()));
 }
 
-
 void MEImage::ResizeScaleY(int new_height)
 {
   if (new_height < 1)
@@ -310,18 +249,15 @@ void MEImage::ResizeScaleY(int new_height)
   Resize((int)((float)new_height * 1 / GetRatio()), new_height);
 }
 
-
 void MEImage::MirrorHorizontal()
 {
   cvFlip(ME_CAST_TO_IPLIMAGE(cvImg), NULL, 1);
 }
 
-
 void MEImage::MirrorVertical()
 {
   cvFlip(ME_CAST_TO_IPLIMAGE(cvImg), NULL, 0);
 }
-
 
 void MEImage::Crop(int x1, int y1, int x2, int y2)
 {
@@ -357,7 +293,6 @@ void MEImage::Crop(int x1, int y1, int x2, int y2)
   ME_RELEASE_IPLIMAGE(cvImg);
   cvImg = TempImg;
 }
-
 
 void MEImage::CopyImageInside(int x, int y, MEImage& source_image)
 {
@@ -400,7 +335,6 @@ void MEImage::CopyImageInside(int x, int y, MEImage& source_image)
   cvResetImageROI(ME_CAST_TO_IPLIMAGE(cvImg));
 }
 
-
 void MEImage::Erode(int iterations)
 {
   IplImage* TempImg = cvCreateImage(cvSize(ME_CAST_TO_IPLIMAGE(cvImg)->width,
@@ -411,7 +345,6 @@ void MEImage::Erode(int iterations)
   ME_RELEASE_IPLIMAGE(cvImg);
   cvImg = TempImg;
 }
-
 
 void MEImage::Dilate(int iterations)
 {
@@ -424,12 +357,10 @@ void MEImage::Dilate(int iterations)
   cvImg = TempImg;
 }
 
-
 void MEImage::Smooth()
 {
   SmoothAdvanced(s_Median, 3);
 }
-
 
 void MEImage::SmoothAdvanced(SmoothType filtermode, int filtersize)
 {
@@ -455,7 +386,6 @@ void MEImage::SmoothAdvanced(SmoothType filtermode, int filtersize)
   cvImg = TempImg;
 }
 
-
 void MEImage::Canny()
 {
   if (ME_CAST_TO_IPLIMAGE(cvImg)->nChannels > 1)
@@ -470,7 +400,6 @@ void MEImage::Canny()
   cvImg = TempImg;
 }
 
-
 void MEImage::Laplace()
 {
   if (ME_CAST_TO_IPLIMAGE(cvImg)->nChannels != 1)
@@ -484,7 +413,6 @@ void MEImage::Laplace()
   cvConvertScale(TempImg, ME_CAST_TO_IPLIMAGE(cvImg), 1, 0);
   ME_RELEASE_IPLIMAGE(cvImg);
 }
-
 
 void MEImage::Quantize(int levels)
 {
@@ -505,7 +433,6 @@ void MEImage::Quantize(int levels)
     ImageData[i] = ImageData[i] / (256 / levels)*(256 / levels);
   }
 }
-
 
 void MEImage::Threshold(int threshold_limit)
 {
@@ -530,7 +457,6 @@ void MEImage::Threshold(int threshold_limit)
   }
 }
 
-
 void MEImage::AdaptiveThreshold()
 {
   if (ME_CAST_TO_IPLIMAGE(cvImg)->nChannels != 1)
@@ -544,7 +470,6 @@ void MEImage::AdaptiveThreshold()
   ME_RELEASE_IPLIMAGE(cvImg);
   cvImg = TempImg;
 }
-
 
 void MEImage::ThresholdByMask(MEImage& mask_image)
 {
@@ -569,7 +494,6 @@ void MEImage::ThresholdByMask(MEImage& mask_image)
     }
   }
 }
-
 
 void MEImage::ColorSpace(ColorSpaceConvertType mode)
 {
@@ -705,7 +629,6 @@ void MEImage::ColorSpace(ColorSpaceConvertType mode)
   }
 }
 
-
 void MEImage::ConvertToGrayscale(GrayscaleType grayscale_mode)
 {
   if (ME_CAST_TO_IPLIMAGE(cvImg)->nChannels == 1)
@@ -743,7 +666,6 @@ void MEImage::ConvertToGrayscale(GrayscaleType grayscale_mode)
   }
 }
 
-
 void MEImage::ConvertGrayscaleToRGB()
 {
   if (ME_CAST_TO_IPLIMAGE(cvImg)->nChannels != 1)
@@ -757,7 +679,6 @@ void MEImage::ConvertGrayscaleToRGB()
   cvImg = TempImg;
 }
 
-
 void MEImage::ConvertBGRToRGB()
 {
   if (ME_CAST_TO_IPLIMAGE(cvImg)->nChannels != 3)
@@ -766,7 +687,6 @@ void MEImage::ConvertBGRToRGB()
   }
   cvCvtColor(ME_CAST_TO_IPLIMAGE(cvImg), ME_CAST_TO_IPLIMAGE(cvImg), CV_RGB2BGR);
 }
-
 
 void MEImage::LBP(LBPType mode)
 {
@@ -837,7 +757,6 @@ void MEImage::LBP(LBPType mode)
   cvImg = TempImg;
 }
 
-
 void MEImage::Binarize(int threshold)
 {
   unsigned char* ImageData = (unsigned char*)ME_CAST_TO_IPLIMAGE(cvImg)->imageData;
@@ -853,7 +772,6 @@ void MEImage::Binarize(int threshold)
     }
   }
 }
-
 
 void MEImage::Subtract(MEImage& source, SubtractModeType mode)
 {
@@ -909,7 +827,6 @@ void MEImage::Subtract(MEImage& source, SubtractModeType mode)
     break;
   }
 }
-
 
 void MEImage::Multiple(MEImage& source, MultiplicationType mode)
 {
@@ -985,7 +902,6 @@ void MEImage::Multiple(MEImage& source, MultiplicationType mode)
   }
 }
 
-
 void MEImage::Addition(MEImage& source, AdditionType mode)
 {
   if (source.GetWidth() != ME_CAST_TO_IPLIMAGE(cvImg)->width ||
@@ -1021,7 +937,6 @@ void MEImage::Addition(MEImage& source, AdditionType mode)
     break;
   }
 }
-
 
 void MEImage::EliminateSinglePixels()
 {
@@ -1068,7 +983,6 @@ void MEImage::EliminateSinglePixels()
   cvImg = TempImg;
 }
 
-
 float MEImage::DifferenceAreas(MEImage& reference, int difference) const
 {
   if (reference.GetWidth() != GetWidth() ||
@@ -1098,7 +1012,6 @@ float MEImage::DifferenceAreas(MEImage& reference, int difference) const
   return PixelDiff;
 }
 
-
 int MEImage::AverageDifference(MEImage& reference) const
 {
   if (reference.GetWidth() != GetWidth() ||
@@ -1126,7 +1039,6 @@ int MEImage::AverageDifference(MEImage& reference) const
   return Difference;
 }
 
-
 void MEImage::Minimum(MEImage& image)
 {
   if (image.GetWidth() != ME_CAST_TO_IPLIMAGE(cvImg)->width ||
@@ -1152,7 +1064,6 @@ void MEImage::Minimum(MEImage& image)
   }
 }
 
-
 float MEImage::AverageBrightnessLevel() const
 {
   unsigned char* ImageData = (unsigned char*)ME_CAST_TO_IPLIMAGE(cvImg)->imageData;
@@ -1171,12 +1082,10 @@ float MEImage::AverageBrightnessLevel() const
   return BrightnessLevel / (GetWidth()*GetHeight()*GetLayers());
 }
 
-
 bool MEImage::Equal(const MEImage& reference) const
 {
   return Equal(reference, 1);
 }
-
 
 bool MEImage::Equal(const MEImage& reference, int maxabsdiff) const
 {
@@ -1209,7 +1118,6 @@ bool MEImage::Equal(const MEImage& reference, int maxabsdiff) const
   return Ret;
 }
 
-
 unsigned char MEImage::GrayscalePixel(int x, int y) const
 {
   int NewX = x;
@@ -1230,7 +1138,6 @@ unsigned char MEImage::GrayscalePixel(int x, int y) const
   Sum = Sum / ME_CAST_TO_IPLIMAGE(cvImg)->nChannels;
   return (unsigned char)(Sum);
 }
-
 
 int MEImage::NeighbourhoodCounter(int startx, int starty,
   NeighbourhoodType neighbourhood) const
@@ -1299,7 +1206,6 @@ int MEImage::NeighbourhoodCounter(int startx, int starty,
   return Counter;
 }
 
-
 void MEImage::GradientVector(bool smooth, int x, int y, int mask_size, int& result_x, int& result_y)
 {
   int Results[8];
@@ -1330,7 +1236,6 @@ void MEImage::GradientVector(bool smooth, int x, int y, int mask_size, int& resu
     DiagonalMaskSize*Results[3] + mask_size*Results[4] +
     DiagonalMaskSize*Results[5] - DiagonalMaskSize*Results[7]) / 256;
 }
-
 
 void MEImage::GradientVisualize(int vector_x, int vector_y)
 {
@@ -1374,7 +1279,6 @@ void MEImage::GradientVisualize(int vector_x, int vector_y)
     }
 }
 
-
 bool MEImage::_Copy(const MEImage& other_image)
 {
   if (&other_image == this)
@@ -1387,7 +1291,6 @@ bool MEImage::_Copy(const MEImage& other_image)
   cvImg = cvCloneImage((IplImage*)other_image.GetIplImage());
   return true;
 }
-
 
 void MEImage::_Init(int width, int height, int layers)
 {
@@ -1413,7 +1316,6 @@ void MEImage::_Init(int width, int height, int layers)
   }
   cvImg = cvCreateImage(cvSize(width, height), 8, layers);
 }
-
 
 void MEImage::ComputeColorSpace(ColorSpaceConvertType mode)
 {

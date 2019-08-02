@@ -1,20 +1,6 @@
-/*
-This file is part of BGSLibrary.
-
-BGSLibrary is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-BGSLibrary is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
-*/
 #include "MultiLayer.h"
+
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
 
 using namespace bgslibrary::algorithms;
 
@@ -249,82 +235,83 @@ void MultiLayer::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat 
 
 void MultiLayer::saveConfig()
 {
-  CvFileStorage* fs = cvOpenFileStorage(config_xml.c_str(), nullptr, CV_STORAGE_WRITE);
-
-  cvWriteString(fs, "preloadModel", bg_model_preload.c_str());
-  cvWriteInt(fs, "saveModel", saveModel);
-  cvWriteInt(fs, "detectAfter", detectAfter);
-  cvWriteInt(fs, "disableDetectMode", disableDetectMode);
-  cvWriteInt(fs, "disableLearningInDetecMode", disableLearning);
-  cvWriteInt(fs, "loadDefaultParams", loadDefaultParams);
-
-  cvWriteInt(fs, "max_mode_num", max_mode_num);
-  cvWriteReal(fs, "weight_updating_constant", weight_updating_constant);
-  cvWriteReal(fs, "texture_weight", texture_weight);
-  cvWriteReal(fs, "bg_mode_percent", bg_mode_percent);
-  cvWriteInt(fs, "pattern_neig_half_size", pattern_neig_half_size);
-  cvWriteReal(fs, "pattern_neig_gaus_sigma", pattern_neig_gaus_sigma);
-  cvWriteReal(fs, "bg_prob_threshold", bg_prob_threshold);
-  cvWriteReal(fs, "bg_prob_updating_threshold", bg_prob_updating_threshold);
-  cvWriteInt(fs, "robust_LBP_constant", robust_LBP_constant);
-  cvWriteReal(fs, "min_noised_angle", min_noised_angle);
-  cvWriteReal(fs, "shadow_rate", shadow_rate);
-  cvWriteReal(fs, "highlight_rate", highlight_rate);
-  cvWriteReal(fs, "bilater_filter_sigma_s", bilater_filter_sigma_s);
-  cvWriteReal(fs, "bilater_filter_sigma_r", bilater_filter_sigma_r);
-
-  cvWriteReal(fs, "frame_duration", frame_duration);
-
-  cvWriteReal(fs, "learn_mode_learn_rate_per_second", learn_mode_learn_rate_per_second);
-  cvWriteReal(fs, "learn_weight_learn_rate_per_second", learn_weight_learn_rate_per_second);
-  cvWriteReal(fs, "learn_init_mode_weight", learn_init_mode_weight);
-
-  cvWriteReal(fs, "detect_mode_learn_rate_per_second", detect_mode_learn_rate_per_second);
-  cvWriteReal(fs, "detect_weight_learn_rate_per_second", detect_weight_learn_rate_per_second);
-  cvWriteReal(fs, "detect_init_mode_weight", detect_init_mode_weight);
-
-  cvWriteInt(fs, "showOutput", showOutput);
-
-  cvReleaseFileStorage(&fs);
+  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
+  
+  fs << "preloadModel" << bg_model_preload;
+  fs << "saveModel" << saveModel;
+  fs << "detectAfter" << detectAfter;
+  fs << "disableDetectMode" << showOutput;
+  fs << "disableLearningInDetecMode" << disableLearning;
+  fs << "loadDefaultParams" << loadDefaultParams;
+  fs << "frame_duration" << frame_duration;
+  
+  fs << "max_mode_num" << max_mode_num;
+  fs << "weight_updating_constant" << weight_updating_constant;
+  fs << "texture_weight" << texture_weight;
+  fs << "bg_mode_percent" << bg_mode_percent;
+  fs << "pattern_neig_half_size" << pattern_neig_half_size;
+  fs << "pattern_neig_gaus_sigma" << pattern_neig_gaus_sigma;
+  fs << "bg_prob_threshold" << bg_prob_threshold;
+  fs << "bg_prob_updating_threshold" << bg_prob_updating_threshold;
+  fs << "robust_LBP_constant" << robust_LBP_constant;
+  fs << "min_noised_angle" << min_noised_angle;
+  fs << "shadow_rate" << shadow_rate;
+  fs << "highlight_rate" << highlight_rate;
+  fs << "bilater_filter_sigma_s" << bilater_filter_sigma_s;
+  fs << "bilater_filter_sigma_r" << bilater_filter_sigma_r;
+  
+  fs << "learn_mode_learn_rate_per_second" << learn_mode_learn_rate_per_second;
+  fs << "learn_weight_learn_rate_per_second" << learn_weight_learn_rate_per_second;
+  fs << "learn_init_mode_weight" << learn_init_mode_weight;
+  
+  fs << "detect_mode_learn_rate_per_second" << detect_mode_learn_rate_per_second;
+  fs << "detect_weight_learn_rate_per_second" << detect_weight_learn_rate_per_second;
+  fs << "detect_init_mode_weight" << detect_init_mode_weight;
+  
+  fs << "showOutput" << showOutput;
+  
+  fs.release();
 }
 
 void MultiLayer::loadConfig()
 {
-  CvFileStorage* fs = cvOpenFileStorage(config_xml.c_str(), nullptr, CV_STORAGE_READ);
-
-  bg_model_preload = cvReadStringByName(fs, nullptr, "preloadModel", "");
-  saveModel = cvReadIntByName(fs, nullptr, "saveModel", false);
-  detectAfter = cvReadIntByName(fs, nullptr, "detectAfter", 0);
-  disableDetectMode = cvReadIntByName(fs, nullptr, "disableDetectMode", true);
-  disableLearning = cvReadIntByName(fs, nullptr, "disableLearningInDetecMode", false);
-  loadDefaultParams = cvReadIntByName(fs, nullptr, "loadDefaultParams", true);
-
-  max_mode_num = cvReadIntByName(fs, nullptr, "max_mode_num", 5);
-  weight_updating_constant = cvReadRealByName(fs, 0, "weight_updating_constant", 5.0);
-  texture_weight = cvReadRealByName(fs, nullptr, "texture_weight", 0.5);
-  bg_mode_percent = cvReadRealByName(fs, nullptr, "bg_mode_percent", 0.6);
-  pattern_neig_half_size = cvReadIntByName(fs, nullptr, "pattern_neig_half_size", 4);
-  pattern_neig_gaus_sigma = cvReadRealByName(fs, nullptr, "pattern_neig_gaus_sigma", 3.0);
-  bg_prob_threshold = cvReadRealByName(fs, nullptr, "bg_prob_threshold", 0.2);
-  bg_prob_updating_threshold = cvReadRealByName(fs, nullptr, "bg_prob_updating_threshold", 0.2);
-  robust_LBP_constant = cvReadIntByName(fs, nullptr, "robust_LBP_constant", 3);
-  min_noised_angle = cvReadRealByName(fs, nullptr, "min_noised_angle", 0.01768);
-  shadow_rate = cvReadRealByName(fs, nullptr, "shadow_rate", 0.6);
-  highlight_rate = cvReadRealByName(fs, nullptr, "highlight_rate", 1.2);
-  bilater_filter_sigma_s = cvReadRealByName(fs, nullptr, "bilater_filter_sigma_s", 3.0);
-  bilater_filter_sigma_r = cvReadRealByName(fs, nullptr, "bilater_filter_sigma_r", 0.1);
-
-  frame_duration = cvReadRealByName(fs, nullptr, "frame_duration", 0.1);
-
-  learn_mode_learn_rate_per_second = cvReadRealByName(fs, nullptr, "learn_mode_learn_rate_per_second", 0.5);
-  learn_weight_learn_rate_per_second = cvReadRealByName(fs, nullptr, "learn_weight_learn_rate_per_second", 0.5);
-  learn_init_mode_weight = cvReadRealByName(fs, nullptr, "learn_init_mode_weight", 0.05);
-
-  detect_mode_learn_rate_per_second = cvReadRealByName(fs, nullptr, "detect_mode_learn_rate_per_second", 0.01);
-  detect_weight_learn_rate_per_second = cvReadRealByName(fs, nullptr, "detect_weight_learn_rate_per_second", 0.01);
-  detect_init_mode_weight = cvReadRealByName(fs, nullptr, "detect_init_mode_weight", 0.001);
-
-  showOutput = cvReadIntByName(fs, nullptr, "showOutput", true);
-
-  cvReleaseFileStorage(&fs);
+  cv::FileStorage fs;
+  fs.open(config_xml, cv::FileStorage::READ);
+  
+  fs["preloadModel"] >> bg_model_preload;
+  fs["saveModel"] >> saveModel;
+  fs["detectAfter"] >> detectAfter;
+  fs["disableDetectMode"] >> disableDetectMode;
+  fs["disableLearningInDetecMode"] >> disableLearning;
+  fs["loadDefaultParams"] >> loadDefaultParams;
+  fs["frame_duration"] >> frame_duration;
+  
+  fs["max_mode_num"] >> max_mode_num;
+  fs["weight_updating_constant"] >> weight_updating_constant;
+  fs["texture_weight"] >> texture_weight;
+  fs["bg_mode_percent"] >> bg_mode_percent;
+  fs["pattern_neig_half_size"] >> pattern_neig_half_size;
+  fs["pattern_neig_gaus_sigma"] >> pattern_neig_gaus_sigma;
+  fs["bg_prob_threshold"] >> bg_prob_threshold;
+  fs["bg_prob_updating_threshold"] >> bg_prob_updating_threshold;
+  fs["robust_LBP_constant"] >> robust_LBP_constant;
+  fs["min_noised_angle"] >> min_noised_angle;
+  fs["shadow_rate"] >> shadow_rate;
+  fs["highlight_rate"] >> highlight_rate;
+  fs["bilater_filter_sigma_s"] >> bilater_filter_sigma_s;
+  fs["bilater_filter_sigma_r"] >> bilater_filter_sigma_r;
+  
+  fs["learn_mode_learn_rate_per_second"] >> learn_mode_learn_rate_per_second;
+  fs["learn_weight_learn_rate_per_second"] >> learn_weight_learn_rate_per_second;
+  fs["learn_init_mode_weight"] >> learn_init_mode_weight;
+  
+  fs["detect_mode_learn_rate_per_second"] >> detect_mode_learn_rate_per_second;
+  fs["detect_weight_learn_rate_per_second"] >> detect_weight_learn_rate_per_second;
+  fs["detect_init_mode_weight"] >> detect_init_mode_weight;
+  
+  fs["showOutput"] >> showOutput;
+  
+  fs.release();
 }
+
+#endif
