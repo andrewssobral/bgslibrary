@@ -147,11 +147,9 @@ if(BGS_PYTHON_SUPPORT)
 endif()
 
 file(GLOB main src/Main.cpp src/FrameProcessor.cpp src/PreProcessor.cpp src/VideoAnalysis.cpp src/VideoCapture.cpp)
-file(GLOB demo src/Demo.cpp)
-file(GLOB demo2 src/Demo2.cpp)
 
 file(GLOB_RECURSE analysis_src src/package_analysis/*.cpp)
-file(GLOB_RECURSE bgs_src src/package_bgs/*.cpp package_bgs/*.c)
+file(GLOB_RECURSE bgs_src src/package_bgs/*.cpp src/package_bgs/*.c)
 file(GLOB_RECURSE bgs_include src/package_bgs/*.h)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
@@ -222,12 +220,6 @@ endif()
 add_executable(bgslibrary ${main})
 target_link_libraries(bgslibrary ${OpenCV_LIBS} bgslibrary_core)
 # set_target_properties(bgslibrary PROPERTIES OUTPUT_NAME bgs)
-
-add_executable(bgs_demo ${demo})
-target_link_libraries(bgs_demo ${OpenCV_LIBS} bgslibrary_core)
-
-add_executable(bgs_demo2 ${demo2})
-target_link_libraries(bgs_demo2 ${OpenCV_LIBS} bgslibrary_core)
 
 if(UNIX AND BGS_PYTHON_SUPPORT)
   execute_process(

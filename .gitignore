@@ -3,12 +3,11 @@ build-*/
 build_*/
 dataset_*/
 binaries*/
-java_gui/dist/
-java_gui/build/
-java_gui/bgslibrary.exe
-python/
-qt_gui/
-fet/etc/
+examples/build-*/
+examples/build_*/
+gui/java/dist/
+gui/java/build/
+gui/java/bgslibrary.exe
 _*
 *.exe
 *.pdb

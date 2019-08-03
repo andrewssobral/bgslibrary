@@ -1,3 +1,3 @@
 @echo off
 cls
-build\bgs_demo2.exe
+examples\build\bgs_demo2.exe

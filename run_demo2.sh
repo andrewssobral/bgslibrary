@@ -1,2 +1,2 @@
 #!/bin/bash
-./build/bgs_demo2
+./examples/build/bgs_demo2

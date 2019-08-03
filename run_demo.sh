@@ -1,2 +1,2 @@
 #!/bin/bash
-./build/bgs_demo dataset/video.avi
+./examples/build/bgs_demo dataset/video.avi

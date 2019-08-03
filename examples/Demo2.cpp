@@ -2,32 +2,15 @@
 #include <vector>
 #include <opencv2/opencv.hpp>
 
-#include "package_bgs/bgslibrary.h"
+#include "../src/package_bgs/bgslibrary.h"
 
 #if CV_MAJOR_VERSION >= 4
-#define CV_CAP_PROP_POS_FRAMES cv::CAP_PROP_POS_FRAMES
-#define CV_CAP_PROP_FRAME_COUNT cv::CAP_PROP_FRAME_COUNT
+#define CV_LOAD_IMAGE_COLOR cv::IMREAD_COLOR
 #endif
 
 int main(int argc, char **argv)
 {
   std::cout << "Using OpenCV " << CV_MAJOR_VERSION << "." << CV_MINOR_VERSION << "." << CV_SUBMINOR_VERSION << std::endl;
-
-  cv::VideoCapture capture;
-
-  if (argc > 1)
-  {
-    std::cout << "Openning: " << argv[1] << std::endl;
-    capture.open(argv[1]);
-  }
-  else
-    capture.open(0);
-
-  if (!capture.isOpened())
-  {
-    std::cerr << "Cannot initialize video!" << std::endl;
-    return -1;
-  }
 
   /* Background Subtraction Methods */
   auto algorithmsName = BGS_Factory::Instance()->GetRegisteredAlgorithmsName();
@@ -38,18 +21,21 @@ int main(int argc, char **argv)
     std::cout << "Running " << algorithmName << std::endl;
     auto bgs = BGS_Factory::Instance()->Create(algorithmName);
 
-    cv::Mat img_input;
-    
-    capture.set(CV_CAP_PROP_POS_FRAMES, 0); // Set index to 0 (start frame)
     auto frame_counter = 0;
     std::cout << "Press 's' to stop:" << std::endl;
     while (key != 's')
     {
       // Capture frame-by-frame
-      capture >> img_input;
-      frame_counter += 1;
+      frame_counter++;
+      std::stringstream ss;
+      ss << frame_counter;
+      auto fileName = "dataset/frames/" + ss.str() + ".png";
+      std::cout << "reading " << fileName << std::endl;
 
-      if (img_input.empty()) break;
+      auto img_input = cv::imread(fileName, CV_LOAD_IMAGE_COLOR);
+
+      if (img_input.empty())
+        break;
 
       cv::imshow("input", img_input);
 
@@ -79,8 +65,6 @@ int main(int argc, char **argv)
 
     cv::destroyAllWindows();
   }
-
-  capture.release();
 
   return 0;
 }
