@@ -34,16 +34,16 @@ namespace bgslibrary
     if (enableWeightedMovingVariance)
       weightedMovingVariance = new WeightedMovingVariance;
 
-#if CV_MAJOR_VERSION == 2
-    if (enableMixtureOfGaussianV1)
-      mixtureOfGaussianV1 = new MixtureOfGaussianV1;
-#endif
+    if (enableAdaptiveBackgroundLearning)
+      adaptiveBackgroundLearning = new AdaptiveBackgroundLearning;
 
     if (enableMixtureOfGaussianV2)
       mixtureOfGaussianV2 = new MixtureOfGaussianV2;
 
-    if (enableAdaptiveBackgroundLearning)
-      adaptiveBackgroundLearning = new AdaptiveBackgroundLearning;
+#if CV_MAJOR_VERSION == 2
+    if (enableMixtureOfGaussianV1)
+      mixtureOfGaussianV1 = new MixtureOfGaussianV1;
+#endif
 
 #if CV_MAJOR_VERSION == 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
     if (enableGMG)
@@ -191,16 +191,16 @@ namespace bgslibrary
     if (enableWeightedMovingVariance)
       process("WeightedMovingVariance", weightedMovingVariance, img_preProcessor, img_weightedMovingVariance);
 
-#if CV_MAJOR_VERSION == 2
-    if (enableMixtureOfGaussianV1)
-      process("MixtureOfGaussianV1", mixtureOfGaussianV1, img_preProcessor, img_mixtureOfGaussianV1);
-#endif
+    if (enableAdaptiveBackgroundLearning)
+      process("AdaptiveBackgroundLearning", adaptiveBackgroundLearning, img_preProcessor, img_adaptiveBackgroundLearning);
 
     if (enableMixtureOfGaussianV2)
       process("MixtureOfGaussianV2", mixtureOfGaussianV2, img_preProcessor, img_mixtureOfGaussianV2);
 
-    if (enableAdaptiveBackgroundLearning)
-      process("AdaptiveBackgroundLearning", adaptiveBackgroundLearning, img_preProcessor, img_adaptiveBackgroundLearning);
+#if CV_MAJOR_VERSION == 2
+    if (enableMixtureOfGaussianV1)
+      process("MixtureOfGaussianV1", mixtureOfGaussianV1, img_preProcessor, img_mixtureOfGaussianV1);
+#endif
 
 #if CV_MAJOR_VERSION == 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
     if (enableGMG)
