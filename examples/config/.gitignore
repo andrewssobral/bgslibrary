@@ -2,7 +2,3 @@
 *
 # Except these files
 !.gitignore
-!CMakeLists.txt
-!FrameDifferenceTest.cpp
-!README.txt
-!config/

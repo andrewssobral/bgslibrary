@@ -12,6 +12,11 @@ int main(int argc, char **argv)
 {
   std::cout << "Using OpenCV " << CV_MAJOR_VERSION << "." << CV_MINOR_VERSION << "." << CV_SUBMINOR_VERSION << std::endl;
 
+  std::string baseDir = "./dataset/frames";
+  if (argc > 1)
+    baseDir = argv[1];
+  std::cout << "Openning: " << baseDir << std::endl;
+
   /* Background Subtraction Methods */
   auto algorithmsName = BGS_Factory::Instance()->GetRegisteredAlgorithmsName();
 
@@ -29,7 +34,7 @@ int main(int argc, char **argv)
       frame_counter++;
       std::stringstream ss;
       ss << frame_counter;
-      auto fileName = "dataset/frames/" + ss.str() + ".png";
+      auto fileName = baseDir + "/" + ss.str() + ".png";
       std::cout << "reading " << fileName << std::endl;
 
       auto img_input = cv::imread(fileName, CV_LOAD_IMAGE_COLOR);
