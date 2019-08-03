@@ -119,7 +119,7 @@ if(BGS_PYTHON_SUPPORT)
   #set(PYBIND11_PYTHON_VERSION 2.7 3.5 3.6)
   set(PYBIND11_PYTHON_VERSION ${BGS_PYTHON_VERSION})
   #find_package(pybind11 REQUIRED)
-  add_subdirectory(pybind11)
+  add_subdirectory(modules/pybind11)
 
   #find_package(PythonInterp ${BGS_PYTHON_VERSION} REQUIRED)
   #find_package(PythonLibs ${BGS_PYTHON_VERSION} REQUIRED)

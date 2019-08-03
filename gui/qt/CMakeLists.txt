@@ -55,10 +55,10 @@ endif()
 
 file(GLOB main bgslibrary_gui.cpp mainwindow.cpp qt_utils.cpp texteditor.cpp)
 
-file(GLOB_RECURSE analysis_src ../package_analysis/*.cpp)
-file(GLOB_RECURSE analysis_inc ../package_analysis/*.h)
-file(GLOB_RECURSE bgs_src ../package_bgs/*.cpp ../package_bgs/*.c)
-file(GLOB_RECURSE bgs_inc ../package_bgs/*.h)
+file(GLOB_RECURSE analysis_src ../../src/package_analysis/*.cpp)
+file(GLOB_RECURSE analysis_inc ../../src/package_analysis/*.h)
+file(GLOB_RECURSE bgs_src ../../src/package_bgs/*.cpp ../../src/package_bgs/*.c)
+file(GLOB_RECURSE bgs_inc ../../src/package_bgs/*.h)
 
 include_directories(${CMAKE_SOURCE_DIR} ${OpenCV_INCLUDE_DIRS})
 

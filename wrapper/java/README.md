@@ -2,7 +2,7 @@
 
 * Running CMAKE with Visual Studio 2015 and OpenCV 3.2.0 (x64)
 
-* * Working directory: **bgslibrary\wrapper_java**
+* * Working directory: **bgslibrary\wrapper\java**
 
 ```
 :: Set OpenCV env
@@ -23,7 +23,7 @@ cd ..
 
 * Click on **ALL_BUILD** and build
 
-* Copy **libbgs_java_module.dll** to **bgslibrary\wrapper_java**
+* Copy **libbgs_java_module.dll** to **bgslibrary\wrapper\java**
 
 * Compile Java source
 
