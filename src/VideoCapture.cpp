@@ -1,25 +1,26 @@
-#include <opencv2/highgui/highgui_c.h>
-
 #include "VideoCapture.h"
 
 #if  CV_MAJOR_VERSION >= 4
 //#define CV_CAP_PROP_POS_FRAMES cv::CAP_PROP_POS_FRAMES
 //#define CV_CAP_PROP_FRAME_COUNT cv::CAP_PROP_FRAME_COUNT
 #define CV_CAP_PROP_FPS cv::CAP_PROP_FPS
+#define CV_EVENT_LBUTTONDOWN cv::EVENT_LBUTTONDOWN
+#define CV_EVENT_MOUSEMOVE cv::EVENT_MOUSEMOVE
+#define cvSetMouseCallback cv::setMouseCallback
 #endif
 
 namespace bgslibrary
 {
   namespace VC_ROI
   {
-    IplImage* img_input1 = 0;
-    IplImage* img_input2 = 0;
+    cv::Mat img_input1;
+    cv::Mat img_input2;
     int roi_x0 = 0;
     int roi_y0 = 0;
     int roi_x1 = 0;
     int roi_y1 = 0;
     int numOfRec = 0;
-    int startDraw = 0;
+    bool startDraw = false;
     bool roi_defined = false;
     bool use_roi = true;
     bool disable_event = false;
@@ -34,7 +35,7 @@ namespace bgslibrary
     {
       if (use_roi == false || disable_event == true)
         return;
-
+      
       if (evt == CV_EVENT_LBUTTONDOWN)
       {
         if (!startDraw)
@@ -56,10 +57,11 @@ namespace bgslibrary
       if (evt == CV_EVENT_MOUSEMOVE && startDraw)
       {
         //redraw ROI selection
-        img_input2 = cvCloneImage(img_input1);
-        cvRectangle(img_input2, cvPoint(roi_x0, roi_y0), cvPoint(x, y), CV_RGB(255, 0, 0), 1);
-        cvShowImage("Input", img_input2);
-        cvReleaseImage(&img_input2);
+        img_input1.copyTo(img_input2);
+        cv::Point pt1(roi_x0, roi_y0);
+        cv::Point pt2(roi_x1, roi_y1);
+        cv::rectangle(img_input2, pt1, pt2, cv::Scalar(255, 0, 0));
+        cv::imshow("Input", img_input2);
         //startDraw = false;
         //disable_event = true;
       }
@@ -185,10 +187,10 @@ namespace bgslibrary
             cv::imshow("Input", img_input);
 
             std::cout << "Set ROI (press ESC to skip)" << std::endl;
-            VC_ROI::img_input1 = new IplImage(img_input);
+            //VC_ROI::img_input1 = new IplImage(img_input);
             cvSetMouseCallback("Input", VC_ROI::VideoCapture_on_mouse, NULL);
             key = cv::waitKey(0);
-            delete VC_ROI::img_input1;
+            //delete VC_ROI::img_input1;
           }
           else
             key = KEY_ESC;
@@ -226,10 +228,10 @@ namespace bgslibrary
 
       start_time = cv::getTickCount();
       frameProcessor->process(img_input);
-      int64 delta_time = cv::getTickCount() - start_time;
+      delta_time = cv::getTickCount() - start_time;
       freq = cv::getTickFrequency();
       fps = freq / delta_time;
-      //std::cout << "FPS: " << fps << std::endl;
+      std::cout << "FPS: " << fps << std::endl;
 
       //cvResetImageROI(frame);
 

@@ -21,3 +21,4 @@ _*
 *.files
 *.includes
 bgs.egg-info
+.vscode/
