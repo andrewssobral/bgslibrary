@@ -22,7 +22,7 @@ along with BGSLibrary.  If not, see <http://www.gnu.org/licenses/>.
 #include "StaticFrameDifference.h"
 #include "WeightedMovingMean.h"
 #include "WeightedMovingVariance.h"
-#include "MixtureOfGaussianV1.h" // Only for OpenCV >= 2
+#include "MixtureOfGaussianV1.h" // Only for OpenCV == 2
 #include "MixtureOfGaussianV2.h"
 #include "AdaptiveBackgroundLearning.h"
 #include "AdaptiveSelectiveBackgroundLearning.h"

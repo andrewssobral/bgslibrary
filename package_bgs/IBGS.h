@@ -56,8 +56,6 @@ namespace bgslibrary
       }
       virtual void process(const cv::Mat &img_input, cv::Mat &img_foreground, cv::Mat &img_background) = 0;
       virtual ~IBGS() {}
-      //static IBGS* create(const std::string alg_name);
-      //static std::list<std::string> get_algs_name();
     protected:
       bool firstTime = true;
       bool showOutput = true;

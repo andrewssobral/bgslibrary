@@ -27,8 +27,8 @@ namespace bgslibrary
   class VideoAnalysis
   {
   private:
-    VideoCapture* videoCapture;
-    FrameProcessor* frameProcessor;
+    std::unique_ptr<VideoCapture> videoCapture;
+    std::shared_ptr<FrameProcessor> frameProcessor;
     bool use_file;
     std::string filename;
     bool use_camera;
