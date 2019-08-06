@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.12)
 
 project(bgslibrary)
 
@@ -18,6 +18,8 @@ endif()
 if(BGS_PYTHON_SUPPORT)
   message(STATUS "PYTHON VERSION: ${BGS_PYTHON_VERSION}")
 endif()
+
+set(CMAKE_CXX_STANDARD 14)
 
 if(UNIX)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
@@ -117,7 +119,7 @@ if(BGS_PYTHON_SUPPORT)
   #set(PYBIND11_PYTHON_VERSION 2.7 3.5 3.6)
   set(PYBIND11_PYTHON_VERSION ${BGS_PYTHON_VERSION})
   #find_package(pybind11 REQUIRED)
-  add_subdirectory(pybind11)
+  add_subdirectory(modules/pybind11)
 
   #find_package(PythonInterp ${BGS_PYTHON_VERSION} REQUIRED)
   #find_package(PythonLibs ${BGS_PYTHON_VERSION} REQUIRED)
@@ -144,22 +146,20 @@ if(BGS_PYTHON_SUPPORT)
   message(STATUS "NUMPY_INCLUDE_DIR: ${NUMPY_INCLUDE_DIR}\n")
 endif()
 
-file(GLOB main Main.cpp FrameProcessor.cpp PreProcessor.cpp VideoAnalysis.cpp VideoCapture.cpp)
-file(GLOB demo Demo.cpp)
-file(GLOB demo2 Demo2.cpp)
+file(GLOB main src/Main.cpp src/FrameProcessor.cpp src/PreProcessor.cpp src/VideoAnalysis.cpp src/VideoCapture.cpp)
 
-file(GLOB_RECURSE analysis_src package_analysis/*.cpp)
-file(GLOB_RECURSE bgs_src package_bgs/*.cpp package_bgs/*.c)
-file(GLOB_RECURSE bgs_include package_bgs/*.h)
+file(GLOB_RECURSE analysis_src src/package_analysis/*.cpp)
+file(GLOB_RECURSE bgs_src src/package_bgs/*.cpp src/package_bgs/*.c)
+file(GLOB_RECURSE bgs_include src/package_bgs/*.h)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${OpenCV_INCLUDE_DIRS})
 
 if(BGS_PYTHON_SUPPORT)
-  file(GLOB_RECURSE bgs_python_src wrapper_python/*.cpp)
-  file(GLOB_RECURSE bgs_python_include wrapper_python/*.h)
+  file(GLOB_RECURSE bgs_python_src wrapper/python/*.cpp)
+  file(GLOB_RECURSE bgs_python_include wrapper/python/*.h)
 
-  include_directories(${CMAKE_CURRENT_SOURCE_DIR}/pybind11/include)
+  include_directories(${CMAKE_CURRENT_SOURCE_DIR}/modules/pybind11/include)
   #include_directories(${Boost_INCLUDE_DIRS})
   include_directories(${PYTHON_INCLUDE_DIRS})
   include_directories(${NUMPY_INCLUDE_DIR})
@@ -167,7 +167,7 @@ endif()
 
 # GMG is not available in older OpenCV versions
 if(${OpenCV_VERSION} VERSION_LESS 2.4.3)
-  file(GLOB gmg package_bgs/GMG.cpp)
+  file(GLOB gmg src/package_bgs/GMG.cpp)
   list(REMOVE_ITEM bgs_src ${gmg})
 endif()
 
@@ -220,12 +220,6 @@ endif()
 add_executable(bgslibrary ${main})
 target_link_libraries(bgslibrary ${OpenCV_LIBS} bgslibrary_core)
 # set_target_properties(bgslibrary PROPERTIES OUTPUT_NAME bgs)
-
-add_executable(bgs_demo ${demo})
-target_link_libraries(bgs_demo ${OpenCV_LIBS} bgslibrary_core)
-
-add_executable(bgs_demo2 ${demo2})
-target_link_libraries(bgs_demo2 ${OpenCV_LIBS} bgslibrary_core)
 
 if(UNIX AND BGS_PYTHON_SUPPORT)
   execute_process(
