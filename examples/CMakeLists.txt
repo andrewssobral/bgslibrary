@@ -79,9 +79,11 @@ endif()
 file(GLOB demo Demo.cpp)
 file(GLOB demo2 Demo2.cpp)
 
-file(GLOB_RECURSE analysis_src ../src/package_analysis/*.cpp)
+file(GLOB_RECURSE analysis_src ../src/package_analysis/*.cpp ../src/package_analysis/*.c)
+file(GLOB_RECURSE analysis_inc ../src/package_analysis/*.h ../src/package_analysis/*.hpp)
+
 file(GLOB_RECURSE bgs_src ../src/package_bgs/*.cpp ../src/package_bgs/*.c)
-file(GLOB_RECURSE bgs_include ../src/package_bgs/*.h)
+file(GLOB_RECURSE bgs_inc ../src/package_bgs/*.h ../src/package_bgs/*.hpp)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${OpenCV_INCLUDE_DIRS})
@@ -92,7 +94,7 @@ if(${OpenCV_VERSION} VERSION_LESS 2.4.3)
   list(REMOVE_ITEM bgs_src ${gmg})
 endif()
 
-add_library(bgslibrary_core SHARED ${bgs_src} ${analysis_src})
+add_library(bgslibrary_core SHARED ${bgs_src} ${analysis_src} ${bgs_inc} ${analysis_inc})
 # generates the export header bgslibrary_core_EXPORTS.h automatically
 include(GenerateExportHeader)
 GENERATE_EXPORT_HEADER(bgslibrary_core
@@ -101,7 +103,7 @@ GENERATE_EXPORT_HEADER(bgslibrary_core
     EXPORT_FILE_NAME bgslibrary_core_EXPORTS.h
     STATIC_DEFINE BGSLIBRARY_CORE_EXPORTS_BUILT_AS_STATIC)
 target_link_libraries(bgslibrary_core ${OpenCV_LIBS})
-set_property(TARGET bgslibrary_core PROPERTY PUBLIC_HEADER ${bgs_include})
+set_property(TARGET bgslibrary_core PROPERTY PUBLIC_HEADER ${bgs_inc} ${analysis_inc})
 
 #if(WIN32)
 #  # set_property(TARGET bgslibrary_core PROPERTY SUFFIX ".lib")
