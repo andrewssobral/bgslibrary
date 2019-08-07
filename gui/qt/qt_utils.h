@@ -2,11 +2,14 @@
 
 #include <sstream>
 #include <string>
+
 #include <QByteArray>
 #include <QImage>
 #include <QCryptographicHash>
 #include <QFileInfo>
+
 #include <opencv2/opencv.hpp>
+#include <opencv2/imgproc/types_c.h>
 
 QImage GrayMat2QImage(cv::Mat const& src);
 QImage Mat2QImage(cv::Mat const& src);
@@ -16,8 +19,10 @@ QString base64_encode(const QString string);
 QString base64_decode(const QString string);
 QString md5_encode(const QString);
 
-int sti(const std::string &s);
-std::string its(int i);
+int str2int(const std::string &s);
+
+template<typename T>
+std::string to_string(T t);
 
 bool fileExists(QString path);
 

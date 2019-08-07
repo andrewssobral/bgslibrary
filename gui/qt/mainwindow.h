@@ -15,6 +15,15 @@
 #include <QCollator>
 
 #include <opencv2/opencv.hpp>
+//#include <opencv2/imgproc/types_c.h>
+//#include <opencv2/imgproc/imgproc_c.h>
+//#include <opencv2/highgui/highgui_c.h>
+
+#if  CV_MAJOR_VERSION >= 4
+#define CV_CAP_PROP_POS_FRAMES cv::CAP_PROP_POS_FRAMES
+#define CV_CAP_PROP_FRAME_COUNT cv::CAP_PROP_FRAME_COUNT
+#define CV_CAP_PROP_FPS cv::CAP_PROP_FPS
+#endif
 
 #include "qt_utils.h"
 #include "texteditor.h"
@@ -38,7 +47,7 @@ class MainWindow : public QMainWindow
   Q_OBJECT
 
 public:
-  explicit MainWindow(QWidget *parent = 0);
+  explicit MainWindow(QWidget *parent = nullptr);
   ~MainWindow();
 
   private slots:

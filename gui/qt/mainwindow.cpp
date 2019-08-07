@@ -24,6 +24,7 @@ namespace bgslibrary
 #if CV_MAJOR_VERSION >= 3
     map["KNN"] = &createInstance<KNN>; // only on OpenCV 3.x
 #endif
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
     map["DPAdaptiveMedian"] = &createInstance<DPAdaptiveMedian>;
     map["DPGrimsonGMM"] = &createInstance<DPGrimsonGMM>;
     map["DPZivkovicAGMM"] = &createInstance<DPZivkovicAGMM>;
@@ -50,6 +51,7 @@ namespace bgslibrary
     map["KDE"] = &createInstance<KDE>;
     map["IndependentMultimodal"] = &createInstance<IndependentMultimodal>;
     map["MultiCue"] = &createInstance<MultiCue>;
+#endif
     map["SigmaDelta"] = &createInstance<SigmaDelta>;
     map["SuBSENSE"] = &createInstance<SuBSENSE>;
     map["LOBSTER"] = &createInstance<LOBSTER>;
@@ -80,6 +82,7 @@ namespace bgslibrary
 #if CV_MAJOR_VERSION >= 3
     stringList.append("KNN"); // only on OpenCV 3.x
 #endif
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
     stringList.append("DPAdaptiveMedian");
     stringList.append("DPGrimsonGMM");
     stringList.append("DPZivkovicAGMM");
@@ -106,6 +109,7 @@ namespace bgslibrary
     stringList.append("KDE");
     stringList.append("IndependentMultimodal");
     stringList.append("MultiCue");
+#endif
     stringList.append("SigmaDelta");
     stringList.append("SuBSENSE");
     stringList.append("LOBSTER");
@@ -128,7 +132,7 @@ MainWindow::MainWindow(QWidget *parent) :
   ui->lineEdit_inputdata->setText(fileName);
   //fileName = ui->lineEdit_inputdata->text();
   timer = new QTimer(this); connect(timer, SIGNAL(timeout()), this, SLOT(startCapture()));
-  QStringListModel* listModel = new QStringListModel(bgslibrary::get_algs_name(), NULL);
+  QStringListModel* listModel = new QStringListModel(bgslibrary::get_algs_name(), nullptr);
   listModel->sort(0);
   ui->listView_algorithms->setModel(listModel);
   QModelIndex index = listModel->index(0);
@@ -285,7 +289,7 @@ void MainWindow::setFrameNumber(long long _frameNumber)
 {
   //std::cout << "setFrameNumber()" << std::endl;
   frameNumber = _frameNumber;
-  QString txt_frameNumber = QString::fromStdString(its(frameNumber));
+  QString txt_frameNumber = QString::fromStdString(to_string(frameNumber));
   ui->label_framenumber_txt->setText(txt_frameNumber);
 }
 
@@ -309,12 +313,12 @@ bool MainWindow::setUpCapture()
   }
 
   if (useCamera || useVideo) {
-    int capture_fps = capture.get(CV_CAP_PROP_FPS);
+    int capture_fps = static_cast<int>(capture.get(CV_CAP_PROP_FPS));
     std::cout << "capture_fps: " << capture_fps << std::endl;
   }
 
   if (useVideo) {
-    capture_length = capture.get(CV_CAP_PROP_FRAME_COUNT);
+    capture_length = static_cast<int>(capture.get(CV_CAP_PROP_FRAME_COUNT));
     std::cout << "capture_length: " << capture_length << std::endl;
   }
 
@@ -333,7 +337,7 @@ void MainWindow::startCapture()
 
   if (useSequence && (frameNumber - 1) < entryList.length())
   {
-    QString file = entryList.at(frameNumber - 1);
+    QString file = entryList.at(static_cast<int>(frameNumber - 1));
     QString filePath = QDir(fileName).filePath(file);
 
     std::cout << "Processing: " << filePath.toStdString() << std::endl;
@@ -351,15 +355,15 @@ void MainWindow::startCapture()
   {
     int frame_width = cv_frame.size().width;
     int frame_height = cv_frame.size().height;
-    ui->label_frameresw_txt->setText(QString::fromStdString(its(frame_width)));
-    ui->label_frameresh_txt->setText(QString::fromStdString(its(frame_height)));
+    ui->label_frameresw_txt->setText(QString::fromStdString(to_string(frame_width)));
+    ui->label_frameresh_txt->setText(QString::fromStdString(to_string(frame_height)));
   }
 
   if (useVideo && capture_length > 0)
   {
     double perc = (double(frameNumber) / double(capture_length)) * 100.0;
     //std::cout << "perc: " << perc << std::endl;
-    ui->progressBar->setValue(perc);
+    ui->progressBar->setValue(static_cast<int>(perc));
   }
 
   int startAt = ui->spinBox_startat->value();
@@ -402,7 +406,7 @@ void MainWindow::processFrame(const cv::Mat &cv_frame)
   tic();
   bgs->process(cv_frame, cv_fg, cv_bg);
   toc();
-  ui->label_fps_txt->setText(QString::fromStdString(its(fps())));
+  ui->label_fps_txt->setText(QString::fromStdString(to_string(fps())));
 
   cv::Mat cv_fg_small;
   cv::resize(cv_fg, cv_fg_small, cv::Size(250, 250));

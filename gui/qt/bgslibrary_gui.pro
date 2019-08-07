@@ -11,18 +11,10 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = bgslibrary_gui
 TEMPLATE = app
 
-# For Windows x64 + Visual Studio 2015 + OpenCV 3.1.0
-#INCLUDEPATH += C:/OpenCV3.1.0/build/include
-#LIBS += -LC:/OpenCV3.1.0/build/x64/vc14/lib -lopencv_world310
-
-# For Windows x64 + Visual Studio 2015 + OpenCV 3.2.0
-#INCLUDEPATH += C:/OpenCV3.2.0/build/include
-#LIBS += -LC:/OpenCV3.2.0/build/x64/vc14/lib -lopencv_world320
-
-# For Windows x64 + Visual Studio 2017 + OpenCV 3.4.2
-INCLUDEPATH += E:/OpenCV3.4.2/build/include
-INCLUDEPATH += E:/OpenCV3.4.2/build/include/opencv
-LIBS += -LE:/OpenCV3.4.2/build/x64/vc15/lib -lopencv_world342
+# For Windows x64 + Visual Studio 2015 + OpenCV 4.1.1
+INCLUDEPATH += E:/OpenCV/opencv-4.1.1/build/include
+Release:LIBS += -LE:/OpenCV/opencv-4.1.1/build/x64/vc14/lib -lopencv_world411
+Debug:LIBS += -LE:/OpenCV/opencv-4.1.1/build/x64/vc14/lib -lopencv_world411d
 
 # For Linux
 # INCLUDEPATH += /usr/local/include/opencv
@@ -37,8 +29,6 @@ SOURCES += bgslibrary_gui.cpp\
     ../../src/package_analysis/ForegroundMaskAnalysis.cpp \
     ../../src/package_analysis/PerformanceUtils.cpp \
     ../../src/package_analysis/PixelUtils.cpp \
-    ../../src/package_bgs/_template_/Amber.cpp \
-    ../../src/package_bgs/_template_/MyBGS.cpp \
     ../../src/package_bgs/dp/AdaptiveMedianBGS.cpp \
     ../../src/package_bgs/dp/Eigenbackground.cpp \
     ../../src/package_bgs/dp/Error.cpp \
@@ -129,8 +119,8 @@ SOURCES += bgslibrary_gui.cpp\
     ../../src/package_bgs/VuMeter.cpp \
     ../../src/package_bgs/WeightedMovingMean.cpp \
     ../../src/package_bgs/WeightedMovingVariance.cpp \
-    ../../src/package_bgs/_template_/amber/amber.cpp \
     ../../src/package_bgs/CodeBook.cpp
+    ../../src/package_bgs/_template_/MyBGS.cpp \
 
 HEADERS  += mainwindow.h \
     qt_utils.h \
@@ -138,9 +128,6 @@ HEADERS  += mainwindow.h \
     ../../src/package_analysis/ForegroundMaskAnalysis.h \
     ../../src/package_analysis/PerformanceUtils.h \
     ../../src/package_analysis/PixelUtils.h \
-    ../../src/package_bgs/_template_/amber/amber.h \
-    ../../src/package_bgs/_template_/Amber.h \
-    ../../src/package_bgs/_template_/MyBGS.h \
     ../../src/package_bgs/dp/AdaptiveMedianBGS.h \
     ../../src/package_bgs/dp/Bgs.h \
     ../../src/package_bgs/dp/BgsParams.h \
@@ -244,6 +231,7 @@ HEADERS  += mainwindow.h \
     ../../src/package_bgs/WeightedMovingMean.h \
     ../../src/package_bgs/WeightedMovingVariance.h \
     ../../src/package_bgs/CodeBook.h
+    ../../src/package_bgs/_template_/MyBGS.h \
 
 FORMS    += mainwindow.ui
 

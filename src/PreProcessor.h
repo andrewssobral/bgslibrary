@@ -7,8 +7,8 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/features2d/features2d.hpp>
 #include <opencv2/imgproc/types_c.h>
-#include <opencv2/imgproc/imgproc_c.h>
-#include <opencv2/highgui/highgui_c.h>
+//#include <opencv2/imgproc/imgproc_c.h>
+//#include <opencv2/highgui/highgui_c.h>
 
 #include "package_bgs/ILoadSaveConfig.h"
 
