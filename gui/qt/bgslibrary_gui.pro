@@ -4,21 +4,79 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = bgslibrary_gui
 TEMPLATE = app
 
-# For Windows x64 + Visual Studio 2015 + OpenCV 4.1.1
-INCLUDEPATH += E:/OpenCV/opencv-4.1.1/build/include
-Release:LIBS += -LE:/OpenCV/opencv-4.1.1/build/x64/vc14/lib -lopencv_world411
-Debug:LIBS += -LE:/OpenCV/opencv-4.1.1/build/x64/vc14/lib -lopencv_world411d
+message(Qt version: $$[QT_VERSION])
+message(Qt is installed in $$[QT_INSTALL_PREFIX])
+message(Qt resources can be found in the following locations:)
+message(Documentation: $$[QT_INSTALL_DOCS])
+message(Header files: $$[QT_INSTALL_HEADERS])
+message(Libraries: $$[QT_INSTALL_LIBS])
+message(Binary files (executables): $$[QT_INSTALL_BINS])
+message(Plugins: $$[QT_INSTALL_PLUGINS])
+message(Data files: $$[QT_INSTALL_DATA])
+message(Translation files: $$[QT_INSTALL_TRANSLATIONS])
+message(Settings: $$[QT_INSTALL_SETTINGS])
+message(Examples: $$[QT_INSTALL_EXAMPLES])
+message(Demonstrations: $$[QT_INSTALL_DEMOS])
 
-# For Linux
-# INCLUDEPATH += /usr/local/include/opencv
-# LIBS += -L/usr/local/lib
+CONFIG += c++14
+#CONFIG += no_keywords # Python redefines some qt keywords
+#CONFIG += console
+CONFIG -= app_bundle
+CONFIG += sdk_no_version_check # supress OS warning for 10.14
+
+# For Windows x64 + Visual Studio 2015 + OpenCV 4.1.1
+win32 {
+  message("Building for Windows")
+  INCLUDEPATH += E:/OpenCV/opencv-4.1.1/build/include
+  release {
+    LIBS += -LE:/OpenCV/opencv-4.1.1/build/x64/vc14/lib -lopencv_world411
+  }
+  debug {
+    LIBS += -LE:/OpenCV/opencv-4.1.1/build/x64/vc14/lib -lopencv_world411d
+  }
+}
+
+# For Linux or MacOS
+!win32 {
+  macx {
+    message("Building for MacOS")
+    QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.14
+  } else {
+    message("Building for Unix/Linux")
+  }
+  INCLUDEPATH += /usr/local/include
+  INCLUDEPATH += /usr/local/include/opencv4
+  LIBS += -L/usr/local/lib
+  #LIBS += -L/usr/local/Cellar/ffmpeg/3.3.3/lib
+  LIBS += -lopencv_core
+  LIBS += -lopencv_imgproc
+  LIBS += -lopencv_imgcodecs
+  LIBS += -lopencv_video
+  LIBS += -lopencv_videoio
+  LIBS += -lopencv_highgui
+  LIBS += -lopencv_features2d
+  #LIBS += -lopencv_ml
+  #LIBS += -lopencv_calib3d
+  #LIBS += -lopencv_objdetect
+  #LIBS += -lopencv_flann
+  #LIBS += -lopencv_contrib
+  #LIBS += -lopencv_legacy
+  #LIBS += -lavcodec
+  #LIBS += -lavformat
+  #LIBS += -lavutil
+  #LIBS += -lavdevice
+  #LIBS += -lavfilter
+  #LIBS += -lpostproc
+  #LIBS += -lswscale
+  #LIBS += -lswresample
+}
 
 RESOURCES = application.qrc
 
