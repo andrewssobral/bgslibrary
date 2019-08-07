@@ -51,6 +51,7 @@ int main(int argc, char **argv)
 
       if (img_input.empty()) break;
 
+      cv::resize(img_input, img_input, cv::Size(380, 240), 0, 0, CV_INTER_LINEAR);
       cv::imshow("input", img_input);
 
       cv::Mat img_mask;
