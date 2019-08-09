@@ -19,187 +19,187 @@ namespace bgslibrary
     std::string tictoc;
 
     cv::Mat img_preProcessor;
-    PreProcessor* preProcessor;
-    bool enablePreProcessor;
+    std::unique_ptr<PreProcessor> preProcessor;
+    bool enablePreProcessor = false;
 
     cv::Mat img_frameDifference;
-    FrameDifference* frameDifference;
-    bool enableFrameDifference;
+    std::shared_ptr<FrameDifference> frameDifference;
+    bool enableFrameDifference = false;
 
     cv::Mat img_staticFrameDifference;
-    StaticFrameDifference* staticFrameDifference;
-    bool enableStaticFrameDifference;
+    std::shared_ptr<StaticFrameDifference> staticFrameDifference;
+    bool enableStaticFrameDifference = false;
 
     cv::Mat img_weightedMovingMean;
-    WeightedMovingMean* weightedMovingMean;
-    bool enableWeightedMovingMean;
+    std::shared_ptr<WeightedMovingMean> weightedMovingMean;
+    bool enableWeightedMovingMean = false;
 
     cv::Mat img_weightedMovingVariance;
-    WeightedMovingVariance* weightedMovingVariance;
-    bool enableWeightedMovingVariance;
+    std::shared_ptr<WeightedMovingVariance> weightedMovingVariance;
+    bool enableWeightedMovingVariance = false;
 
 #if CV_MAJOR_VERSION == 2
     cv::Mat img_mixtureOfGaussianV1;
-    MixtureOfGaussianV1* mixtureOfGaussianV1;
-    bool enableMixtureOfGaussianV1;
+    std::shared_ptr<MixtureOfGaussianV1> mixtureOfGaussianV1;
+    bool enableMixtureOfGaussianV1 = false;
 #endif
 
     cv::Mat img_mixtureOfGaussianV2;
-    MixtureOfGaussianV2* mixtureOfGaussianV2;
-    bool enableMixtureOfGaussianV2;
+    std::shared_ptr<MixtureOfGaussianV2> mixtureOfGaussianV2;
+    bool enableMixtureOfGaussianV2 = false;
 
     cv::Mat img_adaptiveBackgroundLearning;
-    AdaptiveBackgroundLearning* adaptiveBackgroundLearning;
-    bool enableAdaptiveBackgroundLearning;
+    std::shared_ptr<AdaptiveBackgroundLearning> adaptiveBackgroundLearning;
+    bool enableAdaptiveBackgroundLearning = false;
 
 #if CV_MAJOR_VERSION == 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
     cv::Mat img_gmg;
-    GMG* gmg;
-    bool enableGMG;
+    std::shared_ptr<GMG> gmg;
+    bool enableGMG = false;
 #endif
 
 #if CV_MAJOR_VERSION >= 3
     cv::Mat img_knn;
-    KNN* knn;
-    bool enableKNN;
+    std::shared_ptr<KNN> knn;
+    bool enableKNN = false;
 #endif
 
 #if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
     cv::Mat img_dpAdaptiveMedian;
-    DPAdaptiveMedian* dpAdaptiveMedian;
-    bool enableDPAdaptiveMedian;
+    std::shared_ptr<DPAdaptiveMedian> dpAdaptiveMedian;
+    bool enableDPAdaptiveMedian = false;
 
     cv::Mat img_dpGrimsonGMM;
-    DPGrimsonGMM* dpGrimsonGMM;
-    bool enableDPGrimsonGMM;
+    std::shared_ptr<DPGrimsonGMM> dpGrimsonGMM;
+    bool enableDPGrimsonGMM = false;
 
     cv::Mat img_dpZivkovicAGMM;
-    DPZivkovicAGMM* dpZivkovicAGMM;
-    bool enableDPZivkovicAGMM;
+    std::shared_ptr<DPZivkovicAGMM> dpZivkovicAGMM;
+    bool enableDPZivkovicAGMM = false;
 
     cv::Mat img_dpTemporalMean;
-    DPMean* dpTemporalMean;
-    bool enableDPMean;
+    std::shared_ptr<DPMean> dpTemporalMean;
+    bool enableDPMean = false;
 
     cv::Mat img_dpWrenGA;
-    DPWrenGA* dpWrenGA;
-    bool enableDPWrenGA;
+    std::shared_ptr<DPWrenGA> dpWrenGA;
+    bool enableDPWrenGA = false;
 
     cv::Mat img_dpPratiMediod;
-    DPPratiMediod* dpPratiMediod;
-    bool enableDPPratiMediod;
+    std::shared_ptr<DPPratiMediod> dpPratiMediod;
+    bool enableDPPratiMediod = false;
 
     cv::Mat img_dpEigenBackground;
-    DPEigenbackground* dpEigenBackground;
-    bool enableDPEigenbackground;
+    std::shared_ptr<DPEigenbackground> dpEigenBackground;
+    bool enableDPEigenbackground = false;
 
     cv::Mat img_dpTexture;
-    DPTexture* dpTexture;
-    bool enableDPTexture;
+    std::shared_ptr<DPTexture> dpTexture;
+    bool enableDPTexture = false;
 
     cv::Mat img_type2FuzzyGMM_UM;
-    T2FGMM_UM* type2FuzzyGMM_UM;
-    bool enableT2FGMM_UM;
+    std::shared_ptr<T2FGMM_UM> type2FuzzyGMM_UM;
+    bool enableT2FGMM_UM = false;
 
     cv::Mat img_type2FuzzyGMM_UV;
-    T2FGMM_UV* type2FuzzyGMM_UV;
-    bool enableT2FGMM_UV;
+    std::shared_ptr<T2FGMM_UV> type2FuzzyGMM_UV;
+    bool enableT2FGMM_UV = false;
 
     cv::Mat img_type2FuzzyMRF_UM;
-    T2FMRF_UM* type2FuzzyMRF_UM;
-    bool enableT2FMRF_UM;
+    std::shared_ptr<T2FMRF_UM> type2FuzzyMRF_UM;
+    bool enableT2FMRF_UM = false;
 
     cv::Mat img_type2FuzzyMRF_UV;
-    T2FMRF_UV* type2FuzzyMRF_UV;
-    bool enableT2FMRF_UV;
+    std::shared_ptr<T2FMRF_UV> type2FuzzyMRF_UV;
+    bool enableT2FMRF_UV = false;
 
     cv::Mat img_fuzzySugenoIntegral;
-    FuzzySugenoIntegral* fuzzySugenoIntegral;
-    bool enableFuzzySugenoIntegral;
+    std::shared_ptr<FuzzySugenoIntegral> fuzzySugenoIntegral;
+    bool enableFuzzySugenoIntegral = false;
 
     cv::Mat img_fuzzyChoquetIntegral;
-    FuzzyChoquetIntegral* fuzzyChoquetIntegral;
-    bool enableFuzzyChoquetIntegral;
+    std::shared_ptr<FuzzyChoquetIntegral> fuzzyChoquetIntegral;
+    bool enableFuzzyChoquetIntegral = false;
 
     cv::Mat img_lbSimpleGaussian;
-    LBSimpleGaussian* lbSimpleGaussian;
-    bool enableLBSimpleGaussian;
+    std::shared_ptr<LBSimpleGaussian> lbSimpleGaussian;
+    bool enableLBSimpleGaussian = false;
 
     cv::Mat img_lbFuzzyGaussian;
-    LBFuzzyGaussian* lbFuzzyGaussian;
-    bool enableLBFuzzyGaussian;
+    std::shared_ptr<LBFuzzyGaussian> lbFuzzyGaussian;
+    bool enableLBFuzzyGaussian = false;
 
     cv::Mat img_lbMixtureOfGaussians;
-    LBMixtureOfGaussians* lbMixtureOfGaussians;
-    bool enableLBMixtureOfGaussians;
+    std::shared_ptr<LBMixtureOfGaussians> lbMixtureOfGaussians;
+    bool enableLBMixtureOfGaussians = false;
 
     cv::Mat img_lbAdaptiveSOM;
-    LBAdaptiveSOM* lbAdaptiveSOM;
-    bool enableLBAdaptiveSOM;
+    std::shared_ptr<LBAdaptiveSOM> lbAdaptiveSOM;
+    bool enableLBAdaptiveSOM = false;
 
     cv::Mat img_lbFuzzyAdaptiveSOM;
-    LBFuzzyAdaptiveSOM* lbFuzzyAdaptiveSOM;
-    bool enableLBFuzzyAdaptiveSOM;
+    std::shared_ptr<LBFuzzyAdaptiveSOM> lbFuzzyAdaptiveSOM;
+    bool enableLBFuzzyAdaptiveSOM = false;
     
     cv::Mat img_lbpMrf;
-    LBP_MRF* lbpMrf;
-    bool enableLbpMrf;
+    std::shared_ptr<LBP_MRF> lbpMrf;
+    bool enableLbpMrf = false;
 
     cv::Mat img_multiLayer;
-    MultiLayer* multiLayer;
-    bool enableMultiLayer;
+    std::shared_ptr<MultiLayer> multiLayer;
+    bool enableMultiLayer = false;
 
     cv::Mat img_pixelBasedAdaptiveSegmenter;
-    PixelBasedAdaptiveSegmenter* pixelBasedAdaptiveSegmenter;
-    bool enablePBAS;
+    std::shared_ptr<PixelBasedAdaptiveSegmenter> pixelBasedAdaptiveSegmenter;
+    bool enablePBAS = false;
 
     cv::Mat img_vumeter;
-    VuMeter* vuMeter;
-    bool enableVuMeter;
+    std::shared_ptr<VuMeter> vuMeter;
+    bool enableVuMeter = false;
 
     cv::Mat img_kde;
-    KDE* kde;
-    bool enableKDE;
+    std::shared_ptr<KDE> kde;
+    bool enableKDE = false;
 
     cv::Mat img_imbs;
-    IndependentMultimodal* imbs;
-    bool enableIMBS;
+    std::shared_ptr<IndependentMultimodal> imbs;
+    bool enableIMBS = false;
 
     cv::Mat img_multiCue;
-    MultiCue* multiCue;
-    bool enableMultiCue;
+    std::shared_ptr<MultiCue> multiCue;
+    bool enableMultiCue = false;
 #endif
 
     cv::Mat img_sigmaDelta;
-    SigmaDelta* sigmaDelta;
-    bool enableSigmaDelta;
+    std::shared_ptr<SigmaDelta> sigmaDelta;
+    bool enableSigmaDelta = false;
 
     cv::Mat img_subSENSE;
-    SuBSENSE* subSENSE;
-    bool enableSuBSENSE;
+    std::shared_ptr<SuBSENSE> subSENSE;
+    bool enableSuBSENSE = false;
 
     cv::Mat img_lobster;
-    LOBSTER* lobster;
-    bool enableLOBSTER;
+    std::shared_ptr<LOBSTER> lobster;
+    bool enableLOBSTER = false;
 
     cv::Mat img_pawcs;
-    PAWCS* pawcs;
-    bool enablePAWCS;
+    std::shared_ptr<PAWCS> pawcs;
+    bool enablePAWCS = false;
 
     cv::Mat img_twoPoints;
-    TwoPoints* twoPoints;
-    bool enableTwoPoints;
+    std::shared_ptr<TwoPoints> twoPoints;
+    bool enableTwoPoints = false;
 
     cv::Mat img_vibe;
-    ViBe* vibe;
-    bool enableViBe;
+    std::shared_ptr<ViBe> vibe;
+    bool enableViBe = false;
 
     cv::Mat img_codeBook;
-    CodeBook* codeBook;
-    bool enableCodeBook;
-
-    ForegroundMaskAnalysis* foregroundMaskAnalysis;
-    bool enableForegroundMaskAnalysis;
+    std::shared_ptr<CodeBook> codeBook;
+    bool enableCodeBook = false;
+    
+    std::shared_ptr<ForegroundMaskAnalysis> foregroundMaskAnalysis;
+    bool enableForegroundMaskAnalysis = false;
 
   public:
     FrameProcessor();
@@ -213,7 +213,7 @@ namespace bgslibrary
     void finish(void);
 
   private:
-    void process(std::string name, IBGS *bgs, const cv::Mat &img_input, cv::Mat &img_bgs);
+    void process(const std::string name, const std::shared_ptr<IBGS> &bgs, const cv::Mat &img_input, cv::Mat &img_bgs);
     void tic(std::string value);
     void toc();
 

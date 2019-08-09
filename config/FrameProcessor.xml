@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <opencv_storage>
 <tictoc>""</tictoc>
-<enablePreProcessor>1</enablePreProcessor>
+<enablePreProcessor>0</enablePreProcessor>
 <enableForegroundMaskAnalysis>0</enableForegroundMaskAnalysis>
 <enableFrameDifference>1</enableFrameDifference>
 <enableStaticFrameDifference>0</enableStaticFrameDifference>

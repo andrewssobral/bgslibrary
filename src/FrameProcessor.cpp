@@ -20,164 +20,166 @@ namespace bgslibrary
   void FrameProcessor::init()
   {
     if (enablePreProcessor)
-      preProcessor = new PreProcessor;
+      preProcessor = std::make_unique<PreProcessor>();
 
     if (enableFrameDifference)
-      frameDifference = new FrameDifference;
+      frameDifference = std::make_shared<FrameDifference>();
 
     if (enableStaticFrameDifference)
-      staticFrameDifference = new StaticFrameDifference;
+      staticFrameDifference = std::make_shared<StaticFrameDifference>();
 
     if (enableWeightedMovingMean)
-      weightedMovingMean = new WeightedMovingMean;
+      weightedMovingMean = std::make_shared<WeightedMovingMean>();
 
     if (enableWeightedMovingVariance)
-      weightedMovingVariance = new WeightedMovingVariance;
+      weightedMovingVariance = std::make_shared<WeightedMovingVariance>();
 
     if (enableAdaptiveBackgroundLearning)
-      adaptiveBackgroundLearning = new AdaptiveBackgroundLearning;
+      adaptiveBackgroundLearning = std::make_shared<AdaptiveBackgroundLearning>();
 
     if (enableMixtureOfGaussianV2)
-      mixtureOfGaussianV2 = new MixtureOfGaussianV2;
+      mixtureOfGaussianV2 = std::make_shared<MixtureOfGaussianV2>();
 
 #if CV_MAJOR_VERSION == 2
     if (enableMixtureOfGaussianV1)
-      mixtureOfGaussianV1 = new MixtureOfGaussianV1;
+      mixtureOfGaussianV1 = std::make_shared<MixtureOfGaussianV1>();
 #endif
 
 #if CV_MAJOR_VERSION == 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
     if (enableGMG)
-      gmg = new GMG;
+      gmg = std::make_shared<GMG>();
 #endif
 
 #if CV_MAJOR_VERSION >= 3
     if (enableKNN)
-      knn = new KNN;
+      knn = std::make_shared<KNN>();
 #endif
 
 #if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
     if (enableDPAdaptiveMedian)
-      dpAdaptiveMedian = new DPAdaptiveMedian;
+      dpAdaptiveMedian = std::make_shared<DPAdaptiveMedian>();
 
     if (enableDPGrimsonGMM)
-      dpGrimsonGMM = new DPGrimsonGMM;
+      dpGrimsonGMM = std::make_shared<DPGrimsonGMM>();
 
     if (enableDPZivkovicAGMM)
-      dpZivkovicAGMM = new DPZivkovicAGMM;
+      dpZivkovicAGMM = std::make_shared<DPZivkovicAGMM>();
 
     if (enableDPMean)
-      dpTemporalMean = new DPMean;
+      dpTemporalMean = std::make_shared<DPMean>();
 
     if (enableDPWrenGA)
-      dpWrenGA = new DPWrenGA;
+      dpWrenGA = std::make_shared<DPWrenGA>();
 
     if (enableDPPratiMediod)
-      dpPratiMediod = new DPPratiMediod;
+      dpPratiMediod = std::make_shared<DPPratiMediod>();
 
     if (enableDPEigenbackground)
-      dpEigenBackground = new DPEigenbackground;
+      dpEigenBackground = std::make_shared<DPEigenbackground>();
 
     if (enableDPTexture)
-      dpTexture = new DPTexture;
+      dpTexture = std::make_shared<DPTexture>();
 
     if (enableT2FGMM_UM)
-      type2FuzzyGMM_UM = new T2FGMM_UM;
+      type2FuzzyGMM_UM = std::make_shared<T2FGMM_UM>();
 
     if (enableT2FGMM_UV)
-      type2FuzzyGMM_UV = new T2FGMM_UV;
+      type2FuzzyGMM_UV = std::make_shared<T2FGMM_UV>();
 
     if (enableT2FMRF_UM)
-      type2FuzzyMRF_UM = new T2FMRF_UM;
+      type2FuzzyMRF_UM = std::make_shared<T2FMRF_UM>();
 
     if (enableT2FMRF_UV)
-      type2FuzzyMRF_UV = new T2FMRF_UV;
+      type2FuzzyMRF_UV = std::make_shared<T2FMRF_UV>();
 
     if (enableFuzzySugenoIntegral)
-      fuzzySugenoIntegral = new FuzzySugenoIntegral;
+      fuzzySugenoIntegral = std::make_shared<FuzzySugenoIntegral>();
 
     if (enableFuzzyChoquetIntegral)
-      fuzzyChoquetIntegral = new FuzzyChoquetIntegral;
+      fuzzyChoquetIntegral = std::make_shared<FuzzyChoquetIntegral>();
 
     if (enableLBSimpleGaussian)
-      lbSimpleGaussian = new LBSimpleGaussian;
+      lbSimpleGaussian = std::make_shared<LBSimpleGaussian>();
 
     if (enableLBFuzzyGaussian)
-      lbFuzzyGaussian = new LBFuzzyGaussian;
+      lbFuzzyGaussian = std::make_shared<LBFuzzyGaussian>();
 
     if (enableLBMixtureOfGaussians)
-      lbMixtureOfGaussians = new LBMixtureOfGaussians;
+      lbMixtureOfGaussians = std::make_shared<LBMixtureOfGaussians>();
 
     if (enableLBAdaptiveSOM)
-      lbAdaptiveSOM = new LBAdaptiveSOM;
+      lbAdaptiveSOM = std::make_shared<LBAdaptiveSOM>();
 
     if (enableLBFuzzyAdaptiveSOM)
-      lbFuzzyAdaptiveSOM = new LBFuzzyAdaptiveSOM;
+      lbFuzzyAdaptiveSOM = std::make_shared<LBFuzzyAdaptiveSOM>();
 
     if (enableLbpMrf)
-      lbpMrf = new LBP_MRF;
+      lbpMrf = std::make_shared<LBP_MRF>();
 
     if (enableMultiLayer)
-      multiLayer = new MultiLayer;
+      multiLayer = std::make_shared<MultiLayer>();
 
     if (enablePBAS)
-      pixelBasedAdaptiveSegmenter = new PixelBasedAdaptiveSegmenter;
+      pixelBasedAdaptiveSegmenter = std::make_shared<PixelBasedAdaptiveSegmenter>();
 
     if (enableVuMeter)
-      vuMeter = new VuMeter;
+      vuMeter = std::make_shared<VuMeter>();
 
     if (enableKDE)
-      kde = new KDE;
+      kde = std::make_shared<KDE>();
 
     if (enableIMBS)
-      imbs = new IndependentMultimodal;
+      imbs = std::make_shared<IndependentMultimodal>();
 
     if (enableMultiCue)
-      multiCue = new MultiCue;
+      multiCue = std::make_shared<MultiCue>();
 #endif
 
     if (enableSigmaDelta)
-      sigmaDelta = new SigmaDelta;
+      sigmaDelta = std::make_shared<SigmaDelta>();
 
     if (enableSuBSENSE)
-      subSENSE = new SuBSENSE;
+      subSENSE = std::make_shared<SuBSENSE>();
 
     if (enableLOBSTER)
-      lobster = new LOBSTER;
+      lobster = std::make_shared<LOBSTER>();
 
     if (enablePAWCS)
-      pawcs = new PAWCS;
+      pawcs = std::make_shared<PAWCS>();
 
     if (enableTwoPoints)
-      twoPoints = new TwoPoints;
+      twoPoints = std::make_shared<TwoPoints>();
 
     if (enableViBe)
-      vibe = new ViBe;
+      vibe = std::make_shared<ViBe>();
 
     if (enableCodeBook)
-      codeBook = new CodeBook;
+      codeBook = std::make_shared<CodeBook>();
 
     if (enableForegroundMaskAnalysis)
-      foregroundMaskAnalysis = new ForegroundMaskAnalysis;
+      foregroundMaskAnalysis = std::make_shared<ForegroundMaskAnalysis>();
   }
-
-  void FrameProcessor::process(std::string name, IBGS *bgs, const cv::Mat &img_input, cv::Mat &img_bgs)
+  
+  void FrameProcessor::process(const std::string name, const std::shared_ptr<IBGS> &bgs, const cv::Mat &img_input, cv::Mat &img_bgs)
   {
     if (tictoc == name)
       tic(name);
-
+    
     cv::Mat img_bkgmodel;
     bgs->process(img_input, img_bgs, img_bkgmodel);
-
+    
     if (tictoc == name)
       toc();
   }
-
+  
   void FrameProcessor::process(const cv::Mat &img_input)
   {
     frameNumber++;
 
     if (enablePreProcessor)
       preProcessor->process(img_input, img_preProcessor);
+    else
+      img_input.copyTo(img_preProcessor);
 
     if (enableFrameDifference)
       process("FrameDifference", frameDifference, img_preProcessor, img_frameDifference);
@@ -382,166 +384,7 @@ namespace bgslibrary
     firstTime = false;
   }
 
-  void FrameProcessor::finish(void)
-  {
-    /*if(enableMultiLayer)
-    multiLayer->finish();
-
-    if(enableLBSimpleGaussian)
-    lbSimpleGaussian->finish();
-
-    if(enableLBFuzzyGaussian)
-    lbFuzzyGaussian->finish();
-
-    if(enableLBMixtureOfGaussians)
-    lbMixtureOfGaussians->finish();
-
-    if(enableLBAdaptiveSOM)
-    lbAdaptiveSOM->finish();
-
-    if(enableLBFuzzyAdaptiveSOM)
-    lbFuzzyAdaptiveSOM->finish();*/
-
-    if (enableForegroundMaskAnalysis)
-      delete foregroundMaskAnalysis;
-
-    if (enableCodeBook)
-      delete codeBook;
-
-    if (enableViBe)
-      delete vibe;
-
-    if (enableTwoPoints)
-      delete twoPoints;
-
-    if (enablePAWCS)
-      delete pawcs;
-
-    if (enableLOBSTER)
-      delete lobster;
-
-    if (enableSuBSENSE)
-      delete subSENSE;
-
-    if (enableSigmaDelta)
-      delete sigmaDelta;
-
-#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
-    if (enableMultiCue)
-      delete multiCue;
-
-    if (enableIMBS)
-      delete imbs;
-
-    if (enableKDE)
-      delete kde;
-
-    if (enableVuMeter)
-      delete vuMeter;
-
-    if (enablePBAS)
-      delete pixelBasedAdaptiveSegmenter;
-
-    if (enableMultiLayer)
-      delete multiLayer;
-
-    if (enableLBFuzzyAdaptiveSOM)
-      delete lbFuzzyAdaptiveSOM;
-
-    if (enableLBAdaptiveSOM)
-      delete lbAdaptiveSOM;
-
-    if (enableLBMixtureOfGaussians)
-      delete lbMixtureOfGaussians;
-
-    if (enableLBFuzzyGaussian)
-      delete lbFuzzyGaussian;
-
-    if (enableLBSimpleGaussian)
-      delete lbSimpleGaussian;
-
-    if (enableLbpMrf)
-      delete lbpMrf;
-
-    if (enableFuzzyChoquetIntegral)
-      delete fuzzyChoquetIntegral;
-
-    if (enableFuzzySugenoIntegral)
-      delete fuzzySugenoIntegral;
-
-    if (enableT2FMRF_UV)
-      delete type2FuzzyMRF_UV;
-
-    if (enableT2FMRF_UM)
-      delete type2FuzzyMRF_UM;
-
-    if (enableT2FGMM_UV)
-      delete type2FuzzyGMM_UV;
-
-    if (enableT2FGMM_UM)
-      delete type2FuzzyGMM_UM;
-
-    if (enableDPTexture)
-      delete dpTexture;
-
-    if (enableDPEigenbackground)
-      delete dpEigenBackground;
-
-    if (enableDPPratiMediod)
-      delete dpPratiMediod;
-
-    if (enableDPWrenGA)
-      delete dpWrenGA;
-
-    if (enableDPMean)
-      delete dpTemporalMean;
-
-    if (enableDPZivkovicAGMM)
-      delete dpZivkovicAGMM;
-
-    if (enableDPGrimsonGMM)
-      delete dpGrimsonGMM;
-
-    if (enableDPAdaptiveMedian)
-      delete dpAdaptiveMedian;
-#endif
-
-#if CV_MAJOR_VERSION == 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
-    if (enableGMG)
-      delete gmg;
-#endif
-
-#if CV_MAJOR_VERSION >= 3
-    if (enableKNN)
-      delete knn;
-#endif
-
-#if CV_MAJOR_VERSION == 2
-    if (enableMixtureOfGaussianV1)
-      delete mixtureOfGaussianV1;
-#endif
-    
-    if (enableMixtureOfGaussianV2)
-      delete mixtureOfGaussianV2;
-    
-    if (enableAdaptiveBackgroundLearning)
-      delete adaptiveBackgroundLearning;
-
-    if (enableWeightedMovingVariance)
-      delete weightedMovingVariance;
-
-    if (enableWeightedMovingMean)
-      delete weightedMovingMean;
-
-    if (enableStaticFrameDifference)
-      delete staticFrameDifference;
-
-    if (enableFrameDifference)
-      delete frameDifference;
-
-    if (enablePreProcessor)
-      delete preProcessor;
-  }
+  void FrameProcessor::finish(void){}
 
   void FrameProcessor::tic(std::string value)
   {

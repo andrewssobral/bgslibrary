@@ -43,9 +43,9 @@ namespace bgslibrary
     VideoCapture();
     ~VideoCapture();
 
-    void setFrameProcessor(std::shared_ptr<IFrameProcessor> frameProcessorPtr);
-    void setCamera(int cameraIndex);
-    void setVideo(std::string filename);
+    void setFrameProcessor(const std::shared_ptr<IFrameProcessor> &_frameProcessor);
+    void setCamera(int _index);
+    void setVideo(std::string _filename);
     void start();
 
   private:
