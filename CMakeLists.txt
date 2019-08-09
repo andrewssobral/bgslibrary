@@ -146,18 +146,22 @@ if(BGS_PYTHON_SUPPORT)
   message(STATUS "NUMPY_INCLUDE_DIR: ${NUMPY_INCLUDE_DIR}\n")
 endif()
 
-file(GLOB main src/Main.cpp src/FrameProcessor.cpp src/PreProcessor.cpp src/VideoAnalysis.cpp src/VideoCapture.cpp)
+#file(GLOB main src/Main.cpp src/FrameProcessor.cpp src/PreProcessor.cpp src/VideoAnalysis.cpp src/VideoCapture.cpp)
+file(GLOB main_src src/*.cpp src/*.c)
+file(GLOB main_inc src/*.h src/*.hpp)
 
-file(GLOB_RECURSE analysis_src src/package_analysis/*.cpp)
+file(GLOB_RECURSE analysis_src src/package_analysis/*.cpp src/package_analysis/*.c)
+file(GLOB_RECURSE analysis_inc src/package_analysis/*.h src/package_analysis/*.hpp)
+
 file(GLOB_RECURSE bgs_src src/package_bgs/*.cpp src/package_bgs/*.c)
-file(GLOB_RECURSE bgs_include src/package_bgs/*.h)
+file(GLOB_RECURSE bgs_inc src/package_bgs/*.h src/package_bgs/*.hpp)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${OpenCV_INCLUDE_DIRS})
 
 if(BGS_PYTHON_SUPPORT)
   file(GLOB_RECURSE bgs_python_src wrapper/python/*.cpp)
-  file(GLOB_RECURSE bgs_python_include wrapper/python/*.h)
+  file(GLOB_RECURSE bgs_python_inc wrapper/python/*.h)
 
   include_directories(${CMAKE_CURRENT_SOURCE_DIR}/modules/pybind11/include)
   #include_directories(${Boost_INCLUDE_DIRS})
@@ -171,7 +175,7 @@ if(${OpenCV_VERSION} VERSION_LESS 2.4.3)
   list(REMOVE_ITEM bgs_src ${gmg})
 endif()
 
-add_library(bgslibrary_core SHARED ${bgs_src} ${analysis_src})
+add_library(bgslibrary_core SHARED ${bgs_src} ${analysis_src} ${bgs_inc} ${analysis_inc})
 # generates the export header bgslibrary_core_EXPORTS.h automatically
 include(GenerateExportHeader)
 GENERATE_EXPORT_HEADER(bgslibrary_core
@@ -180,12 +184,12 @@ GENERATE_EXPORT_HEADER(bgslibrary_core
     EXPORT_FILE_NAME bgslibrary_core_EXPORTS.h
     STATIC_DEFINE BGSLIBRARY_CORE_EXPORTS_BUILT_AS_STATIC)
 target_link_libraries(bgslibrary_core ${OpenCV_LIBS})
-set_property(TARGET bgslibrary_core PROPERTY PUBLIC_HEADER ${bgs_include})
+set_property(TARGET bgslibrary_core PROPERTY PUBLIC_HEADER ${bgs_inc})
 
 if(BGS_PYTHON_SUPPORT)
   #add_library(bgs_python SHARED ${bgs_src} ${analysis_src})
   #pybind11_add_module(bgs_python ${bgs_src} ${analysis_src})
-  pybind11_add_module(bgs_python ${bgs_python_src})
+  pybind11_add_module(bgs_python ${bgs_python_src} ${bgs_python_inc})
 
   target_link_libraries(bgs_python PRIVATE bgslibrary_core ${OpenCV_LIBS} ${PYTHON_LIBRARY} pybind11::module)
   #target_link_libraries(bgs_python ${OpenCV_LIBS} ${Boost_LIBRARIES} ${PYTHON_LIBRARY})
@@ -217,7 +221,7 @@ endif()
 #  endif()
 #endif()
 
-add_executable(bgslibrary ${main})
+add_executable(bgslibrary ${main_src} ${main_inc})
 target_link_libraries(bgslibrary ${OpenCV_LIBS} bgslibrary_core)
 # set_target_properties(bgslibrary PROPERTIES OUTPUT_NAME bgs)
 
