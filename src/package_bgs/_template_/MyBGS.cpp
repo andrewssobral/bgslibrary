@@ -2,8 +2,14 @@
 
 using namespace bgslibrary::algorithms;
 
-MyBGS::MyBGS() {}
-MyBGS::~MyBGS() {}
+MyBGS::MyBGS() :
+  IBGS(quote(MyBGS))
+{
+  debug_construction(MyBGS);
+}
+MyBGS::~MyBGS() {
+  debug_destruction(MyBGS);
+}
 
 void MyBGS::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
 {

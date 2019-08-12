@@ -25,6 +25,6 @@ namespace bgslibrary
       void loadConfig() {}
     };
 
-    static BGS_Register<MyBGS> register_MyBGS("MyBGS");
+    bgs_register(MyBGS);
   }
 }

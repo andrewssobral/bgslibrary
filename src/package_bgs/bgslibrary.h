@@ -1,8 +1,5 @@
 #pragma once
 
-#include "IBGS.h"
-#include "ILoadSaveConfig.h"
-
 #include "FrameDifference.h"
 #include "StaticFrameDifference.h"
 #include "WeightedMovingMean.h"
@@ -48,6 +45,5 @@
 #include "CodeBook.h"
 
 //#include "_template_/MyBGS.h"
-//#include "_template_/Amber.h"
 
 using namespace bgslibrary::algorithms;
