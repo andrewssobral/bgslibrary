@@ -29,7 +29,7 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<LBP_MRF> register_LBP_MRF("LBP_MRF");
+    bgs_register(LBP_MRF);
   }
 }
 

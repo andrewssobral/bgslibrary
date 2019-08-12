@@ -24,6 +24,6 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<StaticFrameDifference> register_StaticFrameDifference("StaticFrameDifference");
+    bgs_register(StaticFrameDifference);
   }
 }

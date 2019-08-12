@@ -5,15 +5,16 @@
 using namespace bgslibrary::algorithms;
 
 T2FGMM_UV::T2FGMM_UV() :
-  frameNumber(0), threshold(9.0), alpha(0.01), km(1.5f), kv(0.6f), gaussians(3)
+  IBGS(quote(T2FGMM_UV)),
+  frameNumber(0), threshold(9.0), alpha(0.01), 
+  km(1.5f), kv(0.6f), gaussians(3)
 {
-  std::cout << "T2FGMM_UV()" << std::endl;
+  debug_construction(T2FGMM_UV);
   setup("./config/T2FGMM_UV.xml");
 }
 
-T2FGMM_UV::~T2FGMM_UV()
-{
-  std::cout << "~T2FGMM_UV()" << std::endl;
+T2FGMM_UV::~T2FGMM_UV() {
+  debug_destruction(T2FGMM_UV);
 }
 
 void T2FGMM_UV::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
@@ -25,8 +26,7 @@ void T2FGMM_UV::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
     frame_data.ReleaseMemory(false);
   frame_data = frame;
 
-  if (firstTime)
-  {
+  if (firstTime) {
     int width = img_input.size().width;
     int height = img_input.size().height;
 
@@ -59,7 +59,7 @@ void T2FGMM_UV::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
 
 #ifndef MEX_COMPILE_FLAG
   if (showOutput)
-    cv::imshow("T2FGMM-UV", img_foreground);
+    cv::imshow(algorithmName + "_FG", img_foreground);
 #endif
 
   img_foreground.copyTo(img_output);

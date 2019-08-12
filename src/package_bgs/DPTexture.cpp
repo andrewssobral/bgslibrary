@@ -4,15 +4,16 @@
 
 using namespace bgslibrary::algorithms;
 
-DPTexture::DPTexture()
-// : enableFiltering(true)
+DPTexture::DPTexture():
+  IBGS(quote(DPTexture)), 
+  // enableFiltering(true)
 {
-  std::cout << "DPTexture()" << std::endl;
+  debug_construction(DPTexture);
   setup("./config/DPTexture.xml");
 }
 
-DPTexture::~DPTexture()
-{
+DPTexture::~DPTexture() {
+  debug_destruction(DPTexture);
   delete[] bgModel; // ~10Kb (25.708-15.968)
   delete[] modeArray;
   delete[] curTextureHist; // ~10Kb (16-6.396)
@@ -22,7 +23,6 @@ DPTexture::~DPTexture()
   fgMask.ReleaseImage();
   tempMask.ReleaseImage();
   texture.ReleaseImage();
-  std::cout << "~DPTexture()" << std::endl;
 }
 
 void DPTexture::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
@@ -31,8 +31,7 @@ void DPTexture::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
 
   frame = new IplImage(img_input);
 
-  if (firstTime)
-  {
+  if (firstTime) {
     width = img_input.size().width;
     height = img_input.size().height;
     size = width * height;
@@ -57,16 +56,11 @@ void DPTexture::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
     // initialize background model
     bgs.LBP(image, texture);
     bgs.Histogram(texture, curTextureHist);
-    for (int y = REGION_R + TEXTURE_R; y < height - REGION_R - TEXTURE_R; ++y)
-    {
-      for (int x = REGION_R + TEXTURE_R; x < width - REGION_R - TEXTURE_R; ++x)
-      {
+    for (int y = REGION_R + TEXTURE_R; y < height - REGION_R - TEXTURE_R; ++y) 
+      for (int x = REGION_R + TEXTURE_R; x < width - REGION_R - TEXTURE_R; ++x) {
         int index = x + y*width;
-
-        for (int m = 0; m < NUM_MODES; ++m)
-        {
-          for (int i = 0; i < NUM_BINS; ++i)
-          {
+        for (int m = 0; m < NUM_MODES; ++m) {
+          for (int i = 0; i < NUM_BINS; ++i) {
             bgModel[index].mode[m].r[i] = curTextureHist[index].r[i];
             bgModel[index].mode[m].g[i] = curTextureHist[index].g[i];
             bgModel[index].mode[m].b[i] = curTextureHist[index].b[i];
@@ -110,7 +104,7 @@ void DPTexture::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
 
 #ifndef MEX_COMPILE_FLAG
   if (showOutput)
-    cv::imshow("Texture BGS (Donovan Parks)", img_foreground);
+    cv::imshow(algorithmName + "_FG", img_foreground);
 #endif
 
   img_foreground.copyTo(img_output);

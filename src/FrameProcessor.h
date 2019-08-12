@@ -38,19 +38,23 @@ namespace bgslibrary
     std::shared_ptr<WeightedMovingVariance> weightedMovingVariance;
     bool enableWeightedMovingVariance = false;
 
-#if CV_MAJOR_VERSION == 2
-    cv::Mat img_mixtureOfGaussianV1;
-    std::shared_ptr<MixtureOfGaussianV1> mixtureOfGaussianV1;
-    bool enableMixtureOfGaussianV1 = false;
-#endif
+    cv::Mat img_adaptiveBackgroundLearning;
+    std::shared_ptr<AdaptiveBackgroundLearning> adaptiveBackgroundLearning;
+    bool enableAdaptiveBackgroundLearning = false;
+
+    cv::Mat img_adaptiveSelectiveBackgroundLearning;
+    std::shared_ptr<AdaptiveSelectiveBackgroundLearning> adaptiveSelectiveBackgroundLearning;
+    bool enableAdaptiveSelectiveBackgroundLearning = false;
 
     cv::Mat img_mixtureOfGaussianV2;
     std::shared_ptr<MixtureOfGaussianV2> mixtureOfGaussianV2;
     bool enableMixtureOfGaussianV2 = false;
 
-    cv::Mat img_adaptiveBackgroundLearning;
-    std::shared_ptr<AdaptiveBackgroundLearning> adaptiveBackgroundLearning;
-    bool enableAdaptiveBackgroundLearning = false;
+#if CV_MAJOR_VERSION == 2
+    cv::Mat img_mixtureOfGaussianV1;
+    std::shared_ptr<MixtureOfGaussianV1> mixtureOfGaussianV1;
+    bool enableMixtureOfGaussianV1 = false;
+#endif
 
 #if CV_MAJOR_VERSION == 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
     cv::Mat img_gmg;

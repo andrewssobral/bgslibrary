@@ -5,15 +5,16 @@
 using namespace bgslibrary::algorithms;
 
 DPGrimsonGMM::DPGrimsonGMM() :
-  frameNumber(0), threshold(9.0), alpha(0.01), gaussians(3)
+  IBGS(quote(DPGrimsonGMM)),
+  frameNumber(0), threshold(9.0), 
+  alpha(0.01), gaussians(3)
 {
-  std::cout << "DPGrimsonGMM()" << std::endl;
+  debug_construction(DPGrimsonGMM);
   setup("./config/DPGrimsonGMM.xml");
 }
 
-DPGrimsonGMM::~DPGrimsonGMM()
-{
-  std::cout << "~DPGrimsonGMM()" << std::endl;
+DPGrimsonGMM::~DPGrimsonGMM() {
+  debug_destruction(DPGrimsonGMM);
 }
 
 void DPGrimsonGMM::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
@@ -26,8 +27,7 @@ void DPGrimsonGMM::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Ma
     frame_data.ReleaseMemory(false);
   frame_data = frame;
 
-  if (firstTime)
-  {
+  if (firstTime) {
     int width = img_input.size().width;
     int height = img_input.size().height;
 
@@ -58,7 +58,7 @@ void DPGrimsonGMM::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Ma
 
 #ifndef MEX_COMPILE_FLAG
   if (showOutput)
-    cv::imshow("GMM (Grimson)", img_foreground);
+    cv::imshow(algorithmName + "_FG", img_foreground);
 #endif
 
   img_foreground.copyTo(img_output);

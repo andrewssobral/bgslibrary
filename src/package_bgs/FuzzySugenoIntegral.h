@@ -39,7 +39,7 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<FuzzySugenoIntegral> register_FuzzySugenoIntegral("FuzzySugenoIntegral");
+    bgs_register(FuzzySugenoIntegral);
   }
 }
 

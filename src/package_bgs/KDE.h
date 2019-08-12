@@ -43,7 +43,7 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<KDE> register_KDE("KDE");
+    bgs_register(KDE);
   }
 }
 

@@ -3,25 +3,24 @@
 using namespace bgslibrary::algorithms;
 
 PixelBasedAdaptiveSegmenter::PixelBasedAdaptiveSegmenter() :
+  IBGS(quote(PixelBasedAdaptiveSegmenter)),
   enableInputBlur(true), enableOutputBlur(true),
   alpha(7.0), beta(1.0), N(20), Raute_min(2), R_incdec(0.05), R_lower(18),
   R_scale(5), T_dec(0.05), T_inc(1), T_init(18), T_lower(2), T_upper(200)
 {
-  std::cout << "PixelBasedAdaptiveSegmenter()" << std::endl;
+  debug_construction(PixelBasedAdaptiveSegmenter);
   setup("./config/PixelBasedAdaptiveSegmenter.xml");
 }
 
-PixelBasedAdaptiveSegmenter::~PixelBasedAdaptiveSegmenter()
-{
-  std::cout << "~PixelBasedAdaptiveSegmenter()" << std::endl;
+PixelBasedAdaptiveSegmenter::~PixelBasedAdaptiveSegmenter() {
+  debug_destruction(PixelBasedAdaptiveSegmenter);
 }
 
 void PixelBasedAdaptiveSegmenter::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
 {
   init(img_input, img_output, img_bgmodel);
 
-  if (firstTime)
-  {
+  if (firstTime) {
     pbas.setAlpha(alpha);
     pbas.setBeta(beta);
     pbas.setN(N);
@@ -50,7 +49,7 @@ void PixelBasedAdaptiveSegmenter::process(const cv::Mat &img_input, cv::Mat &img
 
 #ifndef MEX_COMPILE_FLAG
   if (showOutput)
-    cv::imshow("PBAS", img_foreground);
+    cv::imshow(algorithmName + "_FG", img_foreground);
 #endif
 
   img_foreground.copyTo(img_output);
@@ -65,7 +64,6 @@ void PixelBasedAdaptiveSegmenter::saveConfig()
   
   fs << "enableInputBlur" << enableInputBlur;
   fs << "enableOutputBlur" << enableOutputBlur;
-  
   fs << "alpha" << alpha;
   fs << "beta" << beta;
   fs << "N" << N;
@@ -78,7 +76,6 @@ void PixelBasedAdaptiveSegmenter::saveConfig()
   fs << "T_init" << T_init;
   fs << "T_lower" << T_lower;
   fs << "T_upper" << T_upper;
-  
   fs << "showOutput" << showOutput;
 }
 
@@ -89,7 +86,6 @@ void PixelBasedAdaptiveSegmenter::loadConfig()
   
   fs["enableInputBlur"] >> enableInputBlur;
   fs["enableOutputBlur"] >> enableOutputBlur;
-  
   fs["alpha"] >> alpha;
   fs["beta"] >> beta;
   fs["N"] >> N;
@@ -102,7 +98,6 @@ void PixelBasedAdaptiveSegmenter::loadConfig()
   fs["T_init"] >> T_init;
   fs["T_lower"] >> T_lower;
   fs["T_upper"] >> T_upper;
-  
   fs["showOutput"] >> showOutput;
   
   fs.release();

@@ -37,7 +37,7 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<VuMeter> register_VuMeter("VuMeter");
+    bgs_register(VuMeter);
   }
 }
 

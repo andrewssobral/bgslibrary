@@ -30,7 +30,6 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<AdaptiveBackgroundLearning> 
-      register_AdaptiveBackgroundLearning("AdaptiveBackgroundLearning");
+    bgs_register(AdaptiveBackgroundLearning);
   }
 }

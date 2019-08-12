@@ -3,32 +3,31 @@
 using namespace bgslibrary::algorithms;
 
 SigmaDelta::SigmaDelta() :
-  ampFactor(1), minVar(15), maxVar(255), algorithm(sdLaMa091New())
+  IBGS(quote(SigmaDelta)),
+  ampFactor(1), minVar(15), maxVar(255), 
+  algorithm(sdLaMa091New())
 {
+  debug_construction(SigmaDelta);
   applyParams();
-  std::cout << "SigmaDelta()" << std::endl;
   setup("./config/SigmaDelta.xml");
 }
 
-SigmaDelta::~SigmaDelta()
-{
+SigmaDelta::~SigmaDelta() {
+  debug_destruction(SigmaDelta);
   sdLaMa091Free(algorithm);
-  std::cout << "~SigmaDelta()" << std::endl;
 }
 
 void SigmaDelta::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
 {
   init(img_input, img_output, img_bgmodel);
 
-  if (firstTime)
-  {
+  if (firstTime) {
     sdLaMa091AllocInit_8u_C3R(algorithm, img_input.data, img_input.cols, img_input.rows, img_input.step);
     img_foreground = cv::Mat(img_input.size(), CV_8UC1);
     img_background = cv::Mat(img_input.size(), CV_8UC3);
     firstTime = false;
   }
-  else
-  {
+  else {
     cv::Mat img_output_tmp(img_input.rows, img_input.cols, CV_8UC3);
     sdLaMa091Update_8u_C3R(algorithm, img_input.data, img_output_tmp.data);
 
@@ -44,7 +43,7 @@ void SigmaDelta::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat 
 
 #ifndef MEX_COMPILE_FLAG
   if (showOutput)
-    cv::imshow("Sigma-Delta", img_foreground);
+    cv::imshow(algorithmName + "_FG", img_foreground);
 #endif
 
   img_foreground.copyTo(img_output);

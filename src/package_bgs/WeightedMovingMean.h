@@ -27,6 +27,6 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<WeightedMovingMean> register_WeightedMovingMean("WeightedMovingMean");
+    bgs_register(WeightedMovingMean);
   }
 }

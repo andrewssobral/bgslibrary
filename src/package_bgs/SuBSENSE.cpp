@@ -3,6 +3,7 @@
 using namespace bgslibrary::algorithms;
 
 SuBSENSE::SuBSENSE() :
+  IBGS(quote(SuBSENSE)),
   pSubsense(0),
   fRelLBSPThreshold(BGSSUBSENSE_DEFAULT_LBSP_REL_SIMILARITY_THRESHOLD),
   nDescDistThresholdOffset(BGSSUBSENSE_DEFAULT_DESC_DIST_THRESHOLD_OFFSET),
@@ -11,21 +12,20 @@ SuBSENSE::SuBSENSE() :
   nRequiredBGSamples(BGSSUBSENSE_DEFAULT_REQUIRED_NB_BG_SAMPLES),
   nSamplesForMovingAvgs(BGSSUBSENSE_DEFAULT_N_SAMPLES_FOR_MV_AVGS)
 {
-  std::cout << "SuBSENSE()" << std::endl;
+  debug_construction(SuBSENSE);
 }
 
 SuBSENSE::~SuBSENSE() {
+  debug_destruction(SuBSENSE);
   if (pSubsense)
     delete pSubsense;
-  std::cout << "~SuBSENSE()" << std::endl;
 }
 
 void SuBSENSE::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
 {
   init(img_input, img_output, img_bgmodel);
 
-  if (firstTime)
-  {
+  if (firstTime) {
     pSubsense = new BackgroundSubtractorSuBSENSE(
       fRelLBSPThreshold, nDescDistThresholdOffset, nMinColorDistThreshold,
       nBGSamples, nRequiredBGSamples, nSamplesForMovingAvgs);
@@ -38,10 +38,9 @@ void SuBSENSE::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &i
   pSubsense->getBackgroundImage(img_background);
 
 #ifndef MEX_COMPILE_FLAG
-  if (showOutput)
-  {
-    imshow("SuBSENSE FG", img_foreground);
-    imshow("SuBSENSE BG", img_background);
+  if (showOutput) {
+    cv::imshow(algorithmName + "_FG", img_foreground);
+    cv::imshow(algorithmName + "_BG", img_background);
   }
 #endif
 

@@ -8,13 +8,12 @@ namespace bgslibrary
     firstTime(true), frameNumber(0), duration(0), 
     tictoc(""), frameToStop(0)
   {
-    std::cout << "FrameProcessor()" << std::endl;
+    debug_construction(FrameProcessor);
     setup("./config/FrameProcessor.xml");
   }
 
-  FrameProcessor::~FrameProcessor()
-  {
-    std::cout << "~FrameProcessor()" << std::endl;
+  FrameProcessor::~FrameProcessor() {
+    debug_destruction(FrameProcessor);
   }
 
   void FrameProcessor::init()
@@ -36,6 +35,9 @@ namespace bgslibrary
 
     if (enableAdaptiveBackgroundLearning)
       adaptiveBackgroundLearning = std::make_shared<AdaptiveBackgroundLearning>();
+
+    if (enableAdaptiveSelectiveBackgroundLearning)
+      adaptiveSelectiveBackgroundLearning = std::make_shared<AdaptiveSelectiveBackgroundLearning>();
 
     if (enableMixtureOfGaussianV2)
       mixtureOfGaussianV2 = std::make_shared<MixtureOfGaussianV2>();
@@ -196,6 +198,9 @@ namespace bgslibrary
     if (enableAdaptiveBackgroundLearning)
       process("AdaptiveBackgroundLearning", adaptiveBackgroundLearning, img_preProcessor, img_adaptiveBackgroundLearning);
 
+    if (enableAdaptiveSelectiveBackgroundLearning)
+      process("AdaptiveSelectiveBackgroundLearning", adaptiveSelectiveBackgroundLearning, img_preProcessor, img_adaptiveSelectiveBackgroundLearning);
+
     if (enableMixtureOfGaussianV2)
       process("MixtureOfGaussianV2", mixtureOfGaussianV2, img_preProcessor, img_mixtureOfGaussianV2);
 
@@ -329,6 +334,7 @@ namespace bgslibrary
       foregroundMaskAnalysis->process(frameNumber, "WeightedMovingMean", img_weightedMovingMean);
       foregroundMaskAnalysis->process(frameNumber, "WeightedMovingVariance", img_weightedMovingVariance);
       foregroundMaskAnalysis->process(frameNumber, "AdaptiveBackgroundLearning", img_adaptiveBackgroundLearning);
+      foregroundMaskAnalysis->process(frameNumber, "AdaptiveSelectiveBackgroundLearning", img_adaptiveSelectiveBackgroundLearning);
       foregroundMaskAnalysis->process(frameNumber, "MixtureOfGaussianV2", img_mixtureOfGaussianV2);
 
 #if CV_MAJOR_VERSION == 2
@@ -410,6 +416,7 @@ namespace bgslibrary
     fs << "enableWeightedMovingMean" << enableWeightedMovingMean;
     fs << "enableWeightedMovingVariance" << enableWeightedMovingVariance;
     fs << "enableAdaptiveBackgroundLearning" << enableAdaptiveBackgroundLearning;
+    fs << "enableAdaptiveSelectiveBackgroundLearning" << enableAdaptiveSelectiveBackgroundLearning;
     fs << "enableMixtureOfGaussianV2" << enableMixtureOfGaussianV2;
 
 #if CV_MAJOR_VERSION == 2
@@ -477,6 +484,7 @@ namespace bgslibrary
     fs["enableWeightedMovingMean"] >> enableWeightedMovingMean;
     fs["enableWeightedMovingVariance"] >> enableWeightedMovingVariance;
     fs["enableAdaptiveBackgroundLearning"] >> enableAdaptiveBackgroundLearning;
+    fs["enableAdaptiveBackgroundLearning"] >> enableAdaptiveSelectiveBackgroundLearning;
     fs["enableMixtureOfGaussianV2"] >> enableMixtureOfGaussianV2;
 
 #if CV_MAJOR_VERSION == 2

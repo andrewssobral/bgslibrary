@@ -4,9 +4,11 @@
 
 using namespace bgslibrary::algorithms;
 
-GMG::GMG() : initializationFrames(20), decisionThreshold(0.7)
+GMG::GMG() : 
+  IBGS(quote(GMG)),
+  initializationFrames(20), decisionThreshold(0.7)
 {
-  std::cout << "GMG()" << std::endl;
+  debug_construction(GMG);
   setup("./config/GMG.xml");
 
   cv::initModule_video();
@@ -16,24 +18,21 @@ GMG::GMG() : initializationFrames(20), decisionThreshold(0.7)
   fgbg = cv::Algorithm::create<cv::BackgroundSubtractorGMG>("BackgroundSubtractor.GMG");
 }
 
-GMG::~GMG()
-{
-  std::cout << "~GMG()" << std::endl;
+GMG::~GMG() {
+  debug_destruction(GMG);
 }
 
 void GMG::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
 {
   init(img_input, img_output, img_bgmodel);
 
-  if (firstTime)
-  {
+  if (firstTime) {
     fgbg->set("initializationFrames", initializationFrames);
     fgbg->set("decisionThreshold", decisionThreshold);
   }
 
-  if (fgbg.empty())
-  {
-    std::cerr << "Failed to create BackgroundSubtractor.GMG Algorithm." << std::endl;
+  if (fgbg.empty()) {
+    std::cerr << "Failed to create " + algorithmName << std::endl;
     return;
   }
 
@@ -44,10 +43,9 @@ void GMG::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bg
   cv::add(img_input, cv::Scalar(100, 100, 0), img_segmentation, img_foreground);
 
 #ifndef MEX_COMPILE_FLAG
-  if (showOutput)
-  {
-    cv::imshow("GMG FG (Godbehere-Matsukawa-Goldberg)", img_foreground);
-    cv::imshow("GMG BG (Godbehere-Matsukawa-Goldberg)", img_background);
+  if (showOutput) {
+    cv::imshow(algorithmName + "_FG", img_foreground);
+    cv::imshow(algorithmName + "_BG", img_background);
   }
 #endif
 

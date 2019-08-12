@@ -41,7 +41,7 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<DPWrenGA> register_DPWrenGA("DPWrenGA");
+    bgs_register(DPWrenGA);
   }
 }
 

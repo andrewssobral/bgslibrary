@@ -40,6 +40,6 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<PixelBasedAdaptiveSegmenter> register_PixelBasedAdaptiveSegmenter("PixelBasedAdaptiveSegmenter");
+    bgs_register(PixelBasedAdaptiveSegmenter);
   }
 }

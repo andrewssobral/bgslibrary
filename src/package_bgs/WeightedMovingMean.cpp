@@ -3,15 +3,15 @@
 using namespace bgslibrary::algorithms;
 
 WeightedMovingMean::WeightedMovingMean() :
+  IBGS(quote(WeightedMovingMean)),
   enableWeight(true), enableThreshold(true), threshold(15)
 {
-  std::cout << "WeightedMovingMean()" << std::endl;
+  debug_construction(WeightedMovingMean);
   setup("./config/WeightedMovingMean.xml");
 }
 
-WeightedMovingMean::~WeightedMovingMean()
-{
-  std::cout << "~WeightedMovingMean()" << std::endl;
+WeightedMovingMean::~WeightedMovingMean() {
+  debug_destruction(WeightedMovingMean);
 }
 
 void WeightedMovingMean::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
@@ -58,10 +58,9 @@ void WeightedMovingMean::process(const cv::Mat &img_input, cv::Mat &img_output, 
     cv::threshold(img_foreground, img_foreground, threshold, 255, cv::THRESH_BINARY);
 
 #ifndef MEX_COMPILE_FLAG
-  if (showOutput)
-  {
-    cv::imshow("W Moving Mean FG Mask", img_foreground);
-    cv::imshow("W Moving Mean BG Model", img_background);
+  if (showOutput) {
+    cv::imshow(algorithmName + "_FG", img_foreground);
+    cv::imshow(algorithmName + "_BG", img_background);
   }
 #endif
 

@@ -5,15 +5,16 @@
 using namespace bgslibrary::algorithms;
 
 DPPratiMediod::DPPratiMediod() :
-  frameNumber(0), threshold(30), samplingRate(5), historySize(16), weight(5)
+  IBGS(quote(DPMean)),
+  frameNumber(0), threshold(30), samplingRate(5), 
+  historySize(16), weight(5)
 {
-  std::cout << "DPPratiMediod()" << std::endl;
+  debug_construction(DPPratiMediod);
   setup("./config/DPPratiMediod.xml");
 }
 
-DPPratiMediod::~DPPratiMediod()
-{
-  std::cout << "~DPPratiMediod()" << std::endl;
+DPPratiMediod::~DPPratiMediod() {
+  debug_destruction(DPPratiMediod);
 }
 
 void DPPratiMediod::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
@@ -26,8 +27,7 @@ void DPPratiMediod::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
     frame_data.ReleaseMemory(false);
   frame_data = frame;
 
-  if (firstTime)
-  {
+  if (firstTime) {
     int width = img_input.size().width;
     int height = img_input.size().height;
 
@@ -56,10 +56,9 @@ void DPPratiMediod::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
   img_background = cv::cvarrToMat(bgs.Background()->Ptr());
 
 #ifndef MEX_COMPILE_FLAG
-  if (showOutput)
-  {
-    cv::imshow("Temporal Median FG (Cucchiara&Calderara)", img_foreground);
-    cv::imshow("Temporal Median BG (Cucchiara&Calderara)", img_background);
+  if (showOutput) {
+    cv::imshow(algorithmName + "_FG", img_foreground);
+    cv::imshow(algorithmName + "_BG", img_background);
   }
 #endif
 

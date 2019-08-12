@@ -3,15 +3,15 @@
 using namespace bgslibrary::algorithms;
 
 StaticFrameDifference::StaticFrameDifference() :
+  IBGS(quote(StaticFrameDifference)),
   enableThreshold(true), threshold(15)
 {
-  std::cout << "StaticFrameDifference()" << std::endl;
+  debug_construction(StaticFrameDifference);
   setup("./config/StaticFrameDifference.xml");
 }
 
-StaticFrameDifference::~StaticFrameDifference()
-{
-  std::cout << "~StaticFrameDifference()" << std::endl;
+StaticFrameDifference::~StaticFrameDifference() {
+  debug_destruction(StaticFrameDifference);
 }
 
 void StaticFrameDifference::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
@@ -31,7 +31,7 @@ void StaticFrameDifference::process(const cv::Mat &img_input, cv::Mat &img_outpu
 
 #ifndef MEX_COMPILE_FLAG
   if (showOutput)
-    cv::imshow("Static Frame Difference", img_foreground);
+    cv::imshow(algorithmName + "_FG", img_foreground);
 #endif
 
   img_foreground.copyTo(img_output);

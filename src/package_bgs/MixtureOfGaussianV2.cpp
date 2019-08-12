@@ -3,15 +3,15 @@
 using namespace bgslibrary::algorithms;
 
 MixtureOfGaussianV2::MixtureOfGaussianV2() :
+  IBGS(quote(MixtureOfGaussianV2)),
   alpha(0.05), enableThreshold(true), threshold(15)
 {
-  std::cout << "MixtureOfGaussianV2()" << std::endl;
+  debug_construction(MixtureOfGaussianV2);
   setup("./config/MixtureOfGaussianV2.xml");
 }
 
-MixtureOfGaussianV2::~MixtureOfGaussianV2()
-{
-  std::cout << "~MixtureOfGaussianV2()" << std::endl;
+MixtureOfGaussianV2::~MixtureOfGaussianV2() {
+  debug_destruction(MixtureOfGaussianV2);
 }
 
 void MixtureOfGaussianV2::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
@@ -53,10 +53,9 @@ void MixtureOfGaussianV2::process(const cv::Mat &img_input, cv::Mat &img_output,
     cv::threshold(img_foreground, img_foreground, threshold, 255, cv::THRESH_BINARY);
 
 #ifndef MEX_COMPILE_FLAG
-  if (showOutput)
-  {
-    cv::imshow("GMM FG (Zivkovic&Heijden)", img_foreground);
-    cv::imshow("GMM BG (Zivkovic&Heijden)", img_background);
+  if (showOutput) {
+    cv::imshow(algorithmName + "_FG", img_foreground);
+    cv::imshow(algorithmName + "_BG", img_background);
   }
 #endif
 

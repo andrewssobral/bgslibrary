@@ -36,7 +36,7 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<LBAdaptiveSOM> register_LBAdaptiveSOM("LBAdaptiveSOM");
+    bgs_register(LBAdaptiveSOM);
   }
 }
 

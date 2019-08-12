@@ -42,7 +42,7 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<T2FGMM_UV> register_T2FGMM_UV("T2FGMM_UV");
+    bgs_register(T2FGMM_UV);
   }
 }
 

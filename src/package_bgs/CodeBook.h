@@ -50,6 +50,6 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<CodeBook> register_CodeBook("CodeBook");
+    bgs_register(CodeBook);
   }
 }

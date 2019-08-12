@@ -28,6 +28,6 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<TwoPoints> register_TwoPoints("TwoPoints");
+    bgs_register(TwoPoints);
   }
 }

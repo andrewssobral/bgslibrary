@@ -4,16 +4,16 @@
 
 using namespace bgslibrary::algorithms;
 
-IndependentMultimodal::IndependentMultimodal() : fps(10)
+IndependentMultimodal::IndependentMultimodal() : 
+  IBGS(quote(IndependentMultimodal)), fps(10)
 {
-  std::cout << "IndependentMultimodal()" << std::endl;
+  debug_construction(IndependentMultimodal);
   pIMBS = new BackgroundSubtractorIMBS(fps);
   setup("./config/IndependentMultimodal.xml");
 }
 
-IndependentMultimodal::~IndependentMultimodal()
-{
-  std::cout << "~IndependentMultimodal()" << std::endl;
+IndependentMultimodal::~IndependentMultimodal() {
+  debug_destruction(IndependentMultimodal);
   delete pIMBS;
 }
 
@@ -31,10 +31,9 @@ void IndependentMultimodal::process(const cv::Mat &img_input, cv::Mat &img_outpu
   img_background.copyTo(img_bgmodel);
 
 #ifndef MEX_COMPILE_FLAG
-  if (showOutput)
-  {
-    cv::imshow("IMBS FG", img_foreground);
-    cv::imshow("IMBS BG", img_background);
+  if (showOutput) {
+    cv::imshow(algorithmName + "_FG", img_foreground);
+    cv::imshow(algorithmName + "_BG", img_background);
   }
 #endif
 

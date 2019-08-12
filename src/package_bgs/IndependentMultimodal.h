@@ -29,7 +29,7 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<IndependentMultimodal> register_IndependentMultimodal("IndependentMultimodal");
+    bgs_register(IndependentMultimodal);
   }
 }
 

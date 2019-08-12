@@ -2,12 +2,15 @@
 //#include <opencv2/legacy/compat.hpp>
 //#include <opencv2/highgui/highgui_c.h>
 
-PerformanceUtils::PerformanceUtils(void) {}
+PerformanceUtils::PerformanceUtils() {
+  //debug_construction(PerformanceUtils);
+}
 
-PerformanceUtils::~PerformanceUtils(void) {}
+PerformanceUtils::~PerformanceUtils() {
+  //debug_destruction(PerformanceUtils);
+}
 
-float PerformanceUtils::NrPixels(IplImage *image)
-{
+float PerformanceUtils::NrPixels(IplImage *image) {
   return (float)(image->width * image->height);
 }
 
@@ -21,13 +24,10 @@ float PerformanceUtils::NrAllDetectedPixNotNULL(IplImage *image, IplImage *groun
 
   PixelUtils p;
 
-  for (int y = 0; y < image->height; y++)
-  {
-    for (int x = 0; x < image->width; x++)
-    {
+  for (int y = 0; y < image->height; y++) {
+    for (int x = 0; x < image->width; x++) {
       p.GetGrayPixel(ground_truth, x, y, pixelGT);
       p.GetGrayPixel(image, x, y, pixelI);
-
       if ((pixelGT[0] != 0) || (pixelI[0] != 0))
         Union12++;
     }
@@ -48,33 +48,27 @@ float PerformanceUtils::NrTruePositives(IplImage *image, IplImage *ground_truth,
 
   IplImage *TPimage = 0;
 
-  if (debug)
-  {
+  if (debug) {
     TPimage = cvCreateImage(cvSize(image->width, image->height), image->depth, image->nChannels);
     cvSetZero(TPimage);
   }
 
   PixelUtils p;
 
-  for (int y = 0; y < image->height; y++)
-  {
-    for (int x = 0; x < image->width; x++)
-    {
+  for (int y = 0; y < image->height; y++) {
+    for (int x = 0; x < image->width; x++) {
       p.GetGrayPixel(ground_truth, x, y, pixelGT);
       p.GetGrayPixel(image, x, y, pixelI);
 
-      if ((pixelGT[0] != 0) && (pixelI[0] != 0))
-      {
+      if ((pixelGT[0] != 0) && (pixelI[0] != 0)) {
         if (debug)
           p.PutGrayPixel(TPimage, x, y, *pixelI);
-
         nTP++;
       }
     }
   }
 
-  if (debug)
-  {
+  if (debug) {
     cvNamedWindow("TPImage", 0);
     cvShowImage("TPImage", TPimage);
     //std::cout << "True Positives: " << nTP << std::endl;
@@ -98,35 +92,28 @@ float PerformanceUtils::NrTrueNegatives(IplImage* image, IplImage* ground_truth,
 
   IplImage *TNimage = 0;
 
-  if (debug)
-  {
+  if (debug) {
     TNimage = cvCreateImage(cvSize(image->width, image->height), image->depth, image->nChannels);
     cvSetZero(TNimage);
   }
 
   PixelUtils p;
 
-  for (int y = 0; y < image->height; y++)
-  {
-    for (int x = 0; x < image->width; x++)
-    {
+  for (int y = 0; y < image->height; y++) {
+    for (int x = 0; x < image->width; x++) {
       p.GetGrayPixel(ground_truth, x, y, pixelGT);
       p.GetGrayPixel(image, x, y, pixelI);
 
-      if ((pixelGT[0] == 0) && (pixelI[0] == 0.0))
-      {
+      if ((pixelGT[0] == 0) && (pixelI[0] == 0.0)) {
         *pixelI = 255;
-
         if (debug)
           p.PutGrayPixel(TNimage, x, y, *pixelI);
-
         nTN++;
       }
     }
   }
 
-  if (debug)
-  {
+  if (debug) {
     cvNamedWindow("TNImage", 0);
     cvShowImage("TNImage", TNimage);
     //std::cout << "True Negatives: " << nTN << std::endl;
@@ -150,33 +137,27 @@ float PerformanceUtils::NrFalsePositives(IplImage *image, IplImage *ground_truth
 
   IplImage *FPimage = 0;
 
-  if (debug)
-  {
+  if (debug) {
     FPimage = cvCreateImage(cvSize(image->width, image->height), image->depth, image->nChannels);
     cvSetZero(FPimage);
   }
 
   PixelUtils p;
 
-  for (int y = 0; y < image->height; y++)
-  {
-    for (int x = 0; x < image->width; x++)
-    {
+  for (int y = 0; y < image->height; y++) {
+    for (int x = 0; x < image->width; x++) {
       p.GetGrayPixel(ground_truth, x, y, pixelGT);
       p.GetGrayPixel(image, x, y, pixelI);
 
-      if ((pixelGT[0] == 0) && (pixelI[0] != 0))
-      {
+      if ((pixelGT[0] == 0) && (pixelI[0] != 0)) {
         if (debug)
           p.PutGrayPixel(FPimage, x, y, *pixelI);
-
         nFP++;
       }
     }
   }
 
-  if (debug)
-  {
+  if (debug) {
     cvNamedWindow("FPImage", 0);
     cvShowImage("FPImage", FPimage);
     //std::cout << "False Positives: " << nFP << std::endl;
@@ -200,33 +181,27 @@ float PerformanceUtils::NrFalseNegatives(IplImage * image, IplImage *ground_trut
 
   IplImage *FNimage = 0;
 
-  if (debug)
-  {
+  if (debug) {
     FNimage = cvCreateImage(cvSize(image->width, image->height), image->depth, image->nChannels);
     cvSetZero(FNimage);
   }
 
   PixelUtils p;
 
-  for (int y = 0; y < image->height; y++)
-  {
-    for (int x = 0; x < image->width; x++)
-    {
+  for (int y = 0; y < image->height; y++) {
+    for (int x = 0; x < image->width; x++) {
       p.GetGrayPixel(ground_truth, x, y, pixelGT);
       p.GetGrayPixel(image, x, y, pixelI);
 
-      if ((pixelGT[0] != 0) && (pixelI[0] == 0))
-      {
+      if ((pixelGT[0] != 0) && (pixelI[0] == 0)) {
         if (debug)
           p.PutGrayPixel(FNimage, x, y, *pixelGT);
-
         nFN++;
       }
     }
   }
 
-  if (debug)
-  {
+  if (debug) {
     cvNamedWindow("FNImage", 0);
     cvShowImage("FNImage", FNimage);
     //std::cout << "False Negatives: " << nFN << std::endl;
@@ -250,13 +225,11 @@ float PerformanceUtils::SimilarityMeasure(IplImage *image, IplImage *ground_trut
   cv::Mat i;
   cv::Mat u;
 
-  if (rn > 0)
-  {
+  if (rn > 0) {
     i = img_input & img_ref;
     u = img_input | img_ref;
   }
-  else
-  {
+  else {
     i = (~img_input) & (~img_ref);
     u = (~img_input) | (~img_ref);
   }
@@ -266,8 +239,7 @@ float PerformanceUtils::SimilarityMeasure(IplImage *image, IplImage *ground_trut
 
   double s = (((double)in) / ((double)un));
 
-  if (debug)
-  {
+  if (debug) {
     cv::imshow("A^B", i);
     cv::imshow("AvB", u);
 
@@ -290,33 +262,27 @@ void PerformanceUtils::ImageROC(IplImage *image, IplImage* ground_truth, bool sa
 
   PixelUtils p;
 
-  for (int y = 0; y < image->height; y++)
-  {
-    for (int x = 0; x < image->width; x++)
-    {
+  for (int y = 0; y < image->height; y++) {
+    for (int x = 0; x < image->width; x++) {
       p.GetGrayPixel(ground_truth, x, y, pixelGT);
       p.GetGrayPixel(image, x, y, pixelI);
 
-      if ((pixelGT[0] != 0) && (pixelI[0] != 0)) // TP
-      {
+      if ((pixelGT[0] != 0) && (pixelI[0] != 0)) { // TP
         *pixelI = 30;
         p.PutGrayPixel(ROCimage, x, y, *pixelI);
       }
 
-      if ((pixelGT[0] == 0) && (pixelI[0] == 0.0)) // TN
-      {
+      if ((pixelGT[0] == 0) && (pixelI[0] == 0.0)) { // TN
         *pixelI = 0;
         p.PutGrayPixel(ROCimage, x, y, *pixelI);
       }
 
-      if ((pixelGT[0] == 0) && (pixelI[0] != 0)) // FP
-      {
+      if ((pixelGT[0] == 0) && (pixelI[0] != 0)) { // FP
         *pixelI = 255;
         p.PutGrayPixel(ROCimage, x, y, *pixelI);
       }
 
-      if ((pixelGT[0] != 0) && (pixelI[0] == 0)) // FN
-      {
+      if ((pixelGT[0] != 0) && (pixelI[0] == 0)) { // FN
         *pixelI = 100;
         p.PutGrayPixel(ROCimage, x, y, *pixelI);
       }
@@ -326,8 +292,7 @@ void PerformanceUtils::ImageROC(IplImage *image, IplImage* ground_truth, bool sa
   cvNamedWindow("ROC image", 0);
   cvShowImage("ROC image", ROCimage);
 
-  if (saveResults)
-  {
+  if (saveResults) {
     unsigned char *pixelOI = (unsigned char*)malloc(1 * sizeof(unsigned char));
     unsigned char *pixelROC = (unsigned char*)malloc(1 * sizeof(unsigned char));
 
@@ -345,38 +310,31 @@ void PerformanceUtils::ImageROC(IplImage *image, IplImage* ground_truth, bool sa
       for (int j = 0; j < 6; j++)
         freq[i][j] = 0.0;
 
-    for (int y = 0; y < image->height; y++)
-    {
-      for (int x = 0; x < image->width; x++)
-      {
-        for (int i = 0; i < 256; i++)
-        {
+    for (int y = 0; y < image->height; y++) {
+      for (int x = 0; x < image->width; x++) {
+        for (int i = 0; i < 256; i++) {
           p.GetGrayPixel(image, x, y, pixelOI);
           p.GetGrayPixel(ROCimage, x, y, pixelROC);
 
-          if ((pixelOI[0] == i) && (pixelROC[0] == 30.0)) // TP
-          {
+          if ((pixelOI[0] == i) && (pixelROC[0] == 30.0)) { // TP
             nTP++;
             freq[i][0] = nTP;
             break;
           }
 
-          if ((pixelOI[0] == i) && (pixelROC[0] == 0.0)) // TN
-          {
+          if ((pixelOI[0] == i) && (pixelROC[0] == 0.0)) { // TN
             nTN++;
             freq[i][1] = nTN;
             break;
           }
 
-          if ((pixelOI[0] == i) && (pixelROC[0] == 255.0)) // FP
-          {
+          if ((pixelOI[0] == i) && (pixelROC[0] == 255.0)) { // FP
             nFP++;
             freq[i][2] = nFP;
             break;
           }
 
-          if ((pixelOI[0] == i) && (pixelROC[0] == 100)) // FN
-          {
+          if ((pixelOI[0] == i) && (pixelROC[0] == 100)) { // FN
             nFN++;
             freq[i][3] = nFN;
             break;
@@ -396,16 +354,13 @@ void PerformanceUtils::ImageROC(IplImage *image, IplImage* ground_truth, bool sa
 
     if (!f.is_open())
       std::cout << "Failed to open file " << filename << " for writing!" << std::endl;
-    else
-    {
+    else {
       f << "  I     TP     TN     FP     FN    FPR      FNR      DR   \n" << std::endl;
 
-      for (int i = 0; i < 256; i++)
-      {
+      for (int i = 0; i < 256; i++) {
         //printf("%4d - TP:%5.0f, TN:%5.0f, FP:%5.0f, FN:%5.0f,", i, freq[i][0], freq[i][1], freq[i][2], freq[i][3]);
 
-        if ((freq[i][3] + freq[i][0] != 0.0) && (freq[i][2] + freq[i][1] != 0.0))
-        {
+        if ((freq[i][3] + freq[i][0] != 0.0) && (freq[i][2] + freq[i][1] != 0.0)) {
           freq[i][4] = freq[i][3] / (freq[i][3] + freq[i][0]);  // FNR = FN / (TP + FN);
           freq[i][5] = freq[i][2] / (freq[i][2] + freq[i][1]);	// FPR = FP / (FP + TN);
           freq[i][6] = freq[i][0] / (freq[i][0] + freq[i][3]);	// DR = TP / (TP+FN);
@@ -491,14 +446,12 @@ void PerformanceUtils::PerformanceEvaluation(IplImage *image, IplImage *ground_t
   std::string results = sstm.str();
   std::cout << results;
 
-  if (saveResults)
-  {
+  if (saveResults) {
     std::ofstream f(filename);
 
     if (!f.is_open())
       std::cout << "Failed to open file " << filename << " for writing!" << std::endl;
-    else
-    {
+    else {
       f << results;
       std::cout << "Results saved in " << filename << std::endl;
       f.close();

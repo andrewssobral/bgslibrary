@@ -45,7 +45,7 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<DPTexture> register_DPTextured("DPTexture");
+    bgs_register(DPTexture);
   }
 }
 

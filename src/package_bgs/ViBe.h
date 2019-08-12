@@ -34,6 +34,6 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<ViBe> register_ViBe("ViBe");
+    bgs_register(ViBe);
   }
 }

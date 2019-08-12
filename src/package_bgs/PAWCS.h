@@ -30,6 +30,6 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<PAWCS> register_PAWCS("PAWCS");
+    bgs_register(PAWCS);
   }
 }

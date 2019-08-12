@@ -10,7 +10,7 @@
 //#include <opencv2/imgproc/imgproc_c.h>
 //#include <opencv2/imgproc/types_c.h>
 
-#include "Config.h"
+#include "GenericKeys.h"
 #include "IFrameProcessor.h"
 #include "package_bgs/ILoadSaveConfig.h"
 
@@ -35,6 +35,7 @@ namespace bgslibrary
     std::string videoFileName;
     int input_resize_percent;
     bool showOutput;
+    bool showFPS;
     bool enableFlip;
     double loopDelay = 33.333;
     bool firstTime = true;

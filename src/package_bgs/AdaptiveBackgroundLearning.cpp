@@ -3,16 +3,16 @@
 using namespace bgslibrary::algorithms;
 
 AdaptiveBackgroundLearning::AdaptiveBackgroundLearning() :
+  IBGS(quote(AdaptiveBackgroundLearning)),
   alpha(0.05), limit(-1), counter(0), minVal(0.0), maxVal(1.0),
   enableThreshold(true), threshold(15)
 {
-  std::cout << "AdaptiveBackgroundLearning()" << std::endl;
+  debug_construction(AdaptiveBackgroundLearning);
   setup("./config/AdaptiveBackgroundLearning.xml");
 }
 
-AdaptiveBackgroundLearning::~AdaptiveBackgroundLearning()
-{
-  std::cout << "~AdaptiveBackgroundLearning()" << std::endl;
+AdaptiveBackgroundLearning::~AdaptiveBackgroundLearning() {
+  debug_destruction(AdaptiveBackgroundLearning);
 }
 
 void AdaptiveBackgroundLearning::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
@@ -53,10 +53,9 @@ void AdaptiveBackgroundLearning::process(const cv::Mat &img_input, cv::Mat &img_
     cv::threshold(img_foreground, img_foreground, threshold, 255, cv::THRESH_BINARY);
 
 #ifndef MEX_COMPILE_FLAG
-  if (showOutput)
-  {
-    cv::imshow("A-Learning FG", img_foreground);
-    cv::imshow("A-Learning BG", img_background);
+  if (showOutput) {
+    cv::imshow(algorithmName + "_FG", img_foreground);
+    cv::imshow(algorithmName + "_BG", img_background);
   }
 #endif
 

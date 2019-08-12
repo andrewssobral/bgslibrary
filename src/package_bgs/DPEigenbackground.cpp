@@ -5,15 +5,16 @@
 using namespace bgslibrary::algorithms;
 
 DPEigenbackground::DPEigenbackground() :
-  frameNumber(0), threshold(225), historySize(20), embeddedDim(10)
+  IBGS(quote(DPEigenbackground)),
+  frameNumber(0), threshold(225), 
+  historySize(20), embeddedDim(10)
 {
-  std::cout << "DPEigenbackground()" << std::endl;
+  debug_construction(DPEigenbackground);
   setup("./config/DPEigenbackground.xml");
 }
 
-DPEigenbackground::~DPEigenbackground()
-{
-  std::cout << "~DPEigenbackground()" << std::endl;
+DPEigenbackground::~DPEigenbackground() {
+  debug_destruction(DPEigenbackground);
 }
 
 void DPEigenbackground::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
@@ -26,8 +27,7 @@ void DPEigenbackground::process(const cv::Mat &img_input, cv::Mat &img_output, c
     frame_data.ReleaseMemory(false);
   frame_data = frame;
 
-  if (firstTime)
-  {
+  if (firstTime) {
     int width = img_input.size().width;
     int height = img_input.size().height;
 
@@ -59,7 +59,7 @@ void DPEigenbackground::process(const cv::Mat &img_input, cv::Mat &img_output, c
 
 #ifndef MEX_COMPILE_FLAG
   if (showOutput)
-    cv::imshow("Eigenbackground (Oliver)", img_foreground);
+    cv::imshow(algorithmName + "_FG", img_foreground);
 #endif
 
   img_foreground.copyTo(img_output);

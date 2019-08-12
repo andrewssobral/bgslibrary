@@ -6,12 +6,11 @@ namespace bgslibrary
     use_file(false), use_camera(false), cameraIndex(0),
     use_comp(false), frameToStop(0)
   {
-    std::cout << "VideoAnalysis()" << std::endl;
+    debug_construction(VideoAnalysis);
   }
 
-  VideoAnalysis::~VideoAnalysis()
-  {
-    std::cout << "~VideoAnalysis()" << std::endl;
+  VideoAnalysis::~VideoAnalysis() {
+    debug_destruction(VideoAnalysis);
   }
 
   bool VideoAnalysis::setup(int argc, const char **argv)
@@ -84,10 +83,8 @@ namespace bgslibrary
     std::cout << "imgref:      " << imgref << std::endl;
     //return false;
 
-    if (use_file)
-    {
-      if (filename.empty())
-      {
+    if (use_file) {
+      if (filename.empty()) {
         std::cout << "Specify filename" << std::endl;
         return false;
       }
@@ -98,10 +95,8 @@ namespace bgslibrary
     if (use_camera)
       flag = true;
 
-    if (flag && use_comp)
-    {
-      if (imgref.empty())
-      {
+    if (flag && use_comp) {
+      if (imgref.empty()) {
         std::cout << "Specify image reference" << std::endl;
         return false;
       }
@@ -114,8 +109,7 @@ namespace bgslibrary
   {
     //std::cout << "Press 'ESC' to stop..." << std::endl;
 
-    do
-    {
+    do {
       videoCapture = std::make_unique<VideoCapture>();
       frameProcessor = std::make_shared<FrameProcessor>();
 

@@ -5,27 +5,23 @@ namespace bgslibrary
   PreProcessor::PreProcessor() : 
     firstTime(true), equalizeHist(false), gaussianBlur(false)
   {
-    std::cout << "PreProcessor()" << std::endl;
+    debug_construction(PreProcessor);
     setup("./config/PreProcessor.xml");
   }
 
-  PreProcessor::~PreProcessor()
-  {
-    std::cout << "~PreProcessor()" << std::endl;
+  PreProcessor::~PreProcessor() {
+    debug_destruction(PreProcessor);
   }
 
-  void PreProcessor::setEqualizeHist(bool value)
-  {
+  void PreProcessor::setEqualizeHist(bool value) {
     equalizeHist = value;
   }
 
-  void PreProcessor::setGaussianBlur(bool value)
-  {
+  void PreProcessor::setGaussianBlur(bool value) {
     gaussianBlur = value;
   }
 
-  cv::Mat PreProcessor::getGrayScale()
-  {
+  cv::Mat PreProcessor::getGrayScale() {
     return img_gray.clone();
   }
 
@@ -102,10 +98,10 @@ namespace bgslibrary
 
     cv::Mat img_canny;
     cv::Canny(
-      img_input, // image – Single-channel 8-bit input image
-      img_canny,  // edges – The output edge map. It will have the same size and the same type as image
-      100,       // threshold1 – The first threshold for the hysteresis procedure
-      200);      // threshold2 – The second threshold for the hysteresis procedure
+      img_input, // image ï¿½ Single-channel 8-bit input image
+      img_canny,  // edges ï¿½ The output edge map. It will have the same size and the same type as image
+      100,       // threshold1 ï¿½ The first threshold for the hysteresis procedure
+      200);      // threshold2 ï¿½ The second threshold for the hysteresis procedure
     cv::threshold(img_canny, img_canny, 128, 255, cv::THRESH_BINARY_INV);
 
     img_canny.copyTo(img_output);

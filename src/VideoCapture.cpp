@@ -70,16 +70,16 @@ namespace bgslibrary
 
   VideoCapture::VideoCapture() :
     key(0), start_time(0), delta_time(0), freq(0),
-    fps(0), frameNumber(0), stopAt(0), useCamera(false), cameraIndex(0),
-    useVideo(false), input_resize_percent(100), showOutput(true), enableFlip(false)
+    fps(0), frameNumber(0), stopAt(0), useCamera(false),
+    cameraIndex(0), useVideo(false), input_resize_percent(100),
+    showOutput(true), showFPS(true), enableFlip(false)
   {
-    std::cout << "VideoCapture()" << std::endl;
+    debug_construction(VideoCapture);
     setup("./config/VideoCapture.xml");
   }
 
-  VideoCapture::~VideoCapture()
-  {
-    std::cout << "~VideoCapture()" << std::endl;
+  VideoCapture::~VideoCapture() {
+    debug_destruction(VideoCapture);
   }
 
   void VideoCapture::setFrameProcessor(const std::shared_ptr<IFrameProcessor> &_frameProcessor)
@@ -223,15 +223,24 @@ namespace bgslibrary
       cv::Mat img_input;
       frame.copyTo(img_input);
 
-      if (showOutput)
-        cv::imshow("Input", img_input);
-
       start_time = cv::getTickCount();
       frameProcessor->process(img_input);
       delta_time = cv::getTickCount() - start_time;
       freq = cv::getTickFrequency();
       fps = freq / delta_time;
-      std::cout << "FPS: " << fps << std::endl;
+      //std::cout << "FPS: " << fps << std::endl;
+      
+      if (showFPS)
+        cv::putText(img_input,
+              "FPS: " + std::to_string(fps),
+              cv::Point(10,15), // Coordinates
+              cv::FONT_HERSHEY_COMPLEX_SMALL, // Font
+              1.0, // Scale. 2.0 = 2x bigger
+              cv::Scalar(0,0,255), // BGR Color
+              1); // Line Thickness (Optional)
+
+      if (showOutput)
+        cv::imshow("Input", img_input);
 
       //cvResetImageROI(frame);
 
@@ -266,6 +275,7 @@ namespace bgslibrary
     fs << "roi_y0" << VC_ROI::roi_y0;
     fs << "roi_x1" << VC_ROI::roi_x1;
     fs << "roi_y1" << VC_ROI::roi_y1;
+    fs << "showFPS" << showFPS;
     fs << "showOutput" << showOutput;
     
     fs.release();
@@ -285,6 +295,7 @@ namespace bgslibrary
     fs["roi_y0"] >> VC_ROI::roi_y0;
     fs["roi_x1"] >> VC_ROI::roi_x1;
     fs["roi_y1"] >> VC_ROI::roi_y1;
+    fs["showFPS"] >> showFPS;
     fs["showOutput"] >> showOutput;
     
     fs.release();

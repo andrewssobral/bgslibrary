@@ -6,13 +6,12 @@ namespace bgslibrary
     firstTime(true), showOutput(true),
     stopAt(0), img_ref_path("")
   {
-    std::cout << "ForegroundMaskAnalysis()" << std::endl;
+    debug_construction(ForegroundMaskAnalysis);
     setup("./config/ForegroundMaskAnalysis.xml");
   }
 
-  ForegroundMaskAnalysis::~ForegroundMaskAnalysis()
-  {
-    std::cout << "~ForegroundMaskAnalysis()" << std::endl;
+  ForegroundMaskAnalysis::~ForegroundMaskAnalysis() {
+    debug_destruction(ForegroundMaskAnalysis);
   }
 
   void ForegroundMaskAnalysis::process(const long &frameNumber, const std::string &name, const cv::Mat &img_input)
@@ -20,8 +19,7 @@ namespace bgslibrary
     if (img_input.empty())
       return;
 
-    if (stopAt == 0)
-    {
+    if (stopAt == 0) {
       loadConfig();
 
       if (firstTime)
@@ -55,8 +53,7 @@ namespace bgslibrary
 
       double s = (((double)in) / ((double)un));
 
-      if (showOutput)
-      {
+      if (showOutput) {
         cv::imshow("A^B", i);
         cv::imshow("AvB", u);
       }

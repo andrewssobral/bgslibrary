@@ -4,12 +4,19 @@
 #include <fstream>
 #include <string>
 
+#include "../GenericMacros.h"
+
 namespace bgslibrary
 {
   class ILoadSaveConfig
   {
   public:
-    virtual ~ILoadSaveConfig() {}
+    ILoadSaveConfig(){
+      //debug_construction(ILoadSaveConfig);
+    }
+    virtual ~ILoadSaveConfig() {
+      //debug_destruction(ILoadSaveConfig);
+    }
 
   protected:
     std::string config_xml;

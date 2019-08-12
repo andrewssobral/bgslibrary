@@ -39,7 +39,7 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<FuzzyChoquetIntegral> register_FuzzyChoquetIntegral("FuzzyChoquetIntegral");
+    bgs_register(FuzzyChoquetIntegral);
   }
 }
 

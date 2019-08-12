@@ -29,7 +29,7 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<GMG> register_GMG("GMG");
+    bgs_register(GMG);
   }
 }
 

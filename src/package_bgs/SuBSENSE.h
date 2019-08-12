@@ -31,6 +31,6 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<SuBSENSE> register_SuBSENSE("SuBSENSE");
+    bgs_register(SuBSENSE);
   }
 }

@@ -5,16 +5,17 @@
 using namespace bgslibrary::algorithms;
 
 LBMixtureOfGaussians::LBMixtureOfGaussians() :
-  sensitivity(81), bgThreshold(83), learningRate(59), noiseVariance(206)
+  IBGS(quote(LBMixtureOfGaussians)),
+  sensitivity(81), bgThreshold(83), 
+  learningRate(59), noiseVariance(206)
 {
-  std::cout << "LBMixtureOfGaussians()" << std::endl;
+  debug_construction(LBMixtureOfGaussians);
   setup("./config/LBMixtureOfGaussians.xml");
 }
 
-LBMixtureOfGaussians::~LBMixtureOfGaussians()
-{
+LBMixtureOfGaussians::~LBMixtureOfGaussians() {
+  debug_destruction(LBMixtureOfGaussians);
   delete m_pBGModel;
-  std::cout << "~LBMixtureOfGaussians()" << std::endl;
 }
 
 void LBMixtureOfGaussians::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
@@ -23,8 +24,7 @@ void LBMixtureOfGaussians::process(const cv::Mat &img_input, cv::Mat &img_output
 
   IplImage *frame = new IplImage(img_input);
 
-  if (firstTime)
-  {
+  if (firstTime) {
     int w = cvGetSize(frame).width;
     int h = cvGetSize(frame).height;
 
@@ -43,10 +43,9 @@ void LBMixtureOfGaussians::process(const cv::Mat &img_input, cv::Mat &img_output
   img_background = cv::cvarrToMat(m_pBGModel->GetBG());
 
 #ifndef MEX_COMPILE_FLAG
-  if (showOutput)
-  {
-    cv::imshow("MOG Mask", img_foreground);
-    cv::imshow("MOG Model", img_background);
+  if (showOutput) {
+    cv::imshow(algorithmName + "_FG", img_foreground);
+    cv::imshow(algorithmName + "_BG", img_background);
   }
 #endif
 

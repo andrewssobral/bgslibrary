@@ -5,16 +5,16 @@
 using namespace bgslibrary::algorithms;
 
 KNN::KNN() :
+  IBGS(quote(KNN)),
   history(500), nSamples(7), dist2Threshold(20.0f * 20.0f), knnSamples(0),
   doShadowDetection(true), shadowValue(127), shadowThreshold(0.5f)
 {
-  std::cout << "KNN()" << std::endl;
+  debug_construction(KNN);
   setup("./config/KNN.xml");
 }
 
-KNN::~KNN()
-{
-  std::cout << "~KNN()" << std::endl;
+KNN::~KNN() {
+  debug_destruction(KNN);
 }
 
 void KNN::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
@@ -47,10 +47,9 @@ void KNN::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bg
   knn->getBackgroundImage(img_background);
 
 #ifndef MEX_COMPILE_FLAG
-  if (showOutput)
-  {
-    cv::imshow("KNN FG", img_foreground);
-    cv::imshow("KNN BG", img_background);
+  if (showOutput) {
+    cv::imshow(algorithmName + "_FG", img_foreground);
+    cv::imshow(algorithmName + "_BG", img_background);
   }
 #endif
 

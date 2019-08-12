@@ -3,46 +3,41 @@
 using namespace bgslibrary::algorithms;
 
 CodeBook::CodeBook() :
-  t(0), learningFrames(DEFAULT_LEARNFRAMES), alpha(DEFAULT_ALPHA), beta(DEFAULT_BETA)
+  IBGS(quote(CodeBook)),
+  t(0), learningFrames(DEFAULT_LEARNFRAMES), 
+  alpha(DEFAULT_ALPHA), beta(DEFAULT_BETA)
 {
-  std::cout << "CodeBook()" << std::endl;
+  debug_construction(CodeBook);
   setup("./config/CodeBook.xml");
 }
 
-CodeBook::~CodeBook()
-{
-  std::cout << "~CodeBook()" << std::endl;
+CodeBook::~CodeBook() {
+  debug_destruction(CodeBook);
 }
 
 void CodeBook::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
 {
   init(img_input, img_output, img_bgmodel);
   
-  if(firstTime)
-  {
+  if(firstTime) {
     img_foreground = cv::Mat::zeros(img_input.size(), CV_8UC1);
     //img_background = cv::Mat::zeros(img_input.size(), CV_8UC3);
-
     initializeCodebook(img_input.rows, img_input.cols);
   } 
 
   cv::Mat img_input_gray;
 
   if (img_input.channels() == 1)
-  {
     img_input_gray = img_input; 
-  } else
-  { 
+  else
     cv::cvtColor(img_input, img_input_gray, CV_BGR2GRAY);
-  }
 
   fg_cb(img_input_gray, img_foreground);
 
 #ifndef MEX_COMPILE_FLAG
-  if (showOutput)
-  {
-    cv::imshow("Codebook FG", img_foreground);
-    //cv::imshow("Codebook BG", img_background);
+  if (showOutput) {
+    cv::imshow(algorithmName + "_FG", img_foreground);
+    //cv::imshow(algorithmName + "_BG", img_background);
   }
 #endif
 

@@ -5,16 +5,16 @@
 using namespace bgslibrary::algorithms;
 
 LBSimpleGaussian::LBSimpleGaussian() :
+  IBGS(quote(LBSimpleGaussian)),
   sensitivity(66), noiseVariance(162), learningRate(18)
 {
-  std::cout << "LBSimpleGaussian()" << std::endl;
+  debug_construction(LBSimpleGaussian);
   setup("./config/LBSimpleGaussian.xml");
 }
 
-LBSimpleGaussian::~LBSimpleGaussian()
-{
+LBSimpleGaussian::~LBSimpleGaussian() {
+  debug_destruction(LBSimpleGaussian);
   delete m_pBGModel;
-  std::cout << "~LBSimpleGaussian()" << std::endl;
 }
 
 void LBSimpleGaussian::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
@@ -23,8 +23,7 @@ void LBSimpleGaussian::process(const cv::Mat &img_input, cv::Mat &img_output, cv
 
   IplImage *frame = new IplImage(img_input);
 
-  if (firstTime)
-  {
+  if (firstTime) {
     int w = cvGetSize(frame).width;
     int h = cvGetSize(frame).height;
 
@@ -42,10 +41,9 @@ void LBSimpleGaussian::process(const cv::Mat &img_input, cv::Mat &img_output, cv
   img_background = cv::cvarrToMat(m_pBGModel->GetBG());
 
 #ifndef MEX_COMPILE_FLAG
-  if (showOutput)
-  {
-    cv::imshow("SG Mask", img_foreground);
-    cv::imshow("SG Model", img_background);
+  if (showOutput) {
+    cv::imshow(algorithmName + "_FG", img_foreground);
+    cv::imshow(algorithmName + "_BG", img_background);
   }
 #endif
 

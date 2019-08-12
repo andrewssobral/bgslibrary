@@ -42,7 +42,7 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<DPPratiMediod> register_DPPratiMediod("DPPratiMediod");
+    bgs_register(DPPratiMediod);
   }
 }
 

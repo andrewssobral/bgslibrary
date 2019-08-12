@@ -3,20 +3,20 @@
 using namespace bgslibrary::algorithms;
 
 ViBe::ViBe() :
+  IBGS(quote(ViBe)),
   //numberOfSamples(DEFAULT_NUM_SAMPLES),
   matchingThreshold(DEFAULT_MATCH_THRESH),
   matchingNumber(DEFAULT_MATCH_NUM),
   updateFactor(DEFAULT_UPDATE_FACTOR),
   model(nullptr)
 {
-  std::cout << "ViBe()" << std::endl;
+  debug_construction(ViBe);
   model = libvibeModel_Sequential_New();
   setup("./config/ViBe.xml");
 }
 
-ViBe::~ViBe()
-{
-  std::cout << "~ViBe()" << std::endl;
+ViBe::~ViBe() {
+  debug_destruction(ViBe);
   libvibeModel_Sequential_Free(model);
 }
 
@@ -27,8 +27,7 @@ void ViBe::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_b
   if (img_input.empty())
     return;
 
-  if (firstTime)
-  {
+  if (firstTime) {
     /* Create a buffer for the output image. */
     //img_output = cv::Mat(img_input.rows, img_input.cols, CV_8UC1);
 
@@ -48,7 +47,7 @@ void ViBe::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_b
 
 #ifndef MEX_COMPILE_FLAG
   if (showOutput)
-    imshow("ViBe", img_output);
+    cv::imshow(algorithmName + "_FG", img_output);
 #endif
 
   firstTime = false;

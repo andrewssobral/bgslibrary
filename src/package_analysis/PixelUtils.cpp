@@ -1,7 +1,11 @@
 #include "PixelUtils.h"
 
-PixelUtils::PixelUtils(void) {}
-PixelUtils::~PixelUtils(void) {}
+PixelUtils::PixelUtils() {
+  //debug_construction(PixelUtils);
+}
+PixelUtils::~PixelUtils() {
+  //debug_destruction(PixelUtils);
+}
 
 void PixelUtils::ColorConversion(IplImage* RGBImage, IplImage* ConvertedImage, int color_space)
 {

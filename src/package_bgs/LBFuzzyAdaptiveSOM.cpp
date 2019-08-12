@@ -5,16 +5,17 @@
 using namespace bgslibrary::algorithms;
 
 LBFuzzyAdaptiveSOM::LBFuzzyAdaptiveSOM() :
-  sensitivity(90), trainingSensitivity(240), learningRate(38), trainingLearningRate(255), trainingSteps(81)
+  IBGS(quote(LBFuzzyAdaptiveSOM)),
+  sensitivity(90), trainingSensitivity(240), learningRate(38), 
+  trainingLearningRate(255), trainingSteps(81)
 {
-  std::cout << "LBFuzzyAdaptiveSOM()" << std::endl;
+  debug_construction(LBFuzzyAdaptiveSOM);
   setup("./config/LBFuzzyAdaptiveSOM.xml");
 }
 
-LBFuzzyAdaptiveSOM::~LBFuzzyAdaptiveSOM()
-{
+LBFuzzyAdaptiveSOM::~LBFuzzyAdaptiveSOM() {
+  debug_destruction(LBFuzzyAdaptiveSOM);
   delete m_pBGModel;
-  std::cout << "~LBFuzzyAdaptiveSOM()" << std::endl;
 }
 
 void LBFuzzyAdaptiveSOM::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
@@ -23,8 +24,7 @@ void LBFuzzyAdaptiveSOM::process(const cv::Mat &img_input, cv::Mat &img_output, 
 
   IplImage *frame = new IplImage(img_input);
 
-  if (firstTime)
-  {
+  if (firstTime) {
     int w = cvGetSize(frame).width;
     int h = cvGetSize(frame).height;
 
@@ -44,10 +44,9 @@ void LBFuzzyAdaptiveSOM::process(const cv::Mat &img_input, cv::Mat &img_output, 
   img_background = cv::cvarrToMat(m_pBGModel->GetBG());
 
 #ifndef MEX_COMPILE_FLAG
-  if (showOutput)
-  {
-    cv::imshow("FSOM Mask", img_foreground);
-    cv::imshow("FSOM Model", img_background);
+  if (showOutput) {
+    cv::imshow(algorithmName + "_FG", img_foreground);
+    cv::imshow(algorithmName + "_BG", img_background);
   }
 #endif
 

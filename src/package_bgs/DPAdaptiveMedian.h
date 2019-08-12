@@ -38,7 +38,7 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<DPAdaptiveMedian> register_DPAdaptiveMedian("DPAdaptiveMedian");
+    bgs_register(DPAdaptiveMedian);
   }
 }
 

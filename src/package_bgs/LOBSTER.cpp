@@ -3,6 +3,7 @@
 using namespace bgslibrary::algorithms;
 
 LOBSTER::LOBSTER() :
+  IBGS(quote(LOBSTER)),
   pLOBSTER(nullptr),
   fRelLBSPThreshold(BGSLOBSTER_DEFAULT_LBSP_REL_SIMILARITY_THRESHOLD),
   nLBSPThresholdOffset(BGSLOBSTER_DEFAULT_LBSP_OFFSET_SIMILARITY_THRESHOLD),
@@ -11,23 +12,21 @@ LOBSTER::LOBSTER() :
   nBGSamples(BGSLOBSTER_DEFAULT_NB_BG_SAMPLES),
   nRequiredBGSamples(BGSLOBSTER_DEFAULT_REQUIRED_NB_BG_SAMPLES)
 {
-  std::cout << "LOBSTER()" << std::endl;
+  debug_construction(LOBSTER);
   setup("./config/LOBSTER.xml");
 }
 
-LOBSTER::~LOBSTER()
-{
+LOBSTER::~LOBSTER() {
+  debug_destruction(LOBSTER);
   if (pLOBSTER)
     delete pLOBSTER;
-  std::cout << "~LOBSTER()" << std::endl;
 }
 
 void LOBSTER::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
 {
   init(img_input, img_output, img_bgmodel);
 
-  if (firstTime)
-  {
+  if (firstTime) {
     pLOBSTER = new BackgroundSubtractorLOBSTER(
       fRelLBSPThreshold, nLBSPThresholdOffset, nDescDistThreshold,
       nColorDistThreshold, nBGSamples, nRequiredBGSamples);
@@ -40,10 +39,9 @@ void LOBSTER::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &im
   pLOBSTER->getBackgroundImage(img_background);
 
 #ifndef MEX_COMPILE_FLAG
-  if (showOutput)
-  {
-    imshow("LOBSTER FG", img_foreground);
-    imshow("LOBSTER BG", img_background);
+  if (showOutput) {
+    cv::imshow(algorithmName + "_FG", img_foreground);
+    cv::imshow(algorithmName + "_BG", img_background);
   }
 #endif
 

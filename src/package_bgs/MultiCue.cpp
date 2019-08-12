@@ -5,8 +5,10 @@
 using namespace bgslibrary::algorithms::libMultiCue;
 using namespace bgslibrary::algorithms;
 
-MultiCue::MultiCue()
+MultiCue::MultiCue() :
+  IBGS(quote(MultiCue))
 {
+  debug_construction(MultiCue);
   //----------------------------------
   //	User adjustable parameters
   //----------------------------------
@@ -41,14 +43,12 @@ MultiCue::MultiCue()
   g_bModelMemAllocated = FALSE;									//To handle memory..
   g_bNonModelMemAllocated = FALSE;								//To handle memory..
 
-  std::cout << "MultiCue()" << std::endl;
   setup("./config/MultiCue.xml");
 }
 
-MultiCue::~MultiCue(void)
-{
+MultiCue::~MultiCue() {
+  debug_destruction(MultiCue);
   Destroy();
-  std::cout << "~MultiCue()" << std::endl;
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------//
@@ -63,14 +63,12 @@ void MultiCue::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &i
   IplImage* frame = new IplImage(img_input);
   IplImage* result_image = cvCreateImage(cvGetSize(frame), IPL_DEPTH_8U, 3);
   cvSetZero(result_image);
-  if (g_iFrameCount <= g_iTrainingPeriod)
-  {
+  if (g_iFrameCount <= g_iTrainingPeriod) {
     BackgroundModeling_Par(frame);
     g_iFrameCount++;
   }
   //--Step2: Background Subtraction--//
-  else
-  {
+  else {
     g_bForegroundMapEnable = FALSE;
 
     ForegroundExtraction(frame);
@@ -87,7 +85,7 @@ void MultiCue::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &i
 
 #ifndef MEX_COMPILE_FLAG
   if (showOutput)
-    cv::imshow("MultiCue FG", img_foreground);
+    cv::imshow(algorithmName + "_FG", img_foreground);
 #endif
 
   img_foreground.copyTo(img_output);

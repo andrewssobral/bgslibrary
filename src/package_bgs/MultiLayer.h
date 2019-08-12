@@ -84,7 +84,7 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<MultiLayer> register_MultiLayer("MultiLayer");
+    bgs_register(MultiLayer);
   }
 }
 

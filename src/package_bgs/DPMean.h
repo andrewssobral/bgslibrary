@@ -41,7 +41,7 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<DPMean> register_DPMean("DPMean");
+    bgs_register(DPMean);
   }
 }
 

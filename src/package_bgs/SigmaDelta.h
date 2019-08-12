@@ -31,6 +31,6 @@ namespace bgslibrary
       void applyParams();
     };
 
-    static BGS_Register<SigmaDelta> register_SigmaDelta("SigmaDelta");
+    bgs_register(SigmaDelta);
   }
 }

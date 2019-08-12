@@ -38,7 +38,7 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<KNN> register_KNN("KNN");
+    bgs_register(KNN);
   }
 }
 

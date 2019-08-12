@@ -9,5 +9,6 @@
 <roi_y0>0</roi_y0>
 <roi_x1>0</roi_x1>
 <roi_y1>0</roi_y1>
+<showFPS>1</showFPS>
 <showOutput>1</showOutput>
 </opencv_storage>

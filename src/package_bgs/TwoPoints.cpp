@@ -3,18 +3,18 @@
 using namespace bgslibrary::algorithms;
 
 TwoPoints::TwoPoints() :
+  IBGS(quote(TwoPoints)),
   matchingThreshold(DEFAULT_MATCH_THRESH),
   updateFactor(DEFAULT_UPDATE_FACTOR), model(nullptr)
 {
-  std::cout << "TwoPoints()" << std::endl;
+  debug_construction(TwoPoints);
   //model = static_cast<twopointsModel_t*>(libtwopointsModel_New());
   model = libtwopointsModel_New();
   setup("./config/TwoPoints.xml");
 }
 
-TwoPoints::~TwoPoints()
-{
-  std::cout << "~TwoPoints()" << std::endl;
+TwoPoints::~TwoPoints() {
+  debug_destruction(TwoPoints);
   libtwopointsModel_Free(model);
 }
 
@@ -31,8 +31,7 @@ void TwoPoints::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
   // Convert input image to a grayscale image
   cvtColor(img_input, img_input_grayscale, CV_BGR2GRAY);
 
-  if (firstTime)
-  {
+  if (firstTime) {
     // Create a buffer for the output image.
     //img_output = Mat(img_input.rows, img_input.cols, CV_8UC1);
 
@@ -48,15 +47,12 @@ void TwoPoints::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
 
   updatingMask = cv::Mat(img_input.rows, img_input.cols, CV_8UC1);
   // Work on the output and define the updating mask
-  for (int i = 0; i < img_input.cols * img_input.rows; i++)
-  {
-    if (img_output.data[i] == 0) // Foreground pixel
-    {
+  for (int i = 0; i < img_input.cols * img_input.rows; i++) {
+    if (img_output.data[i] == 0) { // Foreground pixel
       updatingMask.data[i] = 0;
       img_output.data[i] = 255;
     }
-    else // Background
-    {
+    else { // Background
       updatingMask.data[i] = 255;
       img_output.data[i] = 0;
     }
@@ -66,7 +62,7 @@ void TwoPoints::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
 
 #ifndef MEX_COMPILE_FLAG
   if (showOutput)
-    imshow("Two points", img_output);
+    cv::imshow(algorithmName + "_FG", img_output);
 #endif
 
   firstTime = false;

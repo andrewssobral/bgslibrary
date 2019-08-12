@@ -3,15 +3,15 @@
 using namespace bgslibrary::algorithms;
 
 WeightedMovingVariance::WeightedMovingVariance() :
+  IBGS(quote(WeightedMovingVariance)),
   enableWeight(true), enableThreshold(true), threshold(15)
 {
-  std::cout << "WeightedMovingVariance()" << std::endl;
+  debug_construction(WeightedMovingVariance);
   setup("./config/WeightedMovingVariance.xml");
 }
 
-WeightedMovingVariance::~WeightedMovingVariance()
-{
-  std::cout << "~WeightedMovingVariance()" << std::endl;
+WeightedMovingVariance::~WeightedMovingVariance() {
+  debug_destruction(WeightedMovingVariance);
 }
 
 void WeightedMovingVariance::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
@@ -84,7 +84,7 @@ void WeightedMovingVariance::process(const cv::Mat &img_input, cv::Mat &img_outp
 
 #ifndef MEX_COMPILE_FLAG
   if (showOutput)
-    cv::imshow("W Moving Variance", img_foreground);
+    cv::imshow(algorithmName + "_FG", img_foreground);
 #endif
 
   img_foreground.copyTo(img_output);

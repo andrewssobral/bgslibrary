@@ -41,7 +41,7 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<DPEigenbackground> register_DPEigenbackground("DPEigenbackground");
+    bgs_register(DPEigenbackground);
   }
 }
 

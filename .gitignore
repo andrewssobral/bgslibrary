@@ -1,4 +1,6 @@
 etc/
+tmp/
+bkp/
 build-*/
 build_*/
 dataset_*/

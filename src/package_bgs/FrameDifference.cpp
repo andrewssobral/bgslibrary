@@ -3,23 +3,22 @@
 using namespace bgslibrary::algorithms;
 
 FrameDifference::FrameDifference() :
+  IBGS(quote(FrameDifference)),
   enableThreshold(true), threshold(15)
 {
-  std::cout << "FrameDifference()" << std::endl;
+  debug_construction(FrameDifference);
   setup("./config/FrameDifference.xml");
 }
 
-FrameDifference::~FrameDifference()
-{
-  std::cout << "~FrameDifference()" << std::endl;
+FrameDifference::~FrameDifference() {
+  debug_destruction(FrameDifference);
 }
 
 void FrameDifference::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
 {
   init(img_input, img_output, img_bgmodel);
 
-  if (img_background.empty())
-  {
+  if (img_background.empty()) {
     img_input.copyTo(img_background);
     return;
   }
@@ -34,7 +33,7 @@ void FrameDifference::process(const cv::Mat &img_input, cv::Mat &img_output, cv:
 
 #ifndef MEX_COMPILE_FLAG
   if (showOutput)
-    cv::imshow("Frame Difference", img_foreground);
+    cv::imshow(algorithmName + "_FG", img_foreground);
 #endif
 
   img_foreground.copyTo(img_output);

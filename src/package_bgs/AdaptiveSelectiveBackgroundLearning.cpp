@@ -3,16 +3,16 @@
 using namespace bgslibrary::algorithms;
 
 AdaptiveSelectiveBackgroundLearning::AdaptiveSelectiveBackgroundLearning() :
-  alphaLearn(0.05), alphaDetection(0.05), learningFrames(-1), counter(0), minVal(0.0), maxVal(1.0),
-  threshold(15)
+  IBGS(quote(AdaptiveSelectiveBackgroundLearning)),
+  alphaLearn(0.05), alphaDetection(0.05), learningFrames(-1), 
+  counter(0), minVal(0.0), maxVal(1.0), threshold(15)
 {
-  std::cout << "AdaptiveSelectiveBackgroundLearning()" << std::endl;
+  debug_construction(AdaptiveSelectiveBackgroundLearning);
   setup("./config/AdaptiveSelectiveBackgroundLearning.xml");
 }
 
-AdaptiveSelectiveBackgroundLearning::~AdaptiveSelectiveBackgroundLearning()
-{
-  std::cout << "~AdaptiveSelectiveBackgroundLearning()" << std::endl;
+AdaptiveSelectiveBackgroundLearning::~AdaptiveSelectiveBackgroundLearning() {
+  debug_destruction(AdaptiveSelectiveBackgroundLearning);
 }
 
 void AdaptiveSelectiveBackgroundLearning::process(const cv::Mat &img_input_, cv::Mat &img_output, cv::Mat &img_bgmodel)
@@ -56,13 +56,10 @@ void AdaptiveSelectiveBackgroundLearning::process(const cv::Mat &img_input_, cv:
     int rows = img_input.rows;
     int cols = img_input.cols;
 
-    for (int i = 0; i < rows; i++)
-    {
-      for (int j = 0; j < cols; j++)
-      {
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < cols; j++) {
         // Adaptive and Selective update of the background model
-        if (img_foreground.at<uchar>(i, j) == 0)
-        {
+        if (img_foreground.at<uchar>(i, j) == 0) {
           img_background_f.at<float>(i, j) = alphaDetection * img_input_f.at<float>(i, j) + (1 - alphaDetection) * img_background_f.at<float>(i, j);
         }
       }
@@ -74,10 +71,9 @@ void AdaptiveSelectiveBackgroundLearning::process(const cv::Mat &img_input_, cv:
   //img_new_background.copyTo(img_background);
 
 #ifndef MEX_COMPILE_FLAG
-  if (showOutput)
-  {
-    cv::imshow("AS-Learning FG", img_foreground);
-    cv::imshow("AS-Learning BG", img_background);
+  if (showOutput) {
+    cv::imshow(algorithmName + "_FG", img_foreground);
+    cv::imshow(algorithmName + "_BG", img_background);
   }
 #endif
 

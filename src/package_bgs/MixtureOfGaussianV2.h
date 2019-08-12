@@ -34,6 +34,6 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<MixtureOfGaussianV2> register_MixtureOfGaussianV2("MixtureOfGaussianV2");
+    bgs_register(MixtureOfGaussianV2);
   }
 }

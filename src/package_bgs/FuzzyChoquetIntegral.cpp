@@ -5,16 +5,16 @@
 using namespace bgslibrary::algorithms;
 
 FuzzyChoquetIntegral::FuzzyChoquetIntegral() :
+  IBGS(quote(FuzzyChoquetIntegral)),
   frameNumber(0), framesToLearn(10), alphaLearn(0.1), alphaUpdate(0.01),
   colorSpace(1), option(2), smooth(true), threshold(0.67)
 {
-  std::cout << "FuzzyChoquetIntegral()" << std::endl;
+  debug_construction(FuzzyChoquetIntegral);
   setup("./config/FuzzyChoquetIntegral.xml");
 }
 
-FuzzyChoquetIntegral::~FuzzyChoquetIntegral()
-{
-  std::cout << "~FuzzyChoquetIntegral()" << std::endl;
+FuzzyChoquetIntegral::~FuzzyChoquetIntegral() {
+  debug_destruction(FuzzyChoquetIntegral);
 }
 
 void FuzzyChoquetIntegral::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
@@ -24,9 +24,8 @@ void FuzzyChoquetIntegral::process(const cv::Mat &img_input, cv::Mat &img_output
   cv::Mat img_input_f3(img_input.size(), CV_32F);
   img_input.convertTo(img_input_f3, CV_32F, 1. / 255.);
 
-  if (firstTime)
-  {
-    std::cout << "FuzzyChoquetIntegral parameters:" << std::endl;
+  if (firstTime) {
+    std::cout << algorithmName + " parameters:" << std::endl;
 
     std::string colorSpaceName = "";
     switch (colorSpace)
@@ -44,10 +43,9 @@ void FuzzyChoquetIntegral::process(const cv::Mat &img_input, cv::Mat &img_output
       std::cout << "Fuzzing by 2 color components + 1 texture component" << std::endl;
   }
 
-  if (frameNumber <= framesToLearn)
-  {
+  if (frameNumber <= framesToLearn) {
     if (frameNumber == 0)
-      std::cout << "FuzzyChoquetIntegral initializing background model by adaptive learning..." << std::endl;
+      std::cout << algorithmName + " initializing background model by adaptive learning" << std::endl;
 
     if (img_background_f3.empty())
       img_input_f3.copyTo(img_background_f3);
@@ -63,7 +61,7 @@ void FuzzyChoquetIntegral::process(const cv::Mat &img_input, cv::Mat &img_output
 
 #ifndef MEX_COMPILE_FLAG
     if (showOutput)
-      cv::imshow("CI BG Model", img_background);
+      cv::imshow(algorithmName + "_BG", img_background);
 #endif
   }
   else
@@ -97,15 +95,13 @@ void FuzzyChoquetIntegral::process(const cv::Mat &img_input, cv::Mat &img_output
     IplImage* integral_choquet_f1 = cvCreateImage(cvSize(input_f1->width, input_f1->height), IPL_DEPTH_32F, 1);
 
     // 3 color components
-    if (option == 1)
-    {
+    if (option == 1) {
       fu.FuzzyMeasureG(0.4f, 0.3f, 0.3f, measureG);
       fu.getFuzzyIntegralChoquet(sim_texture_f1, sim_color_f3, option, measureG, integral_choquet_f1);
     }
 
     // 2 color components + 1 texture component
-    if (option == 2)
-    {
+    if (option == 2) {
       fu.FuzzyMeasureG(0.6f, 0.3f, 0.1f, measureG);
       fu.getFuzzyIntegralChoquet(sim_texture_f1, sim_color_f3, option, measureG, integral_choquet_f1);
     }
@@ -130,19 +126,18 @@ void FuzzyChoquetIntegral::process(const cv::Mat &img_input, cv::Mat &img_output
     img_background.copyTo(img_bgmodel);
 
 #ifndef MEX_COMPILE_FLAG
-    if (showOutput)
-    {
-      cvShowImage("CI LBP Input", lbp_input_f1);
-      cvShowImage("CI LBP Background", lbp_background_f1);
-      cvShowImage("CI Prob FG Mask", integral_choquet_f1);
+    if (showOutput) {
+      cvShowImage(algorithmName + "_LBP_IN", lbp_input_f1);
+      cvShowImage(algorithmName + "_LBP_BG", lbp_background_f1);
+      cvShowImage(algorithmName + "_FG_PROB", integral_choquet_f1);
 
-      cv::imshow("CI BG Model", img_background);
-      cv::imshow("CI FG Mask", img_foreground);
+      cv::imshow(algorithmName + "_BG", img_background);
+      cv::imshow(algorithmName + "_FG", img_foreground);
     }
 #endif
 
     if (frameNumber == (framesToLearn + 1))
-      std::cout << "FuzzyChoquetIntegral updating background model by adaptive-selective learning..." << std::endl;
+      std::cout << algorithmName + " updating background model by adaptive-selective learning" << std::endl;
 
     IplImage* updated_background_f3 = cvCreateImage(cvSize(input_f1->width, input_f1->height), IPL_DEPTH_32F, 3);
     cvSetZero(updated_background_f3);

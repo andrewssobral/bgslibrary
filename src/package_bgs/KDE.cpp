@@ -5,27 +5,27 @@
 using namespace bgslibrary::algorithms;
 
 KDE::KDE() :
-  SequenceLength(50), TimeWindowSize(100), SDEstimationFlag(1), lUseColorRatiosFlag(1),
+  IBGS(quote(KDE)),
+  SequenceLength(50), TimeWindowSize(100), 
+  SDEstimationFlag(1), lUseColorRatiosFlag(1),
   th(10e-8), alpha(0.3), framesToLearn(10), frameNumber(0)
 {
+  debug_construction(KDE);
   p = new NPBGSubtractor;
-  std::cout << "KDE()" << std::endl;
   setup("./config/KDE.xml");
 }
 
-KDE::~KDE()
-{
+KDE::~KDE() {
+  debug_destruction(KDE);
   delete FGImage;
   delete p;
-  std::cout << "~KDE()" << std::endl;
 }
 
 void KDE::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
 {
   init(img_input, img_output, img_bgmodel);
 
-  if (firstTime)
-  {
+  if (firstTime) {
     rows = img_input.size().height;
     cols = img_input.size().width;
     color_channels = img_input.channels();
@@ -53,16 +53,13 @@ void KDE::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bg
   }
 
   // Stores the first N frames to build the background model
-  if (frameNumber < framesToLearn)
-  {
+  if (frameNumber < framesToLearn) {
     p->AddFrame(img_input.data);
     frameNumber++;
   }
-  else
-  {
+  else {
     // Build the background model with first 10 frames
-    if (frameNumber == framesToLearn)
-    {
+    if (frameNumber == framesToLearn) {
       p->Estimation();
       frameNumber++;
     }
@@ -79,7 +76,7 @@ void KDE::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bg
 
 #ifndef MEX_COMPILE_FLAG
   if (showOutput)
-    cv::imshow("KDE", img_foreground);
+    cv::imshow(algorithmName + "_FG", img_foreground);
 #endif
 
   img_foreground.copyTo(img_output);

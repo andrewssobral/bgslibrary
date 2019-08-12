@@ -28,6 +28,6 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<WeightedMovingVariance> register_WeightedMovingVariance("WeightedMovingVariance");
+    bgs_register(WeightedMovingVariance);
   }
 }

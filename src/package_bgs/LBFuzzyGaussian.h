@@ -35,7 +35,7 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<LBFuzzyGaussian> register_LBFuzzyGaussian("LBFuzzyGaussian");
+    bgs_register(LBFuzzyGaussian);
   }
 }
 

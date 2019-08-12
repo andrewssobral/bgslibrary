@@ -5,15 +5,16 @@
 using namespace bgslibrary::algorithms;
 
 DPZivkovicAGMM::DPZivkovicAGMM() :
-  frameNumber(0), threshold(25.0f), alpha(0.001f), gaussians(3)
+  IBGS(quote(DPZivkovicAGMM)),
+  frameNumber(0), threshold(25.0f), 
+  alpha(0.001f), gaussians(3)
 {
-  std::cout << "DPZivkovicAGMM()" << std::endl;
+  debug_construction(DPZivkovicAGMM);
   setup("./config/DPZivkovicAGMM.xml");
 }
 
-DPZivkovicAGMM::~DPZivkovicAGMM()
-{
-  std::cout << "~DPZivkovicAGMM()" << std::endl;
+DPZivkovicAGMM::~DPZivkovicAGMM() {
+  debug_destruction(DPZivkovicAGMM);
 }
 
 void DPZivkovicAGMM::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
@@ -26,8 +27,7 @@ void DPZivkovicAGMM::process(const cv::Mat &img_input, cv::Mat &img_output, cv::
     frame_data.ReleaseMemory(false);
   frame_data = frame;
 
-  if (firstTime)
-  {
+  if (firstTime) {
     int width = img_input.size().width;
     int height = img_input.size().height;
 
@@ -57,7 +57,7 @@ void DPZivkovicAGMM::process(const cv::Mat &img_input, cv::Mat &img_output, cv::
 
 #ifndef MEX_COMPILE_FLAG
   if (showOutput)
-    cv::imshow("Gaussian Mixture Model (Zivkovic)", img_foreground);
+    cv::imshow(algorithmName + "_FG", img_foreground);
 #endif
 
   img_foreground.copyTo(img_output);

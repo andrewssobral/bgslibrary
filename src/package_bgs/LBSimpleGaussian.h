@@ -34,7 +34,7 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<LBSimpleGaussian> register_LBSimpleGaussian("LBSimpleGaussian");
+    bgs_register(LBSimpleGaussian);
   }
 }
 

@@ -31,6 +31,6 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<LOBSTER> register_LOBSTER("LOBSTER");
+    bgs_register(LOBSTER);
   }
 }

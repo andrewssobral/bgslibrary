@@ -5,16 +5,17 @@
 using namespace bgslibrary::algorithms;
 
 LBFuzzyGaussian::LBFuzzyGaussian() :
-  sensitivity(72), bgThreshold(162), learningRate(49), noiseVariance(195)
+  IBGS(quote(LBFuzzyGaussian)),
+  sensitivity(72), bgThreshold(162), 
+  learningRate(49), noiseVariance(195)
 {
-  std::cout << "LBFuzzyGaussian()" << std::endl;
+  debug_construction(LBFuzzyGaussian);
   setup("./config/LBFuzzyGaussian.xml");
 }
 
-LBFuzzyGaussian::~LBFuzzyGaussian()
-{
+LBFuzzyGaussian::~LBFuzzyGaussian() {
+  debug_destruction(LBFuzzyGaussian);
   delete m_pBGModel;
-  std::cout << "~LBFuzzyGaussian()" << std::endl;
 }
 
 void LBFuzzyGaussian::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
@@ -23,8 +24,7 @@ void LBFuzzyGaussian::process(const cv::Mat &img_input, cv::Mat &img_output, cv:
 
   IplImage *frame = new IplImage(img_input);
 
-  if (firstTime)
-  {
+  if (firstTime) {
     int w = cvGetSize(frame).width;
     int h = cvGetSize(frame).height;
 
@@ -43,10 +43,9 @@ void LBFuzzyGaussian::process(const cv::Mat &img_input, cv::Mat &img_output, cv:
   img_background = cv::cvarrToMat(m_pBGModel->GetBG());
 
 #ifndef MEX_COMPILE_FLAG
-  if (showOutput)
-  {
-    cv::imshow("FG Mask", img_foreground);
-    cv::imshow("FG Model", img_background);
+  if (showOutput) {
+    cv::imshow(algorithmName + "_FG", img_foreground);
+    cv::imshow(algorithmName + "_BG", img_background);
   }
 #endif
 

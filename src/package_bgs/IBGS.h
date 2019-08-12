@@ -13,8 +13,14 @@
 #include <opencv2/imgproc/imgproc_c.h>
 #include <opencv2/highgui/highgui_c.h>
 
+#include "../GenericMacros.h"
+
 #ifndef CV_RGB
-  #define  CV_RGB(r, g, b)   cv::Scalar((b), (g), (r), 0)
+#define CV_RGB(r, g, b) cv::Scalar((b), (g), (r), 0)
+#endif
+
+#if !defined(bgs_register)
+#define bgs_register(x) static BGS_Register<x> register_##x(quote(x))
 #endif
 
 namespace bgslibrary
@@ -23,7 +29,25 @@ namespace bgslibrary
   {
     class IBGS
     {
+    private:
+      friend std::ostream& operator<<(std::ostream& o, const std::shared_ptr<IBGS>& ibgs) {
+        return ibgs.get()->dump(o);
+      }
+      friend std::ostream& operator<<(std::ostream& o, const IBGS *ibgs) {
+        return ibgs->dump(o);
+      }
+      friend std::string to_string(const std::shared_ptr<IBGS>& ibgs) {
+        std::ostringstream ss;
+        ss << ibgs;
+        return ss.str();
+      }
     public:
+      virtual std::ostream& dump(std::ostream& o) const {
+        return o << getAlgorithmName();
+      }
+      std::string getAlgorithmName() const {
+        return algorithmName;
+      }
       void setShowOutput(const bool _showOutput) {
         showOutput = _showOutput;
       }
@@ -38,9 +62,20 @@ namespace bgslibrary
       cv::Mat getBackgroundModel() {
         return img_background;
       }
+      IBGS(const std::string _algorithmName){
+        //debug_construction(IBGS);
+        algorithmName = _algorithmName;
+      }
+      IBGS(){
+        //debug_construction(IBGS);
+        algorithmName = "";
+      }
       virtual void process(const cv::Mat &img_input, cv::Mat &img_foreground, cv::Mat &img_background) = 0;
-      virtual ~IBGS() {}
+      virtual ~IBGS() {
+        //debug_destruction(IBGS);
+      }
     protected:
+      std::string algorithmName;
       bool firstTime = true;
       bool showOutput = true;
       cv::Mat img_background;
@@ -53,18 +88,22 @@ namespace bgslibrary
         img_outbg = cv::Mat::zeros(img_input.size(), CV_8UC3);
       }
     };
-
+    
     class BGS_Factory
     {
     public:
-      static BGS_Factory* Instance()
-      {
+      BGS_Factory() {
+        debug_construction(BGS_Factory);
+      }
+      virtual ~BGS_Factory() {
+        debug_destruction(BGS_Factory);
+      }
+      static BGS_Factory* Instance() {
         static BGS_Factory factory;
         return &factory;
       }
 
-      std::shared_ptr<IBGS> Create(std::string name)
-      {
+      std::shared_ptr<IBGS> Create(std::string name) {
         IBGS* instance = nullptr;
 
         // find name in the registry and call factory method.
@@ -79,8 +118,7 @@ namespace bgslibrary
           return nullptr;
       }
 
-      std::vector<std::string> GetRegisteredAlgorithmsName()
-      {
+      std::vector<std::string> GetRegisteredAlgorithmsName() {
         std::vector<std::string> algorithmsName;
         for (auto it = factoryFunctionRegistry.begin(); it != factoryFunctionRegistry.end(); ++it) {
           algorithmsName.push_back(it->first);
@@ -89,8 +127,7 @@ namespace bgslibrary
       }
 
       void RegisterFactoryFunction(std::string name,
-        std::function<IBGS*(void)> classFactoryFunction)
-      {
+        std::function<IBGS*(void)> classFactoryFunction) {
         // register the class factory function
         factoryFunctionRegistry[name] = classFactoryFunction;
       }
@@ -103,11 +140,14 @@ namespace bgslibrary
     class BGS_Register
     {
     public:
-      BGS_Register(std::string className)
-      {
+      BGS_Register(std::string className) {
+        //debug_construction(BGS_Register);
         // register the class factory function
         BGS_Factory::Instance()->RegisterFactoryFunction(className,
           [](void) -> IBGS* { return new T(); });
+      }
+      virtual ~BGS_Register() {
+        //debug_destruction(BGS_Register);
       }
     };
   }

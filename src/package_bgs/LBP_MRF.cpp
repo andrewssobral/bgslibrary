@@ -5,17 +5,17 @@
 using namespace bgslibrary::algorithms;
 
 LBP_MRF::LBP_MRF() :
+  IBGS(quote(LBP_MRF)),
   Detector(nullptr)
 {
-  std::cout << "LBP_MRF()" << std::endl;
+  debug_construction(LBP_MRF);
   setup("./config/LBP_MRF.xml");
   Detector = new MotionDetection();
   Detector->SetMode(MotionDetection::md_LBPHistograms);
 }
 
-LBP_MRF::~LBP_MRF()
-{
-  std::cout << "~LBP_MRF()" << std::endl;
+LBP_MRF::~LBP_MRF() {
+  debug_destruction(LBP_MRF);
   delete Detector;
   Detector = nullptr;
 }
@@ -38,7 +38,7 @@ void LBP_MRF::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &im
 
 #ifndef MEX_COMPILE_FLAG
   if (showOutput)
-    cv::imshow("LBP-MRF FG", img_foreground);
+    cv::imshow(algorithmName + "_FG", img_foreground);
 #endif
 
   img_foreground.copyTo(img_output);

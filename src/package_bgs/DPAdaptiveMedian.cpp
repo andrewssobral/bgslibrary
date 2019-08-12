@@ -5,15 +5,16 @@
 using namespace bgslibrary::algorithms;
 
 DPAdaptiveMedian::DPAdaptiveMedian() :
-  frameNumber(0), threshold(40), samplingRate(7), learningFrames(30)
+  IBGS(quote(DPAdaptiveMedian)),
+  frameNumber(0), threshold(40), 
+  samplingRate(7), learningFrames(30)
 {
-  std::cout << "DPAdaptiveMedian()" << std::endl;
+  debug_construction(DPAdaptiveMedian);
   setup("./config/DPAdaptiveMedian.xml");
 }
 
-DPAdaptiveMedian::~DPAdaptiveMedian()
-{
-  std::cout << "~DPAdaptiveMedian()" << std::endl;
+DPAdaptiveMedian::~DPAdaptiveMedian() {
+  debug_destruction(DPAdaptiveMedian);
 }
 
 void DPAdaptiveMedian::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
@@ -26,8 +27,7 @@ void DPAdaptiveMedian::process(const cv::Mat &img_input, cv::Mat &img_output, cv
     frame_data.ReleaseMemory(false);
   frame_data = frame;
 
-  if (firstTime)
-  {
+  if (firstTime) {
     int width = img_input.size().width;
     int height = img_input.size().height;
 
@@ -56,10 +56,9 @@ void DPAdaptiveMedian::process(const cv::Mat &img_input, cv::Mat &img_output, cv
   img_background = cv::cvarrToMat(bgs.Background()->Ptr());
 
 #ifndef MEX_COMPILE_FLAG
-  if (showOutput)
-  {
-    cv::imshow("Adaptive Median FG (McFarlane&Schofield)", img_foreground);
-    cv::imshow("Adaptive Median BG (McFarlane&Schofield)", img_background);
+  if (showOutput) {
+    cv::imshow(algorithmName + "_FG", img_foreground);
+    cv::imshow(algorithmName + "_BG", img_background);
   }
 #endif
 

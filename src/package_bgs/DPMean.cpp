@@ -5,16 +5,16 @@
 using namespace bgslibrary::algorithms;
 
 DPMean::DPMean() :
+  IBGS(quote(DPMean)),
   frameNumber(0), threshold(2700),
   alpha(1e-6f), learningFrames(30)
 {
-  std::cout << "DPMean()" << std::endl;
+  debug_construction(DPMean);
   setup("./config/DPMean.xml");
 }
 
-DPMean::~DPMean()
-{
-  std::cout << "~DPMean()" << std::endl;
+DPMean::~DPMean() {
+  debug_destruction(DPMean);
 }
 
 void DPMean::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
@@ -27,8 +27,7 @@ void DPMean::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img
     frame_data.ReleaseMemory(false);
   frame_data = frame;
 
-  if (firstTime)
-  {
+  if (firstTime) {
     int width = img_input.size().width;
     int height = img_input.size().height;
 
@@ -59,7 +58,7 @@ void DPMean::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img
 
 #ifndef MEX_COMPILE_FLAG
   if (showOutput)
-    cv::imshow("Temporal Mean (Donovan Parks)", img_foreground);
+    cv::imshow(algorithmName + "_FG", img_foreground);
 #endif
 
   img_foreground.copyTo(img_output);

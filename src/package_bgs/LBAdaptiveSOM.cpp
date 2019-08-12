@@ -5,18 +5,18 @@
 using namespace bgslibrary::algorithms;
 
 LBAdaptiveSOM::LBAdaptiveSOM() :
+  IBGS(quote(LBAdaptiveSOM)),
   sensitivity(75), trainingSensitivity(245),
   learningRate(62), trainingLearningRate(255),
   trainingSteps(55)
 {
-  std::cout << "LBAdaptiveSOM()" << std::endl;
+  debug_construction(LBAdaptiveSOM);
   setup("./config/LBAdaptiveSOM.xml");
 }
 
-LBAdaptiveSOM::~LBAdaptiveSOM()
-{
+LBAdaptiveSOM::~LBAdaptiveSOM() {
+  debug_destruction(LBAdaptiveSOM);
   delete m_pBGModel;
-  std::cout << "~LBAdaptiveSOM()" << std::endl;
 }
 
 void LBAdaptiveSOM::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
@@ -25,8 +25,7 @@ void LBAdaptiveSOM::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
 
   IplImage *frame = new IplImage(img_input);
 
-  if (firstTime)
-  {
+  if (firstTime) {
     int w = cvGetSize(frame).width;
     int h = cvGetSize(frame).height;
 
@@ -46,10 +45,9 @@ void LBAdaptiveSOM::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
   img_background = cv::cvarrToMat(m_pBGModel->GetBG());
 
 #ifndef MEX_COMPILE_FLAG
-  if (showOutput)
-  {
-    cv::imshow("SOM Mask", img_foreground);
-    cv::imshow("SOM Model", img_background);
+  if (showOutput) {
+    cv::imshow(algorithmName + "_FG", img_foreground);
+    cv::imshow(algorithmName + "_BG", img_background);
   }
 #endif
 

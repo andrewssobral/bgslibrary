@@ -5,15 +5,16 @@
 using namespace bgslibrary::algorithms;
 
 DPWrenGA::DPWrenGA() :
-  frameNumber(0), threshold(12.25f), alpha(0.005f), learningFrames(30)
+  IBGS(quote(DPWrenGA)),
+  frameNumber(0), threshold(12.25f), 
+  alpha(0.005f), learningFrames(30)
 {
-  std::cout << "DPWrenGA()" << std::endl;
+  debug_construction(DPWrenGA);
   setup("./config/DPWrenGA.xml");
 }
 
-DPWrenGA::~DPWrenGA()
-{
-  std::cout << "~DPWrenGA()" << std::endl;
+DPWrenGA::~DPWrenGA() {
+  debug_destruction(DPWrenGA);
 }
 
 void DPWrenGA::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
@@ -26,8 +27,7 @@ void DPWrenGA::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &i
     frame_data.ReleaseMemory(false);
   frame_data = frame;
 
-  if (firstTime)
-  {
+  if (firstTime) {
     int width = img_input.size().width;
     int height = img_input.size().height;
 
@@ -57,7 +57,7 @@ void DPWrenGA::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &i
 
 #ifndef MEX_COMPILE_FLAG
   if (showOutput)
-    cv::imshow("Gaussian Average (Wren)", img_foreground);
+    cv::imshow(algorithmName + "_FG", img_foreground);
 #endif
 
   img_foreground.copyTo(img_output);

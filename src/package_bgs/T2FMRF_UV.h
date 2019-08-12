@@ -49,7 +49,7 @@ namespace bgslibrary
       void loadConfig();
     };
 
-    static BGS_Register<T2FMRF_UV> register_T2FMRF_UV("T2FMRF_UV");
+    bgs_register(T2FMRF_UV);
   }
 }
 
