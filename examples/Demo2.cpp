@@ -2,7 +2,7 @@
 #include <vector>
 #include <opencv2/opencv.hpp>
 
-#include "../src/package_bgs/bgslibrary.h"
+#include "../src/algorithms/algorithms.h"
 
 #if CV_MAJOR_VERSION >= 4
 #define CV_LOAD_IMAGE_COLOR cv::IMREAD_COLOR
