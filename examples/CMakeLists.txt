@@ -79,22 +79,25 @@ endif()
 file(GLOB demo Demo.cpp)
 file(GLOB demo2 Demo2.cpp)
 
-file(GLOB_RECURSE analysis_src ../src/package_analysis/*.cpp ../src/package_analysis/*.c)
-file(GLOB_RECURSE analysis_inc ../src/package_analysis/*.h ../src/package_analysis/*.hpp)
+file(GLOB_RECURSE tools_src ../src/tools/*.cpp ../src/tools/*.c)
+file(GLOB_RECURSE tools_inc ../src/tools/*.h ../src/tools/*.hpp)
 
-file(GLOB_RECURSE bgs_src ../src/package_bgs/*.cpp ../src/package_bgs/*.c)
-file(GLOB_RECURSE bgs_inc ../src/package_bgs/*.h ../src/package_bgs/*.hpp)
+file(GLOB_RECURSE utils_src ../src/utils/*.cpp ../src/utils/*.c)
+file(GLOB_RECURSE utils_inc ../src/utils/*.h ../src/utils/*.hpp)
+
+file(GLOB_RECURSE bgs_src ../src/algorithms/*.cpp ../src/algorithms/*.c)
+file(GLOB_RECURSE bgs_inc ../src/algorithms/*.h ../src/algorithms/*.hpp)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${OpenCV_INCLUDE_DIRS})
 
 # GMG is not available in older OpenCV versions
 if(${OpenCV_VERSION} VERSION_LESS 2.4.3)
-  file(GLOB gmg ../src/package_bgs/GMG.cpp)
+  file(GLOB gmg ../src/algorithms/GMG.cpp)
   list(REMOVE_ITEM bgs_src ${gmg})
 endif()
 
-add_library(bgslibrary_core SHARED ${bgs_src} ${analysis_src} ${bgs_inc} ${analysis_inc})
+add_library(bgslibrary_core SHARED ${bgs_src} ${tools_src} ${utils_src} ${bgs_inc} ${tools_inc} ${utils_inc})
 # generates the export header bgslibrary_core_EXPORTS.h automatically
 include(GenerateExportHeader)
 GENERATE_EXPORT_HEADER(bgslibrary_core
@@ -103,7 +106,7 @@ GENERATE_EXPORT_HEADER(bgslibrary_core
     EXPORT_FILE_NAME bgslibrary_core_EXPORTS.h
     STATIC_DEFINE BGSLIBRARY_CORE_EXPORTS_BUILT_AS_STATIC)
 target_link_libraries(bgslibrary_core ${OpenCV_LIBS})
-set_property(TARGET bgslibrary_core PROPERTY PUBLIC_HEADER ${bgs_inc} ${analysis_inc})
+set_property(TARGET bgslibrary_core PROPERTY PUBLIC_HEADER ${bgs_inc} ${tools_inc} ${utils_inc})
 
 #if(WIN32)
 #  # set_property(TARGET bgslibrary_core PROPERTY SUFFIX ".lib")

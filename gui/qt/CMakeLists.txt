@@ -53,18 +53,23 @@ if(OpenCV_FOUND)
   message(STATUS "    include path: ${OpenCV_INCLUDE_DIRS}")
 endif()
 
-file(GLOB main bgslibrary_gui.cpp mainwindow.cpp qt_utils.cpp texteditor.cpp)
+file(GLOB main_src *.cpp *.c)
+file(GLOB main_inc *.h *.hpp)
 
-file(GLOB_RECURSE analysis_src ../../src/package_analysis/*.cpp)
-file(GLOB_RECURSE analysis_inc ../../src/package_analysis/*.h)
-file(GLOB_RECURSE bgs_src ../../src/package_bgs/*.cpp ../../src/package_bgs/*.c)
-file(GLOB_RECURSE bgs_inc ../../src/package_bgs/*.h)
+file(GLOB_RECURSE tools_src ../../src/tools/*.cpp ../../src/tools/*.c)
+file(GLOB_RECURSE tools_inc ../../src/tools/*.h ../../src/tools/*.hpp)
+
+file(GLOB_RECURSE utils_src ../../src/utils/*.cpp ../../src/utils/*.c)
+file(GLOB_RECURSE utils_inc ../../src/utils/*.h ../../src/utils/*.hpp)
+
+file(GLOB_RECURSE bgs_src ../../src/algorithms/*.cpp ../../src/algorithms/*.c)
+file(GLOB_RECURSE bgs_inc ../../src/algorithms/*.h)
 
 include_directories(${CMAKE_SOURCE_DIR} ${OpenCV_INCLUDE_DIRS})
 
-add_library(libbgs STATIC ${bgs_src} ${analysis_src})
+add_library(libbgs STATIC ${bgs_src} ${tools_src} ${utils_src} ${bgs_inc} ${tools_inc} ${utils_inc})
 target_link_libraries(libbgs ${OpenCV_LIBS})
-set_property(TARGET libbgs PROPERTY PUBLIC_HEADER ${bgs_inc} ${analysis_inc})
+set_property(TARGET libbgs PROPERTY PUBLIC_HEADER ${bgs_inc} ${tools_inc} ${utils_inc})
 
 if(WIN32)
   # set_property(TARGET libbgs PROPERTY SUFFIX ".lib")
@@ -73,7 +78,7 @@ else()
 endif()
 
 # Tell CMake to create the bgslibrary_gui executable
-add_executable(bgslibrary_gui ${main} ${app_RESOURCES_RCC})
+add_executable(bgslibrary_gui ${main_src} ${main_inc} ${app_RESOURCES_RCC})
 
 # Use the Widgets module from Qt 5.
 target_link_libraries(bgslibrary_gui Qt5::Widgets ${OpenCV_LIBS} libbgs)

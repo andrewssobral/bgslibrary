@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../package_analysis/PixelUtils.h"
+#include "../../tools/PixelUtils.h"
 
 class FuzzyUtils
 {

@@ -4,7 +4,7 @@
 #include "IFrameProcessor.h"
 #include "PreProcessor.h"
 
-#include "algorithms/bgslibrary.h"
+#include "algorithms/algorithms.h"
 #include "tools/ForegroundMaskAnalysis.h"
 
 namespace bgslibrary
