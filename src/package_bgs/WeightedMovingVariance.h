@@ -1,13 +1,12 @@
 #pragma once
 
 #include "IBGS.h"
-#include "ILoadSaveConfig.h"
 
 namespace bgslibrary
 {
   namespace algorithms
   {
-    class WeightedMovingVariance : public IBGS, public ILoadSaveConfig
+    class WeightedMovingVariance : public IBGS
     {
     private:
       cv::Mat img_input_prev_1;

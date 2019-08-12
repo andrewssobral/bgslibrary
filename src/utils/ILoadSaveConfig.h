@@ -4,7 +4,7 @@
 #include <fstream>
 #include <string>
 
-#include "../GenericMacros.h"
+#include "GenericMacros.h"
 
 namespace bgslibrary
 {

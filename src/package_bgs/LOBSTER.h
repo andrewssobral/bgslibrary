@@ -1,7 +1,6 @@
 #pragma once
 
 #include "IBGS.h"
-#include "ILoadSaveConfig.h"
 
 #include "LBSP/BackgroundSubtractorLOBSTER.h"
 
@@ -9,7 +8,7 @@ namespace bgslibrary
 {
   namespace algorithms
   {
-    class LOBSTER : public IBGS, public ILoadSaveConfig
+    class LOBSTER : public IBGS
     {
     private:
       BackgroundSubtractorLOBSTER* pLOBSTER;

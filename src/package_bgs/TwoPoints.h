@@ -1,14 +1,13 @@
 #pragma once
 
 #include "IBGS.h"
-#include "ILoadSaveConfig.h"
 #include "TwoPoints/two_points.h"
 
 namespace bgslibrary
 {
   namespace algorithms
   {
-    class TwoPoints : public IBGS, public ILoadSaveConfig
+    class TwoPoints : public IBGS
     {
     private:
       static const int DEFAULT_MATCH_THRESH = 20;

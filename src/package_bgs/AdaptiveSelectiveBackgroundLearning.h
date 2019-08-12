@@ -1,14 +1,12 @@
 #pragma once
 
 #include "IBGS.h"
-#include "ILoadSaveConfig.h"
 
 namespace bgslibrary
 {
   namespace algorithms
   {
-    class AdaptiveSelectiveBackgroundLearning : 
-      public IBGS, public ILoadSaveConfig
+    class AdaptiveSelectiveBackgroundLearning : public IBGS
     {
     private:
       double alphaLearn;

@@ -5,13 +5,12 @@
 #include <opencv2/video/background_segm.hpp>
 
 #include "IBGS.h"
-#include "ILoadSaveConfig.h"
 
 namespace bgslibrary
 {
   namespace algorithms
   {
-    class MixtureOfGaussianV2 : public IBGS, public ILoadSaveConfig
+    class MixtureOfGaussianV2 : public IBGS
     {
     private:
 #if CV_MAJOR_VERSION == 2

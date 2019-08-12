@@ -1,7 +1,6 @@
 #pragma once
 
 #include "IBGS.h"
-#include "ILoadSaveConfig.h"
 
 #include "opencv2/core/version.hpp"
 #if CV_MAJOR_VERSION == 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
@@ -10,7 +9,7 @@ namespace bgslibrary
 {
   namespace algorithms
   {
-    class GMG : public IBGS, public ILoadSaveConfig
+    class GMG : public IBGS
     {
     private:
       cv::Ptr<cv::BackgroundSubtractorGMG> fgbg;

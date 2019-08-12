@@ -13,7 +13,7 @@
 #include <opencv2/imgproc/imgproc_c.h>
 #include <opencv2/highgui/highgui_c.h>
 
-#include "../GenericMacros.h"
+#include "../utils/ILoadSaveConfig.h"
 
 #ifndef CV_RGB
 #define CV_RGB(r, g, b) cv::Scalar((b), (g), (r), 0)
@@ -27,7 +27,7 @@ namespace bgslibrary
 {
   namespace algorithms
   {
-    class IBGS
+    class IBGS : public ILoadSaveConfig
     {
     private:
       friend std::ostream& operator<<(std::ostream& o, const std::shared_ptr<IBGS>& ibgs) {

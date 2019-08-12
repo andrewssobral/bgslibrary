@@ -11,7 +11,7 @@
 #include <opencv2/imgproc/imgproc_c.h>
 #include <opencv2/highgui/highgui_c.h>
 
-#include "../package_bgs/ILoadSaveConfig.h"
+#include "../utils/ILoadSaveConfig.h"
 
 namespace bgslibrary
 {

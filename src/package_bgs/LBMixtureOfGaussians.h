@@ -1,7 +1,6 @@
 #pragma once
 
 #include "IBGS.h"
-#include "ILoadSaveConfig.h"
 
 #include "opencv2/core/version.hpp"
 #if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
@@ -15,7 +14,7 @@ namespace bgslibrary
 {
   namespace algorithms
   {
-    class LBMixtureOfGaussians : public IBGS, public ILoadSaveConfig
+    class LBMixtureOfGaussians : public IBGS
     {
     private:
       BGModel* m_pBGModel;

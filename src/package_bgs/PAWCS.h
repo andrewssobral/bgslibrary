@@ -1,14 +1,13 @@
 #pragma once
 
 #include "IBGS.h"
-#include "ILoadSaveConfig.h"
 #include "LBSP/BackgroundSubtractorPAWCS.h"
 
 namespace bgslibrary
 {
   namespace algorithms
   {
-    class PAWCS : public IBGS, public ILoadSaveConfig
+    class PAWCS : public IBGS
     {
     private:
       BackgroundSubtractorPAWCS* pPAWCS;

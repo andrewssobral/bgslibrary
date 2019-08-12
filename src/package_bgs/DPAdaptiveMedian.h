@@ -4,7 +4,6 @@
 #if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
 
 #include "IBGS.h"
-#include "ILoadSaveConfig.h"
 #include "dp/AdaptiveMedianBGS.h"
 
 using namespace Algorithms::BackgroundSubtraction;
@@ -13,7 +12,7 @@ namespace bgslibrary
 {
   namespace algorithms
   {
-    class DPAdaptiveMedian : public IBGS, public ILoadSaveConfig
+    class DPAdaptiveMedian : public IBGS
     {
     private:
       long frameNumber;

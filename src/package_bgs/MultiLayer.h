@@ -4,14 +4,13 @@
 #if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
 
 #include "IBGS.h"
-#include "ILoadSaveConfig.h"
 #include "MultiLayer/CMultiLayerBGS.h"
 
 namespace bgslibrary
 {
   namespace algorithms
   {
-    class MultiLayer : public IBGS, public ILoadSaveConfig
+    class MultiLayer : public IBGS
     {
     public:
       enum Status

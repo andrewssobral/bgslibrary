@@ -1,13 +1,12 @@
 #pragma once
 
 #include "IBGS.h"
-#include "ILoadSaveConfig.h"
 
 namespace bgslibrary
 {
   namespace algorithms
   {
-    class FrameDifference : public IBGS, public ILoadSaveConfig
+    class FrameDifference : public IBGS
     {
     private:
       bool enableThreshold;

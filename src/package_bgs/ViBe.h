@@ -1,14 +1,13 @@
 #pragma once
 
 #include "IBGS.h"
-#include "ILoadSaveConfig.h"
 #include "ViBe/vibe-background-sequential.h"
 
 namespace bgslibrary
 {
   namespace algorithms
   {
-    class ViBe : public IBGS, public ILoadSaveConfig
+    class ViBe : public IBGS
     {
     private:
       static const int DEFAULT_NUM_SAMPLES = 20;

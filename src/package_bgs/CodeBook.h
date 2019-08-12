@@ -3,7 +3,6 @@
 #include <opencv2/opencv.hpp>
 
 #include "IBGS.h"
-#include "ILoadSaveConfig.h"
 
 namespace bgslibrary
 {
@@ -19,7 +18,7 @@ namespace bgslibrary
       bool isStale;
     };
 
-    class CodeBook : public IBGS, public ILoadSaveConfig
+    class CodeBook : public IBGS
     {
     private:
       static const int Tdel = 200;

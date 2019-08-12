@@ -1,7 +1,6 @@
 #pragma once
 
 #include "IBGS.h"
-#include "ILoadSaveConfig.h"
 
 //extern "C" {
 #include "SigmaDelta/sdLaMa091.h"
@@ -11,7 +10,7 @@ namespace bgslibrary
 {
   namespace algorithms
   {
-    class SigmaDelta : public IBGS, public ILoadSaveConfig
+    class SigmaDelta : public IBGS
     {
     private:
       int ampFactor;

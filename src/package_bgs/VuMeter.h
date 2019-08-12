@@ -4,14 +4,13 @@
 #if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
 
 #include "IBGS.h"
-#include "ILoadSaveConfig.h"
 #include "VuMeter/TBackgroundVuMeter.h"
 
 namespace bgslibrary
 {
   namespace algorithms
   {
-    class VuMeter : public IBGS, public ILoadSaveConfig
+    class VuMeter : public IBGS
     {
     private:
       TBackgroundVuMeter bgs;

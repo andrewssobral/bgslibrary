@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "GenericKeys.h"
+#include "utils/GenericKeys.h"
 #include "VideoAnalysis.h"
 
 namespace bgslibrary

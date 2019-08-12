@@ -10,9 +10,9 @@
 //#include <opencv2/imgproc/imgproc_c.h>
 //#include <opencv2/imgproc/types_c.h>
 
-#include "GenericKeys.h"
+#include "utils/GenericKeys.h"
+#include "utils/ILoadSaveConfig.h"
 #include "IFrameProcessor.h"
-#include "package_bgs/ILoadSaveConfig.h"
 
 namespace bgslibrary
 {

@@ -3,13 +3,12 @@
 #include <opencv2/opencv.hpp>
 
 #include "../IBGS.h"
-#include "../ILoadSaveConfig.h"
 
 namespace bgslibrary
 {
   namespace algorithms
   {
-    class MyBGS : public IBGS, public ILoadSaveConfig
+    class MyBGS : public IBGS
     {
     private:
       cv::Mat img_previous;

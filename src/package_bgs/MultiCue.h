@@ -30,7 +30,6 @@ typedef int BOOL;
 #include <opencv2/opencv.hpp>
 
 #include "IBGS.h"
-#include "ILoadSaveConfig.h"
 
 //------------------------------------Structure Lists-------------------------------------//
 namespace bgslibrary
@@ -109,7 +108,7 @@ namespace bgslibrary
   {
     using namespace bgslibrary::algorithms::libMultiCue;
 
-    class MultiCue : public IBGS, public ILoadSaveConfig
+    class MultiCue : public IBGS
     {
     private:
       void saveConfig();

@@ -2,7 +2,7 @@
 
 #include <opencv2/opencv.hpp>
 
-#include "GenericMacros.h"
+#include "utils/GenericMacros.h"
 
 namespace bgslibrary
 {

@@ -1,14 +1,13 @@
 #pragma once
 
 #include "IBGS.h"
-#include "ILoadSaveConfig.h"
 #include "PBAS/PBAS.h"
 
 namespace bgslibrary
 {
   namespace algorithms
   {
-    class PixelBasedAdaptiveSegmenter : public IBGS, public ILoadSaveConfig
+    class PixelBasedAdaptiveSegmenter : public IBGS
     {
     private:
       PBAS pbas;
