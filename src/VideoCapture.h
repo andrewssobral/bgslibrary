@@ -6,13 +6,14 @@
 //#include <chrono>
 //#include <thread>
 #include <opencv2/opencv.hpp>
+// opencv legacy includes
 //#include <opencv2/highgui/highgui_c.h>
 //#include <opencv2/imgproc/imgproc_c.h>
 //#include <opencv2/imgproc/types_c.h>
 
-#include "Config.h"
+#include "utils/GenericKeys.h"
+#include "utils/ILoadSaveConfig.h"
 #include "IFrameProcessor.h"
-#include "package_bgs/ILoadSaveConfig.h"
 
 namespace bgslibrary
 {
@@ -35,6 +36,7 @@ namespace bgslibrary
     std::string videoFileName;
     int input_resize_percent;
     bool showOutput;
+    bool showFPS;
     bool enableFlip;
     double loopDelay = 33.333;
     bool firstTime = true;
@@ -51,8 +53,8 @@ namespace bgslibrary
   private:
     void setUpCamera();
     void setUpVideo();
-
-    void saveConfig();
-    void loadConfig();
+    
+    void save_config(cv::FileStorage &fs);
+    void load_config(cv::FileStorage &fs);
   };
 }

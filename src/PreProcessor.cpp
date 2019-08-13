@@ -5,27 +5,23 @@ namespace bgslibrary
   PreProcessor::PreProcessor() : 
     firstTime(true), equalizeHist(false), gaussianBlur(false)
   {
-    std::cout << "PreProcessor()" << std::endl;
-    setup("./config/PreProcessor.xml");
+    debug_construction(PreProcessor);
+    initLoadSaveConfig(quote(PreProcessor));
   }
 
-  PreProcessor::~PreProcessor()
-  {
-    std::cout << "~PreProcessor()" << std::endl;
+  PreProcessor::~PreProcessor() {
+    debug_destruction(PreProcessor);
   }
 
-  void PreProcessor::setEqualizeHist(bool value)
-  {
+  void PreProcessor::setEqualizeHist(bool value) {
     equalizeHist = value;
   }
 
-  void PreProcessor::setGaussianBlur(bool value)
-  {
+  void PreProcessor::setGaussianBlur(bool value) {
     gaussianBlur = value;
   }
 
-  cv::Mat PreProcessor::getGrayScale()
-  {
+  cv::Mat PreProcessor::getGrayScale() {
     return img_gray.clone();
   }
 
@@ -33,11 +29,6 @@ namespace bgslibrary
   {
     if (img_input.empty())
       return;
-
-    loadConfig();
-
-    if (firstTime)
-      saveConfig();
 
     img_input.copyTo(img_output);
 
@@ -102,35 +93,24 @@ namespace bgslibrary
 
     cv::Mat img_canny;
     cv::Canny(
-      img_input, // image – Single-channel 8-bit input image
-      img_canny,  // edges – The output edge map. It will have the same size and the same type as image
-      100,       // threshold1 – The first threshold for the hysteresis procedure
-      200);      // threshold2 – The second threshold for the hysteresis procedure
+      img_input, // image ï¿½ Single-channel 8-bit input image
+      img_canny,  // edges ï¿½ The output edge map. It will have the same size and the same type as image
+      100,       // threshold1 ï¿½ The first threshold for the hysteresis procedure
+      200);      // threshold2 ï¿½ The second threshold for the hysteresis procedure
     cv::threshold(img_canny, img_canny, 128, 255, cv::THRESH_BINARY_INV);
 
     img_canny.copyTo(img_output);
   }
 
-  void PreProcessor::saveConfig()
-  {
-    cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-
+  void PreProcessor::save_config(cv::FileStorage &fs) {
     fs << "equalizeHist" << equalizeHist;
     fs << "gaussianBlur" << gaussianBlur;
     fs << "enableShow" << enableShow;
-
-    fs.release();
   }
 
-  void PreProcessor::loadConfig()
-  {
-    cv::FileStorage fs;
-    fs.open(config_xml, cv::FileStorage::READ);
-    
+  void PreProcessor::load_config(cv::FileStorage &fs) {
     fs["equalizeHist"] >> equalizeHist;
     fs["gaussianBlur"] >> gaussianBlur;
     fs["enableShow"] >> enableShow;
-
-    fs.release();
   }
 }
