@@ -9,6 +9,8 @@
 #include <map>
 
 #include <opencv2/opencv.hpp>
+
+// opencv legacy includes
 #include <opencv2/imgproc/types_c.h>
 #include <opencv2/imgproc/imgproc_c.h>
 #include <opencv2/highgui/highgui_c.h>
@@ -70,10 +72,10 @@ namespace bgslibrary
         //debug_construction(IBGS);
         algorithmName = "";
       }
-      virtual void process(const cv::Mat &img_input, cv::Mat &img_foreground, cv::Mat &img_background) = 0;
       virtual ~IBGS() {
         //debug_destruction(IBGS);
       }
+      virtual void process(const cv::Mat &img_input, cv::Mat &img_foreground, cv::Mat &img_background) = 0;
     protected:
       std::string algorithmName;
       bool firstTime = true;
@@ -93,10 +95,10 @@ namespace bgslibrary
     {
     public:
       BGS_Factory() {
-        debug_construction(BGS_Factory);
+        //debug_construction(BGS_Factory);
       }
       virtual ~BGS_Factory() {
-        debug_destruction(BGS_Factory);
+        //debug_destruction(BGS_Factory);
       }
       static BGS_Factory* Instance() {
         static BGS_Factory factory;
@@ -140,7 +142,7 @@ namespace bgslibrary
     class BGS_Register
     {
     public:
-      BGS_Register(std::string className) {
+      BGS_Register(const std::string className) {
         //debug_construction(BGS_Register);
         // register the class factory function
         BGS_Factory::Instance()->RegisterFactoryFunction(className,

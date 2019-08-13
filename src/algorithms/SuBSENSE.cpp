@@ -13,6 +13,7 @@ SuBSENSE::SuBSENSE() :
   nSamplesForMovingAvgs(BGSSUBSENSE_DEFAULT_N_SAMPLES_FOR_MV_AVGS)
 {
   debug_construction(SuBSENSE);
+  initLoadSaveConfig(algorithmName);
 }
 
 SuBSENSE::~SuBSENSE() {
@@ -48,10 +49,7 @@ void SuBSENSE::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &i
   img_background.copyTo(img_bgmodel);
 }
 
-void SuBSENSE::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void SuBSENSE::save_config(cv::FileStorage &fs) {
   fs << "fRelLBSPThreshold" << fRelLBSPThreshold;
   fs << "nDescDistThresholdOffset" << nDescDistThresholdOffset;
   fs << "nMinColorDistThreshold" << nMinColorDistThreshold;
@@ -59,15 +57,9 @@ void SuBSENSE::saveConfig()
   fs << "nRequiredBGSamples" << nRequiredBGSamples;
   fs << "nSamplesForMovingAvgs" << nSamplesForMovingAvgs;
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void SuBSENSE::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void SuBSENSE::load_config(cv::FileStorage &fs) {
   fs["fRelLBSPThreshold"] >> fRelLBSPThreshold;
   fs["nDescDistThresholdOffset"] >> nDescDistThresholdOffset;
   fs["nMinColorDistThreshold"] >> nMinColorDistThreshold;
@@ -75,6 +67,4 @@ void SuBSENSE::loadConfig()
   fs["nRequiredBGSamples"] >> nRequiredBGSamples;
   fs["nSamplesForMovingAvgs"] >> nSamplesForMovingAvgs;
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }

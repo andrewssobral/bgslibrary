@@ -7,7 +7,7 @@ WeightedMovingVariance::WeightedMovingVariance() :
   enableWeight(true), enableThreshold(true), threshold(15)
 {
   debug_construction(WeightedMovingVariance);
-  setup("./config/WeightedMovingVariance.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 WeightedMovingVariance::~WeightedMovingVariance() {
@@ -111,27 +111,16 @@ cv::Mat WeightedMovingVariance::computeWeightedVariance(const cv::Mat &img_input
   return img_f;
 }
 
-void WeightedMovingVariance::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void WeightedMovingVariance::save_config(cv::FileStorage &fs) {
   fs << "enableWeight" << enableWeight;
   fs << "enableThreshold" << enableThreshold;
   fs << "threshold" << threshold;
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void WeightedMovingVariance::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void WeightedMovingVariance::load_config(cv::FileStorage &fs) {
   fs["enableWeight"] >> enableWeight;
   fs["enableThreshold"] >> enableThreshold;
   fs["threshold"] >> threshold;
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }

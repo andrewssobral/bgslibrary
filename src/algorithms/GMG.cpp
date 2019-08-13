@@ -9,11 +9,11 @@ GMG::GMG() :
   initializationFrames(20), decisionThreshold(0.7)
 {
   debug_construction(GMG);
-  setup("./config/GMG.xml");
+  initLoadSaveConfig(algorithmName);
 
   cv::initModule_video();
   cv::setUseOptimized(true);
-  cv::setNumThreads(8);
+  cv::setNumThreads(4);
 
   fgbg = cv::Algorithm::create<cv::BackgroundSubtractorGMG>("BackgroundSubtractor.GMG");
 }
@@ -55,27 +55,16 @@ void GMG::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bg
   firstTime = false;
 }
 
-void GMG::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void GMG::save_config(cv::FileStorage &fs) {
   fs << "initializationFrames" << initializationFrames;
   fs << "decisionThreshold" << decisionThreshold;
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void GMG::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void GMG::load_config(cv::FileStorage &fs) {
   fs["initializationFrames"] >> initializationFrames;
   fs["decisionThreshold"] >> decisionThreshold;
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }
 
 #endif

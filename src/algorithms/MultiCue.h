@@ -111,8 +111,8 @@ namespace bgslibrary
     class MultiCue : public IBGS
     {
     private:
-      void saveConfig();
-      void loadConfig();
+      void save_config(cv::FileStorage &fs);
+      void load_config(cv::FileStorage &fs);
 
     public:
       MultiCue();

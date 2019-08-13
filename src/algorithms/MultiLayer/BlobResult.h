@@ -5,6 +5,7 @@
 #include <functional>
 
 #include "BlobLibraryConfiguration.h"
+// opencv legacy includes
 #include "OpenCvLegacyIncludes.h"
 #include "blob.h"
 

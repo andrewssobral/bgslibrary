@@ -10,7 +10,7 @@ T2FMRF_UM::T2FMRF_UM() :
   km(2.f), kv(0.9f), gaussians(3)
 {
   debug_construction(T2FMRF_UM);
-  setup("./config/DPMean.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 T2FMRF_UM::~T2FMRF_UM() {
@@ -98,33 +98,22 @@ void T2FMRF_UM::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
   frameNumber++;
 }
 
-void T2FMRF_UM::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void T2FMRF_UM::save_config(cv::FileStorage &fs) {
   fs << "threshold" << threshold;
   fs << "alpha" << alpha;
   fs << "km" << km;
   fs << "kv" << kv;
   fs << "gaussians" << gaussians;
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void T2FMRF_UM::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void T2FMRF_UM::load_config(cv::FileStorage &fs) {
   fs["threshold"] >> threshold;
   fs["alpha"] >> alpha;
   fs["km"] >> km;
   fs["kv"] >> kv;
   fs["gaussians"] >> gaussians;
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }
 
 #endif

@@ -9,8 +9,8 @@
 class PerformanceUtils
 {
 public:
-  PerformanceUtils(void);
-  ~PerformanceUtils(void);
+  PerformanceUtils();
+  ~PerformanceUtils();
 
   float NrPixels(IplImage *image);
   float NrAllDetectedPixNotNULL(IplImage *image, IplImage *ground_truth);

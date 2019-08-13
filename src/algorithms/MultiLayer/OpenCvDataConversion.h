@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdio.h>
+// opencv legacy includes
 #include "OpenCvLegacyIncludes.h"
 
 template <class TI, class TM>		/* class TI - the type of image data, class TM - the type of matrix data */

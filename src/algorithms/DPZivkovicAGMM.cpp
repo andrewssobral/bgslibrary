@@ -10,7 +10,7 @@ DPZivkovicAGMM::DPZivkovicAGMM() :
   alpha(0.001f), gaussians(3)
 {
   debug_construction(DPZivkovicAGMM);
-  setup("./config/DPZivkovicAGMM.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 DPZivkovicAGMM::~DPZivkovicAGMM() {
@@ -68,29 +68,18 @@ void DPZivkovicAGMM::process(const cv::Mat &img_input, cv::Mat &img_output, cv::
   frameNumber++;
 }
 
-void DPZivkovicAGMM::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void DPZivkovicAGMM::save_config(cv::FileStorage &fs) {
   fs << "threshold" << threshold;
   fs << "alpha" << alpha;
   fs << "gaussians" << gaussians;
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void DPZivkovicAGMM::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void DPZivkovicAGMM::load_config(cv::FileStorage &fs) {
   fs["threshold"] >> threshold;
   fs["alpha"] >> alpha;
   fs["gaussians"] >> gaussians;
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }
 
 #endif

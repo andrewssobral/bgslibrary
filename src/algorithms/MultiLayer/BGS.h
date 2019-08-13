@@ -1,5 +1,6 @@
 #pragma once
 
+// opencv legacy includes
 #include "OpenCvLegacyIncludes.h"
 
 #define MAX_LBP_MODE_NUM	5

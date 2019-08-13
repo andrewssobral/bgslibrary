@@ -9,7 +9,7 @@ namespace bgslibrary
     tictoc(""), frameToStop(0)
   {
     debug_construction(FrameProcessor);
-    setup("./config/FrameProcessor.xml");
+    initLoadSaveConfig(quote(FrameProcessor));
   }
 
   FrameProcessor::~FrameProcessor() {
@@ -404,10 +404,7 @@ namespace bgslibrary
     std::cout << processname << "\ttime(sec):" << std::fixed << std::setprecision(6) << duration << std::endl;
   }
 
-  void FrameProcessor::saveConfig()
-  {
-    cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-
+  void FrameProcessor::save_config(cv::FileStorage &fs) {
     fs << "tictoc" << tictoc;
     fs << "enablePreProcessor" << enablePreProcessor;
     fs << "enableForegroundMaskAnalysis" << enableForegroundMaskAnalysis;
@@ -467,15 +464,9 @@ namespace bgslibrary
     fs << "enableTwoPoints" << enableTwoPoints;
     fs << "enableViBe" << enableViBe;
     fs << "enableCodeBook" << enableCodeBook;
-
-    fs.release();
   }
 
-  void FrameProcessor::loadConfig()
-  {
-    cv::FileStorage fs;
-    fs.open(config_xml, cv::FileStorage::READ);
-    
+  void FrameProcessor::load_config(cv::FileStorage &fs) {
     fs["tictoc"] >> tictoc;
     fs["enablePreProcessor"] >> enablePreProcessor;
     fs["enableForegroundMaskAnalysis"] >> enableForegroundMaskAnalysis;
@@ -535,7 +526,5 @@ namespace bgslibrary
     fs["enableTwoPoints"] >> enableTwoPoints;
     fs["enableViBe"] >> enableViBe;
     fs["enableCodeBook"] >> enableCodeBook;
-
-    fs.release();
   }
 }

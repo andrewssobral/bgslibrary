@@ -9,7 +9,7 @@ LBP_MRF::LBP_MRF() :
   Detector(nullptr)
 {
   debug_construction(LBP_MRF);
-  setup("./config/LBP_MRF.xml");
+  initLoadSaveConfig(algorithmName);
   Detector = new MotionDetection();
   Detector->SetMode(MotionDetection::md_LBPHistograms);
 }
@@ -47,23 +47,12 @@ void LBP_MRF::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &im
   firstTime = false;
 }
 
-void LBP_MRF::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void LBP_MRF::save_config(cv::FileStorage &fs) {
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void LBP_MRF::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void LBP_MRF::load_config(cv::FileStorage &fs) {
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }
 
 #endif

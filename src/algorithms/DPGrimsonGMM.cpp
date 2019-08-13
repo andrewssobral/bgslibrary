@@ -10,7 +10,7 @@ DPGrimsonGMM::DPGrimsonGMM() :
   alpha(0.01), gaussians(3)
 {
   debug_construction(DPGrimsonGMM);
-  setup("./config/DPGrimsonGMM.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 DPGrimsonGMM::~DPGrimsonGMM() {
@@ -69,29 +69,18 @@ void DPGrimsonGMM::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Ma
   frameNumber++;
 }
 
-void DPGrimsonGMM::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-
+void DPGrimsonGMM::save_config(cv::FileStorage &fs) {
   fs << "threshold" << threshold;
   fs << "alpha" << alpha;
   fs << "gaussians" << gaussians;
   fs << "showOutput" << showOutput;
-
-  fs.release();
 }
 
-void DPGrimsonGMM::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-
+void DPGrimsonGMM::load_config(cv::FileStorage &fs) {
   fs["threshold"] >> threshold;
   fs["alpha"] >> alpha;
   fs["gaussians"] >> gaussians;
   fs["showOutput"] >> showOutput;
-
-  fs.release();
 }
 
 #endif

@@ -7,7 +7,6 @@ namespace lb_library
   namespace FuzzyAdaptiveSOM
   {
     // SOM parameters
-
     const int M = 3;				// width SOM (per pixel)
     const int N = 3;				// height SOM (per pixel)
     const int KERNEL = 3; 	// size Gaussian kernel

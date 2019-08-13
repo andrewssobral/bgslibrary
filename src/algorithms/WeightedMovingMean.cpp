@@ -7,7 +7,7 @@ WeightedMovingMean::WeightedMovingMean() :
   enableWeight(true), enableThreshold(true), threshold(15)
 {
   debug_construction(WeightedMovingMean);
-  setup("./config/WeightedMovingMean.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 WeightedMovingMean::~WeightedMovingMean() {
@@ -73,27 +73,16 @@ void WeightedMovingMean::process(const cv::Mat &img_input, cv::Mat &img_output, 
   firstTime = false;
 }
 
-void WeightedMovingMean::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void WeightedMovingMean::save_config(cv::FileStorage &fs) {
   fs << "enableWeight" << enableWeight;
   fs << "enableThreshold" << enableThreshold;
   fs << "threshold" << threshold;
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void WeightedMovingMean::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void WeightedMovingMean::load_config(cv::FileStorage &fs) {
   fs["enableWeight"] >> enableWeight;
   fs["enableThreshold"] >> enableThreshold;
   fs["threshold"] >> threshold;
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }

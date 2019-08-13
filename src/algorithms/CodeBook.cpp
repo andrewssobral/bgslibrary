@@ -8,7 +8,7 @@ CodeBook::CodeBook() :
   alpha(DEFAULT_ALPHA), beta(DEFAULT_BETA)
 {
   debug_construction(CodeBook);
-  setup("./config/CodeBook.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 CodeBook::~CodeBook() {
@@ -107,8 +107,7 @@ void CodeBook::fg_cb(const cv::Mat& frame, cv::Mat& fg)
   //fg = cv::Mat::zeros(frame.size(), CV_8UC1);
   //if (cbMain == 0) initializeCodebook(frame.rows, frame.cols);
   
-  if (t <= learningFrames)
-  {
+  if (t <= learningFrames) {
     update_cb(frame);
     return;
   }
@@ -177,27 +176,16 @@ void CodeBook::fg_cb(const cv::Mat& frame, cv::Mat& fg)
   }
 }
 
-void CodeBook::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-
+void CodeBook::save_config(cv::FileStorage &fs) {
   fs << "alpha" << alpha;
   fs << "beta" << beta;
   fs << "learningFrames" << learningFrames;
   fs << "showOutput" << showOutput;
-
-  fs.release();
 }
 
-void CodeBook::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-
+void CodeBook::load_config(cv::FileStorage &fs) {
   fs["alpha"] >> alpha;
   fs["beta"] >> beta;
   fs["learningFrames"] >> learningFrames;
   fs["showOutput"] >> showOutput;
-
-  fs.release();
 }

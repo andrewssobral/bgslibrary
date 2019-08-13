@@ -10,7 +10,7 @@ FuzzySugenoIntegral::FuzzySugenoIntegral() :
   colorSpace(1), option(2), smooth(true), threshold(0.67)
 {
   debug_construction(FuzzySugenoIntegral);
-  setup("./config/FuzzySugenoIntegral.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 FuzzySugenoIntegral::~FuzzySugenoIntegral() {
@@ -162,10 +162,7 @@ void FuzzySugenoIntegral::process(const cv::Mat &img_input, cv::Mat &img_output,
   frameNumber++;
 }
 
-void FuzzySugenoIntegral::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void FuzzySugenoIntegral::save_config(cv::FileStorage &fs) {
   fs << "threshold" << threshold;
   fs << "framesToLearn" << framesToLearn;
   fs << "alphaLearn" << alphaLearn;
@@ -174,15 +171,9 @@ void FuzzySugenoIntegral::saveConfig()
   fs << "option" << option;
   fs << "smooth" << smooth;
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void FuzzySugenoIntegral::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void FuzzySugenoIntegral::load_config(cv::FileStorage &fs) {
   fs["threshold"] >> threshold;
   fs["framesToLearn"] >> framesToLearn;
   fs["alphaLearn"] >> alphaLearn;
@@ -191,8 +182,6 @@ void FuzzySugenoIntegral::loadConfig()
   fs["option"] >> option;
   fs["smooth"] >> smooth;
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }
 
 #endif

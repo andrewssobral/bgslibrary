@@ -8,9 +8,9 @@ TwoPoints::TwoPoints() :
   updateFactor(DEFAULT_UPDATE_FACTOR), model(nullptr)
 {
   debug_construction(TwoPoints);
+  initLoadSaveConfig(algorithmName);
   //model = static_cast<twopointsModel_t*>(libtwopointsModel_New());
   model = libtwopointsModel_New();
-  setup("./config/TwoPoints.xml");
 }
 
 TwoPoints::~TwoPoints() {
@@ -68,25 +68,14 @@ void TwoPoints::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
   firstTime = false;
 }
 
-void TwoPoints::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void TwoPoints::save_config(cv::FileStorage &fs) {
   fs << "matchingThreshold" << matchingThreshold;
   fs << "updateFactor" << updateFactor;
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void TwoPoints::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void TwoPoints::load_config(cv::FileStorage &fs) {
   fs["matchingThreshold"] >> matchingThreshold;
   fs["updateFactor"] >> updateFactor;
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }

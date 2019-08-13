@@ -75,7 +75,7 @@ namespace bgslibrary
     showOutput(true), showFPS(true), enableFlip(false)
   {
     debug_construction(VideoCapture);
-    setup("./config/VideoCapture.xml");
+    initLoadSaveConfig(quote(VideoCapture));
   }
 
   VideoCapture::~VideoCapture() {
@@ -262,10 +262,7 @@ namespace bgslibrary
     capture.release();
   }
 
-  void VideoCapture::saveConfig()
-  {
-    cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-    
+  void VideoCapture::save_config(cv::FileStorage &fs) {
     fs << "stopAt" << stopAt;
     fs << "input_resize_percent" << input_resize_percent;
     fs << "enableFlip" << enableFlip;
@@ -277,15 +274,9 @@ namespace bgslibrary
     fs << "roi_y1" << VC_ROI::roi_y1;
     fs << "showFPS" << showFPS;
     fs << "showOutput" << showOutput;
-    
-    fs.release();
   }
 
-  void VideoCapture::loadConfig()
-  {
-    cv::FileStorage fs;
-    fs.open(config_xml, cv::FileStorage::READ);
-    
+  void VideoCapture::load_config(cv::FileStorage &fs) {
     fs["stopAt"] >> stopAt;
     fs["input_resize_percent"] >> input_resize_percent;
     fs["enableFlip"] >> enableFlip;
@@ -297,7 +288,5 @@ namespace bgslibrary
     fs["roi_y1"] >> VC_ROI::roi_y1;
     fs["showFPS"] >> showFPS;
     fs["showOutput"] >> showOutput;
-    
-    fs.release();
   }
 }

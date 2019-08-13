@@ -1,5 +1,6 @@
 #pragma once
 
+// opencv legacy includes
 #include "OpenCvLegacyIncludes.h"
 
 class CBackgroundSubtractionAPI

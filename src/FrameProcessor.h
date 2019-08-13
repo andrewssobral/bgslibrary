@@ -220,8 +220,8 @@ namespace bgslibrary
     void process(const std::string name, const std::shared_ptr<IBGS> &bgs, const cv::Mat &img_input, cv::Mat &img_bgs);
     void tic(std::string value);
     void toc();
-
-    void saveConfig();
-    void loadConfig();
+    
+    void save_config(cv::FileStorage &fs);
+    void load_config(cv::FileStorage &fs);
   };
 }

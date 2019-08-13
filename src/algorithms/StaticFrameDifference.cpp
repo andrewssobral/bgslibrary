@@ -7,7 +7,7 @@ StaticFrameDifference::StaticFrameDifference() :
   enableThreshold(true), threshold(15)
 {
   debug_construction(StaticFrameDifference);
-  setup("./config/StaticFrameDifference.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 StaticFrameDifference::~StaticFrameDifference() {
@@ -40,25 +40,14 @@ void StaticFrameDifference::process(const cv::Mat &img_input, cv::Mat &img_outpu
   firstTime = false;
 }
 
-void StaticFrameDifference::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void StaticFrameDifference::save_config(cv::FileStorage &fs) {
   fs << "enableThreshold" << enableThreshold;
   fs << "threshold" << threshold;
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void StaticFrameDifference::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void StaticFrameDifference::load_config(cv::FileStorage &fs) {
   fs["enableThreshold"] >> enableThreshold;
   fs["threshold"] >> threshold;
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }

@@ -10,7 +10,7 @@ LBFuzzyAdaptiveSOM::LBFuzzyAdaptiveSOM() :
   trainingLearningRate(255), trainingSteps(81)
 {
   debug_construction(LBFuzzyAdaptiveSOM);
-  setup("./config/LBFuzzyAdaptiveSOM.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 LBFuzzyAdaptiveSOM::~LBFuzzyAdaptiveSOM() {
@@ -58,33 +58,22 @@ void LBFuzzyAdaptiveSOM::process(const cv::Mat &img_input, cv::Mat &img_output, 
   firstTime = false;
 }
 
-void LBFuzzyAdaptiveSOM::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void LBFuzzyAdaptiveSOM::save_config(cv::FileStorage &fs) {
   fs << "sensitivity" << sensitivity;
   fs << "trainingSensitivity" << trainingSensitivity;
   fs << "learningRate" << learningRate;
   fs << "trainingLearningRate" << trainingLearningRate;
   fs << "trainingSteps" << trainingSteps;
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void LBFuzzyAdaptiveSOM::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void LBFuzzyAdaptiveSOM::load_config(cv::FileStorage &fs) {
   fs["sensitivity"] >> sensitivity;
   fs["trainingSensitivity"] >> trainingSensitivity;
   fs["learningRate"] >> learningRate;
   fs["trainingLearningRate"] >> trainingLearningRate;
   fs["trainingSteps"] >> trainingSteps;
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }
 
 #endif

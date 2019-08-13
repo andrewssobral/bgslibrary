@@ -5,6 +5,7 @@
 #include <algorithm>
 
 #include "BlobLibraryConfiguration.h"
+// opencv legacy includes
 #include "OpenCvLegacyIncludes.h"
 
 //! Factor de conversió de graus a radians

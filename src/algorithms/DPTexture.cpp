@@ -9,7 +9,7 @@ DPTexture::DPTexture():
   // enableFiltering(true)
 {
   debug_construction(DPTexture);
-  setup("./config/DPTexture.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 DPTexture::~DPTexture() {
@@ -116,27 +116,16 @@ void DPTexture::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
   delete frame;
 }
 
-void DPTexture::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void DPTexture::save_config(cv::FileStorage &fs) {
   //fs << "alpha" << alpha;
   //fs << "enableFiltering" << enableFiltering;
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void DPTexture::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void DPTexture::load_config(cv::FileStorage &fs) {
   //fs["alpha"] >> alpha;
   //fs["enableFiltering"] >> enableFiltering;
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }
 
 #endif

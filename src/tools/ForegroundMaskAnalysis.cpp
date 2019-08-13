@@ -7,7 +7,7 @@ namespace bgslibrary
     stopAt(0), img_ref_path("")
   {
     debug_construction(ForegroundMaskAnalysis);
-    setup("./config/ForegroundMaskAnalysis.xml");
+    initLoadSaveConfig(quote(ForegroundMaskAnalysis));
   }
 
   ForegroundMaskAnalysis::~ForegroundMaskAnalysis() {
@@ -18,13 +18,6 @@ namespace bgslibrary
   {
     if (img_input.empty())
       return;
-
-    if (stopAt == 0) {
-      loadConfig();
-
-      if (firstTime)
-        saveConfig();
-    }
 
     if (stopAt == frameNumber && img_ref_path.empty() == false)
     {
@@ -37,13 +30,11 @@ namespace bgslibrary
       cv::Mat i;
       cv::Mat u;
 
-      if (rn > 0)
-      {
+      if (rn > 0) {
         i = img_input & img_ref;
         u = img_input | img_ref;
       }
-      else
-      {
+      else {
         i = (~img_input) & (~img_ref);
         u = (~img_input) | (~img_ref);
       }
@@ -66,24 +57,13 @@ namespace bgslibrary
     firstTime = false;
   }
 
-  void ForegroundMaskAnalysis::saveConfig()
-  {
-    cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-    
+  void ForegroundMaskAnalysis::save_config(cv::FileStorage &fs) {
     fs << "stopAt" << stopAt;
     fs << "img_ref_path" << img_ref_path;
-    
-    fs.release();
   }
 
-  void ForegroundMaskAnalysis::loadConfig()
-  {
-    cv::FileStorage fs;
-    fs.open(config_xml, cv::FileStorage::READ);
-    
+  void ForegroundMaskAnalysis::load_config(cv::FileStorage &fs) {
     fs["stopAt"] >> stopAt;
     fs["img_ref_path"] >> img_ref_path;
-    
-    fs.release();
   }
 }

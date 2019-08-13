@@ -13,7 +13,7 @@ LOBSTER::LOBSTER() :
   nRequiredBGSamples(BGSLOBSTER_DEFAULT_REQUIRED_NB_BG_SAMPLES)
 {
   debug_construction(LOBSTER);
-  setup("./config/LOBSTER.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 LOBSTER::~LOBSTER() {
@@ -49,10 +49,7 @@ void LOBSTER::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &im
   img_background.copyTo(img_bgmodel);
 }
 
-void LOBSTER::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void LOBSTER::save_config(cv::FileStorage &fs) {
   fs << "fRelLBSPThreshold" << fRelLBSPThreshold;
   fs << "nLBSPThresholdOffset" << nLBSPThresholdOffset;
   fs << "nDescDistThreshold" << nDescDistThreshold;
@@ -60,15 +57,9 @@ void LOBSTER::saveConfig()
   fs << "nBGSamples" << nBGSamples;
   fs << "nRequiredBGSamples" << nRequiredBGSamples;
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void LOBSTER::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void LOBSTER::load_config(cv::FileStorage &fs) {
   fs["fRelLBSPThreshold"] >> fRelLBSPThreshold;
   fs["nLBSPThresholdOffset"] >> nLBSPThresholdOffset;
   fs["nDescDistThreshold"] >> nDescDistThreshold;
@@ -76,6 +67,4 @@ void LOBSTER::loadConfig()
   fs["nBGSamples"] >> nBGSamples;
   fs["nRequiredBGSamples"] >> nRequiredBGSamples;
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }

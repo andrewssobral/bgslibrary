@@ -31,7 +31,7 @@ namespace bgslibrary
     void process(const long &frameNumber, const std::string &name, const cv::Mat &img_input);
 
   private:
-    void saveConfig();
-    void loadConfig();
+    void save_config(cv::FileStorage &fs);
+    void load_config(cv::FileStorage &fs);
   };
 }

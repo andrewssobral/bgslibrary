@@ -11,8 +11,8 @@ KDE::KDE() :
   th(10e-8), alpha(0.3), framesToLearn(10), frameNumber(0)
 {
   debug_construction(KDE);
+  initLoadSaveConfig(algorithmName);
   p = new NPBGSubtractor;
-  setup("./config/KDE.xml");
 }
 
 KDE::~KDE() {
@@ -83,10 +83,7 @@ void KDE::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bg
   img_background.copyTo(img_bgmodel);
 }
 
-void KDE::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void KDE::save_config(cv::FileStorage &fs) {
   fs << "framesToLearn" << framesToLearn;
   fs << "SequenceLength" << SequenceLength;
   fs << "TimeWindowSize" << TimeWindowSize;
@@ -95,15 +92,9 @@ void KDE::saveConfig()
   fs << "th" << th;
   fs << "alpha" << alpha;
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void KDE::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void KDE::load_config(cv::FileStorage &fs) {
   fs["framesToLearn"] >> framesToLearn;
   fs["SequenceLength"] >> SequenceLength;
   fs["TimeWindowSize"] >> TimeWindowSize;
@@ -112,8 +103,6 @@ void KDE::loadConfig()
   fs["th"] >> th;
   fs["alpha"] >> alpha;
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }
 
 #endif

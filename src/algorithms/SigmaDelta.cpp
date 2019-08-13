@@ -8,8 +8,8 @@ SigmaDelta::SigmaDelta() :
   algorithm(sdLaMa091New())
 {
   debug_construction(SigmaDelta);
+  initLoadSaveConfig(algorithmName);
   applyParams();
-  setup("./config/SigmaDelta.xml");
 }
 
 SigmaDelta::~SigmaDelta() {
@@ -50,35 +50,21 @@ void SigmaDelta::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat 
   img_background.copyTo(img_bgmodel);
 }
 
-void SigmaDelta::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void SigmaDelta::save_config(cv::FileStorage &fs) {
   fs << "ampFactor" << ampFactor;
   fs << "minVar" << minVar;
   fs << "maxVar" << maxVar;
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void SigmaDelta::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void SigmaDelta::load_config(cv::FileStorage &fs) {
   fs["ampFactor"] >> ampFactor;
   fs["minVar"] >> minVar;
   fs["maxVar"] >> maxVar;
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
-  
-  applyParams();
 }
 
-void SigmaDelta::applyParams()
-{
+void SigmaDelta::applyParams() {
   sdLaMa091SetAmplificationFactor(algorithm, ampFactor);
   sdLaMa091SetMinimalVariance(algorithm, minVar);
   sdLaMa091SetMaximalVariance(algorithm, maxVar);

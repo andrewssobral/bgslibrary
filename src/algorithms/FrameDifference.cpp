@@ -7,7 +7,7 @@ FrameDifference::FrameDifference() :
   enableThreshold(true), threshold(15)
 {
   debug_construction(FrameDifference);
-  setup("./config/FrameDifference.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 FrameDifference::~FrameDifference() {
@@ -44,25 +44,14 @@ void FrameDifference::process(const cv::Mat &img_input, cv::Mat &img_output, cv:
   firstTime = false;
 }
 
-void FrameDifference::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void FrameDifference::save_config(cv::FileStorage &fs) {
   fs << "enableThreshold" << enableThreshold;
   fs << "threshold" << threshold;
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void FrameDifference::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void FrameDifference::load_config(cv::FileStorage &fs) {
   fs["enableThreshold"] >> enableThreshold;
   fs["threshold"] >> threshold;
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }

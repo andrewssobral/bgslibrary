@@ -11,7 +11,7 @@ LBAdaptiveSOM::LBAdaptiveSOM() :
   trainingSteps(55)
 {
   debug_construction(LBAdaptiveSOM);
-  setup("./config/LBAdaptiveSOM.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 LBAdaptiveSOM::~LBAdaptiveSOM() {
@@ -59,33 +59,22 @@ void LBAdaptiveSOM::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
   firstTime = false;
 }
 
-void LBAdaptiveSOM::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void LBAdaptiveSOM::save_config(cv::FileStorage &fs) {
   fs << "sensitivity" << sensitivity;
   fs << "trainingSensitivity" << trainingSensitivity;
   fs << "learningRate" << learningRate;
   fs << "trainingLearningRate" << trainingLearningRate;
   fs << "trainingSteps" << trainingSteps;
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void LBAdaptiveSOM::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void LBAdaptiveSOM::load_config(cv::FileStorage &fs) {
   fs["sensitivity"] >> sensitivity;
   fs["trainingSensitivity"] >> trainingSensitivity;
   fs["learningRate"] >> learningRate;
   fs["trainingLearningRate"] >> trainingLearningRate;
   fs["trainingSteps"] >> trainingSteps;
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }
 
 #endif

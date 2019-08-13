@@ -9,7 +9,7 @@ MixtureOfGaussianV1::MixtureOfGaussianV1() :
   alpha(0.05), enableThreshold(true), threshold(15)
 {
   debug_construction(MixtureOfGaussianV1);
-  setup("./config/MixtureOfGaussianV1.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 MixtureOfGaussianV1::~MixtureOfGaussianV1() {
@@ -57,29 +57,18 @@ void MixtureOfGaussianV1::process(const cv::Mat &img_input, cv::Mat &img_output,
   firstTime = false;
 }
 
-void MixtureOfGaussianV1::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void MixtureOfGaussianV1::save_config(cv::FileStorage &fs) {
   fs << "alpha" << alpha;
   fs << "enableThreshold" << enableThreshold;
   fs << "threshold" << threshold;
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void MixtureOfGaussianV1::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void MixtureOfGaussianV1::load_config(cv::FileStorage &fs) {
   fs["alpha"] >> alpha;
   fs["enableThreshold"] >> enableThreshold;
   fs["threshold"] >> threshold;
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }
 
 #endif

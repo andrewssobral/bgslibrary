@@ -43,7 +43,7 @@ MultiCue::MultiCue() :
   g_bModelMemAllocated = FALSE;									//To handle memory..
   g_bNonModelMemAllocated = FALSE;								//To handle memory..
 
-  setup("./config/MultiCue.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 MultiCue::~MultiCue() {
@@ -94,10 +94,7 @@ void MultiCue::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &i
   firstTime = false;
 }
 
-void MultiCue::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void MultiCue::save_config(cv::FileStorage &fs) {
   fs << "g_fLearningRate" << g_fLearningRate;
   fs << "g_iAbsortionPeriod" << g_iAbsortionPeriod;
   fs << "g_iC_ModelThreshold" << g_iC_ModelThreshold;
@@ -112,15 +109,9 @@ void MultiCue::saveConfig()
   fs << "g_iRWidth" << g_iRWidth;
   fs << "g_iRHeight" << g_iRHeight;
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void MultiCue::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void MultiCue::load_config(cv::FileStorage &fs) {
   fs["g_fLearningRate"] >> g_fLearningRate;
   fs["g_iAbsortionPeriod"] >> g_iAbsortionPeriod;
   fs["g_iC_ModelThreshold"] >> g_iC_ModelThreshold;
@@ -135,8 +126,6 @@ void MultiCue::loadConfig()
   fs["g_iRWidth"] >> g_iRWidth;
   fs["g_iRHeight"] >> g_iRHeight;
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------//

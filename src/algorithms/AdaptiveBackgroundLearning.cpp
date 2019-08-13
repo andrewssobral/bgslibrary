@@ -4,11 +4,11 @@ using namespace bgslibrary::algorithms;
 
 AdaptiveBackgroundLearning::AdaptiveBackgroundLearning() :
   IBGS(quote(AdaptiveBackgroundLearning)),
-  alpha(0.05), limit(-1), counter(0), minVal(0.0), maxVal(1.0),
-  enableThreshold(true), threshold(15)
+  alpha(0.05), limit(-1), counter(0), minVal(0.0),
+  maxVal(1.0), enableThreshold(true), threshold(15)
 {
   debug_construction(AdaptiveBackgroundLearning);
-  setup("./config/AdaptiveBackgroundLearning.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 AdaptiveBackgroundLearning::~AdaptiveBackgroundLearning() {
@@ -65,29 +65,18 @@ void AdaptiveBackgroundLearning::process(const cv::Mat &img_input, cv::Mat &img_
   firstTime = false;
 }
 
-void AdaptiveBackgroundLearning::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-
+void AdaptiveBackgroundLearning::save_config(cv::FileStorage &fs) {
   fs << "alpha" << alpha;
   fs << "limit" << limit;
   fs << "enableThreshold" << enableThreshold;
   fs << "threshold" << threshold;
   fs << "showOutput" << showOutput;
-
-  fs.release();
 }
 
-void AdaptiveBackgroundLearning::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-
+void AdaptiveBackgroundLearning::load_config(cv::FileStorage &fs) {
   fs["alpha"] >> alpha;
   fs["limit"] >> limit;
   fs["enableThreshold"] >> enableThreshold;
   fs["threshold"] >> threshold;
   fs["showOutput"] >> showOutput;
-
-  fs.release();
 }

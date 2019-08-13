@@ -9,8 +9,8 @@
 class PixelUtils
 {
 public:
-  PixelUtils(void);
-  ~PixelUtils(void);
+  PixelUtils();
+  ~PixelUtils();
 
   void ColorConversion(IplImage* RGBImage, IplImage* ConvertedImage, int color_space);
   void cvttoOTHA(IplImage* RGBImage, IplImage* OthaImage);

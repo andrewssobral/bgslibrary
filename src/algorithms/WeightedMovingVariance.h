@@ -23,8 +23,8 @@ namespace bgslibrary
       cv::Mat computeWeightedVariance(const cv::Mat &img_input_f, const cv::Mat &img_mean_f, const double weight);
 
     private:
-      void saveConfig();
-      void loadConfig();
+      void save_config(cv::FileStorage &fs);
+      void load_config(cv::FileStorage &fs);
     };
 
     bgs_register(WeightedMovingVariance);

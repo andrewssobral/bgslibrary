@@ -10,7 +10,7 @@ DPPratiMediod::DPPratiMediod() :
   historySize(16), weight(5)
 {
   debug_construction(DPPratiMediod);
-  setup("./config/DPPratiMediod.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 DPPratiMediod::~DPPratiMediod() {
@@ -70,31 +70,20 @@ void DPPratiMediod::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
   frameNumber++;
 }
 
-void DPPratiMediod::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-
+void DPPratiMediod::save_config(cv::FileStorage &fs) {
   fs << "threshold" << threshold;
   fs << "samplingRate" << samplingRate;
   fs << "historySize" << historySize;
   fs << "weight" << weight;
   fs << "showOutput" << showOutput;
-
-  fs.release();
 }
 
-void DPPratiMediod::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-
+void DPPratiMediod::load_config(cv::FileStorage &fs) {
   fs["threshold"] >> threshold;
   fs["samplingRate"] >> samplingRate;
   fs["historySize"] >> historySize;
   fs["weight"] >> weight;
   fs["showOutput"] >> showOutput;
-
-  fs.release();
 }
 
 #endif

@@ -6,11 +6,12 @@ using namespace bgslibrary::algorithms;
 
 FuzzyChoquetIntegral::FuzzyChoquetIntegral() :
   IBGS(quote(FuzzyChoquetIntegral)),
-  frameNumber(0), framesToLearn(10), alphaLearn(0.1), alphaUpdate(0.01),
-  colorSpace(1), option(2), smooth(true), threshold(0.67)
+  frameNumber(0), framesToLearn(10), alphaLearn(0.1),
+  alphaUpdate(0.01), colorSpace(1), option(2),
+  smooth(true), threshold(0.67)
 {
   debug_construction(FuzzyChoquetIntegral);
-  setup("./config/FuzzyChoquetIntegral.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 FuzzyChoquetIntegral::~FuzzyChoquetIntegral() {
@@ -162,10 +163,7 @@ void FuzzyChoquetIntegral::process(const cv::Mat &img_input, cv::Mat &img_output
   frameNumber++;
 }
 
-void FuzzyChoquetIntegral::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void FuzzyChoquetIntegral::save_config(cv::FileStorage &fs) {
   fs << "threshold" << threshold;
   fs << "framesToLearn" << framesToLearn;
   fs << "alphaLearn" << alphaLearn;
@@ -174,15 +172,9 @@ void FuzzyChoquetIntegral::saveConfig()
   fs << "option" << option;
   fs << "smooth" << smooth;
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void FuzzyChoquetIntegral::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void FuzzyChoquetIntegral::load_config(cv::FileStorage &fs) {
   fs["threshold"] >> threshold;
   fs["framesToLearn"] >> framesToLearn;
   fs["alphaLearn"] >> alphaLearn;
@@ -191,8 +183,6 @@ void FuzzyChoquetIntegral::loadConfig()
   fs["option"] >> option;
   fs["smooth"] >> smooth;
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }
 
 #endif

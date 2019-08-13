@@ -8,7 +8,7 @@ AdaptiveSelectiveBackgroundLearning::AdaptiveSelectiveBackgroundLearning() :
   counter(0), minVal(0.0), maxVal(1.0), threshold(15)
 {
   debug_construction(AdaptiveSelectiveBackgroundLearning);
-  setup("./config/AdaptiveSelectiveBackgroundLearning.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 AdaptiveSelectiveBackgroundLearning::~AdaptiveSelectiveBackgroundLearning() {
@@ -43,19 +43,16 @@ void AdaptiveSelectiveBackgroundLearning::process(const cv::Mat &img_input_, cv:
   cv::threshold(img_foreground, img_foreground, threshold, 255, cv::THRESH_BINARY);
   cv::medianBlur(img_foreground, img_foreground, 3);
 
-  if (learningFrames > 0 && counter <= learningFrames)
-  {
+  if (learningFrames > 0 && counter <= learningFrames) {
     //std::cout << "Adaptive update..." << std::endl;
     // Only Adaptive update of the background model
     img_background_f = alphaLearn * img_input_f + (1 - alphaLearn) * img_background_f;
     counter++;
   }
-  else
-  {
+  else {
     //std::cout << "Adaptive and Selective update..." << std::endl;
     int rows = img_input.rows;
     int cols = img_input.cols;
-
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < cols; j++) {
         // Adaptive and Selective update of the background model
@@ -83,29 +80,18 @@ void AdaptiveSelectiveBackgroundLearning::process(const cv::Mat &img_input_, cv:
   firstTime = false;
 }
 
-void AdaptiveSelectiveBackgroundLearning::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-
+void AdaptiveSelectiveBackgroundLearning::save_config(cv::FileStorage &fs) {
   fs << "learningFrames" << learningFrames;
   fs << "alphaLearn" << alphaLearn;
   fs << "alphaDetection" << alphaDetection;
   fs << "threshold" << threshold;
   fs << "showOutput" << showOutput;
-
-  fs.release();
 }
 
-void AdaptiveSelectiveBackgroundLearning::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-
+void AdaptiveSelectiveBackgroundLearning::load_config(cv::FileStorage &fs) {
   fs["learningFrames"] >> learningFrames;
   fs["alphaLearn"] >> alphaLearn;
   fs["alphaDetection"] >> alphaDetection;
   fs["threshold"] >> threshold;
   fs["showOutput"] >> showOutput;
-
-  fs.release();
 }

@@ -6,7 +6,7 @@ namespace bgslibrary
     firstTime(true), equalizeHist(false), gaussianBlur(false)
   {
     debug_construction(PreProcessor);
-    setup("./config/PreProcessor.xml");
+    initLoadSaveConfig(quote(PreProcessor));
   }
 
   PreProcessor::~PreProcessor() {
@@ -29,11 +29,6 @@ namespace bgslibrary
   {
     if (img_input.empty())
       return;
-
-    loadConfig();
-
-    if (firstTime)
-      saveConfig();
 
     img_input.copyTo(img_output);
 
@@ -107,26 +102,15 @@ namespace bgslibrary
     img_canny.copyTo(img_output);
   }
 
-  void PreProcessor::saveConfig()
-  {
-    cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-
+  void PreProcessor::save_config(cv::FileStorage &fs) {
     fs << "equalizeHist" << equalizeHist;
     fs << "gaussianBlur" << gaussianBlur;
     fs << "enableShow" << enableShow;
-
-    fs.release();
   }
 
-  void PreProcessor::loadConfig()
-  {
-    cv::FileStorage fs;
-    fs.open(config_xml, cv::FileStorage::READ);
-    
+  void PreProcessor::load_config(cv::FileStorage &fs) {
     fs["equalizeHist"] >> equalizeHist;
     fs["gaussianBlur"] >> gaussianBlur;
     fs["enableShow"] >> enableShow;
-
-    fs.release();
   }
 }

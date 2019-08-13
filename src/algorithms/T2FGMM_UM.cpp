@@ -10,7 +10,7 @@ T2FGMM_UM::T2FGMM_UM() :
   km(1.5f), kv(0.6f), gaussians(3)
 {
   debug_construction(T2FGMM_UM);
-  setup("./config/T2FGMM_UM.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 T2FGMM_UM::~T2FGMM_UM() {
@@ -70,33 +70,22 @@ void T2FGMM_UM::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
   frameNumber++;
 }
 
-void T2FGMM_UM::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void T2FGMM_UM::save_config(cv::FileStorage &fs) {
   fs << "threshold" << threshold;
   fs << "alpha" << alpha;
   fs << "km" << km;
   fs << "kv" << kv;
   fs << "gaussians" << gaussians;
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void T2FGMM_UM::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void T2FGMM_UM::load_config(cv::FileStorage &fs) {
   fs["threshold"] >> threshold;
   fs["alpha"] >> alpha;
   fs["km"] >> km;
   fs["kv"] >> kv;
   fs["gaussians"] >> gaussians;
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }
 
 #endif

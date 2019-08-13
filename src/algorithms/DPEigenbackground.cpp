@@ -10,7 +10,7 @@ DPEigenbackground::DPEigenbackground() :
   historySize(20), embeddedDim(10)
 {
   debug_construction(DPEigenbackground);
-  setup("./config/DPEigenbackground.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 DPEigenbackground::~DPEigenbackground() {
@@ -70,29 +70,18 @@ void DPEigenbackground::process(const cv::Mat &img_input, cv::Mat &img_output, c
   frameNumber++;
 }
 
-void DPEigenbackground::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-
+void DPEigenbackground::save_config(cv::FileStorage &fs) {
   fs << "threshold" << threshold;
   fs << "historySize" << historySize;
   fs << "embeddedDim" << embeddedDim;
   fs << "showOutput" << showOutput;
-
-  fs.release();
 }
 
-void DPEigenbackground::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-
+void DPEigenbackground::load_config(cv::FileStorage &fs) {
   fs["threshold"] >> threshold;
   fs["historySize"] >> historySize;
   fs["embeddedDim"] >> embeddedDim;
   fs["showOutput"] >> showOutput;
-
-  fs.release();
 }
 
 #endif

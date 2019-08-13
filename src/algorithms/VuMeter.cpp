@@ -10,7 +10,7 @@ VuMeter::VuMeter() :
   alpha(0.995), threshold(0.03)
 {
   debug_construction(VuMeter);
-  setup("./config/VuMeter.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 VuMeter::~VuMeter() {
@@ -65,31 +65,20 @@ void VuMeter::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &im
   firstTime = false;
 }
 
-void VuMeter::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void VuMeter::save_config(cv::FileStorage &fs) {
   fs << "enableFilter" << enableFilter;
   fs << "binSize" << binSize;
   fs << "alpha" << alpha;
   fs << "threshold" << threshold;
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void VuMeter::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void VuMeter::load_config(cv::FileStorage &fs) {
   fs["enableFilter"] >> enableFilter;
   fs["binSize"] >> binSize;
   fs["alpha"] >> alpha;
   fs["threshold"] >> threshold;
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }
 
 #endif

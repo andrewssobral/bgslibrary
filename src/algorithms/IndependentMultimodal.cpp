@@ -8,8 +8,8 @@ IndependentMultimodal::IndependentMultimodal() :
   IBGS(quote(IndependentMultimodal)), fps(10)
 {
   debug_construction(IndependentMultimodal);
+  initLoadSaveConfig(algorithmName);
   pIMBS = new BackgroundSubtractorIMBS(fps);
-  setup("./config/IndependentMultimodal.xml");
 }
 
 IndependentMultimodal::~IndependentMultimodal() {
@@ -40,23 +40,14 @@ void IndependentMultimodal::process(const cv::Mat &img_input, cv::Mat &img_outpu
   firstTime = false;
 }
 
-void IndependentMultimodal::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void IndependentMultimodal::save_config(cv::FileStorage &fs) {
+  fs << "fps" << fps;
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void IndependentMultimodal::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void IndependentMultimodal::load_config(cv::FileStorage &fs) {
+  fs["fps"] >> fps;
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }
 
 #endif

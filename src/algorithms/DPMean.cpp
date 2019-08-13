@@ -10,7 +10,7 @@ DPMean::DPMean() :
   alpha(1e-6f), learningFrames(30)
 {
   debug_construction(DPMean);
-  setup("./config/DPMean.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 DPMean::~DPMean() {
@@ -69,29 +69,18 @@ void DPMean::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img
   frameNumber++;
 }
 
-void DPMean::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-
+void DPMean::save_config(cv::FileStorage &fs) {
   fs << "threshold" << threshold;
   fs << "alpha" << alpha;
   fs << "learningFrames" << learningFrames;
   fs << "showOutput" << showOutput;
-
-  fs.release();
 }
 
-void DPMean::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-
+void DPMean::load_config(cv::FileStorage &fs) {
   fs["threshold"] >> threshold;
   fs["alpha"] >> alpha;
   fs["learningFrames"] >> learningFrames;
   fs["showOutput"] >> showOutput;
-
-  fs.release();
 }
 
 #endif

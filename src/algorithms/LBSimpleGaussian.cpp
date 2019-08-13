@@ -9,7 +9,7 @@ LBSimpleGaussian::LBSimpleGaussian() :
   sensitivity(66), noiseVariance(162), learningRate(18)
 {
   debug_construction(LBSimpleGaussian);
-  setup("./config/LBSimpleGaussian.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 LBSimpleGaussian::~LBSimpleGaussian() {
@@ -55,29 +55,18 @@ void LBSimpleGaussian::process(const cv::Mat &img_input, cv::Mat &img_output, cv
   firstTime = false;
 }
 
-void LBSimpleGaussian::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void LBSimpleGaussian::save_config(cv::FileStorage &fs) {
   fs << "sensitivity" << sensitivity;
   fs << "noiseVariance" << noiseVariance;
   fs << "learningRate" << learningRate;
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void LBSimpleGaussian::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void LBSimpleGaussian::load_config(cv::FileStorage &fs) {
   fs["sensitivity"] >> sensitivity;
   fs["noiseVariance"] >> noiseVariance;
   fs["learningRate"] >> learningRate;
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }
 
 #endif

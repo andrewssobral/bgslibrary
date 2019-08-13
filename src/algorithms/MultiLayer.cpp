@@ -6,11 +6,12 @@ using namespace bgslibrary::algorithms;
 
 MultiLayer::MultiLayer() :
   IBGS(quote(MultiLayer)),
-  frameNumber(0), saveModel(false), disableDetectMode(true), disableLearning(false),
+  frameNumber(0), saveModel(false),
+  disableDetectMode(true), disableLearning(false),
   detectAfter(0), bg_model_preload(""), loadDefaultParams(true)
 {
   debug_construction(MultiLayer);
-  setup("./config/MultiLayer.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 MultiLayer::~MultiLayer() {
@@ -213,10 +214,7 @@ void MultiLayer::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat 
   frameNumber++;
 }
 
-void MultiLayer::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void MultiLayer::save_config(cv::FileStorage &fs) {
   fs << "preloadModel" << bg_model_preload;
   fs << "saveModel" << saveModel;
   fs << "detectAfter" << detectAfter;
@@ -224,7 +222,6 @@ void MultiLayer::saveConfig()
   fs << "disableLearningInDetecMode" << disableLearning;
   fs << "loadDefaultParams" << loadDefaultParams;
   fs << "frame_duration" << frame_duration;
-  
   fs << "max_mode_num" << max_mode_num;
   fs << "weight_updating_constant" << weight_updating_constant;
   fs << "texture_weight" << texture_weight;
@@ -239,25 +236,16 @@ void MultiLayer::saveConfig()
   fs << "highlight_rate" << highlight_rate;
   fs << "bilater_filter_sigma_s" << bilater_filter_sigma_s;
   fs << "bilater_filter_sigma_r" << bilater_filter_sigma_r;
-  
   fs << "learn_mode_learn_rate_per_second" << learn_mode_learn_rate_per_second;
   fs << "learn_weight_learn_rate_per_second" << learn_weight_learn_rate_per_second;
   fs << "learn_init_mode_weight" << learn_init_mode_weight;
-  
   fs << "detect_mode_learn_rate_per_second" << detect_mode_learn_rate_per_second;
   fs << "detect_weight_learn_rate_per_second" << detect_weight_learn_rate_per_second;
   fs << "detect_init_mode_weight" << detect_init_mode_weight;
-  
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void MultiLayer::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void MultiLayer::load_config(cv::FileStorage &fs) {
   fs["preloadModel"] >> bg_model_preload;
   fs["saveModel"] >> saveModel;
   fs["detectAfter"] >> detectAfter;
@@ -265,7 +253,6 @@ void MultiLayer::loadConfig()
   fs["disableLearningInDetecMode"] >> disableLearning;
   fs["loadDefaultParams"] >> loadDefaultParams;
   fs["frame_duration"] >> frame_duration;
-  
   fs["max_mode_num"] >> max_mode_num;
   fs["weight_updating_constant"] >> weight_updating_constant;
   fs["texture_weight"] >> texture_weight;
@@ -280,18 +267,13 @@ void MultiLayer::loadConfig()
   fs["highlight_rate"] >> highlight_rate;
   fs["bilater_filter_sigma_s"] >> bilater_filter_sigma_s;
   fs["bilater_filter_sigma_r"] >> bilater_filter_sigma_r;
-  
   fs["learn_mode_learn_rate_per_second"] >> learn_mode_learn_rate_per_second;
   fs["learn_weight_learn_rate_per_second"] >> learn_weight_learn_rate_per_second;
   fs["learn_init_mode_weight"] >> learn_init_mode_weight;
-  
   fs["detect_mode_learn_rate_per_second"] >> detect_mode_learn_rate_per_second;
   fs["detect_weight_learn_rate_per_second"] >> detect_weight_learn_rate_per_second;
   fs["detect_init_mode_weight"] >> detect_init_mode_weight;
-  
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }
 
 #endif

@@ -12,8 +12,9 @@ PAWCS::PAWCS() :
   nSamplesForMovingAvgs(BGSPAWCS_DEFAULT_N_SAMPLES_FOR_MV_AVGS)
 {
   debug_construction(PAWCS);
-  setup("./config/PAWCS.xml");
+  initLoadSaveConfig(algorithmName);
 }
+
 PAWCS::~PAWCS() {
   debug_destruction(PAWCS);
   if (pPAWCS)
@@ -47,31 +48,20 @@ void PAWCS::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_
   img_background.copyTo(img_bgmodel);
 }
 
-void PAWCS::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void PAWCS::save_config(cv::FileStorage &fs) {
   fs << "fRelLBSPThreshold" << fRelLBSPThreshold;
   fs << "nDescDistThresholdOffset" << nDescDistThresholdOffset;
   fs << "nMinColorDistThreshold" << nMinColorDistThreshold;
   fs << "nMaxNbWords" << nMaxNbWords;
   fs << "nSamplesForMovingAvgs" << nSamplesForMovingAvgs;
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void PAWCS::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void PAWCS::load_config(cv::FileStorage &fs) {
   fs["fRelLBSPThreshold"] >> fRelLBSPThreshold;
   fs["nDescDistThresholdOffset"] >> nDescDistThresholdOffset;
   fs["nMinColorDistThreshold"] >> nMinColorDistThreshold;
   fs["nMaxNbWords"] >> nMaxNbWords;
   fs["nSamplesForMovingAvgs"] >> nSamplesForMovingAvgs;
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }

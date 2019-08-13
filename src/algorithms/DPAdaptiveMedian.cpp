@@ -10,7 +10,7 @@ DPAdaptiveMedian::DPAdaptiveMedian() :
   samplingRate(7), learningFrames(30)
 {
   debug_construction(DPAdaptiveMedian);
-  setup("./config/DPAdaptiveMedian.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 DPAdaptiveMedian::~DPAdaptiveMedian() {
@@ -70,29 +70,18 @@ void DPAdaptiveMedian::process(const cv::Mat &img_input, cv::Mat &img_output, cv
   frameNumber++;
 }
 
-void DPAdaptiveMedian::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-
+void DPAdaptiveMedian::save_config(cv::FileStorage &fs) {
   fs << "threshold" << threshold;
   fs << "samplingRate" << samplingRate;
   fs << "learningFrames" << learningFrames;
   fs << "showOutput" << showOutput;
-
-  fs.release();
 }
 
-void DPAdaptiveMedian::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-
+void DPAdaptiveMedian::load_config(cv::FileStorage &fs) {
   fs["threshold"] >> threshold;
   fs["samplingRate"] >> samplingRate;
   fs["learningFrames"] >> learningFrames;
   fs["showOutput"] >> showOutput;
-
-  fs.release();
 }
 
 #endif

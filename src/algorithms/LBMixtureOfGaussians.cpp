@@ -10,7 +10,7 @@ LBMixtureOfGaussians::LBMixtureOfGaussians() :
   learningRate(59), noiseVariance(206)
 {
   debug_construction(LBMixtureOfGaussians);
-  setup("./config/LBMixtureOfGaussians.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 LBMixtureOfGaussians::~LBMixtureOfGaussians() {
@@ -57,31 +57,20 @@ void LBMixtureOfGaussians::process(const cv::Mat &img_input, cv::Mat &img_output
   firstTime = false;
 }
 
-void LBMixtureOfGaussians::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void LBMixtureOfGaussians::save_config(cv::FileStorage &fs) {
   fs << "sensitivity" << sensitivity;
   fs << "bgThreshold" << bgThreshold;
   fs << "learningRate" << learningRate;
   fs << "noiseVariance" << noiseVariance;
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void LBMixtureOfGaussians::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void LBMixtureOfGaussians::load_config(cv::FileStorage &fs) {
   fs["sensitivity"] >> sensitivity;
   fs["bgThreshold"] >> bgThreshold;
   fs["learningRate"] >> learningRate;
   fs["noiseVariance"] >> noiseVariance;
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }
 
 #endif

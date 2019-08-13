@@ -6,6 +6,7 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/features2d/features2d.hpp>
+// opencv legacy includes
 #include <opencv2/imgproc/types_c.h>
 //#include <opencv2/imgproc/imgproc_c.h>
 //#include <opencv2/highgui/highgui_c.h>
@@ -37,7 +38,7 @@ namespace bgslibrary
     void applyCanny(const cv::Mat &img_input, cv::Mat &img_output);
 
   private:
-    void saveConfig();
-    void loadConfig();
+    void save_config(cv::FileStorage &fs);
+    void load_config(cv::FileStorage &fs);
   };
 }

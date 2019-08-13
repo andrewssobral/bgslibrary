@@ -10,7 +10,7 @@ DPWrenGA::DPWrenGA() :
   alpha(0.005f), learningFrames(30)
 {
   debug_construction(DPWrenGA);
-  setup("./config/DPWrenGA.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 DPWrenGA::~DPWrenGA() {
@@ -68,29 +68,18 @@ void DPWrenGA::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &i
   frameNumber++;
 }
 
-void DPWrenGA::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void DPWrenGA::save_config(cv::FileStorage &fs) {
   fs << "threshold" << threshold;
   fs << "alpha" << alpha;
   fs << "learningFrames" << learningFrames;
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void DPWrenGA::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void DPWrenGA::load_config(cv::FileStorage &fs) {
   fs["threshold"] >> threshold;
   fs["alpha"] >> alpha;
   fs["learningFrames"] >> learningFrames;
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }
 
 #endif

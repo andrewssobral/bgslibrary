@@ -44,9 +44,9 @@ namespace bgslibrary
       void initializeCodebook(int w, int h);
       void update_cb(const cv::Mat& frame);
       void fg_cb(const cv::Mat& frame, cv::Mat& fg);
-
-      void saveConfig();
-      void loadConfig();
+      
+      void save_config(cv::FileStorage &fs);
+      void load_config(cv::FileStorage &fs);
     };
 
     bgs_register(CodeBook);

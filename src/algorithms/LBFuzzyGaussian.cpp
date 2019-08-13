@@ -10,7 +10,7 @@ LBFuzzyGaussian::LBFuzzyGaussian() :
   learningRate(49), noiseVariance(195)
 {
   debug_construction(LBFuzzyGaussian);
-  setup("./config/LBFuzzyGaussian.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 LBFuzzyGaussian::~LBFuzzyGaussian() {
@@ -57,31 +57,20 @@ void LBFuzzyGaussian::process(const cv::Mat &img_input, cv::Mat &img_output, cv:
   firstTime = false;
 }
 
-void LBFuzzyGaussian::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void LBFuzzyGaussian::save_config(cv::FileStorage &fs) {
   fs << "sensitivity" << sensitivity;
   fs << "bgThreshold" << bgThreshold;
   fs << "learningRate" << learningRate;
   fs << "noiseVariance" << noiseVariance;
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void LBFuzzyGaussian::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void LBFuzzyGaussian::load_config(cv::FileStorage &fs) {
   fs["sensitivity"] >> sensitivity;
   fs["bgThreshold"] >> bgThreshold;
   fs["learningRate"] >> learningRate;
   fs["noiseVariance"] >> noiseVariance;
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }
 
 #endif

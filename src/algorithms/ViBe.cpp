@@ -11,8 +11,8 @@ ViBe::ViBe() :
   model(nullptr)
 {
   debug_construction(ViBe);
+  initLoadSaveConfig(algorithmName);
   model = libvibeModel_Sequential_New();
-  setup("./config/ViBe.xml");
 }
 
 ViBe::~ViBe() {
@@ -53,29 +53,18 @@ void ViBe::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_b
   firstTime = false;
 }
 
-void ViBe::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void ViBe::save_config(cv::FileStorage &fs) {
   //fs << "numberOfSamples" << numberOfSamples;
   fs << "matchingThreshold" << matchingThreshold;
   fs << "matchingNumber" << matchingNumber;
   fs << "updateFactor" << updateFactor;
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void ViBe::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void ViBe::load_config(cv::FileStorage &fs) {
   //fs["numberOfSamples"] >> numberOfSamples;
   fs["matchingThreshold"] >> matchingThreshold;
   fs["matchingNumber"] >> matchingNumber;
   fs["updateFactor"] >> updateFactor;
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }

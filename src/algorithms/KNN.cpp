@@ -6,11 +6,12 @@ using namespace bgslibrary::algorithms;
 
 KNN::KNN() :
   IBGS(quote(KNN)),
-  history(500), nSamples(7), dist2Threshold(20.0f * 20.0f), knnSamples(0),
-  doShadowDetection(true), shadowValue(127), shadowThreshold(0.5f)
+  history(500), nSamples(7), dist2Threshold(20.0f * 20.0f),
+  knnSamples(0), doShadowDetection(true), shadowValue(127),
+  shadowThreshold(0.5f)
 {
   debug_construction(KNN);
-  setup("./config/KNN.xml");
+  initLoadSaveConfig(algorithmName);
 }
 
 KNN::~KNN() {
@@ -59,10 +60,7 @@ void KNN::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bg
   firstTime = false;
 }
 
-void KNN::saveConfig()
-{
-  cv::FileStorage fs(config_xml, cv::FileStorage::WRITE);
-  
+void KNN::save_config(cv::FileStorage &fs) {
   fs << "history" << history;
   fs << "nSamples" << nSamples;
   fs << "dist2Threshold" << dist2Threshold;
@@ -71,15 +69,9 @@ void KNN::saveConfig()
   fs << "shadowValue" << shadowValue;
   fs << "shadowThreshold" << shadowThreshold;
   fs << "showOutput" << showOutput;
-  
-  fs.release();
 }
 
-void KNN::loadConfig()
-{
-  cv::FileStorage fs;
-  fs.open(config_xml, cv::FileStorage::READ);
-  
+void KNN::load_config(cv::FileStorage &fs) {
   fs["history"] >> history;
   fs["nSamples"] >> nSamples;
   fs["dist2Threshold"] >> dist2Threshold;
@@ -88,8 +80,6 @@ void KNN::loadConfig()
   fs["shadowValue"] >> shadowValue;
   fs["shadowThreshold"] >> shadowThreshold;
   fs["showOutput"] >> showOutput;
-  
-  fs.release();
 }
 
 #endif
