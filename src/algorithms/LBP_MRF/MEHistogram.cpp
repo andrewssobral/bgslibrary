@@ -1,4 +1,5 @@
 #include <opencv2/opencv.hpp>
+// opencv legacy includes
 #include <opencv2/core/core_c.h>
 #include <opencv2/imgproc/types_c.h>
 #include <opencv2/imgproc/imgproc_c.h>
@@ -7,17 +8,15 @@
 #include "MEDefs.hpp"
 #include "MEImage.hpp"
 
-MEHistogram::MEHistogram()
-{
+using namespace bgslibrary::algorithms::lbp_mrf;
+
+MEHistogram::MEHistogram() {
   Clear();
 }
 
-MEHistogram::~MEHistogram()
-{
-}
+MEHistogram::~MEHistogram(){}
 
-void MEHistogram::Clear()
-{
+void MEHistogram::Clear() {
   memset(&HistogramData, 0, 256 * sizeof(int));
 }
 

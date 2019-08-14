@@ -5,11 +5,11 @@ using namespace bgslibrary::algorithms;
 PAWCS::PAWCS() : 
   IBGS(quote(PAWCS)),
   pPAWCS(nullptr),
-  fRelLBSPThreshold(BGSPAWCS_DEFAULT_LBSP_REL_SIMILARITY_THRESHOLD),
-  nDescDistThresholdOffset(BGSPAWCS_DEFAULT_DESC_DIST_THRESHOLD_OFFSET),
-  nMinColorDistThreshold(BGSPAWCS_DEFAULT_MIN_COLOR_DIST_THRESHOLD),
-  nMaxNbWords(BGSPAWCS_DEFAULT_MAX_NB_WORDS),
-  nSamplesForMovingAvgs(BGSPAWCS_DEFAULT_N_SAMPLES_FOR_MV_AVGS)
+  fRelLBSPThreshold(lbsp::BGSPAWCS_DEFAULT_LBSP_REL_SIMILARITY_THRESHOLD),
+  nDescDistThresholdOffset(lbsp::BGSPAWCS_DEFAULT_DESC_DIST_THRESHOLD_OFFSET),
+  nMinColorDistThreshold(lbsp::BGSPAWCS_DEFAULT_MIN_COLOR_DIST_THRESHOLD),
+  nMaxNbWords(lbsp::BGSPAWCS_DEFAULT_MAX_NB_WORDS),
+  nSamplesForMovingAvgs(lbsp::BGSPAWCS_DEFAULT_N_SAMPLES_FOR_MV_AVGS)
 {
   debug_construction(PAWCS);
   initLoadSaveConfig(algorithmName);
@@ -26,7 +26,7 @@ void PAWCS::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_
   init(img_input, img_output, img_bgmodel);
 
   if (firstTime) {
-    pPAWCS = new BackgroundSubtractorPAWCS(
+    pPAWCS = new lbsp::BackgroundSubtractorPAWCS(
       fRelLBSPThreshold, nDescDistThresholdOffset, nMinColorDistThreshold,
       nMaxNbWords, nSamplesForMovingAvgs);
 

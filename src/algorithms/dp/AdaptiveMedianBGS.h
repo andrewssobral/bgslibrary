@@ -9,10 +9,12 @@
 
 #include "Bgs.h"
 
-namespace Algorithms
+namespace bgslibrary
 {
-  namespace BackgroundSubtraction
+  namespace algorithms
   {
+    namespace dp
+    {
     // --- Parameters used by the Adaptive Median BGS algorithm ---
     class AdaptiveMedianParams : public BgsParams
     {
@@ -55,6 +57,7 @@ namespace Algorithms
 
       RgbImage m_median;
     };
+    }
   }
 }
 

@@ -21,13 +21,13 @@ namespace bgslibrary
       };
 
     private:
-      long long frameNumber;
+      long frameNumber;
       cv::Mat img_merged;
       bool saveModel;
       bool disableDetectMode;
       bool disableLearning;
       int detectAfter;
-      CMultiLayerBGS* BGS;
+      multilayer::CMultiLayerBGS* BGS;
       Status status;
       //IplImage* img;
       IplImage* org_img;

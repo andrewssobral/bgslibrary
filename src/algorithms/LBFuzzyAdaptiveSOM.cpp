@@ -28,7 +28,7 @@ void LBFuzzyAdaptiveSOM::process(const cv::Mat &img_input, cv::Mat &img_output, 
     int w = cvGetSize(frame).width;
     int h = cvGetSize(frame).height;
 
-    m_pBGModel = new BGModelFuzzySom(w, h);
+    m_pBGModel = new lb::BGModelFuzzySom(w, h);
     m_pBGModel->InitModel(frame);
   }
 

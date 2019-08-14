@@ -10,8 +10,8 @@ LBP_MRF::LBP_MRF() :
 {
   debug_construction(LBP_MRF);
   initLoadSaveConfig(algorithmName);
-  Detector = new MotionDetection();
-  Detector->SetMode(MotionDetection::md_LBPHistograms);
+  Detector = new lbp_mrf::MotionDetection();
+  Detector->SetMode(lbp_mrf::MotionDetection::md_LBPHistograms);
 }
 
 LBP_MRF::~LBP_MRF() {
@@ -25,8 +25,8 @@ void LBP_MRF::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &im
   init(img_input, img_output, img_bgmodel);
 
   IplImage TempImage(img_input);
-  MEImage InputImage(img_input.cols, img_input.rows, img_input.channels());
-  MEImage OutputImage(img_input.cols, img_input.rows, img_input.channels());
+  lbp_mrf::MEImage InputImage(img_input.cols, img_input.rows, img_input.channels());
+  lbp_mrf::MEImage OutputImage(img_input.cols, img_input.rows, img_input.channels());
 
   InputImage.SetIplImage((void*)&TempImage);
 

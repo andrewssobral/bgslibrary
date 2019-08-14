@@ -2,19 +2,28 @@
 
 #include <iostream>
 
-class KernelLUTable
+namespace bgslibrary
 {
-public:
-  double minsegma;
-  double maxsegma;
-  int segmabins;
-  int tablehalfwidth;
-  double *kerneltable;
-  double *kernelsums;
+  namespace algorithms
+  {
+    namespace kde
+    {
+      class KernelLUTable
+      {
+      public:
+        double minsegma;
+        double maxsegma;
+        int segmabins;
+        int tablehalfwidth;
+        double *kerneltable;
+        double *kernelsums;
 
-public:
-  KernelLUTable();
-  ~KernelLUTable();
+      public:
+        KernelLUTable();
+        ~KernelLUTable();
 
-  KernelLUTable(int KernelHalfWidth, double Segmamin, double Segmamax, int Segmabins);
-};
+        KernelLUTable(int KernelHalfWidth, double Segmamin, double Segmamax, int Segmabins);
+      };
+    }
+  }
+}

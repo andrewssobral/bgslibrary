@@ -4,10 +4,12 @@
 
 #if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
 
-namespace Algorithms
+namespace bgslibrary
 {
-  namespace BackgroundSubtraction
+  namespace algorithms
   {
+    namespace dp
+    {
     // --- User adjustable parameters used by the Grimson GMM BGS algorithm ---
     class ZivkovicParams : public BgsParams
     {
@@ -96,6 +98,7 @@ namespace Algorithms
       //number of Gaussian components per pixel
       unsigned char* m_modes_per_pixel;
     };
+    }
   }
 }
 

@@ -4,10 +4,12 @@
 
 #if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
 
-namespace Algorithms
+namespace bgslibrary
 {
-  namespace BackgroundSubtraction
+  namespace algorithms
   {
+    namespace dp
+    {
     typedef struct GMMGaussian
     {
       float variance;
@@ -91,6 +93,7 @@ namespace Algorithms
       // Current background model
       RgbImage m_background;
     };
+    }
   }
 }
 

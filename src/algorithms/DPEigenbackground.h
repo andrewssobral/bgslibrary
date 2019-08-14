@@ -7,8 +7,6 @@
 
 #include "dp/Eigenbackground.h"
 
-using namespace Algorithms::BackgroundSubtraction;
-
 namespace bgslibrary
 {
   namespace algorithms
@@ -17,17 +15,15 @@ namespace bgslibrary
     {
     private:
       long frameNumber;
-      IplImage* frame;
-      RgbImage frame_data;
-
-      EigenbackgroundParams params;
-      Eigenbackground bgs;
-      BwImage lowThresholdMask;
-      BwImage highThresholdMask;
-
       int threshold;
       int historySize;
       int embeddedDim;
+      IplImage* frame;
+      dp::RgbImage frame_data;
+      dp::EigenbackgroundParams params;
+      dp::Eigenbackground bgs;
+      dp::BwImage lowThresholdMask;
+      dp::BwImage highThresholdMask;
 
     public:
       DPEigenbackground();

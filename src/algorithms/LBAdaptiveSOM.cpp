@@ -29,7 +29,7 @@ void LBAdaptiveSOM::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
     int w = cvGetSize(frame).width;
     int h = cvGetSize(frame).height;
 
-    m_pBGModel = new BGModelSom(w, h);
+    m_pBGModel = new lb::BGModelSom(w, h);
     m_pBGModel->InitModel(frame);
   }
 

@@ -16,7 +16,7 @@ namespace bgslibrary
       int ampFactor;
       int minVar;
       int maxVar;
-      sdLaMa091_t* algorithm;
+      sigmadelta::sdLaMa091_t* algorithm;
 
     public:
       SigmaDelta();

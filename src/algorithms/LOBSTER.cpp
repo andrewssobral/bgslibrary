@@ -5,12 +5,12 @@ using namespace bgslibrary::algorithms;
 LOBSTER::LOBSTER() :
   IBGS(quote(LOBSTER)),
   pLOBSTER(nullptr),
-  fRelLBSPThreshold(BGSLOBSTER_DEFAULT_LBSP_REL_SIMILARITY_THRESHOLD),
-  nLBSPThresholdOffset(BGSLOBSTER_DEFAULT_LBSP_OFFSET_SIMILARITY_THRESHOLD),
-  nDescDistThreshold(BGSLOBSTER_DEFAULT_DESC_DIST_THRESHOLD),
-  nColorDistThreshold(BGSLOBSTER_DEFAULT_COLOR_DIST_THRESHOLD),
-  nBGSamples(BGSLOBSTER_DEFAULT_NB_BG_SAMPLES),
-  nRequiredBGSamples(BGSLOBSTER_DEFAULT_REQUIRED_NB_BG_SAMPLES)
+  fRelLBSPThreshold(lbsp::BGSLOBSTER_DEFAULT_LBSP_REL_SIMILARITY_THRESHOLD),
+  nLBSPThresholdOffset(lbsp::BGSLOBSTER_DEFAULT_LBSP_OFFSET_SIMILARITY_THRESHOLD),
+  nDescDistThreshold(lbsp::BGSLOBSTER_DEFAULT_DESC_DIST_THRESHOLD),
+  nColorDistThreshold(lbsp::BGSLOBSTER_DEFAULT_COLOR_DIST_THRESHOLD),
+  nBGSamples(lbsp::BGSLOBSTER_DEFAULT_NB_BG_SAMPLES),
+  nRequiredBGSamples(lbsp::BGSLOBSTER_DEFAULT_REQUIRED_NB_BG_SAMPLES)
 {
   debug_construction(LOBSTER);
   initLoadSaveConfig(algorithmName);
@@ -27,7 +27,7 @@ void LOBSTER::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &im
   init(img_input, img_output, img_bgmodel);
 
   if (firstTime) {
-    pLOBSTER = new BackgroundSubtractorLOBSTER(
+    pLOBSTER = new lbsp::BackgroundSubtractorLOBSTER(
       fRelLBSPThreshold, nLBSPThresholdOffset, nDescDistThreshold,
       nColorDistThreshold, nBGSamples, nRequiredBGSamples);
 

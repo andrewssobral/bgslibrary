@@ -9,7 +9,7 @@ IndependentMultimodal::IndependentMultimodal() :
 {
   debug_construction(IndependentMultimodal);
   initLoadSaveConfig(algorithmName);
-  pIMBS = new BackgroundSubtractorIMBS(fps);
+  pIMBS = new imbs::BackgroundSubtractorIMBS(fps);
 }
 
 IndependentMultimodal::~IndependentMultimodal() {

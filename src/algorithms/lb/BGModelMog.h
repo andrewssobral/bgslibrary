@@ -2,43 +2,48 @@
 
 #include "BGModel.h"
 
-namespace lb_library
+namespace bgslibrary
 {
-  namespace MixtureOfGaussians
+  namespace algorithms
   {
-    const unsigned int NUMBERGAUSSIANS = 3;
-    const float LEARNINGRATEMOG = 0.001f;
-    const float THRESHOLDMOG = 2.5f;
-    const float BGTHRESHOLDMOG = 0.5f;
-    const float INITIALVARMOG = 50.0f;
-
-    typedef struct tagMOGDATA
+    namespace lb
     {
-      DBLRGB mu;
-      DBLRGB var;
-      double w;
-      double sortKey;
-    } MOGDATA;
+      namespace BGModelMogParams {
+        const unsigned int NUMBERGAUSSIANS = 3;
+        const float LEARNINGRATEMOG = 0.001f;
+        const float THRESHOLDMOG = 2.5f;
+        const float BGTHRESHOLDMOG = 0.5f;
+        const float INITIALVARMOG = 50.0f;
+      }
 
-    class BGModelMog : public BGModel
-    {
-    public:
-      BGModelMog(int width, int height);
-      ~BGModelMog();
+      typedef struct tagMOGDATA
+      {
+        DBLRGB mu;
+        DBLRGB var;
+        double w;
+        double sortKey;
+      } MOGDATA;
 
-      void setBGModelParameter(int id, int value);
+      class BGModelMog : public BGModel
+      {
+      public:
+        BGModelMog(int width, int height);
+        ~BGModelMog();
 
-    protected:
-      double m_alpha;
-      double m_threshold;
-      double m_noise;
-      double m_T;
+        void setBGModelParameter(int id, int value);
 
-      MOGDATA* m_pMOG;
-      int* m_pK;				// number of distributions per pixel
+      protected:
+        double m_alpha;
+        double m_threshold;
+        double m_noise;
+        double m_T;
 
-      void Init();
-      void Update();
-    };
+        MOGDATA* m_pMOG;
+        int* m_pK;				// number of distributions per pixel
+
+        void Init();
+        void Update();
+      };
+    }
   }
 }

@@ -2,7 +2,7 @@
 
 #if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
 
-using namespace Algorithms::BackgroundSubtraction;
+using namespace bgslibrary::algorithms::dp;
 
 //init the basic MRF
 MRF::MRF()

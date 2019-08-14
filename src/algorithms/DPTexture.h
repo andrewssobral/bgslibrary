@@ -5,6 +5,11 @@
 #include "opencv2/core/version.hpp"
 #if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
 
+// opencv legacy includes
+#include "opencv2/core/core_c.h"
+#include "opencv2/core/types_c.h"
+#include "opencv2/imgproc/imgproc_c.h"
+
 #include "dp/TextureBGS.h"
 //#include "ConnectedComponents.h"
 
@@ -18,15 +23,15 @@ namespace bgslibrary
       int width;
       int height;
       int size;
-      TextureBGS bgs;
-      IplImage* frame;
-      RgbImage image;
-      BwImage fgMask;
-      BwImage tempMask;
-      TextureArray* bgModel;
-      RgbImage texture;
       unsigned char* modeArray;
-      TextureHistogram* curTextureHist;
+      IplImage* frame;
+      dp::TextureBGS bgs;
+      dp::RgbImage image;
+      dp::BwImage fgMask;
+      dp::BwImage tempMask;
+      dp::TextureArray* bgModel;
+      dp::RgbImage texture;
+      dp::TextureHistogram* curTextureHist;
       //ConnectedComponents cc;
       //CBlobResult largeBlobs;
       //IplConvKernel* dilateElement;

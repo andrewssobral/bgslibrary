@@ -14,7 +14,7 @@ namespace bgslibrary
     class KDE : public IBGS
     {
     private:
-      NPBGSubtractor *p;
+      kde::NPBGSubtractor *p;
       int rows;
       int cols;
       int color_channels;

@@ -2,8 +2,23 @@
 
 #if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
 
-using namespace bgslibrary::algorithms::libMultiCue;
+using namespace bgslibrary::algorithms::multiCue;
 using namespace bgslibrary::algorithms;
+
+#define MIN3(x,y,z)  ((y) <= (z) ? ((x) <= (y) ? (x) : (y)) : ((x) <= (z) ? (x) : (z)))
+#define MAX3(x,y,z)  ((y) >= (z) ? ((x) >= (y) ? (x) : (y)) : ((x) >= (z) ? (x) : (z)))
+
+#ifndef PI
+#define PI 3.141592653589793f
+#endif
+
+#ifndef FALSE
+#define FALSE 0
+#endif
+
+#ifndef TRUE
+#define TRUE 1
+#endif
 
 MultiCue::MultiCue() :
   IBGS(quote(MultiCue))

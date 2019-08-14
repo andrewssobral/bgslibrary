@@ -9,11 +9,8 @@
 #include "CMultiLayerBGS.h"
 #include "OpenCvLegacyIncludes.h"
 
-using namespace Blob;
-
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
+using namespace bgslibrary::algorithms::multilayer;
+using namespace bgslibrary::algorithms::multilayer::blob;
 
 CMultiLayerBGS::CMultiLayerBGS() {
   m_nMaxLBPModeNum = MAX_LBP_MODE_NUM;
@@ -1639,7 +1636,7 @@ void CMultiLayerBGS::GetFloatEdgeImage(IplImage *src, IplImage *dst) {
 
 void CMultiLayerBGS::ExportLogMessage(char *msg) {
   const char *log_fn = "log_message.txt";
-  ofstream fout(log_fn, ios::app);
+  std::ofstream fout(log_fn, std::ios::app);
   if (fout.fail()) {
     printf("Error opening log output file %s.\n", log_fn);
     fout.close();
@@ -1826,7 +1823,7 @@ void CMultiLayerBGS::Save(const char *bg_model_fn, int save_type) {
 }
 
 bool CMultiLayerBGS::Load(const char *bg_model_fn) {
-  ifstream fin(bg_model_fn, ios::in);
+  std::ifstream fin(bg_model_fn, std::ios::in);
   if (fin.fail()) {
     printf("Error opening background model file %s.\n", bg_model_fn);
     fin.close();

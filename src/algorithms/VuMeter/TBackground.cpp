@@ -1,46 +1,37 @@
 #include "TBackground.h"
 
-TBackground::TBackground(void)
-{
+using namespace bgslibrary::algorithms::vumeter;
+
+TBackground::TBackground(){
   std::cout << "TBackground()" << std::endl;
 }
 
-TBackground::~TBackground(void)
-{
+TBackground::~TBackground(){
   Clear();
   std::cout << "~TBackground()" << std::endl;
 }
 
-void TBackground::Clear(void)
-{
-}
+void TBackground::Clear(){}
 
-void TBackground::Reset(void)
-{
-}
+void TBackground::Reset(){}
 
-int TBackground::GetParameterCount(void)
-{
+int TBackground::GetParameterCount(void){
   return 0;
 }
 
-std::string TBackground::GetParameterName(int nInd)
-{
+std::string TBackground::GetParameterName(int nInd){
   return "";
 }
 
-std::string TBackground::GetParameterValue(int nInd)
-{
+std::string TBackground::GetParameterValue(int nInd){
   return "";
 }
 
-int TBackground::SetParameterValue(int nInd, std::string csNew)
-{
+int TBackground::SetParameterValue(int nInd, std::string csNew){
   return 0;
 }
 
-int TBackground::Init(IplImage * pSource)
-{
+int TBackground::Init(IplImage * pSource){
   return 0;
 }
 
@@ -67,8 +58,7 @@ bool TBackground::isInitOk(IplImage * pSource, IplImage *pBackground, IplImage *
   return bResult;
 }
 
-int TBackground::UpdateBackground(IplImage * pSource, IplImage *pBackground, IplImage *pMotionMask)
-{
+int TBackground::UpdateBackground(IplImage * pSource, IplImage *pBackground, IplImage *pMotionMask){
   return 0;
 }
 

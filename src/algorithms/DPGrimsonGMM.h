@@ -7,8 +7,6 @@
 
 #include "dp/GrimsonGMM.h"
 
-using namespace Algorithms::BackgroundSubtraction;
-
 namespace bgslibrary
 {
   namespace algorithms
@@ -17,17 +15,15 @@ namespace bgslibrary
     {
     private:
       long frameNumber;
-      IplImage* frame;
-      RgbImage frame_data;
-
-      GrimsonParams params;
-      GrimsonGMM bgs;
-      BwImage lowThresholdMask;
-      BwImage highThresholdMask;
-
       double threshold;
       double alpha;
       int gaussians;
+      IplImage* frame;
+      dp::RgbImage frame_data;
+      dp::GrimsonParams params;
+      dp::GrimsonGMM bgs;
+      dp::BwImage lowThresholdMask;
+      dp::BwImage highThresholdMask;
 
     public:
       DPGrimsonGMM();

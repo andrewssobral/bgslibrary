@@ -14,7 +14,7 @@ namespace bgslibrary
       static const int DEFAULT_UPDATE_FACTOR = 16;
       int matchingThreshold;
       int updateFactor;
-      twopointsModel_t* model;
+      twopoints::twopointsModel_t* model;
 
     public:
       TwoPoints();

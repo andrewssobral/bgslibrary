@@ -2,26 +2,23 @@
 
 #include "NPBGmodel.h"
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-//#define new DEBUG_NEW
-#endif
+//#ifdef _DEBUG
+//#undef THIS_FILE
+//static char THIS_FILE[] = __FILE__;
+////#define new DEBUG_NEW
+//#endif
 
-NPBGmodel::NPBGmodel()
-{
-  std::cout << "NPBGmodel()" << std::endl;
-}
+using namespace bgslibrary::algorithms::kde;
 
-NPBGmodel::~NPBGmodel()
-{
+NPBGmodel::NPBGmodel() {}
+
+NPBGmodel::~NPBGmodel() {
   delete Sequence;
   delete PixelQTop;
   delete TemporalBuffer;
   delete TemporalMask;
   delete AccMask;
   //delete SDbinsImage;
-  std::cout << "~NPBGmodel()" << std::endl;
 }
 
 NPBGmodel::NPBGmodel(unsigned int Rows,
@@ -31,8 +28,6 @@ NPBGmodel::NPBGmodel(unsigned int Rows,
   unsigned int pTimeWindowSize,
   unsigned int bg_suppression_time)
 {
-  std::cout << "NPBGmodel()" << std::endl;
-
   imagesize = Rows*Cols*ColorChannels;
 
   rows = Rows;

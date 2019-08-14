@@ -4,10 +4,12 @@
 
 #if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
 
-namespace Algorithms
+namespace bgslibrary
 {
-  namespace BackgroundSubtraction
+  namespace algorithms
   {
+    namespace dp
+    {
     // --- Parameters used by the Mean BGS algorithm ---
     class MeanParams : public BgsParams
     {
@@ -53,6 +55,7 @@ namespace Algorithms
       RgbImageFloat m_mean;
       RgbImage m_background;
     };
+    }
   }
 }
 

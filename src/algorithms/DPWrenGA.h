@@ -7,8 +7,6 @@
 
 #include "dp/WrenGA.h"
 
-using namespace Algorithms::BackgroundSubtraction;
-
 namespace bgslibrary
 {
   namespace algorithms
@@ -17,17 +15,15 @@ namespace bgslibrary
     {
     private:
       long frameNumber;
-      IplImage* frame;
-      RgbImage frame_data;
-
-      WrenParams params;
-      WrenGA bgs;
-      BwImage lowThresholdMask;
-      BwImage highThresholdMask;
-
       double threshold;
       double alpha;
       int learningFrames;
+      IplImage* frame;
+      dp::RgbImage frame_data;
+      dp::WrenParams params;
+      dp::WrenGA bgs;
+      dp::BwImage lowThresholdMask;
+      dp::BwImage highThresholdMask;
 
     public:
       DPWrenGA();

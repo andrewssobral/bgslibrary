@@ -7,6 +7,8 @@
 #include "BackgroundSubtractorLOBSTER.h"
 #include "RandUtils.h"
 
+using namespace bgslibrary::algorithms::lbsp;
+
 BackgroundSubtractorLOBSTER::BackgroundSubtractorLOBSTER(float fRelLBSPThreshold
   , size_t nLBSPThresholdOffset
   , size_t nDescDistThreshold

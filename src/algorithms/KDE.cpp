@@ -12,7 +12,7 @@ KDE::KDE() :
 {
   debug_construction(KDE);
   initLoadSaveConfig(algorithmName);
-  p = new NPBGSubtractor;
+  p = new kde::NPBGSubtractor;
 }
 
 KDE::~KDE() {
@@ -65,11 +65,11 @@ void KDE::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bg
     }
 
     // Now, we can subtract the background
-    ((NPBGSubtractor*)p)->NBBGSubtraction(img_input.data, FGImage, FilteredFGImage, DisplayBuffers);
+    ((kde::NPBGSubtractor*)p)->NBBGSubtraction(img_input.data, FGImage, FilteredFGImage, DisplayBuffers);
 
     // At each frame also you can call the update function to adapt the bg
     // here you pass a mask where pixels with true value will be masked out of the update.
-    ((NPBGSubtractor*)p)->Update(FGImage);
+    ((kde::NPBGSubtractor*)p)->Update(FGImage);
 
     img_foreground.data = FGImage;
   }

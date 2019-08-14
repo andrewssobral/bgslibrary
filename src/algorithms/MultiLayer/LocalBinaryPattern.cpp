@@ -1,11 +1,8 @@
 #include "LocalBinaryPattern.h"
 
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
+using namespace bgslibrary::algorithms::multilayer;
 
-CLocalBinaryPattern::CLocalBinaryPattern()
-{
+CLocalBinaryPattern::CLocalBinaryPattern() {
   m_ppOrgImgs = NULL;
   m_pRadiuses = NULL;
   m_fRobustWhiteNoise = 3.0f;
@@ -14,26 +11,20 @@ CLocalBinaryPattern::CLocalBinaryPattern()
   m_pShiftedImg = NULL;
 }
 
-CLocalBinaryPattern::~CLocalBinaryPattern()
-{
+CLocalBinaryPattern::~CLocalBinaryPattern() {
   FreeMemories();
 }
 
 void CLocalBinaryPattern::Initialization(IplImage **first_imgs, int imgs_num, int level_num, float *radius, int *neig_pt_num, float robust_white_noise, int type)
 {
-
   m_nImgsNum = imgs_num;
-
   m_nLBPLevelNum = level_num;
-
   m_pRadiuses = new float[m_nLBPLevelNum];
   m_pNeigPointsNums = new int[m_nLBPLevelNum];
   m_ppOrgImgs = first_imgs;
-
   int a, b;
   for (a = 0; a < m_nImgsNum; a++) {
     m_cvImgSize = cvGetSize(first_imgs[a]);
-
     if (first_imgs[a]->nChannels > 1) {
       printf("Input image channel must be 1!");
       exit(1);
@@ -52,9 +43,7 @@ void CLocalBinaryPattern::Initialization(IplImage **first_imgs, int imgs_num, in
   }
 
   m_pShiftedImg = cvCloneImage(m_ppOrgImgs[0]);
-
   m_pXYShifts = new CvPoint[tot_neig_pts_num];
-
   m_nMaxShift.x = 0;
   m_nMaxShift.y = 0;
   int shift_idx = 0;

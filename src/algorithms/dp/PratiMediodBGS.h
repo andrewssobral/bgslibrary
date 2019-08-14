@@ -5,10 +5,12 @@
 
 #if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
 
-namespace Algorithms
+namespace bgslibrary
 {
-  namespace BackgroundSubtraction
+  namespace algorithms
   {
+    namespace dp
+    {
     // --- Parameters used by the Prati Mediod BGS algorithm ---
     class PratiParams : public BgsParams
     {
@@ -82,6 +84,7 @@ namespace Algorithms
       BwImage m_mask_low_threshold;
       BwImage m_mask_high_threshold;
     };
+    }
   }
 }
 

@@ -7,34 +7,40 @@
 
 #include "Types.h"
 
-namespace lb_library
+namespace bgslibrary
 {
-  class BGModel
+  namespace algorithms
   {
-  public:
+    namespace lb
+    {
+      class BGModel
+      {
+      public:
 
-    BGModel(int width, int height);
-    virtual ~BGModel();
+        BGModel(int width, int height);
+        virtual ~BGModel();
 
-    void InitModel(IplImage* image);
-    void UpdateModel(IplImage* image);
+        void InitModel(IplImage* image);
+        void UpdateModel(IplImage* image);
 
-    virtual void setBGModelParameter(int id, int value) {};
+        virtual void setBGModelParameter(int id, int value) {};
 
-    virtual IplImage* GetSrc();
-    virtual IplImage* GetFG();
-    virtual IplImage* GetBG();
+        virtual IplImage* GetSrc();
+        virtual IplImage* GetFG();
+        virtual IplImage* GetBG();
 
-  protected:
+      protected:
 
-    IplImage* m_SrcImage;
-    IplImage* m_BGImage;
-    IplImage* m_FGImage;
+        IplImage* m_SrcImage;
+        IplImage* m_BGImage;
+        IplImage* m_FGImage;
 
-    const unsigned int m_width;
-    const unsigned int m_height;
+        const unsigned int m_width;
+        const unsigned int m_height;
 
-    virtual void Init() = 0;
-    virtual void Update() = 0;
-  };
+        virtual void Init() = 0;
+        virtual void Update() = 0;
+      };
+    }
+  }
 }

@@ -26,7 +26,6 @@ void MultiLayer::setStatus(Status _status) {
 void MultiLayer::finish() {
   if (bg_model_preload.empty()) {
     bg_model_preload = "./" + algorithmName + ".yml";
-    saveConfig();
   }
 
   if (status == MLBGS_LEARN && saveModel == true) {
@@ -68,7 +67,7 @@ void MultiLayer::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat 
     fg_prob_img3 = cvCreateImage(img_size, org_img->depth, org_img->nChannels);
     merged_img = cvCreateImage(cvSize(img_size.width * 2, img_size.height * 2), org_img->depth, org_img->nChannels);
 
-    BGS = new CMultiLayerBGS();
+    BGS = new multilayer::CMultiLayerBGS();
     BGS->Init(img_size.width, img_size.height);
     BGS->SetForegroundMaskImage(fg_mask_img);
     BGS->SetForegroundProbImage(fg_prob_img);

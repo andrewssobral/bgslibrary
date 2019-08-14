@@ -7,8 +7,6 @@
 
 #include "dp/ZivkovicAGMM.h"
 
-using namespace Algorithms::BackgroundSubtraction;
-
 namespace bgslibrary
 {
   namespace algorithms
@@ -17,17 +15,15 @@ namespace bgslibrary
     {
     private:
       long frameNumber;
-      IplImage* frame;
-      RgbImage frame_data;
-
-      ZivkovicParams params;
-      ZivkovicAGMM bgs;
-      BwImage lowThresholdMask;
-      BwImage highThresholdMask;
-
       double threshold;
       double alpha;
       int gaussians;
+      IplImage* frame;
+      dp::RgbImage frame_data;
+      dp::ZivkovicParams params;
+      dp::ZivkovicAGMM bgs;
+      dp::BwImage lowThresholdMask;
+      dp::BwImage highThresholdMask;
 
     public:
       DPZivkovicAGMM();

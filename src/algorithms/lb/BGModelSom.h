@@ -2,51 +2,53 @@
 
 #include "BGModel.h"
 
-namespace lb_library
+namespace bgslibrary
 {
-  namespace AdaptiveSOM
+  namespace algorithms
   {
-    // SOM parameters
-    const int M = 3;				// width SOM (per pixel)
-    const int N = 3;				// height SOM (per pixel)
-    const int KERNEL = 3; 	// size Gaussian kernel
-
-    const bool SPAN_NEIGHBORS = false; // true if update neighborhood spans different pixels			//
-    const int TRAINING_STEPS = 100;			// number of training steps
-
-    const float EPS1 = 100.0; // model match distance during training
-    const float EPS2 = 20.0;  // model match distance
-    const float C1 = 1.0;     // learning rate during training
-    const float C2 = 0.05f;    // learning rate
-
-    class BGModelSom : public BGModel
+    namespace lb
     {
-    public:
-      BGModelSom(int width, int height);
-      ~BGModelSom();
+      namespace BGModelSomParams {
+        const int M = 3;         // width SOM (per pixel)
+        const int N = 3;         // height SOM (per pixel)
+        const int KERNEL = 3;    // size Gaussian kernel
+        const bool SPAN_NEIGHBORS = false; // true if update neighborhood spans different pixels			//
+        const int TRAINING_STEPS = 100;    // number of training steps
+        const float EPS1 = 100.0; // model match distance during training
+        const float EPS2 = 20.0;  // model match distance
+        const float C1 = 1.0;     // learning rate during training
+        const float C2 = 0.05f;   // learning rate
+      }
 
-      void setBGModelParameter(int id, int value);
+      class BGModelSom : public BGModel
+      {
+      public:
+        BGModelSom(int width, int height);
+        ~BGModelSom();
 
-    protected:
-      int m_widthSOM;
-      int m_heightSOM;
-      int m_offset;
-      int m_pad;
-      int m_K;
-      int m_TSteps;
+        void setBGModelParameter(int id, int value);
 
-      double m_Wmax;
+      protected:
+        int m_widthSOM;
+        int m_heightSOM;
+        int m_offset;
+        int m_pad;
+        int m_K;
+        int m_TSteps;
 
-      double m_epsilon1;
-      double m_epsilon2;
-      double m_alpha1;
-      double m_alpha2;
+        double m_Wmax;
 
-      DBLRGB** m_ppSOM;					// SOM grid
-      double** m_ppW;						// Weights
+        double m_epsilon1;
+        double m_epsilon2;
+        double m_alpha1;
+        double m_alpha2;
 
-      void Init();
-      void Update();
-    };
+        DBLRGB** m_ppSOM;					// SOM grid
+        double** m_ppW;						// Weights
+
+        void Init();
+        void Update();
+      };
+    }
   }
 }

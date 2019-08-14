@@ -10,7 +10,7 @@ namespace bgslibrary
     class PAWCS : public IBGS
     {
     private:
-      BackgroundSubtractorPAWCS* pPAWCS;
+      lbsp::BackgroundSubtractorPAWCS* pPAWCS;
 
       float fRelLBSPThreshold;
       int nDescDistThresholdOffset;

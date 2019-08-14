@@ -2,35 +2,40 @@
 
 #include "BGModel.h"
 
-namespace lb_library
+namespace bgslibrary
 {
-  namespace FuzzyGaussian
+  namespace algorithms
   {
-    const float ALPHAFUZZYGAUSS = 0.02f;
-    const float THRESHOLDFUZZYGAUSS = 3.5f;
-    const float THRESHOLDBG = 0.5f;
-    const float NOISEFUZZYGAUSS = 50.0f;
-    const float FUZZYEXP = -5.0f;
-
-    class BGModelFuzzyGauss : public BGModel
+    namespace lb
     {
-    public:
-      BGModelFuzzyGauss(int width, int height);
-      ~BGModelFuzzyGauss();
+      namespace BGModelFuzzyGaussParams {
+        const float ALPHAFUZZYGAUSS = 0.02f;
+        const float THRESHOLDFUZZYGAUSS = 3.5f;
+        const float THRESHOLDBG = 0.5f;
+        const float NOISEFUZZYGAUSS = 50.0f;
+        const float FUZZYEXP = -5.0f;
+      }
 
-      void setBGModelParameter(int id, int value);
+      class BGModelFuzzyGauss : public BGModel
+      {
+      public:
+        BGModelFuzzyGauss(int width, int height);
+        ~BGModelFuzzyGauss();
 
-    protected:
-      double m_alphamax;
-      double m_threshold;
-      double m_threshBG;
-      double m_noise;
+        void setBGModelParameter(int id, int value);
 
-      DBLRGB* m_pMu;
-      DBLRGB* m_pVar;
+      protected:
+        double m_alphamax;
+        double m_threshold;
+        double m_threshBG;
+        double m_noise;
 
-      void Init();
-      void Update();
-    };
+        DBLRGB* m_pMu;
+        DBLRGB* m_pVar;
+
+        void Init();
+        void Update();
+      };
+    }
   }
 }

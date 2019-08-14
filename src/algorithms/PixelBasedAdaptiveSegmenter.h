@@ -10,7 +10,7 @@ namespace bgslibrary
     class PixelBasedAdaptiveSegmenter : public IBGS
     {
     private:
-      PBAS pbas;
+      pbas::PBAS pbas;
 
       bool enableInputBlur;
       bool enableOutputBlur;

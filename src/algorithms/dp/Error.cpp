@@ -3,29 +3,37 @@
 
 #include "Error.h"
 
-using namespace std;
+//using namespace bgslibrary::algorithms::dp;
 
-ofstream traceFile;
-
-bool Error(const char* msg, const char* code, int data)
+namespace bgslibrary
 {
-  cerr << code << ": " << msg << endl;
+  namespace algorithms
+  {
+    namespace dp
+    {
+      std::ofstream traceFile;
 
-  return false;
-}
+      bool Error(const char* msg, const char* code, int data)
+      {
+        std::cerr << code << ": " << msg << std::endl;
+        return false;
+      }
 
-bool TraceInit(const char* filename)
-{
-  traceFile.open(filename);
-  return traceFile.is_open();
-}
+      bool TraceInit(const char* filename)
+      {
+        traceFile.open(filename);
+        return traceFile.is_open();
+      }
 
-void Trace(const char* msg)
-{
-  traceFile << msg << endl;
-}
+      void Trace(const char* msg)
+      {
+        traceFile << msg << std::endl;
+      }
 
-void TraceClose()
-{
-  traceFile.close();
+      void TraceClose()
+      {
+        traceFile.close();
+      }
+    }
+  }
 }

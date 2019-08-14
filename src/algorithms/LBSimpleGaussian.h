@@ -7,9 +7,6 @@
 
 #include "lb/BGModelGauss.h"
 
-using namespace lb_library;
-using namespace lb_library::SimpleGaussian;
-
 namespace bgslibrary
 {
   namespace algorithms
@@ -17,7 +14,7 @@ namespace bgslibrary
     class LBSimpleGaussian : public IBGS
     {
     private:
-      BGModel* m_pBGModel;
+      lb::BGModel* m_pBGModel;
       int sensitivity;
       int noiseVariance;
       int learningRate;

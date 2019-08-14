@@ -127,10 +127,9 @@ void FuzzySugenoIntegral::process(const cv::Mat &img_input, cv::Mat &img_output,
 
 #ifndef MEX_COMPILE_FLAG
     if (showOutput) {
-      cvShowImage(algorithmName + "_LBP_IN", lbp_input_f1);
-      cvShowImage(algorithmName + "_LBP_BG", lbp_background_f1);
-      cvShowImage(algorithmName + "_FG_PROB", integral_sugeno_f1);
-
+      cv::imshow(algorithmName + "_LBP_IN", cv::cvarrToMat(lbp_input_f1));
+      cv::imshow(algorithmName + "_LBP_BG", cv::cvarrToMat(lbp_background_f1));
+      cv::imshow(algorithmName + "_FG_PROB", cv::cvarrToMat(integral_sugeno_f1));
       cv::imshow(algorithmName + "_BG", img_background);
       cv::imshow(algorithmName + "_FG", img_foreground);
     }

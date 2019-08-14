@@ -8,18 +8,28 @@ namespace bgslibrary
 {
   namespace algorithms
   {
-    struct codeword {
-      float min;
-      float max;
-      float f;
-      float l;
-      int first;
-      int last;
-      bool isStale;
-    };
+    namespace codebook {
+      struct codeword {
+        float min;
+        float max;
+        float f;
+        float l;
+        int first;
+        int last;
+        bool isStale;
+      };
+    }
 
     class CodeBook : public IBGS
     {
+    public:
+      typedef codebook::codeword codeword;
+
+      CodeBook();
+      ~CodeBook();
+
+      void process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel);
+
     private:
       static const int Tdel = 200;
       static const int Tadd = 150;
@@ -34,13 +44,6 @@ namespace bgslibrary
       std::vector<codeword> **cbMain;
       std::vector<codeword> **cbCache;
 
-    public:
-      CodeBook();
-      ~CodeBook();
-
-      void process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel);
-
-    private:
       void initializeCodebook(int w, int h);
       void update_cb(const cv::Mat& frame);
       void fg_cb(const cv::Mat& frame, cv::Mat& fg);

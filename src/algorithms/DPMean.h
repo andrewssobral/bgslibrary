@@ -7,8 +7,6 @@
 
 #include "dp/MeanBGS.h"
 
-using namespace Algorithms::BackgroundSubtraction;
-
 namespace bgslibrary
 {
   namespace algorithms
@@ -17,17 +15,15 @@ namespace bgslibrary
     {
     private:
       long frameNumber;
-      IplImage* frame;
-      RgbImage frame_data;
-
-      MeanParams params;
-      MeanBGS bgs;
-      BwImage lowThresholdMask;
-      BwImage highThresholdMask;
-
       int threshold;
       double alpha;
       int learningFrames;
+      IplImage* frame;
+      dp::RgbImage frame_data;
+      dp::MeanParams params;
+      dp::MeanBGS bgs;
+      dp::BwImage lowThresholdMask;
+      dp::BwImage highThresholdMask;
 
     public:
       DPMean();

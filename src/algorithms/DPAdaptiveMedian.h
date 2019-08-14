@@ -6,8 +6,6 @@
 #include "IBGS.h"
 #include "dp/AdaptiveMedianBGS.h"
 
-using namespace Algorithms::BackgroundSubtraction;
-
 namespace bgslibrary
 {
   namespace algorithms
@@ -16,15 +14,15 @@ namespace bgslibrary
     {
     private:
       long frameNumber;
-      IplImage* frame;
-      RgbImage frame_data;
-      AdaptiveMedianParams params;
-      AdaptiveMedianBGS bgs;
-      BwImage lowThresholdMask;
-      BwImage highThresholdMask;
       int threshold;
       int samplingRate;
       int learningFrames;
+      IplImage* frame;
+      dp::RgbImage frame_data;
+      dp::AdaptiveMedianParams params;
+      dp::AdaptiveMedianBGS bgs;
+      dp::BwImage lowThresholdMask;
+      dp::BwImage highThresholdMask;
 
     public:
       DPAdaptiveMedian();

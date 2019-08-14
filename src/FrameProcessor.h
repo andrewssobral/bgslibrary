@@ -202,7 +202,7 @@ namespace bgslibrary
     std::shared_ptr<CodeBook> codeBook;
     bool enableCodeBook = false;
     
-    std::shared_ptr<ForegroundMaskAnalysis> foregroundMaskAnalysis;
+    std::shared_ptr<tools::ForegroundMaskAnalysis> foregroundMaskAnalysis;
     bool enableForegroundMaskAnalysis = false;
 
   public:
