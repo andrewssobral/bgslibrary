@@ -127,7 +127,7 @@ SOURCES += bgslibrary_gui.cpp\
     ../../src/algorithms/MultiLayer/LocalBinaryPattern.cpp \
     ../../src/algorithms/PBAS/PBAS.cpp \
     ../../src/algorithms/SigmaDelta/sdLaMa091.cpp \
-    ../../src/algorithms/T2F/FuzzyUtils.cpp \
+    ../../src/tools/FuzzyUtils.cpp \
     ../../src/algorithms/T2F/MRF.cpp \
     ../../src/algorithms/T2F/T2FGMM.cpp \
     ../../src/algorithms/T2F/T2FMRF.cpp \
@@ -239,7 +239,7 @@ HEADERS  += mainwindow.h \
     ../../src/algorithms/MultiLayer/OpenCvLegacyIncludes.h \
     ../../src/algorithms/PBAS/PBAS.h \
     ../../src/algorithms/SigmaDelta/sdLaMa091.h \
-    ../../src/algorithms/T2F/FuzzyUtils.h \
+    ../../src/tools/FuzzyUtils.h \
     ../../src/algorithms/T2F/MRF.h \
     ../../src/algorithms/T2F/T2FGMM.h \
     ../../src/algorithms/T2F/T2FMRF.h \
@@ -249,7 +249,7 @@ HEADERS  += mainwindow.h \
     ../../src/algorithms/VuMeter/TBackgroundVuMeter.h \
     ../../src/algorithms/AdaptiveBackgroundLearning.h \
     ../../src/algorithms/AdaptiveSelectiveBackgroundLearning.h \
-    ../../src/algorithms/bgslibrary.h \
+    ../../src/algorithms/algorithms.h \
     ../../src/algorithms/DPAdaptiveMedian.h \
     ../../src/algorithms/DPEigenbackground.h \
     ../../src/algorithms/DPGrimsonGMM.h \
