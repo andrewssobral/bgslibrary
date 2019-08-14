@@ -3,23 +3,6 @@
 #include "opencv2/core/version.hpp"
 #if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
 
-#define MIN3(x,y,z)  ((y) <= (z) ? ((x) <= (y) ? (x) : (y)) : ((x) <= (z) ? (x) : (z)))
-#define MAX3(x,y,z)  ((y) >= (z) ? ((x) >= (y) ? (x) : (y)) : ((x) >= (z) ? (x) : (z)))
-
-#ifndef PI
-#define PI 3.14159
-#endif
-
-typedef int BOOL;
-
-#ifndef FALSE
-#define FALSE 0
-#endif
-
-#ifndef TRUE
-#define TRUE 1
-#endif
-
 #if !defined(__APPLE__)
 #include <malloc.h>
 #endif
@@ -36,8 +19,10 @@ namespace bgslibrary
 {
   namespace algorithms
   {
-    namespace libMultiCue
+    namespace multiCue
     {
+      typedef int BOOL;
+
       struct point {
         short m_nX;
         short m_nY;
@@ -106,7 +91,7 @@ namespace bgslibrary
 {
   namespace algorithms
   {
-    using namespace bgslibrary::algorithms::libMultiCue;
+    //using namespace bgslibrary::algorithms::multiCue;
 
     class MultiCue : public IBGS
     {
@@ -115,10 +100,14 @@ namespace bgslibrary
       void load_config(cv::FileStorage &fs);
 
     public:
+      typedef bgslibrary::algorithms::multiCue::point point;
+      typedef bgslibrary::algorithms::multiCue::TextureModel TextureModel;
+      typedef bgslibrary::algorithms::multiCue::BoundingBoxInfo BoundingBoxInfo;
+      typedef bgslibrary::algorithms::multiCue::ColorModel ColorModel;
+      typedef bgslibrary::algorithms::multiCue::BOOL BOOL;
+
       MultiCue();
       ~MultiCue();
-
-    public:
       //----------------------------------------------------
       //		APIs and User-Adjustable Parameters
       //----------------------------------------------------
@@ -136,7 +125,6 @@ namespace bgslibrary
       short g_nTextureTrainVolRange;								//the codebook size factor for texture models.		(The parameter k in the paper)
       short g_nColorTrainVolRange;								//the codebook size factor for color models.		(The parameter eta_1 in the paper)
 
-    public:
       //----------------------------------------------------
       //	Implemented Function Lists
       //----------------------------------------------------
@@ -185,7 +173,7 @@ namespace bgslibrary
       void C_ClearNonEssentialEntries(short nClearNum, ColorModel* pModel);
       void C_ClearNonEssentialEntriesForCachebook(uchar bLandmark, short nReferredIdx, short nClearNum, ColorModel* pCachebook);
       void C_Absorption(int iAbsorbCnt, point pos, short** aContinuCnt, short** aRefferedIndex, ColorModel* pModel, ColorModel* pCache);
-    public:
+
       //----------------------------------------------------
       //	Implemented Variable Lists
       //----------------------------------------------------
