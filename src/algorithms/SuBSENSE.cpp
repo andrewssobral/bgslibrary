@@ -5,12 +5,12 @@ using namespace bgslibrary::algorithms;
 SuBSENSE::SuBSENSE() :
   IBGS(quote(SuBSENSE)),
   pSubsense(0),
-  fRelLBSPThreshold(BGSSUBSENSE_DEFAULT_LBSP_REL_SIMILARITY_THRESHOLD),
-  nDescDistThresholdOffset(BGSSUBSENSE_DEFAULT_DESC_DIST_THRESHOLD_OFFSET),
-  nMinColorDistThreshold(BGSSUBSENSE_DEFAULT_MIN_COLOR_DIST_THRESHOLD),
-  nBGSamples(BGSSUBSENSE_DEFAULT_NB_BG_SAMPLES),
-  nRequiredBGSamples(BGSSUBSENSE_DEFAULT_REQUIRED_NB_BG_SAMPLES),
-  nSamplesForMovingAvgs(BGSSUBSENSE_DEFAULT_N_SAMPLES_FOR_MV_AVGS)
+  fRelLBSPThreshold(lbsp::BGSSUBSENSE_DEFAULT_LBSP_REL_SIMILARITY_THRESHOLD),
+  nDescDistThresholdOffset(lbsp::BGSSUBSENSE_DEFAULT_DESC_DIST_THRESHOLD_OFFSET),
+  nMinColorDistThreshold(lbsp::BGSSUBSENSE_DEFAULT_MIN_COLOR_DIST_THRESHOLD),
+  nBGSamples(lbsp::BGSSUBSENSE_DEFAULT_NB_BG_SAMPLES),
+  nRequiredBGSamples(lbsp::BGSSUBSENSE_DEFAULT_REQUIRED_NB_BG_SAMPLES),
+  nSamplesForMovingAvgs(lbsp::BGSSUBSENSE_DEFAULT_N_SAMPLES_FOR_MV_AVGS)
 {
   debug_construction(SuBSENSE);
   initLoadSaveConfig(algorithmName);
@@ -27,7 +27,7 @@ void SuBSENSE::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &i
   init(img_input, img_output, img_bgmodel);
 
   if (firstTime) {
-    pSubsense = new BackgroundSubtractorSuBSENSE(
+    pSubsense = new lbsp::BackgroundSubtractorSuBSENSE(
       fRelLBSPThreshold, nDescDistThresholdOffset, nMinColorDistThreshold,
       nBGSamples, nRequiredBGSamples, nSamplesForMovingAvgs);
 

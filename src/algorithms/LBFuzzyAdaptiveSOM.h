@@ -7,9 +7,6 @@
 
 #include "lb/BGModelFuzzySom.h"
 
-using namespace lb_library;
-using namespace lb_library::FuzzyAdaptiveSOM;
-
 namespace bgslibrary
 {
   namespace algorithms
@@ -17,7 +14,7 @@ namespace bgslibrary
     class LBFuzzyAdaptiveSOM : public IBGS
     {
     private:
-      BGModel* m_pBGModel;
+      lb::BGModel* m_pBGModel;
       int sensitivity;
       int trainingSensitivity;
       int learningRate;

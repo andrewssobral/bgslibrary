@@ -7,9 +7,6 @@
 
 #include "lb/BGModelMog.h"
 
-using namespace lb_library;
-using namespace lb_library::MixtureOfGaussians;
-
 namespace bgslibrary
 {
   namespace algorithms
@@ -17,7 +14,7 @@ namespace bgslibrary
     class LBMixtureOfGaussians : public IBGS
     {
     private:
-      BGModel* m_pBGModel;
+      lb::BGModel* m_pBGModel;
       int sensitivity;
       int bgThreshold;
       int learningRate;

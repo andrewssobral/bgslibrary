@@ -1,6 +1,8 @@
 #include "TBackgroundVuMeter.h"
 
-#define PROCESS_PAR_COUNT 3
+using namespace bgslibrary::algorithms::vumeter;
+
+const int PROCESS_PAR_COUNT = 3;
 
 TBackgroundVuMeter::TBackgroundVuMeter(void)
   : m_pHist(NULL)

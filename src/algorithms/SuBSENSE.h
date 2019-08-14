@@ -10,7 +10,7 @@ namespace bgslibrary
     class SuBSENSE : public IBGS
     {
     private:
-      BackgroundSubtractorSuBSENSE* pSubsense;
+      lbsp::BackgroundSubtractorSuBSENSE* pSubsense;
 
       float fRelLBSPThreshold;
       int nDescDistThresholdOffset;

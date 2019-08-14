@@ -2,7 +2,11 @@
 
 #include "KernelTable.h"
 
-#define PI 3.14159
+#ifndef PI
+#define PI 3.141592653589793f
+#endif
+
+using namespace bgslibrary::algorithms::kde;
 
 KernelLUTable::KernelLUTable()
 {

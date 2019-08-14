@@ -1,6 +1,7 @@
 #include "ViBe.h"
 
 using namespace bgslibrary::algorithms;
+//using namespace bgslibrary::algorithms::vibe;
 
 ViBe::ViBe() :
   IBGS(quote(ViBe)),
@@ -12,12 +13,12 @@ ViBe::ViBe() :
 {
   debug_construction(ViBe);
   initLoadSaveConfig(algorithmName);
-  model = libvibeModel_Sequential_New();
+  model = vibe::libvibeModel_Sequential_New();
 }
 
 ViBe::~ViBe() {
   debug_destruction(ViBe);
-  libvibeModel_Sequential_Free(model);
+  vibe::libvibeModel_Sequential_Free(model);
 }
 
 void ViBe::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
@@ -32,18 +33,18 @@ void ViBe::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_b
     //img_output = cv::Mat(img_input.rows, img_input.cols, CV_8UC1);
 
     /* Initialization of the ViBe model. */
-    libvibeModel_Sequential_AllocInit_8u_C3R(model, img_input.data, img_input.cols, img_input.rows);
+    vibe::libvibeModel_Sequential_AllocInit_8u_C3R(model, img_input.data, img_input.cols, img_input.rows);
 
     /* Sets default model values. */
-    //libvibeModel_Sequential_SetNumberOfSamples(model, numberOfSamples);
-    libvibeModel_Sequential_SetMatchingThreshold(model, matchingThreshold);
-    libvibeModel_Sequential_SetMatchingNumber(model, matchingNumber);
-    libvibeModel_Sequential_SetUpdateFactor(model, updateFactor);
+    //vibe::libvibeModel_Sequential_SetNumberOfSamples(model, numberOfSamples);
+    vibe::libvibeModel_Sequential_SetMatchingThreshold(model, matchingThreshold);
+    vibe::libvibeModel_Sequential_SetMatchingNumber(model, matchingNumber);
+    vibe::libvibeModel_Sequential_SetUpdateFactor(model, updateFactor);
   }
 
-  libvibeModel_Sequential_Segmentation_8u_C3R(model, img_input.data, img_output.data);
-  //libvibeModel_Sequential_Update_8u_C3R(model, model_img_input.data, img_output.data);
-  libvibeModel_Sequential_Update_8u_C3R(model, img_input.data, img_output.data);
+  vibe::libvibeModel_Sequential_Segmentation_8u_C3R(model, img_input.data, img_output.data);
+  //vibe::libvibeModel_Sequential_Update_8u_C3R(model, model_img_input.data, img_output.data);
+  vibe::libvibeModel_Sequential_Update_8u_C3R(model, img_input.data, img_output.data);
 
 #ifndef MEX_COMPILE_FLAG
   if (showOutput)

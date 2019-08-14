@@ -14,7 +14,7 @@ namespace bgslibrary
     class LBP_MRF : public IBGS
     {
     private:
-      MotionDetection* Detector;
+      lbp_mrf::MotionDetection* Detector;
       cv::Mat img_segmentation;
 
     public:

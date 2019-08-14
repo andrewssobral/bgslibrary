@@ -7,6 +7,8 @@
 #include "BackgroundSubtractorPAWCS.h"
 #include "RandUtils.h"
 
+using namespace bgslibrary::algorithms::lbsp;
+
 /*
  *
  * Intrinsic configuration parameters are defined here; tuning these for better

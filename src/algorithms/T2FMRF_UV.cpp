@@ -41,7 +41,7 @@ void T2FMRF_UV::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
     params.HighThreshold() = 2 * params.LowThreshold();
     params.Alpha() = alpha;
     params.MaxModes() = gaussians;
-    params.Type() = TYPE_T2FMRF_UV;
+    params.Type() = dp::TYPE_T2FMRF_UV;
     params.KM() = km; // Factor control for the T2FMRF-UM [0,3] default: 2
     params.KV() = kv; // Factor control for the T2FMRF-UV [0.3,1] default: 0.9
 

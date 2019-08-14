@@ -7,8 +7,6 @@
 
 #include "dp/PratiMediodBGS.h"
 
-using namespace Algorithms::BackgroundSubtraction;
-
 namespace bgslibrary
 {
   namespace algorithms
@@ -17,18 +15,16 @@ namespace bgslibrary
     {
     private:
       long frameNumber;
-      IplImage* frame;
-      RgbImage frame_data;
-
-      PratiParams params;
-      PratiMediodBGS bgs;
-      BwImage lowThresholdMask;
-      BwImage highThresholdMask;
-
       int threshold;
       int samplingRate;
       int historySize;
       int weight;
+      IplImage* frame;
+      dp::RgbImage frame_data;
+      dp::PratiParams params;
+      dp::PratiMediodBGS bgs;
+      dp::BwImage lowThresholdMask;
+      dp::BwImage highThresholdMask;
 
     public:
       DPPratiMediod();

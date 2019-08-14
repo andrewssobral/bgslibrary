@@ -1,8 +1,10 @@
 #include "FuzzyUtils.h"
 
-FuzzyUtils::FuzzyUtils(void) {}
+using namespace bgslibrary::tools;
 
-FuzzyUtils::~FuzzyUtils(void) {}
+FuzzyUtils::FuzzyUtils() {}
+
+FuzzyUtils::~FuzzyUtils() {}
 
 void FuzzyUtils::LBP(IplImage* InputImage, IplImage* LBPimage)
 {

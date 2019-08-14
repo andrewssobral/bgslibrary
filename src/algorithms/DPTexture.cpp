@@ -4,9 +4,9 @@
 
 using namespace bgslibrary::algorithms;
 
-DPTexture::DPTexture():
-  IBGS(quote(DPTexture)), 
-  // enableFiltering(true)
+DPTexture::DPTexture() :
+  IBGS(quote(DPTexture))
+  //, enableFiltering(true)
 {
   debug_construction(DPTexture);
   initLoadSaveConfig(algorithmName);
@@ -29,7 +29,8 @@ void DPTexture::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
 {
   init(img_input, img_output, img_bgmodel);
 
-  frame = new IplImage(img_input);
+  //frame = new IplImage(img_input);
+  frame = cvCloneImage(&(IplImage)img_input);
 
   if (firstTime) {
     width = img_input.size().width;
@@ -47,20 +48,20 @@ void DPTexture::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
     cvZero(tempMask.Ptr());
 
     // create background model
-    bgModel = new TextureArray[size];
+    bgModel = new dp::TextureArray[size];
     texture = cvCreateImage(cvSize(width, height), 8, 3);
     cvZero(texture.Ptr());
     modeArray = new unsigned char[size];
-    curTextureHist = new TextureHistogram[size];
+    curTextureHist = new dp::TextureHistogram[size];
 
     // initialize background model
     bgs.LBP(image, texture);
     bgs.Histogram(texture, curTextureHist);
-    for (int y = REGION_R + TEXTURE_R; y < height - REGION_R - TEXTURE_R; ++y) 
-      for (int x = REGION_R + TEXTURE_R; x < width - REGION_R - TEXTURE_R; ++x) {
+    for (int y = dp::REGION_R + dp::TEXTURE_R; y < height - dp::REGION_R - dp::TEXTURE_R; ++y) {
+      for (int x = dp::REGION_R + dp::TEXTURE_R; x < width - dp::REGION_R - dp::TEXTURE_R; ++x) {
         int index = x + y*width;
-        for (int m = 0; m < NUM_MODES; ++m) {
-          for (int i = 0; i < NUM_BINS; ++i) {
+        for (int m = 0; m < dp::NUM_MODES; ++m) {
+          for (int i = 0; i < dp::NUM_BINS; ++i) {
             bgModel[index].mode[m].r[i] = curTextureHist[index].r[i];
             bgModel[index].mode[m].g[i] = curTextureHist[index].g[i];
             bgModel[index].mode[m].b[i] = curTextureHist[index].b[i];
@@ -79,7 +80,7 @@ void DPTexture::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
   // perform background subtraction
   bgs.LBP(image, texture);
   bgs.Histogram(texture, curTextureHist);
-  bgs.BgsCompare(bgModel, curTextureHist, modeArray, THRESHOLD, fgMask);
+  bgs.BgsCompare(bgModel, curTextureHist, modeArray, dp::THRESHOLD, fgMask);
 
   //if(enableFiltering)
   //{

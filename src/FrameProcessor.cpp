@@ -159,7 +159,7 @@ namespace bgslibrary
       codeBook = std::make_shared<CodeBook>();
 
     if (enableForegroundMaskAnalysis)
-      foregroundMaskAnalysis = std::make_shared<ForegroundMaskAnalysis>();
+      foregroundMaskAnalysis = std::make_shared<tools::ForegroundMaskAnalysis>();
   }
   
   void FrameProcessor::process(const std::string name, const std::shared_ptr<IBGS> &bgs, const cv::Mat &img_input, cv::Mat &img_bgs)

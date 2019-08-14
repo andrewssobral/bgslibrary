@@ -1,5 +1,7 @@
 #include "PixelUtils.h"
 
+using namespace bgslibrary::tools;
+
 PixelUtils::PixelUtils() {
   //debug_construction(PixelUtils);
 }

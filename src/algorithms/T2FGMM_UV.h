@@ -6,8 +6,6 @@
 #include "IBGS.h"
 #include "T2F/T2FGMM.h"
 
-using namespace Algorithms::BackgroundSubtraction;
-
 namespace bgslibrary
 {
   namespace algorithms
@@ -16,19 +14,17 @@ namespace bgslibrary
     {
     private:
       long frameNumber;
-      IplImage* frame;
-      RgbImage frame_data;
-
-      T2FGMMParams params;
-      T2FGMM bgs;
-      BwImage lowThresholdMask;
-      BwImage highThresholdMask;
-
       double threshold;
       double alpha;
       float km;
       float kv;
       int gaussians;
+      IplImage* frame;
+      dp::RgbImage frame_data;
+      dp::T2FGMMParams params;
+      dp::T2FGMM bgs;
+      dp::BwImage lowThresholdMask;
+      dp::BwImage highThresholdMask;
 
     public:
       T2FGMM_UV();

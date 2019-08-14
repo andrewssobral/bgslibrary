@@ -9,6 +9,7 @@
 //static char THIS_FILE[]=__FILE__;
 //#define new DEBUG_NEW
 //#endif
+using namespace bgslibrary::algorithms::kde;
 
 void BGR2SnGnRn(unsigned char * in_image,
   unsigned char * out_image,

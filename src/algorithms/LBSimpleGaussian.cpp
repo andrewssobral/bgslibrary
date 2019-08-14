@@ -27,7 +27,7 @@ void LBSimpleGaussian::process(const cv::Mat &img_input, cv::Mat &img_output, cv
     int w = cvGetSize(frame).width;
     int h = cvGetSize(frame).height;
 
-    m_pBGModel = new BGModelGauss(w, h);
+    m_pBGModel = new lb::BGModelGauss(w, h);
     m_pBGModel->InitModel(frame);
   }
 

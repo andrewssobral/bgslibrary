@@ -41,7 +41,7 @@ void T2FGMM_UM::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
     params.HighThreshold() = 2 * params.LowThreshold();
     params.Alpha() = alpha;
     params.MaxModes() = gaussians;
-    params.Type() = TYPE_T2FGMM_UM;
+    params.Type() = dp::TYPE_T2FGMM_UM;
     params.KM() = km; // Factor control for the T2FGMM-UM [0,3] default: 1.5
     params.KV() = kv; // Factor control for the T2FGMM-UV [0.3,1] default: 0.6
 

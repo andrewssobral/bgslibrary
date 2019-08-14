@@ -14,7 +14,7 @@ namespace bgslibrary
     class IndependentMultimodal : public IBGS
     {
     private:
-      BackgroundSubtractorIMBS* pIMBS;
+      imbs::BackgroundSubtractorIMBS* pIMBS;
       int fps;
 
     public:

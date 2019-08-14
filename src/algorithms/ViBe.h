@@ -20,7 +20,7 @@ namespace bgslibrary
       int matchingThreshold;
       int matchingNumber;
       int updateFactor;
-      vibeModel_Sequential_t* model;
+      vibe::vibeModel_Sequential_t* model;
 
     public:
       ViBe();

@@ -1,5 +1,7 @@
 #include "LBSP_.h"
 
+using namespace bgslibrary::algorithms::lbsp;
+
 LBSP_::LBSP_(size_t nThreshold)
   : m_bOnlyUsingAbsThreshold(true)
   , m_fRelThreshold(0) // unused

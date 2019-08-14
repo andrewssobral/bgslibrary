@@ -13,13 +13,11 @@ namespace bgslibrary
     class VuMeter : public IBGS
     {
     private:
-      TBackgroundVuMeter bgs;
-
+      vumeter::TBackgroundVuMeter bgs;
       IplImage *frame;
       IplImage *gray;
       IplImage *background;
       IplImage *mask;
-
       bool enableFilter;
       int binSize;
       double alpha;

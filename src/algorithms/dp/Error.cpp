@@ -3,6 +3,7 @@
 
 #include "Error.h"
 
+using namespace bgslibrary::algorithms::dp;
 using namespace std;
 
 ofstream traceFile;
@@ -10,7 +11,6 @@ ofstream traceFile;
 bool Error(const char* msg, const char* code, int data)
 {
   cerr << code << ": " << msg << endl;
-
   return false;
 }
 

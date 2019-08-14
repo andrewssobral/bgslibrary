@@ -2,6 +2,8 @@
 
 #if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
 
+using namespace bgslibrary::algorithms::dp;
+
 TextureBGS::TextureBGS() {}
 TextureBGS::~TextureBGS() {}
 

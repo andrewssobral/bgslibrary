@@ -5,10 +5,12 @@
 
 #include "Bgs.h"
 
-namespace Algorithms
+namespace bgslibrary
 {
-  namespace BackgroundSubtraction
+  namespace algorithms
   {
+    namespace dp
+    {
     // --- Parameters used by the Mean BGS algorithm ---
     class EigenbackgroundParams : public BgsParams
     {
@@ -57,6 +59,7 @@ namespace Algorithms
 
       RgbImage m_background;
     };
+    }
   }
 }
 

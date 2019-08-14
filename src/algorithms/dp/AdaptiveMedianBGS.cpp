@@ -2,12 +2,11 @@
 
 #if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
 
-using namespace Algorithms::BackgroundSubtraction;
+using namespace bgslibrary::algorithms::dp;
 
 void AdaptiveMedianBGS::Initalize(const BgsParams& param)
 {
   m_params = (AdaptiveMedianParams&)param;
-
   m_median = cvCreateImage(cvSize(m_params.Width(), m_params.Height()), IPL_DEPTH_8U, 3);
   cvSet(m_median.Ptr(), CV_RGB(BACKGROUND, BACKGROUND, BACKGROUND));
 }

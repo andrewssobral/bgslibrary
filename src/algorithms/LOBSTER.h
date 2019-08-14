@@ -11,7 +11,7 @@ namespace bgslibrary
     class LOBSTER : public IBGS
     {
     private:
-      BackgroundSubtractorLOBSTER* pLOBSTER;
+      lbsp::BackgroundSubtractorLOBSTER* pLOBSTER;
 
       float fRelLBSPThreshold;
       int nLBSPThresholdOffset;

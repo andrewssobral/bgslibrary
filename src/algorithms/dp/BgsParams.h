@@ -1,9 +1,11 @@
 #pragma once
 
-namespace Algorithms
+namespace bgslibrary
 {
-  namespace BackgroundSubtraction
+  namespace algorithms
   {
+    namespace dp
+    {
     class BgsParams
     {
     public:
@@ -25,5 +27,6 @@ namespace Algorithms
       unsigned int m_height;
       unsigned int m_size;
     };
+    }
   }
 }

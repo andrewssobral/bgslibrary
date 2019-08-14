@@ -10,12 +10,12 @@ TwoPoints::TwoPoints() :
   debug_construction(TwoPoints);
   initLoadSaveConfig(algorithmName);
   //model = static_cast<twopointsModel_t*>(libtwopointsModel_New());
-  model = libtwopointsModel_New();
+  model = twopoints::libtwopointsModel_New();
 }
 
 TwoPoints::~TwoPoints() {
   debug_destruction(TwoPoints);
-  libtwopointsModel_Free(model);
+  twopoints::libtwopointsModel_Free(model);
 }
 
 void TwoPoints::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
@@ -36,14 +36,14 @@ void TwoPoints::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
     //img_output = Mat(img_input.rows, img_input.cols, CV_8UC1);
 
     // Initialization of the ViBe model.
-    libtwopointsModel_AllocInit_8u_C1R(model, img_input_grayscale.data, img_input.cols, img_input.rows);
+    twopoints::libtwopointsModel_AllocInit_8u_C1R(model, img_input_grayscale.data, img_input.cols, img_input.rows);
 
     // Sets default model values.
-    // libvibeModel_Sequential_SetMatchingThreshold(model, matchingThreshold);
-    // libvibeModel_Sequential_SetUpdateFactor(model, updateFactor);
+    // twopoints::libvibeModel_Sequential_SetMatchingThreshold(model, matchingThreshold);
+    // twopoints::libvibeModel_Sequential_SetUpdateFactor(model, updateFactor);
   }
 
-  libtwopointsModel_Segmentation_8u_C1R(model, img_input_grayscale.data, img_output.data);
+  twopoints::libtwopointsModel_Segmentation_8u_C1R(model, img_input_grayscale.data, img_output.data);
 
   updatingMask = cv::Mat(img_input.rows, img_input.cols, CV_8UC1);
   // Work on the output and define the updating mask
@@ -58,7 +58,7 @@ void TwoPoints::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
     }
   }
 
-  libtwopointsModel_Update_8u_C1R(model, img_input_grayscale.data, updatingMask.data);
+  twopoints::libtwopointsModel_Update_8u_C1R(model, img_input_grayscale.data, updatingMask.data);
 
 #ifndef MEX_COMPILE_FLAG
   if (showOutput)

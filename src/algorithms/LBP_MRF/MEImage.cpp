@@ -1,9 +1,12 @@
 #include <opencv2/opencv.hpp>
+// opencv legacy includes
 #include <opencv2/imgproc/types_c.h>
 #include <opencv2/imgproc/imgproc_c.h>
 
 #include "MEImage.hpp"
 #include "MEDefs.hpp"
+
+using namespace bgslibrary::algorithms::lbp_mrf;
 
 #define ME_CAST_TO_IPLIMAGE(image_ptr) ((IplImage*)image_ptr)
 #define ME_RELEASE_IPLIMAGE(image_ptr) \

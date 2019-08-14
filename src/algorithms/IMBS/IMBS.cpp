@@ -1,5 +1,6 @@
 #include "IMBS.hpp"
 
+using namespace bgslibrary::algorithms::imbs;
 using namespace std;
 using namespace cv;
 

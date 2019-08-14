@@ -9,6 +9,8 @@
 #include "DistanceUtils.h"
 #include "RandUtils.h"
 
+using namespace bgslibrary::algorithms::lbsp;
+
 #ifndef SIZE_MAX
 # if __WORDSIZE == 64
 #  define SIZE_MAX		(18446744073709551615UL)
@@ -18,7 +20,7 @@
 #endif
 
 // local define used to determine the default median blur kernel size
-#define DEFAULT_MEDIAN_BLUR_KERNEL_SIZE (9)
+const int DEFAULT_MEDIAN_BLUR_KERNEL_SIZE = 9;
 
 BackgroundSubtractorLBSP::BackgroundSubtractorLBSP(float fRelLBSPThreshold, size_t nLBSPThresholdOffset)
   : m_nImgChannels(0)

@@ -6,10 +6,12 @@
 #include "Image.h"
 #include "BgsParams.h"
 
-namespace Algorithms
+namespace bgslibrary
 {
-  namespace BackgroundSubtraction
+  namespace algorithms
   {
+    namespace dp
+    {
     class Bgs
     {
     public:
@@ -37,6 +39,7 @@ namespace Algorithms
       // Return the current background model.
       virtual RgbImage *Background() = 0;
     };
+    }
   }
 }
 

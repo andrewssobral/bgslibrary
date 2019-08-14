@@ -1,9 +1,12 @@
 #include "PBAS.h"
 
-PBAS::PBAS(void) : N(20), R_lower(18), Raute_min(2), T_lower(2), T_upper(200), R_scale(5), R_incdec(0.05), T_dec(0.05), T_inc(1)
-{
-  std::cout << "PBAS()" << std::endl;
+using namespace bgslibrary::algorithms::pbas;
 
+PBAS::PBAS() : 
+  N(20), R_lower(18), Raute_min(2), 
+  T_lower(2), T_upper(200), R_scale(5), 
+  R_incdec(0.05), T_dec(0.05), T_inc(1)
+{
   //feature vector
   alpha = 7.0;
   beta = 1.0;
@@ -61,8 +64,6 @@ void PBAS::newInitialization()
 
 PBAS::~PBAS(void)
 {
-  std::cout << "~PBAS()" << std::endl;
-
   randomN.clear();
   randomX.clear();
   randomY.clear();

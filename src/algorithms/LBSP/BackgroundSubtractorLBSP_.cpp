@@ -9,8 +9,10 @@
 #include "DistanceUtils.h"
 #include "RandUtils.h"
 
+using namespace bgslibrary::algorithms::lbsp;
+
 // local define used to determine the default median blur kernel size
-#define DEFAULT_MEDIAN_BLUR_KERNEL_SIZE (9)
+const int DEFAULT_MEDIAN_BLUR_KERNEL_SIZE = 9;
 
 BackgroundSubtractorLBSP_::BackgroundSubtractorLBSP_(float fRelLBSPThreshold, size_t nLBSPThresholdOffset)
   : m_nImgChannels(0)

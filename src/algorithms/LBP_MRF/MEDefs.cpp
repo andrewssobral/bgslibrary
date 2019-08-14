@@ -2,19 +2,28 @@
 
 #include "MEDefs.hpp"
 
-float MERound(float number)
-{
-  double FracPart = 0.0;
-  double IntPart = 0.0;
-  float Ret = 0.0;
+//using namespace bgslibrary::algorithms::lbp_mrf;
 
-  FracPart = modf((double)number, &IntPart);
-  if (number >= 0)
+namespace bgslibrary
+{
+  namespace algorithms
   {
-    Ret = (float)(FracPart >= 0.5 ? IntPart + 1 : IntPart);
+    namespace lbp_mrf
+    {
+      float MERound(float number)
+      {
+        double FracPart = 0.0;
+        double IntPart = 0.0;
+        float Ret = 0.0;
+
+        FracPart = modf((double)number, &IntPart);
+        if (number >= 0)
+          Ret = (float)(FracPart >= 0.5 ? IntPart + 1 : IntPart);
+        else
+          Ret = (float)(FracPart <= -0.5 ? IntPart - 1 : IntPart);
+
+        return Ret;
+      }
+    }
   }
-  else {
-    Ret = (float)(FracPart <= -0.5 ? IntPart - 1 : IntPart);
-  }
-  return Ret;
 }

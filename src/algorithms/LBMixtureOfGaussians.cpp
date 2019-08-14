@@ -28,7 +28,7 @@ void LBMixtureOfGaussians::process(const cv::Mat &img_input, cv::Mat &img_output
     int w = cvGetSize(frame).width;
     int h = cvGetSize(frame).height;
 
-    m_pBGModel = new BGModelMog(w, h);
+    m_pBGModel = new lb::BGModelMog(w, h);
     m_pBGModel->InitModel(frame);
   }
 

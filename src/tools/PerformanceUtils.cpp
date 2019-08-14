@@ -1,6 +1,6 @@
 #include "PerformanceUtils.h"
-//#include <opencv2/legacy/compat.hpp>
-//#include <opencv2/highgui/highgui_c.h>
+
+using namespace bgslibrary::tools;
 
 PerformanceUtils::PerformanceUtils() {
   //debug_construction(PerformanceUtils);
