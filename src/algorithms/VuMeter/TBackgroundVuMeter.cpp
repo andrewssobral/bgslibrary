@@ -115,9 +115,9 @@ namespace bgslibrary
 
           switch (nInd)
           {
-          case 0: sprintf_s(buff, "%d", m_nBinSize); break;
-          case 1: sprintf_s(buff, "%.3f", m_fAlpha); break;
-          case 2: sprintf_s(buff, "%.2f", m_fThreshold); break;
+          case 0: sprintf(buff, "%d", m_nBinSize); break;
+          case 1: sprintf(buff, "%.3f", m_fAlpha); break;
+          case 2: sprintf(buff, "%.2f", m_fThreshold); break;
           }
 
           csResult = buff;
