@@ -46,7 +46,7 @@ namespace bgslibrary
       const int FRAMELEVEL_ANALYSIS_DOWNSAMPLE_RATIO = 8;
 
       // local define used to display debug information
-      const int DISPLAY_SUBSENSE_DEBUG_INFO = 0;
+      //const int DISPLAY_SUBSENSE_DEBUG_INFO = 0;
       // local define used to specify the default frame size (320x240 = QVGA)
 #define DEFAULT_FRAME_SIZE cv::Size(320,240)
 // local define used to specify the color dist threshold offset used for unstable regions

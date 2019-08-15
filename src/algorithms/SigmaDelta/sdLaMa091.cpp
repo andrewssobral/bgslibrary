@@ -12,8 +12,8 @@ namespace bgslibrary
       const int DEFAULT_VMAX = 255;
 
       const char* LIB = "sdLaMa091 - ";
-      const int RED = 0;
-      const int GREEN = 1;
+      //const int RED = 0;
+      //const int GREEN = 1;
       const int BLUE = 2;
       const int CHANNELS = 3;
 

@@ -15,10 +15,10 @@ namespace bgslibrary
       {
         //! si la imatge és cíclica verticalment (els blobs que toquen
         //! les vores superior i inferior no es consideren externs)
-        const int IMATGE_CICLICA_VERTICAL = 1;
+        //const int IMATGE_CICLICA_VERTICAL = 1;
         //! si la imatge és cíclica horitzontalment (els blobs que toquen
         //! les vores dreta i esquerra no es consideren externs)
-        const int IMATGE_CICLICA_HORITZONTAL = 0;
+        //const int IMATGE_CICLICA_HORITZONTAL = 0;
 
         const double SQRT2 = 1.41421356237310;
         const double PERIMETRE_DIAGONAL = (SQRT2 - 2);
