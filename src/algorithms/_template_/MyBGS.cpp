@@ -26,9 +26,22 @@ void MyBGS::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_
     cv::cvtColor(img_foreground, img_foreground, CV_BGR2GRAY);
 
   cv::threshold(img_foreground, img_foreground, 15, 255, cv::THRESH_BINARY);
+  
+#ifndef MEX_COMPILE_FLAG
+  if (showOutput)
+    cv::imshow(algorithmName + "_FG", img_foreground);
+#endif
 
   img_foreground.copyTo(img_output);
   img_previous.copyTo(img_bgmodel);
 
   img_input.copyTo(img_previous);
+}
+
+void MyBGS::save_config(cv::FileStorage &fs) {
+  fs << "showOutput" << showOutput;
+}
+
+void MyBGS::load_config(cv::FileStorage &fs) {
+  fs["showOutput"] >> showOutput;
 }

@@ -19,8 +19,10 @@ int main(int argc, char **argv)
 
   /* Background Subtraction Methods */
   auto algorithmsName = BGS_Factory::Instance()->GetRegisteredAlgorithmsName();
-
-  auto key = 0;
+  
+  std::cout << "List of available algorithms:" << std::endl;
+  std::copy(algorithmsName.begin(), algorithmsName.end(), std::ostream_iterator<std::string>(std::cout, "\n"));
+  
   for (const std::string& algorithmName : algorithmsName)
   {
     std::cout << "Running " << algorithmName << std::endl;
@@ -28,6 +30,7 @@ int main(int argc, char **argv)
 
     auto frame_counter = 0;
     std::cout << "Press 's' to stop:" << std::endl;
+    auto key = 0;
     while (key != 's')
     {
       // Capture frame-by-frame
