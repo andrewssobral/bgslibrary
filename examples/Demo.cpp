@@ -1,4 +1,6 @@
 #include <iostream>
+#include <algorithm>
+#include <iterator>
 #include <vector>
 #include <opencv2/opencv.hpp>
 
