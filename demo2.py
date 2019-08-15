@@ -1,6 +1,6 @@
 import numpy as np
 import cv2
-import bgs
+import pybgs as bgs
 
 print("OpenCV Version: {}".format(cv2.__version__))
 

@@ -1,6 +1,6 @@
 import numpy as np
 import cv2
-import bgs
+import pybgs as bgs
 
 algorithm = bgs.FrameDifference()
 video_file = "dataset/video.avi"

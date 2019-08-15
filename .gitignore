@@ -3,6 +3,7 @@ tmp/
 bkp/
 build-*/
 build_*/
+dist/
 dataset_*/
 binaries*/
 examples/build-*/
@@ -22,6 +23,8 @@ _*
 *.creator.user
 *.files
 *.includes
-bgs.egg-info
+*.egg-info/
 .vscode/
 bgslibrary_gui
+.pypirc
+upload.sh

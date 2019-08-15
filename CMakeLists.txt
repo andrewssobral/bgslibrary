@@ -204,7 +204,7 @@ if(BGS_PYTHON_SUPPORT)
   target_compile_definitions(bgs_python PRIVATE BGS_PYTHON_SUPPORT=1)
 
   # Set the output library name to bgslibrary because that's what setup.py and distutils expects.
-  set_property(TARGET bgs_python PROPERTY OUTPUT_NAME "bgs")
+  set_property(TARGET bgs_python PROPERTY OUTPUT_NAME "pybgs")
 endif()
 
 #if(WIN32)
@@ -249,7 +249,7 @@ install(TARGETS bgslibrary_core
   RUNTIME DESTINATION bin COMPONENT app
   LIBRARY DESTINATION lib COMPONENT runtime
   ARCHIVE DESTINATION lib COMPONENT runtime
-  PUBLIC_HEADER DESTINATION include/bgslibrary COMPONENT dev
+  #PUBLIC_HEADER DESTINATION include/bgslibrary COMPONENT dev
   FRAMEWORK DESTINATION "/Library/Frameworks"
 )
 

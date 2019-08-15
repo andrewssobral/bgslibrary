@@ -8,8 +8,8 @@ To package the wheel (after pip installing twine and wheel):
 To upload the binary wheel to PyPi
     twine upload dist/*.whl
 To upload the source distribution to PyPi
-    python setup.py sdist 
-    twine upload dist/bgs-*.tar.gz
+    python setup.py sdist
+    twine upload dist/pybgs-*.tar.gz
 """
 import os
 import re
@@ -20,6 +20,19 @@ import subprocess
 from setuptools import setup, find_packages, Extension
 from setuptools.command.build_ext import build_ext
 from distutils.version import LooseVersion
+
+#import datetime
+#now = datetime.datetime.now()
+#
+#pkg_properties={}
+#with open('.properties') as fp:
+#    for line in fp:
+#        if '=' in line:
+#            name, value = line.replace('\n','').split('=', 1)
+#            if "SNAPSHOT" in value:
+#                dev_version = "." + now.strftime("%y%m%d%H%M") + ".dev"
+#                value = value.replace("-SNAPSHOT", dev_version)
+#            pkg_properties[name] = value
 
 
 class CMakeExtension(Extension):
@@ -38,8 +51,8 @@ class CMakeBuild(build_ext):
 
         if platform.system() == "Windows":
             cmake_version = LooseVersion(re.search(r'version\s*([\d.]+)', out.decode()).group(1))
-            if cmake_version < '3.1.0':
-                raise RuntimeError("CMake >= 3.1.0 is required on Windows")
+            if cmake_version < '3.10.0':
+                raise RuntimeError("CMake >= 3.10.0 is required on Windows")
 
         for ext in self.extensions:
             self.build_extension(ext)
@@ -62,7 +75,7 @@ class CMakeBuild(build_ext):
             build_args += ['--', '/m']
         else:
             cmake_args += ['-DCMAKE_BUILD_TYPE=' + cfg]
-            build_args += ['--', '-j2']
+            build_args += ['--', '-j8']
 
         env = os.environ.copy()
         env['CXXFLAGS'] = '{} -DVERSION_INFO=\\"{}\\"'.format(env.get('CXXFLAGS', ''),
@@ -71,21 +84,26 @@ class CMakeBuild(build_ext):
             os.makedirs(self.build_temp)
         subprocess.check_call(['cmake', ext.sourcedir] + cmake_args, cwd=self.build_temp, env=env)
         subprocess.check_call(['cmake', '--build', '.'] + build_args, cwd=self.build_temp)
-        #subprocess.check_call(['cmake', ext.sourcedir] + cmake_args, cwd="./build", env=env)
-        #subprocess.check_call(['cmake', '--build', '.'] + build_args, cwd="./build")
+        print()
+
+with open("README.md", "r") as fh:
+    long_description = fh.read()
 
 setup(
-    name='bgs',
-    version='2.0.0',
+    name='pybgs',
+    version='3.0.0',
+    #version=pkg_properties["version"],
     author='Andrews Sobral',
     author_email='andrewssobral@gmail.com',
     url='https://github.com/andrewssobral/bgslibrary',
-    license='GPL v3',
+    license='MIT',
     description='Python wrapper for bgslibrary using pybind11 and CMake',
-    long_description='',
-    ext_modules=[CMakeExtension('bgs')],
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    ext_modules=[CMakeExtension('src')],
     cmdclass=dict(build_ext=CMakeBuild),
     zip_safe=False,
-    packages=find_packages(),
+    #packages=find_packages('pybgs'),
+    #package_dir={'':'pybgs'},
     keywords=['BGSLibrary', 'Background Subtraction', 'Computer Vision', 'Machine Learning'],
 )
