@@ -29,8 +29,7 @@ void DPTexture::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
 {
   init(img_input, img_output, img_bgmodel);
 
-  //frame = new IplImage(img_input);
-  frame = cvCloneImage(&(IplImage)img_input);
+  frame = new IplImage(img_input);
 
   if (firstTime) {
     width = img_input.size().width;

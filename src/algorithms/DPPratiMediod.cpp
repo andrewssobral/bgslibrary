@@ -5,7 +5,7 @@
 using namespace bgslibrary::algorithms;
 
 DPPratiMediod::DPPratiMediod() :
-  IBGS(quote(DPMean)),
+  IBGS(quote(DPPratiMediod)),
   frameNumber(0), threshold(30), samplingRate(5), 
   historySize(16), weight(5)
 {
