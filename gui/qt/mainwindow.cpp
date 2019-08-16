@@ -137,6 +137,8 @@ MainWindow::MainWindow(QWidget *parent) :
   ui->listView_algorithms->setModel(listModel);
   QModelIndex index = listModel->index(0);
   ui->listView_algorithms->selectionModel()->select(index, QItemSelectionModel::Select);
+  //std::cout << "QDir::currentPath(): " + QDir::currentPath().toStdString() << std::endl;
+  //std::cout << "QCoreApplication::applicationDirPath(): " + QCoreApplication::applicationDirPath().toStdString() << std::endl;
 }
 
 MainWindow::~MainWindow()
@@ -289,7 +291,7 @@ void MainWindow::setFrameNumber(long long _frameNumber)
 {
   //std::cout << "setFrameNumber()" << std::endl;
   frameNumber = _frameNumber;
-  QString txt_frameNumber = QString::fromStdString(to_string(frameNumber));
+  QString txt_frameNumber = QString::fromStdString(to_string<long long>(frameNumber));
   ui->label_framenumber_txt->setText(txt_frameNumber);
 }
 
@@ -355,8 +357,8 @@ void MainWindow::startCapture()
   {
     int frame_width = cv_frame.size().width;
     int frame_height = cv_frame.size().height;
-    ui->label_frameresw_txt->setText(QString::fromStdString(to_string(frame_width)));
-    ui->label_frameresh_txt->setText(QString::fromStdString(to_string(frame_height)));
+    ui->label_frameresw_txt->setText(QString::fromStdString(to_string<int>(frame_width)));
+    ui->label_frameresh_txt->setText(QString::fromStdString(to_string<int>(frame_height)));
   }
 
   if (useVideo && capture_length > 0)
@@ -476,7 +478,8 @@ bool MainWindow::setUpCamera()
 
 bool MainWindow::setUpVideo()
 {
-  std::string videoFileName = fileName.toStdString();
+  //std::string videoFileName = fileName.toStdString();
+  std::string videoFileName = ui->lineEdit_inputdata->text().toStdString();
   std::cout << "Openning: " << videoFileName << std::endl;
   capture.open(videoFileName.c_str());
   return capture.isOpened();
@@ -555,7 +558,7 @@ void MainWindow::on_listView_algorithms_doubleClicked(const QModelIndex &index)
   }
   else
   {
-    QMessageBox::warning(this, "Warning", "XML configuration file not found!\nPlease run the algorithm first!");
+    QMessageBox::warning(this, "Warning", "XML configuration file not found!\nPlease run the algorithm first or create a config folder relative to the executable path.");
     return;
   }
 }

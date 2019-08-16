@@ -82,7 +82,7 @@
    <widget class="QCheckBox" name="checkBox_webcamera">
     <property name="geometry">
      <rect>
-      <x>280</x>
+      <x>590</x>
       <y>60</y>
       <width>131</width>
       <height>20</height>
@@ -95,7 +95,7 @@
    <widget class="QSpinBox" name="spinBox_webcamera">
     <property name="geometry">
      <rect>
-      <x>410</x>
+      <x>720</x>
       <y>60</y>
       <width>42</width>
       <height>20</height>
@@ -105,7 +105,7 @@
    <widget class="QCheckBox" name="checkBox_imageseq">
     <property name="geometry">
      <rect>
-      <x>470</x>
+      <x>770</x>
       <y>60</y>
       <width>151</width>
       <height>20</height>
@@ -600,6 +600,32 @@
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QLabel" name="label_config">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>60</y>
+      <width>91</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Config folder</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_config">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>90</y>
+      <width>641</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>./config</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -607,7 +633,7 @@
      <x>0</x>
      <y>0</y>
      <width>1070</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuBGSLibrary">
