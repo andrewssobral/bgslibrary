@@ -15,7 +15,7 @@ To upload the source distribution to PyPi
     python setup.py sdist
     twine upload dist/pybgs-*.tar.gz
 """
-import os, re, sys, shutil, pathlib, platform, subprocess
+import os, re, sys, shutil, platform, subprocess
 
 from setuptools import setup, find_packages, Extension
 from setuptools.command.build_ext import build_ext
@@ -50,7 +50,8 @@ class InstallCMakeLibsData(install_data):
         # help would be appriciated
         self.outfiles = self.distribution.data_files
 
-class InstallCMakeLibs(install_lib):
+__metaclass__ = type
+class InstallCMakeLibs(install_lib, object):
     """
     Get the libraries from the parent distribution, use those as the outfiles
 
@@ -100,9 +101,10 @@ class InstallCMakeLibs(install_lib):
                                         for lib in libs]
         # Must be forced to run after adding the libs to data_files
         self.distribution.run_command("install_data")
-        super().run()
+        super(InstallCMakeLibs, self).run()
 
-class InstallCMakeScripts(install_scripts):
+__metaclass__ = type
+class InstallCMakeScripts(install_scripts, object):
     """
     Install the scripts in the build dir
     """
@@ -125,9 +127,10 @@ class InstallCMakeScripts(install_scripts):
         # distribution.scripts seems to ensure that the setuptools' record 
         # writer appends them to installed-files.txt in the package's egg-info
         self.distribution.scripts = scripts_dirs
-        super().run()
+        super(InstallCMakeScripts, self).run()
 
-class BuildCMakeExt(build_ext):
+__metaclass__ = type
+class BuildCMakeExt(build_ext, object):
     """
     Builds using cmake instead of the python setuptools implicit build
     """
@@ -137,17 +140,17 @@ class BuildCMakeExt(build_ext):
         """
         for extension in self.extensions:
             self.build_cmake(extension)
-        super().run()
+        super(BuildCMakeExt, self).run()
 
-    def build_cmake(self, extension: Extension):
+    def build_cmake(self, extension):
         """
         The steps required to build the extension
         """
         self.announce("Preparing the build environment", level=3)
-        build_dir = pathlib.Path(self.build_temp)
-        extension_path = pathlib.Path(self.get_ext_fullpath(extension.name))
-        os.makedirs(build_dir, exist_ok=True)
-        os.makedirs(extension_path.parent.absolute(), exist_ok=True)
+        build_dir = os.path.join(self.build_temp)
+        extension_path = os.path.abspath(os.path.dirname(self.get_ext_fullpath(extension.name)))
+        os.makedirs(build_dir)
+        os.makedirs(extension_path)
         python_version = str(sys.version_info[0]) + "." + str(sys.version_info[1])
 
         # Now that the necessary directories are created, build
@@ -168,7 +171,7 @@ class BuildCMakeExt(build_ext):
         # Build finished, now copy the files into the copy directory
         # The copy directory is the parent directory of the extension (.pyd)
         self.announce("Moving built python module", level=3)
-        bin_dir = os.path.join(build_dir)
+        bin_dir = build_dir
         self.distribution.bin_dir = bin_dir
         pyd_path = [os.path.join(bin_dir, _pyd) for _pyd in
                     os.listdir(bin_dir) if
@@ -192,7 +195,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name='pybgs',
-    version='3.0.0.post0',
+    version='3.0.0.post1',
     author='Andrews Sobral',
     author_email='andrewssobral@gmail.com',
     url='https://github.com/andrewssobral/bgslibrary',
