@@ -195,12 +195,12 @@ with open("README.md", "r") as fh:
 
 setup(
     name='pybgs',
-    version='3.0.0.post1',
+    version='3.0.0.post2',
     author='Andrews Sobral',
     author_email='andrewssobral@gmail.com',
     url='https://github.com/andrewssobral/bgslibrary',
     license='MIT',
-    description='Python wrapper for bgslibrary using pybind11 and CMake',
+    description='Official Python wrapper for BGSLibrary',
     long_description=long_description,
     long_description_content_type="text/markdown",
     ext_modules=[CMakeExtension(name='pybgs', sourcedir='.')],
