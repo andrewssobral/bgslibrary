@@ -1,42 +1,31 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.1)
 
 project(bgslibrary)
 
-# cmake -D BGS_PYTHON_SUPPORT=ON ..
-if(NOT DEFINED BGS_PYTHON_SUPPORT)
-  set(BGS_PYTHON_SUPPORT OFF)
-elseif()
-  # add_definitions(-DBGS_PYTHON_SUPPORT)
-endif()
-# cmake -D BGS_PYTHON_ONLY=ON ..
-if(NOT DEFINED BGS_PYTHON_ONLY)
-  set(BGS_PYTHON_ONLY OFF)
-elseif()
-  # add_definitions(-DBGS_PYTHON_ONLY)
-endif()
-# cmake -D BGS_CORE_STATIC=ON ..
-if(NOT DEFINED BGS_CORE_STATIC)
-  set(BGS_CORE_STATIC OFF)
-elseif()
-  # add_definitions(-DBGS_CORE_STATIC)
-endif()
-message(STATUS "")
-message(STATUS "BGS_PYTHON_SUPPORT: ${BGS_PYTHON_SUPPORT}")
-message(STATUS "BGS_PYTHON_ONLY:    ${BGS_PYTHON_ONLY}")
-message(STATUS "BGS_CORE_STATIC:    ${BGS_CORE_STATIC}")
-
-# cmake -D BGS_PYTHON_SUPPORT=ON -D BGS_PYTHON_VERSION=3 ..
-if(NOT DEFINED BGS_PYTHON_VERSION)
-  set(BGS_PYTHON_VERSION 3)
-endif()
-if(BGS_PYTHON_SUPPORT)
-  message(STATUS "PYTHON VERSION: ${BGS_PYTHON_VERSION}")
-endif()
+include(CheckCXXCompilerFlag)
 
 set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
+function(append_if condition value)
+  if (${condition})
+    foreach(variable ${ARGN})
+      set(${variable} "${${variable}} ${value}" PARENT_SCOPE)
+    endforeach(variable)
+  endif()
+endfunction()
+
+if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR
+    CMAKE_CXX_COMPILER_ID STREQUAL "Clang" OR
+    CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
+  check_cxx_compiler_flag("-fvisibility-inlines-hidden" SUPPORTS_FVISIBILITY_INLINES_HIDDEN_FLAG)
+  append_if(SUPPORTS_FVISIBILITY_INLINES_HIDDEN_FLAG "-fvisibility=hidden -fvisibility-inlines-hidden" CMAKE_CXX_FLAGS)
+endif()
 
 if(UNIX)
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
+  #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
   set(CMAKE_MACOSX_RPATH 1)
 endif(UNIX)
 
@@ -45,8 +34,6 @@ endif(UNIX)
 if (POLICY CMP0042)
   cmake_policy(SET CMP0042 NEW)
 endif()
-
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 #set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99")
 #set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake-modules)
@@ -90,6 +77,37 @@ if(UNIX)
   # if you like to have warinings about conversions, e.g. double->int or double->float etc., or float compare
   #ADD_DEFINITIONS(-Wconversion -Wfloat-equal)
 endif(UNIX)
+
+# cmake -D BGS_PYTHON_SUPPORT=ON ..
+if(NOT DEFINED BGS_PYTHON_SUPPORT)
+  set(BGS_PYTHON_SUPPORT OFF)
+else()
+  # add_definitions(-DBGS_PYTHON_SUPPORT)
+endif()
+# cmake -D BGS_PYTHON_ONLY=ON ..
+if(NOT DEFINED BGS_PYTHON_ONLY)
+  set(BGS_PYTHON_ONLY OFF)
+else()
+  # add_definitions(-DBGS_PYTHON_ONLY)
+endif()
+# cmake -D BGS_CORE_STATIC=ON ..
+if(NOT DEFINED BGS_CORE_STATIC)
+  set(BGS_CORE_STATIC OFF)
+else()
+  # add_definitions(-DBGS_CORE_STATIC)
+endif()
+message(STATUS "")
+message(STATUS "BGS_PYTHON_SUPPORT: ${BGS_PYTHON_SUPPORT}")
+message(STATUS "BGS_PYTHON_ONLY:    ${BGS_PYTHON_ONLY}")
+message(STATUS "BGS_CORE_STATIC:    ${BGS_CORE_STATIC}")
+
+# cmake -D BGS_PYTHON_SUPPORT=ON -D BGS_PYTHON_VERSION=3 ..
+if(NOT DEFINED BGS_PYTHON_VERSION)
+  set(BGS_PYTHON_VERSION 3)
+endif()
+if(BGS_PYTHON_SUPPORT)
+  message(STATUS "PYTHON VERSION: ${BGS_PYTHON_VERSION}")
+endif()
 
 set(OpenCV_STATIC OFF)
 find_package(OpenCV REQUIRED)
@@ -196,9 +214,13 @@ if(${OpenCV_VERSION} VERSION_LESS 2.4.3)
 endif()
 
 if(BGS_CORE_STATIC)
+  message(STATUS "Bulding bgslibrary_core STATIC")
   add_library(bgslibrary_core STATIC ${bgs_src} ${tools_src} ${utils_src} ${bgs_inc} ${tools_inc} ${utils_inc})
-elseif()
+  #set_property(TARGET bgslibrary_core PROPERTY POSITION_INDEPENDENT_CODE ON)
+else()
+  message(STATUS "Bulding bgslibrary_core SHARED")
   add_library(bgslibrary_core SHARED ${bgs_src} ${tools_src} ${utils_src} ${bgs_inc} ${tools_inc} ${utils_inc})
+  target_link_libraries(bgslibrary_core ${OpenCV_LIBS})
   # generates the export header bgslibrary_core_EXPORTS.h automatically
   include(GenerateExportHeader)
   GENERATE_EXPORT_HEADER(bgslibrary_core
@@ -206,8 +228,7 @@ elseif()
       EXPORT_MACRO_NAME bgslibrary_core_EXPORTS
       EXPORT_FILE_NAME bgslibrary_core_EXPORTS.h
       STATIC_DEFINE BGSLIBRARY_CORE_EXPORTS_BUILT_AS_STATIC)
-  target_link_libraries(bgslibrary_core ${OpenCV_LIBS})
-  set_property(TARGET bgslibrary_core PROPERTY PUBLIC_HEADER ${bgs_inc} ${tools_inc} ${utils_inc})
+  #set_property(TARGET bgslibrary_core PROPERTY PUBLIC_HEADER ${bgs_inc} ${tools_inc} ${utils_inc})
 endif()
 
 if(BGS_PYTHON_SUPPORT)
@@ -227,6 +248,7 @@ if(BGS_PYTHON_SUPPORT)
 
   # Set the output library name to bgslibrary because that's what setup.py and distutils expects.
   set_property(TARGET bgs_python PROPERTY OUTPUT_NAME "pybgs")
+  #set_property(TARGET bgs_python PROPERTY POSITION_INDEPENDENT_CODE ON)
 endif()
 
 #if(WIN32)
