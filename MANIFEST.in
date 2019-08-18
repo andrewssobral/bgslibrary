@@ -1,0 +1,22 @@
+include *.txt
+prune src
+recursive-include src/algorithms *.*
+recursive-include src/tools *.*
+recursive-include src/utils *.*
+prune wrapper
+recursive-include wrapper/python *.*
+recursive-include modules *.*
+recursive-include pybgs *.*
+prune build
+prune dist
+prune tools
+prune test
+prune gui
+prune examples
+prune docs
+prune dataset
+prune config
+prune cmake-modules
+prune _dist
+prune _wiki
+prune _opencv_cmake

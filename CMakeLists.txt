@@ -8,8 +8,22 @@ if(NOT DEFINED BGS_PYTHON_SUPPORT)
 elseif()
   # add_definitions(-DBGS_PYTHON_SUPPORT)
 endif()
+# cmake -D BGS_PYTHON_ONLY=ON ..
+if(NOT DEFINED BGS_PYTHON_ONLY)
+  set(BGS_PYTHON_ONLY OFF)
+elseif()
+  # add_definitions(-DBGS_PYTHON_ONLY)
+endif()
+# cmake -D BGS_CORE_STATIC=ON ..
+if(NOT DEFINED BGS_CORE_STATIC)
+  set(BGS_CORE_STATIC OFF)
+elseif()
+  # add_definitions(-DBGS_CORE_STATIC)
+endif()
 message(STATUS "")
-message(STATUS "BGSLIBRARY WITH PYTHON SUPPORT: ${BGS_PYTHON_SUPPORT}")
+message(STATUS "BGS_PYTHON_SUPPORT: ${BGS_PYTHON_SUPPORT}")
+message(STATUS "BGS_PYTHON_ONLY:    ${BGS_PYTHON_ONLY}")
+message(STATUS "BGS_CORE_STATIC:    ${BGS_CORE_STATIC}")
 
 # cmake -D BGS_PYTHON_SUPPORT=ON -D BGS_PYTHON_VERSION=3 ..
 if(NOT DEFINED BGS_PYTHON_VERSION)
@@ -146,8 +160,10 @@ if(BGS_PYTHON_SUPPORT)
   message(STATUS "NUMPY_INCLUDE_DIR: ${NUMPY_INCLUDE_DIR}\n")
 endif()
 
-file(GLOB main_src src/*.cpp src/*.c)
-file(GLOB main_inc src/*.h src/*.hpp)
+if(NOT BGS_PYTHON_ONLY)
+  file(GLOB main_src src/*.cpp src/*.c)
+  file(GLOB main_inc src/*.h src/*.hpp)
+endif()
 
 file(GLOB_RECURSE utils_src src/utils/*.cpp src/utils/*.c)
 file(GLOB_RECURSE utils_inc src/utils/*.h src/utils/*.hpp)
@@ -177,16 +193,20 @@ if(${OpenCV_VERSION} VERSION_LESS 2.4.3)
   list(REMOVE_ITEM bgs_src ${gmg})
 endif()
 
-add_library(bgslibrary_core SHARED ${bgs_src} ${tools_src} ${utils_src} ${bgs_inc} ${tools_inc} ${utils_inc})
-# generates the export header bgslibrary_core_EXPORTS.h automatically
-include(GenerateExportHeader)
-GENERATE_EXPORT_HEADER(bgslibrary_core
-    BASE_NAME bgslibrary_core
-    EXPORT_MACRO_NAME bgslibrary_core_EXPORTS
-    EXPORT_FILE_NAME bgslibrary_core_EXPORTS.h
-    STATIC_DEFINE BGSLIBRARY_CORE_EXPORTS_BUILT_AS_STATIC)
-target_link_libraries(bgslibrary_core ${OpenCV_LIBS})
-set_property(TARGET bgslibrary_core PROPERTY PUBLIC_HEADER ${bgs_inc} ${tools_inc} ${utils_inc})
+if(BGS_CORE_STATIC)
+  add_library(bgslibrary_core STATIC ${bgs_src} ${tools_src} ${utils_src} ${bgs_inc} ${tools_inc} ${utils_inc})
+elseif()
+  add_library(bgslibrary_core SHARED ${bgs_src} ${tools_src} ${utils_src} ${bgs_inc} ${tools_inc} ${utils_inc})
+  # generates the export header bgslibrary_core_EXPORTS.h automatically
+  include(GenerateExportHeader)
+  GENERATE_EXPORT_HEADER(bgslibrary_core
+      BASE_NAME bgslibrary_core
+      EXPORT_MACRO_NAME bgslibrary_core_EXPORTS
+      EXPORT_FILE_NAME bgslibrary_core_EXPORTS.h
+      STATIC_DEFINE BGSLIBRARY_CORE_EXPORTS_BUILT_AS_STATIC)
+  target_link_libraries(bgslibrary_core ${OpenCV_LIBS})
+  set_property(TARGET bgslibrary_core PROPERTY PUBLIC_HEADER ${bgs_inc} ${tools_inc} ${utils_inc})
+endif()
 
 if(BGS_PYTHON_SUPPORT)
   #add_library(bgs_python SHARED ${bgs_src} ${tools_src})
@@ -223,9 +243,11 @@ endif()
 #  endif()
 #endif()
 
-add_executable(bgslibrary ${main_src} ${main_inc})
-target_link_libraries(bgslibrary ${OpenCV_LIBS} bgslibrary_core)
-# set_target_properties(bgslibrary PROPERTIES OUTPUT_NAME bgs)
+if(NOT BGS_PYTHON_ONLY)
+  add_executable(bgslibrary ${main_src} ${main_inc})
+  target_link_libraries(bgslibrary ${OpenCV_LIBS} bgslibrary_core)
+  # set_target_properties(bgslibrary PROPERTIES OUTPUT_NAME bgs)
+endif()
 
 if(UNIX AND BGS_PYTHON_SUPPORT)
   execute_process(
@@ -244,24 +266,26 @@ if(UNIX AND BGS_PYTHON_SUPPORT)
   #install(TARGETS bgs_python DESTINATION ${CMAKE_CURRENT_SOURCE_DIR})
 endif()
 
-install(TARGETS bgslibrary_core
-  bgslibrary
-  RUNTIME DESTINATION bin COMPONENT app
-  LIBRARY DESTINATION lib COMPONENT runtime
-  ARCHIVE DESTINATION lib COMPONENT runtime
-  #PUBLIC_HEADER DESTINATION include/bgslibrary COMPONENT dev
-  FRAMEWORK DESTINATION "/Library/Frameworks"
-)
+if(NOT BGS_PYTHON_ONLY)
+  install(TARGETS bgslibrary_core
+    bgslibrary
+    RUNTIME DESTINATION bin COMPONENT app
+    LIBRARY DESTINATION lib COMPONENT runtime
+    ARCHIVE DESTINATION lib COMPONENT runtime
+    #PUBLIC_HEADER DESTINATION include/bgslibrary COMPONENT dev
+    FRAMEWORK DESTINATION "/Library/Frameworks"
+  )
 
-if(UNIX)
-  # to avoid: error while loading shared libraries: libbgslibrary_core.so
-  message(STATUS "You might need to run:")
-  message(STATUS "$ LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib")
-  message(STATUS "$ export LD_LIBRARY_PATH")
-  message(STATUS "after 'make install' to avoid error while loading libbgslibrary_core\n")
-endif()
+  if(UNIX)
+    # to avoid: error while loading shared libraries: libbgslibrary_core.so
+    message(STATUS "You might need to run:")
+    message(STATUS "$ LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib")
+    message(STATUS "$ export LD_LIBRARY_PATH")
+    message(STATUS "after 'make install' to avoid error while loading libbgslibrary_core\n")
+  endif()
 
-if(WIN32)
-  message(STATUS "You might need to add ${CMAKE_CURRENT_BINARY_DIR} to your PATH to be able to run your applications.")
-  message(STATUS "> set PATH=%PATH%;${CMAKE_CURRENT_BINARY_DIR}\n")
+  if(WIN32)
+    message(STATUS "You might need to add ${CMAKE_CURRENT_BINARY_DIR} to your PATH to be able to run your applications.")
+    message(STATUS "> set PATH=%PATH%;${CMAKE_CURRENT_BINARY_DIR}\n")
+  endif()
 endif()
