@@ -109,7 +109,12 @@ if(BGS_PYTHON_SUPPORT)
   message(STATUS "PYTHON VERSION: ${BGS_PYTHON_VERSION}")
 endif()
 
-set(OpenCV_STATIC OFF)
+if(BGS_CORE_STATIC)
+  set(OpenCV_STATIC ON)
+else()
+  set(OpenCV_STATIC OFF)
+endif()
+
 find_package(OpenCV REQUIRED)
 if(OpenCV_FOUND)
   message(STATUS "")
