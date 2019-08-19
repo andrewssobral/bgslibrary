@@ -3,7 +3,9 @@
 #include <exception>
 
 #include <opencv2/imgproc/imgproc.hpp>
+#ifndef MEX_COMPILE_FLAG
 #include <opencv2/highgui/highgui.hpp>
+#endif
 
 #include "BackgroundSubtractorLBSP_.h"
 #include "DistanceUtils.h"

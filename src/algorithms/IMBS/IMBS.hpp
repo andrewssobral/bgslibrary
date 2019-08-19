@@ -4,13 +4,15 @@
 #include <vector>
 
 #include <opencv2/core/core.hpp>
-#include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/features2d/features2d.hpp>
 // opencv legacy includes
+#ifndef MEX_COMPILE_FLAG
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/highgui/highgui_c.h>
+#endif
 #include <opencv2/imgproc/types_c.h>
 #include <opencv2/imgproc/imgproc_c.h>
-#include <opencv2/highgui/highgui_c.h>
 
 namespace bgslibrary
 {

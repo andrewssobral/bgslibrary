@@ -2,7 +2,9 @@
 #include <iomanip>
 
 #include <opencv2/imgproc/imgproc.hpp>
+#ifndef MEX_COMPILE_FLAG
 #include <opencv2/highgui/highgui.hpp>
+#endif
 
 #include "BackgroundSubtractorPAWCS.h"
 #include "RandUtils.h"

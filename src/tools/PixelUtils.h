@@ -7,7 +7,9 @@
 //#include <opencv2/highgui/highgui_c.h>
 #include <opencv2/imgproc/types_c.h>
 #include <opencv2/imgproc/imgproc_c.h>
+#ifndef MEX_COMPILE_FLAG
 #include <opencv2/highgui/highgui_c.h>
+#endif
 
 namespace bgslibrary
 {
