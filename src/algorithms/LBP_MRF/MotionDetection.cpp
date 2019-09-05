@@ -3,7 +3,7 @@
 
 #include "MotionDetection.hpp"
 
-#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 4
 
 #include "graph.h"
 #include "MEHistogram.hpp"
@@ -15,10 +15,6 @@ namespace bgslibrary
   {
     namespace lbp_mrf
     {
-      // Pyramid picture for the tracking
-      IplImage *HUOFPyramid;
-      // Pyramid picture for the tracking
-      IplImage *HUOFPrevPyramid;
 
       // Struct for histogram update data of a pixel
       struct MEPixelDataType
@@ -42,8 +38,6 @@ namespace bgslibrary
         HUOFCamMovementX(0), MaxTrackedPoints(0), HUOFFrames(-1),
         HUOFCamMovement(false)
       {
-        HUOFPyramid = NULL;
-        HUOFPrevPyramid = NULL;
         HUOFPoints[0] = NULL;
         HUOFPoints[1] = NULL;
         SetMode(mode);
@@ -367,8 +361,6 @@ namespace bgslibrary
         if (HUOFDataState == ps_Uninitialized)
         {
           HUOFPointsNumber = imagewidth*imageheight / 1000;
-          HUOFPyramid = cvCreateImage(cvSize(imagewidth, imageheight), 8, 1);
-          HUOFPrevPyramid = cvCreateImage(cvSize(imagewidth, imageheight), 8, 1);
           HUOFPoints[0] = (CvPoint2D32f*)cvAlloc(HUOFPointsNumber * sizeof(HUOFPoints[0][0]));
           HUOFPoints[1] = (CvPoint2D32f*)cvAlloc(HUOFPointsNumber * sizeof(HUOFPoints[1][0]));
         }
@@ -422,16 +414,6 @@ namespace bgslibrary
       {
         if (MDDataState != ps_Uninitialized)
         {
-          if (HUOFPyramid)
-          {
-            cvReleaseImage(&HUOFPyramid);
-            HUOFPyramid = NULL;
-          }
-          if (HUOFPrevPyramid)
-          {
-            cvReleaseImage(&HUOFPrevPyramid);
-            HUOFPrevPyramid = NULL;
-          }
           if (HUOFPoints[0])
           {
             cvFree(&HUOFPoints[0]);
@@ -925,14 +907,14 @@ namespace bgslibrary
         // Convert the images into grayscale
         if (CurrentImage.GetLayers() > 1)
         {
-          CurrentGray = cvCreateImage(cvGetSize(CurrentImage.GetIplImage()), IPL_DEPTH_8U, 1);
+          CurrentGray = cvCreateImage(cvSize(((IplImage*)CurrentImage.GetIplImage())->width, ((IplImage*)CurrentImage.GetIplImage())->height), IPL_DEPTH_8U, 1);
           cvCvtColor(CurrentImage.GetIplImage(), CurrentGray, CV_BGR2GRAY);
         }
         else
           CurrentGray = (IplImage*)CurrentImage.GetIplImage();
         if (PreviousImage.GetLayers() > 1)
         {
-          PreviousGray = cvCreateImage(cvGetSize(CurrentImage.GetIplImage()), IPL_DEPTH_8U, 1);
+          PreviousGray = cvCreateImage(cvSize(((IplImage*)CurrentImage.GetIplImage())->width, ((IplImage*)CurrentImage.GetIplImage())->height), IPL_DEPTH_8U, 1);
           cvCvtColor(PreviousImage.GetIplImage(), PreviousGray, CV_BGR2GRAY);
         }
         else
@@ -941,8 +923,8 @@ namespace bgslibrary
         if (HUOFDataState != ps_Successful)
         {
           printf("Search new corners\n");
-          IplImage* TempEig = cvCreateImage(cvGetSize(CurrentGray), 32, 1);
-          IplImage* Temp = cvCreateImage(cvGetSize(CurrentGray), 32, 1);
+          IplImage* TempEig = cvCreateImage(cvSize(CurrentGray->width,CurrentGray->height), 32, 1);
+          IplImage* Temp = cvCreateImage(cvSize(CurrentGray->width, CurrentGray->height), 32, 1);
           double MinDistance = (CurrentImage.GetWidth() + CurrentImage.GetHeight()) / 20;
           HUOFPointsNumber = MaxTrackedPoints = CurrentImage.GetWidth()*CurrentImage.GetHeight() / 1000;
 
@@ -971,11 +953,18 @@ namespace bgslibrary
             HUOFDataState = ps_Successful;
           PointsStatus = (char*)cvAlloc(HUOFPointsNumber);
         }
+		//std::vector<cv::Point2f> HUOFPointsVector0(HUOFPointsNumber);
+		//std::vector<cv::Point2f> HUOFPointsVector1(HUOFPointsNumber);
+		//std::vector<unsigned char> statusVector(HUOFPointsNumber);
 
-        cvCalcOpticalFlowPyrLK(PreviousGray, CurrentGray, HUOFPrevPyramid, HUOFPyramid,
-          HUOFPoints[0], HUOFPoints[1], HUOFPointsNumber,
-          cvSize(10, 10), 3, PointsStatus, NULL,
-          cvTermCriteria(CV_TERMCRIT_ITER | CV_TERMCRIT_EPS, 5, 1), 0);
+		//std::memcpy(HUOFPoints[0], HUOFPointsVector0.data(), HUOFPointsNumber * 2 * 4);
+		//std::memcpy(HUOFPoints[1], HUOFPointsVector1.data(), HUOFPointsNumber * 2 * 4);
+		//std::memcpy(PointsStatus, statusVector.data(), HUOFPointsNumber);
+
+      //cv::calcOpticalFlowPyrLK(cv::cvarrToMat(PreviousGray), cv::cvarrToMat(CurrentGray),
+	//	  HUOFPointsVector0, HUOFPointsVector1,statusVector,
+     //     cv::Size(10, 10), 3, NULL,
+     //     cvTermCriteria(CV_TERMCRIT_ITER | CV_TERMCRIT_EPS, 5, 1), 0);
 
         // Count the distances of the tracked points
         int **Distances = new int*[HUOFPointsNumber];

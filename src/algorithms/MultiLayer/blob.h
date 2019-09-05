@@ -139,7 +139,7 @@ namespace bgslibrary
           typedef std::vector<CvPoint> vectorPunts;
 
           //! Helper class to compare two CvPoints (for sorting in FillBlob)
-          struct comparaCvPoint : public std::binary_function<CvPoint, CvPoint, bool>
+          struct comparaCvPoint
           {
             //! Definim que un punt és menor com més amunt a la dreta estigui
             bool operator()(CvPoint a, CvPoint b)

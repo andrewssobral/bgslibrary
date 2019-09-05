@@ -57,7 +57,7 @@ namespace bgslibrary
       knn = std::make_shared<KNN>();
 #endif
 
-#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 4
     if (enableDPAdaptiveMedian)
       dpAdaptiveMedian = std::make_shared<DPAdaptiveMedian>();
 
@@ -219,7 +219,7 @@ namespace bgslibrary
       process("KNN", knn, img_preProcessor, img_knn);
 #endif
 
-#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 4
     if (enableDPAdaptiveMedian)
       process("DPAdaptiveMedian", dpAdaptiveMedian, img_preProcessor, img_dpAdaptiveMedian);
 
@@ -349,7 +349,7 @@ namespace bgslibrary
       foregroundMaskAnalysis->process(frameNumber, "KNN", img_knn);
 #endif
       
-#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 4
       foregroundMaskAnalysis->process(frameNumber, "DPAdaptiveMedian", img_dpAdaptiveMedian);
       foregroundMaskAnalysis->process(frameNumber, "DPGrimsonGMM", img_dpGrimsonGMM);
       foregroundMaskAnalysis->process(frameNumber, "DPZivkovicAGMM", img_dpZivkovicAGMM);
@@ -428,7 +428,7 @@ namespace bgslibrary
     fs << "enableKNN" << enableKNN;
 #endif
 
-#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 4
     fs << "enableDPAdaptiveMedian" << enableDPAdaptiveMedian;
     fs << "enableDPGrimsonGMM" << enableDPGrimsonGMM;
     fs << "enableDPZivkovicAGMM" << enableDPZivkovicAGMM;
@@ -490,7 +490,7 @@ namespace bgslibrary
     fs["enableKNN"] >> enableKNN;
 #endif
 
-#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 4
     fs["enableDPAdaptiveMedian"] >> enableDPAdaptiveMedian;
     fs["enableDPGrimsonGMM"] >> enableDPGrimsonGMM;
     fs["enableDPZivkovicAGMM"] >> enableDPZivkovicAGMM;

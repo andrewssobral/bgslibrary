@@ -1,6 +1,6 @@
 #include "MultiCue.h"
 
-#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 4
 
 using namespace bgslibrary::algorithms::multiCue;
 using namespace bgslibrary::algorithms;
@@ -76,7 +76,7 @@ void MultiCue::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &i
   //--STep1: Background Modeling--//
   //IplImage* frame = &IplImage(img_input);
   IplImage* frame = new IplImage(img_input);
-  IplImage* result_image = cvCreateImage(cvGetSize(frame), IPL_DEPTH_8U, 3);
+  IplImage* result_image = cvCreateImage(cvSize(frame->width,frame->height), IPL_DEPTH_8U, 3);
   cvSetZero(result_image);
   if (g_iFrameCount <= g_iTrainingPeriod) {
     BackgroundModeling_Par(frame);

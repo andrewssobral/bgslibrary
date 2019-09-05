@@ -24,7 +24,7 @@ void CLocalBinaryPattern::Initialization(IplImage **first_imgs, int imgs_num, in
   m_ppOrgImgs = first_imgs;
   int a, b;
   for (a = 0; a < m_nImgsNum; a++) {
-    m_cvImgSize = cvGetSize(first_imgs[a]);
+    m_cvImgSize = cvSize(first_imgs[a]->width, first_imgs[a]->height);
     if (first_imgs[a]->nChannels > 1) {
       printf("Input image channel must be 1!");
       exit(1);

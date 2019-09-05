@@ -1,6 +1,6 @@
 #include "VuMeter.h"
 
-#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 4
 
 using namespace bgslibrary::algorithms;
 
@@ -30,13 +30,13 @@ void VuMeter::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &im
     bgs.SetBinSize(binSize);
     bgs.SetThreshold(threshold);
 
-    gray = cvCreateImage(cvGetSize(frame), IPL_DEPTH_8U, 1);
+    gray = cvCreateImage(cvSize(frame->width, frame->height), IPL_DEPTH_8U, 1);
     cvCvtColor(frame, gray, CV_RGB2GRAY);
 
-    background = cvCreateImage(cvGetSize(gray), IPL_DEPTH_8U, 1);
+    background = cvCreateImage(cvSize(gray->width, gray->height), IPL_DEPTH_8U, 1);
     cvCopy(gray, background);
 
-    mask = cvCreateImage(cvGetSize(gray), IPL_DEPTH_8U, 1);
+    mask = cvCreateImage(cvSize(gray->width, gray->height), IPL_DEPTH_8U, 1);
     cvZero(mask);
   }
   else

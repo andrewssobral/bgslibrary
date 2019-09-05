@@ -1,6 +1,6 @@
 #include "T2FMRF.h"
 
-#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 4
 
 //using namespace bgslibrary::algorithms::dp;
 

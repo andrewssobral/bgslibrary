@@ -39,7 +39,7 @@ endif()
 #set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake-modules)
 
 # compilation mode setup
-set(CMAKE_BUILD_TYPE Release)
+#set(CMAKE_BUILD_TYPE Release)
 #set(CMAKE_BUILD_TYPE Debug)
 
 if(WIN32)
@@ -116,11 +116,12 @@ else()
 endif()
 
 find_package(OpenCV REQUIRED)
+set_target_properties(${OpenCV_LIBS} PROPERTIES MAP_IMPORTED_CONFIG_RELWITHDEBINFO RELEASE)
 if(OpenCV_FOUND)
   message(STATUS "")
   message(STATUS "OpenCV library status:")
   message(STATUS "    version: ${OpenCV_VERSION}")
-  message(STATUS "    libraries: ${OpenCV_LIBS}")
+  message(STATUS "    libraries: ${OpenCV_LIBRARIES}")
   message(STATUS "    include path: ${OpenCV_INCLUDE_DIRS}\n")
 endif()
 

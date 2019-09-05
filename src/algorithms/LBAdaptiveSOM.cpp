@@ -1,6 +1,6 @@
 #include "LBAdaptiveSOM.h"
 
-#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 4
 
 using namespace bgslibrary::algorithms;
 
@@ -26,8 +26,8 @@ void LBAdaptiveSOM::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
   IplImage *frame = new IplImage(img_input);
 
   if (firstTime) {
-    int w = cvGetSize(frame).width;
-    int h = cvGetSize(frame).height;
+    int w = frame->width;
+    int h = frame->height;
 
     m_pBGModel = new lb::BGModelSom(w, h);
     m_pBGModel->InitModel(frame);
