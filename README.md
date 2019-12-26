@@ -54,6 +54,11 @@ The bgslibrary requires some features from the ISO C++ 2014 standard.
 * [Release notes](https://github.com/andrewssobral/bgslibrary/wiki/Release-notes)
 
 
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/andrewssobral/bgslibrary.svg)](https://starchart.cc/andrewssobral/bgslibrary)
+
+
 Citation
 --------
 
