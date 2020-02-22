@@ -4,6 +4,9 @@
 #include <vector>
 #include <functional>
 
+#include "opencv2/core/version.hpp"
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+
 #include "BlobLibraryConfiguration.h"
 // opencv legacy includes
 #include "OpenCvLegacyIncludes.h"
@@ -143,3 +146,5 @@ namespace bgslibrary
     }
   }
 }
+
+#endif

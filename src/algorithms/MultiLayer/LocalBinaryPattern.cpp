@@ -1,5 +1,8 @@
 #include "LocalBinaryPattern.h"
 
+#include "opencv2/core/version.hpp"
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+
 using namespace bgslibrary::algorithms::multilayer;
 
 CLocalBinaryPattern::CLocalBinaryPattern() {
@@ -251,3 +254,4 @@ void CLocalBinaryPattern::CalImageDifferenceMap(IplImage *cent_img, IplImage *ne
 
 }
 
+#endif

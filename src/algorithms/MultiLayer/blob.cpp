@@ -1,6 +1,9 @@
 #include <limits.h>
 #include "blob.h"
 
+#include "opencv2/core/version.hpp"
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+
 namespace bgslibrary
 {
   namespace algorithms
@@ -1092,3 +1095,5 @@ namespace bgslibrary
     }
   }
 }
+
+#endif

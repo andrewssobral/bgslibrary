@@ -2,6 +2,8 @@
 
 #include "MEDefs.hpp"
 
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+
 //using namespace bgslibrary::algorithms::lbp_mrf;
 
 namespace bgslibrary
@@ -27,3 +29,5 @@ namespace bgslibrary
     }
   }
 }
+
+#endif
