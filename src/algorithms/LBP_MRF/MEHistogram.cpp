@@ -8,6 +8,8 @@
 #include "MEDefs.hpp"
 #include "MEImage.hpp"
 
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+
 using namespace bgslibrary::algorithms::lbp_mrf;
 
 MEHistogram::MEHistogram() {
@@ -459,3 +461,5 @@ void MEHistogramTransform::SetStretchProcessingMode(ProcessingType new_channel_m
     break;
   }
 }
+
+#endif

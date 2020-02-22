@@ -6,6 +6,8 @@
 #include "MEImage.hpp"
 #include "MEDefs.hpp"
 
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+
 //using namespace bgslibrary::algorithms::lbp_mrf;
 
 #define ME_CAST_TO_IPLIMAGE(image_ptr) ((IplImage*)image_ptr)
@@ -1401,3 +1403,5 @@ namespace bgslibrary
     }
   }
 }
+
+#endif

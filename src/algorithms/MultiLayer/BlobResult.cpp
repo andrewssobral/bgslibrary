@@ -3,6 +3,9 @@
 #include <functional>
 #include <algorithm>
 
+#include "opencv2/core/version.hpp"
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+
 #include "BlobResult.h"
 #include "BlobExtraction.h"
 
@@ -798,3 +801,5 @@ namespace bgslibrary
     }
   }
 }
+
+#endif

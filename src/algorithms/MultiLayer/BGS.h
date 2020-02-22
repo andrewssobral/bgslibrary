@@ -1,5 +1,8 @@
 #pragma once
 
+#include "opencv2/core/version.hpp"
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+
 // opencv legacy includes
 #include "OpenCvLegacyIncludes.h"
 
@@ -168,3 +171,5 @@ namespace bgslibrary
     }
   }
 }
+
+#endif

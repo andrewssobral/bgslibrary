@@ -6,6 +6,9 @@
 #include <cmath>
 #include <iostream>
 
+#include "opencv2/core/version.hpp"
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+
 #include "CMultiLayerBGS.h"
 #include "OpenCvLegacyIncludes.h"
 
@@ -2099,3 +2102,5 @@ int CMultiLayerBGS::SetForegroundProbImage(IplImage* fg_prob_img) {
 void CMultiLayerBGS::SetCurrentFrameNumber(unsigned long cur_frame_no) {
   m_nCurImgFrameIdx = cur_frame_no;
 }
+
+#endif
