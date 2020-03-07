@@ -3,7 +3,11 @@ A Background Subtraction Library
 
 [![Release](https://img.shields.io/badge/Release-3.0.0-blue.svg)](https://github.com/andrewssobral/bgslibrary/wiki/Build-status) [![License: GPL v3](https://img.shields.io/badge/License-MIT-blue.svg)](http://www.gnu.org/licenses/gpl-3.0) [![Platform: Windows, Linux, OS X](https://img.shields.io/badge/Platform-Windows%2C%20Linux%2C%20OS%20X-blue.svg)](https://github.com/andrewssobral/bgslibrary/wiki/Build-status) [![OpenCV](https://img.shields.io/badge/OpenCV-2.4.x%2C%203.x%2C%204.x-blue.svg)](https://github.com/andrewssobral/bgslibrary/wiki/Build-status) [![Wrapper: Python, MATLAB](https://img.shields.io/badge/Wrapper-Java%2C%20Python%2C%20MATLAB-orange.svg)](https://github.com/andrewssobral/bgslibrary/wiki/Build-status) [![Algorithms](https://img.shields.io/badge/Algorithms-43-red.svg)](https://github.com/andrewssobral/bgslibrary/wiki/List-of-available-algorithms)
 
-[![bgslibrary](http://i.giphy.com/5A94AZahSIVOw.gif)](https://youtu.be/_UbERwuQ0OU)
+<p align="center">
+<a href="https://youtu.be/_UbERwuQ0OU" target="_blank">
+<img src="https://raw.githubusercontent.com/andrewssobral/bgslibrary/master/docs/images/bgs_giphy2.gif" border="0" />
+</a>
+</p>
 
 Last page update: **06/08/2019**
 
@@ -107,12 +111,12 @@ Videos
 
 <p align="center">
 <a href="https://www.youtube.com/watch?v=_UbERwuQ0OU" target="_blank">
-<img src="https://sites.google.com/site/andrewssobral/bgslibrary_qt_gui_video.png?width=600" border="0" />
+<img src="https://raw.githubusercontent.com/andrewssobral/bgslibrary/master/docs/images/bgslibrary_qt_gui_video.png" width="600" border="0" />
 </a>
 </p>
 
 <p align="center">
 <a href="https://www.youtube.com/watch?v=Ccqa9KBO9_U" target="_blank">
-<img src="https://sites.google.com/site/andrewssobral/bgslibrary_youtube.png?width=600" border="0" />
+<img src="https://raw.githubusercontent.com/andrewssobral/bgslibrary/master/docs/images/bgslibrary_youtube.png" width="600" border="0" />
 </a>
 </p>
