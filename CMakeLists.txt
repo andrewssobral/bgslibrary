@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.1)
 
-project(bgslibrary)
+project(bgslibrary VERSION 3.0.0)
 
 include(CheckCXXCompilerFlag)
 
@@ -296,13 +296,51 @@ if(UNIX AND BGS_PYTHON_SUPPORT)
 endif()
 
 if(NOT BGS_PYTHON_ONLY)
+  include(GNUInstallDirs)
+  set(INSTALL_CONFIGDIR ${CMAKE_INSTALL_LIBDIR}/cmake/BGSLibrary)
+  target_include_directories(bgslibrary_core
+    PUBLIC
+        $<INSTALL_INTERFACE:include>)
+
+
   install(TARGETS bgslibrary_core
     bgslibrary
+    EXPORT bgslibrary_core-targets
     RUNTIME DESTINATION bin COMPONENT app
     LIBRARY DESTINATION lib COMPONENT runtime
     ARCHIVE DESTINATION lib COMPONENT runtime
     #PUBLIC_HEADER DESTINATION include/bgslibrary COMPONENT dev
     FRAMEWORK DESTINATION "/Library/Frameworks"
+  )
+  set_target_properties(bgslibrary_core PROPERTIES EXPORT_NAME BGSLibrary)
+
+  install(DIRECTORY src/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+  install(EXPORT bgslibrary_core-targets
+    FILE
+      BGSLibraryTargets.cmake
+    NAMESPACE
+      BGSLibrary::
+    DESTINATION
+      ${INSTALL_CONFIGDIR}
+  )
+
+  include(CMakePackageConfigHelpers)
+  write_basic_package_version_file(
+    ${CMAKE_CURRENT_BINARY_DIR}/BGSLibraryConfigVersion.cmake
+    VERSION ${PROJECT_VERSION}
+    COMPATIBILITY AnyNewerVersion
+  )
+
+  configure_package_config_file(${CMAKE_CURRENT_LIST_DIR}/cmake-modules/BGSLibraryConfig.cmake.in
+    ${CMAKE_CURRENT_BINARY_DIR}/BGSLibraryConfig.cmake
+    INSTALL_DESTINATION ${INSTALL_CONFIGDIR}
+  )
+
+  install(FILES
+    ${CMAKE_CURRENT_LIST_DIR}/cmake-modules/FindOpenCV.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/BGSLibraryConfig.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/BGSLibraryConfigVersion.cmake
+    DESTINATION ${INSTALL_CONFIGDIR}
   )
 
   if(UNIX)

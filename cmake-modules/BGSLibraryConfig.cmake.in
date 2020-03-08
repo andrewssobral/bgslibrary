@@ -1,0 +1,13 @@
+get_filename_component(BGSLibrary_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+include(CMakeFindDependencyMacro)
+
+list(APPEND CMAKE_MODULE_PATH ${BGSLibrary_CMAKE_DIR})
+
+find_package(OpenCV 2.3.1 REQUIRED )
+list(REMOVE_AT CMAKE_MODULE_PATH -1)
+
+if(NOT TARGET BGSLibrary::BGSLibrary)
+    include("${BGSLibrary_CMAKE_DIR}/BGSLibraryTargets.cmake")
+endif()
+
+set(BGSLibrary_LIBRARIES BGSLibrary::BGSLibrary)
