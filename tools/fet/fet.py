@@ -23,7 +23,7 @@ if not os.path.exists(path_sc):
 	os.makedirs(path_sc)
 
 files_gt = [ f for f in listdir(path_gt) if isfile(join(path_gt,f)) ]
-files_fg = [ f for f in listdir(path_gt) if isfile(join(path_gt,f)) ]
+files_fg = [ f for f in listdir(path_fg) if isfile(join(path_fg,f)) ]
 
 TP = .0 # True positive pixels
 FP = .0 # False positive pixels
