@@ -169,7 +169,7 @@ class BuildCMakeExt(build_ext, object):
         cmake_cache_file = os.path.join(self.build_temp, 'CMakeCache.txt')
         with open(cmake_cache_file, 'r') as cmake_cache:
             for line in cmake_cache.readlines():
-                if line.find('CMAKE_GENERATOR:INTERNAL') != -1:
+                if line.find('CMAKE_GENERATOR:') != -1:
                     generator = line[line.find('=') + 1:].strip()
         
         self.announce("Building binaries", level=3)
