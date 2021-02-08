@@ -164,9 +164,22 @@ class BuildCMakeExt(build_ext, object):
             os.makedirs(self.build_temp)
         self.spawn(['cmake', '-H'+extension.sourcedir, '-B'+self.build_temp]+ cmake_args)
 
+        # Check which generator was used and use the correct command line switches.
+        generator = ''
+        cmake_cache_file = os.path.join(self.build_temp, 'CMakeCache.txt')
+        with open(cmake_cache_file, 'r') as cmake_cache:
+            for line in cmake_cache.readlines():
+                if line.find('CMAKE_GENERATOR:INTERNAL') != -1:
+                    generator = line[line.find('=') + 1:].strip()
+        
         self.announce("Building binaries", level=3)
-        self.spawn(["cmake", "--build", self.build_temp, 
-                    "--config", "Release", '--', '-j8'])
+        
+        if generator.find('Visual Studio') != -1:
+            self.spawn(["cmake", "--build", self.build_temp, 
+                        "--config", "Release", "--", "-m"])
+        else:
+            self.spawn(["cmake", "--build", self.build_temp, 
+                        "--config", "Release", "--", "-j8"])
 
         # Build finished, now copy the files into the copy directory
         # The copy directory is the parent directory of the extension (.pyd)
