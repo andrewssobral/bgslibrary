@@ -548,16 +548,21 @@ namespace bgslibrary
         model->historyBuffer = (uint8_t *)malloc((3 * width) * height * (model->numberOfSamples - NUMBER_OF_HISTORY_IMAGES) * sizeof(uint8_t));
         assert(model->historyBuffer != NULL);
 
-        for (int index = (3 * width) * height - 1; index >= 0; --index) {
-          uint8_t value = image_data[index];
-
-          for (int x = 0; x < model->numberOfSamples - NUMBER_OF_HISTORY_IMAGES; ++x) {
-            int value_plus_noise = value + rand() % 20 - 10;
-
-            if (value_plus_noise < 0) { value_plus_noise = 0; }
-            if (value_plus_noise > 255) { value_plus_noise = 255; }
-
-            model->historyBuffer[index * (model->numberOfSamples - NUMBER_OF_HISTORY_IMAGES) + x] = value_plus_noise;
+        auto plus_noise = [](uint8_t value) -> int {int value_plus_noise = value + rand() % 20 - 10;
+          if (value_plus_noise < 0) { value_plus_noise = 0; }
+          if (value_plus_noise > 255) { value_plus_noise = 255; }
+          return value_plus_noise;};
+        for(int index = (3 * width) * height - 1; index >= 0; index -= 3) {
+          uint8_t value_1 = image_data[index];
+          uint8_t value_2 = image_data[index - 1];
+          uint8_t value_3 = image_data[index - 2];
+          for(int x = 0; x < model->numberOfSamples - NUMBER_OF_HISTORY_IMAGES; ++x) {
+            int value_plus_noise1 = plus_noise(value_1);
+            int value_plus_noise2 = plus_noise(value_2);
+            int value_plus_noise3 = plus_noise(value_3);
+            model->historyBuffer[(index - 2) * (model->numberOfSamples - NUMBER_OF_HISTORY_IMAGES) + x * 3 + 2] = value_plus_noise1;
+            model->historyBuffer[(index - 2) * (model->numberOfSamples - NUMBER_OF_HISTORY_IMAGES) + x * 3 + 1] = value_plus_noise2;
+            model->historyBuffer[(index - 2) * (model->numberOfSamples - NUMBER_OF_HISTORY_IMAGES) + x * 3] = value_plus_noise3;
           }
         }
 
