@@ -475,7 +475,7 @@ namespace bgslibrary
     fs["enableWeightedMovingMean"] >> enableWeightedMovingMean;
     fs["enableWeightedMovingVariance"] >> enableWeightedMovingVariance;
     fs["enableAdaptiveBackgroundLearning"] >> enableAdaptiveBackgroundLearning;
-    fs["enableAdaptiveBackgroundLearning"] >> enableAdaptiveSelectiveBackgroundLearning;
+    fs["enableAdaptiveSelectiveBackgroundLearning"] >> enableAdaptiveSelectiveBackgroundLearning;
     fs["enableMixtureOfGaussianV2"] >> enableMixtureOfGaussianV2;
 
 #if CV_MAJOR_VERSION == 2
