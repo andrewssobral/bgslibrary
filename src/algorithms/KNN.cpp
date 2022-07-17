@@ -6,9 +6,7 @@ using namespace bgslibrary::algorithms;
 
 KNN::KNN() :
   IBGS(quote(KNN)),
-  history(500), nSamples(7), dist2Threshold(20.0f * 20.0f),
-  knnSamples(0), doShadowDetection(true), shadowValue(127),
-  shadowThreshold(0.5f)
+  history(10), dist2Threshold(20.0f * 20.0f), shadowThreshold(0.5f)
 {
   debug_construction(KNN);
   initLoadSaveConfig(algorithmName);
@@ -35,16 +33,15 @@ void KNN::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bg
   //  Fast for small foreground object. Results on the benchmark data is at http://www.changedetection.net.
   //------------------------------------------------------------------
 
-  int prevNSamples = nSamples;
   if (firstTime)
-    knn = cv::createBackgroundSubtractorKNN(history, dist2Threshold, doShadowDetection);
+    knn = cv::createBackgroundSubtractorKNN(); // history, dist2Threshold, doShadowDetection
 
-  knn->setNSamples(nSamples);
-  knn->setkNNSamples(knnSamples);
-  knn->setShadowValue(shadowValue);
+  knn->setHistory(history);
+  knn->setDist2Threshold(dist2Threshold);
   knn->setShadowThreshold(shadowThreshold);
 
-  knn->apply(img_input, img_foreground, prevNSamples != nSamples ? 0.f : 1.f);
+  //knn->apply(img_input, img_foreground, nSamples >= knnSamples ? 0.f : 1.f);
+  knn->apply(img_input, img_foreground);
   knn->getBackgroundImage(img_background);
 
 #ifndef MEX_COMPILE_FLAG
@@ -62,22 +59,14 @@ void KNN::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bg
 
 void KNN::save_config(cv::FileStorage &fs) {
   fs << "history" << history;
-  fs << "nSamples" << nSamples;
   fs << "dist2Threshold" << dist2Threshold;
-  fs << "knnSamples" << knnSamples;
-  fs << "doShadowDetection" << doShadowDetection;
-  fs << "shadowValue" << shadowValue;
   fs << "shadowThreshold" << shadowThreshold;
   fs << "showOutput" << showOutput;
 }
 
 void KNN::load_config(cv::FileStorage &fs) {
   fs["history"] >> history;
-  fs["nSamples"] >> nSamples;
   fs["dist2Threshold"] >> dist2Threshold;
-  fs["knnSamples"] >> knnSamples;
-  fs["doShadowDetection"] >> doShadowDetection;
-  fs["shadowValue"] >> shadowValue;
   fs["shadowThreshold"] >> shadowThreshold;
   fs["showOutput"] >> showOutput;
 }

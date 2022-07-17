@@ -167,7 +167,7 @@ void CMultiLayerBGS::MergeImages(int num, ...) {
   va_end(arg_ptr);
 
   CvRect imgROIRect;
-  CvSize imgSize = cvGetSize(ppIplImg[0]);
+  CvSize imgSize = cvSize(ppIplImg[0]->width, ppIplImg[0]->height);
   if (ppIplImg[num] == NULL) { // for the output video
     ppIplImg[num] = cvCreateImage(cvSize(imgSize.width*nCols, imgSize.height * nRows), IPL_DEPTH_8U, ppIplImg[0]->nChannels);
   }
@@ -321,7 +321,7 @@ void CMultiLayerBGS::SetNewImage(IplImage *new_img, CvRect *roi) {
 
 void CMultiLayerBGS::SetBkMaskImage(IplImage *mask_img) {
   if (m_pBkMaskImg == NULL) {
-    m_pBkMaskImg = cvCreateImage(cvGetSize(mask_img), mask_img->depth, mask_img->nChannels);
+    m_pBkMaskImg = cvCreateImage(cvSize(mask_img->width, mask_img->height), mask_img->depth, mask_img->nChannels);
   }
   cvCopy(mask_img, m_pBkMaskImg);
 }
@@ -859,7 +859,7 @@ void CMultiLayerBGS::Initialization(IplImage *first_img, int lbp_level_num, floa
   m_ppOrgLBPImgs = NULL;
   m_pFgProbImg = NULL;
 
-  m_cvImgSize = cvGetSize(first_img);
+  m_cvImgSize = cvSize(first_img->width, first_img->height);
 
   m_nChannel = first_img->nChannels;
 
@@ -962,9 +962,8 @@ void CMultiLayerBGS::ComputeGradientImage(IplImage *src, IplImage *dst, bool bIs
   }
 
   int a;
-
-  IplImage* _dX = cvCreateImage(cvGetSize(dst), IPL_DEPTH_16S, 1);
-  IplImage* _dY = cvCreateImage(cvGetSize(dst), IPL_DEPTH_16S, 1);
+  IplImage* _dX = cvCreateImage(cvSize(dst->width, dst->height), IPL_DEPTH_16S, 1);
+  IplImage* _dY = cvCreateImage(cvSize(dst->width, dst->height), IPL_DEPTH_16S, 1);
 
   int aperture_size = 3;
 
@@ -1284,10 +1283,10 @@ void CMultiLayerBGS::GetCurrentLayeredBackgroundImage(int layered_no, IplImage *
   }
 
   COpencvDataConversion<float, float> ODC;
-  IplImage* bg_layer_float_mask_img = cvCreateImage(cvGetSize(m_pOrgImg), IPL_DEPTH_32F, 1);
-  IplImage* bg_layer_low_mask_img = cvCreateImage(cvGetSize(m_pOrgImg), IPL_DEPTH_8U, 1);
-  IplImage* bg_layer_high_mask_img = cvCreateImage(cvGetSize(m_pOrgImg), IPL_DEPTH_8U, 1);
-  IplImage* bg_layer_mask_img = cvCreateImage(cvGetSize(m_pOrgImg), IPL_DEPTH_8U, 1);
+  IplImage* bg_layer_float_mask_img = cvCreateImage(cvSize(m_pOrgImg->width, m_pOrgImg->height), IPL_DEPTH_32F, 1);
+  IplImage* bg_layer_low_mask_img = cvCreateImage(cvSize(m_pOrgImg->width, m_pOrgImg->height), IPL_DEPTH_8U, 1);
+  IplImage* bg_layer_high_mask_img = cvCreateImage(cvSize(m_pOrgImg->width, m_pOrgImg->height), IPL_DEPTH_8U, 1);
+  IplImage* bg_layer_mask_img = cvCreateImage(cvSize(m_pOrgImg->width, m_pOrgImg->height), IPL_DEPTH_8U, 1);
 
   ODC.SetImageData(bg_layer_float_mask_img, bg_layer_mask);
 

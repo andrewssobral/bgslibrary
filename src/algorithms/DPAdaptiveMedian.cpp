@@ -21,11 +21,8 @@ void DPAdaptiveMedian::process(const cv::Mat &img_input, cv::Mat &img_output, cv
 {
   init(img_input, img_output, img_bgmodel);
 
-  frame = new IplImage(img_input);
-
-  if (firstTime)
-    frame_data.ReleaseMemory(false);
-  frame_data = frame;
+  IplImage _frame = cvIplImage(img_input);
+  frame_data = cvCloneImage(&(IplImage)_frame);
 
   if (firstTime) {
     int width = img_input.size().width;
@@ -52,7 +49,7 @@ void DPAdaptiveMedian::process(const cv::Mat &img_input, cv::Mat &img_output, cv
   bgs.Update(frameNumber, frame_data, lowThresholdMask);
 
   img_foreground = cv::cvarrToMat(highThresholdMask.Ptr());
-  //bitwise_not(img_foreground, img_foreground);
+  // bitwise_not(img_foreground, img_foreground);
   img_background = cv::cvarrToMat(bgs.Background()->Ptr());
 
 #ifndef MEX_COMPILE_FLAG
@@ -65,7 +62,6 @@ void DPAdaptiveMedian::process(const cv::Mat &img_input, cv::Mat &img_output, cv
   img_foreground.copyTo(img_output);
   img_background.copyTo(img_bgmodel);
 
-  delete frame;
   firstTime = false;
   frameNumber++;
 }

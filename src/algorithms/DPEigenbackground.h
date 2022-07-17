@@ -18,7 +18,6 @@ namespace bgslibrary
       int threshold;
       int historySize;
       int embeddedDim;
-      IplImage* frame;
       dp::RgbImage frame_data;
       dp::EigenbackgroundParams params;
       dp::Eigenbackground bgs;

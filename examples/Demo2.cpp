@@ -63,6 +63,7 @@ int main(int argc, char **argv)
       {
         std::cout << "Exception occurred" << std::endl;
         std::cout << e.what() << std::endl;
+        break;
       }
 
       key = cv::waitKey(33);

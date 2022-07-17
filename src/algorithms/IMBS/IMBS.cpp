@@ -9,7 +9,7 @@ BackgroundSubtractorIMBS::BackgroundSubtractorIMBS()
   fps = 0.;
   fgThreshold = 15;
   associationThreshold = 5;
-  samplingPeriod = 250;//500.ms
+  samplingPeriod = 50;//500.ms
   minBinHeight = 2;
   numSamples = 10; //30
   alpha = 0.65f;
@@ -410,7 +410,7 @@ void BackgroundSubtractorIMBS::createBg(unsigned int bg_sample_number) {
 
     bg_reset = false;
     if (sudden_change) {
-      numSamples *= 3.;
+      numSamples *= 2.;
       samplingPeriod *= 2.;
       sudden_change = false;
     }
@@ -699,7 +699,7 @@ void BackgroundSubtractorIMBS::changeBg() {
   //cout << "qua" << endl;
 
   if (!bg_reset) {
-    numSamples /= 3.;
+    numSamples /= 2.;
     samplingPeriod /= 2.;
     bg_frame_counter = 0;
     bg_reset = true;

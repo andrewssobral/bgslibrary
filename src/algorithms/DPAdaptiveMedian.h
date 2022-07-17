@@ -17,7 +17,6 @@ namespace bgslibrary
       int threshold;
       int samplingRate;
       int learningFrames;
-      IplImage* frame;
       dp::RgbImage frame_data;
       dp::AdaptiveMedianParams params;
       dp::AdaptiveMedianBGS bgs;

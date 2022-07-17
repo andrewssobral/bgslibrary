@@ -23,20 +23,25 @@ VuMeter::~VuMeter() {
 void VuMeter::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &img_bgmodel)
 {
   init(img_input, img_output, img_bgmodel);
-  frame = new IplImage(img_input);
+
+  IplImage _frame = cvIplImage(img_input);
+  frame = cvCloneImage(&(IplImage)_frame);
 
   if (firstTime) {
+    int w = img_input.size().width;
+    int h = img_input.size().height;
+
     bgs.SetAlpha(alpha);
     bgs.SetBinSize(binSize);
     bgs.SetThreshold(threshold);
 
-    gray = cvCreateImage(cvGetSize(frame), IPL_DEPTH_8U, 1);
+    gray = cvCreateImage(cvSize(w, h), IPL_DEPTH_8U, 1);
     cvCvtColor(frame, gray, CV_RGB2GRAY);
 
-    background = cvCreateImage(cvGetSize(gray), IPL_DEPTH_8U, 1);
+    background = cvCreateImage(cvSize(w, h), IPL_DEPTH_8U, 1);
     cvCopy(gray, background);
 
-    mask = cvCreateImage(cvGetSize(gray), IPL_DEPTH_8U, 1);
+    mask = cvCreateImage(cvSize(w, h), IPL_DEPTH_8U, 1);
     cvZero(mask);
   }
   else
@@ -61,7 +66,6 @@ void VuMeter::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &im
   img_foreground.copyTo(img_output);
   img_background.copyTo(img_bgmodel);
 
-  delete frame;
   firstTime = false;
 }
 

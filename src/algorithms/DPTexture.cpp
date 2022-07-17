@@ -29,7 +29,8 @@ void DPTexture::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
 {
   init(img_input, img_output, img_bgmodel);
 
-  frame = new IplImage(img_input);
+  IplImage _frame = cvIplImage(img_input);
+  frame = cvCloneImage(&(IplImage)_frame);
 
   if (firstTime) {
     width = img_input.size().width;
@@ -112,8 +113,6 @@ void DPTexture::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
 
   // update background subtraction
   bgs.UpdateModel(fgMask, bgModel, curTextureHist, modeArray);
-
-  delete frame;
 }
 
 void DPTexture::save_config(cv::FileStorage &fs) {

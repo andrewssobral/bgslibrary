@@ -19,11 +19,7 @@ namespace bgslibrary
     private:
       cv::Ptr<cv::BackgroundSubtractorKNN> knn;
       int history;
-      int nSamples;
       float dist2Threshold;
-      int knnSamples;
-      bool doShadowDetection;
-      int shadowValue;
       float shadowThreshold;
 
     public:

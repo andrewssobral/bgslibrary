@@ -73,26 +73,28 @@ void MultiCue::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &i
 {
   init(img_input, img_output, img_bgmodel);
 
-  //--STep1: Background Modeling--//
-  //IplImage* frame = &IplImage(img_input);
-  IplImage* frame = new IplImage(img_input);
-  IplImage* result_image = cvCreateImage(cvGetSize(frame), IPL_DEPTH_8U, 3);
+  // Step 1: Background Modeling
+  IplImage _frame = cvIplImage(img_input);
+  IplImage* frame = cvCloneImage(&(IplImage)_frame);
+
+  int width = img_input.size().width;
+  int height = img_input.size().height;
+  IplImage* result_image = cvCreateImage(cvSize(width, height), IPL_DEPTH_8U, 3);
   cvSetZero(result_image);
   if (g_iFrameCount <= g_iTrainingPeriod) {
     BackgroundModeling_Par(frame);
     g_iFrameCount++;
   }
-  //--Step2: Background Subtraction--//
+  // Step 2: Background Subtraction
   else {
     g_bForegroundMapEnable = FALSE;
 
     ForegroundExtraction(frame);
     UpdateModel_Par();
 
-    //Get BGS Results
+    // Get BGS Results
     GetForegroundMap(result_image, NULL);
   }
-  delete frame;
 
   img_background = cv::Mat::zeros(img_input.size(), img_input.type());
   img_foreground = cv::cvarrToMat(result_image, TRUE);
@@ -537,8 +539,9 @@ void MultiCue::GaussianFiltering(IplImage* frame, uchar*** aFilteredFrame) {
     cv::GaussianBlur(temp_img, temp_img, cv::Size(7, 7), dSigma);
 
     //Store results into aFilteredFrame[][][]
-    //IplImage* img = &IplImage(temp_img);
-    IplImage* img = new IplImage(temp_img);
+    IplImage _img = cvIplImage(temp_img);
+    IplImage* img = cvCloneImage(&(IplImage)_img);
+
     //int iWidthStep = img->widthStep;
 
     for (int i = 0; i < g_iRHeight; i++) {
@@ -548,7 +551,6 @@ void MultiCue::GaussianFiltering(IplImage* frame, uchar*** aFilteredFrame) {
         aFilteredFrame[i][j][2] = img->imageData[i*img->widthStep + j * 3 + 2];
       }
     }
-    delete img;
   }
 }
 

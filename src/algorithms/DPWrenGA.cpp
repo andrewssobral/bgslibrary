@@ -21,11 +21,8 @@ void DPWrenGA::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &i
 {
   init(img_input, img_output, img_bgmodel);
 
-  frame = new IplImage(img_input);
-
-  if (firstTime)
-    frame_data.ReleaseMemory(false);
-  frame_data = frame;
+  IplImage _frame = cvIplImage(img_input);
+  frame_data = cvCloneImage(&(IplImage)_frame);
 
   if (firstTime) {
     int width = img_input.size().width;
@@ -63,7 +60,6 @@ void DPWrenGA::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &i
   img_foreground.copyTo(img_output);
   img_background.copyTo(img_bgmodel);
 
-  delete frame;
   firstTime = false;
   frameNumber++;
 }

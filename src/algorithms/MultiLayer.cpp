@@ -57,8 +57,9 @@ void MultiLayer::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat 
 
     if (status == MLBGS_DETECT)
       std::cout << algorithmName + " in DETECT mode" << std::endl;
-
-    org_img = new IplImage(img_input);
+    
+    IplImage _frame = cvIplImage(img_input);
+    org_img = cvCloneImage(&(IplImage)_frame);
 
     fg_img = cvCreateImage(img_size, org_img->depth, org_img->nChannels);
     bg_img = cvCreateImage(img_size, org_img->depth, org_img->nChannels);
@@ -156,7 +157,6 @@ void MultiLayer::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat 
     }
 
     BGS->SetParameters(max_mode_num, mode_learn_rate_per_second, weight_learn_rate_per_second, init_mode_weight);
-    delete org_img;
   }
 
   //IplImage* inputImage = new IplImage(img_input);
@@ -181,7 +181,8 @@ void MultiLayer::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat 
       std::cout << algorithmName + " enabled learning in DETECT mode" << std::endl;
   }
 
-  IplImage* img = new IplImage(img_input);
+  IplImage _frame = cvIplImage(img_input);
+  IplImage* img = cvCloneImage(&(IplImage)_frame);
 
   BGS->SetRGBInputImage(img);
   BGS->Process();
@@ -206,7 +207,6 @@ void MultiLayer::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat 
   img_foreground.copyTo(img_output);
   img_background.copyTo(img_bgmodel);
 
-  delete img;
   //cvReleaseImage(&img);
 
   firstTime = false;

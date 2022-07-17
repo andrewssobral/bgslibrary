@@ -22,11 +22,12 @@ void LBFuzzyAdaptiveSOM::process(const cv::Mat &img_input, cv::Mat &img_output, 
 {
   init(img_input, img_output, img_bgmodel);
 
-  IplImage *frame = new IplImage(img_input);
+  IplImage _frame = cvIplImage(img_input);
+  IplImage* frame = cvCloneImage(&(IplImage)_frame);
 
   if (firstTime) {
-    int w = cvGetSize(frame).width;
-    int h = cvGetSize(frame).height;
+    int w = img_input.size().width;
+    int h = img_input.size().height;
 
     m_pBGModel = new lb::BGModelFuzzySom(w, h);
     m_pBGModel->InitModel(frame);
@@ -52,8 +53,6 @@ void LBFuzzyAdaptiveSOM::process(const cv::Mat &img_input, cv::Mat &img_output, 
 
   img_foreground.copyTo(img_output);
   img_background.copyTo(img_bgmodel);
-
-  delete frame;
 
   firstTime = false;
 }
