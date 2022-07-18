@@ -22,7 +22,7 @@ void DPAdaptiveMedian::process(const cv::Mat &img_input, cv::Mat &img_output, cv
   init(img_input, img_output, img_bgmodel);
 
   IplImage _frame = cvIplImage(img_input);
-  frame_data = cvCloneImage(&(IplImage)_frame);
+  frame_data = cvCloneImage(&_frame);
 
   if (firstTime) {
     int width = img_input.size().width;

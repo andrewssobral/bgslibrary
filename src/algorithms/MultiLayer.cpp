@@ -59,7 +59,7 @@ void MultiLayer::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat 
       std::cout << algorithmName + " in DETECT mode" << std::endl;
     
     IplImage _frame = cvIplImage(img_input);
-    org_img = cvCloneImage(&(IplImage)_frame);
+    org_img = cvCloneImage(&_frame);
 
     fg_img = cvCreateImage(img_size, org_img->depth, org_img->nChannels);
     bg_img = cvCreateImage(img_size, org_img->depth, org_img->nChannels);
@@ -182,7 +182,7 @@ void MultiLayer::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat 
   }
 
   IplImage _frame = cvIplImage(img_input);
-  IplImage* img = cvCloneImage(&(IplImage)_frame);
+  IplImage* img = cvCloneImage(&_frame);
 
   BGS->SetRGBInputImage(img);
   BGS->Process();

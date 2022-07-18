@@ -73,16 +73,16 @@ void FuzzySugenoIntegral::process(const cv::Mat &img_input, cv::Mat &img_output,
     cv::cvtColor(img_background_f3, img_background_f1, CV_BGR2GRAY);
 
     IplImage _input_f3 = cvIplImage(img_input_f3);
-    IplImage* input_f3 = cvCloneImage(&(IplImage)_input_f3);
+    IplImage* input_f3 = cvCloneImage(&_input_f3);
 
     IplImage _input_f1 = cvIplImage(img_input_f1);
-    IplImage* input_f1 = cvCloneImage(&(IplImage)_input_f1);
+    IplImage* input_f1 = cvCloneImage(&_input_f1);
 
     IplImage _background_f3 = cvIplImage(img_background_f3);
-    IplImage* background_f3 = cvCloneImage(&(IplImage)_background_f3);
+    IplImage* background_f3 = cvCloneImage(&_background_f3);
 
     IplImage _background_f1 = cvIplImage(img_background_f1);
-    IplImage* background_f1 = cvCloneImage(&(IplImage)_background_f1);
+    IplImage* background_f1 = cvCloneImage(&_background_f1);
 
     IplImage* lbp_input_f1 = cvCreateImage(cvSize(input_f1->width, input_f1->height), IPL_DEPTH_32F, 1);
     cvSetZero(lbp_input_f1);

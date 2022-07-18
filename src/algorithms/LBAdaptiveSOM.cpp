@@ -24,7 +24,7 @@ void LBAdaptiveSOM::process(const cv::Mat &img_input, cv::Mat &img_output, cv::M
   init(img_input, img_output, img_bgmodel);
 
   IplImage _frame = cvIplImage(img_input);
-  IplImage* frame = cvCloneImage(&(IplImage)_frame);
+  IplImage* frame = cvCloneImage(&_frame);
 
   if (firstTime) {
     int w = img_input.size().width;

@@ -75,7 +75,7 @@ void MultiCue::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &i
 
   // Step 1: Background Modeling
   IplImage _frame = cvIplImage(img_input);
-  IplImage* frame = cvCloneImage(&(IplImage)_frame);
+  IplImage* frame = cvCloneImage(&_frame);
 
   int width = img_input.size().width;
   int height = img_input.size().height;
@@ -540,7 +540,7 @@ void MultiCue::GaussianFiltering(IplImage* frame, uchar*** aFilteredFrame) {
 
     //Store results into aFilteredFrame[][][]
     IplImage _img = cvIplImage(temp_img);
-    IplImage* img = cvCloneImage(&(IplImage)_img);
+    IplImage* img = cvCloneImage(&_img);
 
     //int iWidthStep = img->widthStep;
 

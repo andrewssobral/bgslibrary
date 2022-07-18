@@ -22,7 +22,7 @@ int main(int argc, char **argv)
   /* Background Subtraction Methods */
   auto algorithmsName = BGS_Factory::Instance()->GetRegisteredAlgorithmsName();
   
-  std::cout << "List of available algorithms:" << std::endl;
+  std::cout << "List of available algorithms (" << algorithmsName.size() << "):" << std::endl;
   std::copy(algorithmsName.begin(), algorithmsName.end(), std::ostream_iterator<std::string>(std::cout, "\n"));
   
   for (const std::string& algorithmName : algorithmsName)
@@ -40,7 +40,7 @@ int main(int argc, char **argv)
       std::stringstream ss;
       ss << frame_counter;
       auto fileName = baseDir + "/" + ss.str() + ".png";
-      std::cout << "reading " << fileName << std::endl;
+      // std::cout << "reading " << fileName << std::endl;
 
       auto img_input = cv::imread(fileName, CV_LOAD_IMAGE_COLOR);
 

@@ -25,7 +25,7 @@ void VuMeter::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &im
   init(img_input, img_output, img_bgmodel);
 
   IplImage _frame = cvIplImage(img_input);
-  frame = cvCloneImage(&(IplImage)_frame);
+  frame = cvCloneImage(&_frame);
 
   if (firstTime) {
     int w = img_input.size().width;
