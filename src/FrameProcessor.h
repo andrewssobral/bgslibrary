@@ -144,14 +144,6 @@ namespace bgslibrary
     cv::Mat img_lbFuzzyAdaptiveSOM;
     std::shared_ptr<LBFuzzyAdaptiveSOM> lbFuzzyAdaptiveSOM;
     bool enableLBFuzzyAdaptiveSOM = false;
-    
-    cv::Mat img_lbpMrf;
-    std::shared_ptr<LBP_MRF> lbpMrf;
-    bool enableLbpMrf = false;
-
-    cv::Mat img_multiLayer;
-    std::shared_ptr<MultiLayer> multiLayer;
-    bool enableMultiLayer = false;
 
     cv::Mat img_pixelBasedAdaptiveSegmenter;
     std::shared_ptr<PixelBasedAdaptiveSegmenter> pixelBasedAdaptiveSegmenter;
@@ -172,6 +164,16 @@ namespace bgslibrary
     cv::Mat img_multiCue;
     std::shared_ptr<MultiCue> multiCue;
     bool enableMultiCue = false;
+#endif
+
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3 && CV_MINOR_VERSION <= 4 && CV_VERSION_REVISION <= 7
+    cv::Mat img_lbpMrf;
+    std::shared_ptr<LBP_MRF> lbpMrf;
+    bool enableLbpMrf = false;
+
+    cv::Mat img_multiLayer;
+    std::shared_ptr<MultiLayer> multiLayer;
+    bool enableMultiLayer = false;
 #endif
 
     cv::Mat img_sigmaDelta;

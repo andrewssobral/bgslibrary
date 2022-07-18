@@ -115,12 +115,6 @@ namespace bgslibrary
     if (enableLBFuzzyAdaptiveSOM)
       lbFuzzyAdaptiveSOM = std::make_shared<LBFuzzyAdaptiveSOM>();
 
-    if (enableLbpMrf)
-      lbpMrf = std::make_shared<LBP_MRF>();
-
-    if (enableMultiLayer)
-      multiLayer = std::make_shared<MultiLayer>();
-
     if (enablePBAS)
       pixelBasedAdaptiveSegmenter = std::make_shared<PixelBasedAdaptiveSegmenter>();
 
@@ -135,6 +129,14 @@ namespace bgslibrary
 
     if (enableMultiCue)
       multiCue = std::make_shared<MultiCue>();
+#endif
+
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3 && CV_MINOR_VERSION <= 4 && CV_VERSION_REVISION <= 7
+    if (enableLbpMrf)
+      lbpMrf = std::make_shared<LBP_MRF>();
+
+    if (enableMultiLayer)
+      multiLayer = std::make_shared<MultiLayer>();
 #endif
 
     if (enableSigmaDelta)
@@ -277,16 +279,6 @@ namespace bgslibrary
     if (enableLBFuzzyAdaptiveSOM)
       process("LBFuzzyAdaptiveSOM", lbFuzzyAdaptiveSOM, img_preProcessor, img_lbFuzzyAdaptiveSOM);
 
-    if (enableLbpMrf)
-      process("LbpMrf", lbpMrf, img_preProcessor, img_lbpMrf);
-
-    if (enableMultiLayer)
-    {
-      multiLayer->setStatus(MultiLayer::MLBGS_LEARN);
-      //multiLayer->setStatus(MultiLayer::MLBGS_DETECT);
-      process("MultiLayer", multiLayer, img_preProcessor, img_multiLayer);
-    }
-
     if (enablePBAS)
       process("PBAS", pixelBasedAdaptiveSegmenter, img_preProcessor, img_pixelBasedAdaptiveSegmenter);
 
@@ -302,7 +294,19 @@ namespace bgslibrary
     if (enableMultiCue)
       process("MultiCue", multiCue, img_preProcessor, img_multiCue);
 #endif
-    
+
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3 && CV_MINOR_VERSION <= 4 && CV_VERSION_REVISION <= 7
+    if (enableLbpMrf)
+      process("LbpMrf", lbpMrf, img_preProcessor, img_lbpMrf);
+
+    if (enableMultiLayer)
+    {
+      multiLayer->setStatus(MultiLayer::MLBGS_LEARN);
+      //multiLayer->setStatus(MultiLayer::MLBGS_DETECT);
+      process("MultiLayer", multiLayer, img_preProcessor, img_multiLayer);
+    }
+#endif
+
     if (enableSigmaDelta)
       process("SigmaDelta", sigmaDelta, img_preProcessor, img_sigmaDelta);
 
@@ -369,13 +373,16 @@ namespace bgslibrary
       foregroundMaskAnalysis->process(frameNumber, "LBMixtureOfGaussians", img_lbMixtureOfGaussians);
       foregroundMaskAnalysis->process(frameNumber, "LBAdaptiveSOM", img_lbAdaptiveSOM);
       foregroundMaskAnalysis->process(frameNumber, "LBFuzzyAdaptiveSOM", img_lbFuzzyAdaptiveSOM);
-      foregroundMaskAnalysis->process(frameNumber, "LbpMrf", img_lbpMrf);
-      foregroundMaskAnalysis->process(frameNumber, "MultiLayer", img_multiLayer);
       foregroundMaskAnalysis->process(frameNumber, "PBAS", img_pixelBasedAdaptiveSegmenter);
       foregroundMaskAnalysis->process(frameNumber, "VuMeter", img_vumeter);
       foregroundMaskAnalysis->process(frameNumber, "KDE", img_kde);
       foregroundMaskAnalysis->process(frameNumber, "IMBS", img_imbs);
       foregroundMaskAnalysis->process(frameNumber, "MultiCue", img_multiCue);
+#endif
+
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3 && CV_MINOR_VERSION <= 4 && CV_VERSION_REVISION <= 7
+      foregroundMaskAnalysis->process(frameNumber, "LbpMrf", img_lbpMrf);
+      foregroundMaskAnalysis->process(frameNumber, "MultiLayer", img_multiLayer);
 #endif
 
       foregroundMaskAnalysis->process(frameNumber, "SigmaDelta", img_sigmaDelta);
@@ -448,15 +455,18 @@ namespace bgslibrary
     fs << "enableLBMixtureOfGaussians" << enableLBMixtureOfGaussians;
     fs << "enableLBAdaptiveSOM" << enableLBAdaptiveSOM;
     fs << "enableLBFuzzyAdaptiveSOM" << enableLBFuzzyAdaptiveSOM;
-    fs << "enableLbpMrf" << enableLbpMrf;
-    fs << "enableMultiLayer" << enableMultiLayer;
     fs << "enablePBAS" << enablePBAS;
     fs << "enableVuMeter" << enableVuMeter;
     fs << "enableKDE" << enableKDE;
     fs << "enableIMBS" << enableIMBS;
     fs << "enableMultiCue" << enableMultiCue;
 #endif
-    
+
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3 && CV_MINOR_VERSION <= 4 && CV_VERSION_REVISION <= 7
+    fs << "enableLbpMrf" << enableLbpMrf;
+    fs << "enableMultiLayer" << enableMultiLayer;
+#endif
+
     fs << "enableSigmaDelta" << enableSigmaDelta;
     fs << "enableSuBSENSE" << enableSuBSENSE;
     fs << "enableLOBSTER" << enableLOBSTER;
@@ -510,15 +520,18 @@ namespace bgslibrary
     fs["enableLBMixtureOfGaussians"] >> enableLBMixtureOfGaussians;
     fs["enableLBAdaptiveSOM"] >> enableLBAdaptiveSOM;
     fs["enableLBFuzzyAdaptiveSOM"] >> enableLBFuzzyAdaptiveSOM;
-    fs["enableLbpMrf"] >> enableLbpMrf;
-    fs["enableMultiLayer"] >> enableMultiLayer;
     fs["enablePBAS"] >> enablePBAS;
     fs["enableVuMeter"] >> enableVuMeter;
     fs["enableKDE"] >> enableKDE;
     fs["enableIMBS"] >> enableIMBS;
     fs["enableMultiCue"] >> enableMultiCue;
 #endif
-    
+
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3 && CV_MINOR_VERSION <= 4 && CV_VERSION_REVISION <= 7
+    fs["enableLbpMrf"] >> enableLbpMrf;
+    fs["enableMultiLayer"] >> enableMultiLayer;
+#endif
+
     fs["enableSigmaDelta"] >> enableSigmaDelta;
     fs["enableSuBSENSE"] >> enableSuBSENSE;
     fs["enableLOBSTER"] >> enableLOBSTER;

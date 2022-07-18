@@ -1,4 +1,5 @@
 #include "AdaptiveMedianBGS.h"
+#include "opencv2/core/types_c.h"
 
 #if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
 
@@ -8,7 +9,7 @@ void AdaptiveMedianBGS::Initalize(const BgsParams& param)
 {
   m_params = (AdaptiveMedianParams&)param;
   m_median = cvCreateImage(cvSize(m_params.Width(), m_params.Height()), IPL_DEPTH_8U, 3);
-  cvSet(m_median.Ptr(), CV_RGB(BACKGROUND, BACKGROUND, BACKGROUND));
+  cvSet(m_median.Ptr(), cvScalar(CV_RGB(BACKGROUND, BACKGROUND, BACKGROUND)));
 }
 
 RgbImage* AdaptiveMedianBGS::Background()

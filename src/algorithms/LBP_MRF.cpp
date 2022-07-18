@@ -1,6 +1,6 @@
 #include "LBP_MRF.h"
 
-#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3 && CV_MINOR_VERSION <= 4 && CV_VERSION_REVISION <= 7
 
 using namespace bgslibrary::algorithms;
 

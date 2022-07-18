@@ -4,7 +4,7 @@
 #include <algorithm>
 
 #include "opencv2/core/version.hpp"
-#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3 && CV_MINOR_VERSION <= 4 && CV_VERSION_REVISION <= 7
 
 #include "BlobResult.h"
 #include "BlobExtraction.h"

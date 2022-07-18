@@ -19,10 +19,6 @@
 
 #include "../utils/ILoadSaveConfig.h"
 
-#ifndef CV_RGB
-#define CV_RGB(r, g, b) cv::Scalar((b), (g), (r), 0)
-#endif
-
 #if !defined(bgs_register)
 #define bgs_register(x) static BGS_Register<x> register_##x(quote(x))
 #endif
