@@ -346,13 +346,13 @@ namespace bgslibrary
       {
         unsigned int * in_list;
         unsigned int in_cnt;
-        unsigned int * out_list;
+        // unsigned int * out_list;
 
         int rows, cols;
 
         int Nbr[9];
         unsigned int i, j;
-        unsigned int k;
+        // unsigned int k;
         unsigned int idx;
 
         rows = (int)urows;
@@ -373,8 +373,8 @@ namespace bgslibrary
 
         memset(outImage, 0, rows*cols);
 
-        out_list = outIndex->List;
-        k = 0;
+        // out_list = outIndex->List;
+        // k = 0;
 
         for (i = 0; i < in_cnt; i++)
         {
@@ -404,13 +404,13 @@ namespace bgslibrary
       {
         unsigned int * in_list;
         unsigned int in_cnt;
-        unsigned int * out_list;
+        // unsigned int * out_list;
 
         int rows, cols;
 
         int Nbr[9];
         unsigned int i, j;
-        unsigned int k, idx;
+        unsigned int idx; // k
 
         rows = (int)urows;
         cols = (int)ucols;
@@ -430,8 +430,8 @@ namespace bgslibrary
 
         memset(outImage, 0, rows*cols);
 
-        out_list = outIndex->List;
-        k = 0;
+        // out_list = outIndex->List;
+        // k = 0;
 
         for (i = 0; i < in_cnt; i++)
         {
@@ -459,13 +459,13 @@ namespace bgslibrary
       {
         unsigned int * in_list;
         unsigned int in_cnt;
-        unsigned int * out_list;
+        // unsigned int * out_list;
 
         int rows, cols;
 
         int Nbr[9];
         unsigned int i, j;
-        unsigned int k;
+        // unsigned int k;
         unsigned int idx;
 
         rows = (int)urows;
@@ -488,8 +488,8 @@ namespace bgslibrary
         memset(outImage, 0, rows*cols);
 
 
-        out_list = outIndex->List;
-        k = 0;
+        // out_list = outIndex->List;
+        // k = 0;
         for (i = 0; i < in_cnt; i++)
           for (j = 0; j < 9; j++) {
             idx = in_list[i] + Nbr[j];
@@ -515,13 +515,13 @@ namespace bgslibrary
 
         unsigned int * in_list;
         unsigned int in_cnt;
-        unsigned int * out_list;
+        // unsigned int * out_list;
 
         int rows, cols;
 
         int Nbr[9];
         unsigned int i, j;
-        unsigned int k, idx;
+        unsigned int idx; // k
 
         rows = (int)urows;
         cols = (int)ucols;
@@ -542,8 +542,8 @@ namespace bgslibrary
 
         memset(outImage, 0, rows*cols);
 
-        out_list = outIndex->List;
-        k = 0;
+        // out_list = outIndex->List;
+        // k = 0;
         for (i = 0; i < in_cnt; i++) {
           idx = in_list[i];
           j = 0;
@@ -676,7 +676,7 @@ namespace bgslibrary
         {
           for (i = 0, ic = 0; i < imagespatialsize; i++, ic += color_channels)
           {
-            mask = *(pTMaskTop + i) || *(pTMaskNext + i);
+            mask = *(pTMaskTop + i) | *(pTMaskNext + i); // mask = *(pTMaskTop + i) || *(pTMaskNext + i);
 
             if (!mask)
             {
@@ -847,13 +847,13 @@ namespace bgslibrary
         //unsigned char * SaturationImage = FilteredFGImage;
 
         // default sigmas .. to be removed.
-        double sigma1;
-        double sigma2;
-        double sigma3;
+        // double sigma1;
+        // double sigma2;
+        // double sigma3;
 
-        sigma1 = 2.25;
-        sigma2 = 2.25;
-        sigma3 = 2.25;
+        // sigma1 = 2.25;
+        // sigma2 = 2.25;
+        // sigma3 = 2.25;
 
         double p;
         double th;
@@ -904,7 +904,7 @@ namespace bgslibrary
           unsigned int ig;
           int base;
 
-          int kernelbase1;
+          // int kernelbase1;
           int kernelbase2;
           int kernelbase3;
 
@@ -924,7 +924,7 @@ namespace bgslibrary
 
           for (i = 0, ig = 0; i < imagesize; i += 3, ig++)
           {
-            kernelbase1 = SDbins[i] * kerneltablewidth;
+            // kernelbase1 = SDbins[i] * kerneltablewidth;
             kernelbase2 = SDbins[i + 1] * kerneltablewidth;
             kernelbase3 = SDbins[i + 2] * kerneltablewidth;
 
