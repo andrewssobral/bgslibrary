@@ -18,7 +18,6 @@ namespace bgslibrary
       int threshold;
       double alpha;
       int learningFrames;
-      IplImage* frame;
       dp::RgbImage frame_data;
       dp::MeanParams params;
       dp::MeanBGS bgs;

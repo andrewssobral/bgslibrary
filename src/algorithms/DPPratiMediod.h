@@ -19,7 +19,6 @@ namespace bgslibrary
       int samplingRate;
       int historySize;
       int weight;
-      IplImage* frame;
       dp::RgbImage frame_data;
       dp::PratiParams params;
       dp::PratiMediodBGS bgs;

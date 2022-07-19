@@ -18,7 +18,6 @@ namespace bgslibrary
       double threshold;
       double alpha;
       int learningFrames;
-      IplImage* frame;
       dp::RgbImage frame_data;
       dp::WrenParams params;
       dp::WrenGA bgs;

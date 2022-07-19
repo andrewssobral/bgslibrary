@@ -18,7 +18,6 @@ namespace bgslibrary
       double threshold;
       double alpha;
       int gaussians;
-      IplImage* frame;
       dp::RgbImage frame_data;
       dp::ZivkovicParams params;
       dp::ZivkovicAGMM bgs;

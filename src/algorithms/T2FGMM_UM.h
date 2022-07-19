@@ -19,7 +19,6 @@ namespace bgslibrary
       float km;
       float kv;
       int gaussians;
-      IplImage* frame;
       dp::RgbImage frame_data;
       dp::T2FGMMParams params;
       dp::T2FGMM bgs;

@@ -19,7 +19,6 @@ namespace bgslibrary
       float km;
       float kv;
       int gaussians;
-      IplImage *frame;
       IplImage *old_labeling;
       IplImage *old;
       dp::RgbImage frame_data;

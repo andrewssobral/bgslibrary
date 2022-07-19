@@ -18,7 +18,6 @@ namespace bgslibrary
       double threshold;
       double alpha;
       int gaussians;
-      IplImage* frame;
       dp::RgbImage frame_data;
       dp::GrimsonParams params;
       dp::GrimsonGMM bgs;
