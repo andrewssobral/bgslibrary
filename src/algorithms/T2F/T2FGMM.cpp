@@ -136,9 +136,9 @@ namespace bgslibrary
             float dB = fabs(muB - pixel(2));
 
             // calculate the squared distance
-            float HR;
-            float HG;
-            float HB;
+            float HR = 0;
+            float HG = 0;
+            float HB = 0;
 
             // T2FGMM-UM
             if (m_params.Type() == TYPE_T2FGMM_UM)

@@ -165,9 +165,9 @@ namespace bgslibrary
             float dB = fabs(muB - pixel(2));
 
             // calculate the squared distance
-            float HR;
-            float HG;
-            float HB;
+            float HR = 0;
+            float HG = 0;
+            float HB = 0;
 
             // T2FMRF-UM
             if (m_params.Type() == TYPE_T2FMRF_UM)
@@ -196,7 +196,8 @@ namespace bgslibrary
               HB = (1 / (kv*kv) - kv*kv) * (pixel(2) - muB) * (pixel(2) - muB) / (2 * var);
             }
 
-            float ro;
+            
+            /*float ro;
             if (CurrentState == background)
             {
               if (Ab2b != 0) ro = (Ab2f / Ab2b);
@@ -206,7 +207,7 @@ namespace bgslibrary
             {
               if (Af2b != 0) ro = (Af2f / Af2b);
               else ro = 10;
-            }
+            }*/
 
             // calculate the squared distance
             float dist = (HR*HR + HG*HG + HB*HB);
