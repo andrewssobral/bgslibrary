@@ -25,7 +25,7 @@ namespace bgslibrary
       float min(float *a, float *b);
       float max(float *g, int n);
       void gDeDeux(float* a, float* b, float* lambda);
-      void getLambda(float* g);
+      // void getLambda(float* g);
 
       void AdaptativeSelectiveBackgroundModelUpdate(IplImage* CurrentImage, IplImage* BGImage, IplImage* OutputImage, IplImage* Integral, float seuil, float alpha);
     };

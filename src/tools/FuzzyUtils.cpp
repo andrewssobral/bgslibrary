@@ -441,21 +441,21 @@ void FuzzyUtils::gDeDeux(float* a, float* b, float* lambda)
   *c = *a + (*b) + (*lambda) * (*a) * (*b);
 }
 
-void FuzzyUtils::getLambda(float* g)
-{
-  float a, b;
-  float* lambda = (float*)malloc(1 * sizeof(float));
-
-  a = (*(g + 0) * (*(g + 1)) + (*(g + 1)) * (*(g + 2)) + (*(g + 0)) * (*(g + 2)));
-  *lambda = -(*(g + 0) * (*(g + 1)) + (*(g + 1)) * (*(g + 2)) + (*(g + 0)) * (*(g + 2))) / (*(g + 0) * (*(g + 1)) * (*(g + 2)));
-  b = (*(g + 0) * (*(g + 1)) * (*(g + 2)));
-
-  //printf("\na:%f",a);
-  //printf("\nb:%f",b);
-  //printf("\nlambda:%f", *lambda);
-
-  free(lambda);
-}
+//void FuzzyUtils::getLambda(float* g)
+//{
+//  float a, b;
+//  float* lambda = (float*)malloc(1 * sizeof(float));
+//
+//  a = (*(g + 0) * (*(g + 1)) + (*(g + 1)) * (*(g + 2)) + (*(g + 0)) * (*(g + 2)));
+//  *lambda = -(*(g + 0) * (*(g + 1)) + (*(g + 1)) * (*(g + 2)) + (*(g + 0)) * (*(g + 2))) / (*(g + 0) * (*(g + 1)) * (*(g + 2)));
+//  b = (*(g + 0) * (*(g + 1)) * (*(g + 2)));
+//
+//  //printf("\na:%f",a);
+//  //printf("\nb:%f",b);
+//  //printf("\nlambda:%f", *lambda);
+//
+//  free(lambda);
+//}
 
 void FuzzyUtils::AdaptativeSelectiveBackgroundModelUpdate(IplImage* CurrentImage, IplImage* BGImage, IplImage* OutputImage, IplImage* Integral, float seuil, float alpha)
 {

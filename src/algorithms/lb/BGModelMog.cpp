@@ -106,7 +106,7 @@ void BGModelMog::Init()
 
 void BGModelMog::Update()
 {
-  int kBG;
+  int kBG = 0;
 
   MOGDATA *pMOG = m_pMOG;
   int *pK = m_pK;
