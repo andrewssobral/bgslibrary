@@ -417,7 +417,7 @@ void PBAS::init(cv::Mat* input)
     if (runs == 0)
     {
       meanMinDist.create(input->size(), CV_32FC1);
-      meanMinDist.zeros(input->rows, input->cols, CV_32FC1);
+      meanMinDist = meanMinDist.zeros(input->rows, input->cols, CV_32FC1);
 
       actualR.create(input->rows, input->cols, CV_32FC1);
       actualT.create(input->rows, input->cols, CV_32FC1);
