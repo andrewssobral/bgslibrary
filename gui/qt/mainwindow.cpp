@@ -24,7 +24,7 @@ namespace bgslibrary
 #if CV_MAJOR_VERSION >= 3
     map["KNN"] = &createInstance<KNN>; // only on OpenCV 3.x
 #endif
-#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+#if CV_MAJOR_VERSION == 2 || CV_MAJOR_VERSION == 3
     map["DPAdaptiveMedian"] = &createInstance<DPAdaptiveMedian>;
     map["DPGrimsonGMM"] = &createInstance<DPGrimsonGMM>;
     map["DPZivkovicAGMM"] = &createInstance<DPZivkovicAGMM>;
@@ -39,19 +39,21 @@ namespace bgslibrary
     map["T2FMRF_UV"] = &createInstance<T2FMRF_UV>;
     map["FuzzySugenoIntegral"] = &createInstance<FuzzySugenoIntegral>;
     map["FuzzyChoquetIntegral"] = &createInstance<FuzzyChoquetIntegral>;
-    map["MultiLayer"] = &createInstance<MultiLayer>;
-    map["PixelBasedAdaptiveSegmenter"] = &createInstance<PixelBasedAdaptiveSegmenter>;
     map["LBSimpleGaussian"] = &createInstance<LBSimpleGaussian>;
     map["LBFuzzyGaussian"] = &createInstance<LBFuzzyGaussian>;
     map["LBMixtureOfGaussians"] = &createInstance<LBMixtureOfGaussians>;
     map["LBAdaptiveSOM"] = &createInstance<LBAdaptiveSOM>;
     map["LBFuzzyAdaptiveSOM"] = &createInstance<LBFuzzyAdaptiveSOM>;
-    map["LBP_MRF"] = &createInstance<LBP_MRF>;
     map["VuMeter"] = &createInstance<VuMeter>;
     map["KDE"] = &createInstance<KDE>;
     map["IndependentMultimodal"] = &createInstance<IndependentMultimodal>;
     map["MultiCue"] = &createInstance<MultiCue>;
 #endif
+#if (CV_MAJOR_VERSION == 2) || (CV_MAJOR_VERSION == 3 && CV_MINOR_VERSION <= 4 && CV_VERSION_REVISION <= 7)
+    map["LBP_MRF"] = &createInstance<LBP_MRF>;
+    map["MultiLayer"] = &createInstance<MultiLayer>;
+#endif
+    map["PixelBasedAdaptiveSegmenter"] = &createInstance<PixelBasedAdaptiveSegmenter>;
     map["SigmaDelta"] = &createInstance<SigmaDelta>;
     map["SuBSENSE"] = &createInstance<SuBSENSE>;
     map["LOBSTER"] = &createInstance<LOBSTER>;
@@ -82,7 +84,7 @@ namespace bgslibrary
 #if CV_MAJOR_VERSION >= 3
     stringList.append("KNN"); // only on OpenCV 3.x
 #endif
-#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+#if CV_MAJOR_VERSION == 2 || CV_MAJOR_VERSION == 3
     stringList.append("DPAdaptiveMedian");
     stringList.append("DPGrimsonGMM");
     stringList.append("DPZivkovicAGMM");
@@ -97,19 +99,21 @@ namespace bgslibrary
     stringList.append("T2FMRF_UV");
     stringList.append("FuzzySugenoIntegral");
     stringList.append("FuzzyChoquetIntegral");
-    stringList.append("MultiLayer");
-    stringList.append("PixelBasedAdaptiveSegmenter");
     stringList.append("LBSimpleGaussian");
     stringList.append("LBFuzzyGaussian");
     stringList.append("LBMixtureOfGaussians");
     stringList.append("LBAdaptiveSOM");
     stringList.append("LBFuzzyAdaptiveSOM");
-    stringList.append("LBP_MRF");
     stringList.append("VuMeter");
     stringList.append("KDE");
     stringList.append("IndependentMultimodal");
     stringList.append("MultiCue");
 #endif
+#if (CV_MAJOR_VERSION == 2) || (CV_MAJOR_VERSION == 3 && CV_MINOR_VERSION <= 4 && CV_VERSION_REVISION <= 7)
+    stringList.append("LBP_MRF");
+    stringList.append("MultiLayer");
+#endif
+    stringList.append("PixelBasedAdaptiveSegmenter");
     stringList.append("SigmaDelta");
     stringList.append("SuBSENSE");
     stringList.append("LOBSTER");
