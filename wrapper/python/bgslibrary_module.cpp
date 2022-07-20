@@ -83,7 +83,7 @@ PYBIND11_MODULE(pybgs, m)
     .def("getBackgroundModel", &MixtureOfGaussianV2::getBackgroundModel)
     ;
 
-#if CV_MAJOR_VERSION == 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
+#if CV_MAJOR_VERSION == 2
   py::class_<MixtureOfGaussianV1>(m, "MixtureOfGaussianV1")
     .def(py::init<>())
     .def("apply", &MixtureOfGaussianV1::apply)
@@ -91,7 +91,7 @@ PYBIND11_MODULE(pybgs, m)
     ;
 #endif
 
-#if CV_MAJOR_VERSION == 2
+#if CV_MAJOR_VERSION == 2 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 3
   py::class_<GMG>(m, "GMG")
     .def(py::init<>())
     .def("apply", &GMG::apply)
@@ -107,7 +107,7 @@ PYBIND11_MODULE(pybgs, m)
     ;
 #endif
 
-#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
+#if CV_MAJOR_VERSION == 2 || CV_MAJOR_VERSION == 3
   py::class_<DPAdaptiveMedian>(m, "DPAdaptiveMedian")
     .def(py::init<>())
     .def("apply", &DPAdaptiveMedian::apply)
@@ -222,24 +222,6 @@ PYBIND11_MODULE(pybgs, m)
     .def("getBackgroundModel", &LBFuzzyAdaptiveSOM::getBackgroundModel)
     ;
 
-  py::class_<LBP_MRF>(m, "LBP_MRF")
-    .def(py::init<>())
-    .def("apply", &LBP_MRF::apply)
-    .def("getBackgroundModel", &LBP_MRF::getBackgroundModel)
-    ;
-
-  py::class_<MultiLayer>(m, "MultiLayer")
-    .def(py::init<>())
-    .def("apply", &MultiLayer::apply)
-    .def("getBackgroundModel", &MultiLayer::getBackgroundModel)
-    ;
-
-  py::class_<PixelBasedAdaptiveSegmenter>(m, "PixelBasedAdaptiveSegmenter")
-    .def(py::init<>())
-    .def("apply", &PixelBasedAdaptiveSegmenter::apply)
-    .def("getBackgroundModel", &PixelBasedAdaptiveSegmenter::getBackgroundModel)
-    ;
-
   py::class_<VuMeter>(m, "VuMeter")
     .def(py::init<>())
     .def("apply", &VuMeter::apply)
@@ -264,6 +246,26 @@ PYBIND11_MODULE(pybgs, m)
     .def("getBackgroundModel", &MultiCue::getBackgroundModel)
     ;
 #endif
+
+#if (CV_MAJOR_VERSION == 2) || (CV_MAJOR_VERSION == 3 && CV_MINOR_VERSION <= 4 && CV_VERSION_REVISION <= 7)
+  py::class_<LBP_MRF>(m, "LBP_MRF")
+    .def(py::init<>())
+    .def("apply", &LBP_MRF::apply)
+    .def("getBackgroundModel", &LBP_MRF::getBackgroundModel)
+    ;
+
+  py::class_<MultiLayer>(m, "MultiLayer")
+    .def(py::init<>())
+    .def("apply", &MultiLayer::apply)
+    .def("getBackgroundModel", &MultiLayer::getBackgroundModel)
+    ;
+#endif
+
+  py::class_<PixelBasedAdaptiveSegmenter>(m, "PixelBasedAdaptiveSegmenter")
+    .def(py::init<>())
+    .def("apply", &PixelBasedAdaptiveSegmenter::apply)
+    .def("getBackgroundModel", &PixelBasedAdaptiveSegmenter::getBackgroundModel)
+    ;
 
   py::class_<SigmaDelta>(m, "SigmaDelta")
     .def(py::init<>())

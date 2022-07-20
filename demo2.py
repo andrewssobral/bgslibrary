@@ -18,6 +18,10 @@ def is_cv2():
 def is_cv3():
   return check_opencv_version("3.")
 
+def is_lower_or_equals_cv347():
+  [major, minor, revision] = str(cv2.__version__).split('.')
+  return int(major) == 3 and int(minor) <= 4 and int(revision) <= 7
+
 def is_cv4():
   return check_opencv_version("4.")
 
@@ -33,11 +37,22 @@ algorithms.append(bgs.WeightedMovingVariance())
 algorithms.append(bgs.AdaptiveBackgroundLearning())
 algorithms.append(bgs.AdaptiveSelectiveBackgroundLearning())
 algorithms.append(bgs.MixtureOfGaussianV2())
+algorithms.append(bgs.PixelBasedAdaptiveSegmenter())
+algorithms.append(bgs.SigmaDelta())
+algorithms.append(bgs.SuBSENSE())
+algorithms.append(bgs.LOBSTER())
+algorithms.append(bgs.PAWCS())
+algorithms.append(bgs.TwoPoints())
+algorithms.append(bgs.ViBe())
+algorithms.append(bgs.CodeBook())
+
 if is_cv2():
   algorithms.append(bgs.MixtureOfGaussianV1()) # if opencv 2.x
   algorithms.append(bgs.GMG()) # if opencv 2.x
+
 if is_cv3():
   algorithms.append(bgs.KNN()) # if opencv 3.x
+
 if is_cv2() or is_cv3():
   algorithms.append(bgs.DPAdaptiveMedian())
   algorithms.append(bgs.DPGrimsonGMM())
@@ -58,20 +73,14 @@ if is_cv2() or is_cv3():
   algorithms.append(bgs.LBMixtureOfGaussians())
   algorithms.append(bgs.LBAdaptiveSOM())
   algorithms.append(bgs.LBFuzzyAdaptiveSOM())
-  algorithms.append(bgs.LBP_MRF())
-  algorithms.append(bgs.MultiLayer())
-  algorithms.append(bgs.PixelBasedAdaptiveSegmenter())
   algorithms.append(bgs.VuMeter())
   algorithms.append(bgs.KDE())
   algorithms.append(bgs.IndependentMultimodal())
   algorithms.append(bgs.MultiCue())
-algorithms.append(bgs.SigmaDelta())
-algorithms.append(bgs.SuBSENSE())
-algorithms.append(bgs.LOBSTER())
-algorithms.append(bgs.PAWCS())
-algorithms.append(bgs.TwoPoints())
-algorithms.append(bgs.ViBe())
-algorithms.append(bgs.CodeBook())
+
+if is_cv2() or is_lower_or_equals_cv347():
+  algorithms.append(bgs.LBP_MRF())
+  algorithms.append(bgs.MultiLayer())
 
 
 # check if we want to use the images
