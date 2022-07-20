@@ -29,3 +29,4 @@ bgslibrary_gui
 .pypirc
 upload.sh
 *.code-workspace
+env
