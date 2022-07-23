@@ -9,9 +9,9 @@ A Background Subtraction Library
 </a>
 </p>
 
-Last page update: **06/08/2019**
+Last page update: **23/07/2022** Previous page update: **06/08/2019**
 
-Library Version: **3.0.0** (see **[Build Status](https://github.com/andrewssobral/bgslibrary/wiki/Build-status)** and **[Release Notes](https://github.com/andrewssobral/bgslibrary/wiki/Release-notes)** for more info)
+Library Version: **3.1.0** (see **[Build Status](https://github.com/andrewssobral/bgslibrary/wiki/Build-status)** and **[Release Notes](https://github.com/andrewssobral/bgslibrary/wiki/Release-notes)** for more info)
 
 The **BGSLibrary** was developed early 2012 by [Andrews Sobral](http://andrewssobral.wixsite.com/home) to provide an easy-to-use C++ framework (wrappers for Python, Java and MATLAB are also available) for foreground-background separation in videos based on [OpenCV](http://www.opencv.org/). The bgslibrary is compatible with OpenCV 2.4.x, 3.x and 4.x, and compiles under Windows, Linux, and Mac OS X. Currently the library contains **43** algorithms. The source code is available under the [MIT license](https://opensource.org/licenses/MIT), the library is available free of charge to all users, academic and commercial.
 
@@ -34,7 +34,7 @@ Supported Compilers are:
 
     GCC 4.8 and above
     Clang 3.4 and above
-    MSVC 2015, 2017, 2019
+    MSVC 2015, 2017, 2019 or newer
 
 Other compilers might work, but are not officially supported.
 The bgslibrary requires some features from the ISO C++ 2014 standard.
