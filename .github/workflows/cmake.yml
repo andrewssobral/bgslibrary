@@ -1,4 +1,4 @@
-name: CMake
+name: CMake auto build on OpenCV 3.4.7
 
 on:
   push:
