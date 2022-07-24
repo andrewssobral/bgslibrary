@@ -25,12 +25,19 @@ jobs:
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       # run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
-      #run: cd build && cmake .. && make -j4
-      run: python3 -V && which python3 && pip3 -V && pip3 list
+      run: cd build && cmake .. && make -j $(nproc)
 
-    - name: Build
+    - name: Build and install the python wrapper
       # Build your program with the given configuration
       # run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
-      run: pwd && ls -la
-      #run: cd ${{github.workspace}}/build && make -j $(nproc)
-      
+      run: python setup.py build && python setup.py install
+
+    - name: Compile the C++ QT User Interface
+      # Build your program with the given configuration
+      # run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+      run: cd gui/qt/build && cmake .. && make -j $(nproc)
+
+    - name: Compile examples
+      # Build your program with the given configuration
+      # run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+      run: cd examples/build && cmake .. && make -j $(nproc)
