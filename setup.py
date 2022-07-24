@@ -208,7 +208,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name='pybgs',
-    version='3.0.0.post2',
+    version='3.1.0.post0',
     author='Andrews Sobral',
     author_email='andrewssobral@gmail.com',
     url='https://github.com/andrewssobral/bgslibrary',

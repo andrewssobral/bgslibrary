@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.1)
 
-project(bgslibrary VERSION 3.0.0)
+project(bgslibrary VERSION 3.1.0)
 
 include(CheckCXXCompilerFlag)
 

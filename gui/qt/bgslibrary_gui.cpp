@@ -3,7 +3,7 @@
 int main(int argc, char *argv[])
 {
   std::cout << "--------------------------------------------" << std::endl;
-  std::cout << "Background Subtraction Library v3.0.0       " << std::endl;
+  std::cout << "Background Subtraction Library v3.1.0       " << std::endl;
   std::cout << "https://github.com/andrewssobral/bgslibrary " << std::endl;
   std::cout << "by:                                         " << std::endl;
   std::cout << "Andrews Sobral (andrewssobral@gmail.com)    " << std::endl;
@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
   QApplication a(argc, argv);
 
   QCoreApplication::setApplicationName("BGSLibrary");
-  QCoreApplication::setApplicationVersion("3.0.0");
+  QCoreApplication::setApplicationVersion("3.1.0");
 
   MainWindow w;
   w.show();
