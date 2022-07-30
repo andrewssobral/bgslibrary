@@ -151,6 +151,10 @@ void FuzzySugenoIntegral::process(const cv::Mat &img_input, cv::Mat &img_output,
     cv::Mat img_updated_background_f3 = cv::cvarrToMat(updated_background_f3);
     img_updated_background_f3.copyTo(img_background_f3);
 
+    cvReleaseImage(&input_f3);
+    cvReleaseImage(&input_f1);
+    cvReleaseImage(&background_f3);
+    cvReleaseImage(&background_f1);
     cvReleaseImage(&lbp_input_f1);
     cvReleaseImage(&lbp_background_f1);
     cvReleaseImage(&sim_texture_f1);
