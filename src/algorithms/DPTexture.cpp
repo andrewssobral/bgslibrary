@@ -32,15 +32,15 @@ void DPTexture::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
   IplImage _frame = cvIplImage(img_input);
   frame = cvCloneImage(&_frame);
 
+  width = img_input.size().width;
+  height = img_input.size().height;
+  size = width * height;
+
+  // input image
+  image = cvCreateImage(cvSize(width, height), 8, 3);
+  cvCopy(frame, image.Ptr());
+
   if (firstTime) {
-    width = img_input.size().width;
-    height = img_input.size().height;
-    size = width * height;
-
-    // input image
-    image = cvCreateImage(cvSize(width, height), 8, 3);
-    cvCopy(frame, image.Ptr());
-
     // foreground masks
     fgMask = cvCreateImage(cvSize(width, height), 8, 1);
     tempMask = cvCreateImage(cvSize(width, height), 8, 1);
@@ -74,13 +74,13 @@ void DPTexture::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
     //erodeElement = cvCreateStructuringElementEx(3, 3, 1, 1,	CV_SHAPE_RECT);
     firstTime = false;
   }
-
-  cvCopy(frame, image.Ptr());
-
-  // perform background subtraction
-  bgs.LBP(image, texture);
-  bgs.Histogram(texture, curTextureHist);
-  bgs.BgsCompare(bgModel, curTextureHist, modeArray, dp::THRESHOLD, fgMask);
+  else {
+    // cvCopy(frame, image.Ptr());
+    // perform background subtraction
+    bgs.LBP(image, texture);
+    bgs.Histogram(texture, curTextureHist);
+    bgs.BgsCompare(bgModel, curTextureHist, modeArray, dp::THRESHOLD, fgMask);
+  }
 
   //if(enableFiltering)
   //{
@@ -113,6 +113,10 @@ void DPTexture::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
 
   // update background subtraction
   bgs.UpdateModel(fgMask, bgModel, curTextureHist, modeArray);
+
+  // free memory
+  image.ReleaseImage();
+  cvReleaseImage(&frame);
 }
 
 void DPTexture::save_config(cv::FileStorage &fs) {

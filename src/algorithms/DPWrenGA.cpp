@@ -59,6 +59,7 @@ void DPWrenGA::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &i
 
   img_foreground.copyTo(img_output);
   img_background.copyTo(img_bgmodel);
+  frame_data.ReleaseImage();
 
   firstTime = false;
   frameNumber++;
