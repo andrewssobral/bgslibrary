@@ -35,6 +35,8 @@ PYBIND11_MODULE(pybgs, m)
 {
   NDArrayConverter::init_numpy();
   m.doc() = "python wrapper for bgslibrary using pybind11";
+  py::object version = py::cast("3.2.0");
+  m.attr("__version__") = version;
 
   // Basic test
   m.def("read_image", &read_image, "A function that read an image", py::arg("image"));
