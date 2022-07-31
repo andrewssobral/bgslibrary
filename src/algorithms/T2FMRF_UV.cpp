@@ -53,6 +53,9 @@ void T2FMRF_UV::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
     mrf.width = width;
     mrf.Build_Classes_OldLabeling_InImage_LocalEnergy();
 
+    gmm = bgs.gmm();
+    hmm = bgs.hmm();
+
     firstTime = false;
   }
 
@@ -65,8 +68,6 @@ void T2FMRF_UV::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
   //the optimization process is done when the foreground detection is stable,
   if (frameNumber >= 10)
   {
-    gmm = bgs.gmm();
-    hmm = bgs.hmm();
     mrf.background2 = frame_data.Ptr();
     mrf.in_image = lowThresholdMask.Ptr();
     mrf.out_image = lowThresholdMask.Ptr();
@@ -91,6 +92,7 @@ void T2FMRF_UV::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &
 
   img_foreground.copyTo(img_output);
   img_background.copyTo(img_bgmodel);
+  frame_data.ReleaseImage();
 
   frameNumber++;
 }

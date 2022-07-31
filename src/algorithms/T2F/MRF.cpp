@@ -253,6 +253,7 @@ void MRF_TC::InitEvidence2(GMM *gmm, HMM *hmm, IplImage *labeling)
       }
     }
   }
+  background.ReleaseImage();
 }
 
 void MRF_TC::CreateOutput2()
