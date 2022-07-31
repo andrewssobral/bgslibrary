@@ -17,7 +17,7 @@ int main(int argc, char** argv)
 	std::string baseDir = "./dataset/frames";
 	if (argc > 1)
 		baseDir = argv[1];
-	std::cout << "Openning: " << baseDir << std::endl;
+	std::cout << "Opening: " << baseDir << std::endl;
 
 	/* Background Subtraction Methods */
 	auto algorithmsName = BGS_Factory::Instance()->GetRegisteredAlgorithmsName();
@@ -27,6 +27,7 @@ int main(int argc, char** argv)
 
 	for (const std::string& algorithmName : algorithmsName)
 	{
+		// if (algorithmName.rfind("FrameDifference", 0) != 0) continue;
 		std::cout << "Running " << algorithmName << std::endl;
 		auto bgs = BGS_Factory::Instance()->Create(algorithmName);
 

@@ -19,7 +19,7 @@ int main(int argc, char** argv)
 
 	if (argc > 1)
 	{
-		std::cout << "Openning: " << argv[1] << std::endl;
+		std::cout << "Opening: " << argv[1] << std::endl;
 		capture.open(argv[1]);
 	}
 	else
@@ -39,6 +39,7 @@ int main(int argc, char** argv)
 
 	for (const std::string& algorithmName : algorithmsName)
 	{
+		// if (algorithmName.rfind("FrameDifference", 0) != 0) continue;
 		std::cout << "Running " << algorithmName << std::endl;
 		auto bgs = BGS_Factory::Instance()->Create(algorithmName);
 
