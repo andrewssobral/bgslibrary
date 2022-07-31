@@ -50,6 +50,7 @@ void LBSimpleGaussian::process(const cv::Mat &img_input, cv::Mat &img_output, cv
 
   img_foreground.copyTo(img_output);
   img_background.copyTo(img_bgmodel);
+  cvReleaseImage(&frame);
 
   firstTime = false;
 }
