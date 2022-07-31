@@ -206,8 +206,7 @@ void MultiLayer::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat 
 
   img_foreground.copyTo(img_output);
   img_background.copyTo(img_bgmodel);
-
-  //cvReleaseImage(&img);
+  cvReleaseImage(&img);
 
   firstTime = false;
   frameNumber++;

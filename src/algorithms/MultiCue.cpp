@@ -99,6 +99,7 @@ void MultiCue::process(const cv::Mat &img_input, cv::Mat &img_output, cv::Mat &i
   img_background = cv::Mat::zeros(img_input.size(), img_input.type());
   img_foreground = cv::cvarrToMat(result_image, TRUE);
   cvReleaseImage(&result_image);
+  cvReleaseImage(&frame);
 
 #ifndef MEX_COMPILE_FLAG
   if (showOutput)
@@ -551,6 +552,8 @@ void MultiCue::GaussianFiltering(IplImage* frame, uchar*** aFilteredFrame) {
         aFilteredFrame[i][j][2] = img->imageData[i*img->widthStep + j * 3 + 2];
       }
     }
+
+    cvReleaseImage(&img);
   }
 }
 
