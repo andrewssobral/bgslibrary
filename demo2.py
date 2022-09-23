@@ -91,8 +91,8 @@ if (len(sys.argv) == 2):
         img_folder = "dataset/frames"
         img_array = sorted(glob.iglob(img_folder + '/*.png'))
 
-video_file = "dataset/video.avi"
-
+#video_file = "dataset/video.avi"
+video_file = "dataset/plane_flying_past.mkv"
 
 for algorithm in algorithms:
   print("Running ", algorithm.__class__)
@@ -106,6 +106,7 @@ for algorithm in algorithms:
 
         # read file into open cv and apply to algorithm to generate background model
         img = cv2.imread(img_path)
+        img = cv2.resize(img, (400, 480))
         img_output = algorithm.apply(img)
         img_bgmodel = algorithm.getBackgroundModel()
 
@@ -139,6 +140,7 @@ for algorithm in algorithms:
       pos_frame = capture.get(1)
       while True:
         flag, frame = capture.read()
+        frame = cv2.resize(frame, (400, 480))
 
         if flag:
           cv2.imshow('video', frame)
