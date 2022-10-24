@@ -43,6 +43,7 @@
 #include "TwoPoints.h"
 #include "ViBe.h"
 #include "CodeBook.h"
+#include "ViBeBGS.h"
 
 //#include "_template_/MyBGS.h"
 

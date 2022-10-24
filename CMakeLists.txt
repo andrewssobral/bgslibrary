@@ -4,7 +4,7 @@ project(bgslibrary VERSION 3.2.0)
 
 include(CheckCXXCompilerFlag)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
@@ -198,6 +198,8 @@ file(GLOB_RECURSE tools_inc src/tools/*.h src/tools/*.hpp)
 
 file(GLOB_RECURSE bgs_src src/algorithms/*.cpp src/algorithms/*.c)
 file(GLOB_RECURSE bgs_inc src/algorithms/*.h src/algorithms/*.hpp)
+
+# message(STATUS "Src: ${bgs_src}")
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${OpenCV_INCLUDE_DIRS})

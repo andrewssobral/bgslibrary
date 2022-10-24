@@ -305,6 +305,12 @@ PYBIND11_MODULE(pybgs, m)
     .def("getBackgroundModel", &ViBe::getBackgroundModel)
     ;
 
+  py::class_<VibeBGS>(m, "VibeBGS")
+    .def(py::init<>())
+    .def("apply", &VibeBGS::apply)
+    .def("getBackgroundModel", &VibeBGS::getBackgroundModel)
+    ;
+
   py::class_<CodeBook>(m, "CodeBook")
     .def(py::init<>())
     .def("apply", &CodeBook::apply)
