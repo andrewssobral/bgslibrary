@@ -100,6 +100,8 @@ namespace bgslibrary
       return (IBGS *)malloc(sizeof(TwoPoints));
     if (alg_name.compare("ViBe") == 0)
       return (IBGS *)malloc(sizeof(ViBe));
+    if (alg_name.compare("VibeBGS") == 0)
+      return (IBGS *)malloc(sizeof(VibeBGS));
     if (alg_name.compare("CodeBook") == 0)
       return (IBGS *)malloc(sizeof(CodeBook));
     return NULL;
@@ -197,6 +199,8 @@ namespace bgslibrary
       return new (ptrBGS) TwoPoints();
     if (alg_name.compare("ViBe") == 0)
       return new (ptrBGS) ViBe();
+    if (alg_name.compare("VibeBGS") == 0)
+      return new (ptrBGS) VibeBGS();
     if (alg_name.compare("CodeBook") == 0)
       return new (ptrBGS) CodeBook();
     return NULL;
