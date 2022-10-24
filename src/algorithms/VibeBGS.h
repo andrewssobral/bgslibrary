@@ -11,13 +11,13 @@ namespace bgslibrary
         : public IBGS
     {
     private:
-      static const int DEFAULT_NUM_SAMPLES = 20;
+      static const int DEFAULT_NUM_SAMPLES = 16;
       static const int DEFAULT_MATCH_THRESH = 20;
       static const int DEFAULT_MATCH_NUM = 2;
-      static const int DEFAULT_UPDATE_FACTOR = 16;
+      static const int DEFAULT_UPDATE_FACTOR = 8;
 
     private:
-      //int numberOfSamples;
+      int numberOfSamples;
       int matchingThreshold;
       int matchingNumber;
       int updateFactor;
