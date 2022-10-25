@@ -76,6 +76,9 @@ namespace bgslibrary
   {
     debug_construction(VideoCapture);
     initLoadSaveConfig(quote(VideoCapture));
+
+    vibeBgs = std::make_unique<VibeBGS>();
+    vibe = std::make_unique<ViBe>();
   }
 
   VideoCapture::~VideoCapture() {
@@ -224,7 +227,10 @@ namespace bgslibrary
       frame.copyTo(img_input);
 
       start_time = cv::getTickCount();
-      frameProcessor->process(img_input);
+
+      //auto vibeMask = vibe->apply(img_input);
+      auto vibeMask = vibeBgs->apply(img_input);
+      // frameProcessor->process(img_input);
       delta_time = cv::getTickCount() - start_time;
       freq = cv::getTickFrequency();
       fps = freq / delta_time;
@@ -239,6 +245,7 @@ namespace bgslibrary
               cv::Scalar(0,0,255), // BGR Color
               1); // Line Thickness (Optional)
 
+      cv::imshow("Mask", vibeMask);
       if (showOutput)
         cv::imshow("Input", img_input);
 

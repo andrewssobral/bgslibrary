@@ -21,6 +21,7 @@ namespace bgslibrary
       int matchingThreshold;
       int matchingNumber;
       int updateFactor;
+      int numberOfProcess;
       std::unique_ptr<sky360::VibeBGS> model;
 
     public:

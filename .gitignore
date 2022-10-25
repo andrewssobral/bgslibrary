@@ -1,8 +1,7 @@
 etc/
 tmp/
 bkp/
-build-*/
-build_*/
+build*/
 dist/
 dataset_*/
 binaries*/

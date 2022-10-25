@@ -46,13 +46,11 @@ namespace bgslibrary
                 std::vector<int> m_processSeq;
 
                 std::vector<std::unique_ptr<Img>> m_bgImgSamples;
-                std::vector<Img*> m_bgImgPtrSamples;
                 std::vector<std::vector<std::unique_ptr<Img>>> m_bgImgSamplesParallel;
-                std::vector<std::vector<Img*>> m_bgImgPtrSamplesParallel;
 
-                void initialize(const Img& _initImg, std::vector<std::unique_ptr<Img>>& _bgImgSamples, std::vector<Img*>& _bgImgPtrSamples);
-                static void applyParallelJoin(const Img& _inputImg, Img& _fgmask, std::vector<Img*>& bgImg, const Params& _params);
-                static inline void apply(const Img& image, std::vector<Img*>& bgImg, Img& fgmask, const Params& _params);
+                void initialize(const Img& _initImg, std::vector<std::unique_ptr<Img>>& _bgImgSamples);
+                static void applyParallelJoin(const Img& _inputImg, Img& _fgmask, std::vector<std::unique_ptr<Img>>& bgImg, const Params& _params);
+                static void apply(const Img& image, std::vector<std::unique_ptr<Img>>& bgImg, Img& fgmask, const Params& _params);
             };
         }
     }

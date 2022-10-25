@@ -76,17 +76,17 @@ namespace bgslibrary
             }
 
             /// returns the neighbor location for the specified random index & original pixel location; also guards against out-of-bounds values via image/border size check
-            static inline int getNeighborPosition_3x3(const int pix, const ImgSize& oImageSize) {
+            static inline int getNeighborPosition_3x3(const int pix, const ImgSize& oImageSize, Pcg32& pgc32) {
                 typedef std::array<int, 2> Nb;
                 static const std::array<std::array<int, 2>, 8> s_anNeighborPattern = {
                         Nb{-1, 1},Nb{0, 1},Nb{1, 1},
                         Nb{-1, 0},         Nb{1, 0},
                         Nb{-1,-1},Nb{0,-1},Nb{1,-1},
                 };
-                const size_t r{Pcg32::fast() & 0x7};
+                const size_t r{pgc32.fast() & 0x7};
                 int nNeighborCoord_X{std::max(std::min((pix % oImageSize.width) + s_anNeighborPattern[r][0], oImageSize.width - 1), 0)};
                 int nNeighborCoord_Y{std::max(std::min((pix / oImageSize.width) + s_anNeighborPattern[r][1], oImageSize.height - 1), 0)};
-                return nNeighborCoord_Y * oImageSize.width + nNeighborCoord_X;
+                return (nNeighborCoord_Y * oImageSize.width + nNeighborCoord_X) * 3;
             }
 
             /// returns pixel coordinates clamped to the given image & border size
