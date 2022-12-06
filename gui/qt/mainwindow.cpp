@@ -434,19 +434,19 @@ void MainWindow::processFrame(const cv::Mat &cv_frame)
   if (ui->checkBox_save_im->isChecked())
   {
     QString out_im_path = ui->lineEdit_out_in->text();
-    QString out_im_file = QDir(out_im_path).filePath(QString::number(frameNumber_aux) + ".png");
+    QString out_im_file = QDir(out_im_path).filePath(QString::number(frameNumber_aux).rightJustified(5, '0') + ".png");
     cv::imwrite(out_im_file.toStdString(), cv_frame);
   }
   if (ui->checkBox_save_fg->isChecked())
   {
     QString out_im_path = ui->lineEdit_out_fg->text();
-    QString out_im_file = QDir(out_im_path).filePath(QString::number(frameNumber_aux) + ".png");
+    QString out_im_file = QDir(out_im_path).filePath(QString::number(frameNumber_aux).rightJustified(5, '0') + ".png");
     cv::imwrite(out_im_file.toStdString(), cv_fg);
   }
   if (ui->checkBox_save_bg->isChecked())
   {
     QString out_im_path = ui->lineEdit_out_bg->text();
-    QString out_im_file = QDir(out_im_path).filePath(QString::number(frameNumber) + ".png");
+    QString out_im_file = QDir(out_im_path).filePath(QString::number(frameNumber).rightJustified(5, '0') + ".png");
     cv::imwrite(out_im_file.toStdString(), cv_bg);
   }
 }
