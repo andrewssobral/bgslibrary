@@ -195,9 +195,7 @@ bool PBAS::process(cv::Mat* input, cv::Mat* output)
           norm = abs((((double)B_Mag_Pts.at(0).at(index)[i] -
             ((double)*currentFeaturesM_Pt.at(0)))*((double)B_Mag_Pts.at(0).at(index)[i] - ((double)*currentFeaturesM_Pt.at(0)))));
 
-          dist = abs((((double)B_Col_Pts.at(0).at(index)[i] -
-            ((double)*currentFeaturesC_Pt.at(0)))*((double)B_Col_Pts.at(0).at(index)[i] - ((double)*currentFeaturesC_Pt.at(0))))
-          );
+          dist = abs(((double)B_Col_Pts.at(0).at(index)[i] - ((double)*currentFeaturesC_Pt.at(0))));
         }
         dist = ((double)alpha*(norm / formerMeanMag) + beta*dist);
 
