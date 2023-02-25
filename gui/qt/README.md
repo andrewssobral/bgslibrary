@@ -56,13 +56,14 @@ brew link --overwrite --dry-run opencv3
 * Step-by-step Instructions
 ```
 git clone --recursive https://github.com/andrewssobral/bgslibrary.git
+export BGS_HOME=${PWD}/bgslibrary
 
-cd bgslibrary/gui_qt/build
+cd $BGS_HOME/gui/qt/build
 cmake ..
 make
 
-cp bgslibrary_gui ../../ 
-
+cp bgslibrary_gui $BGS_HOME
+cd $BGS_HOME
 ./bgslibrary_gui 
 ```
 
