@@ -20,7 +20,7 @@
 
 1) Click on 'Qt 5.6 64-bit for Desktop (MSVC 2015)'
 
-2) Go to **bgslibrary/gui_qt/build** folder.
+2) Go to **bgslibrary/gui/qt/build** folder.
 
 3) Set your OpenCV PATH:
 ```
@@ -41,7 +41,7 @@ set PATH=%PATH%;%OpenCV_DIR%\x64\vc14\bin
 
 7) Click on **'ALL_BUILD'** project and build!
 
-8) Go to **bgslibrary/gui_qt/build/Release** and copy **bgslibrary_gui.exe** to **bgslibrary/**.
+8) Go to **bgslibrary/gui/qt/build/Release** and copy **bgslibrary_gui.exe** to **bgslibrary/**.
 
 9) Run **bgslibrary_gui.exe** and enjoy! ;-)
 
