@@ -77,16 +77,16 @@ SOURCES += bgslibrary_gui.cpp\
     mainwindow.cpp \
     qt_utils.cpp \
     texteditor.cpp
-SOURCES += $$files("../../src/algorithms/*.cpp", true)
-SOURCES += $$files("../../src/tools/*.cpp", true)
-SOURCES += $$files("../../src/utils/*.cpp", true)
+SOURCES += $$files("../../bgslibrary/algorithms/*.cpp", true)
+SOURCES += $$files("../../bgslibrary/tools/*.cpp", true)
+SOURCES += $$files("../../bgslibrary/utils/*.cpp", true)
 
 HEADERS  += mainwindow.h \
     qt_utils.h \
     texteditor.h
-HEADERS += $$files("../../src/algorithms/*.h", true)
-HEADERS += $$files("../../src/tools/*.h", true)
-HEADERS += $$files("../../src/utils/*.h", true)
+HEADERS += $$files("../../bgslibrary/algorithms/*.h", true)
+HEADERS += $$files("../../bgslibrary/tools/*.h", true)
+HEADERS += $$files("../../bgslibrary/utils/*.h", true)
 
 FORMS    += mainwindow.ui
 

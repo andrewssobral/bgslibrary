@@ -56,14 +56,14 @@ endif()
 file(GLOB main_src *.cpp *.c)
 file(GLOB main_inc *.h *.hpp)
 
-file(GLOB_RECURSE tools_src ../../src/tools/*.cpp ../../src/tools/*.c)
-file(GLOB_RECURSE tools_inc ../../src/tools/*.h ../../src/tools/*.hpp)
+file(GLOB_RECURSE tools_src ../../bgslibrary/tools/*.cpp ../../bgslibrary/tools/*.c)
+file(GLOB_RECURSE tools_inc ../../bgslibrary/tools/*.h ../../bgslibrary/tools/*.hpp)
 
-file(GLOB_RECURSE utils_src ../../src/utils/*.cpp ../../src/utils/*.c)
-file(GLOB_RECURSE utils_inc ../../src/utils/*.h ../../src/utils/*.hpp)
+file(GLOB_RECURSE utils_src ../../bgslibrary/utils/*.cpp ../../bgslibrary/utils/*.c)
+file(GLOB_RECURSE utils_inc ../../bgslibrary/utils/*.h ../../bgslibrary/utils/*.hpp)
 
-file(GLOB_RECURSE bgs_src ../../src/algorithms/*.cpp ../../src/algorithms/*.c)
-file(GLOB_RECURSE bgs_inc ../../src/algorithms/*.h)
+file(GLOB_RECURSE bgs_src ../../bgslibrary/algorithms/*.cpp ../../bgslibrary/algorithms/*.c)
+file(GLOB_RECURSE bgs_inc ../../bgslibrary/algorithms/*.h)
 
 include_directories(${CMAKE_SOURCE_DIR} ${OpenCV_INCLUDE_DIRS})
 

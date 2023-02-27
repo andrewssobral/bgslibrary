@@ -58,12 +58,12 @@ if (OpenCV_FOUND)
   message(STATUS "    include path: ${OpenCV_INCLUDE_DIRS}")
 endif()
 
-file(GLOB_RECURSE tools_src ../../src/tools/*.cpp ../../src/tools/*.c)
-file(GLOB_RECURSE tools_inc ../../src/tools/*.h ../../src/tools/*.hpp)
-file(GLOB_RECURSE utils_src ../../src/utils/*.cpp ../../src/utils/*.c)
-file(GLOB_RECURSE utils_inc ../../src/utils/*.h ../../src/utils/*.hpp)
-file(GLOB_RECURSE bgs_src ../../src/algorithms/*.cpp ../../src/algorithms/*.c)
-file(GLOB_RECURSE bgs_inc ../../src/algorithms/*.h ../../src/algorithms/*.hpp)
+file(GLOB_RECURSE tools_src ../../bgslibrary/tools/*.cpp ../../bgslibrary/tools/*.c)
+file(GLOB_RECURSE tools_inc ../../bgslibrary/tools/*.h ../../bgslibrary/tools/*.hpp)
+file(GLOB_RECURSE utils_src ../../bgslibrary/utils/*.cpp ../../bgslibrary/utils/*.c)
+file(GLOB_RECURSE utils_inc ../../bgslibrary/utils/*.h ../../bgslibrary/utils/*.hpp)
+file(GLOB_RECURSE bgs_src ../../bgslibrary/algorithms/*.cpp ../../bgslibrary/algorithms/*.c)
+file(GLOB_RECURSE bgs_inc ../../bgslibrary/algorithms/*.h ../../bgslibrary/algorithms/*.hpp)
 
 include_directories(${CMAKE_SOURCE_DIR} ${JNI_INCLUDE_DIRS} ${OpenCV_INCLUDE_DIRS})
 
