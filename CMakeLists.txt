@@ -186,18 +186,18 @@ if(BGS_PYTHON_SUPPORT)
 endif()
 
 if(NOT BGS_PYTHON_ONLY)
-  file(GLOB main_src src/*.cpp src/*.c)
-  file(GLOB main_inc src/*.h src/*.hpp)
+  file(GLOB main_src bgslibrary/*.cpp bgslibrary/*.c)
+  file(GLOB main_inc bgslibrary/*.h bgslibrary/*.hpp)
 endif()
 
-file(GLOB_RECURSE utils_src src/utils/*.cpp src/utils/*.c)
-file(GLOB_RECURSE utils_inc src/utils/*.h src/utils/*.hpp)
+file(GLOB_RECURSE utils_src bgslibrary/utils/*.cpp bgslibrary/utils/*.c)
+file(GLOB_RECURSE utils_inc bgslibrary/utils/*.h bgslibrary/utils/*.hpp)
 
-file(GLOB_RECURSE tools_src src/tools/*.cpp src/tools/*.c)
-file(GLOB_RECURSE tools_inc src/tools/*.h src/tools/*.hpp)
+file(GLOB_RECURSE tools_src bgslibrary/tools/*.cpp bgslibrary/tools/*.c)
+file(GLOB_RECURSE tools_inc bgslibrary/tools/*.h bgslibrary/tools/*.hpp)
 
-file(GLOB_RECURSE bgs_src src/algorithms/*.cpp src/algorithms/*.c)
-file(GLOB_RECURSE bgs_inc src/algorithms/*.h src/algorithms/*.hpp)
+file(GLOB_RECURSE bgs_src bgslibrary/algorithms/*.cpp bgslibrary/algorithms/*.c)
+file(GLOB_RECURSE bgs_inc bgslibrary/algorithms/*.h bgslibrary/algorithms/*.hpp)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${OpenCV_INCLUDE_DIRS})
@@ -214,7 +214,7 @@ endif()
 
 # GMG is not available in older OpenCV versions
 if(${OpenCV_VERSION} VERSION_LESS 2.4.3)
-  file(GLOB gmg src/algorithms/GMG.cpp)
+  file(GLOB gmg bgslibrary/algorithms/GMG.cpp)
   list(REMOVE_ITEM bgs_src ${gmg})
 endif()
 
@@ -314,7 +314,7 @@ if(NOT BGS_PYTHON_ONLY)
   )
   set_target_properties(bgslibrary_core PROPERTIES EXPORT_NAME BGSLibrary)
 
-  install(DIRECTORY src/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+  install(DIRECTORY bgslibrary/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
   install(EXPORT bgslibrary_core-targets
     FILE
       BGSLibraryTargets.cmake

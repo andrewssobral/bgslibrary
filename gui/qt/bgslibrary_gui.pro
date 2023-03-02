@@ -77,22 +77,22 @@ SOURCES += bgslibrary_gui.cpp\
     mainwindow.cpp \
     qt_utils.cpp \
     texteditor.cpp
-SOURCES += $$files("../../src/algorithms/*.cpp", true)
-SOURCES += $$files("../../src/tools/*.cpp", true)
-SOURCES += $$files("../../src/utils/*.cpp", true)
+SOURCES += $$files("../../bgslibrary/algorithms/*.cpp", true)
+SOURCES += $$files("../../bgslibrary/tools/*.cpp", true)
+SOURCES += $$files("../../bgslibrary/utils/*.cpp", true)
 
 HEADERS  += mainwindow.h \
     qt_utils.h \
     texteditor.h
-HEADERS += $$files("../../src/algorithms/*.h", true)
-HEADERS += $$files("../../src/tools/*.h", true)
-HEADERS += $$files("../../src/utils/*.h", true)
+HEADERS += $$files("../../bgslibrary/algorithms/*.h", true)
+HEADERS += $$files("../../bgslibrary/tools/*.h", true)
+HEADERS += $$files("../../bgslibrary/utils/*.h", true)
 
 FORMS    += mainwindow.ui
 
 DISTFILES += \
-    ../../src/algorithms/LBSP/LBSP_16bits_dbcross_1ch.i \
-    ../../src/algorithms/LBSP/LBSP_16bits_dbcross_3ch1t.i \
-    ../../src/algorithms/LBSP/LBSP_16bits_dbcross_3ch3t.i \
-    ../../src/algorithms/LBSP/LBSP_16bits_dbcross_s3ch.i \
-    ../../src/algorithms/ViBe/LICENSE
+    ../../bgslibrary/algorithms/LBSP/LBSP_16bits_dbcross_1ch.i \
+    ../../bgslibrary/algorithms/LBSP/LBSP_16bits_dbcross_3ch1t.i \
+    ../../bgslibrary/algorithms/LBSP/LBSP_16bits_dbcross_3ch3t.i \
+    ../../bgslibrary/algorithms/LBSP/LBSP_16bits_dbcross_s3ch.i \
+    ../../bgslibrary/algorithms/ViBe/LICENSE

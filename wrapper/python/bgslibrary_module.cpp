@@ -4,7 +4,7 @@
 #include <opencv2/opencv.hpp>
 
 #include "ndarray_converter.h"
-#include "../../src/algorithms/algorithms.h"
+#include "../../bgslibrary/algorithms/algorithms.h"
 
 #if CV_MAJOR_VERSION >= 4
 #define CV_LOAD_IMAGE_COLOR cv::IMREAD_COLOR

@@ -27,7 +27,7 @@
 
 #include "qt_utils.h"
 #include "texteditor.h"
-#include "../../src/algorithms/algorithms.h"
+#include "../../bgslibrary/algorithms/algorithms.h"
 
 namespace bgslibrary
 {

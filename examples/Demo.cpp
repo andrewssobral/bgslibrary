@@ -4,7 +4,7 @@
 #include <vector>
 #include <opencv2/opencv.hpp>
 
-#include "../src/algorithms/algorithms.h"
+#include <../bgslibrary/algorithms/algorithms.h>
 
 #if CV_MAJOR_VERSION >= 4
 #define CV_CAP_PROP_POS_FRAMES cv::CAP_PROP_POS_FRAMES
