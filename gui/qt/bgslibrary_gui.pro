@@ -91,8 +91,8 @@ HEADERS += $$files("../../bgslibrary/utils/*.h", true)
 FORMS    += mainwindow.ui
 
 DISTFILES += \
-    ../../src/algorithms/LBSP/LBSP_16bits_dbcross_1ch.i \
-    ../../src/algorithms/LBSP/LBSP_16bits_dbcross_3ch1t.i \
-    ../../src/algorithms/LBSP/LBSP_16bits_dbcross_3ch3t.i \
-    ../../src/algorithms/LBSP/LBSP_16bits_dbcross_s3ch.i \
-    ../../src/algorithms/ViBe/LICENSE
+    ../../bgslibrary/algorithms/LBSP/LBSP_16bits_dbcross_1ch.i \
+    ../../bgslibrary/algorithms/LBSP/LBSP_16bits_dbcross_3ch1t.i \
+    ../../bgslibrary/algorithms/LBSP/LBSP_16bits_dbcross_3ch3t.i \
+    ../../bgslibrary/algorithms/LBSP/LBSP_16bits_dbcross_s3ch.i \
+    ../../bgslibrary/algorithms/ViBe/LICENSE

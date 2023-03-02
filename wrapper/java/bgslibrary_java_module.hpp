@@ -6,7 +6,7 @@
 #include <string>
 
 #include "src/bgslibrary_BgsLib.h"
-#include "../../src/algorithms/algorithms.h"
+#include "../../bgslibrary/algorithms/algorithms.h"
 
 bool constructObject(std::string algorithm);
 void computeForegroundMask(const cv::Mat &img_input, cv::Mat &img_output);
