@@ -65,7 +65,7 @@ The bgslibrary requires some features from the ISO C++ 2014 standard.
 
 ## Algorithm compatibility across OpenCV versions
 ---------------------------------------------------
-| Algorithm | OpenCV < 3.0 (42) | 3.0 <= OpenCV <= 3.4.7 (41) | 3.4.7 < OpenCV < 4.0 (39) | OpenCV >= 4.0 (25) |
+| Algorithm | OpenCV < 3.0 (42) | 3.0 <= OpenCV <= 3.4.7 (41) | 3.4.7 < OpenCV < 4.0 (39) | OpenCV >= 4.0 (26) |
 |--------------------------------|:-----------:|:----------------------:|:---------------------:|:------------:|
 | AdaptiveBackgroundLearning | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | AdaptiveSelectiveBackgroundLearning | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
@@ -88,7 +88,7 @@ The bgslibrary requires some features from the ISO C++ 2014 standard.
 | LBAdaptiveSOM | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | LBFuzzyAdaptiveSOM | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | LBFuzzyGaussian | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| LBMixtureOfGaussians | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| LBMixtureOfGaussians | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | LBP_MRF | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: |
 | LBSimpleGaussian | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | LOBSTER | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
