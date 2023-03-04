@@ -35,7 +35,7 @@ PYBIND11_MODULE(pybgs, m)
 {
   NDArrayConverter::init_numpy();
   m.doc() = "python wrapper for bgslibrary using pybind11";
-  py::object version = py::cast("3.2.0");
+  py::object version = py::cast("3.3.0");
   m.attr("__version__") = version;
 
   // Basic test
@@ -182,6 +182,13 @@ PYBIND11_MODULE(pybgs, m)
     .def("getBackgroundModel", &T2FMRF_UV::getBackgroundModel)
     ;
 
+  py::class_<MultiCue>(m, "MultiCue")
+    .def(py::init<>())
+    .def("apply", &MultiCue::apply)
+    .def("getBackgroundModel", &MultiCue::getBackgroundModel)
+    ;
+#endif
+
   py::class_<FuzzySugenoIntegral>(m, "FuzzySugenoIntegral")
     .def(py::init<>())
     .def("apply", &FuzzySugenoIntegral::apply)
@@ -241,13 +248,6 @@ PYBIND11_MODULE(pybgs, m)
     .def("apply", &IndependentMultimodal::apply)
     .def("getBackgroundModel", &IndependentMultimodal::getBackgroundModel)
     ;
-
-  py::class_<MultiCue>(m, "MultiCue")
-    .def(py::init<>())
-    .def("apply", &MultiCue::apply)
-    .def("getBackgroundModel", &MultiCue::getBackgroundModel)
-    ;
-#endif
 
 #if (CV_MAJOR_VERSION == 2) || (CV_MAJOR_VERSION == 3 && CV_MINOR_VERSION <= 4 && CV_VERSION_REVISION <= 7)
   py::class_<LBP_MRF>(m, "LBP_MRF")
