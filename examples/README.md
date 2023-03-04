@@ -25,3 +25,6 @@ or
 # using a sequence of images
 ./build/bgs_demo2 ../dataset/frames
 ```
+
+### More examples
+https://github.com/andrewssobral/bgslibrary-examples
