@@ -2,3 +2,4 @@
 *
 # Except these files
 !.gitignore
+!.uninstall-from-cmake.sh

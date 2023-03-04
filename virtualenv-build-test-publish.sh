@@ -13,6 +13,9 @@ python -m pip install wheel
 python -m pip install numpy
 python -m pip install opencv-python
 
+# Remove any existing build directory
+rm -rf build/*
+
 # Build and install the package using the setup.py script
 python setup.py build
 python setup.py install
