@@ -63,6 +63,56 @@ The bgslibrary requires some features from the ISO C++ 2014 standard.
 * [Release notes](https://github.com/andrewssobral/bgslibrary/wiki/Release-notes)
 
 
+## Algorithm compatibility across OpenCV versions
+---------------------------------------------------
+| Algorithm | OpenCV < 3.0 (42) | 3.0 <= OpenCV <= 3.4.7 (41) | 3.4.7 < OpenCV < 4.0 (39) | OpenCV >= 4.0 (25) |
+|--------------------------------|:-----------:|:----------------------:|:---------------------:|:------------:|
+| AdaptiveBackgroundLearning | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| AdaptiveSelectiveBackgroundLearning | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| CodeBook | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| DPAdaptiveMedian | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| DPEigenbackground | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| DPGrimsonGMM | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| DPMean | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| DPPratiMediod | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| DPTexture | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| DPWrenGA | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| DPZivkovicAGMM | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| FrameDifference | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| FuzzyChoquetIntegral | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| FuzzySugenoIntegral | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| GMG | :heavy_check_mark: | :x: | :x: | :x: |
+| IndependentMultimodal | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| KDE | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| KNN | :x: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| LBAdaptiveSOM | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| LBFuzzyAdaptiveSOM | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| LBFuzzyGaussian | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| LBMixtureOfGaussians | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| LBP_MRF | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: |
+| LBSimpleGaussian | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| LOBSTER | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| MixtureOfGaussianV1 | :heavy_check_mark: | :x: | :x: | :x: |
+| MixtureOfGaussianV2 | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| MultiCue | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| MultiLayer | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: |
+| PAWCS | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| PixelBasedAdaptiveSegmenter | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| SigmaDelta | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| StaticFrameDifference | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| SuBSENSE | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| T2FGMM_UM | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| T2FGMM_UV | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| T2FMRF_UM | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| T2FMRF_UV | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| TwoPoints | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| ViBe | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| VuMeter | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| WeightedMovingMean | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| WeightedMovingVariance | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+
+
+
 ## Stargazers over time
 
 [![Stargazers over time](https://starchart.cc/andrewssobral/bgslibrary.svg)](https://starchart.cc/andrewssobral/bgslibrary)
