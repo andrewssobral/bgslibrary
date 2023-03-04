@@ -26,7 +26,7 @@
 #include "FuzzyChoquetIntegral.h"
 #include "LBSimpleGaussian.h"
 #include "LBFuzzyGaussian.h"
-#include "LBMixtureOfGaussians.h" // Only for OpenCV 2 or 3
+#include "LBMixtureOfGaussians.h"
 #include "LBAdaptiveSOM.h"
 #include "LBFuzzyAdaptiveSOM.h"
 #include "LBP_MRF.h" // Only for OpenCV 2 or OpenCV <= 3.4.7
