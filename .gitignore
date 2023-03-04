@@ -30,3 +30,5 @@ bgslibrary_gui
 upload.sh
 *.code-workspace
 env
+bgslibrary_env
+bgslibrary_test_env

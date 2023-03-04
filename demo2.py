@@ -45,13 +45,23 @@ algorithms.append(bgs.PAWCS())
 algorithms.append(bgs.TwoPoints())
 algorithms.append(bgs.ViBe())
 algorithms.append(bgs.CodeBook())
+algorithms.append(bgs.FuzzySugenoIntegral())
+algorithms.append(bgs.FuzzyChoquetIntegral())
+algorithms.append(bgs.LBSimpleGaussian())
+algorithms.append(bgs.LBFuzzyGaussian())
+algorithms.append(bgs.LBMixtureOfGaussians())
+algorithms.append(bgs.LBAdaptiveSOM())
+algorithms.append(bgs.LBFuzzyAdaptiveSOM())
+algorithms.append(bgs.VuMeter())
+algorithms.append(bgs.KDE())
+algorithms.append(bgs.IndependentMultimodal())
 
 if is_cv2():
   algorithms.append(bgs.MixtureOfGaussianV1()) # if opencv 2.x
   algorithms.append(bgs.GMG()) # if opencv 2.x
 
-if is_cv3():
-  algorithms.append(bgs.KNN()) # if opencv 3.x
+if not is_cv2():
+  algorithms.append(bgs.KNN()) # if opencv > 2
 
 if is_cv2() or is_cv3():
   algorithms.append(bgs.DPAdaptiveMedian())
@@ -66,16 +76,6 @@ if is_cv2() or is_cv3():
   algorithms.append(bgs.T2FGMM_UV())
   algorithms.append(bgs.T2FMRF_UM())
   algorithms.append(bgs.T2FMRF_UV())
-  algorithms.append(bgs.FuzzySugenoIntegral())
-  algorithms.append(bgs.FuzzyChoquetIntegral())
-  algorithms.append(bgs.LBSimpleGaussian())
-  algorithms.append(bgs.LBFuzzyGaussian())
-  algorithms.append(bgs.LBMixtureOfGaussians())
-  algorithms.append(bgs.LBAdaptiveSOM())
-  algorithms.append(bgs.LBFuzzyAdaptiveSOM())
-  algorithms.append(bgs.VuMeter())
-  algorithms.append(bgs.KDE())
-  algorithms.append(bgs.IndependentMultimodal())
   algorithms.append(bgs.MultiCue())
 
 if is_cv2() or is_lower_or_equals_cv347():
@@ -93,7 +93,7 @@ if (len(sys.argv) == 2):
 
 video_file = "dataset/video.avi"
 
-
+print("Number of available algorithms: ", len(algorithms))
 for algorithm in algorithms:
   print("Running ", algorithm.__class__)
 
