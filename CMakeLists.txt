@@ -314,7 +314,7 @@ if(NOT BGS_PYTHON_ONLY)
   )
   set_target_properties(bgslibrary_core PROPERTIES EXPORT_NAME BGSLibrary)
 
-  install(DIRECTORY bgslibrary/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+  install(DIRECTORY bgslibrary/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/bgslibrary)
   install(EXPORT bgslibrary_core-targets
     FILE
       BGSLibraryTargets.cmake
