@@ -1,7 +1,5 @@
 #include "LBFuzzyAdaptiveSOM.h"
 
-#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
-
 using namespace bgslibrary::algorithms;
 
 LBFuzzyAdaptiveSOM::LBFuzzyAdaptiveSOM() :
@@ -75,5 +73,3 @@ void LBFuzzyAdaptiveSOM::load_config(cv::FileStorage &fs) {
   fs["trainingSteps"] >> trainingSteps;
   fs["showOutput"] >> showOutput;
 }
-
-#endif

@@ -1,7 +1,5 @@
 #include "KDE.h"
 
-#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
-
 using namespace bgslibrary::algorithms;
 
 KDE::KDE() :
@@ -104,5 +102,3 @@ void KDE::load_config(cv::FileStorage &fs) {
   fs["alpha"] >> alpha;
   fs["showOutput"] >> showOutput;
 }
-
-#endif

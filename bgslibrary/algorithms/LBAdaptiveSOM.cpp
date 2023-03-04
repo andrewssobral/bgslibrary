@@ -1,7 +1,5 @@
 #include "LBAdaptiveSOM.h"
 
-#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
-
 using namespace bgslibrary::algorithms;
 
 LBAdaptiveSOM::LBAdaptiveSOM() :
@@ -76,5 +74,3 @@ void LBAdaptiveSOM::load_config(cv::FileStorage &fs) {
   fs["trainingSteps"] >> trainingSteps;
   fs["showOutput"] >> showOutput;
 }
-
-#endif

@@ -1,7 +1,5 @@
 #include "LBSimpleGaussian.h"
 
-#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
-
 using namespace bgslibrary::algorithms;
 
 LBSimpleGaussian::LBSimpleGaussian() :
@@ -68,5 +66,3 @@ void LBSimpleGaussian::load_config(cv::FileStorage &fs) {
   fs["learningRate"] >> learningRate;
   fs["showOutput"] >> showOutput;
 }
-
-#endif

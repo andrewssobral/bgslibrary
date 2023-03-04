@@ -1,7 +1,5 @@
 #include "VuMeter.h"
 
-#if CV_MAJOR_VERSION >= 2 && CV_MAJOR_VERSION <= 3
-
 using namespace bgslibrary::algorithms;
 
 VuMeter::VuMeter() :
@@ -85,5 +83,3 @@ void VuMeter::load_config(cv::FileStorage &fs) {
   fs["threshold"] >> threshold;
   fs["showOutput"] >> showOutput;
 }
-
-#endif

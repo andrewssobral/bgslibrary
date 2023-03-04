@@ -1,10 +1,6 @@
 #pragma once
 
 #include "IBGS.h"
-
-#include "opencv2/core/version.hpp"
-#if CV_MAJOR_VERSION == 2 || CV_MAJOR_VERSION == 3
-
 #include "lb/BGModelFuzzySom.h"
 
 namespace bgslibrary
@@ -35,5 +31,3 @@ namespace bgslibrary
     bgs_register(LBFuzzyAdaptiveSOM);
   }
 }
-
-#endif

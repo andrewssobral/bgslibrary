@@ -44,6 +44,6 @@
 #include "ViBe.h"
 #include "CodeBook.h"
 
-//#include "_template_/MyBGS.h"
+// #include "_template_/MyBGS.h"
 
 using namespace bgslibrary::algorithms;
