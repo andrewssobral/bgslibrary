@@ -37,6 +37,8 @@ namespace bgslibrary
     map["T2FGMM_UV"] = &createInstance<T2FGMM_UV>;
     map["T2FMRF_UM"] = &createInstance<T2FMRF_UM>;
     map["T2FMRF_UV"] = &createInstance<T2FMRF_UV>;
+    map["MultiCue"] = &createInstance<MultiCue>;
+#endif
     map["FuzzySugenoIntegral"] = &createInstance<FuzzySugenoIntegral>;
     map["FuzzyChoquetIntegral"] = &createInstance<FuzzyChoquetIntegral>;
     map["LBSimpleGaussian"] = &createInstance<LBSimpleGaussian>;
@@ -47,8 +49,6 @@ namespace bgslibrary
     map["VuMeter"] = &createInstance<VuMeter>;
     map["KDE"] = &createInstance<KDE>;
     map["IndependentMultimodal"] = &createInstance<IndependentMultimodal>;
-    map["MultiCue"] = &createInstance<MultiCue>;
-#endif
 #if (CV_MAJOR_VERSION == 2) || (CV_MAJOR_VERSION == 3 && CV_MINOR_VERSION <= 4 && CV_VERSION_REVISION <= 7)
     map["LBP_MRF"] = &createInstance<LBP_MRF>;
     map["MultiLayer"] = &createInstance<MultiLayer>;
@@ -97,6 +97,8 @@ namespace bgslibrary
     stringList.append("T2FGMM_UV");
     stringList.append("T2FMRF_UM");
     stringList.append("T2FMRF_UV");
+    stringList.append("MultiCue");
+#endif
     stringList.append("FuzzySugenoIntegral");
     stringList.append("FuzzyChoquetIntegral");
     stringList.append("LBSimpleGaussian");
@@ -107,8 +109,6 @@ namespace bgslibrary
     stringList.append("VuMeter");
     stringList.append("KDE");
     stringList.append("IndependentMultimodal");
-    stringList.append("MultiCue");
-#endif
 #if (CV_MAJOR_VERSION == 2) || (CV_MAJOR_VERSION == 3 && CV_MINOR_VERSION <= 4 && CV_VERSION_REVISION <= 7)
     stringList.append("LBP_MRF");
     stringList.append("MultiLayer");
