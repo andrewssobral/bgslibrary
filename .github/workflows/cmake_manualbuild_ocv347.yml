@@ -1,6 +1,7 @@
 name: CMake manual build on OpenCV 3.4.7
 
-on: workflow_call
+on:
+  workflow_dispatch: {}
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
