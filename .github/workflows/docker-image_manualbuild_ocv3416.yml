@@ -1,0 +1,24 @@
+name: Docker image manual build for OpenCV 3.4.16
+
+on:
+  workflow_dispatch: {}
+  # push:
+  #   branches: [ "master" ]
+  # pull_request:
+  #   branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: docker login
+      env:
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+      run: |
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - name: Build the Docker image
+      run: docker build --build-arg INCUBATOR_VER=$(date +%Y%m%d-%H%M%S) --file dockerfiles/opencv_3.4.16py38/Dockerfile -t andrewssobral/bgslibrary:opencv_3.4.16py38 .
+    - name: Docker Push
+      run: docker push andrewssobral/bgslibrary:opencv_3.4.16py38
