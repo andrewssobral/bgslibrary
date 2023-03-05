@@ -1,4 +1,4 @@
-name: CMake manual build on OpenCV 4.6.0
+name: CMake manual build on Ubuntu + OpenCV 4.6.0
 
 on:
   workflow_dispatch: {}

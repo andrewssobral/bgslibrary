@@ -1,4 +1,4 @@
-name: CMake auto build on OpenCV 4.6.0
+name: CMake Autobuild on Ubuntu + OpenCV 4.6.0
 
 on:
   pull_request:
