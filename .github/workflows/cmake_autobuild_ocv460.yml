@@ -1,10 +1,10 @@
 name: CMake auto build on OpenCV 4.6.0
 
 on:
-  push:
-    branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+  # push:
+  #   branches: [ "master" ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
