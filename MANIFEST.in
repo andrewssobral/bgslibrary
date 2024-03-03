@@ -1,8 +1,8 @@
 include *.txt
-prune src
-recursive-include src/algorithms *.*
-recursive-include src/tools *.*
-recursive-include src/utils *.*
+prune bgslibrary
+recursive-include bgslibrary/algorithms *.*
+recursive-include bgslibrary/tools *.*
+recursive-include bgslibrary/utils *.*
 prune wrapper
 recursive-include wrapper/python *.*
 recursive-include modules *.*

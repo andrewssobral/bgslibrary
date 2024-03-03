@@ -9,7 +9,7 @@ source bgslibrary_env/bin/activate
 
 # Upgrade pip and install required packages numpy and OpenCV
 python -m pip install --upgrade pip
-python -m pip install wheel
+python -m pip install wheel setuptools
 python -m pip install numpy
 python -m pip install opencv-python
 
@@ -22,7 +22,12 @@ python setup.py install
 
 # Set the PYTHONPATH environment variable to the build directory to access the installed library
 # The following line is for Linux
+# ubuntu 20
 export PYTHONPATH=$PYTHONPATH:$PWD/build/lib.linux-x86_64-cpython-38
+# ubuntu 22
+export PYTHONPATH=$PYTHONPATH:$PWD/build/lib.linux-x86_64-cpython-310
+# ubuntu 24
+export PYTHONPATH=$PYTHONPATH:$PWD/build/lib.linux-x86_64-cpython-312
 # The following line is for Mac
 export PYTHONPATH=$PYTHONPATH:$PWD/build/lib.macosx-11-x86_64-cpython-39
 

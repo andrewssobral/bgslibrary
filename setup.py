@@ -79,8 +79,7 @@ class InstallCMakeLibs(install_lib, object):
                 os.path.splitext(_lib)[1] in [".dll", ".so"]
                 and not (_lib.startswith("python") or _lib.startswith(PACKAGE_NAME))]
         for lib in libs:
-            shutil.move(lib, os.path.join(self.build_dir,
-                                          os.path.basename(lib)))
+            shutil.move(lib, os.path.join(self.build_dir, os.path.basename(lib)))
         # Mark the libs for installation, adding them to 
         # distribution.data_files seems to ensure that setuptools' record 
         # writer appends them to installed-files.txt in the package's egg-info
@@ -96,9 +95,7 @@ class InstallCMakeLibs(install_lib, object):
         # included in the package, but are resultant of the cmake build
         # step; depending on the files that are generated from your cmake
         # build chain, you may need to modify the below code
-        self.distribution.data_files = [os.path.join(self.install_dir, 
-                                                     os.path.basename(lib))
-                                        for lib in libs]
+        self.distribution.data_files = [os.path.join(self.install_dir, os.path.basename(lib)) for lib in libs]
         # Must be forced to run after adding the libs to data_files
         self.distribution.run_command("install_data")
         super(InstallCMakeLibs, self).run()
@@ -120,9 +117,7 @@ class InstallCMakeScripts(install_scripts, object):
                         os.listdir(bin_dir) if
                         os.path.isdir(os.path.join(bin_dir, _dir))]
         for scripts_dir in scripts_dirs:
-            shutil.move(scripts_dir,
-                        os.path.join(self.build_dir,
-                                     os.path.basename(scripts_dir)))
+            shutil.move(scripts_dir, os.path.join(self.build_dir, os.path.basename(scripts_dir)))
         # Mark the scripts for installation, adding them to 
         # distribution.scripts seems to ensure that the setuptools' record 
         # writer appends them to installed-files.txt in the package's egg-info
