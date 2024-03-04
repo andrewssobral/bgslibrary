@@ -47,8 +47,12 @@ python setup.py bdist_wheel
 # Upload any generated Wheel distribution packages using Twine
 twine upload dist/*.whl
 
+# Remove any existing dist directory
+rm -rf dist/*
+
 # Create a source distribution package for the project
 python setup.py sdist
 
 # Upload the generated source distribution package using Twine
+twine upload --repository testpypi dist/pybgs-*.tar.gz
 twine upload dist/pybgs-*.tar.gz
