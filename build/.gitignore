@@ -2,4 +2,5 @@
 *
 # Except these files
 !.gitignore
-!.uninstall-from-cmake.sh
+!uninstall-from-cmake.sh
+!clean.sh
