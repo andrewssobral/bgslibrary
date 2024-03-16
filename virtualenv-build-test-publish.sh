@@ -28,8 +28,10 @@ export PYTHONPATH=$PYTHONPATH:$PWD/build/lib.linux-x86_64-cpython-38
 export PYTHONPATH=$PYTHONPATH:$PWD/build/lib.linux-x86_64-cpython-310
 # ubuntu 24
 export PYTHONPATH=$PYTHONPATH:$PWD/build/lib.linux-x86_64-cpython-312
-# The following line is for Mac
+# The following line is for Mac (intel)
 export PYTHONPATH=$PYTHONPATH:$PWD/build/lib.macosx-11-x86_64-cpython-39
+# The following line is for Mac (arm64)
+export PYTHONPATH=$PYTHONPATH:$PWD/build/lib.macosx-13-arm64-cpython-39
 
 # Run demo.py and demo2.py to verify the package installation
 python demo.py
