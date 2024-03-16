@@ -50,11 +50,13 @@ The bgslibrary requires some features from the ISO C++ 2014 standard.
 *  * [Java](https://github.com/andrewssobral/bgslibrary/wiki/Wrapper:-Java)
 
 
-* Examples
+* Usage examples
 
-* * https://github.com/andrewssobral/bgslibrary/tree/master/examples
+* * BGSlibrary examples folder: https://github.com/andrewssobral/bgslibrary/tree/master/examples
 
-* * https://github.com/andrewssobral/bgslibrary-examples
+* * BGSlibrary examples in C++: https://github.com/andrewssobral/bgslibrary-examples-cpp
+
+* * BGSlibrary examples in Python: https://github.com/andrewssobral/bgslibrary-examples-python
 
 * [Docker images](https://github.com/andrewssobral/bgslibrary/wiki/Docker-images)
 * [How to integrate BGSLibrary in your own CPP code](https://github.com/andrewssobral/bgslibrary/wiki/How-to-integrate-BGSLibrary-in-your-own-CPP-code)
