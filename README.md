@@ -135,10 +135,10 @@ month     = {Jun},
 url       = {https://github.com/andrewssobral/bgslibrary}
 }
 ```
-A chapter about the BGSLibrary has been published in the handbook on [Background Modeling and Foreground Detection for Video Surveillance](https://sites.google.com/site/backgroundmodeling/).
+A chapter about the BGSLibrary has been published in the handbook on [Background Modeling and Foreground Detection for Video Surveillance](https://sites.google.com/site/backgroundsubtraction/).
 ```
 @incollection{bgslibrarychapter,
-author    = {Sobral, Andrews and Bouwmans, Thierry},
+author    = {Sobral, Andrews and Bouwmans, Thierry},s
 title     = {BGS Library: A Library Framework for Algorithm’s Evaluation in Foreground/Background Segmentation},
 booktitle = {Background Modeling and Foreground Detection for Video Surveillance},
 publisher = {CRC Press, Taylor and Francis Group.}
