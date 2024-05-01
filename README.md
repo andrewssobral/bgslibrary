@@ -45,7 +45,7 @@ The bgslibrary requires some features from the ISO C++ 2014 standard.
 
 * Wrappers
 
-*  * [Python](https://github.com/andrewssobral/bgslibrary/wiki/Wrapper:-Python)
+*  * [Python](https://github.com/andrewssobral/bgslibrary/wiki/Wrapper:-Python) [![Downloads](https://static.pepy.tech/badge/pybgs)](https://pepy.tech/project/pybgs) [![Downloads](https://static.pepy.tech/badge/pybgs/month)](https://pepy.tech/project/pybgs) [![Downloads](https://static.pepy.tech/badge/pybgs/week)](https://pepy.tech/project/pybgs)
 *  * [MATLAB](https://github.com/andrewssobral/bgslibrary/wiki/Wrapper:-MATLAB)
 *  * [Java](https://github.com/andrewssobral/bgslibrary/wiki/Wrapper:-Java)
 
