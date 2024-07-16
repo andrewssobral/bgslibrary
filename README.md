@@ -39,6 +39,33 @@ The library's source code is available under the [MIT license](https://opensourc
 * [Which algorithms really matter?](https://github.com/andrewssobral/bgslibrary/wiki/Which-algorithms-really-matter%3F)
 * [Library architecture](https://github.com/andrewssobral/bgslibrary/wiki/Library-architecture)
 
+```cpp
+#include <iostream>
+#include <algorithm>
+#include <iterator>
+#include <vector>
+
+// Include the OpenCV and BGSLibrary libraries
+#include <opencv2/opencv.hpp>
+#include <bgslibrary/algorithms/algorithms.h>
+
+int main( int argc, char** argv )
+{
+    // Gets the names of the background subtraction algorithms registered in the BGSLibrary factory
+    auto algorithmsName = BGS_Factory::Instance()->GetRegisteredAlgorithmsName();
+
+    // Displays the number of available background subtraction algorithms in the BGSLibrary
+    std::cout << "Number of available algorithms: " << algorithmsName.size() << std::endl;
+
+    // Displays the list of available background subtraction algorithms in the BGSLibrary
+    std::cout << "List of available algorithms:" << std::endl;
+    std::copy(algorithmsName.begin(), algorithmsName.end(), std::ostream_iterator<std::string>(std::cout, "\n"));
+
+    // Returns 0 to indicate that the execution was successful
+    return 0;
+}
+```
+
 ### Installation instructions
 
 You can either install BGSLibrary via [pre-built binary package](https://github.com/andrewssobral/bgslibrary/releases) or build it from source
