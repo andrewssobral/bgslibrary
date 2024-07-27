@@ -4,7 +4,7 @@ using namespace bgslibrary::algorithms;
 
 AdaptiveBackgroundLearning::AdaptiveBackgroundLearning() :
   IBGS(quote(AdaptiveBackgroundLearning)),
-  alpha(0.05), limit(-1), counter(0), minVal(0.0),
+  alpha(0.05), maxLearningFrames(-1), currentLearningFrame(0), minVal(0.0),
   maxVal(1.0), enableThreshold(true), threshold(15)
 {
   debug_construction(AdaptiveBackgroundLearning);
@@ -31,23 +31,16 @@ void AdaptiveBackgroundLearning::process(const cv::Mat &img_input, cv::Mat &img_
   cv::Mat img_diff_f(img_input.size(), CV_32F);
   cv::absdiff(img_input_f, img_background_f, img_diff_f);
 
-  if ((limit > 0 && limit < counter) || limit == -1)
-  {
+  // Adaptive learning phase (controlled by maxLearningFrames)
+  if ((maxLearningFrames > 0 && currentLearningFrame < maxLearningFrames) || maxLearningFrames == -1) {
     img_background_f = alpha*img_input_f + (1 - alpha)*img_background_f;
-
-    cv::Mat img_new_background(img_input.size(), CV_8U);
-    img_background_f.convertTo(img_new_background, CV_8U, 255.0 / (maxVal - minVal), -minVal);
-    img_new_background.copyTo(img_background);
-
-    if (limit > 0 && limit < counter)
-      counter++;
+    img_background_f.convertTo(img_background, CV_8U, 255.0 / (maxVal - minVal), -minVal);
+    
+    if (maxLearningFrames > 0 && currentLearningFrame < maxLearningFrames)
+      currentLearningFrame++;
   }
 
-  //cv::Mat img_foreground(img_input.size(), CV_8U);
   img_diff_f.convertTo(img_foreground, CV_8UC1, 255.0 / (maxVal - minVal), -minVal);
-
-  if (img_foreground.channels() == 3)
-    cv::cvtColor(img_foreground, img_foreground, CV_BGR2GRAY);
 
   if (enableThreshold)
     cv::threshold(img_foreground, img_foreground, threshold, 255, cv::THRESH_BINARY);
@@ -67,7 +60,7 @@ void AdaptiveBackgroundLearning::process(const cv::Mat &img_input, cv::Mat &img_
 
 void AdaptiveBackgroundLearning::save_config(cv::FileStorage &fs) {
   fs << "alpha" << alpha;
-  fs << "limit" << limit;
+  fs << "maxLearningFrames" << maxLearningFrames;
   fs << "enableThreshold" << enableThreshold;
   fs << "threshold" << threshold;
   fs << "showOutput" << showOutput;
@@ -75,7 +68,7 @@ void AdaptiveBackgroundLearning::save_config(cv::FileStorage &fs) {
 
 void AdaptiveBackgroundLearning::load_config(cv::FileStorage &fs) {
   fs["alpha"] >> alpha;
-  fs["limit"] >> limit;
+  fs["maxLearningFrames"] >> maxLearningFrames;
   fs["enableThreshold"] >> enableThreshold;
   fs["threshold"] >> threshold;
   fs["showOutput"] >> showOutput;

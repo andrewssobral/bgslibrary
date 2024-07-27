@@ -10,8 +10,8 @@ namespace bgslibrary
     {
     private:
       double alpha;
-      int limit;
-      long counter;
+      int maxLearningFrames;
+      long currentLearningFrame;
       double minVal;
       double maxVal;
       bool enableThreshold;
