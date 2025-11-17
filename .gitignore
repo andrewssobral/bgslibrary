@@ -32,3 +32,7 @@ upload.sh
 env
 bgslibrary_env
 bgslibrary_test_env
+# pixi environments
+.pixi/*
+!.pixi/config.toml
+pixi.lock
