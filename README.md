@@ -40,6 +40,7 @@ The library's source code is available under the [MIT license](https://opensourc
 * [Library architecture](https://github.com/andrewssobral/bgslibrary/wiki/Library-architecture)
 
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/andrewssobral/bgslibrary)
+
 ```cpp
 #include <iostream>
 #include <algorithm>
@@ -69,10 +70,7 @@ int main( int argc, char** argv )
 
 ### Installation instructions
 
-You can either install BGSLibrary via [pre-built binary package](https://github.com/andrewssobral/bgslibrary/releases) or build it from source
-
-* [Windows installation](https://github.com/andrewssobral/bgslibrary/wiki/Installation-instructions---Windows)
-* [Ubuntu / OS X installation](https://github.com/andrewssobral/bgslibrary/wiki/Installation-instructions-Ubuntu-or-OSX)
+You can either install BGSLibrary via [pre-built binary package](https://github.com/andrewssobral/bgslibrary/releases) or build it from source.
 
 Supported Compilers:
 
@@ -82,6 +80,159 @@ Supported Compilers:
 
 Other compilers might work, but are not officially supported.
 The bgslibrary requires some features from the ISO C++ 2014 standard.
+
+#### 🚀 Build Using Pixi (Recommended)
+
+Pixi provides a clean and reproducible way to build BGSLibrary with no manual OpenCV installation. It works on **macOS, Linux, and Windows (WSL recommended).**
+
+##### 0. Install Pixi
+
+```bash
+curl -fsSL https://pixi.sh/install.sh | sh
+```
+
+Restart your terminal after installation.
+
+##### 1. Create a Pixi workspace
+
+Inside the bgslibrary repository:
+
+```bash
+pixi init .
+```
+
+Add required dependencies:
+
+```bash
+pixi add opencv cmake ninja compilers pkg-config
+```
+
+Pixi will generate a `pixi.toml` with:
+
+- OpenCV (C++ + Python bindings)
+- C/C++ compilers
+- CMake + Ninja
+- pkg-config
+
+##### 2. Add Pixi build tasks
+
+Append this block to your `pixi.toml`:
+
+```toml
+[tasks]
+# Core build tasks
+configure = "cmake -S . -B build -G Ninja"
+build = "cmake --build build"
+clean = "rm -rf build"
+
+# Examples tasks
+configure_examples = "cmake -S examples -B examples/build"
+build_examples = { cmd = "cmake --build examples/build", depends-on = ["configure_examples"] }
+clean_examples = "rm -rf examples/build"
+
+# Combined tasks
+rebuild = { cmd = "echo 'Rebuild complete'", depends-on = ["clean", "configure", "build"] }
+rebuild_all = { cmd = "echo 'Full rebuild complete'", depends-on = ["clean", "clean_examples", "rebuild", "build_examples"] }
+
+# Run tasks
+run = "./build/bgslibrary --use_cam --camera=0"
+run_bgs_demo = "./examples/build/bgs_demo"
+run_bgs_demo2 = "./examples/build/bgs_demo2"
+
+# Development helpers
+install = { cmd = "cmake --install build --prefix .pixi/envs/default", depends-on = ["build"] }
+```
+
+This configuration provides granular control over the build process with separate tasks for cleaning, configuring, and building.
+
+##### 3. Activate the Pixi environment
+
+```bash
+pixi shell
+```
+
+##### 4. Configure the build
+
+```bash
+pixi run configure
+```
+
+##### 5. Build bgslibrary
+
+```bash
+pixi run build
+```
+
+This generates:
+- `build/bgslibrary`
+- `build/libbgslibrary_core.*`
+
+##### 6. Build C++ examples (optional)
+
+```bash
+pixi run build_examples
+```
+
+This produces:
+- `examples/build/bgs_demo`
+- `examples/build/bgs_demo2`
+
+##### 7. Run bgslibrary
+
+Camera demo:
+
+```bash
+pixi run run
+```
+
+Demo using a video file:
+
+```bash
+pixi run run_bgs_demo
+```
+
+Demo using an image sequence:
+
+```bash
+pixi run run_bgs_demo2
+```
+
+##### 8. Install bgslibrary into the Pixi environment (optional)
+
+```bash
+pixi run install
+```
+
+The library and headers go into `.pixi/envs/default/`
+
+You can then use bgslibrary from other CMake projects in the same environment, for example:
+
+```cmake
+find_package(BGSLibrary REQUIRED)
+```
+
+##### 9. Clean and rebuild
+
+To clean build artifacts:
+
+```bash
+pixi run clean          # Clean main build
+pixi run clean_examples # Clean examples
+```
+
+To rebuild everything from scratch:
+
+```bash
+pixi run rebuild     # Rebuild main project
+pixi run rebuild_all # Rebuild main project + examples
+```
+
+These tasks automatically handle dependencies, ensuring a consistent build state.
+
+#### 🛠 Build Using CMake (Classic Method)
+
+* [Windows installation](https://github.com/andrewssobral/bgslibrary/wiki/Installation-instructions---Windows)
+* [Ubuntu / OS X installation](https://github.com/andrewssobral/bgslibrary/wiki/Installation-instructions-Ubuntu-or-OSX)
 
 ### Graphical User Interface
 
