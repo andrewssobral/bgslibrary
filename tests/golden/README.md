@@ -6,24 +6,45 @@ immediately. They are the prerequisite for the riskier modernization work (porti
 `DP*`/`T2F*` family to OpenCV 4, fixing warnings, consolidating the wrapper registries —
 see `MODERNIZATION_ROADMAP.md`).
 
-This directory currently covers the **Python (`pybgs`)** level. A C++ (`BGS_Factory`)
-harness using the same frames is planned next.
+It runs at **two levels** over the same frames and the same token format:
+- **Python (`pybgs`) wrapper** — `golden_test.py` (+ `run_algorithm.py`), goldens `goldens/<cell>.json`.
+- **C++ core via `BGS_Factory`** — `golden_cpp.py` driving the `cpp/golden_cpp` emitter, goldens
+  `goldens/<cell>-cpp.json`. Because the tokens match byte-for-byte, the C++ `--check` also
+  **cross-checks** its masks against the Python golden for the algorithms common to both.
 
 ## What it does
 
-For each algorithm registered in `pybgs`, the harness runs it over the fixed frames in
+For each registered algorithm, the harness runs it over the fixed frames in
 [`dataset/frames`](../../dataset/frames) (51 PNGs, 320×240 — PNG decoding is deterministic
 across OpenCV backends, unlike AVI), hashes each foreground mask, and compares the
-sequence against a committed reference.
+sequence against a committed reference. `--check` exits non-zero (CI-failing) if any
+deterministic algorithm's output differs, naming the first frame that diverged.
 
 ```bash
 # from the repo root, in an environment where `import pybgs` works (e.g. the pixi env):
+# --- Python level ---
 python tests/golden/golden_test.py --check    --opencv 4.13      # compare (default)
 python tests/golden/golden_test.py --generate --opencv 4.13      # (re)create the golden
+
+# --- C++ level (build the emitter once, then drive it) ---
+cmake -S tests/golden/cpp -B tests/golden/cpp/build -G Ninja
+cmake --build tests/golden/cpp/build
+python tests/golden/golden_cpp.py  --check    --opencv 4.13      # compare + cross-check vs Python
+python tests/golden/golden_cpp.py  --generate --opencv 4.13      # (re)create the C++ golden
 ```
 
-`--check` exits non-zero (CI-failing) if any deterministic algorithm's output differs
-from its golden, naming the first frame that diverged.
+The C++ emitter runs **one algorithm per process** (driven by `golden_cpp.py`), mirroring the
+Python subprocess isolation — so `rand()`/config are clean per algorithm and a teardown crash in
+one (e.g. VuMeter) can't take the others down.
+
+### Notes on the two levels
+
+- The **C++ factory exposes `MyBGS`** (the `_template_` skeleton), which the Python wrapper does
+  not bind — so the C++ golden has one extra algorithm; it is simply absent from the cross-check.
+- The cross-check on `linux-64/OpenCV4.13` finds **24/25 shared algorithms byte-identical**; **KDE**
+  differs. That is expected build-sensitivity (KDE is float-heavy + threshold-based, so FP rounding
+  differs between the separately-configured `pybgs` and harness builds) — which is exactly why each
+  level keeps its **own** golden and the cross-check is informational, not a gate.
 
 ## Design notes / determinism
 
