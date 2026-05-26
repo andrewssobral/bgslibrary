@@ -32,6 +32,29 @@ jobs:
       # run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
       run: git config --global --add safe.directory /__w/bgslibrary/bgslibrary && git submodule update --init --recursive && python setup.py build && python setup.py install
 
+    - name: Golden-master regression (Python wrapper)
+      # Phase 0 safety net (tests/golden/). Gates on the committed baseline for this
+      # (OS, arch, OpenCV) cell; if none is committed yet it generates one (informational),
+      # uploaded as the artifact below — download and commit it to turn on the gate.
+      run: |
+        OCV=4.6.0
+        CELL="linux-64-opencv${OCV}"
+        if [ -f "tests/golden/goldens/${CELL}.json" ]; then
+          echo "::notice::golden baseline ${CELL} present — checking"
+          python tests/golden/golden_test.py --check --opencv "${OCV}"
+        else
+          echo "::warning::no committed golden for ${CELL}; generating one (informational)"
+          python tests/golden/golden_test.py --generate --opencv "${OCV}"
+        fi
+
+    - name: Upload golden baseline
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: golden-linux-64-opencv4.6.0
+        path: tests/golden/goldens/*.json
+        if-no-files-found: ignore
+
     - name: Compile the C++ QT User Interface
       # Build your program with the given configuration
       # run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
