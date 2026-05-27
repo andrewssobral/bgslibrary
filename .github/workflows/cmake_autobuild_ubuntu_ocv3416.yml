@@ -3,6 +3,12 @@ name: CMake autobuild on Ubuntu + OpenCV 3.4.16
 on:
   pull_request:
     branches: [ "master" ]
+    # Skip CI for docs-only changes (markdown/docs/help/LICENSE) to save runner time.
+    paths-ignore:
+      - '**/*.md'
+      - 'docs/**'
+      - 'help/**'
+      - 'LICENSE'
   # push:
   #   branches: [ "master" ]
 

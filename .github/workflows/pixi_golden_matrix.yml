@@ -16,6 +16,12 @@ name: Pixi golden-master matrix (OS×arch × OpenCV 4)
 on:
   pull_request:
     branches: [ "master" ]
+    # Skip CI for docs-only changes (markdown/docs/help/LICENSE) to save runner time.
+    paths-ignore:
+      - '**/*.md'
+      - 'docs/**'
+      - 'help/**'
+      - 'LICENSE'
   workflow_dispatch: {}
 
 jobs:
