@@ -95,7 +95,6 @@ The same package is also published under the name [`bgslibrary`](https://pypi.or
 Minimal usage (background subtraction on a video):
 
 ```python
-import numpy as np
 import cv2
 import pybgs as bgs
 
@@ -110,7 +109,7 @@ while True:
     cv2.imshow("frame", frame)
     cv2.imshow("foreground", fg_mask)
     cv2.imshow("background", bg_model)
-    if cv2.waitKey(10) == 27:                    # Esc to quit
+    if cv2.waitKey(10) & 0xFF == 27:             # Esc to quit (mask for 64-bit platforms)
         break
 cv2.destroyAllWindows()
 ```
