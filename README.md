@@ -4,7 +4,7 @@
 
 # BGSLibrary: A Background Subtraction Library
 
-[![Release](https://img.shields.io/badge/Release-3.3.0-blue.svg)](https://github.com/andrewssobral/bgslibrary/wiki/Build-status) [![License: GPL v3](https://img.shields.io/badge/License-MIT-blue.svg)](http://www.gnu.org/licenses/gpl-3.0) [![Platform: Windows, Linux, OS X](https://img.shields.io/badge/Platform-Windows%2C%20Linux%2C%20OS%20X-blue.svg)](https://github.com/andrewssobral/bgslibrary/wiki/Build-status) [![OpenCV](https://img.shields.io/badge/OpenCV-2.4.x%2C%203.x%2C%204.x-blue.svg)](https://github.com/andrewssobral/bgslibrary/wiki/Build-status) [![Wrapper: Python, MATLAB](https://img.shields.io/badge/Wrapper-Java%2C%20Python%2C%20MATLAB-orange.svg)](https://github.com/andrewssobral/bgslibrary/wiki/Build-status) [![Algorithms](https://img.shields.io/badge/Algorithms-43-red.svg)](https://github.com/andrewssobral/bgslibrary/wiki/List-of-available-algorithms) [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/andrewssobral/bgslibrary)
+[![Release](https://img.shields.io/badge/Release-3.3.1-blue.svg)](https://github.com/andrewssobral/bgslibrary/wiki/Build-status) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![Platform: Windows, Linux, OS X](https://img.shields.io/badge/Platform-Windows%2C%20Linux%2C%20OS%20X-blue.svg)](https://github.com/andrewssobral/bgslibrary/wiki/Build-status) [![OpenCV](https://img.shields.io/badge/OpenCV-2.4.x%2C%203.x%2C%204.x-blue.svg)](https://github.com/andrewssobral/bgslibrary/wiki/Build-status) [![Wrapper: Python, MATLAB](https://img.shields.io/badge/Wrapper-Java%2C%20Python%2C%20MATLAB-orange.svg)](https://github.com/andrewssobral/bgslibrary/wiki/Build-status) [![Algorithms](https://img.shields.io/badge/Algorithms-43-red.svg)](https://github.com/andrewssobral/bgslibrary/wiki/List-of-available-algorithms) [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/andrewssobral/bgslibrary)
 
 <p align="center">
 <a href="https://youtu.be/_UbERwuQ0OU" target="_blank">
@@ -18,7 +18,7 @@ The **BGSLibrary** (Background Subtraction Library) is a comprehensive C++ frame
 
 ## Library Version
 
-**3.3.0** (see **[Build Status](https://github.com/andrewssobral/bgslibrary/wiki/Build-status)** and **[Release Notes](https://github.com/andrewssobral/bgslibrary/wiki/Release-notes)** for more info)
+**3.3.1** (see **[Build Status](https://github.com/andrewssobral/bgslibrary/wiki/Build-status)** and **[Release Notes](https://github.com/andrewssobral/bgslibrary/wiki/Release-notes)** for more info)
 
 ## Background and Development
 
@@ -80,6 +80,52 @@ Supported Compilers:
 
 Other compilers might work, but are not officially supported.
 The bgslibrary requires some features from the ISO C++ 2014 standard.
+
+#### 🐍 Python wrapper (`pybgs`) via pip — quickest for Python users
+
+If you only need the Python bindings, install the published package:
+
+```bash
+pip install pybgs
+```
+
+The same package is also published under the name [`bgslibrary`](https://pypi.org/project/bgslibrary/)
+(`pip install bgslibrary`) — either way the importable module is always `pybgs`.
+
+Minimal usage (background subtraction on a video):
+
+```python
+import numpy as np
+import cv2
+import pybgs as bgs
+
+algorithm = bgs.FrameDifference()          # see the note below on which algorithms are available
+capture = cv2.VideoCapture("dataset/video.avi")
+while True:
+    ok, frame = capture.read()
+    if not ok:
+        break
+    fg_mask = algorithm.apply(frame)             # foreground mask (CV_8UC1)
+    bg_model = algorithm.getBackgroundModel()    # current background model
+    cv2.imshow("frame", frame)
+    cv2.imshow("foreground", fg_mask)
+    cv2.imshow("background", bg_model)
+    if cv2.waitKey(10) == 27:                    # Esc to quit
+        break
+cv2.destroyAllWindows()
+```
+
+Runnable demos: [`demo.py`](demo.py), [`demo2.py`](demo2.py), and the
+[Python examples repo](https://github.com/andrewssobral/bgslibrary-examples-python).
+
+> [!IMPORTANT]
+> - `pip install pybgs` **builds from source**, so it needs a C++ compiler **and an OpenCV
+>   development install** on your machine (e.g. `libopencv-dev` on Ubuntu, `brew install opencv` on
+>   macOS). If you don't have OpenCV, prefer the **Pixi** build below — it provides OpenCV for you.
+> - **The available algorithms depend on the OpenCV `pybgs` was *compiled* against — not on your
+>   `opencv-python`/`cv2` version.** On OpenCV ≥ 4 the `DP*`/`T2F*` family is unavailable (26
+>   algorithms vs ~39 on OpenCV 2/3 — see the [compatibility table](#algorithm-compatibility-across-opencv-versions)).
+>   Always gate on the binding, e.g. `if hasattr(bgs, "DPAdaptiveMedian"): ...`, never on `cv2.__version__`.
 
 #### 🚀 Build Using Pixi (Recommended)
 
@@ -208,6 +254,18 @@ These tasks automatically handle dependencies, ensuring a consistent build state
 
 * [Windows installation](https://github.com/andrewssobral/bgslibrary/wiki/Installation-instructions---Windows)
 * [Ubuntu / OS X installation](https://github.com/andrewssobral/bgslibrary/wiki/Installation-instructions-Ubuntu-or-OSX)
+
+### Troubleshooting
+
+- **`pip install pybgs` fails to build / cannot find OpenCV** — it compiles from source and needs a C++
+  compiler and OpenCV development files. Install OpenCV (`libopencv-dev` on Ubuntu, `brew install opencv` on
+  macOS) and a compiler, or use the Pixi build above, which provides OpenCV for you.
+- **`AttributeError: module 'pybgs' has no attribute 'DPAdaptiveMedian'`** (or another `DP*`/`T2F*` algorithm) —
+  those algorithms only compile on OpenCV 2.x/3.x, so they are absent when `pybgs` was built against OpenCV ≥ 4.
+  Check availability with `hasattr(bgs, "DPAdaptiveMedian")`; to use them, build against OpenCV 2/3 (see the
+  compatibility table below).
+- **`import cv2` raises an ABI / NumPy error with OpenCV 3.4.x** — `numpy 2.x` is incompatible with the older
+  `opencv-python 3.4.x`; pin `numpy<2` in that environment.
 
 ### Graphical User Interface
 
