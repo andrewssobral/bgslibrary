@@ -1,0 +1,84 @@
+name: Pixi golden-master matrix (OS×arch × OpenCV 4)
+
+# Phase 0 safety net — trilha (ii). Builds pybgs and the C++ BGS_Factory emitter with Pixi
+# across OS/arch (conda-forge OpenCV, pinned to 4.13.x in pixi.toml) and runs the
+# golden-master --check for each (OS, arch, OpenCV) cell, at BOTH levels (Python + C++).
+#
+# Cells WITH a committed baseline GATE (a diff fails the job). Cells WITHOUT one BOOTSTRAP:
+# they --generate and upload the result as the "golden-<cell>" artifact (a warning, non-
+# blocking). Download it, commit goldens/<cell>.json (+ -cpp.json), and the gate turns on
+# next PR. The dev box is linux-64, so the mac/win/arm baselines must be bootstrapped here.
+#
+# This is a NEW, non-required check: the existing autobuild jobs (OpenCV 3.4.7/3.4.16/4.6.0)
+# remain the required gate. fail-fast:false keeps one cell's failure from masking the others.
+
+on:
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch: {}
+
+jobs:
+  golden:
+    name: ${{ matrix.cell }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: ubuntu-latest,    cell: linux-64 }
+          - { os: ubuntu-24.04-arm, cell: linux-aarch64 }
+          - { os: macos-13,         cell: osx-64 }
+          - { os: macos-14,         cell: osx-arm64 }
+          - { os: windows-latest,   cell: win-64 }
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive   # modules/pybind11 is required by the Python build
+
+      - uses: prefix-dev/setup-pixi@v0.9.6
+
+      - name: Build + install pybgs into the pixi env
+        # install_python -> build_python -> configure_python; lands pybgs on the env's
+        # import path, so `pixi run python -c "import pybgs"` works on every OS (no PYTHONPATH).
+        run: pixi run install_python
+
+      - name: Build the C++ golden emitter (BGS_Factory)
+        run: pixi run build_golden_cpp
+
+      - name: Golden-master regression (Python + C++)
+        shell: bash
+        run: |
+          set -euo pipefail
+          # In the pixi env, `cv2` IS the conda-forge OpenCV the wrapper/core compiled against,
+          # so its MAJ.MIN is the correct, stable cell key (pinned to 4.13.x in pixi.toml).
+          OCV=$(pixi run python -c "import cv2; print('.'.join(cv2.__version__.split('.')[:2]))")
+          CELL="${{ matrix.cell }}-opencv${OCV}"
+          echo "::notice::cell=${CELL}"
+          pixi run python -c "import pybgs; print('pybgs', len([n for n in dir(pybgs) if n[0].isupper()]), 'classes')"
+
+          # --- Python level ---
+          if [ -f "tests/golden/goldens/${CELL}.json" ]; then
+            echo "::notice::Python golden ${CELL} present — checking (gate)"
+            pixi run python tests/golden/golden_test.py --check --opencv "${OCV}"
+          else
+            echo "::warning::no committed Python golden for ${CELL}; generating (bootstrap, non-gating)"
+            pixi run python tests/golden/golden_test.py --generate --opencv "${OCV}"
+          fi
+
+          # --- C++ level (BGS_Factory) ---
+          if [ -f "tests/golden/goldens/${CELL}-cpp.json" ]; then
+            echo "::notice::C++ golden ${CELL}-cpp present — checking (gate)"
+            pixi run python tests/golden/golden_cpp.py --check --opencv "${OCV}"
+          else
+            echo "::warning::no committed C++ golden for ${CELL}-cpp; generating (bootstrap, non-gating)"
+            pixi run python tests/golden/golden_cpp.py --generate --opencv "${OCV}"
+          fi
+
+      - name: Upload generated goldens (bootstrap)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: golden-${{ matrix.cell }}
+          path: tests/golden/goldens/*.json
+          if-no-files-found: ignore

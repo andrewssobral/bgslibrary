@@ -70,7 +70,9 @@ target_link_libraries(bgslibrary_core ${OpenCV_LIBS})
 add_executable(golden_cpp golden_cpp.cpp)
 target_link_libraries(golden_cpp ${OpenCV_LIBS} bgslibrary_core)
 # Find libbgslibrary_core next to the executable regardless of the (temp) working directory
-# the driver launches us from.
+# the driver launches us from. `$ORIGIN` is the Linux token, `@loader_path` the macOS one
+# (each loader ignores the foreign token); on Windows the DLL sits beside the .exe, which the
+# loader searches automatically.
 set_target_properties(golden_cpp PROPERTIES
-    BUILD_RPATH "$ORIGIN"
-    INSTALL_RPATH "$ORIGIN")
+    BUILD_RPATH "$ORIGIN;@loader_path"
+    INSTALL_RPATH "$ORIGIN;@loader_path")

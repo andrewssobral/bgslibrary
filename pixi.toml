@@ -2,7 +2,7 @@
 authors = ["Andrews Cordolino Sobral <andrewssobral@gmail.com>"]
 channels = ["conda-forge"]
 name = "bgslibrary"
-platforms = ["linux-64", "linux-aarch64", "osx-arm64", "osx-64"]
+platforms = ["linux-64", "linux-aarch64", "osx-arm64", "osx-64", "win-64"]
 version = "0.1.0"
 
 [tasks]
@@ -34,8 +34,15 @@ build_python = { cmd = "cmake --build build_py", depends-on = ["configure_python
 install_python = { cmd = "cmake --install build_py --prefix .pixi/envs/default", depends-on = ["build_python"] }
 clean_python = "rm -rf build_py"
 
+# Golden-master C++ emitter (tests/golden/cpp) — self-contained, does NOT touch the production build
+configure_golden_cpp = "cmake -S tests/golden/cpp -B tests/golden/cpp/build -G Ninja"
+build_golden_cpp = { cmd = "cmake --build tests/golden/cpp/build", depends-on = ["configure_golden_cpp"] }
+clean_golden_cpp = "rm -rf tests/golden/cpp/build"
+
 [dependencies]
-opencv = ">=4.10.0,<5"
+# Pinned MAJ.MIN so the golden cell-key/baseline (linux-64-opencv4.13, ...) stays stable
+# across conda-forge solves — the Phase 0 matrix gates against it (tests/golden/).
+opencv = ">=4.13,<4.14"
 cmake = ">=4.3.3,<5"
 ninja = ">=1.13.2,<2"
 compilers = ">=1.11.0,<2"
