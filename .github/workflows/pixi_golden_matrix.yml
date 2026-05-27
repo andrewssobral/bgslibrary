@@ -28,9 +28,11 @@ jobs:
         include:
           - { os: ubuntu-latest,    cell: linux-64,      cpp: true }
           - { os: ubuntu-24.04-arm, cell: linux-aarch64, cpp: true }
-          - { os: macos-13,         cell: osx-64,        cpp: true }   # Intel runner can queue a long time
           - { os: macos-14,         cell: osx-arm64,     cpp: true }
           - { os: windows-latest,   cell: win-64,        cpp: false }   # C++ emitter DLL link unresolved on Windows — TODO
+          # macos-13 (osx-64, Intel) intentionally omitted: the hosted Intel runner queues for hours
+          # and Intel macs are EOL; osx-arm64 (Apple Silicon) is the representative macOS cell.
+          # (osx-64 stays in pixi.toml `platforms` so Intel-mac devs can still use the env locally.)
 
     steps:
       - uses: actions/checkout@v4
