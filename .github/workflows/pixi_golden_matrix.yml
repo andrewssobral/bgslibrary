@@ -7,7 +7,8 @@ name: Pixi golden-master matrix (OS×arch × OpenCV 4)
 # Cells WITH a committed baseline GATE (a diff fails the job). Cells WITHOUT one BOOTSTRAP:
 # they --generate and upload the result as the "golden-<cell>" artifact (a warning, non-
 # blocking). Download it, commit goldens/<cell>.json (+ -cpp.json), and the gate turns on
-# next PR. The dev box is linux-64, so the mac/win/arm baselines must be bootstrapped here.
+# next PR. The dev box is linux-64, so the linux-aarch64/win-64 baselines must be bootstrapped
+# here. (macOS is deferred — pybgs `import` segfaults on conda-forge Python+OpenCV; see TODO.)
 #
 # This is a NEW, non-required check: the existing autobuild jobs (OpenCV 3.4.7/3.4.16/4.6.0)
 # remain the required gate. fail-fast:false keeps one cell's failure from masking the others.
@@ -27,9 +28,10 @@ jobs:
         include:
           - { os: ubuntu-latest,    cell: linux-64,      cpp: true }
           - { os: ubuntu-24.04-arm, cell: linux-aarch64, cpp: true }
-          - { os: macos-13,         cell: osx-64,        cpp: true }
-          - { os: macos-14,         cell: osx-arm64,     cpp: true }
           - { os: windows-latest,   cell: win-64,        cpp: false }   # C++ emitter DLL link unresolved on Windows — TODO
+          # macOS (macos-13/osx-64, macos-14/osx-arm64) deferred: `import pybgs` segfaults under
+          # conda-forge Python 3.12 + OpenCV 4.13 (cv2 alone imports fine) — needs a Mac to
+          # root-cause (ABI/runtime/codesign). Re-add once fixed. See TODO / AGENTS.md.
 
     steps:
       - uses: actions/checkout@v4
