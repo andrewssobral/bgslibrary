@@ -39,6 +39,9 @@ jobs:
       run: |
         OCV=4.6.0
         CELL="linux-64-opencv${OCV}"
+        # pybgs is importable from the setup.py build output (matches the dockerfiles' PYTHONPATH)
+        export PYTHONPATH="$(dirname "$(find "$PWD/build" -name 'pybgs*.so' | head -1)")":$PYTHONPATH
+        python -c "import pybgs; print('pybgs', len([n for n in dir(pybgs) if n[0].isupper()]), 'classes')"
         if [ -f "tests/golden/goldens/${CELL}.json" ]; then
           echo "::notice::golden baseline ${CELL} present — checking"
           python tests/golden/golden_test.py --check --opencv "${OCV}"
