@@ -72,6 +72,21 @@ int main( int argc, char** argv )
 
 You can either install BGSLibrary via [pre-built binary package](https://github.com/andrewssobral/bgslibrary/releases) or build it from source.
 
+**Building from source? Clone with submodules.** BGSLibrary bundles `pybind11` as a git submodule (used by the
+Python wrapper), so clone recursively:
+
+```bash
+git clone --recursive https://github.com/andrewssobral/bgslibrary.git
+```
+
+Already cloned without `--recursive`? Fetch the submodule with:
+
+```bash
+git submodule update --init --recursive
+```
+
+> The `pip install pybgs` path below does **not** need this — the published PyPI package already bundles `pybind11`.
+
 Supported Compilers:
 
 * GCC 4.8 and above
@@ -143,8 +158,8 @@ Restart your terminal after installation.
 The repository already ships a `pixi.toml` that declares all build
 dependencies — OpenCV, CMake, Ninja, compilers and pkg-config, plus
 Python and NumPy for the Python wrapper — and all the build tasks used
-below. Just clone the repository; there is no need to run `pixi init` or
-add anything by hand.
+below. Just clone the repository (recursively — see [above](#installation-instructions)); there is no need to
+run `pixi init` or add anything by hand.
 
 List the available tasks at any time with:
 
