@@ -52,7 +52,17 @@ jobs:
           OCV=$(pixi run python -c "import cv2; print('.'.join(cv2.__version__.split('.')[:2]))")
           CELL="${{ matrix.cell }}-opencv${OCV}"
           echo "::notice::cell=${CELL}"
-          pixi run python -c "import pybgs; print('pybgs', len([n for n in dir(pybgs) if n[0].isupper()]), 'classes')"
+          # On Windows, `cmake --install --prefix` doesn't land pybgs on the env's sys.path
+          # (platlib/prefix mismatch), so point PYTHONPATH at the build_py output (the .pyd),
+          # mirroring the docker autobuild jobs. Subprocesses (run_algorithm.py) inherit it.
+          if [ "${{ matrix.cell }}" = "win-64" ]; then
+            PYBGS_DIR=$(pixi run python -c "import glob,os; h=glob.glob('build_py/**/pybgs*.pyd', recursive=True); print(os.path.dirname(os.path.abspath(h[0])).replace(os.sep,'/') if h else '')")
+            export PYTHONPATH="${PYBGS_DIR}"
+            echo "::notice::win-64 PYTHONPATH=${PYBGS_DIR}"
+          fi
+          # Import numpy + cv2 BEFORE pybgs (the order run_algorithm.py uses) — importing the
+          # pybind11 module on its own segfaults on macOS.
+          pixi run python -c "import numpy, cv2, pybgs; print('pybgs', len([n for n in dir(pybgs) if n[0].isupper()]), 'classes')"
           if [ -f "tests/golden/goldens/${CELL}.json" ]; then
             echo "::notice::Python golden ${CELL} present — checking (gate)"
             pixi run python tests/golden/golden_test.py --check --opencv "${OCV}"
