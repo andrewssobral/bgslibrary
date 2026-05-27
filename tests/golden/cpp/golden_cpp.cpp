@@ -21,6 +21,9 @@
 #include <cstdlib>
 #include <string>
 #include <vector>
+#include <memory>
+#include <stdexcept>
+#include <cctype>
 #include <algorithm>
 #include <opencv2/opencv.hpp>
 
@@ -127,6 +130,18 @@ static int stem_int(const std::string& path) {
   return std::atoi(b.c_str());
 }
 
+// Whether the filename stem (basename without extension) is all digits — mirrors the
+// Python harness's numeric-stem filter so both levels see the exact same frame set.
+static bool stem_is_digits(const std::string& path) {
+  std::string b = basename_of(path);
+  size_t dot = b.find_last_of('.');
+  std::string stem = (dot == std::string::npos) ? b : b.substr(0, dot);
+  if (stem.empty()) return false;
+  for (char c : stem)
+    if (!std::isdigit(static_cast<unsigned char>(c))) return false;
+  return true;
+}
+
 // "<frame> <WxHxC> <dtype> <sha16>" — matches run_algorithm.py exactly. numpy drops the channel
 // axis for single-channel masks, so emit "HxW" when channels==1, else "HxWxC".
 static std::string token(const std::string& frame, const cv::Mat& fg) {
@@ -141,6 +156,8 @@ static std::string token(const std::string& frame, const cv::Mat& fg) {
 static std::vector<cv::String> sorted_frames(const std::string& dir) {
   std::vector<cv::String> files;
   cv::glob(dir + "/*.png", files, false);
+  files.erase(std::remove_if(files.begin(), files.end(),
+              [](const cv::String& f) { return !stem_is_digits(f); }), files.end());
   std::sort(files.begin(), files.end(),
             [](const cv::String& a, const cv::String& b) { return stem_int(a) < stem_int(b); });
   return files;
@@ -204,6 +221,8 @@ int main(int argc, char** argv) {
     try {
       for (const auto& f : frames) {
         cv::Mat img = cv::imread(f, cv::IMREAD_COLOR);
+        if (img.empty())  // missing/corrupt file -> caught below, emits a clean error status
+          throw std::runtime_error(std::string("failed to load image: ") + f.c_str());
         cv::Mat fg = bgs->apply(img);
         tokens.push_back(token(basename_of(f), fg));
       }

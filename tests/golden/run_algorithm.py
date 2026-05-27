@@ -22,7 +22,8 @@ import sys
 
 def _frames(frames_dir):
     """PNG frames sorted numerically by stem (1, 2, ... 10, 11 — not lexically)."""
-    names = [f for f in os.listdir(frames_dir) if f.lower().endswith(".png")]
+    names = [f for f in os.listdir(frames_dir)
+             if f.lower().endswith(".png") and os.path.splitext(f)[0].isdigit()]
     return sorted(names, key=lambda f: int(os.path.splitext(f)[0]))
 
 

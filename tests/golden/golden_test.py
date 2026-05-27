@@ -156,7 +156,9 @@ def generate(opencv):
 def _resolve_golden(opencv):
     if opencv:
         return os.path.join(GOLDENS_DIR, cell_key(opencv) + ".json")
-    matches = glob.glob(os.path.join(GOLDENS_DIR, platform_tag() + "-opencv*.json"))
+    # exclude the C++ goldens (`*-cpp.json`) so they don't collide with the Python ones
+    matches = [m for m in glob.glob(os.path.join(GOLDENS_DIR, platform_tag() + "-opencv*.json"))
+               if not m.endswith("-cpp.json")]
     if len(matches) == 1:
         return matches[0]
     raise SystemExit(

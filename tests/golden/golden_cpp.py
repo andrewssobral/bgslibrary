@@ -118,8 +118,9 @@ def cross_check(opencv, cpp_golden):
     if not py_path or not os.path.exists(py_path):
         print("[cross-check] no matching Python golden — skipped")
         return
-    py = json.load(open(py_path))["algorithms"]
-    cpp = json.load(open(cpp_golden))["algorithms"]
+    with open(py_path) as f_py, open(cpp_golden) as f_cpp:
+        py = json.load(f_py)["algorithms"]
+        cpp = json.load(f_cpp)["algorithms"]
     shared = sorted(set(py) & set(cpp))
     agree = differ = 0
     for name in shared:
