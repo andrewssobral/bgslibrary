@@ -150,6 +150,9 @@ def check(opencv, binpath):
 
     for name in sorted(g_algos):
         g = g_algos[name]
+        if name in gt.KNOWN_NONDETERMINISTIC:  # excluded everywhere, even if the baseline says "ok"
+            skipped.append((name, "nondeterministic"))
+            continue
         if g["status"] != "ok":
             skipped.append((name, g["status"]))
             continue

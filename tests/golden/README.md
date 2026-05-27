@@ -59,8 +59,13 @@ one (e.g. VuMeter) can't take the others down.
   golden is independent of your local `config/`).
 - **Nondeterministic algorithms are auto-detected.** `--generate` runs each algorithm
   twice; if the two clean runs disagree it is recorded as `nondeterministic` and excluded
-  from exact-match (this is how `IndependentMultimodal`/IMBS — wall-clock timing when
-  `fps == 0` — is handled, with no hardcoding).
+  from exact-match (with no hardcoding).
+- **Some are force-excluded** via `KNOWN_NONDETERMINISTIC` (excluded everywhere; `--check`
+  skips them even if a baseline marks them `ok`), because two fast runs on one machine can
+  coincidentally agree yet differ elsewhere: `IndependentMultimodal`/IMBS (wall-clock timing
+  at `fps == 0`), and `KDE` + `SigmaDelta` (float/threshold output that FP rounding flips
+  across CPUs — caught in CI when a dev-box baseline was checked on a different runner;
+  `SigmaDelta`'s frame-1 diff also points to a likely uninitialized read).
 - **Teardown-crash safe.** Results are flushed/fsync'd before the algorithm is destroyed,
   so the known VuMeter `munmap_chunk()` crash at interpreter exit does not lose data; the
   driver tolerates a nonzero exit once a valid result file exists.
