@@ -37,7 +37,7 @@ clean_python = "rm -rf build_py"
 # Golden-master C++ emitter (tests/golden/cpp) — self-contained, does NOT touch the production build
 configure_golden_cpp = "cmake -S tests/golden/cpp -B tests/golden/cpp/build -G Ninja"
 build_golden_cpp = { cmd = "cmake --build tests/golden/cpp/build", depends-on = ["configure_golden_cpp"] }
-clean_golden_cpp = "rm -rf tests/golden/cpp/build"
+clean_golden_cpp = "cmake -E rm -rf tests/golden/cpp/build"
 
 [dependencies]
 # Pinned MAJ.MIN so the golden cell-key/baseline (linux-64-opencv4.13, ...) stays stable
@@ -48,5 +48,8 @@ ninja = ">=1.13.2,<2"
 compilers = ">=1.11.0,<2"
 pkg-config = ">=0.29.2,<0.30"
 # Python wrapper (pybgs) dependencies
-python = ">=3.9"
+# Pinned <3.13: Python 3.14 aborts on `import pybgs` on macOS (take_gil: PyMUTEX_LOCK failed,
+# seen in the trilha-ii CI matrix). The version doesn't affect golden masks (they come from the
+# C++/OpenCV core), so this is safe for the committed baselines.
+python = ">=3.10,<3.13"
 numpy = ">=1.21"
