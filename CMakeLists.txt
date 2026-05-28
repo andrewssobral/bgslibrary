@@ -283,7 +283,7 @@ if(NOT BGS_PYTHON_ONLY)
   # set_target_properties(bgslibrary PROPERTIES OUTPUT_NAME bgs)
 endif()
 
-if(UNIX AND BGS_PYTHON_SUPPORT)
+if(BGS_PYTHON_SUPPORT)
   execute_process(
     COMMAND "${PYTHON_EXECUTABLE}" -c "if True:
       import sysconfig, os
